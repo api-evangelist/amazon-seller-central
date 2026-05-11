@@ -1,0 +1,69 @@
+aid: amazon-seller-central
+name: Amazon Selling Partner API
+description: >-
+  The Amazon Selling Partner API (SP-API) is the modern REST-based API that
+  enables Amazon sellers, vendors, and third-party developers to programmatically
+  access Seller Central data and operations including catalog management,
+  orders, inventory, pricing, fulfillment, reports, finances, notifications,
+  and advertising. SP-API uses Login with Amazon (LWA) OAuth 2.0 access tokens
+  for authentication and replaces the legacy Amazon Marketplace Web Service
+  (MWS).
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - eCommerce
+  - Marketplace
+  - Selling Partner
+  - Amazon
+  - Seller Central
+  - Catalog
+  - Orders
+  - Inventory
+  - Fulfillment
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/refs/heads/main/apis.yml
+created: '2026-05-11'
+modified: '2026-05-11'
+specificationVersion: '0.19'
+apis:
+  - aid: amazon-seller-central:sp-api
+    name: Amazon Selling Partner API (SP-API)
+    description: >-
+      REST API that lets approved developers and sellers manage Amazon
+      Selling Partner accounts including catalog items, listings, orders,
+      shipments, inventory, pricing, fees, reports, feeds, finances,
+      notifications, and FBA operations. Authentication uses Login with
+      Amazon (LWA) OAuth 2.0 access tokens passed via the
+      x-amz-access-token header.
+    humanURL: https://developer-docs.amazon.com/sp-api
+    baseURL: https://sellingpartnerapi-na.amazon.com
+    tags:
+      - eCommerce
+      - Marketplace
+      - Selling Partner
+      - Catalog
+      - Orders
+      - Inventory
+      - Reports
+    properties:
+      - type: Documentation
+        url: https://developer-docs.amazon.com/sp-api
+      - type: Authentication
+        url: https://developer-docs.amazon.com/sp-api/docs/authorizing-selling-partner-api-applications
+      - type: Connecting
+        url: https://developer-docs.amazon.com/sp-api/docs/connecting-to-the-selling-partner-api
+      - type: OpenAPI Models
+        url: https://github.com/amzn/selling-partner-api-models
+
+common:
+  - type: Website
+    url: https://developer.amazonservices.com/
+  - type: Documentation
+    url: https://developer-docs.amazon.com/sp-api
+  - type: Pricing
+    url: https://sell.amazon.com/pricing
+  - type: Sign Up
+    url: https://sellercentral.amazon.com/
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
