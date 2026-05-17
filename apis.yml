@@ -62,7 +62,7 @@ common:
     url: https://developer-docs.amazon.com/sp-api
   - type: Pricing
     url: https://sell.amazon.com/pricing
-  - type: Sign Up
+  - type: SignUp
     url: https://sellercentral.amazon.com/
 maintainers:
   - FN: Kin Lane
