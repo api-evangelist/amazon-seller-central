@@ -64,6 +64,8 @@ common:
     url: https://sell.amazon.com/pricing
   - type: SignUp
     url: https://sellercentral.amazon.com/
+  - type: LLMsTxt
+    url: https://developer-docs.amazon.com/llms.txt
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
