@@ -1,0 +1,276 @@
+openapi: 3.1.0
+info:
+  title: Amazon Selling Partner API (SP-API)
+  version: "1.0.0"
+  description: |
+    Modern REST API enabling Amazon sellers, vendors, and third-party
+    developers to programmatically access Seller Central data and
+    operations. Coverage includes catalog management, orders, inventory,
+    pricing, fulfillment, reports, feeds, finances, notifications, and
+    tokens. Authentication uses Login with Amazon (LWA) OAuth 2.0
+    access tokens (`x-amz-access-token`) and optional Restricted Data
+    Tokens for PII. SP-API replaces the legacy Amazon MWS.
+  contact:
+    name: Amazon Selling Partner API
+    url: https://developer-docs.amazon.com/sp-api
+servers:
+  - url: https://sellingpartnerapi-na.amazon.com
+    description: North America
+  - url: https://sellingpartnerapi-eu.amazon.com
+    description: Europe
+  - url: https://sellingpartnerapi-fe.amazon.com
+    description: Far East
+tags:
+  - name: Authentication
+  - name: Orders
+  - name: Catalog
+  - name: Listings
+  - name: Inventory
+  - name: Pricing
+  - name: Reports
+  - name: Feeds
+  - name: Finances
+  - name: Notifications
+  - name: Tokens
+  - name: Shipping
+paths:
+  /auth/o2/token:
+    servers:
+      - url: https://api.amazon.com
+        description: Login with Amazon
+    post:
+      tags: [Authentication]
+      summary: Exchange refresh token or client credentials for an LWA access token
+      operationId: lwaToken
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                grant_type:
+                  type: string
+                  enum: [refresh_token, client_credentials]
+                refresh_token: { type: string }
+                client_id: { type: string }
+                client_secret: { type: string }
+                scope: { type: string }
+              required: [grant_type, client_id, client_secret]
+      responses:
+        "200":
+          description: Access token.
+  /orders/v0/orders:
+    get:
+      tags: [Orders]
+      summary: List orders
+      operationId: getOrders
+      parameters:
+        - in: query
+          name: MarketplaceIds
+          required: true
+          schema: { type: array, items: { type: string } }
+        - in: query
+          name: CreatedAfter
+          schema: { type: string, format: date-time }
+        - in: query
+          name: CreatedBefore
+          schema: { type: string, format: date-time }
+      responses:
+        "200": { description: Orders list. }
+  /orders/v0/orders/{orderId}:
+    parameters:
+      - in: path
+        name: orderId
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Orders]
+      summary: Get an order
+      operationId: getOrder
+      responses:
+        "200": { description: Order. }
+  /orders/v0/orders/{orderId}/orderItems:
+    parameters:
+      - in: path
+        name: orderId
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Orders]
+      summary: List order items
+      operationId: getOrderItems
+      responses:
+        "200": { description: Order items. }
+  /catalog/2022-04-01/items:
+    get:
+      tags: [Catalog]
+      summary: Search the Amazon catalog
+      operationId: searchCatalogItems
+      parameters:
+        - in: query
+          name: marketplaceIds
+          required: true
+          schema: { type: array, items: { type: string } }
+        - in: query
+          name: keywords
+          schema: { type: array, items: { type: string } }
+        - in: query
+          name: identifiers
+          schema: { type: array, items: { type: string } }
+      responses:
+        "200": { description: Catalog items. }
+  /catalog/2022-04-01/items/{asin}:
+    parameters:
+      - in: path
+        name: asin
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Catalog]
+      summary: Get a catalog item
+      operationId: getCatalogItem
+      responses:
+        "200": { description: Catalog item. }
+  /listings/2021-08-01/items/{sellerId}/{sku}:
+    parameters:
+      - in: path
+        name: sellerId
+        required: true
+        schema: { type: string }
+      - in: path
+        name: sku
+        required: true
+        schema: { type: string }
+    put:
+      tags: [Listings]
+      summary: Create or fully update a listings item
+      operationId: putListingsItem
+      responses:
+        "200": { description: OK }
+    patch:
+      tags: [Listings]
+      summary: Partial update of a listings item
+      operationId: patchListingsItem
+      responses:
+        "200": { description: OK }
+    delete:
+      tags: [Listings]
+      summary: Delete a listings item
+      operationId: deleteListingsItem
+      responses:
+        "200": { description: OK }
+  /fba/inventory/v1/summaries:
+    get:
+      tags: [Inventory]
+      summary: Get FBA inventory summaries
+      operationId: getInventorySummaries
+      parameters:
+        - in: query
+          name: marketplaceIds
+          required: true
+          schema: { type: array, items: { type: string } }
+      responses:
+        "200": { description: Inventory summaries. }
+  /products/pricing/v0/price:
+    get:
+      tags: [Pricing]
+      summary: Get pricing
+      operationId: getPricing
+      parameters:
+        - in: query
+          name: MarketplaceId
+          required: true
+          schema: { type: string }
+        - in: query
+          name: ItemType
+          required: true
+          schema: { type: string, enum: [Asin, Sku] }
+      responses:
+        "200": { description: Pricing. }
+  /reports/2021-06-30/reports:
+    get:
+      tags: [Reports]
+      summary: List reports
+      operationId: getReports
+      responses:
+        "200": { description: Reports list. }
+    post:
+      tags: [Reports]
+      summary: Create a report
+      operationId: createReport
+      responses:
+        "202": { description: Report creation accepted. }
+  /reports/2021-06-30/reports/{reportId}:
+    parameters:
+      - in: path
+        name: reportId
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Reports]
+      summary: Get a report
+      operationId: getReport
+      responses:
+        "200": { description: Report. }
+  /feeds/2021-06-30/feeds:
+    get:
+      tags: [Feeds]
+      summary: List feeds
+      operationId: getFeeds
+      responses:
+        "200": { description: Feeds. }
+    post:
+      tags: [Feeds]
+      summary: Create a feed
+      operationId: createFeed
+      responses:
+        "202": { description: Feed accepted. }
+  /finances/v0/financialEvents:
+    get:
+      tags: [Finances]
+      summary: List financial events
+      operationId: listFinancialEvents
+      responses:
+        "200": { description: Events. }
+  /notifications/v1/subscriptions/{notificationType}:
+    parameters:
+      - in: path
+        name: notificationType
+        required: true
+        schema: { type: string }
+    post:
+      tags: [Notifications]
+      summary: Create a subscription
+      operationId: createSubscription
+      responses:
+        "200": { description: Subscription. }
+    get:
+      tags: [Notifications]
+      summary: Get a subscription
+      operationId: getSubscription
+      responses:
+        "200": { description: Subscription. }
+  /tokens/2021-03-01/restrictedDataToken:
+    post:
+      tags: [Tokens]
+      summary: Create a restricted data token
+      operationId: createRestrictedDataToken
+      responses:
+        "200": { description: RDT. }
+  /shipping/v2/shipments:
+    post:
+      tags: [Shipping]
+      summary: Purchase a shipment
+      operationId: purchaseShipment
+      responses:
+        "200": { description: Shipment. }
+components:
+  securitySchemes:
+    LwaBearer:
+      type: apiKey
+      in: header
+      name: x-amz-access-token
+      description: Login with Amazon (LWA) OAuth 2.0 access token.
+security:
+  - LwaBearer: []
