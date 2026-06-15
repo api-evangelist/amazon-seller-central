@@ -1,0 +1,501 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Selling Partner API (SP-API)",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-amz-access-token",
+      "value": "{{x-amz-access-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Exchange refresh token or client credentials for an LWA access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/auth/o2/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "refresh_token",
+                  "value": ""
+                },
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "client_secret",
+                  "value": ""
+                },
+                {
+                  "name": "scope",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Exchange refresh token or client credentials for an LWA access token"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/orders/v0/orders",
+            "params": [
+              {
+                "name": "MarketplaceIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "CreatedAfter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "CreatedBefore",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List orders"
+        },
+        {
+          "info": {
+            "name": "Get an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/orders/v0/orders/:orderId",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an order"
+        },
+        {
+          "info": {
+            "name": "List order items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/orders/v0/orders/:orderId/orderItems",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List order items"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Catalog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search the Amazon catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/catalog/2022-04-01/items",
+            "params": [
+              {
+                "name": "marketplaceIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "keywords",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "identifiers",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search the Amazon catalog"
+        },
+        {
+          "info": {
+            "name": "Get a catalog item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/catalog/2022-04-01/items/:asin",
+            "params": [
+              {
+                "name": "asin",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a catalog item"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Listings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create or fully update a listings item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sellingpartnerapi-na.amazon.com/listings/2021-08-01/items/:sellerId/:sku",
+            "params": [
+              {
+                "name": "sellerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sku",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create or fully update a listings item"
+        },
+        {
+          "info": {
+            "name": "Partial update of a listings item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://sellingpartnerapi-na.amazon.com/listings/2021-08-01/items/:sellerId/:sku",
+            "params": [
+              {
+                "name": "sellerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sku",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Partial update of a listings item"
+        },
+        {
+          "info": {
+            "name": "Delete a listings item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://sellingpartnerapi-na.amazon.com/listings/2021-08-01/items/:sellerId/:sku",
+            "params": [
+              {
+                "name": "sellerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sku",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a listings item"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Inventory",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get FBA inventory summaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/fba/inventory/v1/summaries",
+            "params": [
+              {
+                "name": "marketplaceIds",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get FBA inventory summaries"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pricing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get pricing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/products/pricing/v0/price",
+            "params": [
+              {
+                "name": "MarketplaceId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ItemType",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get pricing"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/reports/2021-06-30/reports"
+          },
+          "docs": "List reports"
+        },
+        {
+          "info": {
+            "name": "Create a report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/reports/2021-06-30/reports"
+          },
+          "docs": "Create a report"
+        },
+        {
+          "info": {
+            "name": "Get a report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/reports/2021-06-30/reports/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a report"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Feeds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List feeds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/feeds/2021-06-30/feeds"
+          },
+          "docs": "List feeds"
+        },
+        {
+          "info": {
+            "name": "Create a feed",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/feeds/2021-06-30/feeds"
+          },
+          "docs": "Create a feed"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Finances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List financial events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/finances/v0/financialEvents"
+          },
+          "docs": "List financial events"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Notifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/notifications/v1/subscriptions/:notificationType",
+            "params": [
+              {
+                "name": "notificationType",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a subscription"
+        },
+        {
+          "info": {
+            "name": "Create a subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/notifications/v1/subscriptions/:notificationType",
+            "params": [
+              {
+                "name": "notificationType",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create a subscription"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a restricted data token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/tokens/2021-03-01/restrictedDataToken"
+          },
+          "docs": "Create a restricted data token"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Shipping",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Purchase a shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/shipping/v2/shipments"
+          },
+          "docs": "Purchase a shipment"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
