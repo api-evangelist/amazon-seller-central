@@ -62,9 +62,9 @@ common:
     url: https://developer-docs.amazon.com/sp-api
   - type: Pricing
     url: https://sell.amazon.com/pricing
-  - type: SignUp
+  - type: Signup
     url: https://sellercentral.amazon.com/
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://developer-docs.amazon.com/llms.txt
 maintainers:
   - FN: Kin Lane
