@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/amazon-seller-central-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: LwaBearer
+  type: apiKey
+  in: header
+  parameter: x-amz-access-token
+  description: Login with Amazon (LWA) OAuth 2.0 access token.
+  sources:
+  - openapi/amazon-seller-central-openapi.yml

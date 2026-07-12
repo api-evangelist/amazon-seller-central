@@ -56,6 +56,10 @@ apis:
         url: https://github.com/amzn/selling-partner-api-models
 
 common:
+  - type: DomainSecurity
+    url: security/amazon-seller-central-domain-security.yml
+  - type: Authentication
+    url: authentication/amazon-seller-central-authentication.yml
   - type: Website
     url: https://developer.amazonservices.com/
   - type: Documentation
