@@ -1,0 +1,73 @@
+openapi: 3.1.0
+info:
+  title: Amazon Selling Partner API (SP-API) Authentication Reports API
+  version: 1.0.0
+  description: 'Modern REST API enabling Amazon sellers, vendors, and third-party
+
+    developers to programmatically access Seller Central data and
+
+    operations. Coverage includes catalog management, orders, inventory,
+
+    pricing, fulfillment, reports, feeds, finances, notifications, and
+
+    tokens. Authentication uses Login with Amazon (LWA) OAuth 2.0
+
+    access tokens (`x-amz-access-token`) and optional Restricted Data
+
+    Tokens for PII. SP-API replaces the legacy Amazon MWS.
+
+    '
+  contact:
+    name: Amazon Selling Partner API
+    url: https://developer-docs.amazon.com/sp-api
+servers:
+- url: https://sellingpartnerapi-na.amazon.com
+  description: North America
+- url: https://sellingpartnerapi-eu.amazon.com
+  description: Europe
+- url: https://sellingpartnerapi-fe.amazon.com
+  description: Far East
+security:
+- LwaBearer: []
+tags:
+- name: Reports
+paths:
+  /reports/2021-06-30/reports:
+    get:
+      tags:
+      - Reports
+      summary: List reports
+      operationId: getReports
+      responses:
+        '200':
+          description: Reports list.
+    post:
+      tags:
+      - Reports
+      summary: Create a report
+      operationId: createReport
+      responses:
+        '202':
+          description: Report creation accepted.
+  /reports/2021-06-30/reports/{reportId}:
+    parameters:
+    - in: path
+      name: reportId
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Reports
+      summary: Get a report
+      operationId: getReport
+      responses:
+        '200':
+          description: Report.
+components:
+  securitySchemes:
+    LwaBearer:
+      type: apiKey
+      in: header
+      name: x-amz-access-token
+      description: Login with Amazon (LWA) OAuth 2.0 access token.

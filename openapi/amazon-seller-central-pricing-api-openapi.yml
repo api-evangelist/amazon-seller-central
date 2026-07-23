@@ -1,0 +1,64 @@
+openapi: 3.1.0
+info:
+  title: Amazon Selling Partner API (SP-API) Authentication Pricing API
+  version: 1.0.0
+  description: 'Modern REST API enabling Amazon sellers, vendors, and third-party
+
+    developers to programmatically access Seller Central data and
+
+    operations. Coverage includes catalog management, orders, inventory,
+
+    pricing, fulfillment, reports, feeds, finances, notifications, and
+
+    tokens. Authentication uses Login with Amazon (LWA) OAuth 2.0
+
+    access tokens (`x-amz-access-token`) and optional Restricted Data
+
+    Tokens for PII. SP-API replaces the legacy Amazon MWS.
+
+    '
+  contact:
+    name: Amazon Selling Partner API
+    url: https://developer-docs.amazon.com/sp-api
+servers:
+- url: https://sellingpartnerapi-na.amazon.com
+  description: North America
+- url: https://sellingpartnerapi-eu.amazon.com
+  description: Europe
+- url: https://sellingpartnerapi-fe.amazon.com
+  description: Far East
+security:
+- LwaBearer: []
+tags:
+- name: Pricing
+paths:
+  /products/pricing/v0/price:
+    get:
+      tags:
+      - Pricing
+      summary: Get pricing
+      operationId: getPricing
+      parameters:
+      - in: query
+        name: MarketplaceId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: ItemType
+        required: true
+        schema:
+          type: string
+          enum:
+          - Asin
+          - Sku
+      responses:
+        '200':
+          description: Pricing.
+components:
+  securitySchemes:
+    LwaBearer:
+      type: apiKey
+      in: header
+      name: x-amz-access-token
+      description: Login with Amazon (LWA) OAuth 2.0 access token.

@@ -1,0 +1,98 @@
+openapi: 3.1.0
+info:
+  title: Amazon Selling Partner API (SP-API) Authentication Orders API
+  version: 1.0.0
+  description: 'Modern REST API enabling Amazon sellers, vendors, and third-party
+
+    developers to programmatically access Seller Central data and
+
+    operations. Coverage includes catalog management, orders, inventory,
+
+    pricing, fulfillment, reports, feeds, finances, notifications, and
+
+    tokens. Authentication uses Login with Amazon (LWA) OAuth 2.0
+
+    access tokens (`x-amz-access-token`) and optional Restricted Data
+
+    Tokens for PII. SP-API replaces the legacy Amazon MWS.
+
+    '
+  contact:
+    name: Amazon Selling Partner API
+    url: https://developer-docs.amazon.com/sp-api
+servers:
+- url: https://sellingpartnerapi-na.amazon.com
+  description: North America
+- url: https://sellingpartnerapi-eu.amazon.com
+  description: Europe
+- url: https://sellingpartnerapi-fe.amazon.com
+  description: Far East
+security:
+- LwaBearer: []
+tags:
+- name: Orders
+paths:
+  /orders/v0/orders:
+    get:
+      tags:
+      - Orders
+      summary: List orders
+      operationId: getOrders
+      parameters:
+      - in: query
+        name: MarketplaceIds
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      - in: query
+        name: CreatedAfter
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: CreatedBefore
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Orders list.
+  /orders/v0/orders/{orderId}:
+    parameters:
+    - in: path
+      name: orderId
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Orders
+      summary: Get an order
+      operationId: getOrder
+      responses:
+        '200':
+          description: Order.
+  /orders/v0/orders/{orderId}/orderItems:
+    parameters:
+    - in: path
+      name: orderId
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Orders
+      summary: List order items
+      operationId: getOrderItems
+      responses:
+        '200':
+          description: Order items.
+components:
+  securitySchemes:
+    LwaBearer:
+      type: apiKey
+      in: header
+      name: x-amz-access-token
+      description: Login with Amazon (LWA) OAuth 2.0 access token.
