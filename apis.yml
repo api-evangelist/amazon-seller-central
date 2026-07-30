@@ -9,7 +9,19 @@ description: >-
   for authentication and replaces the legacy Amazon Marketplace Web Service
   (MWS).
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/amazon-seller-central.png
 tags:
   - eCommerce
   - Marketplace
@@ -26,35 +38,155 @@ created: '2026-05-11'
 modified: '2026-05-11'
 specificationVersion: '0.19'
 apis:
-  - aid: amazon-seller-central:sp-api
-    name: Amazon Selling Partner API (SP-API)
-    description: >-
-      REST API that lets approved developers and sellers manage Amazon
-      Selling Partner accounts including catalog items, listings, orders,
-      shipments, inventory, pricing, fees, reports, feeds, finances,
-      notifications, and FBA operations. Authentication uses Login with
-      Amazon (LWA) OAuth 2.0 access tokens passed via the
-      x-amz-access-token header.
-    humanURL: https://developer-docs.amazon.com/sp-api
-    baseURL: https://sellingpartnerapi-na.amazon.com
-    tags:
-      - eCommerce
-      - Marketplace
-      - Selling Partner
-      - Catalog
-      - Orders
-      - Inventory
-      - Reports
-    properties:
-      - type: Documentation
-        url: https://developer-docs.amazon.com/sp-api
-      - type: Authentication
-        url: https://developer-docs.amazon.com/sp-api/docs/authorizing-selling-partner-api-applications
-      - type: Connecting
-        url: https://developer-docs.amazon.com/sp-api/docs/connecting-to-the-selling-partner-api
-      - type: OpenAPI Models
-        url: https://github.com/amzn/selling-partner-api-models
-
+- aid: amazon-seller-central:sp-api
+  name: Amazon Selling Partner API (SP-API)
+  description: >-
+    REST API that lets approved developers and sellers manage Amazon Selling Partner accounts including
+    catalog items, listings, orders, shipments, inventory, pricing, fees, reports, feeds, finances, notifications,
+    and FBA operations. Authentication uses Login with Amazon (LWA) OAuth 2.0 access tokens passed via
+    the x-amz-access-token header.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - eCommerce
+  - Marketplace
+  - Selling Partner
+  - Catalog
+  - Orders
+  - Inventory
+  - Reports
+  properties:
+  - type: Documentation
+    url: https://developer-docs.amazon.com/sp-api
+  - type: Authentication
+    url: >-
+      https://developer-docs.amazon.com/sp-api/docs/authorizing-selling-partner-api-applications
+  - type: Connecting
+    url: https://developer-docs.amazon.com/sp-api/docs/connecting-to-the-selling-partner-api
+  - type: OpenAPI Models
+    url: https://github.com/amzn/selling-partner-api-models
+- aid: amazon-seller-central:amazon-seller-central-authentication-api
+  name: Amazon Selling Partner API Authentication API
+  description: >-
+    The Authentication API from Amazon Selling Partner API — 1 operation(s) for authentication.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-authentication-api-openapi.yml
+- aid: amazon-seller-central:amazon-seller-central-catalog-api
+  name: Amazon Selling Partner API Catalog API
+  description: The Catalog API from Amazon Selling Partner API — 2 operation(s) for catalog.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - Catalog
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-catalog-api-openapi.yml
+- aid: amazon-seller-central:amazon-seller-central-feeds-api
+  name: Amazon Selling Partner API Feeds API
+  description: The Feeds API from Amazon Selling Partner API — 1 operation(s) for feeds.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - Feeds
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-feeds-api-openapi.yml
+- aid: amazon-seller-central:amazon-seller-central-finances-api
+  name: Amazon Selling Partner API Finances API
+  description: The Finances API from Amazon Selling Partner API — 1 operation(s) for finances.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - Finances
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-finances-api-openapi.yml
+- aid: amazon-seller-central:amazon-seller-central-inventory-api
+  name: Amazon Selling Partner API Inventory API
+  description: The Inventory API from Amazon Selling Partner API — 1 operation(s) for inventory.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - Inventory
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-inventory-api-openapi.yml
+- aid: amazon-seller-central:amazon-seller-central-listings-api
+  name: Amazon Selling Partner API Listings API
+  description: The Listings API from Amazon Selling Partner API — 1 operation(s) for listings.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - Listings
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-listings-api-openapi.yml
+- aid: amazon-seller-central:amazon-seller-central-notifications-api
+  name: Amazon Selling Partner API Notifications API
+  description: >-
+    The Notifications API from Amazon Selling Partner API — 1 operation(s) for notifications.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-notifications-api-openapi.yml
+- aid: amazon-seller-central:amazon-seller-central-orders-api
+  name: Amazon Selling Partner API Orders API
+  description: The Orders API from Amazon Selling Partner API — 3 operation(s) for orders.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-orders-api-openapi.yml
+- aid: amazon-seller-central:amazon-seller-central-pricing-api
+  name: Amazon Selling Partner API Pricing API
+  description: The Pricing API from Amazon Selling Partner API — 1 operation(s) for pricing.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - Pricing
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-pricing-api-openapi.yml
+- aid: amazon-seller-central:amazon-seller-central-reports-api
+  name: Amazon Selling Partner API Reports API
+  description: The Reports API from Amazon Selling Partner API — 2 operation(s) for reports.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-reports-api-openapi.yml
+- aid: amazon-seller-central:amazon-seller-central-shipping-api
+  name: Amazon Selling Partner API Shipping API
+  description: The Shipping API from Amazon Selling Partner API — 1 operation(s) for shipping.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - Shipping
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-shipping-api-openapi.yml
+- aid: amazon-seller-central:amazon-seller-central-tokens-api
+  name: Amazon Selling Partner API Tokens API
+  description: The Tokens API from Amazon Selling Partner API — 1 operation(s) for tokens.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - Tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-tokens-api-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/amazon-seller-central-agentic-access.yml
