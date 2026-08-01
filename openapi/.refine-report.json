@@ -1,0 +1,36 @@
+{
+  "provider": "amazon-seller-central",
+  "sources": [
+    "amazon-seller-central-authentication-api-openapi.yml",
+    "amazon-seller-central-catalog-api-openapi.yml",
+    "amazon-seller-central-feeds-api-openapi.yml",
+    "amazon-seller-central-finances-api-openapi.yml",
+    "amazon-seller-central-inventory-api-openapi.yml",
+    "amazon-seller-central-listings-api-openapi.yml",
+    "amazon-seller-central-notifications-api-openapi.yml",
+    "amazon-seller-central-orders-api-openapi.yml",
+    "amazon-seller-central-pricing-api-openapi.yml",
+    "amazon-seller-central-reports-api-openapi.yml",
+    "amazon-seller-central-shipping-api-openapi.yml",
+    "amazon-seller-central-tokens-api-openapi.yml"
+  ],
+  "outputs": [
+    "amazon-seller-central-authentication-api-openapi.yml",
+    "amazon-seller-central-catalog-api-openapi.yml",
+    "amazon-seller-central-feeds-api-openapi.yml",
+    "amazon-seller-central-finances-api-openapi.yml",
+    "amazon-seller-central-inventory-api-openapi.yml",
+    "amazon-seller-central-listings-api-openapi.yml",
+    "amazon-seller-central-notifications-api-openapi.yml",
+    "amazon-seller-central-orders-api-openapi.yml",
+    "amazon-seller-central-pricing-api-openapi.yml",
+    "amazon-seller-central-reports-api-openapi.yml",
+    "amazon-seller-central-shipping-api-openapi.yml",
+    "amazon-seller-central-tokens-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
