@@ -1,0 +1,223 @@
+{
+  "item": [
+    {
+      "id": "434412a9-4f49-4833-adae-95748a723281",
+      "name": "Notifications",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "32a66930-3b1d-4a0f-b9d9-875efb6316b3",
+          "name": "Create a subscription",
+          "request": {
+            "name": "Create a subscription",
+            "description": {},
+            "url": {
+              "path": [
+                "notifications",
+                "v1",
+                "subscriptions",
+                ":notificationType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "notificationType",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a7109b1f-2436-4d87-8b36-ed6480946312",
+              "name": "Subscription.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notifications",
+                    "v1",
+                    "subscriptions",
+                    ":notificationType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "notificationType",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-amz-access-token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "88178204-00c4-4408-8f35-f0f275e786aa",
+          "name": "Get a subscription",
+          "request": {
+            "name": "Get a subscription",
+            "description": {},
+            "url": {
+              "path": [
+                "notifications",
+                "v1",
+                "subscriptions",
+                ":notificationType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "notificationType",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "25e55dd2-5f3d-4ed9-a399-5f926778b730",
+              "name": "Subscription.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notifications",
+                    "v1",
+                    "subscriptions",
+                    ":notificationType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "notificationType",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-amz-access-token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sellingpartnerapi-na.amazon.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-amz-access-token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ab980907-76ae-4a69-b5d1-d674e784870e",
+    "name": "Amazon Selling Partner API (SP-API) Authentication Notifications API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Modern REST API enabling Amazon sellers, vendors, and third-party\ndevelopers to programmatically access Seller Central data and\noperations. Coverage includes catalog management, orders, inventory,\npricing, fulfillment, reports, feeds, finances, notifications, and\ntokens. Authentication uses Login with Amazon (LWA) OAuth 2.0\naccess tokens (`x-amz-access-token`) and optional Restricted Data\nTokens for PII. SP-API replaces the legacy Amazon MWS.\n\n\nContact Support:\n Name: Amazon Selling Partner API",
+      "type": "text/plain"
+    }
+  }
+}

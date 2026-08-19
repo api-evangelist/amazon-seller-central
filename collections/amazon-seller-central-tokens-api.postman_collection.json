@@ -1,0 +1,118 @@
+{
+  "item": [
+    {
+      "id": "d96fd0b7-f4f3-4ec8-bdee-6ccea6d54d79",
+      "name": "Tokens",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c98b57f8-922a-430d-9eb5-5c68f307f62e",
+          "name": "Create a restricted data token",
+          "request": {
+            "name": "Create a restricted data token",
+            "description": {},
+            "url": {
+              "path": [
+                "tokens",
+                "2021-03-01",
+                "restrictedDataToken"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a36a805c-ffb5-4bf4-894e-be6fe43a0700",
+              "name": "RDT.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tokens",
+                    "2021-03-01",
+                    "restrictedDataToken"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-amz-access-token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sellingpartnerapi-na.amazon.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-amz-access-token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "196b1d99-a232-4817-813b-e1567636cfc6",
+    "name": "Amazon Selling Partner API (SP-API) Authentication Tokens API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Modern REST API enabling Amazon sellers, vendors, and third-party\ndevelopers to programmatically access Seller Central data and\noperations. Coverage includes catalog management, orders, inventory,\npricing, fulfillment, reports, feeds, finances, notifications, and\ntokens. Authentication uses Login with Amazon (LWA) OAuth 2.0\naccess tokens (`x-amz-access-token`) and optional Restricted Data\nTokens for PII. SP-API replaces the legacy Amazon MWS.\n\n\nContact Support:\n Name: Amazon Selling Partner API",
+      "type": "text/plain"
+    }
+  }
+}

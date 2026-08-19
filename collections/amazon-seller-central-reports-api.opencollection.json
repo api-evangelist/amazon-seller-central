@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Selling Partner API (SP-API) Authentication Reports API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-amz-access-token",
+      "value": "{{x-amz-access-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/reports/2021-06-30/reports"
+          },
+          "docs": "List reports"
+        },
+        {
+          "info": {
+            "name": "Create a report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/reports/2021-06-30/reports"
+          },
+          "docs": "Create a report"
+        },
+        {
+          "info": {
+            "name": "Get a report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/reports/2021-06-30/reports/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a report"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

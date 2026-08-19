@@ -1,0 +1,187 @@
+{
+  "item": [
+    {
+      "id": "f9d5ed12-bf6f-4421-b70c-5d04af8d7aa3",
+      "name": "Feeds",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e61c5dc4-fce0-4ea1-8185-3e03b8b972bd",
+          "name": "List feeds",
+          "request": {
+            "name": "List feeds",
+            "description": {},
+            "url": {
+              "path": [
+                "feeds",
+                "2021-06-30",
+                "feeds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a8502a15-aa26-4561-9266-4b74ef483023",
+              "name": "Feeds.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-amz-access-token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20bb78ed-1264-469f-a11e-eac0588a5676",
+          "name": "Create a feed",
+          "request": {
+            "name": "Create a feed",
+            "description": {},
+            "url": {
+              "path": [
+                "feeds",
+                "2021-06-30",
+                "feeds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "03a39610-db66-4530-bb18-7d6e545fbb24",
+              "name": "Feed accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-amz-access-token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sellingpartnerapi-na.amazon.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-amz-access-token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "564a3992-95e5-4aa2-81b0-d9dade0f6de8",
+    "name": "Amazon Selling Partner API (SP-API) Authentication Feeds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Modern REST API enabling Amazon sellers, vendors, and third-party\ndevelopers to programmatically access Seller Central data and\noperations. Coverage includes catalog management, orders, inventory,\npricing, fulfillment, reports, feeds, finances, notifications, and\ntokens. Authentication uses Login with Amazon (LWA) OAuth 2.0\naccess tokens (`x-amz-access-token`) and optional Restricted Data\nTokens for PII. SP-API replaces the legacy Amazon MWS.\n\n\nContact Support:\n Name: Amazon Selling Partner API",
+      "type": "text/plain"
+    }
+  }
+}

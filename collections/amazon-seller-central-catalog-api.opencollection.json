@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Selling Partner API (SP-API) Authentication Catalog API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-amz-access-token",
+      "value": "{{x-amz-access-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Catalog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search the Amazon catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/catalog/2022-04-01/items",
+            "params": [
+              {
+                "name": "marketplaceIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "keywords",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "identifiers",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search the Amazon catalog"
+        },
+        {
+          "info": {
+            "name": "Get a catalog item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/catalog/2022-04-01/items/:asin",
+            "params": [
+              {
+                "name": "asin",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a catalog item"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Selling Partner API (SP-API) Authentication Orders API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-amz-access-token",
+      "value": "{{x-amz-access-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/orders/v0/orders",
+            "params": [
+              {
+                "name": "MarketplaceIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "CreatedAfter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "CreatedBefore",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List orders"
+        },
+        {
+          "info": {
+            "name": "Get an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/orders/v0/orders/:orderId",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an order"
+        },
+        {
+          "info": {
+            "name": "List order items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/orders/v0/orders/:orderId/orderItems",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List order items"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Selling Partner API (SP-API) Authentication Inventory API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-amz-access-token",
+      "value": "{{x-amz-access-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Inventory",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get FBA inventory summaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/fba/inventory/v1/summaries",
+            "params": [
+              {
+                "name": "marketplaceIds",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get FBA inventory summaries"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

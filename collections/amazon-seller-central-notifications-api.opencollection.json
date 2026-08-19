@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Selling Partner API (SP-API) Authentication Notifications API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-amz-access-token",
+      "value": "{{x-amz-access-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Notifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/notifications/v1/subscriptions/:notificationType",
+            "params": [
+              {
+                "name": "notificationType",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a subscription"
+        },
+        {
+          "info": {
+            "name": "Create a subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/notifications/v1/subscriptions/:notificationType",
+            "params": [
+              {
+                "name": "notificationType",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create a subscription"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

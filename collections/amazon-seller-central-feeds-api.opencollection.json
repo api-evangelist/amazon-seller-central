@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Selling Partner API (SP-API) Authentication Feeds API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-amz-access-token",
+      "value": "{{x-amz-access-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Feeds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List feeds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/feeds/2021-06-30/feeds"
+          },
+          "docs": "List feeds"
+        },
+        {
+          "info": {
+            "name": "Create a feed",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/feeds/2021-06-30/feeds"
+          },
+          "docs": "Create a feed"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

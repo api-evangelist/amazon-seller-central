@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Selling Partner API (SP-API) Authentication Shipping API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-amz-access-token",
+      "value": "{{x-amz-access-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shipping",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Purchase a shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/shipping/v2/shipments"
+          },
+          "docs": "Purchase a shipment"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

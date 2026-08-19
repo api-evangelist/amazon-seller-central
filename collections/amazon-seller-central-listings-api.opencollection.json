@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Selling Partner API (SP-API) Authentication Listings API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-amz-access-token",
+      "value": "{{x-amz-access-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Listings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create or fully update a listings item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sellingpartnerapi-na.amazon.com/listings/2021-08-01/items/:sellerId/:sku",
+            "params": [
+              {
+                "name": "sellerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sku",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create or fully update a listings item"
+        },
+        {
+          "info": {
+            "name": "Partial update of a listings item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://sellingpartnerapi-na.amazon.com/listings/2021-08-01/items/:sellerId/:sku",
+            "params": [
+              {
+                "name": "sellerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sku",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Partial update of a listings item"
+        },
+        {
+          "info": {
+            "name": "Delete a listings item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://sellingpartnerapi-na.amazon.com/listings/2021-08-01/items/:sellerId/:sku",
+            "params": [
+              {
+                "name": "sellerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sku",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a listings item"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
