@@ -23,6 +23,16 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/amazon-seller-central.png
 tags:
+  - E-Commerce
+  - Marketplace
+  - Selling Partner
+  - Amazon
+  - Seller Central
+  - Catalog
+  - Order
+  - Inventory
+  - Fulfillment
+tags_raw:
   - eCommerce
   - Marketplace
   - Selling Partner
@@ -48,6 +58,14 @@ apis:
   humanURL: https://developer-docs.amazon.com/sp-api
   baseURL: https://sellingpartnerapi-na.amazon.com
   tags:
+  - E-Commerce
+  - Marketplace
+  - Selling Partner
+  - Catalog
+  - Order
+  - Inventory
+  - Reports
+  tags_raw:
   - eCommerce
   - Marketplace
   - Selling Partner
@@ -133,6 +151,8 @@ apis:
   humanURL: https://developer-docs.amazon.com/sp-api
   baseURL: https://sellingpartnerapi-na.amazon.com
   tags:
+  - Notification
+  tags_raw:
   - Notifications
   properties:
   - type: OpenAPI
@@ -143,6 +163,8 @@ apis:
   humanURL: https://developer-docs.amazon.com/sp-api
   baseURL: https://sellingpartnerapi-na.amazon.com
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
