@@ -222,6 +222,9 @@ apis:
   - type: OpenAPI
     url: openapi/amazon-seller-central-tokens-api-openapi.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/amazon-seller-central-capability-edges.yml
+    name: Amazon Selling Partner API Business Capability Map
   - type: AgenticAccess
     url: agentic-access/amazon-seller-central-agentic-access.yml
   - type: DomainSecurity
