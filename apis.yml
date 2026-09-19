@@ -123,6 +123,8 @@ apis:
   humanURL: https://developer-docs.amazon.com/sp-api
   baseURL: https://sellingpartnerapi-na.amazon.com
   tags:
+  - Feed
+  tags_raw:
   - Feeds
   properties:
   - type: OpenAPI
