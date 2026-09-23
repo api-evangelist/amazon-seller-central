@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Amazon Selling Partner API (SP-API) Authentication Catalog API
+  title: Amazon Selling Partner API (SP-API) Catalog API
   version: 1.0.0
   description: 'Modern REST API enabling Amazon sellers, vendors, and third-party
 
@@ -14,9 +14,7 @@ info:
 
     access tokens (`x-amz-access-token`) and optional Restricted Data
 
-    Tokens for PII. SP-API replaces the legacy Amazon MWS.
-
-    '
+    Tokens for PII. SP-API replaces the legacy Amazon MWS.'
   contact:
     name: Amazon Selling Partner API
     url: https://developer-docs.amazon.com/sp-api

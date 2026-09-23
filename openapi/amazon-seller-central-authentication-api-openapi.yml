@@ -14,9 +14,7 @@ info:
 
     access tokens (`x-amz-access-token`) and optional Restricted Data
 
-    Tokens for PII. SP-API replaces the legacy Amazon MWS.
-
-    '
+    Tokens for PII. SP-API replaces the legacy Amazon MWS.'
   contact:
     name: Amazon Selling Partner API
     url: https://developer-docs.amazon.com/sp-api
