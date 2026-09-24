@@ -1,19 +1,22 @@
 {
   "item": [
     {
-      "id": "f9d5ed12-bf6f-4421-b70c-5d04af8d7aa3",
-      "name": "Feeds",
+      "id": "45b6addc-981d-4c10-95dd-fd593d7d2037",
+      "name": "feeds",
       "description": {
         "content": "",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "e61c5dc4-fce0-4ea1-8185-3e03b8b972bd",
-          "name": "List feeds",
+          "id": "ff6678a2-5949-45e3-b42b-768680babd96",
+          "name": "get Feeds",
           "request": {
-            "name": "List feeds",
-            "description": {},
+            "name": "get Feeds",
+            "description": {
+              "content": "Returns feed details for the feeds that match the filters that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.0222 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+              "type": "text/plain"
+            },
             "url": {
               "path": [
                 "feeds",
@@ -23,16 +26,65 @@
               "host": [
                 "{{baseUrl}}"
               ],
-              "query": [],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "feedTypes",
+                  "value": "<string>",
+                  "description": "A list of feed types used to filter feeds. When feedTypes is provided, the other filter parameters (processingStatuses, marketplaceIds, createdSince, createdUntil) and pageSize may also be provided. Either feedTypes or nextToken is required."
+                },
+                {
+                  "disabled": false,
+                  "key": "marketplaceIds",
+                  "value": "<string>",
+                  "description": "A list of marketplace identifiers used to filter feeds. The feeds returned will match at least one of the marketplaces that you specify."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "10",
+                  "description": "The maximum number of feeds to return in a single call."
+                },
+                {
+                  "disabled": false,
+                  "key": "processingStatuses",
+                  "value": "<string>",
+                  "description": "A list of processing statuses used to filter feeds."
+                },
+                {
+                  "disabled": false,
+                  "key": "createdSince",
+                  "value": "<dateTime>",
+                  "description": "The earliest feed creation date and time for feeds included in the response, in ISO 8601 format. The default is 90 days ago. Feeds are retained for a maximum of 90 days."
+                },
+                {
+                  "disabled": false,
+                  "key": "createdUntil",
+                  "value": "<dateTime>",
+                  "description": "The latest feed creation date and time for feeds included in the response, in ISO 8601 format. The default is now."
+                },
+                {
+                  "disabled": false,
+                  "key": "nextToken",
+                  "value": "<string>",
+                  "description": "A string token returned in the response to your previous request. nextToken is returned when the number of results exceeds the specified pageSize value. To get the next page of results, call the getFeeds operation and include this token as the only parameter. Specifying nextToken with any other parameters will cause the request to fail."
+                }
+              ],
               "variable": []
             },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "method": "GET",
             "auth": null
           },
           "response": [
             {
-              "id": "a8502a15-aa26-4561-9266-4b74ef483023",
-              "name": "Feeds.",
+              "id": "7b51c80d-01dd-46ab-8908-4c35a97c93ec",
+              "name": "Success.",
               "originalRequest": {
                 "url": {
                   "path": [
@@ -43,17 +95,42 @@
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
+                  "query": [
+                    {
+                      "key": "feedTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "processingStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createdSince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdUntil",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
                   "variable": []
                 },
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-amz-access-token",
-                    "value": "<API Key>"
+                    "key": "Accept",
+                    "value": "application/json"
                   }
                 ],
                 "method": "GET",
@@ -63,13 +140,613 @@
               "code": 200,
               "header": [
                 {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
                   "key": "Content-Type",
-                  "value": "text/plain"
+                  "value": "application/json"
                 }
               ],
-              "body": "",
+              "body": "{\n  \"feeds\": [\n    {\n      \"createdTime\": \"1984-10-11T17:53:13.735Z\",\n      \"feedId\": \"string\",\n      \"feedType\": \"string\",\n      \"processingStatus\": \"IN_PROGRESS\",\n      \"marketplaceIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"processingStartTime\": \"1975-03-09T14:53:28.575Z\",\n      \"processingEndTime\": \"1958-02-10T13:30:02.829Z\",\n      \"resultFeedDocumentId\": \"string\"\n    },\n    {\n      \"createdTime\": \"1965-09-17T03:29:27.435Z\",\n      \"feedId\": \"string\",\n      \"feedType\": \"string\",\n      \"processingStatus\": \"DONE\",\n      \"marketplaceIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"processingStartTime\": \"1998-03-02T11:24:13.802Z\",\n      \"processingEndTime\": \"2013-05-17T07:08:29.378Z\",\n      \"resultFeedDocumentId\": \"string\"\n    }\n  ],\n  \"nextToken\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3dbffdd-5be3-4f85-bca8-1e32e7b887aa",
+              "name": "Request has missing or invalid parameters and cannot be parsed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "feedTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "processingStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createdSince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdUntil",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6bf142e-3059-413f-bb0e-7d001c9e8720",
+              "name": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "feedTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "processingStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createdSince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdUntil",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef779e04-82fe-4965-b7aa-cbbad6e7ac97",
+              "name": "Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "feedTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "processingStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createdSince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdUntil",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b77417e8-af9f-4778-b9c3-55748f9acb6d",
+              "name": "The specified resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "feedTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "processingStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createdSince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdUntil",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a33b6ec3-352d-433b-963e-22d443d4f6bd",
+              "name": "The request's Content-Type header is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "feedTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "processingStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createdSince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdUntil",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de610611-f119-4652-84d0-85a227eb58d7",
+              "name": "The frequency of requests was greater than allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "feedTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "processingStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createdSince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdUntil",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66da5e9f-7d3d-4451-a4cc-2789ec35c8f6",
+              "name": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "feedTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "processingStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createdSince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdUntil",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ffadcd8-85a7-4ea9-9189-fc1519741700",
+              "name": "Temporary overloading or maintenance of the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "feedTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "processingStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createdSince",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdUntil",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
             }
           ],
           "event": [],
@@ -78,11 +755,14 @@
           }
         },
         {
-          "id": "20bb78ed-1264-469f-a11e-eac0588a5676",
-          "name": "Create a feed",
+          "id": "2e6a370d-547f-4a39-a7fd-859b1cacff58",
+          "name": "create Feed",
           "request": {
-            "name": "Create a feed",
-            "description": {},
+            "name": "create Feed",
+            "description": {
+              "content": "Creates a feed. Upload the contents of the feed document before calling this operation.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.0083 | 15 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).\n\nThe rate limit for the [`JSON_LISTINGS_FEED`](https://developer-docs.amazon.com/sp-api/docs/listings-feed-type-values#listings-feed) feed type differs from the rate limit for the [`createFeed`](https://developer-docs.amazon.com/sp-api/reference/createfeed) operation. For more information, refer to the [Building Listings Management Workflows Guide](https://developer-docs.amazon.com/sp-api/docs/building-listings-management-workflows-guide#should-i-submit-in-bulk-using-the-json_listings_feed-or-individually-with-the-listings-items-api).",
+              "type": "text/plain"
+            },
             "url": {
               "path": [
                 "feeds",
@@ -95,13 +775,32 @@
               "query": [],
               "variable": []
             },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "method": "POST",
-            "auth": null
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"inputFeedDocumentId\": \"<string>\",\n  \"feedType\": \"<string>\",\n  \"marketplaceIds\": [\n    \"<string>\"\n  ],\n  \"feedOptions\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
           },
           "response": [
             {
-              "id": "03a39610-db66-4530-bb18-7d6e545fbb24",
-              "name": "Feed accepted.",
+              "id": "0970c897-9edf-4bd9-88c3-d8f88a1d6f34",
+              "name": "Success.",
               "originalRequest": {
                 "url": {
                   "path": [
@@ -117,20 +816,554 @@
                 },
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-amz-access-token",
-                    "value": "<API Key>"
+                    "key": "Accept",
+                    "value": "application/json"
                   }
                 ],
                 "method": "POST",
-                "body": {}
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inputFeedDocumentId\": \"<string>\",\n  \"feedType\": \"<string>\",\n  \"marketplaceIds\": [\n    \"<string>\"\n  ],\n  \"feedOptions\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
               },
               "status": "Accepted",
               "code": 202,
               "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"feedId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e52d3f7b-a6ac-4806-b198-3b5d1dd7f77d",
+              "name": "Request has missing or invalid parameters and cannot be parsed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inputFeedDocumentId\": \"<string>\",\n  \"feedType\": \"<string>\",\n  \"marketplaceIds\": [\n    \"<string>\"\n  ],\n  \"feedOptions\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "199557a6-5135-453c-85b7-7bdc91fec210",
+              "name": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inputFeedDocumentId\": \"<string>\",\n  \"feedType\": \"<string>\",\n  \"marketplaceIds\": [\n    \"<string>\"\n  ],\n  \"feedOptions\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b03593b-ab4f-48ff-ad1c-a1660df5657d",
+              "name": "Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inputFeedDocumentId\": \"<string>\",\n  \"feedType\": \"<string>\",\n  \"marketplaceIds\": [\n    \"<string>\"\n  ],\n  \"feedOptions\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9a50978-a29c-41e7-9f2e-66840f6889e1",
+              "name": "The specified resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inputFeedDocumentId\": \"<string>\",\n  \"feedType\": \"<string>\",\n  \"marketplaceIds\": [\n    \"<string>\"\n  ],\n  \"feedOptions\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e82abc2-4840-444e-ac84-ba337c325809",
+              "name": "The request's Content-Type header is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inputFeedDocumentId\": \"<string>\",\n  \"feedType\": \"<string>\",\n  \"marketplaceIds\": [\n    \"<string>\"\n  ],\n  \"feedOptions\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "302ae5e3-9f6a-469d-ad92-41d0e66676fc",
+              "name": "The frequency of requests was greater than allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inputFeedDocumentId\": \"<string>\",\n  \"feedType\": \"<string>\",\n  \"marketplaceIds\": [\n    \"<string>\"\n  ],\n  \"feedOptions\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba5c5ee6-2058-4a6a-a5cb-595e3d8af9fc",
+              "name": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inputFeedDocumentId\": \"<string>\",\n  \"feedType\": \"<string>\",\n  \"marketplaceIds\": [\n    \"<string>\"\n  ],\n  \"feedOptions\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71e0d919-b734-4ca9-909d-b2d583a37d3d",
+              "name": "Temporary overloading or maintenance of the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inputFeedDocumentId\": \"<string>\",\n  \"feedType\": \"<string>\",\n  \"marketplaceIds\": [\n    \"<string>\"\n  ],\n  \"feedOptions\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "471f36f9-f65c-4d66-aa0f-a5f75a241e19",
+          "name": "cancel Feed",
+          "request": {
+            "name": "cancel Feed",
+            "description": {
+              "content": "Cancels the feed that you specify. Only feeds with `processingStatus=IN_QUEUE` can be cancelled. Cancelled feeds are returned in subsequent calls to the [`getFeed`](https://developer-docs.amazon.com/sp-api/reference/getfeed) and [`getFeeds`](https://developer-docs.amazon.com/sp-api/reference/getfeeds) operations.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 15 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "feeds",
+                "2021-06-30",
+                "feeds",
+                ":feedId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "feedId",
+                  "description": "(Required) The identifier for the feed. This identifier is unique only in combination with a seller ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4bd8527d-9efd-4050-a18c-b3ffa7809b32",
+              "name": "Success.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds",
+                    ":feedId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedId",
+                      "description": "(Required) The identifier for the feed. This identifier is unique only in combination with a seller ID."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
                 {
                   "key": "Content-Type",
                   "value": "text/plain"
@@ -139,6 +1372,2077 @@
               "body": "",
               "cookie": [],
               "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b5bb2ad0-ccd7-436a-b7b1-c0904a11f539",
+              "name": "Request has missing or invalid parameters and cannot be parsed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds",
+                    ":feedId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedId",
+                      "description": "(Required) The identifier for the feed. This identifier is unique only in combination with a seller ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9c5aec8-400c-4184-be5f-1d11259d5082",
+              "name": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds",
+                    ":feedId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedId",
+                      "description": "(Required) The identifier for the feed. This identifier is unique only in combination with a seller ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "527b1d46-6138-454e-88b6-04302b333a6d",
+              "name": "Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds",
+                    ":feedId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedId",
+                      "description": "(Required) The identifier for the feed. This identifier is unique only in combination with a seller ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d112f302-83a7-4bbf-b400-d140a493d97c",
+              "name": "The specified resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds",
+                    ":feedId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedId",
+                      "description": "(Required) The identifier for the feed. This identifier is unique only in combination with a seller ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed0f96fd-a390-4645-86b4-032e2876a65e",
+              "name": "The request's Content-Type header is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds",
+                    ":feedId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedId",
+                      "description": "(Required) The identifier for the feed. This identifier is unique only in combination with a seller ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82c43c50-1875-4ee2-a7ed-81bbd6d9934b",
+              "name": "The frequency of requests was greater than allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds",
+                    ":feedId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedId",
+                      "description": "(Required) The identifier for the feed. This identifier is unique only in combination with a seller ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "956202ee-912e-453d-bb0c-9121ac8db716",
+              "name": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds",
+                    ":feedId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedId",
+                      "description": "(Required) The identifier for the feed. This identifier is unique only in combination with a seller ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8bdb37a5-4a75-402e-ba9c-c147c79a2d9c",
+              "name": "Temporary overloading or maintenance of the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds",
+                    ":feedId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedId",
+                      "description": "(Required) The identifier for the feed. This identifier is unique only in combination with a seller ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9e8352e-4ee0-4d9d-9124-70b92d9f1196",
+          "name": "get Feed",
+          "request": {
+            "name": "get Feed",
+            "description": {
+              "content": "Returns feed details (including the `resultDocumentId`, if available) for the feed that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 15 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "feeds",
+                "2021-06-30",
+                "feeds",
+                ":feedId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "feedId",
+                  "description": "(Required) The identifier for the feed. This identifier is unique only in combination with a seller ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e1137bb6-214c-45ef-bcb0-28caf851ce12",
+              "name": "Success.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds",
+                    ":feedId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedId",
+                      "description": "(Required) The identifier for the feed. This identifier is unique only in combination with a seller ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"createdTime\": \"1973-07-02T01:43:19.785Z\",\n  \"feedId\": \"string\",\n  \"feedType\": \"string\",\n  \"processingStatus\": \"CANCELLED\",\n  \"marketplaceIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"processingStartTime\": \"2017-05-10T13:25:22.753Z\",\n  \"processingEndTime\": \"2000-11-24T00:34:54.761Z\",\n  \"resultFeedDocumentId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "482d2e82-4f52-48c5-8df0-8e943ef6436d",
+              "name": "Request has missing or invalid parameters and cannot be parsed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds",
+                    ":feedId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedId",
+                      "description": "(Required) The identifier for the feed. This identifier is unique only in combination with a seller ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45760fce-aa78-468a-bd8e-355b1b647ac7",
+              "name": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds",
+                    ":feedId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedId",
+                      "description": "(Required) The identifier for the feed. This identifier is unique only in combination with a seller ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "409b4b01-3a86-4c4a-bfa2-a6aadd2a970e",
+              "name": "Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds",
+                    ":feedId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedId",
+                      "description": "(Required) The identifier for the feed. This identifier is unique only in combination with a seller ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25e09cf1-178e-4499-af69-8ba4aafb1ca8",
+              "name": "The specified resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds",
+                    ":feedId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedId",
+                      "description": "(Required) The identifier for the feed. This identifier is unique only in combination with a seller ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45d1d304-973b-42fb-a3b8-d0895c4a8f39",
+              "name": "The request's Content-Type header is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds",
+                    ":feedId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedId",
+                      "description": "(Required) The identifier for the feed. This identifier is unique only in combination with a seller ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "510621bf-d8eb-4a1a-8416-06bbcfd4d6db",
+              "name": "The frequency of requests was greater than allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds",
+                    ":feedId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedId",
+                      "description": "(Required) The identifier for the feed. This identifier is unique only in combination with a seller ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d790fb4b-17f9-49c7-92b1-ce163e96550c",
+              "name": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds",
+                    ":feedId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedId",
+                      "description": "(Required) The identifier for the feed. This identifier is unique only in combination with a seller ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a30ef7f-a994-449e-b4a9-e6275bd813cd",
+              "name": "Temporary overloading or maintenance of the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "feeds",
+                    ":feedId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedId",
+                      "description": "(Required) The identifier for the feed. This identifier is unique only in combination with a seller ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c7747c7-3bb8-44c2-9b29-a8d5cbec5a4a",
+          "name": "create Feed Document",
+          "request": {
+            "name": "create Feed Document",
+            "description": {
+              "content": "Creates a feed document for the feed type that you specify. This operation returns a presigned URL for uploading the feed document contents. It also returns a `feedDocumentId` value that you can pass in with a subsequent call to the [`createFeed`](https://developer-docs.amazon.com/sp-api/reference/createfeed) operation.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 15 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "feeds",
+                "2021-06-30",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contentType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9d7f7821-842e-45ae-b014-ceb2c3c9107c",
+              "name": "Successfully created a feed document that is ready to receive contents.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contentType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"feedDocumentId\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86012387-ffa7-4de0-8c5c-b49bcf5ee32c",
+              "name": "Request has missing or invalid parameters and cannot be parsed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contentType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e55aeac-c897-4611-9f5f-7cf926d7b5ff",
+              "name": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contentType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33f66c4f-f16a-4f51-8753-b927031cbd50",
+              "name": "The resource specified does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contentType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aabf6bb9-2078-4e92-abf2-448eddf6d91f",
+              "name": "The request size exceeded the maximum accepted size.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contentType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b10ce1ec-3e27-44fe-8611-dc7c120ebd42",
+              "name": "The request payload is in an unsupported format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contentType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd638c74-6643-4978-8b5f-5d4852be1344",
+              "name": "The frequency of requests was greater than allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contentType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1aff329c-3596-46da-839a-693ce2f5fe1c",
+              "name": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contentType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98f7f189-46eb-4d13-add6-592ffb3ba253",
+              "name": "Temporary overloading or maintenance of the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contentType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1f4187a4-57fa-4a29-9b62-e3b8fcc51681",
+          "name": "get Feed Document",
+          "request": {
+            "name": "get Feed Document",
+            "description": {
+              "content": "Returns the information required for retrieving a feed document's contents.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.0222 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "feeds",
+                "2021-06-30",
+                "documents",
+                ":feedDocumentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "enableContentEncodingUrlHeader",
+                  "value": "<boolean>",
+                  "description": "When `true`, the Content-Encoding header on the returned URL is set to `gzip` instead of the default `identity` when `compressionAlgorithm` is `GZIP`. This allows automatic decompression by HTTP clients."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "feedDocumentId",
+                  "description": "(Required) The identifier of the feed document."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "de1cf4ea-1d62-4bfd-9ae1-728ff55f77ba",
+              "name": "Success.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "documents",
+                    ":feedDocumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "enableContentEncodingUrlHeader",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedDocumentId",
+                      "description": "(Required) The identifier of the feed document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"feedDocumentId\": \"string\",\n  \"url\": \"string\",\n  \"compressionAlgorithm\": \"GZIP\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3fbce40d-42a0-4774-a297-64a2a38b58cb",
+              "name": "Request has missing or invalid parameters and cannot be parsed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "documents",
+                    ":feedDocumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "enableContentEncodingUrlHeader",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedDocumentId",
+                      "description": "(Required) The identifier of the feed document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aff731b1-f5a9-49b5-ab9a-0214bdacf7e0",
+              "name": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "documents",
+                    ":feedDocumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "enableContentEncodingUrlHeader",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedDocumentId",
+                      "description": "(Required) The identifier of the feed document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39918490-f71f-4fbd-b761-226eba93d629",
+              "name": "Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "documents",
+                    ":feedDocumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "enableContentEncodingUrlHeader",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedDocumentId",
+                      "description": "(Required) The identifier of the feed document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "097daa50-4798-48cb-9a9d-50f055894e77",
+              "name": "The specified resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "documents",
+                    ":feedDocumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "enableContentEncodingUrlHeader",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedDocumentId",
+                      "description": "(Required) The identifier of the feed document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e9f0ccb-a690-4922-a6b6-963d9502ee21",
+              "name": "The request's Content-Type header is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "documents",
+                    ":feedDocumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "enableContentEncodingUrlHeader",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedDocumentId",
+                      "description": "(Required) The identifier of the feed document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "febb38a8-3dd9-4ac4-b378-a4b6500cc729",
+              "name": "The frequency of requests was greater than allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "documents",
+                    ":feedDocumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "enableContentEncodingUrlHeader",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedDocumentId",
+                      "description": "(Required) The identifier of the feed document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94840c65-c4ee-4cb5-a1d3-4a26df1138af",
+              "name": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "documents",
+                    ":feedDocumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "enableContentEncodingUrlHeader",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedDocumentId",
+                      "description": "(Required) The identifier of the feed document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d67b0e5-d1a1-443a-b110-30949bcbf042",
+              "name": "Temporary overloading or maintenance of the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feeds",
+                    "2021-06-30",
+                    "documents",
+                    ":feedDocumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "enableContentEncodingUrlHeader",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedDocumentId",
+                      "description": "(Required) The identifier of the feed document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
             }
           ],
           "event": [],
@@ -158,29 +3462,12 @@
       "key": "baseUrl"
     }
   ],
-  "auth": {
-    "type": "apikey",
-    "apikey": [
-      {
-        "key": "key",
-        "value": "x-amz-access-token"
-      },
-      {
-        "key": "value",
-        "value": "{{apiKey}}"
-      },
-      {
-        "key": "in",
-        "value": "header"
-      }
-    ]
-  },
   "info": {
-    "_postman_id": "564a3992-95e5-4aa2-81b0-d9dade0f6de8",
-    "name": "Amazon Selling Partner API (SP-API) Authentication Feeds API",
+    "_postman_id": "ece18a81-69a7-4860-8ec7-caddfc8a997a",
+    "name": "Selling Partner Feeds API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "Modern REST API enabling Amazon sellers, vendors, and third-party\ndevelopers to programmatically access Seller Central data and\noperations. Coverage includes catalog management, orders, inventory,\npricing, fulfillment, reports, feeds, finances, notifications, and\ntokens. Authentication uses Login with Amazon (LWA) OAuth 2.0\naccess tokens (`x-amz-access-token`) and optional Restricted Data\nTokens for PII. SP-API replaces the legacy Amazon MWS.\n\n\nContact Support:\n Name: Amazon Selling Partner API",
+      "content": "The Selling Partner API for Feeds lets you upload data to Amazon on behalf of a selling partner.\n\nContact Support:\n Name: Selling Partner API Developer Support",
       "type": "text/plain"
     }
   }

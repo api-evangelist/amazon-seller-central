@@ -1,19 +1,22 @@
 {
   "item": [
     {
-      "id": "579da9c7-f51d-4299-a982-547e92fe70b9",
-      "name": "Catalog",
+      "id": "a5939a60-d1dc-418e-a3ff-e8e2756a9fe4",
+      "name": "catalog",
       "description": {
         "content": "",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "43f9ec4a-08ec-4ae0-b554-bc552105e9b6",
-          "name": "Search the Amazon catalog",
+          "id": "95aeac30-5808-476e-87b1-c0c6a9de50b0",
+          "name": "search Catalog Items",
           "request": {
-            "name": "Search the Amazon catalog",
-            "description": {},
+            "name": "search Catalog Items",
+            "description": {
+              "content": "Search for a list of Amazon catalog items and item-related information. You can search by identifier or by keywords.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 2 |\n\nThe `x-amzn-RateLimit-Limit` response header contains the usage plan rate limits for the operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput might have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+              "type": "text/plain"
+            },
             "url": {
               "path": [
                 "catalog",
@@ -26,46 +29,92 @@
               "query": [
                 {
                   "disabled": false,
-                  "key": "marketplaceIds",
+                  "key": "identifiers",
+                  "value": "<string>,<string>",
+                  "description": "A comma-delimited list of product identifiers that you can use to search the Amazon catalog. **Note:** You cannot include `identifiers` and `keywords` in the same request."
+                },
+                {
+                  "disabled": false,
+                  "key": "identifiersType",
                   "value": "<string>",
-                  "description": "(Required) "
+                  "description": "The type of product identifiers that you can use to search the Amazon catalog. **Note:** `identifiersType` is required when `identifiers` is in the request."
                 },
                 {
                   "disabled": false,
                   "key": "marketplaceIds",
                   "value": "<string>",
-                  "description": "(Required) "
+                  "description": "(Required) A comma-delimited list of Amazon marketplace identifiers. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids)."
+                },
+                {
+                  "disabled": false,
+                  "key": "includedData",
+                  "value": "summaries",
+                  "description": "A comma-delimited list of datasets to include in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "The locale for which you want to retrieve localized summaries. Defaults to the primary locale of the marketplace."
+                },
+                {
+                  "disabled": false,
+                  "key": "sellerId",
+                  "value": "<string>",
+                  "description": "A selling partner identifier, such as a seller account or vendor code. **Note:** Required when `identifiersType` is `SKU`."
                 },
                 {
                   "disabled": false,
                   "key": "keywords",
-                  "value": "<string>"
+                  "value": "<string>,<string>",
+                  "description": "A comma-delimited list of keywords that you can use to search the Amazon catalog. **Note:** You cannot include `keywords` and `identifiers` in the same request."
                 },
                 {
                   "disabled": false,
-                  "key": "keywords",
-                  "value": "<string>"
+                  "key": "brandNames",
+                  "value": "<string>,<string>",
+                  "description": "A comma-delimited list of brand names that you can use to limit the search in queries based on `keywords`. **Note:** Cannot be used with `identifiers`."
                 },
                 {
                   "disabled": false,
-                  "key": "identifiers",
-                  "value": "<string>"
+                  "key": "classificationIds",
+                  "value": "<string>,<string>",
+                  "description": "A comma-delimited list of classification identifiers that you can use to limit the search in queries based on `keywords`. **Note:** Cannot be used with `identifiers`."
                 },
                 {
                   "disabled": false,
-                  "key": "identifiers",
-                  "value": "<string>"
+                  "key": "pageSize",
+                  "value": "10",
+                  "description": "The number of results to include on each page."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>",
+                  "description": "A token that you can use to fetch a specific page when there are multiple pages of results."
+                },
+                {
+                  "disabled": false,
+                  "key": "keywordsLocale",
+                  "value": "<string>",
+                  "description": "The language of the keywords that are included in queries based on `keywords`. Defaults to the primary locale of the marketplace. **Note:** Cannot be used with `identifiers`."
                 }
               ],
               "variable": []
             },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "method": "GET",
             "auth": null
           },
           "response": [
             {
-              "id": "073e7186-51a6-4d44-8cb3-9e5354116b35",
-              "name": "Catalog items.",
+              "id": "62368e32-bf57-467e-88b4-09345c844d04",
+              "name": "Success.",
               "originalRequest": {
                 "url": {
                   "path": [
@@ -78,27 +127,51 @@
                   ],
                   "query": [
                     {
+                      "key": "identifiers",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "identifiersType",
+                      "value": "<string>"
+                    },
+                    {
                       "key": "marketplaceIds",
                       "value": "<string>"
                     },
                     {
-                      "key": "marketplaceIds",
+                      "key": "includedData",
+                      "value": "summaries"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sellerId",
                       "value": "<string>"
                     },
                     {
                       "key": "keywords",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "brandNames",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "classificationIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "pageToken",
                       "value": "<string>"
                     },
                     {
-                      "key": "keywords",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "identifiers",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "identifiers",
+                      "key": "keywordsLocale",
                       "value": "<string>"
                     }
                   ],
@@ -106,12 +179,8 @@
                 },
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-amz-access-token",
-                    "value": "<API Key>"
+                    "key": "Accept",
+                    "value": "application/json"
                   }
                 ],
                 "method": "GET",
@@ -121,13 +190,773 @@
               "code": 200,
               "header": [
                 {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
                   "key": "Content-Type",
-                  "value": "text/plain"
+                  "value": "application/json"
                 }
               ],
-              "body": "",
+              "body": "{\n  \"numberOfResults\": 1,\n  \"pagination\": {\n    \"nextToken\": \"xsdflkj324lkjsdlkj3423klkjsdfkljlk2j34klj2l3k4jlksdjl234\",\n    \"previousToken\": \"ilkjsdflkj234lkjds234234lkjl234lksjdflkj234234lkjsfsdflkj333d\"\n  },\n  \"refinements\": {\n    \"brands\": [\n      {\n        \"numberOfResults\": 1,\n        \"brandName\": \"SAMSUNG\"\n      }\n    ],\n    \"classifications\": [\n      {\n        \"numberOfResults\": 1,\n        \"displayName\": \"Electronics\",\n        \"classificationId\": \"493964\"\n      }\n    ]\n  },\n  \"items\": [\n    {\n      \"asin\": \"B07N4M94X4\",\n      \"attributes\": {\n        \"total_hdmi_ports\": [\n          {\n            \"value\": 4,\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"resolution\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"4K\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"item_weight\": [\n          {\n            \"unit\": \"pounds\",\n            \"value\": 107.6,\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"product_subcategory\": [\n          {\n            \"value\": \"50400120\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"bullet_point\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"SMART TV WITH UNIVERSAL GUIDE: Simple on-screen Guide is an easy way to find streaming content and live TV shows\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          },\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"100% COLOR VOLUME WITH QUANTUM DOTS: Powered by Quantum dots, Samsung’s 4K QLED TV offers over a billion shades of brilliant color and 100% color volume for exceptional depth of detail that will draw you in to the picture for the best 4K TV experience\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          },\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"QUANTUM PROCESSOR 4K: Intelligently powered processor instantly upscales content to 4K for sharp detail and refined color\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          },\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"QUANTUM HDR 4X: 4K depth of detail with high dynamic range powered by HDR10+ delivers the lightest to darkest colors, scene by scene, for amazing picture realism\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          },\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"AMBIENT MODE: Customizes and complements your living space by turning a blank screen of this big screen TV into enticing visuals including décor, info, photos and artwork\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          },\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"SMART TV FEATURES: OneRemote to control all compatible devices, Bixby voice command, on-screen universal guide, SmartThings to control compatible home appliances and devices, smart speaker expandability with Alexa and Google Assistant compatibility, and more\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"item_dimensions\": [\n          {\n            \"width\": {\n              \"unit\": \"inches\",\n              \"value\": 72.4\n            },\n            \"length\": {\n              \"unit\": \"inches\",\n              \"value\": 2.4\n            },\n            \"height\": {\n              \"unit\": \"inches\",\n              \"value\": 41.4\n            },\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"brand\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"SAMSUNG\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"control_method\": [\n          {\n            \"value\": \"voice\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"item_package_dimensions\": [\n          {\n            \"length\": {\n              \"unit\": \"centimeters\",\n              \"value\": 26.67\n            },\n            \"width\": {\n              \"unit\": \"centimeters\",\n              \"value\": 121.92\n            },\n            \"height\": {\n              \"unit\": \"centimeters\",\n              \"value\": 203.2\n            },\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"image_aspect_ratio\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"16:9\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"part_number\": [\n          {\n            \"value\": \"QN82Q60RAFXZA\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"includes_remote\": [\n          {\n            \"value\": true,\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"style\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"TV only\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"item_type_name\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"TV\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"battery\": [\n          {\n            \"cell_composition\": [\n              {\n                \"value\": \"alkaline\"\n              }\n            ],\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"image_contrast_ratio\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"QLED 4K\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"manufacturer\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"Samsung\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"number_of_boxes\": [\n          {\n            \"value\": 1,\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"total_usb_ports\": [\n          {\n            \"value\": 2,\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"model_number\": [\n          {\n            \"value\": \"QN82Q60RAFXZA\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"supplier_declared_dg_hz_regulation\": [\n          {\n            \"value\": \"not_applicable\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"num_batteries\": [\n          {\n            \"quantity\": 2,\n            \"type\": \"aaa\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"california_proposition_65\": [\n          {\n            \"compliance_type\": \"on_product_combined_cancer_reproductive\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          },\n          {\n            \"compliance_type\": \"chemical\",\n            \"chemical_names\": [\n              \"di_2_ethylhexyl_phthalate_dehp\"\n            ],\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"display\": [\n          {\n            \"resolution_maximum\": [\n              {\n                \"unit\": \"pixels\",\n                \"language_tag\": \"en_US\",\n                \"value\": \"3840 x 2160\"\n              }\n            ],\n            \"size\": [\n              {\n                \"unit\": \"inches\",\n                \"value\": 82\n              }\n            ],\n            \"type\": [\n              {\n                \"language_tag\": \"en_US\",\n                \"value\": \"QLED\"\n              }\n            ],\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"item_name\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"Samsung QN82Q60RAFXZA Flat 82-Inch QLED 4K Q60 Series (2019) Ultra HD Smart TV with HDR and Alexa Compatibility\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"list_price\": [\n          {\n            \"currency\": \"USD\",\n            \"value\": 3799.99,\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"batteries_required\": [\n          {\n            \"value\": false,\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"includes_rechargable_battery\": [\n          {\n            \"value\": false,\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"product_site_launch_date\": [\n          {\n            \"value\": \"2019-03-11T08:00:01.000Z\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"product_category\": [\n          {\n            \"value\": \"50400100\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"batteries_included\": [\n          {\n            \"value\": false,\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"connectivity_technology\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"Bluetooth\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          },\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"USB\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          },\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"Wireless\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          },\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"HDMI\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"included_components\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"QLED Standard Smart Remote\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          },\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"Power Cable\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          },\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"Stand\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          },\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"Samsung Smart Control\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"specification_met\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"parental_control_technology\": [\n          {\n            \"value\": \"V-Chip\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"power_consumption\": [\n          {\n            \"unit\": \"watts\",\n            \"value\": 120,\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"cpsia_cautionary_statement\": [\n          {\n            \"value\": \"no_warning_applicable\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"item_type_keyword\": [\n          {\n            \"value\": \"qled-televisions\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"number_of_items\": [\n          {\n            \"value\": 1,\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"warranty_description\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"1 year manufacturer\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"max_resolution\": [\n          {\n            \"unit\": \"pixels\",\n            \"value\": 8.3,\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"color\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"Black\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"screen_surface_description\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"Flat\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"item_package_weight\": [\n          {\n            \"unit\": \"kilograms\",\n            \"value\": 62.142,\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"speaker_type\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"2CH\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"supported_internet_services\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"Amazon Instant Video\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          },\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"YouTube\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          },\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"Netflix\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          },\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"Hulu\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          },\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"Browser\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"tuner_technology\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"Analog Tuner\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"controller_type\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"SmartThings\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          },\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"Voice Control\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"special_feature\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"100% Color Volume with Quantum Dot; Quantum Processor 4K; Ambient Mode; Quantum HDR 4X; Real Game Enhancer\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"wireless_communication_technology\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"Wi-Fi::Wi-Fi Direct::Bluetooth\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"model_year\": [\n          {\n            \"value\": 2019,\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"power_source_type\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"Corded Electric\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"street_date\": [\n          {\n            \"value\": \"2019-03-21T00:00:01Z\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"mounting_type\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"Table Mount\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          },\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"Wall Mount\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ],\n        \"refresh_rate\": [\n          {\n            \"unit\": \"hertz\",\n            \"language_tag\": \"en_US\",\n            \"value\": \"120\",\n            \"marketplace_id\": \"ATVPDKIKX0DER\"\n          }\n        ]\n      },\n      \"classifications\": [\n        {\n          \"marketplaceId\": \"ATVPDKIKX0DER\",\n          \"classifications\": [\n            {\n              \"displayName\": \"QLED TVs\",\n              \"classificationId\": \"21489946011\",\n              \"parent\": {\n                \"displayName\": \"Televisions\",\n                \"classificationId\": \"172659\",\n                \"parent\": {\n                  \"displayName\": \"Television & Video\",\n                  \"classificationId\": \"1266092011\",\n                  \"parent\": {\n                    \"displayName\": \"Electronics\",\n                    \"classificationId\": \"172282\"\n                  }\n                }\n              }\n            }\n          ]\n        }\n      ],\n      \"dimensions\": [\n        {\n          \"marketplaceId\": \"ATVPDKIKX0DER\",\n          \"item\": {\n            \"height\": {\n              \"unit\": \"inches\",\n              \"value\": 41.4\n            },\n            \"length\": {\n              \"unit\": \"inches\",\n              \"value\": 2.4\n            },\n            \"weight\": {\n              \"unit\": \"pounds\",\n              \"value\": 107.6\n            },\n            \"width\": {\n              \"unit\": \"inches\",\n              \"value\": 72.4\n            }\n          },\n          \"package\": {\n            \"height\": {\n              \"unit\": \"inches\",\n              \"value\": 10.49999998929\n            },\n            \"length\": {\n              \"unit\": \"inches\",\n              \"value\": 79.9999999184\n            },\n            \"weight\": {\n              \"unit\": \"kilograms\",\n              \"value\": 62.142\n            },\n            \"width\": {\n              \"unit\": \"inches\",\n              \"value\": 47.99999995104\n            }\n          }\n        }\n      ],\n      \"identifiers\": [\n        {\n          \"marketplaceId\": \"ATVPDKIKX0DER\",\n          \"identifiers\": [\n            {\n              \"identifier\": 887276302195,\n              \"identifierType\": \"EAN\"\n            },\n            {\n              \"identifier\": 887276302195,\n              \"identifierType\": \"GTIN\"\n            },\n            {\n              \"identifier\": \"887276302195\",\n              \"identifierType\": \"UPC\"\n            }\n          ]\n        }\n      ],\n      \"images\": [\n        {\n          \"marketplaceId\": \"ATVPDKIKX0DER\",\n          \"images\": [\n            {\n              \"variant\": \"MAIN\",\n              \"link\": \"https://m.media-amazon.com/images/I/91uohwV+k3L.jpg\",\n              \"height\": 1707,\n              \"width\": 2560\n            },\n            {\n              \"variant\": \"MAIN\",\n              \"link\": \"https://m.media-amazon.com/images/I/51DZzp3w3vL.jpg\",\n              \"height\": 333,\n              \"width\": 500\n            },\n            {\n              \"variant\": \"PT01\",\n              \"link\": \"https://m.media-amazon.com/images/I/81w2rTVShlL.jpg\",\n              \"height\": 2560,\n              \"width\": 2560\n            },\n            {\n              \"variant\": \"PT01\",\n              \"link\": \"https://m.media-amazon.com/images/I/41Px9eq9tkL.jpg\",\n              \"height\": 500,\n              \"width\": 500\n            },\n            {\n              \"variant\": \"PT02\",\n              \"link\": \"https://m.media-amazon.com/images/I/51NTNhdhPyL.jpg\",\n              \"height\": 375,\n              \"width\": 500\n            },\n            {\n              \"variant\": \"PT03\",\n              \"link\": \"https://m.media-amazon.com/images/I/51o4zpL+A3L.jpg\",\n              \"height\": 375,\n              \"width\": 500\n            },\n            {\n              \"variant\": \"PT04\",\n              \"link\": \"https://m.media-amazon.com/images/I/71ux2k9GAZL.jpg\",\n              \"height\": 1000,\n              \"width\": 1000\n            },\n            {\n              \"variant\": \"PT04\",\n              \"link\": \"https://m.media-amazon.com/images/I/61UUX63yw1L.jpg\",\n              \"height\": 500,\n              \"width\": 500\n            },\n            {\n              \"variant\": \"PT05\",\n              \"link\": \"https://m.media-amazon.com/images/I/61LwHkljX-L.jpg\",\n              \"height\": 1000,\n              \"width\": 1000\n            },\n            {\n              \"variant\": \"PT05\",\n              \"link\": \"https://m.media-amazon.com/images/I/51wJTQty3PL.jpg\",\n              \"height\": 500,\n              \"width\": 500\n            },\n            {\n              \"variant\": \"PT06\",\n              \"link\": \"https://m.media-amazon.com/images/I/61uvoB4VvoL.jpg\",\n              \"height\": 1000,\n              \"width\": 1000\n            },\n            {\n              \"variant\": \"PT06\",\n              \"link\": \"https://m.media-amazon.com/images/I/51ZexIO628L.jpg\",\n              \"height\": 500,\n              \"width\": 500\n            },\n            {\n              \"variant\": \"PT07\",\n              \"link\": \"https://m.media-amazon.com/images/I/7121MGd2ncL.jpg\",\n              \"height\": 1000,\n              \"width\": 1000\n            },\n            {\n              \"variant\": \"PT07\",\n              \"link\": \"https://m.media-amazon.com/images/I/61QK+JBMrGL.jpg\",\n              \"height\": 500,\n              \"width\": 500\n            },\n            {\n              \"variant\": \"PT08\",\n              \"link\": \"https://m.media-amazon.com/images/I/61ECcGlG4IL.jpg\",\n              \"height\": 1080,\n              \"width\": 1920\n            },\n            {\n              \"variant\": \"PT08\",\n              \"link\": \"https://m.media-amazon.com/images/I/31TxwfqvB5L.jpg\",\n              \"height\": 281,\n              \"width\": 500\n            }\n          ]\n        }\n      ],\n      \"productTypes\": [\n        {\n          \"marketplaceId\": \"ATVPDKIKX0DER\",\n          \"productType\": \"TELEVISION\"\n        }\n      ],\n      \"salesRanks\": [\n        {\n          \"marketplaceId\": \"ATVPDKIKX0DER\",\n          \"classificationRanks\": [\n            {\n              \"classificationId\": \"21489946011\",\n              \"title\": \"QLED TVs\",\n              \"link\": \"http://www.amazon.com/gp/bestsellers/electronics/21489946011\",\n              \"rank\": 113\n            }\n          ],\n          \"displayGroupRanks\": [\n            {\n              \"websiteDisplayGroup\": \"ce_display_on_website\",\n              \"title\": \"Electronics\",\n              \"link\": \"http://www.amazon.com/gp/bestsellers/electronics\",\n              \"rank\": 72855\n            }\n          ]\n        }\n      ],\n      \"summaries\": [\n        {\n          \"marketplaceId\": \"ATVPDKIKX0DER\",\n          \"brand\": \"SAMSUNG\",\n          \"browseClassification\": {\n            \"displayName\": \"QLED TVs\",\n            \"classificationId\": \"21489946011\"\n          },\n          \"color\": \"Black\",\n          \"itemClassification\": \"BASE_PRODUCT\",\n          \"itemName\": \"Samsung QN82Q60RAFXZA Flat 82-Inch QLED 4K Q60 Series (2019) Ultra HD Smart TV with HDR and Alexa Compatibility\",\n          \"manufacturer\": \"Samsung\",\n          \"modelNumber\": \"QN82Q60RAFXZA\",\n          \"packageQuantity\": 1,\n          \"partNumber\": \"QN82Q60RAFXZA\",\n          \"size\": \"82-Inch\",\n          \"style\": \"TV only\",\n          \"websiteDisplayGroup\": \"home_theater_display_on_website\",\n          \"websiteDisplayGroupName\": \"Home Theater\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"marketplaceId\": \"ATVPDKIKX0DER\",\n          \"relationships\": [\n            {\n              \"type\": \"VARIATION\",\n              \"parentAsins\": [\n                \"B08J7TQ9FL\"\n              ],\n              \"variationTheme\": {\n                \"attributes\": [\n                  \"color\",\n                  \"size\"\n                ],\n                \"theme\": \"SIZE_NAME/COLOR_NAME\"\n              }\n            }\n          ]\n        }\n      ],\n      \"vendorDetails\": [\n        {\n          \"marketplaceId\": \"ATVPDKIKX0DER\",\n          \"brandCode\": \"SAMF9\",\n          \"manufacturerCode\": \"SAMF9\",\n          \"manufacturerCodeParent\": \"SAMF9\",\n          \"productCategory\": {\n            \"displayName\": \"Televisions\",\n            \"value\": \"50400100\"\n          },\n          \"productGroup\": \"Home Entertainment\",\n          \"productSubcategory\": {\n            \"displayName\": \"Plasma TVs\",\n            \"value\": \"50400120\"\n          },\n          \"replenishmentCategory\": \"OBSOLETE\"\n        }\n      ]\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69d9e2fe-562f-4ae8-951d-2a4292c644b0",
+              "name": "Request has missing or invalid parameters and cannot be parsed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "2022-04-01",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "identifiers",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "identifiersType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "summaries"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sellerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "brandNames",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "classificationIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keywordsLocale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22489d70-2bdc-474f-865a-59f51d6a99a8",
+              "name": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "2022-04-01",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "identifiers",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "identifiersType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "summaries"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sellerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "brandNames",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "classificationIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keywordsLocale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cbf5c89e-e8e8-4259-95de-bfd369a6dfc9",
+              "name": "The resource specified does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "2022-04-01",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "identifiers",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "identifiersType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "summaries"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sellerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "brandNames",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "classificationIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keywordsLocale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2797c13c-6d92-4208-afe3-72c059c17a13",
+              "name": "The request size exceeded the maximum accepted size.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "2022-04-01",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "identifiers",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "identifiersType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "summaries"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sellerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "brandNames",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "classificationIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keywordsLocale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9167c846-64a9-4632-8cd5-ca0425d6f3a8",
+              "name": "The request payload is in an unsupported format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "2022-04-01",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "identifiers",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "identifiersType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "summaries"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sellerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "brandNames",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "classificationIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keywordsLocale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6967c768-c076-4e4b-a045-55025ac40197",
+              "name": "The frequency of requests was greater than allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "2022-04-01",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "identifiers",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "identifiersType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "summaries"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sellerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "brandNames",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "classificationIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keywordsLocale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bfbeff25-2375-4728-9863-79509945a421",
+              "name": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "2022-04-01",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "identifiers",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "identifiersType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "summaries"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sellerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "brandNames",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "classificationIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keywordsLocale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd0d27a2-4e78-4bd9-82af-93197136418f",
+              "name": "Temporary overloading or maintenance of the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "2022-04-01",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "identifiers",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "identifiersType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "summaries"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sellerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "brandNames",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "classificationIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keywordsLocale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
             }
           ],
           "event": [],
@@ -136,11 +965,14 @@
           }
         },
         {
-          "id": "f945579f-65cc-4434-88e1-22af5c52412e",
-          "name": "Get a catalog item",
+          "id": "c6421cee-46a4-4a35-ad7f-8ea4d3f8bef4",
+          "name": "get Catalog Item",
           "request": {
-            "name": "Get a catalog item",
-            "description": {},
+            "name": "get Catalog Item",
+            "description": {
+              "content": "Retrieves details for an item in the Amazon catalog.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 2 |\n\nThe `x-amzn-RateLimit-Limit` response header contains the usage plan rate limits for the operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput might have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+              "type": "text/plain"
+            },
             "url": {
               "path": [
                 "catalog",
@@ -151,24 +983,49 @@
               "host": [
                 "{{baseUrl}}"
               ],
-              "query": [],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "marketplaceIds",
+                  "value": "<string>,<string>",
+                  "description": "(Required) A comma-delimited list of Amazon marketplace identifiers. To find the ID for your marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids)."
+                },
+                {
+                  "disabled": false,
+                  "key": "includedData",
+                  "value": "summaries",
+                  "description": "A comma-delimited list of datasets to include in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "The locale for which you want to retrieve localized summaries. Defaults to the primary locale of the marketplace."
+                }
+              ],
               "variable": [
                 {
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
                   "key": "asin",
-                  "description": "(Required) "
+                  "description": "(Required) The Amazon Standard Identification Number (ASIN) of the item."
                 }
               ]
             },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "method": "GET",
             "auth": null
           },
           "response": [
             {
-              "id": "7b34726e-f2a2-45dd-a114-db07d842c6f7",
-              "name": "Catalog item.",
+              "id": "f7f3b4a6-57c4-432f-ae09-0875a8b987fe",
+              "name": "Success.",
               "originalRequest": {
                 "url": {
                   "path": [
@@ -180,25 +1037,34 @@
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
+                  "query": [
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "summaries"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
                   "variable": [
                     {
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
                       "key": "asin",
-                      "description": "(Required) "
+                      "description": "(Required) The Amazon Standard Identification Number (ASIN) of the item."
                     }
                   ]
                 },
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-amz-access-token",
-                    "value": "<API Key>"
+                    "key": "Accept",
+                    "value": "application/json"
                   }
                 ],
                 "method": "GET",
@@ -208,13 +1074,557 @@
               "code": 200,
               "header": [
                 {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
                   "key": "Content-Type",
-                  "value": "text/plain"
+                  "value": "application/json"
                 }
               ],
-              "body": "",
+              "body": "{\n  \"asin\": \"B07N4M94X4\",\n  \"attributes\": {\n    \"total_hdmi_ports\": [\n      {\n        \"value\": 4,\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"resolution\": [\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"4K\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"item_weight\": [\n      {\n        \"unit\": \"pounds\",\n        \"value\": 107.6,\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"product_subcategory\": [\n      {\n        \"value\": \"50400120\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"bullet_point\": [\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"SMART TV WITH UNIVERSAL GUIDE: Simple on-screen Guide is an easy way to find streaming content and live TV shows\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      },\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"100% COLOR VOLUME WITH QUANTUM DOTS: Powered by Quantum dots, Samsung’s 4K QLED TV offers over a billion shades of brilliant color and 100% color volume for exceptional depth of detail that will draw you in to the picture for the best 4K TV experience\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      },\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"QUANTUM PROCESSOR 4K: Intelligently powered processor instantly upscales content to 4K for sharp detail and refined color\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      },\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"QUANTUM HDR 4X: 4K depth of detail with high dynamic range powered by HDR10+ delivers the lightest to darkest colors, scene by scene, for amazing picture realism\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      },\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"AMBIENT MODE: Customizes and complements your living space by turning a blank screen of this big screen TV into enticing visuals including décor, info, photos and artwork\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      },\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"SMART TV FEATURES: OneRemote to control all compatible devices, Bixby voice command, on-screen universal guide, SmartThings to control compatible home appliances and devices, smart speaker expandability with Alexa and Google Assistant compatibility, and more\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"item_dimensions\": [\n      {\n        \"width\": {\n          \"unit\": \"inches\",\n          \"value\": 72.4\n        },\n        \"length\": {\n          \"unit\": \"inches\",\n          \"value\": 2.4\n        },\n        \"height\": {\n          \"unit\": \"inches\",\n          \"value\": 41.4\n        },\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"brand\": [\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"SAMSUNG\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"control_method\": [\n      {\n        \"value\": \"voice\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"item_package_dimensions\": [\n      {\n        \"length\": {\n          \"unit\": \"centimeters\",\n          \"value\": 26.67\n        },\n        \"width\": {\n          \"unit\": \"centimeters\",\n          \"value\": 121.92\n        },\n        \"height\": {\n          \"unit\": \"centimeters\",\n          \"value\": 203.2\n        },\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"image_aspect_ratio\": [\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"16:9\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"part_number\": [\n      {\n        \"value\": \"QN82Q60RAFXZA\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"includes_remote\": [\n      {\n        \"value\": true,\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"style\": [\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"TV only\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"item_type_name\": [\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"TV\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"battery\": [\n      {\n        \"cell_composition\": [\n          {\n            \"value\": \"alkaline\"\n          }\n        ],\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"image_contrast_ratio\": [\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"QLED 4K\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"manufacturer\": [\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"Samsung\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"number_of_boxes\": [\n      {\n        \"value\": 1,\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"total_usb_ports\": [\n      {\n        \"value\": 2,\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"model_number\": [\n      {\n        \"value\": \"QN82Q60RAFXZA\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"supplier_declared_dg_hz_regulation\": [\n      {\n        \"value\": \"not_applicable\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"num_batteries\": [\n      {\n        \"quantity\": 2,\n        \"type\": \"aaa\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"california_proposition_65\": [\n      {\n        \"compliance_type\": \"on_product_combined_cancer_reproductive\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      },\n      {\n        \"compliance_type\": \"chemical\",\n        \"chemical_names\": [\n          \"di_2_ethylhexyl_phthalate_dehp\"\n        ],\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"display\": [\n      {\n        \"resolution_maximum\": [\n          {\n            \"unit\": \"pixels\",\n            \"language_tag\": \"en_US\",\n            \"value\": \"3840 x 2160\"\n          }\n        ],\n        \"size\": [\n          {\n            \"unit\": \"inches\",\n            \"value\": 82\n          }\n        ],\n        \"type\": [\n          {\n            \"language_tag\": \"en_US\",\n            \"value\": \"QLED\"\n          }\n        ],\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"item_name\": [\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"Samsung QN82Q60RAFXZA Flat 82-Inch QLED 4K Q60 Series (2019) Ultra HD Smart TV with HDR and Alexa Compatibility\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"list_price\": [\n      {\n        \"currency\": \"USD\",\n        \"value\": 3799.99,\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"batteries_required\": [\n      {\n        \"value\": false,\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"includes_rechargable_battery\": [\n      {\n        \"value\": false,\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"product_site_launch_date\": [\n      {\n        \"value\": \"2019-03-11T08:00:01.000Z\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"product_category\": [\n      {\n        \"value\": \"50400100\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"batteries_included\": [\n      {\n        \"value\": false,\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"connectivity_technology\": [\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"Bluetooth\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      },\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"USB\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      },\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"Wireless\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      },\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"HDMI\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"included_components\": [\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"QLED Standard Smart Remote\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      },\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"Power Cable\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      },\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"Stand\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      },\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"Samsung Smart Control\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"specification_met\": [\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"parental_control_technology\": [\n      {\n        \"value\": \"V-Chip\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"power_consumption\": [\n      {\n        \"unit\": \"watts\",\n        \"value\": 120,\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"cpsia_cautionary_statement\": [\n      {\n        \"value\": \"no_warning_applicable\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"item_type_keyword\": [\n      {\n        \"value\": \"qled-televisions\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"number_of_items\": [\n      {\n        \"value\": 1,\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"warranty_description\": [\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"1 year manufacturer\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"max_resolution\": [\n      {\n        \"unit\": \"pixels\",\n        \"value\": 8.3,\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"color\": [\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"Black\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"screen_surface_description\": [\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"Flat\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"item_package_weight\": [\n      {\n        \"unit\": \"kilograms\",\n        \"value\": 62.142,\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"speaker_type\": [\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"2CH\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"supported_internet_services\": [\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"Amazon Instant Video\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      },\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"YouTube\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      },\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"Netflix\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      },\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"Hulu\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      },\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"Browser\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"tuner_technology\": [\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"Analog Tuner\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"controller_type\": [\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"SmartThings\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      },\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"Voice Control\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"special_feature\": [\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"100% Color Volume with Quantum Dot; Quantum Processor 4K; Ambient Mode; Quantum HDR 4X; Real Game Enhancer\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"wireless_communication_technology\": [\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"Wi-Fi::Wi-Fi Direct::Bluetooth\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"model_year\": [\n      {\n        \"value\": 2019,\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"power_source_type\": [\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"Corded Electric\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"street_date\": [\n      {\n        \"value\": \"2019-03-21T00:00:01Z\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"mounting_type\": [\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"Table Mount\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      },\n      {\n        \"language_tag\": \"en_US\",\n        \"value\": \"Wall Mount\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ],\n    \"refresh_rate\": [\n      {\n        \"unit\": \"hertz\",\n        \"language_tag\": \"en_US\",\n        \"value\": \"120\",\n        \"marketplace_id\": \"ATVPDKIKX0DER\"\n      }\n    ]\n  },\n  \"classifications\": [\n    {\n      \"marketplaceId\": \"ATVPDKIKX0DER\",\n      \"classifications\": [\n        {\n          \"displayName\": \"QLED TVs\",\n          \"classificationId\": \"21489946011\",\n          \"parent\": {\n            \"displayName\": \"Televisions\",\n            \"classificationId\": \"172659\",\n            \"parent\": {\n              \"displayName\": \"Television & Video\",\n              \"classificationId\": \"1266092011\",\n              \"parent\": {\n                \"displayName\": \"Electronics\",\n                \"classificationId\": \"172282\"\n              }\n            }\n          }\n        }\n      ]\n    }\n  ],\n  \"dimensions\": [\n    {\n      \"marketplaceId\": \"ATVPDKIKX0DER\",\n      \"item\": {\n        \"height\": {\n          \"unit\": \"inches\",\n          \"value\": 41.4\n        },\n        \"length\": {\n          \"unit\": \"inches\",\n          \"value\": 2.4\n        },\n        \"weight\": {\n          \"unit\": \"pounds\",\n          \"value\": 107.6\n        },\n        \"width\": {\n          \"unit\": \"inches\",\n          \"value\": 72.4\n        }\n      },\n      \"package\": {\n        \"height\": {\n          \"unit\": \"inches\",\n          \"value\": 10.49999998929\n        },\n        \"length\": {\n          \"unit\": \"inches\",\n          \"value\": 79.9999999184\n        },\n        \"weight\": {\n          \"unit\": \"kilograms\",\n          \"value\": 62.142\n        },\n        \"width\": {\n          \"unit\": \"inches\",\n          \"value\": 47.99999995104\n        }\n      }\n    }\n  ],\n  \"identifiers\": [\n    {\n      \"marketplaceId\": \"ATVPDKIKX0DER\",\n      \"identifiers\": [\n        {\n          \"identifier\": 887276302195,\n          \"identifierType\": \"EAN\"\n        },\n        {\n          \"identifier\": 887276302195,\n          \"identifierType\": \"GTIN\"\n        },\n        {\n          \"identifier\": \"887276302195\",\n          \"identifierType\": \"UPC\"\n        }\n      ]\n    }\n  ],\n  \"images\": [\n    {\n      \"marketplaceId\": \"ATVPDKIKX0DER\",\n      \"images\": [\n        {\n          \"variant\": \"MAIN\",\n          \"link\": \"https://m.media-amazon.com/images/I/91uohwV+k3L.jpg\",\n          \"height\": 1707,\n          \"width\": 2560\n        },\n        {\n          \"variant\": \"MAIN\",\n          \"link\": \"https://m.media-amazon.com/images/I/51DZzp3w3vL.jpg\",\n          \"height\": 333,\n          \"width\": 500\n        },\n        {\n          \"variant\": \"PT01\",\n          \"link\": \"https://m.media-amazon.com/images/I/81w2rTVShlL.jpg\",\n          \"height\": 2560,\n          \"width\": 2560\n        },\n        {\n          \"variant\": \"PT01\",\n          \"link\": \"https://m.media-amazon.com/images/I/41Px9eq9tkL.jpg\",\n          \"height\": 500,\n          \"width\": 500\n        },\n        {\n          \"variant\": \"PT02\",\n          \"link\": \"https://m.media-amazon.com/images/I/51NTNhdhPyL.jpg\",\n          \"height\": 375,\n          \"width\": 500\n        },\n        {\n          \"variant\": \"PT03\",\n          \"link\": \"https://m.media-amazon.com/images/I/51o4zpL+A3L.jpg\",\n          \"height\": 375,\n          \"width\": 500\n        },\n        {\n          \"variant\": \"PT04\",\n          \"link\": \"https://m.media-amazon.com/images/I/71ux2k9GAZL.jpg\",\n          \"height\": 1000,\n          \"width\": 1000\n        },\n        {\n          \"variant\": \"PT04\",\n          \"link\": \"https://m.media-amazon.com/images/I/61UUX63yw1L.jpg\",\n          \"height\": 500,\n          \"width\": 500\n        },\n        {\n          \"variant\": \"PT05\",\n          \"link\": \"https://m.media-amazon.com/images/I/61LwHkljX-L.jpg\",\n          \"height\": 1000,\n          \"width\": 1000\n        },\n        {\n          \"variant\": \"PT05\",\n          \"link\": \"https://m.media-amazon.com/images/I/51wJTQty3PL.jpg\",\n          \"height\": 500,\n          \"width\": 500\n        },\n        {\n          \"variant\": \"PT06\",\n          \"link\": \"https://m.media-amazon.com/images/I/61uvoB4VvoL.jpg\",\n          \"height\": 1000,\n          \"width\": 1000\n        },\n        {\n          \"variant\": \"PT06\",\n          \"link\": \"https://m.media-amazon.com/images/I/51ZexIO628L.jpg\",\n          \"height\": 500,\n          \"width\": 500\n        },\n        {\n          \"variant\": \"PT07\",\n          \"link\": \"https://m.media-amazon.com/images/I/7121MGd2ncL.jpg\",\n          \"height\": 1000,\n          \"width\": 1000\n        },\n        {\n          \"variant\": \"PT07\",\n          \"link\": \"https://m.media-amazon.com/images/I/61QK+JBMrGL.jpg\",\n          \"height\": 500,\n          \"width\": 500\n        },\n        {\n          \"variant\": \"PT08\",\n          \"link\": \"https://m.media-amazon.com/images/I/61ECcGlG4IL.jpg\",\n          \"height\": 1080,\n          \"width\": 1920\n        },\n        {\n          \"variant\": \"PT08\",\n          \"link\": \"https://m.media-amazon.com/images/I/31TxwfqvB5L.jpg\",\n          \"height\": 281,\n          \"width\": 500\n        }\n      ]\n    }\n  ],\n  \"productTypes\": [\n    {\n      \"marketplaceId\": \"ATVPDKIKX0DER\",\n      \"productType\": \"TELEVISION\"\n    }\n  ],\n  \"salesRanks\": [\n    {\n      \"marketplaceId\": \"ATVPDKIKX0DER\",\n      \"classificationRanks\": [\n        {\n          \"classificationId\": \"21489946011\",\n          \"title\": \"QLED TVs\",\n          \"link\": \"http://www.amazon.com/gp/bestsellers/electronics/21489946011\",\n          \"rank\": 113\n        }\n      ],\n      \"displayGroupRanks\": [\n        {\n          \"websiteDisplayGroup\": \"ce_display_on_website\",\n          \"title\": \"Electronics\",\n          \"link\": \"http://www.amazon.com/gp/bestsellers/electronics\",\n          \"rank\": 72855\n        }\n      ]\n    }\n  ],\n  \"summaries\": [\n    {\n      \"marketplaceId\": \"ATVPDKIKX0DER\",\n      \"brand\": \"SAMSUNG\",\n      \"browseClassification\": {\n        \"displayName\": \"QLED TVs\",\n        \"classificationId\": \"21489946011\"\n      },\n      \"color\": \"Black\",\n      \"itemClassification\": \"BASE_PRODUCT\",\n      \"itemName\": \"Samsung QN82Q60RAFXZA Flat 82-Inch QLED 4K Q60 Series (2019) Ultra HD Smart TV with HDR and Alexa Compatibility\",\n      \"manufacturer\": \"Samsung\",\n      \"modelNumber\": \"QN82Q60RAFXZA\",\n      \"packageQuantity\": 1,\n      \"partNumber\": \"QN82Q60RAFXZA\",\n      \"size\": \"82-Inch\",\n      \"style\": \"TV only\",\n      \"websiteDisplayGroup\": \"home_theater_display_on_website\",\n      \"websiteDisplayGroupName\": \"Home Theater\"\n    }\n  ],\n  \"relationships\": [\n    {\n      \"marketplaceId\": \"ATVPDKIKX0DER\",\n      \"relationships\": [\n        {\n          \"type\": \"VARIATION\",\n          \"parentAsins\": [\n            \"B08J7TQ9FL\"\n          ],\n          \"variationTheme\": {\n            \"attributes\": [\n              \"color\",\n              \"size\"\n            ],\n            \"theme\": \"SIZE_NAME/COLOR_NAME\"\n          }\n        }\n      ]\n    }\n  ],\n  \"vendorDetails\": [\n    {\n      \"marketplaceId\": \"ATVPDKIKX0DER\",\n      \"brandCode\": \"SAMF9\",\n      \"manufacturerCode\": \"SAMF9\",\n      \"manufacturerCodeParent\": \"SAMF9\",\n      \"productCategory\": {\n        \"displayName\": \"Televisions\",\n        \"value\": \"50400100\"\n      },\n      \"productGroup\": \"Home Entertainment\",\n      \"productSubcategory\": {\n        \"displayName\": \"Plasma TVs\",\n        \"value\": \"50400120\"\n      },\n      \"replenishmentCategory\": \"OBSOLETE\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee2efb5e-66db-45ed-92a9-86507a86f42e",
+              "name": "Request has missing or invalid parameters and cannot be parsed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "2022-04-01",
+                    "items",
+                    ":asin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "summaries"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "asin",
+                      "description": "(Required) The Amazon Standard Identification Number (ASIN) of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36db28c7-f8ff-406e-a793-4f5bf2073435",
+              "name": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "2022-04-01",
+                    "items",
+                    ":asin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "summaries"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "asin",
+                      "description": "(Required) The Amazon Standard Identification Number (ASIN) of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69c9e347-67fe-4b95-b21b-74d3e4c46986",
+              "name": "The resource specified does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "2022-04-01",
+                    "items",
+                    ":asin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "summaries"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "asin",
+                      "description": "(Required) The Amazon Standard Identification Number (ASIN) of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9dc10feb-d7a4-4f56-9e1a-4ae69af0b3e9",
+              "name": "The request size exceeded the maximum accepted size.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "2022-04-01",
+                    "items",
+                    ":asin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "summaries"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "asin",
+                      "description": "(Required) The Amazon Standard Identification Number (ASIN) of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28650cca-6620-4bad-a041-050a17a05280",
+              "name": "The request payload is in an unsupported format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "2022-04-01",
+                    "items",
+                    ":asin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "summaries"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "asin",
+                      "description": "(Required) The Amazon Standard Identification Number (ASIN) of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b69af10d-d4bf-4fc1-8754-465b26d92f32",
+              "name": "The frequency of requests was greater than allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "2022-04-01",
+                    "items",
+                    ":asin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "summaries"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "asin",
+                      "description": "(Required) The Amazon Standard Identification Number (ASIN) of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08cf52f0-4d0d-475b-be00-9ec45b4e78e8",
+              "name": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "2022-04-01",
+                    "items",
+                    ":asin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "summaries"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "asin",
+                      "description": "(Required) The Amazon Standard Identification Number (ASIN) of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f40ce0d-257b-4499-a2e9-ac1aa5be469f",
+              "name": "Temporary overloading or maintenance of the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "2022-04-01",
+                    "items",
+                    ":asin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "summaries"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "asin",
+                      "description": "(Required) The Amazon Standard Identification Number (ASIN) of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
             }
           ],
           "event": [],
@@ -234,29 +1644,12 @@
       "key": "baseUrl"
     }
   ],
-  "auth": {
-    "type": "apikey",
-    "apikey": [
-      {
-        "key": "key",
-        "value": "x-amz-access-token"
-      },
-      {
-        "key": "value",
-        "value": "{{apiKey}}"
-      },
-      {
-        "key": "in",
-        "value": "header"
-      }
-    ]
-  },
   "info": {
-    "_postman_id": "b753f266-cc98-45d2-8a54-4cc944cce1fb",
-    "name": "Amazon Selling Partner API (SP-API) Authentication Catalog API",
+    "_postman_id": "98133008-80c4-44f1-a344-dc4ff4a88e5a",
+    "name": "Selling Partner API for Items Catalog API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "Modern REST API enabling Amazon sellers, vendors, and third-party\ndevelopers to programmatically access Seller Central data and\noperations. Coverage includes catalog management, orders, inventory,\npricing, fulfillment, reports, feeds, finances, notifications, and\ntokens. Authentication uses Login with Amazon (LWA) OAuth 2.0\naccess tokens (`x-amz-access-token`) and optional Restricted Data\nTokens for PII. SP-API replaces the legacy Amazon MWS.\n\n\nContact Support:\n Name: Amazon Selling Partner API",
+      "content": "Use the Selling Partner API for Catalog Items to retrieve information about items in the Amazon catalog.\n\nFor more information, refer to the [Catalog Items API Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/:catalog-items-api-v2022-04-01-use-case-guide).\n\nContact Support:\n Name: Selling Partner API Developer Support",
       "type": "text/plain"
     }
   }

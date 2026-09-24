@@ -1,0 +1,1291 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Selling Partner API for operations. Fba Inbound API",
+    "version": "2024-03-20"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "fbaInbound",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "listInboundPlans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of inbound plans to return in the response matching the given query."
+              },
+              {
+                "name": "paginationToken",
+                "value": "",
+                "type": "query",
+                "description": "A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "The status of an inbound plan."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Sort by field."
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "The sort order."
+              }
+            ]
+          },
+          "docs": "Provides a list of inbound plans with minimal information.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 6 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For m"
+        },
+        {
+          "info": {
+            "name": "createInboundPlan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an inbound plan. An inbound plan contains all the necessary information to send shipments into Amazon's fufillment network.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 2 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher thro"
+        },
+        {
+          "info": {
+            "name": "getInboundPlan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              }
+            ]
+          },
+          "docs": "Fetches the top level information about an inbound plan.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 6 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For mor"
+        },
+        {
+          "info": {
+            "name": "listInboundPlanBoxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/boxes",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of boxes to return in the response matching the given query."
+              },
+              {
+                "name": "paginationToken",
+                "value": "",
+                "type": "query",
+                "description": "A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result."
+              }
+            ]
+          },
+          "docs": "Provides a paginated list of box packages in an inbound plan.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 6 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. Fo"
+        },
+        {
+          "info": {
+            "name": "cancelInboundPlan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/cancellation",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              }
+            ]
+          },
+          "docs": "Cancels an Inbound Plan. Charges may apply if the cancellation is performed outside of a void window. The window for Amazon Partnered Carriers is 24 hours for Small Parcel Delivery (SPD) and one hour for Less-Than-Truckload (LTL) carrier shipments.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 2 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table conta"
+        },
+        {
+          "info": {
+            "name": "listInboundPlanItems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/items",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return in the response matching the given query."
+              },
+              {
+                "name": "paginationToken",
+                "value": "",
+                "type": "query",
+                "description": "A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result."
+              }
+            ]
+          },
+          "docs": "Provides a paginated list of item packages in an inbound plan.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 6 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. F"
+        },
+        {
+          "info": {
+            "name": "updateInboundPlanName",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/name",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the name of an existing inbound plan.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more informat"
+        },
+        {
+          "info": {
+            "name": "listPackingGroupBoxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/packingGroups/:packingGroupId/boxes",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "packingGroupId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a packing group."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of packing group boxes to return in the response matching the given query."
+              },
+              {
+                "name": "paginationToken",
+                "value": "",
+                "type": "query",
+                "description": "A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result."
+              }
+            ]
+          },
+          "docs": "Retrieves a page of boxes from a given packing group. These boxes were previously provided through the `setPackingInformation` operation. This API is used for workflows where boxes are packed before Amazon determines shipment splits.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the defaul"
+        },
+        {
+          "info": {
+            "name": "listPackingGroupItems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/packingGroups/:packingGroupId/items",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "packingGroupId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a packing group."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of packing group items to return in the response matching the given query."
+              },
+              {
+                "name": "paginationToken",
+                "value": "",
+                "type": "query",
+                "description": "A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result."
+              }
+            ]
+          },
+          "docs": "Retrieves a page of items in a given packing group. Packing options must first be generated by the corresponding operation before packing group items can be listed.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose bu"
+        },
+        {
+          "info": {
+            "name": "setPackingInformation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/packingInformation",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets packing information for an inbound plan. This should be called after an inbound plan is created to populate the box level information required for planning and transportation estimates.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 2 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. "
+        },
+        {
+          "info": {
+            "name": "listPackingOptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/packingOptions",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of packing options to return in the response matching the given query."
+              },
+              {
+                "name": "paginationToken",
+                "value": "",
+                "type": "query",
+                "description": "A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all packing options for an inbound plan. Packing options must first be generated by the corresponding operation before becoming available.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 6 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business "
+        },
+        {
+          "info": {
+            "name": "generatePackingOptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/packingOptions",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              }
+            ]
+          },
+          "docs": "Generates available packing options for the inbound plan.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 2 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For mo"
+        },
+        {
+          "info": {
+            "name": "confirmPackingOption",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/packingOptions/:packingOptionId/confirmation",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "packingOptionId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a packing option."
+              }
+            ]
+          },
+          "docs": "Confirms the packing option for an inbound plan.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 2 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more inform"
+        },
+        {
+          "info": {
+            "name": "listInboundPlanPallets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/pallets",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of pallets to return in the response matching the given query."
+              },
+              {
+                "name": "paginationToken",
+                "value": "",
+                "type": "query",
+                "description": "A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result."
+              }
+            ]
+          },
+          "docs": "Provides a paginated list of pallet packages in an inbound plan. An inbound plan will have pallets when the related details are provided after generating Less-Than-Truckload (LTL) carrier shipments.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 6 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this ope"
+        },
+        {
+          "info": {
+            "name": "listPlacementOptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/placementOptions",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of placement options to return in the response matching the given query."
+              },
+              {
+                "name": "paginationToken",
+                "value": "",
+                "type": "query",
+                "description": "A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result."
+              }
+            ]
+          },
+          "docs": "Provides a list of all placement options for an inbound plan. Placement options must first be generated by the corresponding operation before becoming available.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 6 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose busine"
+        },
+        {
+          "info": {
+            "name": "generatePlacementOptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/placementOptions",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates placement options for the inbound plan.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 2 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more infor"
+        },
+        {
+          "info": {
+            "name": "confirmPlacementOption",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/placementOptions/:placementOptionId/confirmation",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "placementOptionId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of a placement option. A placement option represents the shipment splits and destinations of SKUs."
+              }
+            ]
+          },
+          "docs": "Confirms the placement option for an inbound plan. Once confirmed, it cannot be changed for the Inbound Plan.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 2 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher"
+        },
+        {
+          "info": {
+            "name": "getShipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/shipments/:shipmentId",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a shipment. A shipment contains the boxes and units being inbounded."
+              }
+            ]
+          },
+          "docs": "Provides the full details for a specific shipment within an inbound plan. The `transportationOptionId` inside `acceptedTransportationSelection` can be used to retrieve the transportation details for the shipment.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 6 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst value"
+        },
+        {
+          "info": {
+            "name": "listShipmentBoxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/shipments/:shipmentId/boxes",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a shipment. A shipment contains the boxes and units being inbounded."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of boxes to return in the response matching the given query."
+              },
+              {
+                "name": "paginationToken",
+                "value": "",
+                "type": "query",
+                "description": "A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result."
+              }
+            ]
+          },
+          "docs": "Provides a paginated list of box packages in a shipment.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For mo"
+        },
+        {
+          "info": {
+            "name": "listShipmentContentUpdatePreviews",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/shipments/:shipmentId/contentUpdatePreviews",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a shipment. A shipment contains the boxes and units being inbounded."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of content update previews to return."
+              },
+              {
+                "name": "paginationToken",
+                "value": "",
+                "type": "query",
+                "description": "A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result."
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of shipment content update previews for a given shipment. The shipment content update preview is a summary of the requested shipment content changes along with the transportation cost implications of the change that can only be confirmed prior to the expiry date specified.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested "
+        },
+        {
+          "info": {
+            "name": "generateShipmentContentUpdatePreviews",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/shipments/:shipmentId/contentUpdatePreviews",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a shipment. A shipment contains the boxes and units being inbounded."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate a shipment content update preview given a set of intended boxes and/or items for a shipment with a confirmed carrier. The shipment content update preview will be viewable with the updated costs and contents prior to confirmation.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the d"
+        },
+        {
+          "info": {
+            "name": "getShipmentContentUpdatePreview",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/shipments/:shipmentId/contentUpdatePreviews/:contentUpdatePreviewId",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a shipment. A shipment contains the boxes and units being inbounded."
+              },
+              {
+                "name": "contentUpdatePreviewId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a content update preview."
+              }
+            ]
+          },
+          "docs": "Retrieve a shipment content update preview which provides a summary of the requested shipment content changes along with the transportation cost implications of the change that can only be confirmed prior to the expiry date specified.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the defau"
+        },
+        {
+          "info": {
+            "name": "confirmShipmentContentUpdatePreview",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/shipments/:shipmentId/contentUpdatePreviews/:contentUpdatePreviewId/confirmation",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a shipment. A shipment contains the boxes and units being inbounded."
+              },
+              {
+                "name": "contentUpdatePreviewId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a content update preview."
+              }
+            ]
+          },
+          "docs": "Confirm a shipment content update preview and accept the changes in transportation cost.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst valu"
+        },
+        {
+          "info": {
+            "name": "getDeliveryChallanDocument",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/shipments/:shipmentId/deliveryChallanDocument",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a shipment. A shipment contains the boxes and units being inbounded."
+              }
+            ]
+          },
+          "docs": "Provide delivery challan document for PCP transportation in IN marketplace.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 6 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those "
+        },
+        {
+          "info": {
+            "name": "listDeliveryWindowOptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/shipments/:shipmentId/deliveryWindowOptions",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "The shipment to get delivery window options for."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of delivery window options to return in the response matching the given query."
+              },
+              {
+                "name": "paginationToken",
+                "value": "",
+                "type": "query",
+                "description": "A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result."
+              }
+            ]
+          },
+          "docs": "Retrieves all delivery window options for a shipment. Delivery window options must first be generated by the `generateDeliveryWindowOptions` operation before becoming available.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling part"
+        },
+        {
+          "info": {
+            "name": "generateDeliveryWindowOptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/shipments/:shipmentId/deliveryWindowOptions",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "The shipment to generate delivery window options for."
+              }
+            ]
+          },
+          "docs": "Generates available delivery window options for a given shipment.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown her"
+        },
+        {
+          "info": {
+            "name": "confirmDeliveryWindowOptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/shipments/:shipmentId/deliveryWindowOptions/:deliveryWindowOptionId/confirmation",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "The shipment to confirm the delivery window option for."
+              },
+              {
+                "name": "deliveryWindowOptionId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the delivery window option to be confirmed."
+              }
+            ]
+          },
+          "docs": "Confirms the delivery window option for chosen shipment within an inbound plan. A placement option must be confirmed prior to use of this API. Once confirmed, new delivery window options cannot be generated, but the chosen delivery window option can be updated before shipment closure. The window is used to provide the expected time when a shipment will arrive at the warehouse. All transportation options which have the program `CONFIRMED_DELIVERY_WINDOW` require a delivery window to be confirmed "
+        },
+        {
+          "info": {
+            "name": "listShipmentItems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/shipments/:shipmentId/items",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a shipment. A shipment contains the boxes and units being inbounded."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return in the response matching the given query."
+              },
+              {
+                "name": "paginationToken",
+                "value": "",
+                "type": "query",
+                "description": "A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result."
+              }
+            ]
+          },
+          "docs": "Provides a paginated list of item packages in a shipment.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For m"
+        },
+        {
+          "info": {
+            "name": "updateShipmentName",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/shipments/:shipmentId/name",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a shipment. A shipment contains the boxes and units being inbounded."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the name of an existing shipment.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information,"
+        },
+        {
+          "info": {
+            "name": "listShipmentPallets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/shipments/:shipmentId/pallets",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a shipment. A shipment contains the boxes and units being inbounded."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of pallets to return in the response matching the given query."
+              },
+              {
+                "name": "paginationToken",
+                "value": "",
+                "type": "query",
+                "description": "A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result."
+              }
+            ]
+          },
+          "docs": "Provides a paginated list of pallet packages in a shipment. A palletized shipment will have pallets when the related details are provided after generating Less-Than-Truckload (LTL) carrier shipments.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this o"
+        },
+        {
+          "info": {
+            "name": "cancelSelfShipAppointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/shipments/:shipmentId/selfShipAppointmentCancellation",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a shipment. A shipment contains the boxes and units being inbounded."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancels a self-ship appointment slot against a shipment. Only available in the following [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| n | n |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Se"
+        },
+        {
+          "info": {
+            "name": "getSelfShipAppointmentSlots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/shipments/:shipmentId/selfShipAppointmentSlots",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a shipment. A shipment contains the boxes and units being inbounded."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of self ship appointment slots to return in the response matching the given query."
+              },
+              {
+                "name": "paginationToken",
+                "value": "",
+                "type": "query",
+                "description": "A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of available self-ship appointment slots used to drop off a shipment at a warehouse. Only available in the following [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| n | n |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default"
+        },
+        {
+          "info": {
+            "name": "generateSelfShipAppointmentSlots",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/shipments/:shipmentId/selfShipAppointmentSlots",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a shipment. A shipment contains the boxes and units being inbounded."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates the process of generating the appointment slots list. Only available in the following [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| n | n |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operat"
+        },
+        {
+          "info": {
+            "name": "scheduleSelfShipAppointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/shipments/:shipmentId/selfShipAppointmentSlots/:slotId/schedule",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a shipment. A shipment contains the boxes and units being inbounded."
+              },
+              {
+                "name": "slotId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier to a self-ship appointment slot."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Confirms or reschedules a self-ship appointment slot against a shipment. Only available in the following [marketplaces](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids): MX, BR, EG, SA, AE, IN.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| n | n |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for th"
+        },
+        {
+          "info": {
+            "name": "updateShipmentSourceAddress",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/shipments/:shipmentId/sourceAddress",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a shipment. A shipment contains the boxes and units being inbounded."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the source address of an existing shipment. The shipment source address can only be updated prior to the confirmation of the shipment carriers. As a result of the updated source address, existing transportation options will be invalidated and will need to be regenerated to capture the potential difference in transportation options and quotes due to the new source address.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` res"
+        },
+        {
+          "info": {
+            "name": "updateShipmentTrackingDetails",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/shipments/:shipmentId/trackingDetails",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a shipment. A shipment contains the boxes and units being inbounded."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a shipment's tracking details.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 2 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, ref"
+        },
+        {
+          "info": {
+            "name": "listTransportationOptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/transportationOptions",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of transportation options to return in the response matching the given query."
+              },
+              {
+                "name": "paginationToken",
+                "value": "",
+                "type": "query",
+                "description": "A token to fetch a certain page when there are multiple pages worth of results. The value of this token is fetched from the `pagination` returned in the API response. In the absence of the token value from the query parameter the API returns the first page of the result."
+              },
+              {
+                "name": "placementOptionId",
+                "value": "",
+                "type": "query",
+                "description": "The placement option to get transportation options for. Either `placementOptionId` or `shipmentId` must be specified."
+              },
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "query",
+                "description": "The shipment to get transportation options for. Either `placementOptionId` or `shipmentId` must be specified."
+              }
+            ]
+          },
+          "docs": "Retrieves all transportation options for a shipment. Transportation options must first be generated by the `generateTransportationOptions` operation before becoming available.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 6 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partner"
+        },
+        {
+          "info": {
+            "name": "generateTransportationOptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/transportationOptions",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates available transportation options for a given placement option.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 2 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those sho"
+        },
+        {
+          "info": {
+            "name": "confirmTransportationOptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/inboundPlans/:inboundPlanId/transportationOptions/confirmation",
+            "params": [
+              {
+                "name": "inboundPlanId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an inbound plan."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Confirms all the transportation options for an inbound plan. A placement option must be confirmed prior to use of this API. Once confirmed, new transportation options can not be generated or confirmed for the Inbound Plan.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 2 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and b"
+        },
+        {
+          "info": {
+            "name": "listItemComplianceDetails",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/items/compliance",
+            "params": [
+              {
+                "name": "mskus",
+                "value": "",
+                "type": "query",
+                "description": "A list of merchant SKUs, a merchant-supplied identifier of a specific SKU."
+              },
+              {
+                "name": "marketplaceId",
+                "value": "",
+                "type": "query",
+                "description": "The Marketplace ID. For a list of possible values, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids)."
+              }
+            ]
+          },
+          "docs": "List the inbound compliance details for MSKUs in a given marketplace.\n\n**Note:** MSKUs that contain certain characters must be encoded. For more information, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).\n\nThe following characters must be double percent encoded:\n\n- `%`\n- `+`\n- `,`\n\n**Examples:** An MSKU value of `test%msku` is encoded as `test%2525msku`. An MSKU value of `test,msku` is encoded as `test%252Cmsku`.\n\n**Usage Plan:**\n\n| Rate (requests per second"
+        },
+        {
+          "info": {
+            "name": "updateItemComplianceDetails",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/items/compliance",
+            "params": [
+              {
+                "name": "marketplaceId",
+                "value": "",
+                "type": "query",
+                "description": "The Marketplace ID. For a list of possible values, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update compliance details for a list of MSKUs. The details provided here are only used for the India (IN - A21TJRUUN4KGV) marketplace compliance validation.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 6 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business de"
+        },
+        {
+          "info": {
+            "name": "createMarketplaceItemLabels",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/items/labels",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "For a given marketplace - creates labels for a list of MSKUs.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. F"
+        },
+        {
+          "info": {
+            "name": "listPrepDetails",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/items/prepDetails",
+            "params": [
+              {
+                "name": "marketplaceId",
+                "value": "",
+                "type": "query",
+                "description": "The marketplace ID. For a list of possible values, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids)."
+              },
+              {
+                "name": "mskus",
+                "value": "",
+                "type": "query",
+                "description": "A list of merchant SKUs, a merchant-supplied identifier of a specific SKU."
+              }
+            ]
+          },
+          "docs": "Get preparation details for a list of MSKUs in a specified marketplace.\n\n**Note:** MSKUs that contain certain characters must be encoded. For more information, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).\n\nThe following characters must be double percent encoded:\n\n- `%`\n- `+`\n- `,`\n\n**Examples:** An MSKU value of `test%msku` is encoded as `test%2525msku`. An MSKU value of `test,msku` is encoded as `test%252Cmsku`.\n\n**Usage Plan:**\n\n| Rate (requests per seco"
+        },
+        {
+          "info": {
+            "name": "setPrepDetails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/items/prepDetails",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set the preparation details for a list of MSKUs in a specified marketplace.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those"
+        },
+        {
+          "info": {
+            "name": "getInboundOperationStatus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/inbound/fba/2024-03-20/operations/:operationId",
+            "params": [
+              {
+                "name": "operationId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an asynchronous operation."
+              }
+            ]
+          },
+          "docs": "Gets the status of the processing of an asynchronous API call.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 6 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. F"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

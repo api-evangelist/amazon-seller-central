@@ -1,0 +1,1072 @@
+{
+  "item": [
+    {
+      "id": "65f48db5-6d57-45d7-8c57-e481d490e8bd",
+      "name": "searchOrders",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b4550b72-cd9c-4ca4-a857-7a5769453a76",
+          "name": "search Orders",
+          "request": {
+            "name": "search Orders",
+            "description": {
+              "content": "Returns orders created or updated during the time period that you specify. You can filter the response for specific types of orders.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.0056 | 20 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that are applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may receive higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api) in the Selling Partner API documentation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                "2026-01-01",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "createdAfter",
+                  "value": "<dateTime>",
+                  "description": "The response includes orders created at or after this time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.\n\n**Note**: You must provide exactly one of `createdAfter` and `lastUpdatedAfter` in your request. If `createdAfter` is provided, neither `lastUpdatedAfter` nor `lastUpdatedBefore` may be provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "createdBefore",
+                  "value": "<dateTime>",
+                  "description": "The response includes orders created at or before this time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.\n\n**Note**: If you include `createdAfter` in the request, `createdBefore` is optional, and if provided must be equal to or after the `createdAfter` date and at least two minutes before the time of the request. If `createdBefore` is provided, neither `lastUpdatedAfter` nor `lastUpdatedBefore` may be provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "lastUpdatedAfter",
+                  "value": "<dateTime>",
+                  "description": "The response includes orders updated at or after this time. An update is any change made by Amazon or the seller, including changes to order status. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.\n\n**Note**: You must provide exactly one of `createdAfter` and `lastUpdatedAfter`. If `lastUpdatedAfter` is provided, neither `createdAfter` nor `createdBefore` may be provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "lastUpdatedBefore",
+                  "value": "<dateTime>",
+                  "description": "The response includes orders updated at or before this time. An update is any change made by Amazon or the seller, including changes to order status. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.\n\n**Note**: If you include `lastUpdatedAfter` in the request, `lastUpdatedBefore` is optional, and if provided must be equal to or after the `lastUpdatedAfter` date and at least two minutes before the time of the request. If `lastUpdatedBefore` is provided, neither `createdAfter` nor `createdBefore` may be provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "fulfillmentStatuses",
+                  "value": "<string>",
+                  "description": "A list of `FulfillmentStatus` values you can use to filter the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "fulfillmentStatuses",
+                  "value": "<string>",
+                  "description": "A list of `FulfillmentStatus` values you can use to filter the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "marketplaceIds",
+                  "value": "<string>",
+                  "description": "The response includes orders that were placed in marketplaces you include in this list.\n\nRefer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a complete list of `marketplaceId` values."
+                },
+                {
+                  "disabled": false,
+                  "key": "marketplaceIds",
+                  "value": "<string>",
+                  "description": "The response includes orders that were placed in marketplaces you include in this list.\n\nRefer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a complete list of `marketplaceId` values."
+                },
+                {
+                  "disabled": false,
+                  "key": "fulfilledBy",
+                  "value": "<string>",
+                  "description": "The response includes orders that are fulfilled by the parties that you include in this list."
+                },
+                {
+                  "disabled": false,
+                  "key": "fulfilledBy",
+                  "value": "<string>",
+                  "description": "The response includes orders that are fulfilled by the parties that you include in this list."
+                },
+                {
+                  "disabled": false,
+                  "key": "maxResultsPerPage",
+                  "value": "<integer>",
+                  "description": "The maximum number of orders that can be returned per page. The value must be between 1 and 100. **Default:** 100."
+                },
+                {
+                  "disabled": false,
+                  "key": "paginationToken",
+                  "value": "<string>",
+                  "description": "Pagination occurs when a request produces a response that exceeds the `maxResultsPerPage`. This means that the response is divided into individual pages. To retrieve the next page, you must pass the `nextToken` value as the `paginationToken` query parameter in the next request. You will not receive a `nextToken` value on the last page."
+                },
+                {
+                  "disabled": false,
+                  "key": "includedData",
+                  "value": "<string>",
+                  "description": "A list of datasets to include in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "includedData",
+                  "value": "<string>",
+                  "description": "A list of datasets to include in the response."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd96ffd0-1f1a-47da-bb2e-8a3178f76926",
+              "name": "Success.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "2026-01-01",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "createdAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "lastUpdatedAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "lastUpdatedBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "fulfillmentStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfillmentStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfilledBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfilledBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxResultsPerPage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "paginationToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orders\": [\n    {\n      \"orderId\": \"123-4567890-1234567\",\n      \"orderAliases\": [\n        {\n          \"aliasId\": \"SELLER-ORDER-2024-001\",\n          \"aliasType\": \"SELLER_ORDER_ID\"\n        }\n      ],\n      \"createdTime\": \"2024-12-25T10:30:00Z\",\n      \"lastUpdatedTime\": \"2024-12-25T14:45:00Z\",\n      \"programs\": [\n        \"PRIME\",\n        \"AMAZON_BUSINESS\"\n      ],\n      \"associatedOrders\": [\n        {\n          \"orderId\": \"123-4567890-1234566\",\n          \"associationType\": \"REPLACEMENT_ORIGINAL_ID\"\n        }\n      ],\n      \"salesChannel\": {\n        \"channelName\": \"AMAZON\",\n        \"marketplaceId\": \"ATVPDKIKX0DER\",\n        \"marketplaceName\": \"Amazon.com\"\n      },\n      \"buyer\": {\n        \"buyerName\": \"John Smith\",\n        \"buyerEmail\": \"buyer-email@marketplace.amazon.com\",\n        \"buyerCompanyName\": \"Smith Industries LLC\",\n        \"buyerPurchaseOrderNumber\": \"PO-2024-12345\"\n      },\n      \"recipient\": {\n        \"deliveryAddress\": {\n          \"name\": \"John Smith\",\n          \"companyName\": \"Smith Industries LLC\",\n          \"addressLine1\": \"123 Main Street\",\n          \"addressLine2\": \"Suite 456\",\n          \"addressLine3\": \"\",\n          \"city\": \"Seattle\",\n          \"districtOrCounty\": \"King County\",\n          \"stateOrRegion\": \"WA\",\n          \"municipality\": \"\",\n          \"postalCode\": \"98101\",\n          \"countryCode\": \"US\",\n          \"phone\": \"555-123-4567\",\n          \"addressType\": \"COMMERCIAL\"\n        },\n        \"deliveryPreference\": {\n          \"dropOffLocation\": \"Front desk reception\",\n          \"addressInstruction\": \"Enter through main lobby, ask for John Smith at reception\",\n          \"deliveryTime\": {\n            \"businessHours\": [\n              {\n                \"dayOfWeek\": \"MON\",\n                \"timeWindows\": [\n                  {\n                    \"startTime\": {\n                      \"hour\": 9,\n                      \"minute\": 0\n                    },\n                    \"endTime\": {\n                      \"hour\": 17,\n                      \"minute\": 0\n                    }\n                  }\n                ]\n              },\n              {\n                \"dayOfWeek\": \"TUE\",\n                \"timeWindows\": [\n                  {\n                    \"startTime\": {\n                      \"hour\": 9,\n                      \"minute\": 0\n                    },\n                    \"endTime\": {\n                      \"hour\": 17,\n                      \"minute\": 0\n                    }\n                  }\n                ]\n              },\n              {\n                \"dayOfWeek\": \"WED\",\n                \"timeWindows\": [\n                  {\n                    \"startTime\": {\n                      \"hour\": 9,\n                      \"minute\": 0\n                    },\n                    \"endTime\": {\n                      \"hour\": 17,\n                      \"minute\": 0\n                    }\n                  }\n                ]\n              },\n              {\n                \"dayOfWeek\": \"THU\",\n                \"timeWindows\": [\n                  {\n                    \"startTime\": {\n                      \"hour\": 9,\n                      \"minute\": 0\n                    },\n                    \"endTime\": {\n                      \"hour\": 17,\n                      \"minute\": 0\n                    }\n                  }\n                ]\n              },\n              {\n                \"dayOfWeek\": \"FRI\",\n                \"timeWindows\": [\n                  {\n                    \"startTime\": {\n                      \"hour\": 9,\n                      \"minute\": 0\n                    },\n                    \"endTime\": {\n                      \"hour\": 17,\n                      \"minute\": 0\n                    }\n                  }\n                ]\n              }\n            ],\n            \"exceptionDates\": [\n              {\n                \"exceptionDate\": \"2024-12-31\",\n                \"exceptionDateType\": \"CLOSED\",\n                \"timeWindows\": []\n              }\n            ]\n          },\n          \"deliveryCapabilities\": [\n            \"HAS_ACCESS_POINT\",\n            \"PALLET_ENABLED\"\n          ]\n        }\n      },\n      \"proceeds\": {\n        \"grandTotal\": {\n          \"amount\": \"154.99\",\n          \"currencyCode\": \"USD\"\n        },\n        \"breakdowns\": [\n          {\n            \"type\": \"ITEM\",\n            \"subtotal\": {\n              \"amount\": \"149.97\",\n              \"currencyCode\": \"USD\"\n            }\n          },\n          {\n            \"type\": \"TAX\",\n            \"subtotal\": {\n              \"amount\": \"0.02\",\n              \"currencyCode\": \"USD\"\n            }\n          },\n          {\n            \"type\": \"DELIVERY_TIP\",\n            \"status\": \"FINALIZED\",\n            \"subtotal\": {\n              \"amount\": \"5.00\",\n              \"currencyCode\": \"USD\"\n            }\n          }\n        ]\n      },\n      \"fulfillment\": {\n        \"fulfillmentStatus\": \"SHIPPED\",\n        \"fulfilledBy\": \"MERCHANT\",\n        \"fulfillmentServiceLevel\": \"STANDARD\",\n        \"shipByWindow\": {\n          \"earliestDateTime\": \"2024-12-26T00:00:00Z\",\n          \"latestDateTime\": \"2024-12-27T23:59:59Z\"\n        },\n        \"deliverByWindow\": {\n          \"earliestDateTime\": \"2024-12-28T00:00:00Z\",\n          \"latestDateTime\": \"2024-12-30T23:59:59Z\"\n        }\n      },\n      \"orderItems\": [\n        {\n          \"orderItemId\": \"12345678901234\",\n          \"quantityOrdered\": 2,\n          \"programs\": [\n            \"TRANSPARENCY\",\n            \"SUBSCRIBE_AND_SAVE\"\n          ],\n          \"product\": {\n            \"asin\": \"B08N5WRWNW\",\n            \"title\": \"Echo Dot (4th Gen) | Smart speaker with Alexa | Charcoal\",\n            \"sellerSku\": \"ECHO-DOT-4-CHARCOAL\",\n            \"condition\": {\n              \"conditionType\": \"NEW\",\n              \"conditionSubtype\": \"NEW\",\n              \"conditionNote\": \"Brand new in original packaging\"\n            },\n            \"price\": {\n              \"unitPrice\": {\n                \"amount\": \"49.99\",\n                \"currencyCode\": \"USD\"\n              },\n              \"priceDesignation\": \"BUSINESS_PRICE\"\n            },\n            \"customization\": {\n              \"customizedUrl\": \"https://amazon.com/custom/view/12345\"\n            }\n          },\n          \"proceeds\": {\n            \"proceedsTotal\": {\n              \"amount\": \"100.00\",\n              \"currencyCode\": \"USD\"\n            },\n            \"breakdowns\": [\n              {\n                \"type\": \"ITEM\",\n                \"subtotal\": {\n                  \"amount\": \"99.98\",\n                  \"currencyCode\": \"USD\"\n                }\n              },\n              {\n                \"type\": \"TAX\",\n                \"subtotal\": {\n                  \"amount\": \"0.02\",\n                  \"currencyCode\": \"USD\"\n                },\n                \"detailedBreakdowns\": [\n                  {\n                    \"subtype\": \"ITEM\",\n                    \"value\": {\n                      \"amount\": \"0.02\",\n                      \"currencyCode\": \"USD\"\n                    }\n                  }\n                ]\n              }\n            ]\n          },\n          \"promotion\": {\n            \"breakdowns\": [\n              {\n                \"promotionId\": \"PROMO-HOLIDAY-2024\"\n              }\n            ]\n          },\n          \"cancellation\": {\n            \"cancellationRequest\": {\n              \"requester\": \"BUYER\",\n              \"cancelReason\": \"Changed mind about purchase\"\n            },\n            \"cancellationExecution\": {\n              \"cancelledBy\": \"MERCHANT\",\n              \"cancelReason\": \"Buyer requested cancellation\"\n            }\n          },\n          \"fulfillment\": {\n            \"quantityFulfilled\": 2,\n            \"quantityUnfulfilled\": 0,\n            \"packing\": {\n              \"giftOption\": {\n                \"giftMessage\": \"Happy Holidays! Enjoy your new smart speakers.\",\n                \"giftWrapLevel\": \"PREMIUM\"\n              }\n            },\n            \"shipping\": {\n              \"scheduledDeliveryWindow\": {\n                \"earliestDateTime\": \"2024-12-28T09:00:00Z\",\n                \"latestDateTime\": \"2024-12-28T17:00:00Z\"\n              },\n              \"shippingConstraints\": {\n                \"palletDelivery\": \"MANDATORY\",\n                \"cashOnDelivery\": \"MANDATORY\",\n                \"signatureConfirmation\": \"MANDATORY\",\n                \"recipientIdentityVerification\": \"MANDATORY\",\n                \"recipientAgeVerification\": \"MANDATORY\"\n              }\n            }\n          }\n        },\n        {\n          \"orderItemId\": \"12345678901235\",\n          \"quantityOrdered\": 1,\n          \"programs\": [],\n          \"product\": {\n            \"asin\": \"B07XJ8C8F5\",\n            \"title\": \"Fire TV Stick 4K with Alexa Voice Remote\",\n            \"sellerSku\": \"FIRE-TV-4K-2021\",\n            \"condition\": {\n              \"conditionType\": \"NEW\",\n              \"conditionSubtype\": \"NEW\",\n              \"conditionNote\": \"\"\n            },\n            \"price\": {\n              \"unitPrice\": {\n                \"amount\": \"49.99\",\n                \"currencyCode\": \"USD\"\n              }\n            }\n          },\n          \"proceeds\": {\n            \"proceedsTotal\": {\n              \"amount\": \"49.99\",\n              \"currencyCode\": \"USD\"\n            },\n            \"breakdowns\": [\n              {\n                \"type\": \"ITEM\",\n                \"subtotal\": {\n                  \"amount\": \"49.99\",\n                  \"currencyCode\": \"USD\"\n                }\n              }\n            ]\n          },\n          \"fulfillment\": {\n            \"quantityFulfilled\": 1,\n            \"quantityUnfulfilled\": 0,\n            \"shipping\": {\n              \"scheduledDeliveryWindow\": {\n                \"earliestDateTime\": \"2024-12-28T09:00:00Z\",\n                \"latestDateTime\": \"2024-12-28T17:00:00Z\"\n              },\n              \"shippingConstraints\": {\n                \"signatureConfirmation\": \"MANDATORY\"\n              }\n            }\n          }\n        }\n      ],\n      \"packages\": [\n        {\n          \"packageReferenceId\": \"PKG-2024-001\",\n          \"createdTime\": \"2024-12-25T15:00:00Z\",\n          \"packageStatus\": {\n            \"status\": \"DELIVERED\",\n            \"detailedStatus\": \"DELIVERED\"\n          },\n          \"carrier\": \"UPS\",\n          \"shipTime\": \"2024-12-25T14:00:00Z\",\n          \"shippingService\": \"UPS Ground\",\n          \"trackingNumber\": \"1Z999AA1234567890\",\n          \"shipFromAddress\": {\n            \"name\": \"Smith Electronics Warehouse\",\n            \"addressLine1\": \"456 Industrial Blvd\",\n            \"addressLine2\": \"Building A\",\n            \"city\": \"Bellevue\",\n            \"districtOrCounty\": \"King County\",\n            \"stateOrRegion\": \"WA\",\n            \"postalCode\": \"98004\",\n            \"countryCode\": \"US\"\n          },\n          \"packageItems\": [\n            {\n              \"orderItemId\": \"12345678901234\",\n              \"quantity\": 2,\n              \"transparencyCodes\": [\n                \"T12345ABCDE67890\",\n                \"T12346ABCDF67891\"\n              ]\n            },\n            {\n              \"orderItemId\": \"12345678901235\",\n              \"quantity\": 1,\n              \"transparencyCodes\": [\n                \"T67890GHIJK12345\"\n              ]\n            }\n          ]\n        }\n      ],\n      \"fulfillmentOrders\": [\n        {\n          \"fulfillmentOrderId\": \"LdDv2jxM4\"\n        }\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"nextToken\": \"2YgYW55IGNhcm5hbCBwbGVhc3VyZS4\"\n  },\n  \"lastUpdatedBefore\": \"2024-12-25T15:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc6104e8-dd19-4d58-ae33-96814c24afa3",
+              "name": "Request has missing or invalid parameters and cannot be parsed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "2026-01-01",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "createdAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "lastUpdatedAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "lastUpdatedBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "fulfillmentStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfillmentStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfilledBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfilledBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxResultsPerPage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "paginationToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22e9162f-efd5-4f69-97df-fae7c6204d94",
+              "name": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "2026-01-01",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "createdAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "lastUpdatedAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "lastUpdatedBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "fulfillmentStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfillmentStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfilledBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfilledBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxResultsPerPage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "paginationToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d6e2546-1593-4c85-810e-dda78863709c",
+              "name": "The resource specified does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "2026-01-01",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "createdAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "lastUpdatedAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "lastUpdatedBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "fulfillmentStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfillmentStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfilledBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfilledBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxResultsPerPage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "paginationToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c6712399-61ed-4efc-989a-df2ded8e1b22",
+              "name": "The request size exceeded the maximum accepted size.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "2026-01-01",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "createdAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "lastUpdatedAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "lastUpdatedBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "fulfillmentStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfillmentStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfilledBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfilledBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxResultsPerPage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "paginationToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9a1ad15-8711-49f3-9f1b-36f14ccd3285",
+              "name": "The request payload is in an unsupported format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "2026-01-01",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "createdAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "lastUpdatedAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "lastUpdatedBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "fulfillmentStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfillmentStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfilledBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfilledBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxResultsPerPage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "paginationToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b646021c-7c36-4243-bc30-92d385541f63",
+              "name": "The frequency of requests was greater than allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "2026-01-01",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "createdAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "lastUpdatedAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "lastUpdatedBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "fulfillmentStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfillmentStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfilledBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfilledBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxResultsPerPage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "paginationToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2dc5b07-653a-46a3-a386-f02b71b1db22",
+              "name": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "2026-01-01",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "createdAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "lastUpdatedAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "lastUpdatedBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "fulfillmentStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfillmentStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfilledBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfilledBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxResultsPerPage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "paginationToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82d51de1-452a-457d-a316-5e2f38a1aea0",
+              "name": "Temporary overloading or maintenance of the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "2026-01-01",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "createdAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createdBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "lastUpdatedAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "lastUpdatedBefore",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "fulfillmentStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfillmentStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfilledBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fulfilledBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxResultsPerPage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "paginationToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sellingpartnerapi-na.amazon.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0573af86-7803-408a-9504-a01bd0b49762",
+    "name": "Selling Partner API for Orders Search Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Selling Partner API for Orders returns orders information. This API supports the following types of orders:\n\n- FBM (Fulfilled by Merchant)\n- FBA (Fulfilled by Amazon) - read only\n- Amazon Fresh\n\nThis API does not display order data that is more than two years old, except in the JP, AU, and SG marketplaces, for which data from 2016 and after is available.\n\nContact Support:\n Name: Selling Partner API Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

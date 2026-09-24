@@ -1,16 +1,8 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Amazon Selling Partner API (SP-API) Authentication Finances API",
-    "version": "1.0.0"
-  },
-  "request": {
-    "auth": {
-      "type": "apikey",
-      "key": "x-amz-access-token",
-      "value": "{{x-amz-access-token}}",
-      "placement": "header"
-    }
+    "name": "Amazon Seller Central Finances API",
+    "version": "1.0"
   },
   "items": [
     {
@@ -21,14 +13,304 @@
       "items": [
         {
           "info": {
-            "name": "List financial events",
+            "name": "listTransactions",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://sellingpartnerapi-na.amazon.com/finances/v0/financialEvents"
+            "url": "https://sellingpartnerapi-na.amazon.com/finances/2024-06-19/transactions",
+            "params": [
+              {
+                "name": "postedAfter",
+                "value": "",
+                "type": "query",
+                "description": "The response includes financial events posted on or after this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The date-time must be more than two minutes before the time of the request.\n\nThis field is required if you do not specify a related identifier."
+              },
+              {
+                "name": "postedBefore",
+                "value": "",
+                "type": "query",
+                "description": "The response includes financial events posted before (but not on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.\n\nThe date-time must be later than `PostedAfter` and more than two minutes before the request was submitted. If `PostedAfter` and `PostedBefore` are more than 180 days apart, the response is empty.\n\n**Default:** Two minutes before the time of the request."
+              },
+              {
+                "name": "marketplaceId",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the marketplace from which you want to retrieve transactions. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids)."
+              },
+              {
+                "name": "transactionStatus",
+                "value": "",
+                "type": "query",
+                "description": "The status of the transaction.\n\n**Possible values:**\n\n* `DEFERRED`: the transaction is currently deferred.\n* `RELEASED`: the transaction is currently released.\n* `DEFERRED_RELEASED`: the transaction was deferred in the past, but is now released. The status of a deferred transaction is updated to `DEFERRED_RELEASED` when the transaction is released."
+              },
+              {
+                "name": "relatedIdentifierName",
+                "value": "",
+                "type": "query",
+                "description": "The name of the `relatedIdentifier`.\n\n**Possible values:**\n\n* `FINANCIAL_EVENT_GROUP_ID`: the financial event group ID associated with the transaction.\n\n* `ORDER_ID`: the order ID associated with the transaction.  \n\n**Note:**\n\n`FINANCIAL_EVENT_GROUP_ID` and `ORDER_ID` are the only `relatedIdentifier` with filtering capabilities at the moment. While other `relatedIdentifier` values will be included in the response when available, they cannot be used for filtering purposes."
+              },
+              {
+                "name": "relatedIdentifierValue",
+                "value": "",
+                "type": "query",
+                "description": "The value of the `relatedIdentifier`."
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages."
+              }
+            ]
           },
-          "docs": "List financial events"
+          "docs": "Returns transactions for the given parameters. Financial events might not include orders from the last 48 hours. **Note:** If you want to retrieve MFN orders in the US store, do not supply the `marketplaceId` parameter.\n\n**Usage plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and b"
+        },
+        {
+          "info": {
+            "name": "listBalances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/finances/2024-06-19/balances",
+            "params": [
+              {
+                "name": "marketplaceIds",
+                "value": "",
+                "type": "query",
+                "description": "The marketplaces from which to retrieve balances. If omitted, balances from all applicable marketplaces may be returned. To find the marketplace ID for a region, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids)."
+              },
+              {
+                "name": "balanceType",
+                "value": "",
+                "type": "query",
+                "description": "The type of balance to include in the response. If omitted, all balance types may be included in the response.\n\n**Possible values:** `AVAILABLE`, `RESERVED`, `TOTAL`, `DEFERRED`, `ACCOUNT_LEVEL_RESERVE`"
+              },
+              {
+                "name": "accountType",
+                "value": "",
+                "type": "query",
+                "description": "The type of account to include in the response."
+              },
+              {
+                "name": "asOfDate",
+                "value": "",
+                "type": "query",
+                "description": "The date from which you want to retrieve balances. If provided, the response includes historical balances at the specified date. The value must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date format. If omitted, the point in time balance is provided."
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "A token that you use to retrieve subsequent pages of results. When there are more than 500 results available, the response will include a `nextToken` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. Repeat this process until the `nextToken` value is null to retrieve all results."
+              }
+            ]
+          },
+          "docs": "Retrieve a balance. This balance can be a past balances at a specified date, or a current balance. Sub-balances are listed by account type and marketplace.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that apply to the operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require "
+        },
+        {
+          "info": {
+            "name": "listSummary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/finances/2024-06-19/summary",
+            "params": [
+              {
+                "name": "marketplaceIds",
+                "value": "",
+                "type": "query",
+                "description": "The marketplaces from which to retrieve summaries. If omitted, summaries from all applicable marketplaces may be returned. To find the marketplace ID for a region, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids)."
+              },
+              {
+                "name": "accountType",
+                "value": "",
+                "type": "query",
+                "description": "The type of account to include in the response."
+              },
+              {
+                "name": "relatedIdentifierName",
+                "value": "",
+                "type": "query",
+                "description": "The name of the `relatedIdentifier`. The only possible value is `SETTLEMENT_ID`, the settlement ID associated with the summary."
+              },
+              {
+                "name": "relatedIdentifierValue",
+                "value": "",
+                "type": "query",
+                "description": "The value of the `relatedIdentifier`."
+              },
+              {
+                "name": "periodStart",
+                "value": "",
+                "type": "query",
+                "description": "The start of the period for which to retrieve summaries. When provided, the response will only include summaries with transactions that occurred on or after the specified date. The value must be formatted in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date format."
+              },
+              {
+                "name": "periodEnd",
+                "value": "",
+                "type": "query",
+                "description": "The end of the period for which to retrieve summaries. When provided, the response will only include summaries with transactions that occurred on or before the specified date. The value must be formatted in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date format."
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "A token that you use to retrieve subsequent pages of results. When there are more results available, the response will include a `nextToken` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. Repeat this process until the `nextToken` value is null to retrieve all results."
+              }
+            ]
+          },
+          "docs": "Retrieve the financial summary for the specified time period or settlement period.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that apply to the operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown "
+        },
+        {
+          "info": {
+            "name": "listFinancialEventGroups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/finances/v0/financialEventGroups",
+            "params": [
+              {
+                "name": "MaxResultsPerPage",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results per page. If the response exceeds the maximum number of transactions or 10 MB, the response is `InvalidInput`."
+              },
+              {
+                "name": "FinancialEventGroupStartedBefore",
+                "value": "",
+                "type": "query",
+                "description": "A date that selects financial event groups that opened before (but not at) a specified date and time, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. The date-time must be after `FinancialEventGroupStartedAfter` and more than two minutes before the time of request. If `FinancialEventGroupStartedAfter` and `FinancialEventGroupStartedBefore` are more than 180 days apart, no financial event groups are returned."
+              },
+              {
+                "name": "FinancialEventGroupStartedAfter",
+                "value": "",
+                "type": "query",
+                "description": "A date that selects financial event groups that opened after (or at) a specified date and time, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. The date-time must be more than two minutes before you submit the request."
+              },
+              {
+                "name": "NextToken",
+                "value": "",
+                "type": "query",
+                "description": "The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages."
+              }
+            ]
+          },
+          "docs": "Returns financial event groups for a given date range. Orders from the last 48 hours might not be included in financial events.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throu"
+        },
+        {
+          "info": {
+            "name": "listFinancialEventsByGroupId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/finances/v0/financialEventGroups/:eventGroupId/financialEvents",
+            "params": [
+              {
+                "name": "MaxResultsPerPage",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return per page. If the response exceeds the maximum number of transactions or 10 MB, the response is `InvalidInput`."
+              },
+              {
+                "name": "PostedAfter",
+                "value": "",
+                "type": "query",
+                "description": "The response includes financial events posted after (or on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The date-time must be more than two minutes before the time of the request."
+              },
+              {
+                "name": "PostedBefore",
+                "value": "",
+                "type": "query",
+                "description": "The response includes financial events posted before (but not on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.\n\nThe date-time must be later than `PostedAfter` and more than two minutes before the request was submitted. If `PostedAfter` and `PostedBefore` are more than 180 days apart, the response is empty. If you include the `PostedBefore` parameter in your request, you must also specify the `PostedAfter` parameter.\n\n**Default:** Two minutes before the time of the request."
+              },
+              {
+                "name": "eventGroupId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the financial event group to which the events belong."
+              },
+              {
+                "name": "NextToken",
+                "value": "",
+                "type": "query",
+                "description": "The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages."
+              }
+            ]
+          },
+          "docs": "Returns all financial events for the specified financial event group. Orders from the last 48 hours might not be included in financial events.\n\n**Note:** Deferred events don't appear in the `listFinancialEventsByGroupId` response until they are released.\n\n**Note:** This operation only retrieves a group's data for the past two years. A request for data spanning more than two years produces an empty response.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nTh"
+        },
+        {
+          "info": {
+            "name": "listFinancialEventsByOrderId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/finances/v0/orders/:orderId/financialEvents",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "An Amazon-defined order identifier, in 3-7-7 format."
+              },
+              {
+                "name": "MaxResultsPerPage",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return per page. If the response exceeds the maximum number of transactions or 10 MB, the response is `InvalidInput`."
+              },
+              {
+                "name": "NextToken",
+                "value": "",
+                "type": "query",
+                "description": "The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages."
+              }
+            ]
+          },
+          "docs": "Returns all financial events for the specified order. Orders from the last 48 hours might not be included in financial events.\n\n**Note:** Deferred events don't appear in the `listFinancialEventsByOrderId` response until they are released.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the"
+        },
+        {
+          "info": {
+            "name": "listFinancialEvents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/finances/v0/financialEvents",
+            "params": [
+              {
+                "name": "MaxResultsPerPage",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return per page. If the response exceeds the maximum number of transactions or 10 MB, the response is `InvalidInput`."
+              },
+              {
+                "name": "PostedAfter",
+                "value": "",
+                "type": "query",
+                "description": "The response includes financial events posted after (or on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The date-time must be more than two minutes before the time of the request."
+              },
+              {
+                "name": "PostedBefore",
+                "value": "",
+                "type": "query",
+                "description": "The response includes financial events posted before (but not on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.\n\nThe date-time must be later than `PostedAfter` and more than two minutes before the request was submitted. If `PostedAfter` and `PostedBefore` are more than 180 days apart, the response is empty. If you include the `PostedBefore` parameter in your request, you must also specify the `PostedAfter` parameter.\n\n**Default:** Two minutes before the time of the request."
+              },
+              {
+                "name": "NextToken",
+                "value": "",
+                "type": "query",
+                "description": "The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages."
+              }
+            ]
+          },
+          "docs": "Returns financial events for the specified data range. Orders from the last 48 hours might not be included in financial events.\n\n**Note:** in `ListFinancialEvents`, deferred events don't show up in responses until they are released.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the defau"
         }
       ]
     }

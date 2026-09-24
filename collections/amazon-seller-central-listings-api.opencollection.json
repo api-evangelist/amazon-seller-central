@@ -1,27 +1,62 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Amazon Selling Partner API (SP-API) Authentication Listings API",
-    "version": "1.0.0"
-  },
-  "request": {
-    "auth": {
-      "type": "apikey",
-      "key": "x-amz-access-token",
-      "value": "{{x-amz-access-token}}",
-      "placement": "header"
-    }
+    "name": "Amazon Seller Central Listings API",
+    "version": "2021-08-01"
   },
   "items": [
     {
       "info": {
-        "name": "Listings",
+        "name": "listings",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Create or fully update a listings item",
+            "name": "getListingsItem",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/listings/2021-08-01/items/:sellerId/:sku",
+            "params": [
+              {
+                "name": "sellerId",
+                "value": "",
+                "type": "path",
+                "description": "A selling partner identifier, such as a merchant account or vendor code."
+              },
+              {
+                "name": "sku",
+                "value": "",
+                "type": "path",
+                "description": "A selling partner-provided identifier for an Amazon listing."
+              },
+              {
+                "name": "marketplaceIds",
+                "value": "",
+                "type": "query",
+                "description": "A comma-delimited list of Amazon store identifiers for the request."
+              },
+              {
+                "name": "issueLocale",
+                "value": "",
+                "type": "query",
+                "description": "A locale for localization of issues. When not provided, the default language code of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US` when localization is not available for the specified locale."
+              },
+              {
+                "name": "includedData",
+                "value": "",
+                "type": "query",
+                "description": "A comma-delimited list of data sets to include in the response. Default: `summaries`."
+              }
+            ]
+          },
+          "docs": "Returns details about a listings item for a selling partner.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can receive higher rate and burst values than those shown here"
+        },
+        {
+          "info": {
+            "name": "putListingsItem",
             "type": "http"
           },
           "http": {
@@ -31,20 +66,50 @@
               {
                 "name": "sellerId",
                 "value": "",
-                "type": "path"
+                "type": "path",
+                "description": "A selling partner identifier, such as a merchant account or vendor code."
               },
               {
                 "name": "sku",
                 "value": "",
-                "type": "path"
+                "type": "path",
+                "description": "A selling partner-provided identifier for an Amazon listing."
+              },
+              {
+                "name": "marketplaceIds",
+                "value": "",
+                "type": "query",
+                "description": "A comma-delimited list of Amazon store identifiers for the request."
+              },
+              {
+                "name": "includedData",
+                "value": "",
+                "type": "query",
+                "description": "A comma-delimited list of data sets to include in the response. Default: `issues`."
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "Describes the mode of operation for the request."
+              },
+              {
+                "name": "issueLocale",
+                "value": "",
+                "type": "query",
+                "description": "A locale for localization of issues. When not provided, the default language code of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US` when localization is not available for the specified locale."
               }
-            ]
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
           },
-          "docs": "Create or fully update a listings item"
+          "docs": "Creates a new or fully-updates an existing listings item for a selling partner.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can receive higher rate and burst values th"
         },
         {
           "info": {
-            "name": "Partial update of a listings item",
+            "name": "patchListingsItem",
             "type": "http"
           },
           "http": {
@@ -54,20 +119,50 @@
               {
                 "name": "sellerId",
                 "value": "",
-                "type": "path"
+                "type": "path",
+                "description": "A selling partner identifier, such as a merchant account or vendor code."
               },
               {
                 "name": "sku",
                 "value": "",
-                "type": "path"
+                "type": "path",
+                "description": "A selling partner-provided identifier for an Amazon listing."
+              },
+              {
+                "name": "marketplaceIds",
+                "value": "",
+                "type": "query",
+                "description": "A comma-delimited list of Amazon store identifiers for the request."
+              },
+              {
+                "name": "includedData",
+                "value": "",
+                "type": "query",
+                "description": "A comma-delimited list of data sets to include in the response. Default: `issues`."
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "Describes the mode of operation for the request."
+              },
+              {
+                "name": "issueLocale",
+                "value": "",
+                "type": "query",
+                "description": "A locale for localization of issues. When not provided, the default language code of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US` when localization is not available for the specified locale."
               }
-            ]
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
           },
-          "docs": "Partial update of a listings item"
+          "docs": "Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be patched. Patching nested attributes is not supported.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 5 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose bu"
         },
         {
           "info": {
-            "name": "Delete a listings item",
+            "name": "deleteListingsItem",
             "type": "http"
           },
           "http": {
@@ -77,16 +172,206 @@
               {
                 "name": "sellerId",
                 "value": "",
-                "type": "path"
+                "type": "path",
+                "description": "A selling partner identifier, such as a merchant account or vendor code."
               },
               {
                 "name": "sku",
                 "value": "",
-                "type": "path"
+                "type": "path",
+                "description": "A selling partner-provided identifier for an Amazon listing."
+              },
+              {
+                "name": "marketplaceIds",
+                "value": "",
+                "type": "query",
+                "description": "A comma-delimited list of Amazon store identifiers for the request."
+              },
+              {
+                "name": "issueLocale",
+                "value": "",
+                "type": "query",
+                "description": "A locale for localization of issues. When not provided, the default language code of the first Amazon store is used. Examples: `en_US`, `fr_CA`, `fr_FR`. Localized messages default to `en_US` when localization is not available for the specified locale."
               }
             ]
           },
-          "docs": "Delete a listings item"
+          "docs": "Delete a listings item for a selling partner.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 5 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can receive higher rate and burst values than those shown here. For more infor"
+        },
+        {
+          "info": {
+            "name": "searchListingsItems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/listings/2021-08-01/items/:sellerId",
+            "params": [
+              {
+                "name": "sellerId",
+                "value": "",
+                "type": "path",
+                "description": "A selling partner identifier, such as a merchant account or vendor code."
+              },
+              {
+                "name": "marketplaceIds",
+                "value": "",
+                "type": "query",
+                "description": "A comma-delimited list of Amazon store identifiers for the request."
+              },
+              {
+                "name": "issueLocale",
+                "value": "",
+                "type": "query",
+                "description": "A locale that is used to localize issues. When not provided, the default language code of the first Amazon store is used. Examples: \"en_US\", \"fr_CA\", \"fr_FR\". When a localization is not available in the specified locale, localized messages default to \"en_US\"."
+              },
+              {
+                "name": "includedData",
+                "value": "",
+                "type": "query",
+                "description": "A comma-delimited list of data sets that you want to include in the response. Default: `summaries`."
+              },
+              {
+                "name": "identifiers",
+                "value": "",
+                "type": "query",
+                "description": "A comma-delimited list of product identifiers that you can use to search for listings items. \n\n**Note**: \n1. This is required when you specify `identifiersType`.\n2. You cannot use 'identifiers' if you specify `variationParentSku` or `packageHierarchySku`."
+              },
+              {
+                "name": "identifiersType",
+                "value": "",
+                "type": "query",
+                "description": "A type of product identifiers that you can use to search for listings items. \n\n**Note**: \nThis is required when `identifiers` is provided."
+              },
+              {
+                "name": "variationParentSku",
+                "value": "",
+                "type": "query",
+                "description": "Filters results to include listing items that are variation children of the specified SKU. \n\n**Note**: You cannot use `variationParentSku` if you include `identifiers` or `packageHierarchySku` in your request."
+              },
+              {
+                "name": "packageHierarchySku",
+                "value": "",
+                "type": "query",
+                "description": "Filter results to include listing items that contain or are contained by the specified SKU. \n\n**Note**: You cannot use `packageHierarchySku` if you include `identifiers` or `variationParentSku` in your request."
+              },
+              {
+                "name": "createdAfter",
+                "value": "",
+                "type": "query",
+                "description": "A date-time that is used to filter listing items. The response includes listings items that were created at or after this time. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format."
+              },
+              {
+                "name": "createdBefore",
+                "value": "",
+                "type": "query",
+                "description": "A date-time that is used to filter listing items. The response includes listings items that were created at or before this time. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format."
+              },
+              {
+                "name": "lastUpdatedAfter",
+                "value": "",
+                "type": "query",
+                "description": "A date-time that is used to filter listing items. The response includes listings items that were last updated at or after this time. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format."
+              },
+              {
+                "name": "lastUpdatedBefore",
+                "value": "",
+                "type": "query",
+                "description": "A date-time that is used to filter listing items. The response includes listings items that were last updated at or before this time. Values are in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format."
+              },
+              {
+                "name": "withIssueSeverity",
+                "value": "",
+                "type": "query",
+                "description": "Filter results to include only listing items that have issues that match one or more of the specified severity levels."
+              },
+              {
+                "name": "withStatus",
+                "value": "",
+                "type": "query",
+                "description": "Filter results to include only listing items that have the specified status."
+              },
+              {
+                "name": "withoutStatus",
+                "value": "",
+                "type": "query",
+                "description": "Filter results to include only listing items that don't contain the specified statuses."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "An attribute by which to sort the returned listing items."
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "The order in which to sort the result items."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of results that you want to include on each page."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "A token that you can use to fetch a specific page when there are multiple pages of results."
+              }
+            ]
+          },
+          "docs": "Search for and return a list of selling partner listings items and their respective details.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 5 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that are applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput might have higher rate and burst "
+        },
+        {
+          "info": {
+            "name": "getListingsRestrictions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/listings/2021-08-01/restrictions",
+            "params": [
+              {
+                "name": "asin",
+                "value": "",
+                "type": "query",
+                "description": "The Amazon Standard Identification Number (ASIN) of the item."
+              },
+              {
+                "name": "conditionType",
+                "value": "",
+                "type": "query",
+                "description": "The condition used to filter restrictions."
+              },
+              {
+                "name": "sellerId",
+                "value": "",
+                "type": "query",
+                "description": "A selling partner identifier, such as a merchant account."
+              },
+              {
+                "name": "marketplaceIds",
+                "value": "",
+                "type": "query",
+                "description": "A comma-delimited list of Amazon marketplace identifiers for the request."
+              },
+              {
+                "name": "reasonLocale",
+                "value": "",
+                "type": "query",
+                "description": "A locale for reason text localization. When not provided, the default language code of the first marketplace is used. Examples: \"en_US\", \"fr_CA\", \"fr_FR\". Localized messages default to \"en_US\" when a localization is not available in the specified locale."
+              },
+              {
+                "name": "productType",
+                "value": "",
+                "type": "query",
+                "description": "The product type of the item. When provided with the brand name, the API evaluates GTIN exemption restrictions in addition to brand restrictions for the specified product type."
+              }
+            ]
+          },
+          "docs": "Returns listing restrictions for an item in the Amazon Catalog. \n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. Fo"
         }
       ]
     }

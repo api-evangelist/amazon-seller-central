@@ -1,0 +1,244 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Seller Central Product Pricing API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "productPricing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getFeaturedOfferExpectedPriceBatch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/batches/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the set of responses that correspond to the batched list of up to 40 requests defined in the request body. The response for each successful (HTTP status code 200) request in the set includes the computed listing price at or below which a seller can expect to become the featured offer (before applicable promotions). This is called the featured offer expected price (FOEP). Featured offer is not guaranteed because competing offers might change. Other offers might be featured based on factor"
+        },
+        {
+          "info": {
+            "name": "getCompetitiveSummary",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/batches/products/pricing/2022-05-01/items/competitiveSummary",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the competitive summary response, including featured buying options for the ASIN and `marketplaceId` combination.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.033 | 1 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that are applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput "
+        },
+        {
+          "info": {
+            "name": "getPricing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/products/pricing/v0/price",
+            "params": [
+              {
+                "name": "MarketplaceId",
+                "value": "",
+                "type": "query",
+                "description": "A marketplace identifier. Specifies the marketplace for which prices are returned."
+              },
+              {
+                "name": "Asins",
+                "value": "",
+                "type": "query",
+                "description": "A list of up to twenty Amazon Standard Identification Number (ASIN) values used to identify items in the given marketplace."
+              },
+              {
+                "name": "Skus",
+                "value": "",
+                "type": "query",
+                "description": "A list of up to twenty seller SKU values used to identify items in the given marketplace."
+              },
+              {
+                "name": "ItemType",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether ASIN values or seller SKU values are used to identify items. If you specify Asin, the information in the response will be dependent on the list of Asins you provide in the Asins parameter. If you specify Sku, the information in the response will be dependent on the list of Skus you provide in the Skus parameter."
+              },
+              {
+                "name": "ItemCondition",
+                "value": "",
+                "type": "query",
+                "description": "Filters the offer listings based on item condition. Possible values: New, Used, Collectible, Refurbished, Club."
+              },
+              {
+                "name": "OfferType",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether to request pricing information for the seller's B2C or B2B offers. Default is B2C."
+              }
+            ]
+          },
+          "docs": "Returns pricing information for a seller's offer listings based on seller SKU or ASIN.\n\n**Note:** The parameters associated with this operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 1 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage pl"
+        },
+        {
+          "info": {
+            "name": "getCompetitivePricing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/products/pricing/v0/competitivePrice",
+            "params": [
+              {
+                "name": "MarketplaceId",
+                "value": "",
+                "type": "query",
+                "description": "A marketplace identifier. Specifies the marketplace for which prices are returned."
+              },
+              {
+                "name": "Asins",
+                "value": "",
+                "type": "query",
+                "description": "A list of up to twenty Amazon Standard Identification Number (ASIN) values used to identify items in the given marketplace."
+              },
+              {
+                "name": "Skus",
+                "value": "",
+                "type": "query",
+                "description": "A list of up to twenty seller SKU values used to identify items in the given marketplace."
+              },
+              {
+                "name": "ItemType",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether ASIN values or seller SKU values are used to identify items. If you specify Asin, the information in the response will be dependent on the list of Asins you provide in the Asins parameter. If you specify Sku, the information in the response will be dependent on the list of Skus you provide in the Skus parameter. Possible values: Asin, Sku."
+              },
+              {
+                "name": "CustomerType",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether to request pricing information from the point of view of Consumer or Business buyers. Default is Consumer."
+              }
+            ]
+          },
+          "docs": "Returns competitive pricing information for a seller's offer listings based on seller SKU or ASIN.\n\n**Note:** The parameters associated with this operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 1 |\n\nThe `x-amzn-RateLimit-Limit` response header returns "
+        },
+        {
+          "info": {
+            "name": "getListingOffers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/products/pricing/v0/listings/:SellerSKU/offers",
+            "params": [
+              {
+                "name": "MarketplaceId",
+                "value": "",
+                "type": "query",
+                "description": "A marketplace identifier. Specifies the marketplace for which prices are returned."
+              },
+              {
+                "name": "ItemCondition",
+                "value": "",
+                "type": "query",
+                "description": "Filters the offer listings based on item condition. Possible values: New, Used, Collectible, Refurbished, Club."
+              },
+              {
+                "name": "SellerSKU",
+                "value": "",
+                "type": "path",
+                "description": "Identifies an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit."
+              },
+              {
+                "name": "CustomerType",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether to request Consumer or Business offers. Default is Consumer."
+              }
+            ]
+          },
+          "docs": "Returns the lowest priced offers for a single SKU listing.\n\n**Note:** The parameters associated with this operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 1 | 2 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were appli"
+        },
+        {
+          "info": {
+            "name": "getItemOffers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/products/pricing/v0/items/:Asin/offers",
+            "params": [
+              {
+                "name": "MarketplaceId",
+                "value": "",
+                "type": "query",
+                "description": "A marketplace identifier. Specifies the marketplace for which prices are returned."
+              },
+              {
+                "name": "ItemCondition",
+                "value": "",
+                "type": "query",
+                "description": "Filters the offer listings to be considered based on item condition. Possible values: New, Used, Collectible, Refurbished, Club."
+              },
+              {
+                "name": "Asin",
+                "value": "",
+                "type": "path",
+                "description": "The Amazon Standard Identification Number (ASIN) of the item."
+              },
+              {
+                "name": "CustomerType",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether to request Consumer or Business offers. Default is Consumer."
+              }
+            ]
+          },
+          "docs": "Returns the lowest priced offers for a single item based on ASIN.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 1 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. "
+        },
+        {
+          "info": {
+            "name": "getItemOffersBatch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/batches/products/pricing/v0/itemOffers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the lowest priced offers for a batch of items based on ASIN.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.1 | 1 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown her"
+        },
+        {
+          "info": {
+            "name": "getListingOffersBatch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/batches/products/pricing/v0/listingOffers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the lowest priced offers for a batch of listings by SKU.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 1 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. F"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

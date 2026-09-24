@@ -1,0 +1,946 @@
+{
+  "item": [
+    {
+      "id": "a1d721fa-2f51-49b7-a3fe-dd194770ad6e",
+      "name": "sellers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "af457088-8c41-4bf1-987b-5e6aa6210148",
+          "name": "get Marketplace Participations",
+          "request": {
+            "name": "get Marketplace Participations",
+            "description": {
+              "content": "Returns a list of marketplaces where the seller can list items and information about the seller's participation in those marketplaces.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.016 | 15 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sellers",
+                "v1",
+                "marketplaceParticipations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8f9657f9-fc2a-4f4f-9aaa-b01a90e7e3c6",
+              "name": "Marketplace participations successfully retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sellers",
+                    "v1",
+                    "marketplaceParticipations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": [\n    {\n      \"marketplace\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"countryCode\": \"SO\",\n        \"defaultCurrencyCode\": \"string\",\n        \"defaultLanguageCode\": \"string\",\n        \"domainName\": \"string\"\n      },\n      \"participation\": {\n        \"hasSuspendedListings\": true,\n        \"isParticipating\": false\n      },\n      \"storeName\": \"string\"\n    },\n    {\n      \"marketplace\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"countryCode\": \"SL\",\n        \"defaultCurrencyCode\": \"string\",\n        \"defaultLanguageCode\": \"string\",\n        \"domainName\": \"string\"\n      },\n      \"participation\": {\n        \"hasSuspendedListings\": true,\n        \"isParticipating\": false\n      },\n      \"storeName\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b677b02-d904-4fdd-9f7a-6da1b355bb96",
+              "name": "Request has missing or invalid parameters and cannot be parsed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sellers",
+                    "v1",
+                    "marketplaceParticipations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": [\n    {\n      \"marketplace\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"countryCode\": \"KP\",\n        \"defaultCurrencyCode\": \"string\",\n        \"defaultLanguageCode\": \"string\",\n        \"domainName\": \"string\"\n      },\n      \"participation\": {\n        \"hasSuspendedListings\": true,\n        \"isParticipating\": true\n      },\n      \"storeName\": \"string\"\n    },\n    {\n      \"marketplace\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"countryCode\": \"AF\",\n        \"defaultCurrencyCode\": \"string\",\n        \"defaultLanguageCode\": \"string\",\n        \"domainName\": \"string\"\n      },\n      \"participation\": {\n        \"hasSuspendedListings\": false,\n        \"isParticipating\": false\n      },\n      \"storeName\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e04ad07f-a96a-4749-8ded-cff4f6620cf2",
+              "name": "403 can be caused for reasons like Access Denied, Unauthorized, Expired Token, Invalid Signature or Resource Not Found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sellers",
+                    "v1",
+                    "marketplaceParticipations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": [\n    {\n      \"marketplace\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"countryCode\": \"KP\",\n        \"defaultCurrencyCode\": \"string\",\n        \"defaultLanguageCode\": \"string\",\n        \"domainName\": \"string\"\n      },\n      \"participation\": {\n        \"hasSuspendedListings\": true,\n        \"isParticipating\": true\n      },\n      \"storeName\": \"string\"\n    },\n    {\n      \"marketplace\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"countryCode\": \"AF\",\n        \"defaultCurrencyCode\": \"string\",\n        \"defaultLanguageCode\": \"string\",\n        \"domainName\": \"string\"\n      },\n      \"participation\": {\n        \"hasSuspendedListings\": false,\n        \"isParticipating\": false\n      },\n      \"storeName\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b068d981-7c1d-4cb3-aec0-605fb87d00ba",
+              "name": "The resource specified does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sellers",
+                    "v1",
+                    "marketplaceParticipations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": [\n    {\n      \"marketplace\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"countryCode\": \"KP\",\n        \"defaultCurrencyCode\": \"string\",\n        \"defaultLanguageCode\": \"string\",\n        \"domainName\": \"string\"\n      },\n      \"participation\": {\n        \"hasSuspendedListings\": true,\n        \"isParticipating\": true\n      },\n      \"storeName\": \"string\"\n    },\n    {\n      \"marketplace\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"countryCode\": \"AF\",\n        \"defaultCurrencyCode\": \"string\",\n        \"defaultLanguageCode\": \"string\",\n        \"domainName\": \"string\"\n      },\n      \"participation\": {\n        \"hasSuspendedListings\": false,\n        \"isParticipating\": false\n      },\n      \"storeName\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c454bfd3-d111-48c6-bc2d-9cbaf05a2ae8",
+              "name": "The request size exceeded the maximum accepted size.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sellers",
+                    "v1",
+                    "marketplaceParticipations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": [\n    {\n      \"marketplace\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"countryCode\": \"KP\",\n        \"defaultCurrencyCode\": \"string\",\n        \"defaultLanguageCode\": \"string\",\n        \"domainName\": \"string\"\n      },\n      \"participation\": {\n        \"hasSuspendedListings\": true,\n        \"isParticipating\": true\n      },\n      \"storeName\": \"string\"\n    },\n    {\n      \"marketplace\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"countryCode\": \"AF\",\n        \"defaultCurrencyCode\": \"string\",\n        \"defaultLanguageCode\": \"string\",\n        \"domainName\": \"string\"\n      },\n      \"participation\": {\n        \"hasSuspendedListings\": false,\n        \"isParticipating\": false\n      },\n      \"storeName\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "19aa4dc9-0fa0-46ba-8e3b-554ecba1e72d",
+              "name": "The entity of the request is in a format not supported by the requested resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sellers",
+                    "v1",
+                    "marketplaceParticipations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": [\n    {\n      \"marketplace\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"countryCode\": \"KP\",\n        \"defaultCurrencyCode\": \"string\",\n        \"defaultLanguageCode\": \"string\",\n        \"domainName\": \"string\"\n      },\n      \"participation\": {\n        \"hasSuspendedListings\": true,\n        \"isParticipating\": true\n      },\n      \"storeName\": \"string\"\n    },\n    {\n      \"marketplace\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"countryCode\": \"AF\",\n        \"defaultCurrencyCode\": \"string\",\n        \"defaultLanguageCode\": \"string\",\n        \"domainName\": \"string\"\n      },\n      \"participation\": {\n        \"hasSuspendedListings\": false,\n        \"isParticipating\": false\n      },\n      \"storeName\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a32ab66c-0fa2-422a-bc85-a9ca62160375",
+              "name": "The frequency of requests was greater than allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sellers",
+                    "v1",
+                    "marketplaceParticipations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": [\n    {\n      \"marketplace\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"countryCode\": \"KP\",\n        \"defaultCurrencyCode\": \"string\",\n        \"defaultLanguageCode\": \"string\",\n        \"domainName\": \"string\"\n      },\n      \"participation\": {\n        \"hasSuspendedListings\": true,\n        \"isParticipating\": true\n      },\n      \"storeName\": \"string\"\n    },\n    {\n      \"marketplace\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"countryCode\": \"AF\",\n        \"defaultCurrencyCode\": \"string\",\n        \"defaultLanguageCode\": \"string\",\n        \"domainName\": \"string\"\n      },\n      \"participation\": {\n        \"hasSuspendedListings\": false,\n        \"isParticipating\": false\n      },\n      \"storeName\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff5e7fbd-ecdd-4e79-b2cc-9769d282a31e",
+              "name": "Encountered an unexpected condition which prevented the server from fulfilling the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sellers",
+                    "v1",
+                    "marketplaceParticipations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": [\n    {\n      \"marketplace\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"countryCode\": \"KP\",\n        \"defaultCurrencyCode\": \"string\",\n        \"defaultLanguageCode\": \"string\",\n        \"domainName\": \"string\"\n      },\n      \"participation\": {\n        \"hasSuspendedListings\": true,\n        \"isParticipating\": true\n      },\n      \"storeName\": \"string\"\n    },\n    {\n      \"marketplace\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"countryCode\": \"AF\",\n        \"defaultCurrencyCode\": \"string\",\n        \"defaultLanguageCode\": \"string\",\n        \"domainName\": \"string\"\n      },\n      \"participation\": {\n        \"hasSuspendedListings\": false,\n        \"isParticipating\": false\n      },\n      \"storeName\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cfd7323e-4c0a-4dd8-a4c7-c5d8f7d4f084",
+              "name": "Temporary overloading or maintenance of the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sellers",
+                    "v1",
+                    "marketplaceParticipations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": [\n    {\n      \"marketplace\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"countryCode\": \"KP\",\n        \"defaultCurrencyCode\": \"string\",\n        \"defaultLanguageCode\": \"string\",\n        \"domainName\": \"string\"\n      },\n      \"participation\": {\n        \"hasSuspendedListings\": true,\n        \"isParticipating\": true\n      },\n      \"storeName\": \"string\"\n    },\n    {\n      \"marketplace\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"countryCode\": \"AF\",\n        \"defaultCurrencyCode\": \"string\",\n        \"defaultLanguageCode\": \"string\",\n        \"domainName\": \"string\"\n      },\n      \"participation\": {\n        \"hasSuspendedListings\": false,\n        \"isParticipating\": false\n      },\n      \"storeName\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b53afb0-9ce4-4430-833d-79c90adf1a92",
+          "name": "get Account",
+          "request": {
+            "name": "get Account",
+            "description": {
+              "content": "Returns information about a seller account and its marketplaces.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.016 | 15 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sellers",
+                "v1",
+                "account"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "590cfbf5-9ce4-4d45-98ae-04b6c35932a5",
+              "name": "Success.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sellers",
+                    "v1",
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"businessType\": \"PRIVATE_LIMITED\",\n    \"marketplaceParticipationList\": [\n      {\n        \"marketplace\": {\n          \"id\": \"ATVPDKIKX0DER\",\n          \"name\": \"United States\",\n          \"countryCode\": \"US\",\n          \"domainName\": \"www.amazon.com\"\n        },\n        \"storeName\": \"BestSellerStore\",\n        \"participation\": {\n          \"isParticipating\": true,\n          \"hasSuspendedListings\": false\n        }\n      }\n    ],\n    \"sellingPlan\": \"PROFESSIONAL\",\n    \"business\": {\n      \"name\": \"BestSeller Inc.\",\n      \"nonLatinName\": \"ベストセラー株式会社\",\n      \"registeredBusinessAddress\": {\n        \"addressLine1\": \"123 Main St\",\n        \"addressLine2\": \"Suite 500\",\n        \"city\": \"Seattle\",\n        \"stateOrProvinceCode\": \"WA\",\n        \"postalCode\": \"98101\",\n        \"countryCode\": \"US\"\n      },\n      \"companyRegistrationNumber\": \"123456789\",\n      \"companyTaxIdentificationNumber\": \"987654321\"\n    },\n    \"primaryContact\": {\n      \"name\": \"John Doe\",\n      \"nonLatinName\": \"ジョン・ドゥ\",\n      \"address\": {\n        \"addressLine1\": \"456 Oak St\",\n        \"addressLine2\": \"Apt 12\",\n        \"city\": \"Seattle\",\n        \"stateOrProvinceCode\": \"WA\",\n        \"postalCode\": \"98102\",\n        \"countryCode\": \"US\"\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dde78f31-1f6d-4d2d-b6d7-be8fa0140787",
+              "name": "Request has missing or invalid parameters and cannot be parsed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sellers",
+                    "v1",
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"businessType\": \"SOLE_PROPRIETORSHIP\",\n    \"sellingPlan\": \"PROFESSIONAL\",\n    \"marketplaceParticipationList\": [\n      {\n        \"marketplace\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"countryCode\": \"GU\",\n          \"defaultCurrencyCode\": \"string\",\n          \"defaultLanguageCode\": \"string\",\n          \"domainName\": \"string\"\n        },\n        \"participation\": {\n          \"hasSuspendedListings\": true,\n          \"isParticipating\": false\n        },\n        \"storeName\": \"string\"\n      },\n      {\n        \"marketplace\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"countryCode\": \"KS\",\n          \"defaultCurrencyCode\": \"string\",\n          \"defaultLanguageCode\": \"string\",\n          \"domainName\": \"string\"\n        },\n        \"participation\": {\n          \"hasSuspendedListings\": false,\n          \"isParticipating\": false\n        },\n        \"storeName\": \"string\"\n      }\n    ],\n    \"business\": {\n      \"name\": \"string\",\n      \"registeredBusinessAddress\": {\n        \"addressLine1\": \"string\",\n        \"countryCode\": \"string\",\n        \"addressLine2\": \"string\",\n        \"stateOrProvinceCode\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"companyRegistrationNumber\": \"string\",\n      \"companyTaxIdentificationNumber\": \"string\",\n      \"nonLatinName\": \"string\"\n    },\n    \"primaryContact\": {\n      \"name\": \"string\",\n      \"address\": {\n        \"addressLine1\": \"string\",\n        \"countryCode\": \"string\",\n        \"addressLine2\": \"string\",\n        \"stateOrProvinceCode\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"nonLatinName\": \"string\"\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8153064-8a2f-4606-8e5e-fb46aedd00e4",
+              "name": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sellers",
+                    "v1",
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"businessType\": \"SOLE_PROPRIETORSHIP\",\n    \"sellingPlan\": \"PROFESSIONAL\",\n    \"marketplaceParticipationList\": [\n      {\n        \"marketplace\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"countryCode\": \"GU\",\n          \"defaultCurrencyCode\": \"string\",\n          \"defaultLanguageCode\": \"string\",\n          \"domainName\": \"string\"\n        },\n        \"participation\": {\n          \"hasSuspendedListings\": true,\n          \"isParticipating\": false\n        },\n        \"storeName\": \"string\"\n      },\n      {\n        \"marketplace\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"countryCode\": \"KS\",\n          \"defaultCurrencyCode\": \"string\",\n          \"defaultLanguageCode\": \"string\",\n          \"domainName\": \"string\"\n        },\n        \"participation\": {\n          \"hasSuspendedListings\": false,\n          \"isParticipating\": false\n        },\n        \"storeName\": \"string\"\n      }\n    ],\n    \"business\": {\n      \"name\": \"string\",\n      \"registeredBusinessAddress\": {\n        \"addressLine1\": \"string\",\n        \"countryCode\": \"string\",\n        \"addressLine2\": \"string\",\n        \"stateOrProvinceCode\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"companyRegistrationNumber\": \"string\",\n      \"companyTaxIdentificationNumber\": \"string\",\n      \"nonLatinName\": \"string\"\n    },\n    \"primaryContact\": {\n      \"name\": \"string\",\n      \"address\": {\n        \"addressLine1\": \"string\",\n        \"countryCode\": \"string\",\n        \"addressLine2\": \"string\",\n        \"stateOrProvinceCode\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"nonLatinName\": \"string\"\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f52961f-79e7-4c13-b34c-fe62b7b0f321",
+              "name": "The resource specified does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sellers",
+                    "v1",
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"businessType\": \"SOLE_PROPRIETORSHIP\",\n    \"sellingPlan\": \"PROFESSIONAL\",\n    \"marketplaceParticipationList\": [\n      {\n        \"marketplace\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"countryCode\": \"GU\",\n          \"defaultCurrencyCode\": \"string\",\n          \"defaultLanguageCode\": \"string\",\n          \"domainName\": \"string\"\n        },\n        \"participation\": {\n          \"hasSuspendedListings\": true,\n          \"isParticipating\": false\n        },\n        \"storeName\": \"string\"\n      },\n      {\n        \"marketplace\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"countryCode\": \"KS\",\n          \"defaultCurrencyCode\": \"string\",\n          \"defaultLanguageCode\": \"string\",\n          \"domainName\": \"string\"\n        },\n        \"participation\": {\n          \"hasSuspendedListings\": false,\n          \"isParticipating\": false\n        },\n        \"storeName\": \"string\"\n      }\n    ],\n    \"business\": {\n      \"name\": \"string\",\n      \"registeredBusinessAddress\": {\n        \"addressLine1\": \"string\",\n        \"countryCode\": \"string\",\n        \"addressLine2\": \"string\",\n        \"stateOrProvinceCode\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"companyRegistrationNumber\": \"string\",\n      \"companyTaxIdentificationNumber\": \"string\",\n      \"nonLatinName\": \"string\"\n    },\n    \"primaryContact\": {\n      \"name\": \"string\",\n      \"address\": {\n        \"addressLine1\": \"string\",\n        \"countryCode\": \"string\",\n        \"addressLine2\": \"string\",\n        \"stateOrProvinceCode\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"nonLatinName\": \"string\"\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c98e306a-8684-46e5-891e-3ab0e311c53e",
+              "name": "The request size exceeded the maximum accepted size.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sellers",
+                    "v1",
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"businessType\": \"SOLE_PROPRIETORSHIP\",\n    \"sellingPlan\": \"PROFESSIONAL\",\n    \"marketplaceParticipationList\": [\n      {\n        \"marketplace\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"countryCode\": \"GU\",\n          \"defaultCurrencyCode\": \"string\",\n          \"defaultLanguageCode\": \"string\",\n          \"domainName\": \"string\"\n        },\n        \"participation\": {\n          \"hasSuspendedListings\": true,\n          \"isParticipating\": false\n        },\n        \"storeName\": \"string\"\n      },\n      {\n        \"marketplace\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"countryCode\": \"KS\",\n          \"defaultCurrencyCode\": \"string\",\n          \"defaultLanguageCode\": \"string\",\n          \"domainName\": \"string\"\n        },\n        \"participation\": {\n          \"hasSuspendedListings\": false,\n          \"isParticipating\": false\n        },\n        \"storeName\": \"string\"\n      }\n    ],\n    \"business\": {\n      \"name\": \"string\",\n      \"registeredBusinessAddress\": {\n        \"addressLine1\": \"string\",\n        \"countryCode\": \"string\",\n        \"addressLine2\": \"string\",\n        \"stateOrProvinceCode\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"companyRegistrationNumber\": \"string\",\n      \"companyTaxIdentificationNumber\": \"string\",\n      \"nonLatinName\": \"string\"\n    },\n    \"primaryContact\": {\n      \"name\": \"string\",\n      \"address\": {\n        \"addressLine1\": \"string\",\n        \"countryCode\": \"string\",\n        \"addressLine2\": \"string\",\n        \"stateOrProvinceCode\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"nonLatinName\": \"string\"\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f552eb0c-2421-4b4c-a389-9d822869aba1",
+              "name": "The request payload is in an unsupported format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sellers",
+                    "v1",
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"businessType\": \"SOLE_PROPRIETORSHIP\",\n    \"sellingPlan\": \"PROFESSIONAL\",\n    \"marketplaceParticipationList\": [\n      {\n        \"marketplace\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"countryCode\": \"GU\",\n          \"defaultCurrencyCode\": \"string\",\n          \"defaultLanguageCode\": \"string\",\n          \"domainName\": \"string\"\n        },\n        \"participation\": {\n          \"hasSuspendedListings\": true,\n          \"isParticipating\": false\n        },\n        \"storeName\": \"string\"\n      },\n      {\n        \"marketplace\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"countryCode\": \"KS\",\n          \"defaultCurrencyCode\": \"string\",\n          \"defaultLanguageCode\": \"string\",\n          \"domainName\": \"string\"\n        },\n        \"participation\": {\n          \"hasSuspendedListings\": false,\n          \"isParticipating\": false\n        },\n        \"storeName\": \"string\"\n      }\n    ],\n    \"business\": {\n      \"name\": \"string\",\n      \"registeredBusinessAddress\": {\n        \"addressLine1\": \"string\",\n        \"countryCode\": \"string\",\n        \"addressLine2\": \"string\",\n        \"stateOrProvinceCode\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"companyRegistrationNumber\": \"string\",\n      \"companyTaxIdentificationNumber\": \"string\",\n      \"nonLatinName\": \"string\"\n    },\n    \"primaryContact\": {\n      \"name\": \"string\",\n      \"address\": {\n        \"addressLine1\": \"string\",\n        \"countryCode\": \"string\",\n        \"addressLine2\": \"string\",\n        \"stateOrProvinceCode\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"nonLatinName\": \"string\"\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "976e61b5-f4c1-4854-a753-af65018d8bbe",
+              "name": "The frequency of requests was greater than allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sellers",
+                    "v1",
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"businessType\": \"SOLE_PROPRIETORSHIP\",\n    \"sellingPlan\": \"PROFESSIONAL\",\n    \"marketplaceParticipationList\": [\n      {\n        \"marketplace\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"countryCode\": \"GU\",\n          \"defaultCurrencyCode\": \"string\",\n          \"defaultLanguageCode\": \"string\",\n          \"domainName\": \"string\"\n        },\n        \"participation\": {\n          \"hasSuspendedListings\": true,\n          \"isParticipating\": false\n        },\n        \"storeName\": \"string\"\n      },\n      {\n        \"marketplace\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"countryCode\": \"KS\",\n          \"defaultCurrencyCode\": \"string\",\n          \"defaultLanguageCode\": \"string\",\n          \"domainName\": \"string\"\n        },\n        \"participation\": {\n          \"hasSuspendedListings\": false,\n          \"isParticipating\": false\n        },\n        \"storeName\": \"string\"\n      }\n    ],\n    \"business\": {\n      \"name\": \"string\",\n      \"registeredBusinessAddress\": {\n        \"addressLine1\": \"string\",\n        \"countryCode\": \"string\",\n        \"addressLine2\": \"string\",\n        \"stateOrProvinceCode\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"companyRegistrationNumber\": \"string\",\n      \"companyTaxIdentificationNumber\": \"string\",\n      \"nonLatinName\": \"string\"\n    },\n    \"primaryContact\": {\n      \"name\": \"string\",\n      \"address\": {\n        \"addressLine1\": \"string\",\n        \"countryCode\": \"string\",\n        \"addressLine2\": \"string\",\n        \"stateOrProvinceCode\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"nonLatinName\": \"string\"\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf5f2e5a-cd5c-461a-aff8-db54085d45ae",
+              "name": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sellers",
+                    "v1",
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"businessType\": \"SOLE_PROPRIETORSHIP\",\n    \"sellingPlan\": \"PROFESSIONAL\",\n    \"marketplaceParticipationList\": [\n      {\n        \"marketplace\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"countryCode\": \"GU\",\n          \"defaultCurrencyCode\": \"string\",\n          \"defaultLanguageCode\": \"string\",\n          \"domainName\": \"string\"\n        },\n        \"participation\": {\n          \"hasSuspendedListings\": true,\n          \"isParticipating\": false\n        },\n        \"storeName\": \"string\"\n      },\n      {\n        \"marketplace\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"countryCode\": \"KS\",\n          \"defaultCurrencyCode\": \"string\",\n          \"defaultLanguageCode\": \"string\",\n          \"domainName\": \"string\"\n        },\n        \"participation\": {\n          \"hasSuspendedListings\": false,\n          \"isParticipating\": false\n        },\n        \"storeName\": \"string\"\n      }\n    ],\n    \"business\": {\n      \"name\": \"string\",\n      \"registeredBusinessAddress\": {\n        \"addressLine1\": \"string\",\n        \"countryCode\": \"string\",\n        \"addressLine2\": \"string\",\n        \"stateOrProvinceCode\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"companyRegistrationNumber\": \"string\",\n      \"companyTaxIdentificationNumber\": \"string\",\n      \"nonLatinName\": \"string\"\n    },\n    \"primaryContact\": {\n      \"name\": \"string\",\n      \"address\": {\n        \"addressLine1\": \"string\",\n        \"countryCode\": \"string\",\n        \"addressLine2\": \"string\",\n        \"stateOrProvinceCode\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"nonLatinName\": \"string\"\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bec28431-5ea7-4309-96ad-5c85f625a06b",
+              "name": "Temporary overloading or maintenance of the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sellers",
+                    "v1",
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"businessType\": \"SOLE_PROPRIETORSHIP\",\n    \"sellingPlan\": \"PROFESSIONAL\",\n    \"marketplaceParticipationList\": [\n      {\n        \"marketplace\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"countryCode\": \"GU\",\n          \"defaultCurrencyCode\": \"string\",\n          \"defaultLanguageCode\": \"string\",\n          \"domainName\": \"string\"\n        },\n        \"participation\": {\n          \"hasSuspendedListings\": true,\n          \"isParticipating\": false\n        },\n        \"storeName\": \"string\"\n      },\n      {\n        \"marketplace\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"countryCode\": \"KS\",\n          \"defaultCurrencyCode\": \"string\",\n          \"defaultLanguageCode\": \"string\",\n          \"domainName\": \"string\"\n        },\n        \"participation\": {\n          \"hasSuspendedListings\": false,\n          \"isParticipating\": false\n        },\n        \"storeName\": \"string\"\n      }\n    ],\n    \"business\": {\n      \"name\": \"string\",\n      \"registeredBusinessAddress\": {\n        \"addressLine1\": \"string\",\n        \"countryCode\": \"string\",\n        \"addressLine2\": \"string\",\n        \"stateOrProvinceCode\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"companyRegistrationNumber\": \"string\",\n      \"companyTaxIdentificationNumber\": \"string\",\n      \"nonLatinName\": \"string\"\n    },\n    \"primaryContact\": {\n      \"name\": \"string\",\n      \"address\": {\n        \"addressLine1\": \"string\",\n        \"countryCode\": \"string\",\n        \"addressLine2\": \"string\",\n        \"stateOrProvinceCode\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\"\n      },\n      \"nonLatinName\": \"string\"\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sellingpartnerapi-na.amazon.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5ec16e9c-6582-4326-94e3-87ae68d5390d",
+    "name": "Selling Partner Sellers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The [Selling Partner API for Sellers](https://developer-docs.amazon.com/sp-api/docs/sellers-api-v1-reference) (Sellers API) provides essential information about seller accounts, such as:\n\n- The marketplaces a seller can list in\n- The default language and currency of a marketplace\n- Whether the seller has suspended listings\n\nRefer to the [Sellers API reference](https://developer-docs.amazon.com/sp-api/docs/sellers-api-v1-reference) for details about this API's operations, data types, and schemas.\n\nContact Support:\n Name: Selling Partner API Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

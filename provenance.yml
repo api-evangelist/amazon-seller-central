@@ -12,36 +12,60 @@ artifacts:
   capabilities/amazon-seller-central-capability-edges.yml:
     method: unknown
     evidence: no authorship recorded
-  collections/amazon-seller-central-authentication-api.opencollection.json:
-    method: unknown
-    evidence: no authorship recorded
-  collections/amazon-seller-central-authentication-api.postman_collection.json:
-    method: unknown
-    evidence: no authorship recorded
   collections/amazon-seller-central-catalog-api.opencollection.json:
     method: derived
     evidence: openapi/amazon-seller-central-catalog-api
   collections/amazon-seller-central-catalog-api.postman_collection.json:
     method: derived
     evidence: openapi/amazon-seller-central-catalog-api
+  collections/amazon-seller-central-definitions-api.opencollection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-definitions-api
+  collections/amazon-seller-central-definitions-api.postman_collection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-definitions-api
+  collections/amazon-seller-central-fbainbound-api.opencollection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-fbainbound-api
+  collections/amazon-seller-central-fbainbound-api.postman_collection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-fbainbound-api
+  collections/amazon-seller-central-fbainventory-api.opencollection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-fbainventory-api
+  collections/amazon-seller-central-fbainventory-api.postman_collection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-fbainventory-api
+  collections/amazon-seller-central-fbaoutbound-api.opencollection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-fbaoutbound-api
+  collections/amazon-seller-central-fbaoutbound-api.postman_collection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-fbaoutbound-api
   collections/amazon-seller-central-feeds-api.opencollection.json:
     method: derived
     evidence: openapi/amazon-seller-central-feeds-api
   collections/amazon-seller-central-feeds-api.postman_collection.json:
     method: derived
     evidence: openapi/amazon-seller-central-feeds-api
+  collections/amazon-seller-central-fees-api.opencollection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-fees-api
+  collections/amazon-seller-central-fees-api.postman_collection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-fees-api
   collections/amazon-seller-central-finances-api.opencollection.json:
     method: derived
     evidence: openapi/amazon-seller-central-finances-api
   collections/amazon-seller-central-finances-api.postman_collection.json:
     method: derived
     evidence: openapi/amazon-seller-central-finances-api
-  collections/amazon-seller-central-inventory-api.opencollection.json:
-    method: unknown
-    evidence: no authorship recorded
-  collections/amazon-seller-central-inventory-api.postman_collection.json:
-    method: unknown
-    evidence: no authorship recorded
+  collections/amazon-seller-central-getorder-api.opencollection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-getorder-api
+  collections/amazon-seller-central-getorder-api.postman_collection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-getorder-api
   collections/amazon-seller-central-listings-api.opencollection.json:
     method: derived
     evidence: openapi/amazon-seller-central-listings-api
@@ -54,24 +78,48 @@ artifacts:
   collections/amazon-seller-central-notifications-api.postman_collection.json:
     method: derived
     evidence: openapi/amazon-seller-central-notifications-api
-  collections/amazon-seller-central-orders-api.opencollection.json:
-    method: unknown
-    evidence: no authorship recorded
-  collections/amazon-seller-central-orders-api.postman_collection.json:
-    method: unknown
-    evidence: no authorship recorded
-  collections/amazon-seller-central-pricing-api.opencollection.json:
-    method: unknown
-    evidence: no authorship recorded
-  collections/amazon-seller-central-pricing-api.postman_collection.json:
-    method: unknown
-    evidence: no authorship recorded
+  collections/amazon-seller-central-ordersv0-api.opencollection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-ordersv0-api
+  collections/amazon-seller-central-ordersv0-api.postman_collection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-ordersv0-api
+  collections/amazon-seller-central-productpricing-api.opencollection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-productpricing-api
+  collections/amazon-seller-central-productpricing-api.postman_collection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-productpricing-api
   collections/amazon-seller-central-reports-api.opencollection.json:
     method: derived
     evidence: openapi/amazon-seller-central-reports-api
   collections/amazon-seller-central-reports-api.postman_collection.json:
     method: derived
     evidence: openapi/amazon-seller-central-reports-api
+  collections/amazon-seller-central-sales-api.opencollection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-sales-api
+  collections/amazon-seller-central-sales-api.postman_collection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-sales-api
+  collections/amazon-seller-central-searchorders-api.opencollection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-searchorders-api
+  collections/amazon-seller-central-searchorders-api.postman_collection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-searchorders-api
+  collections/amazon-seller-central-sellers-api.opencollection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-sellers-api
+  collections/amazon-seller-central-sellers-api.postman_collection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-sellers-api
+  collections/amazon-seller-central-shipment-api.opencollection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-shipment-api
+  collections/amazon-seller-central-shipment-api.postman_collection.json:
+    method: derived
+    evidence: openapi/amazon-seller-central-shipment-api
   collections/amazon-seller-central-shipping-api.opencollection.json:
     method: derived
     evidence: openapi/amazon-seller-central-shipping-api
@@ -84,12 +132,6 @@ artifacts:
   collections/amazon-seller-central-tokens-api.postman_collection.json:
     method: derived
     evidence: openapi/amazon-seller-central-tokens-api
-  collections/amazon-seller-central.opencollection.json:
-    method: derived
-    evidence: openapi/amazon-seller-central
-  collections/amazon-seller-central.postman_collection.json:
-    method: derived
-    evidence: openapi/amazon-seller-central
   conformance/amazon-seller-central-conformance.yml:
     method: derived
     evidence: declared in the artifact
@@ -345,7 +387,7 @@ artifacts:
   json-schema/amazon-seller-central-update-shipment-status-request-schema.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-24T064009.yml:
+  kin/checks-2026-09-24T090549.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-08-25T125852.yml:
@@ -541,6 +583,9 @@ artifacts:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-24T064009.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T090549.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   llms/amazon-seller-central-llms-provenance.yml:

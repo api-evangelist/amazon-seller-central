@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Selling Partner API for Orders Search Orders API",
+    "version": "2026-01-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "searchOrders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "searchOrders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/orders/2026-01-01/orders",
+            "params": [
+              {
+                "name": "createdAfter",
+                "value": "",
+                "type": "query",
+                "description": "The response includes orders created at or after this time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.\n\n**Note**: You must provide exactly one of `createdAfter` and `lastUpdatedAfter` in your request. If `createdAfter` is provided, neither `lastUpdatedAfter` nor `lastUpdatedBefore` may be provided."
+              },
+              {
+                "name": "createdBefore",
+                "value": "",
+                "type": "query",
+                "description": "The response includes orders created at or before this time. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.\n\n**Note**: If you include `createdAfter` in the request, `createdBefore` is optional, and if provided must be equal to or after the `createdAfter` date and at least two minutes before the time of the request. If `createdBefore` is provided, neither `lastUpdatedAfter` nor `lastUpdatedBefore` may be provided."
+              },
+              {
+                "name": "lastUpdatedAfter",
+                "value": "",
+                "type": "query",
+                "description": "The response includes orders updated at or after this time. An update is any change made by Amazon or the seller, including changes to order status. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.\n\n**Note**: You must provide exactly one of `createdAfter` and `lastUpdatedAfter`. If `lastUpdatedAfter` is provided, neither `createdAfter` nor `createdBefore` may be provided."
+              },
+              {
+                "name": "lastUpdatedBefore",
+                "value": "",
+                "type": "query",
+                "description": "The response includes orders updated at or before this time. An update is any change made by Amazon or the seller, including changes to order status. The date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.\n\n**Note**: If you include `lastUpdatedAfter` in the request, `lastUpdatedBefore` is optional, and if provided must be equal to or after the `lastUpdatedAfter` date and at least two minutes before the time of the request. If `lastUpdatedBefore` is provided, neither `createdAfter` nor `createdBefore` may be provided."
+              },
+              {
+                "name": "fulfillmentStatuses",
+                "value": "",
+                "type": "query",
+                "description": "A list of `FulfillmentStatus` values you can use to filter the results."
+              },
+              {
+                "name": "marketplaceIds",
+                "value": "",
+                "type": "query",
+                "description": "The response includes orders that were placed in marketplaces you include in this list.\n\nRefer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) for a complete list of `marketplaceId` values."
+              },
+              {
+                "name": "fulfilledBy",
+                "value": "",
+                "type": "query",
+                "description": "The response includes orders that are fulfilled by the parties that you include in this list."
+              },
+              {
+                "name": "maxResultsPerPage",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of orders that can be returned per page. The value must be between 1 and 100. **Default:** 100."
+              },
+              {
+                "name": "paginationToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination occurs when a request produces a response that exceeds the `maxResultsPerPage`. This means that the response is divided into individual pages. To retrieve the next page, you must pass the `nextToken` value as the `paginationToken` query parameter in the next request. You will not receive a `nextToken` value on the last page."
+              },
+              {
+                "name": "includedData",
+                "value": "",
+                "type": "query",
+                "description": "A list of datasets to include in the response."
+              }
+            ]
+          },
+          "docs": "Returns orders created or updated during the time period that you specify. You can filter the response for specific types of orders.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.0056 | 20 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that are applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require highe"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

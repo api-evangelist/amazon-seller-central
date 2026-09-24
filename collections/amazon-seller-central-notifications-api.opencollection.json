@@ -1,27 +1,56 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Amazon Selling Partner API (SP-API) Authentication Notifications API",
-    "version": "1.0.0"
-  },
-  "request": {
-    "auth": {
-      "type": "apikey",
-      "key": "x-amz-access-token",
-      "value": "{{x-amz-access-token}}",
-      "placement": "header"
-    }
+    "name": "Selling Partner Notifications API",
+    "version": "v1"
   },
   "items": [
     {
       "info": {
-        "name": "Notifications",
+        "name": "notifications",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Get a subscription",
+            "name": "getSubscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/notifications/v1/subscriptions",
+            "params": [
+              {
+                "name": "notificationTypes",
+                "value": "",
+                "type": "query",
+                "description": "A list of notification types to retrieve subscriptions for. Currently limited to a single notification type per request.\n\n For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide)."
+              },
+              {
+                "name": "payloadVersion",
+                "value": "",
+                "type": "query",
+                "description": "The version of the payload object to be used in the notification."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of subscriptions to return per page. Minimum value is 30. Maximum value is 100. Default is 30."
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "A token to retrieve the next page of results. If this field is not empty in a response, pass its value in the next request to retrieve the next page."
+              }
+            ]
+          },
+          "docs": "Returns information about subscriptions of the specified notification type. You can use this API to retrieve all subscriptions when multiple subscriptions exist for a notification type (for example, when using filter expressions).\n\nThe operation returns all subscriptions for the caller's party.\n\n`payloadVersion` is an optional parameter. When you do not provide `payloadVersion`, the operation returns subscriptions across all payload versions.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burs"
+        },
+        {
+          "info": {
+            "name": "getSubscription",
             "type": "http"
           },
           "http": {
@@ -31,15 +60,22 @@
               {
                 "name": "notificationType",
                 "value": "",
-                "type": "path"
+                "type": "path",
+                "description": "The type of notification.\n\n For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide)."
+              },
+              {
+                "name": "payloadVersion",
+                "value": "",
+                "type": "query",
+                "description": "The version of the payload object to be used in the notification."
               }
             ]
           },
-          "docs": "Get a subscription"
+          "docs": "Returns information about subscription of the specified notification type and payload version. `payloadVersion` is an optional parameter. When you do not provide `payloadVersion`, the operation returns the latest payload version subscription's information. You can use this API to get subscription information when you do not have a subscription identifier.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 1 | 5 |\n\nThe `x-amzn-RateLimit-Limit` response header contains the "
         },
         {
           "info": {
-            "name": "Create a subscription",
+            "name": "createSubscription",
             "type": "http"
           },
           "http": {
@@ -49,11 +85,153 @@
               {
                 "name": "notificationType",
                 "value": "",
-                "type": "path"
+                "type": "path",
+                "description": "The type of notification.\n\n For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a subscription for the specified notification type to be delivered to the specified destination. Before you can subscribe, you must first create the destination by calling the `createDestination` operation. If the notification type that you specify supports multiple payload versions, you can use this operation to subscribe to a different payload version if you already have an existing subscription for a different payload version.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n|"
+        },
+        {
+          "info": {
+            "name": "getSubscriptionById",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/notifications/v1/subscriptions/:notificationType/:subscriptionId",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the subscription that you want to get."
+              },
+              {
+                "name": "notificationType",
+                "value": "",
+                "type": "path",
+                "description": "The type of notification.\n\n For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide)."
               }
             ]
           },
-          "docs": "Create a subscription"
+          "docs": "Returns information about a subscription for the specified notification type. The `getSubscriptionById` operation is grantless. For more information, refer to [Grantless Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API Developer Guide.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 1 | 5 |\n\nThe `x-amzn-RateLimit-Limit` response header contains the usage plan rate limits for the operation, when available. The pr"
+        },
+        {
+          "info": {
+            "name": "deleteSubscriptionById",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://sellingpartnerapi-na.amazon.com/notifications/v1/subscriptions/:notificationType/:subscriptionId",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the subscription that you want to delete."
+              },
+              {
+                "name": "notificationType",
+                "value": "",
+                "type": "path",
+                "description": "The type of notification.\n\n For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide)."
+              }
+            ]
+          },
+          "docs": "Deletes the subscription indicated by the subscription identifier and notification type that you specify. The subscription identifier can be for any subscription associated with your application. After you successfully call this operation, notifications will stop being sent for the associated subscription. The `deleteSubscriptionById` operation is grantless. For more information, refer to [Grantless Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Pa"
+        },
+        {
+          "info": {
+            "name": "sendTestNotification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/notifications/v1/subscriptions/:notificationType/testNotification",
+            "params": [
+              {
+                "name": "notificationType",
+                "value": "",
+                "type": "path",
+                "description": "The type of notification.\n\n For more information about notification types, refer to the [Notifications API v1 Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a mock notification of the specified type to your SQS. The `sendTestNotification` API is grantless. For more information, see \"Grantless operations\" in the Selling Partner API Developer Guide.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 1 | 5 |\n\nFor more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation. This is a sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Selling Partner API sandbox](htt"
+        },
+        {
+          "info": {
+            "name": "getDestinations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/notifications/v1/destinations"
+          },
+          "docs": "Returns information about all destinations. The `getDestinations` operation is grantless. For more information, refer to [Grantless Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API Developer Guide.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 1 | 5 |\n\nThe `x-amzn-RateLimit-Limit` response header contains the usage plan rate limits for the operation, when available. The preceding table contains the default rat"
+        },
+        {
+          "info": {
+            "name": "createDestination",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/notifications/v1/destinations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a destination resource to receive notifications. The `createDestination` operation is grantless. For more information, refer to [Grantless Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API Developer Guide.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 1 | 5 |\n\nThe `x-amzn-RateLimit-Limit` response header contains the usage plan rate limits for the operation, when available. The preceding table contains "
+        },
+        {
+          "info": {
+            "name": "getDestination",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/notifications/v1/destinations/:destinationId",
+            "params": [
+              {
+                "name": "destinationId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier generated when you created the destination."
+              }
+            ]
+          },
+          "docs": "Returns information about the destination that you specify. The `getDestination` operation is grantless. For more information, refer to [Grantless Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API Developer Guide.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 1 | 5 |\n\nThe `x-amzn-RateLimit-Limit` response header contains the usage plan rate limits for the operation, when available. The preceding table contains "
+        },
+        {
+          "info": {
+            "name": "deleteDestination",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://sellingpartnerapi-na.amazon.com/notifications/v1/destinations/:destinationId",
+            "params": [
+              {
+                "name": "destinationId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the destination that you want to delete."
+              }
+            ]
+          },
+          "docs": "Deletes the destination that you specify. The `deleteDestination` operation is grantless. For more information, refer to [Grantless Operations](https://developer-docs.amazon.com/sp-api/docs/grantless-operations) in the Selling Partner API Developer Guide.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 1 | 5 |\n\nThe `x-amzn-RateLimit-Limit` response header contains the usage plan rate limits for the operation, when available. The preceding table contains the default rat"
         }
       ]
     }

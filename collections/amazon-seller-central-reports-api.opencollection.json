@@ -1,49 +1,89 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Amazon Selling Partner API (SP-API) Authentication Reports API",
-    "version": "1.0.0"
-  },
-  "request": {
-    "auth": {
-      "type": "apikey",
-      "key": "x-amz-access-token",
-      "value": "{{x-amz-access-token}}",
-      "placement": "header"
-    }
+    "name": "Selling Partner Reports API",
+    "version": "2021-06-30"
   },
   "items": [
     {
       "info": {
-        "name": "Reports",
+        "name": "reports",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "List reports",
+            "name": "getReports",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://sellingpartnerapi-na.amazon.com/reports/2021-06-30/reports"
+            "url": "https://sellingpartnerapi-na.amazon.com/reports/2021-06-30/reports",
+            "params": [
+              {
+                "name": "reportTypes",
+                "value": "",
+                "type": "query",
+                "description": "A list of report types used to filter reports. Refer to [Report Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information. When reportTypes is provided, the other filter parameters (processingStatuses, marketplaceIds, createdSince, createdUntil) and pageSize may also be provided. Either reportTypes or nextToken is required."
+              },
+              {
+                "name": "processingStatuses",
+                "value": "",
+                "type": "query",
+                "description": "A list of processing statuses used to filter reports."
+              },
+              {
+                "name": "marketplaceIds",
+                "value": "",
+                "type": "query",
+                "description": "A list of marketplace identifiers used to filter reports. The reports returned will match at least one of the marketplaces that you specify."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of reports to return in a single call."
+              },
+              {
+                "name": "createdSince",
+                "value": "",
+                "type": "query",
+                "description": "The earliest report creation date and time for reports to include in the response, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format. The default is 90 days ago. Reports are retained for a maximum of 90 days."
+              },
+              {
+                "name": "createdUntil",
+                "value": "",
+                "type": "query",
+                "description": "The latest report creation date and time for reports to include in the response, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format. The default is now."
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "A string token returned in the response to your previous request. `nextToken` is returned when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the `getReports` operation and include this token as the only parameter. Specifying `nextToken` with any other parameters will cause the request to fail."
+              }
+            ]
           },
-          "docs": "List reports"
+          "docs": "Returns report details for the reports that match the filters that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.0222 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than "
         },
         {
           "info": {
-            "name": "Create a report",
+            "name": "createReport",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://sellingpartnerapi-na.amazon.com/reports/2021-06-30/reports"
+            "url": "https://sellingpartnerapi-na.amazon.com/reports/2021-06-30/reports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
           },
-          "docs": "Create a report"
+          "docs": "Creates a report.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.0167 | 15 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, refer to [Usage Plans "
         },
         {
           "info": {
-            "name": "Get a report",
+            "name": "getReport",
             "type": "http"
           },
           "http": {
@@ -53,11 +93,128 @@
               {
                 "name": "reportId",
                 "value": "",
-                "type": "path"
+                "type": "path",
+                "description": "The identifier for the report. This identifier is unique only in combination with a seller ID."
               }
             ]
           },
-          "docs": "Get a report"
+          "docs": "Returns report details (including the `reportDocumentId`, if available) for the report that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 15 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate an"
+        },
+        {
+          "info": {
+            "name": "cancelReport",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://sellingpartnerapi-na.amazon.com/reports/2021-06-30/reports/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the report. This identifier is unique only in combination with a seller ID."
+              }
+            ]
+          },
+          "docs": "Cancels the report that you specify. Only reports with `processingStatus=IN_QUEUE` can be cancelled. Cancelled reports are returned in subsequent calls to the `getReport` and `getReports` operations.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.0222 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this"
+        },
+        {
+          "info": {
+            "name": "getReportSchedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/reports/2021-06-30/schedules",
+            "params": [
+              {
+                "name": "reportTypes",
+                "value": "",
+                "type": "query",
+                "description": "A list of report types used to filter report schedules. Refer to [Report Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information."
+              }
+            ]
+          },
+          "docs": "Returns report schedule details that match the filters that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.0222 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those s"
+        },
+        {
+          "info": {
+            "name": "createReportSchedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/reports/2021-06-30/schedules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it will be cancelled and replaced with this one.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.0222 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose busine"
+        },
+        {
+          "info": {
+            "name": "getReportSchedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/reports/2021-06-30/schedules/:reportScheduleId",
+            "params": [
+              {
+                "name": "reportScheduleId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the report schedule. This identifier is unique only in combination with a seller ID."
+              }
+            ]
+          },
+          "docs": "Returns report schedule details for the report schedule that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.0222 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those "
+        },
+        {
+          "info": {
+            "name": "cancelReportSchedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://sellingpartnerapi-na.amazon.com/reports/2021-06-30/schedules/:reportScheduleId",
+            "params": [
+              {
+                "name": "reportScheduleId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the report schedule. This identifier is unique only in combination with a seller ID."
+              }
+            ]
+          },
+          "docs": "Cancels the report schedule that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.0222 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more informa"
+        },
+        {
+          "info": {
+            "name": "getReportDocument",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/reports/2021-06-30/documents/:reportDocumentId",
+            "params": [
+              {
+                "name": "reportDocumentId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the report document."
+              },
+              {
+                "name": "enableContentEncodingUrlHeader",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the Content-Encoding header on the returned URL is set to `gzip` instead of the default `identity` when `compressionAlgorithm` is `GZIP`. This allows automatic decompression by HTTP clients."
+              }
+            ]
+          },
+          "docs": "Returns the information required for retrieving a report document's contents.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.0167 | 15 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than th"
         }
       ]
     }

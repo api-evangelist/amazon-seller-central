@@ -1,33 +1,43 @@
 {
   "item": [
     {
-      "id": "734456e6-d27f-42e2-bd97-29ea5bc4fa38",
-      "name": "tokens",
+      "id": "854dbd26-4e93-4051-bac6-4224dad80c13",
+      "name": "shipment",
       "description": {
         "content": "",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "ef5713cf-098d-4986-a22a-90e86159b402",
-          "name": "create Restricted Data Token",
+          "id": "fab66806-17cb-4fbd-b333-1075642283d2",
+          "name": "update Shipment Status",
           "request": {
-            "name": "create Restricted Data Token",
+            "name": "update Shipment Status",
             "description": {
-              "content": "Returns a Restricted Data Token (RDT) for one or more restricted resources that you specify. A restricted resource is the HTTP method and path from a restricted operation that returns Personally Identifiable Information (PII), plus a dataElements value that indicates the type of PII requested. See the Tokens API Use Case Guide for a list of restricted operations. Use the RDT returned here as the access token in subsequent calls to the corresponding restricted operations.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 1 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
+              "content": "Update the shipment status for an order that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 15 |\n\nThe `x-amzn-RateLimit-Limit` response header contains the usage plan rate limits for the operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput might have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "tokens",
-                "2021-03-01",
-                "restrictedDataToken"
+                "orders",
+                "v0",
+                "orders",
+                ":orderId",
+                "shipment"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
               "query": [],
-              "variable": []
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) An Amazon-defined order identifier, in 3-7-7 format."
+                }
+              ]
             },
             "header": [
               {
@@ -43,7 +53,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"restrictedResources\": [\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"dataElements\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"dataElements\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"targetApplication\": \"<string>\"\n}",
+              "raw": "{\n  \"marketplaceId\": \"<string>\",\n  \"shipmentStatus\": \"<string>\",\n  \"orderItems\": [\n    {\n      \"orderItemId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"orderItemId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -53,31 +63,35 @@
           },
           "response": [
             {
-              "id": "c872bcba-8e06-4bd2-9585-a73b18322181",
+              "id": "d59ce282-ff6e-4985-b2da-23cb4c4c02b7",
               "name": "Success.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "tokens",
-                    "2021-03-01",
-                    "restrictedDataToken"
+                    "orders",
+                    "v0",
+                    "orders",
+                    ":orderId",
+                    "shipment"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": []
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) An Amazon-defined order identifier, in 3-7-7 format."
+                    }
+                  ]
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"restrictedResources\": [\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"dataElements\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"dataElements\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"targetApplication\": \"<string>\"\n}",
+                  "raw": "{\n  \"marketplaceId\": \"<string>\",\n  \"shipmentStatus\": \"<string>\",\n  \"orderItems\": [\n    {\n      \"orderItemId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"orderItemId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -85,8 +99,8 @@
                   }
                 }
               },
-              "status": "OK",
-              "code": 200,
+              "status": "No Content",
+              "code": 204,
               "header": [
                 {
                   "disabled": false,
@@ -102,28 +116,38 @@
                 },
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "text/plain"
                 }
               ],
-              "body": "{\n  \"restrictedDataToken\": \"string\",\n  \"expiresIn\": 4236\n}",
+              "body": "",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "text"
             },
             {
-              "id": "d911b3ff-7ea8-4fa7-ae1c-471d4086909d",
+              "id": "510028f1-15fa-40ba-a214-6221ae909ebf",
               "name": "Request has missing or invalid parameters and cannot be parsed.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "tokens",
-                    "2021-03-01",
-                    "restrictedDataToken"
+                    "orders",
+                    "v0",
+                    "orders",
+                    ":orderId",
+                    "shipment"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": []
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) An Amazon-defined order identifier, in 3-7-7 format."
+                    }
+                  ]
                 },
                 "header": [
                   {
@@ -134,7 +158,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"restrictedResources\": [\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"dataElements\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"dataElements\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"targetApplication\": \"<string>\"\n}",
+                  "raw": "{\n  \"marketplaceId\": \"<string>\",\n  \"shipmentStatus\": \"<string>\",\n  \"orderItems\": [\n    {\n      \"orderItemId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"orderItemId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -167,71 +191,30 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "b245dde1-2035-470d-8ca0-f660d0567bf3",
-              "name": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "tokens",
-                    "2021-03-01",
-                    "restrictedDataToken"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"restrictedResources\": [\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"dataElements\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"dataElements\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"targetApplication\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "Unique request reference identifier.",
-                  "key": "x-amzn-RequestId",
-                  "value": "string"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ba8139f9-1058-42b2-b59b-4438ac38a0f4",
+              "id": "001cf9d8-b2de-40c1-a793-74f50d550081",
               "name": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "tokens",
-                    "2021-03-01",
-                    "restrictedDataToken"
+                    "orders",
+                    "v0",
+                    "orders",
+                    ":orderId",
+                    "shipment"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": []
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) An Amazon-defined order identifier, in 3-7-7 format."
+                    }
+                  ]
                 },
                 "header": [
                   {
@@ -242,7 +225,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"restrictedResources\": [\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"dataElements\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"dataElements\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"targetApplication\": \"<string>\"\n}",
+                  "raw": "{\n  \"marketplaceId\": \"<string>\",\n  \"shipmentStatus\": \"<string>\",\n  \"orderItems\": [\n    {\n      \"orderItemId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"orderItemId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -269,20 +252,30 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "61a3d8e0-185a-434c-91eb-0af71a458380",
-              "name": "The specified resource does not exist.",
+              "id": "3b315777-4483-4931-80eb-522788b8b2b2",
+              "name": "The resource specified does not exist.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "tokens",
-                    "2021-03-01",
-                    "restrictedDataToken"
+                    "orders",
+                    "v0",
+                    "orders",
+                    ":orderId",
+                    "shipment"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": []
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) An Amazon-defined order identifier, in 3-7-7 format."
+                    }
+                  ]
                 },
                 "header": [
                   {
@@ -293,7 +286,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"restrictedResources\": [\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"dataElements\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"dataElements\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"targetApplication\": \"<string>\"\n}",
+                  "raw": "{\n  \"marketplaceId\": \"<string>\",\n  \"shipmentStatus\": \"<string>\",\n  \"orderItems\": [\n    {\n      \"orderItemId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"orderItemId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -326,20 +319,30 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "fe4e1088-1b0a-4ce8-aaee-a830bf6cb0eb",
-              "name": "The request payload is in an unsupported format.",
+              "id": "e5936377-0af8-4703-aa05-7a21659c2a30",
+              "name": "The request size exceeded the maximum accepted size.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "tokens",
-                    "2021-03-01",
-                    "restrictedDataToken"
+                    "orders",
+                    "v0",
+                    "orders",
+                    ":orderId",
+                    "shipment"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": []
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) An Amazon-defined order identifier, in 3-7-7 format."
+                    }
+                  ]
                 },
                 "header": [
                   {
@@ -350,7 +353,68 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"restrictedResources\": [\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"dataElements\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"dataElements\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"targetApplication\": \"<string>\"\n}",
+                  "raw": "{\n  \"marketplaceId\": \"<string>\",\n  \"shipmentStatus\": \"<string>\",\n  \"orderItems\": [\n    {\n      \"orderItemId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"orderItemId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "436d11f2-d064-4c57-a832-30f39a396193",
+              "name": "The request payload is in an unsupported format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "v0",
+                    "orders",
+                    ":orderId",
+                    "shipment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) An Amazon-defined order identifier, in 3-7-7 format."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"marketplaceId\": \"<string>\",\n  \"shipmentStatus\": \"<string>\",\n  \"orderItems\": [\n    {\n      \"orderItemId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"orderItemId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -363,12 +427,6 @@
               "header": [
                 {
                   "disabled": false,
-                  "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
-                  "key": "x-amzn-RateLimit-Limit",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
                   "description": "Unique request reference identifier.",
                   "key": "x-amzn-RequestId",
                   "value": "string"
@@ -383,20 +441,30 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "317b4767-c2c5-4139-b46a-729cc8e1f2a0",
+              "id": "1ea96a33-de7e-469b-b21e-703dbd1efa3c",
               "name": "The frequency of requests was greater than allowed.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "tokens",
-                    "2021-03-01",
-                    "restrictedDataToken"
+                    "orders",
+                    "v0",
+                    "orders",
+                    ":orderId",
+                    "shipment"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": []
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) An Amazon-defined order identifier, in 3-7-7 format."
+                    }
+                  ]
                 },
                 "header": [
                   {
@@ -407,7 +475,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"restrictedResources\": [\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"dataElements\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"dataElements\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"targetApplication\": \"<string>\"\n}",
+                  "raw": "{\n  \"marketplaceId\": \"<string>\",\n  \"shipmentStatus\": \"<string>\",\n  \"orderItems\": [\n    {\n      \"orderItemId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"orderItemId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -420,12 +488,6 @@
               "header": [
                 {
                   "disabled": false,
-                  "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
-                  "key": "x-amzn-RateLimit-Limit",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
                   "description": "Unique request reference identifier.",
                   "key": "x-amzn-RequestId",
                   "value": "string"
@@ -440,20 +502,30 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "042f805a-b8ae-472c-8698-13cbd6ef65e3",
+              "id": "322d860a-7379-4e19-9e24-43ca8d41cbcb",
               "name": "An unexpected condition occurred that prevented the server from fulfilling the request.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "tokens",
-                    "2021-03-01",
-                    "restrictedDataToken"
+                    "orders",
+                    "v0",
+                    "orders",
+                    ":orderId",
+                    "shipment"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": []
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) An Amazon-defined order identifier, in 3-7-7 format."
+                    }
+                  ]
                 },
                 "header": [
                   {
@@ -464,7 +536,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"restrictedResources\": [\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"dataElements\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"dataElements\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"targetApplication\": \"<string>\"\n}",
+                  "raw": "{\n  \"marketplaceId\": \"<string>\",\n  \"shipmentStatus\": \"<string>\",\n  \"orderItems\": [\n    {\n      \"orderItemId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"orderItemId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -477,12 +549,6 @@
               "header": [
                 {
                   "disabled": false,
-                  "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
-                  "key": "x-amzn-RateLimit-Limit",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
                   "description": "Unique request reference identifier.",
                   "key": "x-amzn-RequestId",
                   "value": "string"
@@ -497,20 +563,30 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "0c7ce209-6ba0-4073-986d-5f5bce49d206",
+              "id": "a84ab93d-d465-4189-99aa-94e36f755b05",
               "name": "Temporary overloading or maintenance of the server.",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "tokens",
-                    "2021-03-01",
-                    "restrictedDataToken"
+                    "orders",
+                    "v0",
+                    "orders",
+                    ":orderId",
+                    "shipment"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": []
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) An Amazon-defined order identifier, in 3-7-7 format."
+                    }
+                  ]
                 },
                 "header": [
                   {
@@ -521,7 +597,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"restrictedResources\": [\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"dataElements\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"dataElements\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"targetApplication\": \"<string>\"\n}",
+                  "raw": "{\n  \"marketplaceId\": \"<string>\",\n  \"shipmentStatus\": \"<string>\",\n  \"orderItems\": [\n    {\n      \"orderItemId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"orderItemId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -532,12 +608,6 @@
               "status": "Service Unavailable",
               "code": 503,
               "header": [
-                {
-                  "disabled": false,
-                  "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
-                  "key": "x-amzn-RateLimit-Limit",
-                  "value": "string"
-                },
                 {
                   "disabled": false,
                   "description": "Unique request reference identifier.",
@@ -572,11 +642,11 @@
     }
   ],
   "info": {
-    "_postman_id": "bf8e375e-a783-4f20-a569-435fb68a6aea",
-    "name": "Selling Partner Tokens API",
+    "_postman_id": "befaee58-3234-4f0c-8499-ae95122acf5e",
+    "name": "Selling Partner API for Orders Shipment API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "The Selling Partner API for Tokens provides a secure way to access a customer's PII (Personally Identifiable Information). You can call the Tokens API to get a Restricted Data Token (RDT) for one or more restricted resources that you specify. The RDT authorizes subsequent calls to restricted operations that correspond to the restricted resources that you specified.\n\nFor more information, see the [Tokens API Use Case Guide](doc:tokens-api-use-case-guide).\n\nContact Support:\n Name: Selling Partner API Developer Support",
+      "content": "Use the Orders Selling Partner API to programmatically retrieve order information. With this API, you can develop fast, flexible, and custom applications to manage order synchronization, perform order research, and create demand-based decision support tools. \n\n_Note:_ For the JP, AU, and SG marketplaces, the Orders API supports orders from 2016 onward. For all other marketplaces, the Orders API supports orders for the last two years (orders older than this don't show up in the response).\n\nContact Support:\n Name: Selling Partner API Developer Support",
       "type": "text/plain"
     }
   }

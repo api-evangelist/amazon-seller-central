@@ -1,0 +1,338 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Selling Partner APIs for Fulfillment Outbound Fba Outbound API",
+    "version": "2020-07-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "fbaOutbound",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getFulfillmentPreview",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/fba/outbound/2020-07-01/fulfillmentOrders/preview",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a list of fulfillment order previews based on shipping criteria that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values"
+        },
+        {
+          "info": {
+            "name": "deliveryOffers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/fba/outbound/2020-07-01/deliveryOffers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns delivery options that include an estimated delivery date and offer expiration, based on criteria that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may "
+        },
+        {
+          "info": {
+            "name": "listAllFulfillmentOrders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/fba/outbound/2020-07-01/fulfillmentOrders",
+            "params": [
+              {
+                "name": "queryStartDate",
+                "value": "",
+                "type": "query",
+                "description": "A date used to select fulfillment orders that were last updated after (or at) a specified time. An update is defined as any change in fulfillment order status, including the creation of a new fulfillment order."
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "A string token returned in the response to your previous request."
+              }
+            ]
+          },
+          "docs": "Returns a list of fulfillment orders fulfilled after (or at) a specified date-time, or indicated by the `nextToken` parameter.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher through"
+        },
+        {
+          "info": {
+            "name": "createFulfillmentOrder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-na.amazon.com/fba/outbound/2020-07-01/fulfillmentOrders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Requests that Amazon ship items from the seller's inventory in Amazon's fulfillment network to a destination address.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have "
+        },
+        {
+          "info": {
+            "name": "getPackageTrackingDetails",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/fba/outbound/2020-07-01/tracking",
+            "params": [
+              {
+                "name": "packageNumber",
+                "value": "",
+                "type": "query",
+                "description": "The unencrypted package identifier. You can obtain this value from the `getFulfillmentOrder` operation."
+              }
+            ]
+          },
+          "docs": "Returns delivery tracking information for a package in an outbound shipment for a Multi-Channel Fulfillment order.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have hig"
+        },
+        {
+          "info": {
+            "name": "listReturnReasonCodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/fba/outbound/2020-07-01/returnReasonCodes",
+            "params": [
+              {
+                "name": "sellerSku",
+                "value": "",
+                "type": "query",
+                "description": "The seller SKU for which return reason codes are required."
+              },
+              {
+                "name": "marketplaceId",
+                "value": "",
+                "type": "query",
+                "description": "The marketplace for which the seller wants return reason codes."
+              },
+              {
+                "name": "sellerFulfillmentOrderId",
+                "value": "",
+                "type": "query",
+                "description": "The identifier assigned to the item by the seller when the fulfillment order was created. The service uses this value to determine the marketplace for which the seller wants return reason codes."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "The language that the `TranslatedDescription` property of the `ReasonCodeDetails` response object should be translated into."
+              }
+            ]
+          },
+          "docs": "Returns a list of return reason codes for a seller SKU in a given marketplace. The parameters for this operation may contain special characters that require URL encoding. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requeste"
+        },
+        {
+          "info": {
+            "name": "createFulfillmentReturn",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sellingpartnerapi-na.amazon.com/fba/outbound/2020-07-01/fulfillmentOrders/:sellerFulfillmentOrderId/return",
+            "params": [
+              {
+                "name": "sellerFulfillmentOrderId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier the seller assigns to the fulfillment order at the time it was created. The seller uses their own records to find the correct `sellerFulfillmentOrderId` value based on the buyer's request to return items."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a fulfillment return.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usag"
+        },
+        {
+          "info": {
+            "name": "getFulfillmentOrder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/fba/outbound/2020-07-01/fulfillmentOrders/:sellerFulfillmentOrderId",
+            "params": [
+              {
+                "name": "sellerFulfillmentOrderId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier assigned to the item by the seller when the fulfillment order was created."
+              }
+            ]
+          },
+          "docs": "Returns the fulfillment order indicated by the specified order identifier.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those sho"
+        },
+        {
+          "info": {
+            "name": "updateFulfillmentOrder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sellingpartnerapi-na.amazon.com/fba/outbound/2020-07-01/fulfillmentOrders/:sellerFulfillmentOrderId",
+            "params": [
+              {
+                "name": "sellerFulfillmentOrderId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier assigned to the item by the seller when the fulfillment order was created."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates and/or requests shipment for a fulfillment order with an order hold on it.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than t"
+        },
+        {
+          "info": {
+            "name": "cancelFulfillmentOrder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sellingpartnerapi-na.amazon.com/fba/outbound/2020-07-01/fulfillmentOrders/:sellerFulfillmentOrderId/cancel",
+            "params": [
+              {
+                "name": "sellerFulfillmentOrderId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier assigned to the item by the seller when the fulfillment order was created."
+              }
+            ]
+          },
+          "docs": "Requests that Amazon stop attempting to fulfill the fulfillment order indicated by the specified order identifier.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have hig"
+        },
+        {
+          "info": {
+            "name": "submitFulfillmentOrderStatusUpdate",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sellingpartnerapi-na.amazon.com/fba/outbound/2020-07-01/fulfillmentOrders/:sellerFulfillmentOrderId/status",
+            "params": [
+              {
+                "name": "sellerFulfillmentOrderId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier assigned to the item by the seller when the fulfillment order was created."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Requests that Amazon update the status of an order in the sandbox testing environment. This is a sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Fulfillment Outbound Dynamic Sandbox Guide](https://developer-docs.amazon.com/sp-api/docs/fulfillment-outbound-dynamic-sandbox-guide) and [Selling Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information."
+        },
+        {
+          "info": {
+            "name": "getFeatures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/fba/outbound/2020-07-01/features",
+            "params": [
+              {
+                "name": "marketplaceId",
+                "value": "",
+                "type": "query",
+                "description": "The marketplace for which to return the list of features."
+              }
+            ]
+          },
+          "docs": "Returns a list of features available for Multi-Channel Fulfillment orders in the marketplace you specify, and whether the seller for which you made the call is enrolled for each feature.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Sellin"
+        },
+        {
+          "info": {
+            "name": "getFeatureInventory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/fba/outbound/2020-07-01/features/inventory/:featureName",
+            "params": [
+              {
+                "name": "marketplaceId",
+                "value": "",
+                "type": "query",
+                "description": "The marketplace for which to return a list of the inventory that is eligible for the specified feature."
+              },
+              {
+                "name": "featureName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the feature for which to return a list of eligible inventory."
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "A string token returned in the response to your previous request that is used to return the next response page. A value of `null` will return the first page."
+              },
+              {
+                "name": "queryStartDate",
+                "value": "",
+                "type": "query",
+                "description": "A date that you can use to select inventory that has been updated since a specified date. An update is defined as any change in feature-enabled inventory availability. The date must be in the format `yyyy-MM-ddTHH:mm:ss.sssZ`"
+              }
+            ]
+          },
+          "docs": "Returns a list of inventory items that are eligible for the fulfillment feature you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst val"
+        },
+        {
+          "info": {
+            "name": "getFeatureSKU",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-na.amazon.com/fba/outbound/2020-07-01/features/inventory/:featureName/:sellerSku",
+            "params": [
+              {
+                "name": "marketplaceId",
+                "value": "",
+                "type": "query",
+                "description": "The marketplace for which to return the count."
+              },
+              {
+                "name": "featureName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the feature."
+              },
+              {
+                "name": "sellerSku",
+                "value": "",
+                "type": "path",
+                "description": "Used to identify an item in the given marketplace. `sellerSku` is qualified by the seller's `sellerId`, which is included with every operation that you submit."
+              }
+            ]
+          },
+          "docs": "Returns the number of items with the `sellerSku` you specify that can have orders fulfilled using the specified feature. Note that if the `sellerSku` isn't eligible, the response will contain an empty `skuInfo` object. The parameters for this operation may contain special characters that require URL encoding. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n|"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

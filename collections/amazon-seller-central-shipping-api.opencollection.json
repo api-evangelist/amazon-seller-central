@@ -1,34 +1,537 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Amazon Selling Partner API (SP-API) Authentication Shipping API",
-    "version": "1.0.0"
-  },
-  "request": {
-    "auth": {
-      "type": "apikey",
-      "key": "x-amz-access-token",
-      "value": "{{x-amz-access-token}}",
-      "placement": "header"
-    }
+    "name": "Amazon Shipping API",
+    "version": "v2"
   },
   "items": [
     {
       "info": {
-        "name": "Shipping",
+        "name": "shipping",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Purchase a shipment",
+            "name": "getRates",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://sellingpartnerapi-na.amazon.com/shipping/v2/shipments"
+            "url": "https://sellingpartnerapi-eu.amazon.com/shipping/v2/shipments/rates",
+            "headers": [
+              {
+                "name": "x-amzn-shipping-business-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
           },
-          "docs": "Purchase a shipment"
+          "docs": "Returns the available shipping service offerings.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more inform"
+        },
+        {
+          "info": {
+            "name": "directPurchaseShipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-eu.amazon.com/shipping/v2/shipments/directPurchase",
+            "headers": [
+              {
+                "name": "x-amzn-IdempotencyKey",
+                "value": ""
+              },
+              {
+                "name": "locale",
+                "value": ""
+              },
+              {
+                "name": "x-amzn-shipping-business-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Purchases the shipping service for a shipment using the best fit service offering. Returns purchase related details and documents.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throu"
+        },
+        {
+          "info": {
+            "name": "purchaseShipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-eu.amazon.com/shipping/v2/shipments",
+            "headers": [
+              {
+                "name": "x-amzn-IdempotencyKey",
+                "value": ""
+              },
+              {
+                "name": "x-amzn-shipping-business-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Purchases a shipping service and returns purchase related details and documents.\n\nNote: You must complete the purchase within 10 minutes of rate creation by the shipping service provider. If you make the request after the 10 minutes have expired, you will receive an error response with the error code equal to \"TOKEN_EXPIRED\". If you receive this error response, you must get the rates for the shipment again.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nTh"
+        },
+        {
+          "info": {
+            "name": "oneClickShipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-eu.amazon.com/shipping/v2/oneClickShipment",
+            "headers": [
+              {
+                "name": "x-amzn-shipping-business-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Purchases a shipping service identifier and returns purchase-related details and documents.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst val"
+        },
+        {
+          "info": {
+            "name": "getTracking",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-eu.amazon.com/shipping/v2/tracking",
+            "headers": [
+              {
+                "name": "x-amzn-shipping-business-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "trackingId",
+                "value": "",
+                "type": "query",
+                "description": "A carrier-generated tracking identifier originally returned by the purchaseShipment operation."
+              },
+              {
+                "name": "carrierId",
+                "value": "",
+                "type": "query",
+                "description": "A carrier identifier originally returned by the getRates operation for the selected rate."
+              }
+            ]
+          },
+          "docs": "Returns tracking information for a purchased shipment.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more i"
+        },
+        {
+          "info": {
+            "name": "getShipmentDocuments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-eu.amazon.com/shipping/v2/shipments/:shipmentId/documents",
+            "headers": [
+              {
+                "name": "x-amzn-shipping-business-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "The shipment identifier originally returned by the purchaseShipment operation."
+              },
+              {
+                "name": "packageClientReferenceId",
+                "value": "",
+                "type": "query",
+                "description": "The package client reference identifier originally provided in the request body parameter for the getRates operation."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "The file format of the document. Must be one of the supported formats returned by the getRates operation."
+              },
+              {
+                "name": "dpi",
+                "value": "",
+                "type": "query",
+                "description": "The resolution of the document (for example, 300 means 300 dots per inch). Must be one of the supported resolutions returned in the response to the getRates operation."
+              }
+            ]
+          },
+          "docs": "Returns the shipping documents associated with a package in a shipment.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown"
+        },
+        {
+          "info": {
+            "name": "cancelShipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sellingpartnerapi-eu.amazon.com/shipping/v2/shipments/:shipmentId/cancel",
+            "headers": [
+              {
+                "name": "x-amzn-shipping-business-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "The shipment identifier originally returned by the purchaseShipment operation."
+              }
+            ]
+          },
+          "docs": "Cancels a purchased shipment. Returns an empty object if the shipment is successfully cancelled.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burs"
+        },
+        {
+          "info": {
+            "name": "getAdditionalInputs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-eu.amazon.com/shipping/v2/shipments/additionalInputs/schema",
+            "headers": [
+              {
+                "name": "x-amzn-shipping-business-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestToken",
+                "value": "",
+                "type": "query",
+                "description": "The request token returned in the response to the getRates operation."
+              },
+              {
+                "name": "rateId",
+                "value": "",
+                "type": "query",
+                "description": "The rate identifier for the shipping offering (rate) returned in the response to the getRates operation."
+              }
+            ]
+          },
+          "docs": "Returns the JSON schema to use for providing additional inputs when needed to purchase a shipping offering. Call the getAdditionalInputs operation when the response to a previous call to the getRates operation indicates that additional inputs are required for the rate (shipping offering) that you want to purchase.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied"
+        },
+        {
+          "info": {
+            "name": "getCarrierAccountFormInputs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-eu.amazon.com/shipping/v2/carrierAccountFormInputs",
+            "headers": [
+              {
+                "name": "x-amzn-shipping-business-id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "This API will return a list of input schema required to register a shipper account with the carrier. \n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and"
+        },
+        {
+          "info": {
+            "name": "getCarrierAccounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sellingpartnerapi-eu.amazon.com/shipping/v2/carrierAccounts",
+            "headers": [
+              {
+                "name": "x-amzn-shipping-business-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API will return Get all carrier accounts for a merchant. \n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. Fo"
+        },
+        {
+          "info": {
+            "name": "linkCarrierAccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-eu.amazon.com/shipping/v2/carrierAccounts/:carrierId",
+            "headers": [
+              {
+                "name": "x-amzn-shipping-business-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "carrierId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the carrier with which the seller's account is being linked."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API associates/links the specified carrier account with the merchant. \n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those sho"
+        },
+        {
+          "info": {
+            "name": "linkCarrierAccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sellingpartnerapi-eu.amazon.com/shipping/v2/carrierAccounts/:carrierId",
+            "headers": [
+              {
+                "name": "x-amzn-shipping-business-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "carrierId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the carrier with which the seller's account is being linked."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API associates/links the specified carrier account with the merchant. \n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those s"
+        },
+        {
+          "info": {
+            "name": "unlinkCarrierAccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sellingpartnerapi-eu.amazon.com/shipping/v2/carrierAccounts/:carrierId/unlink",
+            "headers": [
+              {
+                "name": "x-amzn-shipping-business-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "carrierId",
+                "value": "",
+                "type": "path",
+                "description": "carrier Id to unlink with merchant."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API Unlink the specified carrier account with the merchant. \n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here."
+        },
+        {
+          "info": {
+            "name": "generateCollectionForm",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-eu.amazon.com/shipping/v2/collectionForms",
+            "headers": [
+              {
+                "name": "x-amzn-IdempotencyKey",
+                "value": ""
+              },
+              {
+                "name": "x-amzn-shipping-business-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API  Call to generate the collection form. \n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more informa"
+        },
+        {
+          "info": {
+            "name": "getCollectionFormHistory",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sellingpartnerapi-eu.amazon.com/shipping/v2/collectionForms/history",
+            "headers": [
+              {
+                "name": "x-amzn-shipping-business-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API Call to get the history of the previously generated collection forms. \n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then tho"
+        },
+        {
+          "info": {
+            "name": "getUnmanifestedShipments",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sellingpartnerapi-eu.amazon.com/shipping/v2/unmanifestedShipments",
+            "headers": [
+              {
+                "name": "x-amzn-shipping-business-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API Get all unmanifested carriers with shipment locations. Any locations which has unmanifested shipments\n        with an eligible carrier for manifesting shall be returned. \n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling par"
+        },
+        {
+          "info": {
+            "name": "getCollectionForm",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-eu.amazon.com/shipping/v2/collectionForms/:collectionFormId",
+            "headers": [
+              {
+                "name": "x-amzn-shipping-business-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "collectionFormId",
+                "value": "",
+                "type": "path",
+                "description": "collection form Id to reprint a collection."
+              }
+            ]
+          },
+          "docs": "This API reprint a collection form. \n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [U"
+        },
+        {
+          "info": {
+            "name": "getAccessPoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sellingpartnerapi-eu.amazon.com/shipping/v2/accessPoints",
+            "headers": [
+              {
+                "name": "x-amzn-shipping-business-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "accessPointTypes",
+                "value": "",
+                "type": "query",
+                "description": "Access point types"
+              },
+              {
+                "name": "countryCode",
+                "value": "",
+                "type": "query",
+                "description": "Country code for access point"
+              },
+              {
+                "name": "postalCode",
+                "value": "",
+                "type": "query",
+                "description": "postal code for access point"
+              }
+            ]
+          },
+          "docs": "Returns a list of access points in proximity of input postal code.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here"
+        },
+        {
+          "info": {
+            "name": "submitNdrFeedback",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-eu.amazon.com/shipping/v2/ndrFeedback",
+            "headers": [
+              {
+                "name": "x-amzn-shipping-business-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API submits the NDR (Non-delivery Report) Feedback for any eligible shipment.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then "
+        },
+        {
+          "info": {
+            "name": "createClaim",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sellingpartnerapi-eu.amazon.com/shipping/v2/claims",
+            "headers": [
+              {
+                "name": "x-amzn-shipping-business-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API will be used to create claim for single eligible shipment.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown her"
         }
       ]
     }

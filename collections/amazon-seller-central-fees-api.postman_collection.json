@@ -1,0 +1,1667 @@
+{
+  "item": [
+    {
+      "id": "463041cb-7ccd-4b55-b909-3d53e9e95310",
+      "name": "fees",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b8c36d51-5257-4c77-a912-3d3fb8cbb9e4",
+          "name": "get My Fees Estimate For SKU",
+          "request": {
+            "name": "get My Fees Estimate For SKU",
+            "description": {
+              "content": "Returns the estimated fees for the item indicated by the specified seller SKU in the marketplace specified in the request body.\n\n**Note:** The parameters associated with this operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).\n\nYou can call `getMyFeesEstimateForSKU` for an item on behalf of a selling partner before the selling partner sets the item's price. The selling partner can then take any estimated fees into account. Each fees estimate request must include an original identifier. This identifier is included in the fees estimate so that you can correlate a fees estimate with the original request.\n\n**Note:** This identifier value is used to identify an estimate. Actual costs may vary. Search \"fees\" in [Seller Central](https://sellercentral.amazon.com/) and consult the store-specific fee schedule for the most up-to-date information.\n\n**Note:** When sellers use the `getMyFeesEstimateForSKU` operation with their `SellerSKU`, they get accurate fees based on real item measurements, but only after they've sent their items to Amazon.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 1 | 2 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "products",
+                "fees",
+                "v0",
+                "listings",
+                ":SellerSKU",
+                "feesEstimate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "SellerSKU",
+                  "description": "(Required) Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"FeesEstimateRequest\": {\n    \"MarketplaceId\": \"<string>\",\n    \"PriceToEstimateFees\": {\n      \"ListingPrice\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Shipping\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Points\": {\n        \"PointsNumber\": \"<integer>\",\n        \"PointsMonetaryValue\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        }\n      }\n    },\n    \"Identifier\": \"<string>\",\n    \"IsAmazonFulfilled\": \"<boolean>\",\n    \"OptionalFulfillmentProgram\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ff0ce2ee-2370-4705-a7f4-2efbfbf171d5",
+              "name": "Success.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "listings",
+                    ":SellerSKU",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "SellerSKU",
+                      "description": "(Required) Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"FeesEstimateRequest\": {\n    \"MarketplaceId\": \"<string>\",\n    \"PriceToEstimateFees\": {\n      \"ListingPrice\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Shipping\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Points\": {\n        \"PointsNumber\": \"<integer>\",\n        \"PointsMonetaryValue\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        }\n      }\n    },\n    \"Identifier\": \"<string>\",\n    \"IsAmazonFulfilled\": \"<boolean>\",\n    \"OptionalFulfillmentProgram\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"FeesEstimateResult\": {\n      \"Status\": \"string\",\n      \"FeesEstimateIdentifier\": {\n        \"MarketplaceId\": \"string\",\n        \"SellerId\": \"string\",\n        \"IdType\": \"ASIN\",\n        \"IdValue\": \"string\",\n        \"IsAmazonFulfilled\": false,\n        \"PriceToEstimateFees\": {\n          \"ListingPrice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Shipping\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Points\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"SellerInputIdentifier\": \"string\",\n        \"OptionalFulfillmentProgram\": \"<string>\"\n      },\n      \"FeesEstimate\": {\n        \"TimeOfFeesEstimation\": \"1965-11-26T23:14:29.970Z\",\n        \"TotalFeesEstimate\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"FeeDetailList\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"Error\": {\n        \"Code\": \"string\",\n        \"Detail\": [],\n        \"Message\": \"string\",\n        \"Type\": \"string\"\n      }\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30e92dc7-0571-4c23-a39d-bf1247347b58",
+              "name": "Request has missing or invalid parameters and cannot be parsed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "listings",
+                    ":SellerSKU",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "SellerSKU",
+                      "description": "(Required) Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"FeesEstimateRequest\": {\n    \"MarketplaceId\": \"<string>\",\n    \"PriceToEstimateFees\": {\n      \"ListingPrice\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Shipping\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Points\": {\n        \"PointsNumber\": \"<integer>\",\n        \"PointsMonetaryValue\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        }\n      }\n    },\n    \"Identifier\": \"<string>\",\n    \"IsAmazonFulfilled\": \"<boolean>\",\n    \"OptionalFulfillmentProgram\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"FeesEstimateResult\": {\n      \"Status\": \"string\",\n      \"FeesEstimateIdentifier\": {\n        \"MarketplaceId\": \"string\",\n        \"SellerId\": \"string\",\n        \"IdType\": \"ASIN\",\n        \"IdValue\": \"string\",\n        \"IsAmazonFulfilled\": true,\n        \"PriceToEstimateFees\": {\n          \"ListingPrice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Shipping\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Points\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"SellerInputIdentifier\": \"string\",\n        \"OptionalFulfillmentProgram\": \"<string>\"\n      },\n      \"FeesEstimate\": {\n        \"TimeOfFeesEstimation\": \"1949-06-25T20:15:43.620Z\",\n        \"TotalFeesEstimate\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"FeeDetailList\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"Error\": {\n        \"Code\": \"string\",\n        \"Detail\": [],\n        \"Message\": \"string\",\n        \"Type\": \"string\"\n      }\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "382cb0ce-9e09-441e-b45e-bd4b44afad84",
+              "name": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "listings",
+                    ":SellerSKU",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "SellerSKU",
+                      "description": "(Required) Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"FeesEstimateRequest\": {\n    \"MarketplaceId\": \"<string>\",\n    \"PriceToEstimateFees\": {\n      \"ListingPrice\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Shipping\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Points\": {\n        \"PointsNumber\": \"<integer>\",\n        \"PointsMonetaryValue\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        }\n      }\n    },\n    \"Identifier\": \"<string>\",\n    \"IsAmazonFulfilled\": \"<boolean>\",\n    \"OptionalFulfillmentProgram\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"FeesEstimateResult\": {\n      \"Status\": \"string\",\n      \"FeesEstimateIdentifier\": {\n        \"MarketplaceId\": \"string\",\n        \"SellerId\": \"string\",\n        \"IdType\": \"ASIN\",\n        \"IdValue\": \"string\",\n        \"IsAmazonFulfilled\": true,\n        \"PriceToEstimateFees\": {\n          \"ListingPrice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Shipping\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Points\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"SellerInputIdentifier\": \"string\",\n        \"OptionalFulfillmentProgram\": \"<string>\"\n      },\n      \"FeesEstimate\": {\n        \"TimeOfFeesEstimation\": \"1949-06-25T20:15:43.620Z\",\n        \"TotalFeesEstimate\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"FeeDetailList\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"Error\": {\n        \"Code\": \"string\",\n        \"Detail\": [],\n        \"Message\": \"string\",\n        \"Type\": \"string\"\n      }\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59718017-ae89-4b88-93fe-78c4c66e14bb",
+              "name": "Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "listings",
+                    ":SellerSKU",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "SellerSKU",
+                      "description": "(Required) Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"FeesEstimateRequest\": {\n    \"MarketplaceId\": \"<string>\",\n    \"PriceToEstimateFees\": {\n      \"ListingPrice\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Shipping\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Points\": {\n        \"PointsNumber\": \"<integer>\",\n        \"PointsMonetaryValue\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        }\n      }\n    },\n    \"Identifier\": \"<string>\",\n    \"IsAmazonFulfilled\": \"<boolean>\",\n    \"OptionalFulfillmentProgram\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"FeesEstimateResult\": {\n      \"Status\": \"string\",\n      \"FeesEstimateIdentifier\": {\n        \"MarketplaceId\": \"string\",\n        \"SellerId\": \"string\",\n        \"IdType\": \"ASIN\",\n        \"IdValue\": \"string\",\n        \"IsAmazonFulfilled\": true,\n        \"PriceToEstimateFees\": {\n          \"ListingPrice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Shipping\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Points\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"SellerInputIdentifier\": \"string\",\n        \"OptionalFulfillmentProgram\": \"<string>\"\n      },\n      \"FeesEstimate\": {\n        \"TimeOfFeesEstimation\": \"1949-06-25T20:15:43.620Z\",\n        \"TotalFeesEstimate\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"FeeDetailList\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"Error\": {\n        \"Code\": \"string\",\n        \"Detail\": [],\n        \"Message\": \"string\",\n        \"Type\": \"string\"\n      }\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "368ebee2-86f0-4c7e-bd35-14fe50b802cb",
+              "name": "The specified resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "listings",
+                    ":SellerSKU",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "SellerSKU",
+                      "description": "(Required) Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"FeesEstimateRequest\": {\n    \"MarketplaceId\": \"<string>\",\n    \"PriceToEstimateFees\": {\n      \"ListingPrice\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Shipping\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Points\": {\n        \"PointsNumber\": \"<integer>\",\n        \"PointsMonetaryValue\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        }\n      }\n    },\n    \"Identifier\": \"<string>\",\n    \"IsAmazonFulfilled\": \"<boolean>\",\n    \"OptionalFulfillmentProgram\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"FeesEstimateResult\": {\n      \"Status\": \"string\",\n      \"FeesEstimateIdentifier\": {\n        \"MarketplaceId\": \"string\",\n        \"SellerId\": \"string\",\n        \"IdType\": \"ASIN\",\n        \"IdValue\": \"string\",\n        \"IsAmazonFulfilled\": true,\n        \"PriceToEstimateFees\": {\n          \"ListingPrice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Shipping\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Points\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"SellerInputIdentifier\": \"string\",\n        \"OptionalFulfillmentProgram\": \"<string>\"\n      },\n      \"FeesEstimate\": {\n        \"TimeOfFeesEstimation\": \"1949-06-25T20:15:43.620Z\",\n        \"TotalFeesEstimate\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"FeeDetailList\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"Error\": {\n        \"Code\": \"string\",\n        \"Detail\": [],\n        \"Message\": \"string\",\n        \"Type\": \"string\"\n      }\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b16618e-a4bf-4b75-b6dc-1f6294618e04",
+              "name": "The frequency of requests was greater than allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "listings",
+                    ":SellerSKU",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "SellerSKU",
+                      "description": "(Required) Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"FeesEstimateRequest\": {\n    \"MarketplaceId\": \"<string>\",\n    \"PriceToEstimateFees\": {\n      \"ListingPrice\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Shipping\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Points\": {\n        \"PointsNumber\": \"<integer>\",\n        \"PointsMonetaryValue\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        }\n      }\n    },\n    \"Identifier\": \"<string>\",\n    \"IsAmazonFulfilled\": \"<boolean>\",\n    \"OptionalFulfillmentProgram\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"FeesEstimateResult\": {\n      \"Status\": \"string\",\n      \"FeesEstimateIdentifier\": {\n        \"MarketplaceId\": \"string\",\n        \"SellerId\": \"string\",\n        \"IdType\": \"ASIN\",\n        \"IdValue\": \"string\",\n        \"IsAmazonFulfilled\": true,\n        \"PriceToEstimateFees\": {\n          \"ListingPrice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Shipping\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Points\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"SellerInputIdentifier\": \"string\",\n        \"OptionalFulfillmentProgram\": \"<string>\"\n      },\n      \"FeesEstimate\": {\n        \"TimeOfFeesEstimation\": \"1949-06-25T20:15:43.620Z\",\n        \"TotalFeesEstimate\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"FeeDetailList\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"Error\": {\n        \"Code\": \"string\",\n        \"Detail\": [],\n        \"Message\": \"string\",\n        \"Type\": \"string\"\n      }\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e973062-b6b8-4ebf-aa0c-ad28467b485f",
+              "name": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "listings",
+                    ":SellerSKU",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "SellerSKU",
+                      "description": "(Required) Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"FeesEstimateRequest\": {\n    \"MarketplaceId\": \"<string>\",\n    \"PriceToEstimateFees\": {\n      \"ListingPrice\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Shipping\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Points\": {\n        \"PointsNumber\": \"<integer>\",\n        \"PointsMonetaryValue\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        }\n      }\n    },\n    \"Identifier\": \"<string>\",\n    \"IsAmazonFulfilled\": \"<boolean>\",\n    \"OptionalFulfillmentProgram\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"FeesEstimateResult\": {\n      \"Status\": \"string\",\n      \"FeesEstimateIdentifier\": {\n        \"MarketplaceId\": \"string\",\n        \"SellerId\": \"string\",\n        \"IdType\": \"ASIN\",\n        \"IdValue\": \"string\",\n        \"IsAmazonFulfilled\": true,\n        \"PriceToEstimateFees\": {\n          \"ListingPrice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Shipping\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Points\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"SellerInputIdentifier\": \"string\",\n        \"OptionalFulfillmentProgram\": \"<string>\"\n      },\n      \"FeesEstimate\": {\n        \"TimeOfFeesEstimation\": \"1949-06-25T20:15:43.620Z\",\n        \"TotalFeesEstimate\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"FeeDetailList\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"Error\": {\n        \"Code\": \"string\",\n        \"Detail\": [],\n        \"Message\": \"string\",\n        \"Type\": \"string\"\n      }\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3caf68c-876b-44f5-a219-33434c029fc4",
+              "name": "Temporary overloading or maintenance of the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "listings",
+                    ":SellerSKU",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "SellerSKU",
+                      "description": "(Required) Used to identify an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"FeesEstimateRequest\": {\n    \"MarketplaceId\": \"<string>\",\n    \"PriceToEstimateFees\": {\n      \"ListingPrice\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Shipping\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Points\": {\n        \"PointsNumber\": \"<integer>\",\n        \"PointsMonetaryValue\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        }\n      }\n    },\n    \"Identifier\": \"<string>\",\n    \"IsAmazonFulfilled\": \"<boolean>\",\n    \"OptionalFulfillmentProgram\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"FeesEstimateResult\": {\n      \"Status\": \"string\",\n      \"FeesEstimateIdentifier\": {\n        \"MarketplaceId\": \"string\",\n        \"SellerId\": \"string\",\n        \"IdType\": \"ASIN\",\n        \"IdValue\": \"string\",\n        \"IsAmazonFulfilled\": true,\n        \"PriceToEstimateFees\": {\n          \"ListingPrice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Shipping\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Points\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"SellerInputIdentifier\": \"string\",\n        \"OptionalFulfillmentProgram\": \"<string>\"\n      },\n      \"FeesEstimate\": {\n        \"TimeOfFeesEstimation\": \"1949-06-25T20:15:43.620Z\",\n        \"TotalFeesEstimate\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"FeeDetailList\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"Error\": {\n        \"Code\": \"string\",\n        \"Detail\": [],\n        \"Message\": \"string\",\n        \"Type\": \"string\"\n      }\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1585fef-d2b1-4c34-87f8-906f08da475e",
+          "name": "get My Fees Estimate For ASIN",
+          "request": {
+            "name": "get My Fees Estimate For ASIN",
+            "description": {
+              "content": "Returns the estimated fees for the item indicated by the specified ASIN in the marketplace specified in the request body.\n\nYou can call `getMyFeesEstimateForASIN` for an item on behalf of a selling partner before the selling partner sets the item's price. The selling partner can then take estimated fees into account. Each fees request must include an original identifier. This identifier is included in the fees estimate so you can correlate a fees estimate with the original request.\n\n**Note:** This identifier value is used to identify an estimate. Actual costs may vary. Search \"fees\" in [Seller Central](https://sellercentral.amazon.com/) and consult the store-specific fee schedule for the most up-to-date information.\n\n**Note:** When using the `getMyFeesEstimateForASIN` operation with an ASIN, the fee estimates might be different. This is because these estimates use the item's catalog size, which might not always match the actual size of the item sent to Amazon.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 1 | 2 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "products",
+                "fees",
+                "v0",
+                "items",
+                ":Asin",
+                "feesEstimate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "Asin",
+                  "description": "(Required) The Amazon Standard Identification Number (ASIN) of the item."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"FeesEstimateRequest\": {\n    \"MarketplaceId\": \"<string>\",\n    \"PriceToEstimateFees\": {\n      \"ListingPrice\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Shipping\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Points\": {\n        \"PointsNumber\": \"<integer>\",\n        \"PointsMonetaryValue\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        }\n      }\n    },\n    \"Identifier\": \"<string>\",\n    \"IsAmazonFulfilled\": \"<boolean>\",\n    \"OptionalFulfillmentProgram\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "910ebc1b-c548-4832-8cb2-82a19f06f370",
+              "name": "Success.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "items",
+                    ":Asin",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Asin",
+                      "description": "(Required) The Amazon Standard Identification Number (ASIN) of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"FeesEstimateRequest\": {\n    \"MarketplaceId\": \"<string>\",\n    \"PriceToEstimateFees\": {\n      \"ListingPrice\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Shipping\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Points\": {\n        \"PointsNumber\": \"<integer>\",\n        \"PointsMonetaryValue\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        }\n      }\n    },\n    \"Identifier\": \"<string>\",\n    \"IsAmazonFulfilled\": \"<boolean>\",\n    \"OptionalFulfillmentProgram\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"FeesEstimateResult\": {\n      \"Status\": \"string\",\n      \"FeesEstimateIdentifier\": {\n        \"MarketplaceId\": \"string\",\n        \"SellerId\": \"string\",\n        \"IdType\": \"ASIN\",\n        \"IdValue\": \"string\",\n        \"IsAmazonFulfilled\": true,\n        \"PriceToEstimateFees\": {\n          \"ListingPrice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Shipping\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Points\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"SellerInputIdentifier\": \"string\",\n        \"OptionalFulfillmentProgram\": \"<string>\"\n      },\n      \"FeesEstimate\": {\n        \"TimeOfFeesEstimation\": \"1949-06-25T20:15:43.620Z\",\n        \"TotalFeesEstimate\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"FeeDetailList\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"Error\": {\n        \"Code\": \"string\",\n        \"Detail\": [],\n        \"Message\": \"string\",\n        \"Type\": \"string\"\n      }\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05f23b4f-d335-461c-86f9-c5b0cf550085",
+              "name": "Request has missing or invalid parameters and cannot be parsed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "items",
+                    ":Asin",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Asin",
+                      "description": "(Required) The Amazon Standard Identification Number (ASIN) of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"FeesEstimateRequest\": {\n    \"MarketplaceId\": \"<string>\",\n    \"PriceToEstimateFees\": {\n      \"ListingPrice\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Shipping\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Points\": {\n        \"PointsNumber\": \"<integer>\",\n        \"PointsMonetaryValue\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        }\n      }\n    },\n    \"Identifier\": \"<string>\",\n    \"IsAmazonFulfilled\": \"<boolean>\",\n    \"OptionalFulfillmentProgram\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"FeesEstimateResult\": {\n      \"Status\": \"string\",\n      \"FeesEstimateIdentifier\": {\n        \"MarketplaceId\": \"string\",\n        \"SellerId\": \"string\",\n        \"IdType\": \"ASIN\",\n        \"IdValue\": \"string\",\n        \"IsAmazonFulfilled\": true,\n        \"PriceToEstimateFees\": {\n          \"ListingPrice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Shipping\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Points\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"SellerInputIdentifier\": \"string\",\n        \"OptionalFulfillmentProgram\": \"<string>\"\n      },\n      \"FeesEstimate\": {\n        \"TimeOfFeesEstimation\": \"1949-06-25T20:15:43.620Z\",\n        \"TotalFeesEstimate\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"FeeDetailList\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"Error\": {\n        \"Code\": \"string\",\n        \"Detail\": [],\n        \"Message\": \"string\",\n        \"Type\": \"string\"\n      }\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98c5e95c-cd60-4020-9eee-2dd3750ad475",
+              "name": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "items",
+                    ":Asin",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Asin",
+                      "description": "(Required) The Amazon Standard Identification Number (ASIN) of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"FeesEstimateRequest\": {\n    \"MarketplaceId\": \"<string>\",\n    \"PriceToEstimateFees\": {\n      \"ListingPrice\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Shipping\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Points\": {\n        \"PointsNumber\": \"<integer>\",\n        \"PointsMonetaryValue\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        }\n      }\n    },\n    \"Identifier\": \"<string>\",\n    \"IsAmazonFulfilled\": \"<boolean>\",\n    \"OptionalFulfillmentProgram\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"FeesEstimateResult\": {\n      \"Status\": \"string\",\n      \"FeesEstimateIdentifier\": {\n        \"MarketplaceId\": \"string\",\n        \"SellerId\": \"string\",\n        \"IdType\": \"ASIN\",\n        \"IdValue\": \"string\",\n        \"IsAmazonFulfilled\": true,\n        \"PriceToEstimateFees\": {\n          \"ListingPrice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Shipping\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Points\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"SellerInputIdentifier\": \"string\",\n        \"OptionalFulfillmentProgram\": \"<string>\"\n      },\n      \"FeesEstimate\": {\n        \"TimeOfFeesEstimation\": \"1949-06-25T20:15:43.620Z\",\n        \"TotalFeesEstimate\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"FeeDetailList\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"Error\": {\n        \"Code\": \"string\",\n        \"Detail\": [],\n        \"Message\": \"string\",\n        \"Type\": \"string\"\n      }\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe5c70b3-ec08-44c6-9d62-a4f5eade6e56",
+              "name": "Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "items",
+                    ":Asin",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Asin",
+                      "description": "(Required) The Amazon Standard Identification Number (ASIN) of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"FeesEstimateRequest\": {\n    \"MarketplaceId\": \"<string>\",\n    \"PriceToEstimateFees\": {\n      \"ListingPrice\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Shipping\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Points\": {\n        \"PointsNumber\": \"<integer>\",\n        \"PointsMonetaryValue\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        }\n      }\n    },\n    \"Identifier\": \"<string>\",\n    \"IsAmazonFulfilled\": \"<boolean>\",\n    \"OptionalFulfillmentProgram\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"FeesEstimateResult\": {\n      \"Status\": \"string\",\n      \"FeesEstimateIdentifier\": {\n        \"MarketplaceId\": \"string\",\n        \"SellerId\": \"string\",\n        \"IdType\": \"ASIN\",\n        \"IdValue\": \"string\",\n        \"IsAmazonFulfilled\": true,\n        \"PriceToEstimateFees\": {\n          \"ListingPrice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Shipping\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Points\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"SellerInputIdentifier\": \"string\",\n        \"OptionalFulfillmentProgram\": \"<string>\"\n      },\n      \"FeesEstimate\": {\n        \"TimeOfFeesEstimation\": \"1949-06-25T20:15:43.620Z\",\n        \"TotalFeesEstimate\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"FeeDetailList\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"Error\": {\n        \"Code\": \"string\",\n        \"Detail\": [],\n        \"Message\": \"string\",\n        \"Type\": \"string\"\n      }\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6742234-f42f-4c1a-ab87-89999e017c27",
+              "name": "The specified resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "items",
+                    ":Asin",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Asin",
+                      "description": "(Required) The Amazon Standard Identification Number (ASIN) of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"FeesEstimateRequest\": {\n    \"MarketplaceId\": \"<string>\",\n    \"PriceToEstimateFees\": {\n      \"ListingPrice\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Shipping\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Points\": {\n        \"PointsNumber\": \"<integer>\",\n        \"PointsMonetaryValue\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        }\n      }\n    },\n    \"Identifier\": \"<string>\",\n    \"IsAmazonFulfilled\": \"<boolean>\",\n    \"OptionalFulfillmentProgram\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"FeesEstimateResult\": {\n      \"Status\": \"string\",\n      \"FeesEstimateIdentifier\": {\n        \"MarketplaceId\": \"string\",\n        \"SellerId\": \"string\",\n        \"IdType\": \"ASIN\",\n        \"IdValue\": \"string\",\n        \"IsAmazonFulfilled\": true,\n        \"PriceToEstimateFees\": {\n          \"ListingPrice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Shipping\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Points\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"SellerInputIdentifier\": \"string\",\n        \"OptionalFulfillmentProgram\": \"<string>\"\n      },\n      \"FeesEstimate\": {\n        \"TimeOfFeesEstimation\": \"1949-06-25T20:15:43.620Z\",\n        \"TotalFeesEstimate\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"FeeDetailList\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"Error\": {\n        \"Code\": \"string\",\n        \"Detail\": [],\n        \"Message\": \"string\",\n        \"Type\": \"string\"\n      }\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c63140c-edf0-46ba-b690-a7556f048f7f",
+              "name": "The frequency of requests was greater than allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "items",
+                    ":Asin",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Asin",
+                      "description": "(Required) The Amazon Standard Identification Number (ASIN) of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"FeesEstimateRequest\": {\n    \"MarketplaceId\": \"<string>\",\n    \"PriceToEstimateFees\": {\n      \"ListingPrice\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Shipping\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Points\": {\n        \"PointsNumber\": \"<integer>\",\n        \"PointsMonetaryValue\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        }\n      }\n    },\n    \"Identifier\": \"<string>\",\n    \"IsAmazonFulfilled\": \"<boolean>\",\n    \"OptionalFulfillmentProgram\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"FeesEstimateResult\": {\n      \"Status\": \"string\",\n      \"FeesEstimateIdentifier\": {\n        \"MarketplaceId\": \"string\",\n        \"SellerId\": \"string\",\n        \"IdType\": \"ASIN\",\n        \"IdValue\": \"string\",\n        \"IsAmazonFulfilled\": true,\n        \"PriceToEstimateFees\": {\n          \"ListingPrice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Shipping\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Points\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"SellerInputIdentifier\": \"string\",\n        \"OptionalFulfillmentProgram\": \"<string>\"\n      },\n      \"FeesEstimate\": {\n        \"TimeOfFeesEstimation\": \"1949-06-25T20:15:43.620Z\",\n        \"TotalFeesEstimate\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"FeeDetailList\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"Error\": {\n        \"Code\": \"string\",\n        \"Detail\": [],\n        \"Message\": \"string\",\n        \"Type\": \"string\"\n      }\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "647f6af8-a60f-457f-9a9c-c5bc167ecabb",
+              "name": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "items",
+                    ":Asin",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Asin",
+                      "description": "(Required) The Amazon Standard Identification Number (ASIN) of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"FeesEstimateRequest\": {\n    \"MarketplaceId\": \"<string>\",\n    \"PriceToEstimateFees\": {\n      \"ListingPrice\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Shipping\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Points\": {\n        \"PointsNumber\": \"<integer>\",\n        \"PointsMonetaryValue\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        }\n      }\n    },\n    \"Identifier\": \"<string>\",\n    \"IsAmazonFulfilled\": \"<boolean>\",\n    \"OptionalFulfillmentProgram\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"FeesEstimateResult\": {\n      \"Status\": \"string\",\n      \"FeesEstimateIdentifier\": {\n        \"MarketplaceId\": \"string\",\n        \"SellerId\": \"string\",\n        \"IdType\": \"ASIN\",\n        \"IdValue\": \"string\",\n        \"IsAmazonFulfilled\": true,\n        \"PriceToEstimateFees\": {\n          \"ListingPrice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Shipping\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Points\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"SellerInputIdentifier\": \"string\",\n        \"OptionalFulfillmentProgram\": \"<string>\"\n      },\n      \"FeesEstimate\": {\n        \"TimeOfFeesEstimation\": \"1949-06-25T20:15:43.620Z\",\n        \"TotalFeesEstimate\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"FeeDetailList\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"Error\": {\n        \"Code\": \"string\",\n        \"Detail\": [],\n        \"Message\": \"string\",\n        \"Type\": \"string\"\n      }\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d9b93b0-4700-40fb-9b3b-465cd8ce0fa5",
+              "name": "Temporary overloading or maintenance of the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "items",
+                    ":Asin",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "Asin",
+                      "description": "(Required) The Amazon Standard Identification Number (ASIN) of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"FeesEstimateRequest\": {\n    \"MarketplaceId\": \"<string>\",\n    \"PriceToEstimateFees\": {\n      \"ListingPrice\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Shipping\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"Points\": {\n        \"PointsNumber\": \"<integer>\",\n        \"PointsMonetaryValue\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        }\n      }\n    },\n    \"Identifier\": \"<string>\",\n    \"IsAmazonFulfilled\": \"<boolean>\",\n    \"OptionalFulfillmentProgram\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"FeesEstimateResult\": {\n      \"Status\": \"string\",\n      \"FeesEstimateIdentifier\": {\n        \"MarketplaceId\": \"string\",\n        \"SellerId\": \"string\",\n        \"IdType\": \"ASIN\",\n        \"IdValue\": \"string\",\n        \"IsAmazonFulfilled\": true,\n        \"PriceToEstimateFees\": {\n          \"ListingPrice\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Shipping\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"Points\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"SellerInputIdentifier\": \"string\",\n        \"OptionalFulfillmentProgram\": \"<string>\"\n      },\n      \"FeesEstimate\": {\n        \"TimeOfFeesEstimation\": \"1949-06-25T20:15:43.620Z\",\n        \"TotalFeesEstimate\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"FeeDetailList\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"Error\": {\n        \"Code\": \"string\",\n        \"Detail\": [],\n        \"Message\": \"string\",\n        \"Type\": \"string\"\n      }\n    }\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65cd4f91-fc6a-4cb6-b989-53a1e2eac3f7",
+          "name": "get My Fees Estimates",
+          "request": {
+            "name": "get My Fees Estimates",
+            "description": {
+              "content": "Returns the estimated fees for a list of products.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 1 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "products",
+                "fees",
+                "v0",
+                "feesEstimate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"IdType\": \"<string>\",\n    \"IdValue\": \"<string>\",\n    \"FeesEstimateRequest\": {\n      \"MarketplaceId\": \"<string>\",\n      \"PriceToEstimateFees\": {\n        \"ListingPrice\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Shipping\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Points\": {\n          \"PointsNumber\": \"<integer>\",\n          \"PointsMonetaryValue\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"Identifier\": \"<string>\",\n      \"IsAmazonFulfilled\": \"<boolean>\",\n      \"OptionalFulfillmentProgram\": \"<string>\"\n    }\n  },\n  {\n    \"IdType\": \"<string>\",\n    \"IdValue\": \"<string>\",\n    \"FeesEstimateRequest\": {\n      \"MarketplaceId\": \"<string>\",\n      \"PriceToEstimateFees\": {\n        \"ListingPrice\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Shipping\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Points\": {\n          \"PointsNumber\": \"<integer>\",\n          \"PointsMonetaryValue\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"Identifier\": \"<string>\",\n      \"IsAmazonFulfilled\": \"<boolean>\",\n      \"OptionalFulfillmentProgram\": \"<string>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a78d0faf-fc7f-49f2-ae61-6bd751d805ff",
+              "name": "Success.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"IdType\": \"<string>\",\n    \"IdValue\": \"<string>\",\n    \"FeesEstimateRequest\": {\n      \"MarketplaceId\": \"<string>\",\n      \"PriceToEstimateFees\": {\n        \"ListingPrice\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Shipping\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Points\": {\n          \"PointsNumber\": \"<integer>\",\n          \"PointsMonetaryValue\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"Identifier\": \"<string>\",\n      \"IsAmazonFulfilled\": \"<boolean>\",\n      \"OptionalFulfillmentProgram\": \"<string>\"\n    }\n  },\n  {\n    \"IdType\": \"<string>\",\n    \"IdValue\": \"<string>\",\n    \"FeesEstimateRequest\": {\n      \"MarketplaceId\": \"<string>\",\n      \"PriceToEstimateFees\": {\n        \"ListingPrice\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Shipping\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Points\": {\n          \"PointsNumber\": \"<integer>\",\n          \"PointsMonetaryValue\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"Identifier\": \"<string>\",\n      \"IsAmazonFulfilled\": \"<boolean>\",\n      \"OptionalFulfillmentProgram\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"Status\": \"string\",\n    \"FeesEstimateIdentifier\": {\n      \"MarketplaceId\": \"string\",\n      \"SellerId\": \"string\",\n      \"IdType\": \"<string>\",\n      \"IdValue\": \"string\",\n      \"IsAmazonFulfilled\": false,\n      \"PriceToEstimateFees\": {\n        \"ListingPrice\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Shipping\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Points\": {\n          \"PointsNumber\": \"<integer>\",\n          \"PointsMonetaryValue\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"SellerInputIdentifier\": \"string\",\n      \"OptionalFulfillmentProgram\": \"<string>\"\n    },\n    \"FeesEstimate\": {\n      \"TimeOfFeesEstimation\": \"1949-02-06T19:45:28.430Z\",\n      \"TotalFeesEstimate\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"FeeDetailList\": [\n        {\n          \"FeeType\": \"string\",\n          \"FeeAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"FinalFee\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"FeePromotion\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"TaxAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"IncludedFeeDetailList\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"FeeType\": \"string\",\n          \"FeeAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"FinalFee\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"FeePromotion\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"TaxAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"IncludedFeeDetailList\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"Error\": {\n      \"Code\": \"string\",\n      \"Detail\": [],\n      \"Message\": \"string\",\n      \"Type\": \"string\"\n    }\n  },\n  {\n    \"Status\": \"string\",\n    \"FeesEstimateIdentifier\": {\n      \"MarketplaceId\": \"string\",\n      \"SellerId\": \"string\",\n      \"IdType\": \"<string>\",\n      \"IdValue\": \"string\",\n      \"IsAmazonFulfilled\": true,\n      \"PriceToEstimateFees\": {\n        \"ListingPrice\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Shipping\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Points\": {\n          \"PointsNumber\": \"<integer>\",\n          \"PointsMonetaryValue\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"SellerInputIdentifier\": \"string\",\n      \"OptionalFulfillmentProgram\": \"<string>\"\n    },\n    \"FeesEstimate\": {\n      \"TimeOfFeesEstimation\": \"1949-11-16T08:01:49.025Z\",\n      \"TotalFeesEstimate\": {\n        \"CurrencyCode\": \"<string>\",\n        \"Amount\": \"<number>\"\n      },\n      \"FeeDetailList\": [\n        {\n          \"FeeType\": \"string\",\n          \"FeeAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"FinalFee\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"FeePromotion\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"TaxAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"IncludedFeeDetailList\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"FeeType\": \"string\",\n          \"FeeAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"FinalFee\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"FeePromotion\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"TaxAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"IncludedFeeDetailList\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"Error\": {\n      \"Code\": \"string\",\n      \"Detail\": [],\n      \"Message\": \"string\",\n      \"Type\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9eabca6b-f51f-4af1-b805-246cc67f4fa6",
+              "name": "Request has missing or invalid parameters and cannot be parsed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"IdType\": \"<string>\",\n    \"IdValue\": \"<string>\",\n    \"FeesEstimateRequest\": {\n      \"MarketplaceId\": \"<string>\",\n      \"PriceToEstimateFees\": {\n        \"ListingPrice\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Shipping\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Points\": {\n          \"PointsNumber\": \"<integer>\",\n          \"PointsMonetaryValue\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"Identifier\": \"<string>\",\n      \"IsAmazonFulfilled\": \"<boolean>\",\n      \"OptionalFulfillmentProgram\": \"<string>\"\n    }\n  },\n  {\n    \"IdType\": \"<string>\",\n    \"IdValue\": \"<string>\",\n    \"FeesEstimateRequest\": {\n      \"MarketplaceId\": \"<string>\",\n      \"PriceToEstimateFees\": {\n        \"ListingPrice\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Shipping\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Points\": {\n          \"PointsNumber\": \"<integer>\",\n          \"PointsMonetaryValue\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"Identifier\": \"<string>\",\n      \"IsAmazonFulfilled\": \"<boolean>\",\n      \"OptionalFulfillmentProgram\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a57587e3-cfac-4404-8867-2423ee3a3a56",
+              "name": "The request's Authorization header is not formatted correctly or does not contain a valid token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"IdType\": \"<string>\",\n    \"IdValue\": \"<string>\",\n    \"FeesEstimateRequest\": {\n      \"MarketplaceId\": \"<string>\",\n      \"PriceToEstimateFees\": {\n        \"ListingPrice\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Shipping\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Points\": {\n          \"PointsNumber\": \"<integer>\",\n          \"PointsMonetaryValue\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"Identifier\": \"<string>\",\n      \"IsAmazonFulfilled\": \"<boolean>\",\n      \"OptionalFulfillmentProgram\": \"<string>\"\n    }\n  },\n  {\n    \"IdType\": \"<string>\",\n    \"IdValue\": \"<string>\",\n    \"FeesEstimateRequest\": {\n      \"MarketplaceId\": \"<string>\",\n      \"PriceToEstimateFees\": {\n        \"ListingPrice\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Shipping\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Points\": {\n          \"PointsNumber\": \"<integer>\",\n          \"PointsMonetaryValue\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"Identifier\": \"<string>\",\n      \"IsAmazonFulfilled\": \"<boolean>\",\n      \"OptionalFulfillmentProgram\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95983247-9fe7-451e-9564-dfb75eb8a405",
+              "name": "Indicates access to the resource is forbidden. Possible reasons include **Access Denied**, **Unauthorized**, **Expired Token**, or **Invalid Signature**.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"IdType\": \"<string>\",\n    \"IdValue\": \"<string>\",\n    \"FeesEstimateRequest\": {\n      \"MarketplaceId\": \"<string>\",\n      \"PriceToEstimateFees\": {\n        \"ListingPrice\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Shipping\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Points\": {\n          \"PointsNumber\": \"<integer>\",\n          \"PointsMonetaryValue\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"Identifier\": \"<string>\",\n      \"IsAmazonFulfilled\": \"<boolean>\",\n      \"OptionalFulfillmentProgram\": \"<string>\"\n    }\n  },\n  {\n    \"IdType\": \"<string>\",\n    \"IdValue\": \"<string>\",\n    \"FeesEstimateRequest\": {\n      \"MarketplaceId\": \"<string>\",\n      \"PriceToEstimateFees\": {\n        \"ListingPrice\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Shipping\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Points\": {\n          \"PointsNumber\": \"<integer>\",\n          \"PointsMonetaryValue\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"Identifier\": \"<string>\",\n      \"IsAmazonFulfilled\": \"<boolean>\",\n      \"OptionalFulfillmentProgram\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9160087b-fe96-4f68-98bf-7cd7da7dedbd",
+              "name": "The specified resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"IdType\": \"<string>\",\n    \"IdValue\": \"<string>\",\n    \"FeesEstimateRequest\": {\n      \"MarketplaceId\": \"<string>\",\n      \"PriceToEstimateFees\": {\n        \"ListingPrice\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Shipping\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Points\": {\n          \"PointsNumber\": \"<integer>\",\n          \"PointsMonetaryValue\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"Identifier\": \"<string>\",\n      \"IsAmazonFulfilled\": \"<boolean>\",\n      \"OptionalFulfillmentProgram\": \"<string>\"\n    }\n  },\n  {\n    \"IdType\": \"<string>\",\n    \"IdValue\": \"<string>\",\n    \"FeesEstimateRequest\": {\n      \"MarketplaceId\": \"<string>\",\n      \"PriceToEstimateFees\": {\n        \"ListingPrice\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Shipping\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Points\": {\n          \"PointsNumber\": \"<integer>\",\n          \"PointsMonetaryValue\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"Identifier\": \"<string>\",\n      \"IsAmazonFulfilled\": \"<boolean>\",\n      \"OptionalFulfillmentProgram\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82808beb-b1ce-46bb-8053-3763767aed3d",
+              "name": "The frequency of requests was greater than allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"IdType\": \"<string>\",\n    \"IdValue\": \"<string>\",\n    \"FeesEstimateRequest\": {\n      \"MarketplaceId\": \"<string>\",\n      \"PriceToEstimateFees\": {\n        \"ListingPrice\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Shipping\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Points\": {\n          \"PointsNumber\": \"<integer>\",\n          \"PointsMonetaryValue\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"Identifier\": \"<string>\",\n      \"IsAmazonFulfilled\": \"<boolean>\",\n      \"OptionalFulfillmentProgram\": \"<string>\"\n    }\n  },\n  {\n    \"IdType\": \"<string>\",\n    \"IdValue\": \"<string>\",\n    \"FeesEstimateRequest\": {\n      \"MarketplaceId\": \"<string>\",\n      \"PriceToEstimateFees\": {\n        \"ListingPrice\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Shipping\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Points\": {\n          \"PointsNumber\": \"<integer>\",\n          \"PointsMonetaryValue\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"Identifier\": \"<string>\",\n      \"IsAmazonFulfilled\": \"<boolean>\",\n      \"OptionalFulfillmentProgram\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "924947e3-7a9a-4043-b83c-ca7ec92ed66d",
+              "name": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"IdType\": \"<string>\",\n    \"IdValue\": \"<string>\",\n    \"FeesEstimateRequest\": {\n      \"MarketplaceId\": \"<string>\",\n      \"PriceToEstimateFees\": {\n        \"ListingPrice\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Shipping\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Points\": {\n          \"PointsNumber\": \"<integer>\",\n          \"PointsMonetaryValue\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"Identifier\": \"<string>\",\n      \"IsAmazonFulfilled\": \"<boolean>\",\n      \"OptionalFulfillmentProgram\": \"<string>\"\n    }\n  },\n  {\n    \"IdType\": \"<string>\",\n    \"IdValue\": \"<string>\",\n    \"FeesEstimateRequest\": {\n      \"MarketplaceId\": \"<string>\",\n      \"PriceToEstimateFees\": {\n        \"ListingPrice\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Shipping\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Points\": {\n          \"PointsNumber\": \"<integer>\",\n          \"PointsMonetaryValue\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"Identifier\": \"<string>\",\n      \"IsAmazonFulfilled\": \"<boolean>\",\n      \"OptionalFulfillmentProgram\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "197efb2d-319b-498a-b96a-a3b684c1a671",
+              "name": "Temporary overloading or maintenance of the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    "fees",
+                    "v0",
+                    "feesEstimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"IdType\": \"<string>\",\n    \"IdValue\": \"<string>\",\n    \"FeesEstimateRequest\": {\n      \"MarketplaceId\": \"<string>\",\n      \"PriceToEstimateFees\": {\n        \"ListingPrice\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Shipping\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Points\": {\n          \"PointsNumber\": \"<integer>\",\n          \"PointsMonetaryValue\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"Identifier\": \"<string>\",\n      \"IsAmazonFulfilled\": \"<boolean>\",\n      \"OptionalFulfillmentProgram\": \"<string>\"\n    }\n  },\n  {\n    \"IdType\": \"<string>\",\n    \"IdValue\": \"<string>\",\n    \"FeesEstimateRequest\": {\n      \"MarketplaceId\": \"<string>\",\n      \"PriceToEstimateFees\": {\n        \"ListingPrice\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Shipping\": {\n          \"CurrencyCode\": \"<string>\",\n          \"Amount\": \"<number>\"\n        },\n        \"Points\": {\n          \"PointsNumber\": \"<integer>\",\n          \"PointsMonetaryValue\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"Identifier\": \"<string>\",\n      \"IsAmazonFulfilled\": \"<boolean>\",\n      \"OptionalFulfillmentProgram\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sellingpartnerapi-na.amazon.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "82ddab73-33ca-437c-8759-89e2d42eb2a7",
+    "name": "Selling Partner API for Product Fees API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Selling Partner API for Product Fees lets you programmatically retrieve estimated fees for a product. You can then account for those fees in your pricing.\n\nContact Support:\n Name: Selling Partner API Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

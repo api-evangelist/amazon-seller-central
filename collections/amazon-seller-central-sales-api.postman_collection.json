@@ -1,0 +1,976 @@
+{
+  "item": [
+    {
+      "id": "fbb2ccea-51b2-406b-a563-b1c32d3f237b",
+      "name": "sales",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c1345cf8-feac-4dcd-8e1b-0d5624ee7dd7",
+          "name": "get Order Metrics",
+          "request": {
+            "name": "get Order Metrics",
+            "description": {
+              "content": "Returns aggregated order metrics for given interval, broken down by granularity, for given buyer type.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| .5 | 15 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sales",
+                "v1",
+                "orderMetrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "marketplaceIds",
+                  "value": "<string>",
+                  "description": "(Required) A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.\n\nFor example, ATVPDKIKX0DER indicates the US marketplace."
+                },
+                {
+                  "disabled": false,
+                  "key": "marketplaceIds",
+                  "value": "<string>",
+                  "description": "(Required) A marketplace identifier. This specifies the marketplace in which the order was placed. Only one marketplace can be specified.\n\nFor example, ATVPDKIKX0DER indicates the US marketplace."
+                },
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>",
+                  "description": "(Required) A time interval used for selecting order metrics. This takes the form of two dates separated by two hyphens (first date is inclusive; second date is exclusive). Dates are in ISO8601 format and must represent absolute time (either Z notation or offset notation). Example: 2018-09-01T00:00:00-07:00--2018-09-04T00:00:00-07:00 requests order metrics for Sept 1st, 2nd and 3rd in the -07:00 zone."
+                },
+                {
+                  "disabled": false,
+                  "key": "granularityTimeZone",
+                  "value": "<string>",
+                  "description": "An IANA-compatible time zone for determining the day boundary. Required when specifying a granularity value greater than Hour. The granularityTimeZone value must align with the offset of the specified interval value. For example, if the interval value uses Z notation, then granularityTimeZone must be UTC. If the interval value uses an offset, then granularityTimeZone must be an IANA-compatible time zone that matches the offset. Example: US/Pacific to compute day boundaries, accounting for daylight time savings, for US/Pacific zone."
+                },
+                {
+                  "disabled": false,
+                  "key": "granularity",
+                  "value": "<string>",
+                  "description": "(Required) The granularity of the grouping of order metrics, based on a unit of time. Specifying granularity=Hour results in a successful request only if the interval specified is less than or equal to 30 days from now. For all other granularities, the interval specified must be less or equal to 2 years from now. Specifying granularity=Total results in order metrics that are aggregated over the entire interval that you specify. If the interval start and end date don’t align with the specified granularity, the head and tail end of the response interval will contain partial data. Example: Day to get a daily breakdown of the request interval, where the day boundary is defined by the granularityTimeZone."
+                },
+                {
+                  "disabled": false,
+                  "key": "buyerType",
+                  "value": "All",
+                  "description": "Filters the results by the buyer type that you specify, B2B (business to business) or B2C (business to customer). Example: B2B, if you want the response to include order metrics for only B2B buyers."
+                },
+                {
+                  "disabled": false,
+                  "key": "fulfillmentNetwork",
+                  "value": "<string>",
+                  "description": "Filters the results by the fulfillment network that you specify, MFN (merchant fulfillment network) or AFN (Amazon fulfillment network). Do not include this filter if you want the response to include order metrics for all fulfillment networks. Example: AFN, if you want the response to include order metrics for only Amazon fulfillment network."
+                },
+                {
+                  "disabled": false,
+                  "key": "firstDayOfWeek",
+                  "value": "Monday",
+                  "description": "Specifies the day that the week starts on when granularity=Week, either Monday or Sunday. Default: Monday. Example: Sunday, if you want the week to start on a Sunday."
+                },
+                {
+                  "disabled": false,
+                  "key": "asin",
+                  "value": "<string>",
+                  "description": "Filters the results by the ASIN that you specify. Specifying both ASIN and SKU returns an error. Do not include this filter if you want the response to include order metrics for all ASINs. Example: B0792R1RSN, if you want the response to include order metrics for only ASIN B0792R1RSN."
+                },
+                {
+                  "disabled": false,
+                  "key": "sku",
+                  "value": "<string>",
+                  "description": "Filters the results by the SKU that you specify. Specifying both ASIN and SKU returns an error. Do not include this filter if you want the response to include order metrics for all SKUs. Example: TestSKU, if you want the response to include order metrics for only SKU TestSKU."
+                },
+                {
+                  "disabled": false,
+                  "key": "amazonProgram",
+                  "value": "<string>",
+                  "description": "Filters the results by the Amazon program that you specify. Do not include this filter if you want the response to include order metrics for all programs. **Example:** `AmazonHaul` returns order metrics for the Amazon Haul program only."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d5dbbb6c-3253-458e-a5c3-c41da5688aaa",
+              "name": "OrderMetric action taken on the resource OrderMetrics.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales",
+                    "v1",
+                    "orderMetrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularityTimeZone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "buyerType",
+                      "value": "All"
+                    },
+                    {
+                      "key": "fulfillmentNetwork",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firstDayOfWeek",
+                      "value": "Monday"
+                    },
+                    {
+                      "key": "asin",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sku",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amazonProgram",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation..",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": [\n    {\n      \"averageUnitPrice\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"interval\": \"string\",\n      \"orderCount\": 6794,\n      \"orderItemCount\": 9666,\n      \"totalSales\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"unitCount\": 2430\n    },\n    {\n      \"averageUnitPrice\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"interval\": \"string\",\n      \"orderCount\": 6633,\n      \"orderItemCount\": 7567,\n      \"totalSales\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"unitCount\": 7493\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "289d9758-79fb-4e13-bc40-993d658b204b",
+              "name": "Request has missing or invalid parameters and cannot be parsed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales",
+                    "v1",
+                    "orderMetrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularityTimeZone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "buyerType",
+                      "value": "All"
+                    },
+                    {
+                      "key": "fulfillmentNetwork",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firstDayOfWeek",
+                      "value": "Monday"
+                    },
+                    {
+                      "key": "asin",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sku",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amazonProgram",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": [\n    {\n      \"averageUnitPrice\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"interval\": \"string\",\n      \"orderCount\": 7331,\n      \"orderItemCount\": 6931,\n      \"totalSales\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"unitCount\": 6026\n    },\n    {\n      \"averageUnitPrice\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"interval\": \"string\",\n      \"orderCount\": 9516,\n      \"orderItemCount\": 4651,\n      \"totalSales\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"unitCount\": 2456\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "19969e5e-5be8-4970-9844-9cb1191ffbb0",
+              "name": "403 can be caused for reasons like Access Denied, Unauthorized, Expired Token, Invalid Signature or Resource Not Found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales",
+                    "v1",
+                    "orderMetrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularityTimeZone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "buyerType",
+                      "value": "All"
+                    },
+                    {
+                      "key": "fulfillmentNetwork",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firstDayOfWeek",
+                      "value": "Monday"
+                    },
+                    {
+                      "key": "asin",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sku",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amazonProgram",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": [\n    {\n      \"averageUnitPrice\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"interval\": \"string\",\n      \"orderCount\": 7331,\n      \"orderItemCount\": 6931,\n      \"totalSales\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"unitCount\": 6026\n    },\n    {\n      \"averageUnitPrice\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"interval\": \"string\",\n      \"orderCount\": 9516,\n      \"orderItemCount\": 4651,\n      \"totalSales\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"unitCount\": 2456\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee68b237-e1f5-47c9-b5c8-3db3eab4d53b",
+              "name": "The resource specified does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales",
+                    "v1",
+                    "orderMetrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularityTimeZone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "buyerType",
+                      "value": "All"
+                    },
+                    {
+                      "key": "fulfillmentNetwork",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firstDayOfWeek",
+                      "value": "Monday"
+                    },
+                    {
+                      "key": "asin",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sku",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amazonProgram",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": [\n    {\n      \"averageUnitPrice\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"interval\": \"string\",\n      \"orderCount\": 7331,\n      \"orderItemCount\": 6931,\n      \"totalSales\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"unitCount\": 6026\n    },\n    {\n      \"averageUnitPrice\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"interval\": \"string\",\n      \"orderCount\": 9516,\n      \"orderItemCount\": 4651,\n      \"totalSales\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"unitCount\": 2456\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67e8a58f-a696-4fb0-aaf7-8a0f8c16771c",
+              "name": "The request size exceeded the maximum accepted size.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales",
+                    "v1",
+                    "orderMetrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularityTimeZone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "buyerType",
+                      "value": "All"
+                    },
+                    {
+                      "key": "fulfillmentNetwork",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firstDayOfWeek",
+                      "value": "Monday"
+                    },
+                    {
+                      "key": "asin",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sku",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amazonProgram",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": [\n    {\n      \"averageUnitPrice\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"interval\": \"string\",\n      \"orderCount\": 7331,\n      \"orderItemCount\": 6931,\n      \"totalSales\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"unitCount\": 6026\n    },\n    {\n      \"averageUnitPrice\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"interval\": \"string\",\n      \"orderCount\": 9516,\n      \"orderItemCount\": 4651,\n      \"totalSales\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"unitCount\": 2456\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41fde046-87ce-43f3-9921-499d1f19a67b",
+              "name": "The entity of the request is in a format not supported by the requested resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales",
+                    "v1",
+                    "orderMetrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularityTimeZone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "buyerType",
+                      "value": "All"
+                    },
+                    {
+                      "key": "fulfillmentNetwork",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firstDayOfWeek",
+                      "value": "Monday"
+                    },
+                    {
+                      "key": "asin",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sku",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amazonProgram",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": [\n    {\n      \"averageUnitPrice\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"interval\": \"string\",\n      \"orderCount\": 7331,\n      \"orderItemCount\": 6931,\n      \"totalSales\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"unitCount\": 6026\n    },\n    {\n      \"averageUnitPrice\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"interval\": \"string\",\n      \"orderCount\": 9516,\n      \"orderItemCount\": 4651,\n      \"totalSales\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"unitCount\": 2456\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea89b7c3-696b-44e5-a1ba-5c6826ad8d7a",
+              "name": "The frequency of requests was greater than allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales",
+                    "v1",
+                    "orderMetrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularityTimeZone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "buyerType",
+                      "value": "All"
+                    },
+                    {
+                      "key": "fulfillmentNetwork",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firstDayOfWeek",
+                      "value": "Monday"
+                    },
+                    {
+                      "key": "asin",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sku",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amazonProgram",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": [\n    {\n      \"averageUnitPrice\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"interval\": \"string\",\n      \"orderCount\": 7331,\n      \"orderItemCount\": 6931,\n      \"totalSales\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"unitCount\": 6026\n    },\n    {\n      \"averageUnitPrice\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"interval\": \"string\",\n      \"orderCount\": 9516,\n      \"orderItemCount\": 4651,\n      \"totalSales\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"unitCount\": 2456\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "37a9e0c7-2be8-4f95-8f5d-a988c14d0c7c",
+              "name": "Encountered an unexpected condition which prevented the server from fulfilling the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales",
+                    "v1",
+                    "orderMetrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularityTimeZone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "buyerType",
+                      "value": "All"
+                    },
+                    {
+                      "key": "fulfillmentNetwork",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firstDayOfWeek",
+                      "value": "Monday"
+                    },
+                    {
+                      "key": "asin",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sku",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amazonProgram",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": [\n    {\n      \"averageUnitPrice\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"interval\": \"string\",\n      \"orderCount\": 7331,\n      \"orderItemCount\": 6931,\n      \"totalSales\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"unitCount\": 6026\n    },\n    {\n      \"averageUnitPrice\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"interval\": \"string\",\n      \"orderCount\": 9516,\n      \"orderItemCount\": 4651,\n      \"totalSales\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"unitCount\": 2456\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53f969dd-6241-4598-8445-3b4287f45dd0",
+              "name": "Temporary overloading or maintenance of the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales",
+                    "v1",
+                    "orderMetrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularityTimeZone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "buyerType",
+                      "value": "All"
+                    },
+                    {
+                      "key": "fulfillmentNetwork",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "firstDayOfWeek",
+                      "value": "Monday"
+                    },
+                    {
+                      "key": "asin",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sku",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amazonProgram",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.\n_Note:_ For this status code, the rate limit header is deprecated and no longer returned.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": [\n    {\n      \"averageUnitPrice\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"interval\": \"string\",\n      \"orderCount\": 7331,\n      \"orderItemCount\": 6931,\n      \"totalSales\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"unitCount\": 6026\n    },\n    {\n      \"averageUnitPrice\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"interval\": \"string\",\n      \"orderCount\": 9516,\n      \"orderItemCount\": 4651,\n      \"totalSales\": {\n        \"amount\": \"string\",\n        \"currencyCode\": \"string\"\n      },\n      \"unitCount\": 2456\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sellingpartnerapi-na.amazon.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "124d6fac-6a41-44c9-9b90-fccac959d8bc",
+    "name": "Selling Partner Sales API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Selling Partner API for Sales provides APIs related to sales performance.\n\nContact Support:\n Name: Selling Partner API Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

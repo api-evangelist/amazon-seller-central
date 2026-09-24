@@ -1,34 +1,30 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Amazon Selling Partner API (SP-API) Authentication Tokens API",
-    "version": "1.0.0"
-  },
-  "request": {
-    "auth": {
-      "type": "apikey",
-      "key": "x-amz-access-token",
-      "value": "{{x-amz-access-token}}",
-      "placement": "header"
-    }
+    "name": "Selling Partner Tokens API",
+    "version": "2021-03-01"
   },
   "items": [
     {
       "info": {
-        "name": "Tokens",
+        "name": "tokens",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Create a restricted data token",
+            "name": "createRestrictedDataToken",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://sellingpartnerapi-na.amazon.com/tokens/2021-03-01/restrictedDataToken"
+            "url": "https://sellingpartnerapi-na.amazon.com/tokens/2021-03-01/restrictedDataToken",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
           },
-          "docs": "Create a restricted data token"
+          "docs": "Returns a Restricted Data Token (RDT) for one or more restricted resources that you specify. A restricted resource is the HTTP method and path from a restricted operation that returns Personally Identifiable Information (PII), plus a dataElements value that indicates the type of PII requested. See the Tokens API Use Case Guide for a list of restricted operations. Use the RDT returned here as the access token in subsequent calls to the corresponding restricted operations.\n\n**Usage Plan:**\n\n| Rate"
         }
       ]
     }

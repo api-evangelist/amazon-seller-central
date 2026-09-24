@@ -1,0 +1,2056 @@
+{
+  "item": [
+    {
+      "id": "41417336-865c-4651-97c8-03c177b44a5a",
+      "name": "fbaInventory",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d52d35e8-1298-476c-b4c0-cbea4b794ecb",
+          "name": "get Inventory Summaries",
+          "request": {
+            "name": "get Inventory Summaries",
+            "description": {
+              "content": "Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the startDateTime, sellerSkus and sellerSku parameters:\n\n- All inventory summaries with available details are returned when the startDateTime, sellerSkus and sellerSku parameters are omitted.\n- When startDateTime is provided, the operation returns inventory summaries that have had changes after the date and time specified. The sellerSkus and sellerSku parameters are ignored. Important: To avoid errors, use both startDateTime and nextToken to get the next page of inventory summaries that have changed after the date and time specified.\n- When the sellerSkus parameter is provided, the operation returns inventory summaries for only the specified sellerSkus. The sellerSku parameter is ignored.\n- When the sellerSku parameter is provided, the operation returns inventory summaries for only the specified sellerSku.\n\nNote: The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).\n\nUsage Plan:\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 2 |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fba",
+                "inventory",
+                "v1",
+                "summaries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "details",
+                  "value": "false",
+                  "description": "true to return inventory summaries with additional summarized inventory details and quantities. Otherwise, returns inventory summaries only (default value)."
+                },
+                {
+                  "disabled": false,
+                  "key": "granularityType",
+                  "value": "<string>",
+                  "description": "(Required) The granularity type for the inventory aggregation level."
+                },
+                {
+                  "disabled": false,
+                  "key": "granularityId",
+                  "value": "<string>",
+                  "description": "(Required) The granularity ID for the inventory aggregation level."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDateTime",
+                  "value": "<dateTime>",
+                  "description": "A start date and time in ISO8601 format. If specified, all inventory summaries that have changed since then are returned. You must specify a date and time that is no earlier than 18 months prior to the date and time when you call the API. Note: Changes in inboundWorkingQuantity, inboundShippedQuantity and inboundReceivingQuantity are not detected."
+                },
+                {
+                  "disabled": false,
+                  "key": "sellerSkus",
+                  "value": "<string>",
+                  "description": "A list of seller SKUs for which to return inventory summaries. You may specify up to 50 SKUs."
+                },
+                {
+                  "disabled": false,
+                  "key": "sellerSkus",
+                  "value": "<string>",
+                  "description": "A list of seller SKUs for which to return inventory summaries. You may specify up to 50 SKUs."
+                },
+                {
+                  "disabled": false,
+                  "key": "sellerSku",
+                  "value": "<string>",
+                  "description": "A single seller SKU used for querying the specified seller SKU inventory summaries."
+                },
+                {
+                  "disabled": false,
+                  "key": "nextToken",
+                  "value": "<string>",
+                  "description": "String token returned in the response of your previous request. The string token will expire 30 seconds after being created."
+                },
+                {
+                  "disabled": false,
+                  "key": "marketplaceIds",
+                  "value": "<string>",
+                  "description": "(Required) The marketplace ID for the marketplace for which to return inventory summaries."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4e06e4e1-a4b2-40c3-853a-90b8c491aa5c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "details",
+                      "value": "false"
+                    },
+                    {
+                      "key": "granularityType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "sellerSkus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sellerSkus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sellerSku",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"granularity\": {\n      \"granularityType\": \"string\",\n      \"granularityId\": \"string\"\n    },\n    \"inventorySummaries\": [\n      {\n        \"asin\": \"string\",\n        \"fnSku\": \"string\",\n        \"sellerSku\": \"string\",\n        \"condition\": \"string\",\n        \"inventoryDetails\": {\n          \"fulfillableQuantity\": 1502,\n          \"inboundWorkingQuantity\": 3486,\n          \"inboundShippedQuantity\": 1704,\n          \"inboundReceivingQuantity\": 8113,\n          \"reservedQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"researchingQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unfulfillableQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"lastUpdatedTime\": \"1983-09-21T23:34:49.851Z\",\n        \"productName\": \"string\",\n        \"totalQuantity\": 6604,\n        \"stores\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"asin\": \"string\",\n        \"fnSku\": \"string\",\n        \"sellerSku\": \"string\",\n        \"condition\": \"string\",\n        \"inventoryDetails\": {\n          \"fulfillableQuantity\": 96,\n          \"inboundWorkingQuantity\": 3389,\n          \"inboundShippedQuantity\": 6461,\n          \"inboundReceivingQuantity\": 4009,\n          \"reservedQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"researchingQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unfulfillableQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"lastUpdatedTime\": \"1966-05-13T16:20:15.681Z\",\n        \"productName\": \"string\",\n        \"totalQuantity\": 8564,\n        \"stores\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ]\n  },\n  \"pagination\": {\n    \"nextToken\": \"string\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ecd9034a-eeb7-41f4-b58c-54f462cd1b7b",
+              "name": "Request has missing or invalid parameters and cannot be parsed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "details",
+                      "value": "false"
+                    },
+                    {
+                      "key": "granularityType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "sellerSkus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sellerSkus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sellerSku",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"granularity\": {\n      \"granularityType\": \"string\",\n      \"granularityId\": \"string\"\n    },\n    \"inventorySummaries\": [\n      {\n        \"asin\": \"string\",\n        \"fnSku\": \"string\",\n        \"sellerSku\": \"string\",\n        \"condition\": \"string\",\n        \"inventoryDetails\": {\n          \"fulfillableQuantity\": 6997,\n          \"inboundWorkingQuantity\": 4882,\n          \"inboundShippedQuantity\": 9824,\n          \"inboundReceivingQuantity\": 1118,\n          \"reservedQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"researchingQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unfulfillableQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"lastUpdatedTime\": \"2008-11-25T06:45:05.765Z\",\n        \"productName\": \"string\",\n        \"totalQuantity\": 6407,\n        \"stores\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"asin\": \"string\",\n        \"fnSku\": \"string\",\n        \"sellerSku\": \"string\",\n        \"condition\": \"string\",\n        \"inventoryDetails\": {\n          \"fulfillableQuantity\": 2968,\n          \"inboundWorkingQuantity\": 6,\n          \"inboundShippedQuantity\": 7927,\n          \"inboundReceivingQuantity\": 2743,\n          \"reservedQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"researchingQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unfulfillableQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"lastUpdatedTime\": \"2005-03-05T17:22:25.055Z\",\n        \"productName\": \"string\",\n        \"totalQuantity\": 5480,\n        \"stores\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ]\n  },\n  \"pagination\": {\n    \"nextToken\": \"string\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "515acc51-add3-44d9-b1e4-dc6e758a4d1c",
+              "name": "Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, Invalid Signature or Resource Not Found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "details",
+                      "value": "false"
+                    },
+                    {
+                      "key": "granularityType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "sellerSkus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sellerSkus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sellerSku",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"granularity\": {\n      \"granularityType\": \"string\",\n      \"granularityId\": \"string\"\n    },\n    \"inventorySummaries\": [\n      {\n        \"asin\": \"string\",\n        \"fnSku\": \"string\",\n        \"sellerSku\": \"string\",\n        \"condition\": \"string\",\n        \"inventoryDetails\": {\n          \"fulfillableQuantity\": 6997,\n          \"inboundWorkingQuantity\": 4882,\n          \"inboundShippedQuantity\": 9824,\n          \"inboundReceivingQuantity\": 1118,\n          \"reservedQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"researchingQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unfulfillableQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"lastUpdatedTime\": \"2008-11-25T06:45:05.765Z\",\n        \"productName\": \"string\",\n        \"totalQuantity\": 6407,\n        \"stores\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"asin\": \"string\",\n        \"fnSku\": \"string\",\n        \"sellerSku\": \"string\",\n        \"condition\": \"string\",\n        \"inventoryDetails\": {\n          \"fulfillableQuantity\": 2968,\n          \"inboundWorkingQuantity\": 6,\n          \"inboundShippedQuantity\": 7927,\n          \"inboundReceivingQuantity\": 2743,\n          \"reservedQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"researchingQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unfulfillableQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"lastUpdatedTime\": \"2005-03-05T17:22:25.055Z\",\n        \"productName\": \"string\",\n        \"totalQuantity\": 5480,\n        \"stores\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ]\n  },\n  \"pagination\": {\n    \"nextToken\": \"string\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5926d80f-135d-4e6b-9f7e-eb0154a99c39",
+              "name": "The specified resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "details",
+                      "value": "false"
+                    },
+                    {
+                      "key": "granularityType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "sellerSkus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sellerSkus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sellerSku",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"granularity\": {\n      \"granularityType\": \"string\",\n      \"granularityId\": \"string\"\n    },\n    \"inventorySummaries\": [\n      {\n        \"asin\": \"string\",\n        \"fnSku\": \"string\",\n        \"sellerSku\": \"string\",\n        \"condition\": \"string\",\n        \"inventoryDetails\": {\n          \"fulfillableQuantity\": 6997,\n          \"inboundWorkingQuantity\": 4882,\n          \"inboundShippedQuantity\": 9824,\n          \"inboundReceivingQuantity\": 1118,\n          \"reservedQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"researchingQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unfulfillableQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"lastUpdatedTime\": \"2008-11-25T06:45:05.765Z\",\n        \"productName\": \"string\",\n        \"totalQuantity\": 6407,\n        \"stores\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"asin\": \"string\",\n        \"fnSku\": \"string\",\n        \"sellerSku\": \"string\",\n        \"condition\": \"string\",\n        \"inventoryDetails\": {\n          \"fulfillableQuantity\": 2968,\n          \"inboundWorkingQuantity\": 6,\n          \"inboundShippedQuantity\": 7927,\n          \"inboundReceivingQuantity\": 2743,\n          \"reservedQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"researchingQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unfulfillableQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"lastUpdatedTime\": \"2005-03-05T17:22:25.055Z\",\n        \"productName\": \"string\",\n        \"totalQuantity\": 5480,\n        \"stores\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ]\n  },\n  \"pagination\": {\n    \"nextToken\": \"string\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17d9e646-0460-4c05-ba9a-9cbae2c65521",
+              "name": "The frequency of requests was greater than allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "details",
+                      "value": "false"
+                    },
+                    {
+                      "key": "granularityType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "sellerSkus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sellerSkus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sellerSku",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"granularity\": {\n      \"granularityType\": \"string\",\n      \"granularityId\": \"string\"\n    },\n    \"inventorySummaries\": [\n      {\n        \"asin\": \"string\",\n        \"fnSku\": \"string\",\n        \"sellerSku\": \"string\",\n        \"condition\": \"string\",\n        \"inventoryDetails\": {\n          \"fulfillableQuantity\": 6997,\n          \"inboundWorkingQuantity\": 4882,\n          \"inboundShippedQuantity\": 9824,\n          \"inboundReceivingQuantity\": 1118,\n          \"reservedQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"researchingQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unfulfillableQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"lastUpdatedTime\": \"2008-11-25T06:45:05.765Z\",\n        \"productName\": \"string\",\n        \"totalQuantity\": 6407,\n        \"stores\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"asin\": \"string\",\n        \"fnSku\": \"string\",\n        \"sellerSku\": \"string\",\n        \"condition\": \"string\",\n        \"inventoryDetails\": {\n          \"fulfillableQuantity\": 2968,\n          \"inboundWorkingQuantity\": 6,\n          \"inboundShippedQuantity\": 7927,\n          \"inboundReceivingQuantity\": 2743,\n          \"reservedQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"researchingQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unfulfillableQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"lastUpdatedTime\": \"2005-03-05T17:22:25.055Z\",\n        \"productName\": \"string\",\n        \"totalQuantity\": 5480,\n        \"stores\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ]\n  },\n  \"pagination\": {\n    \"nextToken\": \"string\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2fb2532-d751-4e4e-ad62-8faffe7a3b19",
+              "name": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "details",
+                      "value": "false"
+                    },
+                    {
+                      "key": "granularityType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "sellerSkus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sellerSkus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sellerSku",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"granularity\": {\n      \"granularityType\": \"string\",\n      \"granularityId\": \"string\"\n    },\n    \"inventorySummaries\": [\n      {\n        \"asin\": \"string\",\n        \"fnSku\": \"string\",\n        \"sellerSku\": \"string\",\n        \"condition\": \"string\",\n        \"inventoryDetails\": {\n          \"fulfillableQuantity\": 6997,\n          \"inboundWorkingQuantity\": 4882,\n          \"inboundShippedQuantity\": 9824,\n          \"inboundReceivingQuantity\": 1118,\n          \"reservedQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"researchingQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unfulfillableQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"lastUpdatedTime\": \"2008-11-25T06:45:05.765Z\",\n        \"productName\": \"string\",\n        \"totalQuantity\": 6407,\n        \"stores\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"asin\": \"string\",\n        \"fnSku\": \"string\",\n        \"sellerSku\": \"string\",\n        \"condition\": \"string\",\n        \"inventoryDetails\": {\n          \"fulfillableQuantity\": 2968,\n          \"inboundWorkingQuantity\": 6,\n          \"inboundShippedQuantity\": 7927,\n          \"inboundReceivingQuantity\": 2743,\n          \"reservedQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"researchingQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unfulfillableQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"lastUpdatedTime\": \"2005-03-05T17:22:25.055Z\",\n        \"productName\": \"string\",\n        \"totalQuantity\": 5480,\n        \"stores\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ]\n  },\n  \"pagination\": {\n    \"nextToken\": \"string\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a9cf0d0-7bb0-42ea-869e-2124d7462acb",
+              "name": "Temporary overloading or maintenance of the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "details",
+                      "value": "false"
+                    },
+                    {
+                      "key": "granularityType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "granularityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "sellerSkus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sellerSkus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sellerSku",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {\n    \"granularity\": {\n      \"granularityType\": \"string\",\n      \"granularityId\": \"string\"\n    },\n    \"inventorySummaries\": [\n      {\n        \"asin\": \"string\",\n        \"fnSku\": \"string\",\n        \"sellerSku\": \"string\",\n        \"condition\": \"string\",\n        \"inventoryDetails\": {\n          \"fulfillableQuantity\": 6997,\n          \"inboundWorkingQuantity\": 4882,\n          \"inboundShippedQuantity\": 9824,\n          \"inboundReceivingQuantity\": 1118,\n          \"reservedQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"researchingQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unfulfillableQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"lastUpdatedTime\": \"2008-11-25T06:45:05.765Z\",\n        \"productName\": \"string\",\n        \"totalQuantity\": 6407,\n        \"stores\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"asin\": \"string\",\n        \"fnSku\": \"string\",\n        \"sellerSku\": \"string\",\n        \"condition\": \"string\",\n        \"inventoryDetails\": {\n          \"fulfillableQuantity\": 2968,\n          \"inboundWorkingQuantity\": 6,\n          \"inboundShippedQuantity\": 7927,\n          \"inboundReceivingQuantity\": 2743,\n          \"reservedQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"researchingQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"unfulfillableQuantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"lastUpdatedTime\": \"2005-03-05T17:22:25.055Z\",\n        \"productName\": \"string\",\n        \"totalQuantity\": 5480,\n        \"stores\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ]\n  },\n  \"pagination\": {\n    \"nextToken\": \"string\"\n  },\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "737883c9-08c7-4f9a-a1c6-89f4336cfa00",
+          "name": "create Inventory Item",
+          "request": {
+            "name": "create Inventory Item",
+            "description": {
+              "content": "Requests that Amazon create product-details in the Sandbox Inventory in the sandbox environment. This is a sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Selling Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fba",
+                "inventory",
+                "v1",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sellerSku\": \"<string>\",\n  \"marketplaceId\": \"<string>\",\n  \"productName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3ed8d937-6690-4ac0-adc0-ded7829d01e9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sellerSku\": \"<string>\",\n  \"marketplaceId\": \"<string>\",\n  \"productName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0fd8730-2871-43da-8a6a-945c50703752",
+              "name": "Request has missing or invalid parameters and cannot be parsed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sellerSku\": \"<string>\",\n  \"marketplaceId\": \"<string>\",\n  \"productName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "810f5222-26ae-4591-a204-ef244e057848",
+              "name": "Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, Invalid Signature or Resource Not Found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sellerSku\": \"<string>\",\n  \"marketplaceId\": \"<string>\",\n  \"productName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7a2cd3e-3c81-4d5c-9a4b-e319c04ca933",
+              "name": "The specified resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sellerSku\": \"<string>\",\n  \"marketplaceId\": \"<string>\",\n  \"productName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b90fda7-4159-4089-b9c9-302f950ef40d",
+              "name": "The frequency of requests was greater than allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sellerSku\": \"<string>\",\n  \"marketplaceId\": \"<string>\",\n  \"productName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43b1e2b8-2562-4f07-9c12-efe8fa8cc1e6",
+              "name": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sellerSku\": \"<string>\",\n  \"marketplaceId\": \"<string>\",\n  \"productName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee4c91fb-7fb5-4cd0-b4b3-779e1e60c7dc",
+              "name": "Temporary overloading or maintenance of the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sellerSku\": \"<string>\",\n  \"marketplaceId\": \"<string>\",\n  \"productName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6bfce967-a380-4785-b7dc-e7196849d6e3",
+          "name": "delete Inventory Item",
+          "request": {
+            "name": "delete Inventory Item",
+            "description": {
+              "content": "Requests that Amazon Deletes an item from the Sandbox Inventory in the sandbox environment. This is a sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Selling Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fba",
+                "inventory",
+                "v1",
+                "items",
+                ":sellerSku"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "marketplaceId",
+                  "value": "<string>",
+                  "description": "(Required) The marketplace ID for the marketplace for which the sellerSku is to be deleted."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sellerSku",
+                  "description": "(Required) A single seller SKU used for querying the specified seller SKU inventory summaries."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "97d1e11c-bf41-4b14-8ed1-110f4c0cb7dc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "items",
+                    ":sellerSku"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sellerSku",
+                      "description": "(Required) A single seller SKU used for querying the specified seller SKU inventory summaries."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e425840-30a1-450e-8406-f8f4f9a11cb8",
+              "name": "Request has missing or invalid parameters and cannot be parsed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "items",
+                    ":sellerSku"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sellerSku",
+                      "description": "(Required) A single seller SKU used for querying the specified seller SKU inventory summaries."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d689e99-af01-4bd1-8b15-4034dbe6e476",
+              "name": "Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, Invalid Signature or Resource Not Found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "items",
+                    ":sellerSku"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sellerSku",
+                      "description": "(Required) A single seller SKU used for querying the specified seller SKU inventory summaries."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e111b831-4bdb-48bc-be40-4ca35db90c68",
+              "name": "The specified resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "items",
+                    ":sellerSku"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sellerSku",
+                      "description": "(Required) A single seller SKU used for querying the specified seller SKU inventory summaries."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6900a09f-e4f3-4938-8a65-8031d665409c",
+              "name": "The frequency of requests was greater than allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "items",
+                    ":sellerSku"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sellerSku",
+                      "description": "(Required) A single seller SKU used for querying the specified seller SKU inventory summaries."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec738680-38fb-4b49-a1f1-f62530678612",
+              "name": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "items",
+                    ":sellerSku"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sellerSku",
+                      "description": "(Required) A single seller SKU used for querying the specified seller SKU inventory summaries."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63df35ec-d3ea-4a52-a6f9-1136af1cb2b9",
+              "name": "Temporary overloading or maintenance of the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "items",
+                    ":sellerSku"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "marketplaceId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sellerSku",
+                      "description": "(Required) A single seller SKU used for querying the specified seller SKU inventory summaries."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eaacef7a-7ee0-4505-905f-4a77d1df1990",
+          "name": "add Inventory",
+          "request": {
+            "name": "add Inventory",
+            "description": {
+              "content": "Requests that Amazon add items to the Sandbox Inventory with desired amount of quantity in the sandbox environment. This is a sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Selling Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fba",
+                "inventory",
+                "v1",
+                "items",
+                "inventory"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A unique token/requestId provided with each call to ensure idempotency.",
+                "key": "x-amzn-idempotency-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"inventoryItems\": [\n    {\n      \"sellerSku\": \"<string>\",\n      \"marketplaceId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"sellerSku\": \"<string>\",\n      \"marketplaceId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "622a45ae-10fe-4c04-af52-3915a8f3018b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "items",
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique token/requestId provided with each call to ensure idempotency.",
+                    "key": "x-amzn-idempotency-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inventoryItems\": [\n    {\n      \"sellerSku\": \"<string>\",\n      \"marketplaceId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"sellerSku\": \"<string>\",\n      \"marketplaceId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "049d7687-052c-460b-b365-0c5ad7781fda",
+              "name": "Request has missing or invalid parameters and cannot be parsed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "items",
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique token/requestId provided with each call to ensure idempotency.",
+                    "key": "x-amzn-idempotency-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inventoryItems\": [\n    {\n      \"sellerSku\": \"<string>\",\n      \"marketplaceId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"sellerSku\": \"<string>\",\n      \"marketplaceId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90e424b7-55bf-4b97-85c9-449b6fadb309",
+              "name": "Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, Invalid Signature or Resource Not Found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "items",
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique token/requestId provided with each call to ensure idempotency.",
+                    "key": "x-amzn-idempotency-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inventoryItems\": [\n    {\n      \"sellerSku\": \"<string>\",\n      \"marketplaceId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"sellerSku\": \"<string>\",\n      \"marketplaceId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "40e3a0d2-71ac-47fa-b5be-08f8dee68e48",
+              "name": "The specified resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "items",
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique token/requestId provided with each call to ensure idempotency.",
+                    "key": "x-amzn-idempotency-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inventoryItems\": [\n    {\n      \"sellerSku\": \"<string>\",\n      \"marketplaceId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"sellerSku\": \"<string>\",\n      \"marketplaceId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2d15be5-9339-4169-afb6-efe41d3c2581",
+              "name": "The frequency of requests was greater than allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "items",
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique token/requestId provided with each call to ensure idempotency.",
+                    "key": "x-amzn-idempotency-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inventoryItems\": [\n    {\n      \"sellerSku\": \"<string>\",\n      \"marketplaceId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"sellerSku\": \"<string>\",\n      \"marketplaceId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3af7898a-6b96-4026-a070-f198f3be699d",
+              "name": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "items",
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique token/requestId provided with each call to ensure idempotency.",
+                    "key": "x-amzn-idempotency-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inventoryItems\": [\n    {\n      \"sellerSku\": \"<string>\",\n      \"marketplaceId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"sellerSku\": \"<string>\",\n      \"marketplaceId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9397d410-4661-4d1c-ae98-bdac84ca25c7",
+              "name": "Temporary overloading or maintenance of the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fba",
+                    "inventory",
+                    "v1",
+                    "items",
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) A unique token/requestId provided with each call to ensure idempotency.",
+                    "key": "x-amzn-idempotency-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inventoryItems\": [\n    {\n      \"sellerSku\": \"<string>\",\n      \"marketplaceId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"sellerSku\": \"<string>\",\n      \"marketplaceId\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sellingpartnerapi-na.amazon.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6988f5fb-3a19-4176-ae6d-d49fbf3e9067",
+    "name": "Selling Partner Fba Inventory API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Selling Partner API for FBA Inventory lets you programmatically retrieve information about inventory in Amazon's fulfillment network.\n\nContact Support:\n Name: Selling Partner API Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

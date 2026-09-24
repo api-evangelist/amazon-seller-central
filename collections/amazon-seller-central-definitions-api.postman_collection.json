@@ -1,0 +1,1530 @@
+{
+  "item": [
+    {
+      "id": "9e4dec62-f8c8-4aeb-8b4e-cd485abb4f26",
+      "name": "definitions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "69aaedec-1d71-46a8-840d-12b7a590cdd0",
+          "name": "search Definitions Product Types",
+          "request": {
+            "name": "search Definitions Product Types",
+            "description": {
+              "content": "Search for and return a list of Amazon product types that have definitions available.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 5 | 10 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "definitions",
+                "2020-09-01",
+                "productTypes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "keywords",
+                  "value": "<string>,<string>",
+                  "description": "A comma-delimited list of keywords to search product types. **Note:** Cannot be used with `itemName`."
+                },
+                {
+                  "disabled": false,
+                  "key": "marketplaceIds",
+                  "value": "<string>,<string>",
+                  "description": "(Required) A comma-delimited list of Amazon marketplace identifiers for the request."
+                },
+                {
+                  "disabled": false,
+                  "key": "itemName",
+                  "value": "<string>",
+                  "description": "Title of ASIN to get product type recommendation. **Note:** Cannot be used with `keywords`."
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "Locale for display names in response. Defaults to primary locale of the marketplace."
+                },
+                {
+                  "disabled": false,
+                  "key": "searchLocale",
+                  "value": "<string>",
+                  "description": "Language used for `keywords` or `itemName` parameters. Defaults to primary locale of the marketplace."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5c53f850-2f97-476c-b937-861d0d191f01",
+              "name": "Successfully retrieved a list of Amazon product types that have definitions available.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "definitions",
+                    "2020-09-01",
+                    "productTypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keywords",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "itemName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchLocale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"productTypes\": [\n    {\n      \"name\": \"LUGGAGE\",\n      \"displayName\": \"Luggage\",\n      \"marketplaceIds\": [\n        \"ATVPDKIKX0DER\"\n      ]\n    }\n  ],\n  \"productTypeVersion\": \"UHqSqmb4FNUk=\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82f0af34-9e44-44cc-9348-65db3ad4d77f",
+              "name": "Request has missing or invalid parameters and cannot be parsed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "definitions",
+                    "2020-09-01",
+                    "productTypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keywords",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "itemName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchLocale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce97ce00-43c4-4533-bc4d-13c4bcd895c9",
+              "name": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "definitions",
+                    "2020-09-01",
+                    "productTypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keywords",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "itemName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchLocale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ed213c1-c349-4434-8f5d-6660e522d507",
+              "name": "The resource specified does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "definitions",
+                    "2020-09-01",
+                    "productTypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keywords",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "itemName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchLocale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca4ec955-8eab-4c19-80a0-a902926227a5",
+              "name": "The request exceeds the maximum size.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "definitions",
+                    "2020-09-01",
+                    "productTypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keywords",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "itemName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchLocale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa47e5a9-142b-412d-9f46-67a99ba8d3a7",
+              "name": "The request payload is in an unsupported format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "definitions",
+                    "2020-09-01",
+                    "productTypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keywords",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "itemName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchLocale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "876b0f95-33ed-4fbb-999e-f5b20650e099",
+              "name": "The frequency of requests was greater than allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "definitions",
+                    "2020-09-01",
+                    "productTypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keywords",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "itemName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchLocale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1dbc3562-d0e1-49a1-9850-ccbfc192ef3a",
+              "name": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "definitions",
+                    "2020-09-01",
+                    "productTypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keywords",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "itemName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchLocale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58c49ed3-0b82-4a58-adc3-37619d753a6d",
+              "name": "Temporary overloading or maintenance of the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "definitions",
+                    "2020-09-01",
+                    "productTypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keywords",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "itemName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchLocale",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc8ce909-0ffb-4161-a3d7-85c9f098af44",
+          "name": "get Definitions Product Type",
+          "request": {
+            "name": "get Definitions Product Type",
+            "description": {
+              "content": "Retrieve an Amazon product type definition.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 5 | 10 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "definitions",
+                "2020-09-01",
+                "productTypes",
+                ":productType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sellerId",
+                  "value": "<string>",
+                  "description": "A selling partner identifier. When provided, seller-specific requirements and values are populated within the product type definition schema, such as brand names associated with the selling partner."
+                },
+                {
+                  "disabled": false,
+                  "key": "marketplaceIds",
+                  "value": "<string>,<string>",
+                  "description": "(Required) A comma-delimited list of Amazon marketplace identifiers for the request.\nNote: This parameter is limited to one marketplaceId at this time."
+                },
+                {
+                  "disabled": false,
+                  "key": "productTypeVersion",
+                  "value": "LATEST",
+                  "description": "The version of the Amazon product type to retrieve. Defaults to \"LATEST\". Prerelease versions of product type definitions may be retrieved with \"RELEASE_CANDIDATE\". If no prerelease version is currently available, the \"LATEST\" live version will be provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "requirements",
+                  "value": "LISTING",
+                  "description": "The name of the requirements set to retrieve requirements for."
+                },
+                {
+                  "disabled": false,
+                  "key": "requirementsEnforced",
+                  "value": "ENFORCED",
+                  "description": "Identifies if the required attributes for a requirements set are enforced by the product type definition schema. Non-enforced requirements enable structural validation of individual attributes without all the required attributes being present (such as for partial updates)."
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "DEFAULT",
+                  "description": "Locale for retrieving display labels and other presentation details. Defaults to the default language of the first marketplace in the request."
+                },
+                {
+                  "disabled": false,
+                  "key": "parentageLevel",
+                  "value": "<string>",
+                  "description": "The parentage level of the listing to retrieve a schema for. When provided, the schema is simplified by resolving all conditional logic related to the specified parentage level, resulting in a smaller schema with fewer conditions."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "productType",
+                  "description": "(Required) The Amazon product type name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "16000c90-ad10-4c40-aedc-45eb8f77d03a",
+              "name": "Successfully retrieved an Amazon product type definition.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "definitions",
+                    "2020-09-01",
+                    "productTypes",
+                    ":productType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sellerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "productTypeVersion",
+                      "value": "LATEST"
+                    },
+                    {
+                      "key": "requirements",
+                      "value": "LISTING"
+                    },
+                    {
+                      "key": "requirementsEnforced",
+                      "value": "ENFORCED"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "DEFAULT"
+                    },
+                    {
+                      "key": "parentageLevel",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "productType",
+                      "description": "(Required) The Amazon product type name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"metaSchema\": {\n    \"link\": {\n      \"resource\": \"https://meta-schema-url\",\n      \"verb\": \"GET\"\n    },\n    \"checksum\": \"c7af9479ca7261645cea9db56c5f720d\"\n  },\n  \"schema\": {\n    \"link\": {\n      \"resource\": \"https://schema-url\",\n      \"verb\": \"GET\"\n    },\n    \"checksum\": \"c7af9479ca7261645cea9db56c5f720d\"\n  },\n  \"requirements\": \"LISTING\",\n  \"requirementsEnforced\": \"ENFORCED\",\n  \"propertyGroups\": {\n    \"product_identity\": {\n      \"title\": \"Product Identity\",\n      \"description\": \"Information to uniquely identify your product (e.g., UPC, EAN, GTIN, Product Type, Brand)\",\n      \"propertyNames\": [\n        \"item_name\",\n        \"brand\",\n        \"external_product_id\",\n        \"gtin_exemption_reason\",\n        \"merchant_suggested_asin\",\n        \"product_type\",\n        \"product_category\",\n        \"product_subcategory\",\n        \"item_type_keyword\"\n      ]\n    }\n  },\n  \"locale\": \"en_US\",\n  \"marketplaceIds\": [\n    \"ATVPDKIKX0DER\"\n  ],\n  \"productType\": \"LUGGAGE\",\n  \"displayName\": \"Luggage\",\n  \"productTypeVersion\": {\n    \"version\": \"UHqSqmb4FNUk=\",\n    \"latest\": true,\n    \"releaseCandidate\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1f9bc7b-c71c-4cc4-ad4a-365f7d30f430",
+              "name": "Request has missing or invalid parameters and cannot be parsed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "definitions",
+                    "2020-09-01",
+                    "productTypes",
+                    ":productType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sellerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "productTypeVersion",
+                      "value": "LATEST"
+                    },
+                    {
+                      "key": "requirements",
+                      "value": "LISTING"
+                    },
+                    {
+                      "key": "requirementsEnforced",
+                      "value": "ENFORCED"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "DEFAULT"
+                    },
+                    {
+                      "key": "parentageLevel",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "productType",
+                      "description": "(Required) The Amazon product type name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c0d1378-ffef-4704-b208-39815ef0b8f3",
+              "name": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "definitions",
+                    "2020-09-01",
+                    "productTypes",
+                    ":productType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sellerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "productTypeVersion",
+                      "value": "LATEST"
+                    },
+                    {
+                      "key": "requirements",
+                      "value": "LISTING"
+                    },
+                    {
+                      "key": "requirementsEnforced",
+                      "value": "ENFORCED"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "DEFAULT"
+                    },
+                    {
+                      "key": "parentageLevel",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "productType",
+                      "description": "(Required) The Amazon product type name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f1b7260-3893-4175-b65a-003676fa61d8",
+              "name": "The resource specified does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "definitions",
+                    "2020-09-01",
+                    "productTypes",
+                    ":productType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sellerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "productTypeVersion",
+                      "value": "LATEST"
+                    },
+                    {
+                      "key": "requirements",
+                      "value": "LISTING"
+                    },
+                    {
+                      "key": "requirementsEnforced",
+                      "value": "ENFORCED"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "DEFAULT"
+                    },
+                    {
+                      "key": "parentageLevel",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "productType",
+                      "description": "(Required) The Amazon product type name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc5c6c29-e34f-4c82-a853-580f3bd37c89",
+              "name": "The request exceeds the maximum size.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "definitions",
+                    "2020-09-01",
+                    "productTypes",
+                    ":productType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sellerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "productTypeVersion",
+                      "value": "LATEST"
+                    },
+                    {
+                      "key": "requirements",
+                      "value": "LISTING"
+                    },
+                    {
+                      "key": "requirementsEnforced",
+                      "value": "ENFORCED"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "DEFAULT"
+                    },
+                    {
+                      "key": "parentageLevel",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "productType",
+                      "description": "(Required) The Amazon product type name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2500e21e-9fef-4f5b-8697-439701ecac0b",
+              "name": "The request payload is in an unsupported format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "definitions",
+                    "2020-09-01",
+                    "productTypes",
+                    ":productType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sellerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "productTypeVersion",
+                      "value": "LATEST"
+                    },
+                    {
+                      "key": "requirements",
+                      "value": "LISTING"
+                    },
+                    {
+                      "key": "requirementsEnforced",
+                      "value": "ENFORCED"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "DEFAULT"
+                    },
+                    {
+                      "key": "parentageLevel",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "productType",
+                      "description": "(Required) The Amazon product type name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d2e50e1-ed44-46a3-987d-c0da2552b127",
+              "name": "The frequency of requests was greater than allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "definitions",
+                    "2020-09-01",
+                    "productTypes",
+                    ":productType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sellerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "productTypeVersion",
+                      "value": "LATEST"
+                    },
+                    {
+                      "key": "requirements",
+                      "value": "LISTING"
+                    },
+                    {
+                      "key": "requirementsEnforced",
+                      "value": "ENFORCED"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "DEFAULT"
+                    },
+                    {
+                      "key": "parentageLevel",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "productType",
+                      "description": "(Required) The Amazon product type name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ec2b2fb-c52a-4542-9970-12a9ccf9519d",
+              "name": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "definitions",
+                    "2020-09-01",
+                    "productTypes",
+                    ":productType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sellerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "productTypeVersion",
+                      "value": "LATEST"
+                    },
+                    {
+                      "key": "requirements",
+                      "value": "LISTING"
+                    },
+                    {
+                      "key": "requirementsEnforced",
+                      "value": "ENFORCED"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "DEFAULT"
+                    },
+                    {
+                      "key": "parentageLevel",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "productType",
+                      "description": "(Required) The Amazon product type name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2cae06e7-7f22-4044-8adf-50de1168ec5e",
+              "name": "Temporary overloading or maintenance of the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "definitions",
+                    "2020-09-01",
+                    "productTypes",
+                    ":productType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sellerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceIds",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "productTypeVersion",
+                      "value": "LATEST"
+                    },
+                    {
+                      "key": "requirements",
+                      "value": "LISTING"
+                    },
+                    {
+                      "key": "requirementsEnforced",
+                      "value": "ENFORCED"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "DEFAULT"
+                    },
+                    {
+                      "key": "parentageLevel",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "productType",
+                      "description": "(Required) The Amazon product type name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sellingpartnerapi-na.amazon.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a1d3d891-3f1e-4163-b69e-9d64b5b192b4",
+    "name": "Selling Partner API for Product Type Definitions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Selling Partner API for Product Type Definitions provides programmatic access to attribute and data requirements for product types in the Amazon catalog. Use this API to return the JSON Schema for a product type that you can then use with other Selling Partner APIs, such as the Selling Partner API for Listings Items, the Selling Partner API for Catalog Items, and the Selling Partner API for Feeds (for JSON-based listing feeds).\n\nFor more information, see the [Product Type Definitions API Use Case Guide](doc:product-type-api-use-case-guide).\n\nContact Support:\n Name: Selling Partner API Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

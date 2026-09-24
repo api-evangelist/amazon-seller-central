@@ -1,0 +1,658 @@
+{
+  "item": [
+    {
+      "id": "9dca5b56-afad-4eb4-b180-2cd75eebbd55",
+      "name": "getOrder",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "51f9f8c7-62c5-449d-ad89-fb6213e0a699",
+          "name": "get Order",
+          "request": {
+            "name": "get Order",
+            "description": {
+              "content": "Returns the order that you specify.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that are applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may receive higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api) in the Selling Partner API documentation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                "2026-01-01",
+                "orders",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includedData",
+                  "value": "<string>",
+                  "description": "A list of datasets to include in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "includedData",
+                  "value": "<string>",
+                  "description": "A list of datasets to include in the response."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) An Amazon-defined order identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "376be918-f5de-4982-9a29-67bb462d5751",
+              "name": "Success.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "2026-01-01",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) An Amazon-defined order identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"order\": {\n    \"orderId\": \"202-1234567-8901234\",\n    \"orderAliases\": [\n      {\n        \"aliasId\": \"UK-MERCHANT-ORDER-2024-001\",\n        \"aliasType\": \"SELLER_ORDER_ID\"\n      }\n    ],\n    \"createdTime\": \"2024-12-25T09:15:00Z\",\n    \"lastUpdatedTime\": \"2024-12-25T16:30:00Z\",\n    \"programs\": [\n      \"PRIME\"\n    ],\n    \"salesChannel\": {\n      \"channelName\": \"AMAZON\",\n      \"marketplaceId\": \"A1F83G8C2ARO7P\",\n      \"marketplaceName\": \"Amazon.co.uk\"\n    },\n    \"buyer\": {\n      \"buyerName\": \"James Wilson\",\n      \"buyerEmail\": \"buyer-email@marketplace.amazon.co.uk\"\n    },\n    \"recipient\": {\n      \"deliveryAddress\": {\n        \"name\": \"James Wilson\",\n        \"companyName\": \"Wilson Electronics Ltd\",\n        \"addressLine1\": \"123 High Street\",\n        \"addressLine2\": \"Unit 4B\",\n        \"addressLine3\": \"\",\n        \"city\": \"Manchester\",\n        \"districtOrCounty\": \"Greater Manchester\",\n        \"stateOrRegion\": \"England\",\n        \"municipality\": \"\",\n        \"postalCode\": \"M1 2AB\",\n        \"countryCode\": \"GB\",\n        \"phone\": \"+44 161 123 4567\",\n        \"addressType\": \"COMMERCIAL\"\n      }\n    },\n    \"proceeds\": {\n      \"grandTotal\": {\n        \"amount\": \"103.97\",\n        \"currencyCode\": \"GBP\"\n      },\n      \"breakdowns\": [\n        {\n          \"type\": \"ITEM\",\n          \"subtotal\": {\n            \"amount\": \"89.97\",\n            \"currencyCode\": \"GBP\"\n          }\n        },\n        {\n          \"type\": \"SHIPPING\",\n          \"subtotal\": {\n            \"amount\": \"10.00\",\n            \"currencyCode\": \"GBP\"\n          }\n        },\n        {\n          \"type\": \"TAX\",\n          \"subtotal\": {\n            \"amount\": \"4.00\",\n            \"currencyCode\": \"GBP\"\n          }\n        }\n      ]\n    },\n    \"fulfillment\": {\n      \"fulfillmentStatus\": \"SHIPPED\",\n      \"fulfilledBy\": \"MERCHANT\",\n      \"fulfillmentServiceLevel\": \"STANDARD\",\n      \"shipByWindow\": {\n        \"earliestDateTime\": \"2024-12-25T00:00:00Z\",\n        \"latestDateTime\": \"2024-12-26T23:59:59Z\"\n      },\n      \"deliverByWindow\": {\n        \"earliestDateTime\": \"2024-12-27T00:00:00Z\",\n        \"latestDateTime\": \"2024-12-30T23:59:59Z\"\n      }\n    },\n    \"orderItems\": [\n      {\n        \"orderItemId\": \"20212345678901\",\n        \"quantityOrdered\": 3,\n        \"programs\": [\n          \"TRANSPARENCY\"\n        ],\n        \"product\": {\n          \"asin\": \"B08DFPV54V\",\n          \"title\": \"Echo Dot (4th Gen) | Smart speaker with Alexa | Charcoal\",\n          \"sellerSku\": \"ECHO-DOT-4-UK-CHARCOAL-3PACK\",\n          \"condition\": {\n            \"conditionType\": \"NEW\",\n            \"conditionSubtype\": \"NEW\",\n            \"conditionNote\": \"Brand new, sealed in original packaging\"\n          },\n          \"price\": {\n            \"unitPrice\": {\n              \"amount\": \"29.99\",\n              \"currencyCode\": \"GBP\"\n            },\n            \"priceDesignation\": \"BUSINESS_PRICE\"\n          },\n          \"serialNumbers\": [\n            \"ED4UK-2024-ABC123456789\",\n            \"ED4UK-2024-DEF987654321\",\n            \"ED4UK-2024-GHI456789123\"\n          ],\n          \"customization\": {\n            \"customizedUrl\": \"\"\n          }\n        },\n        \"proceeds\": {\n          \"proceedsTotal\": {\n            \"amount\": \"103.97\",\n            \"currencyCode\": \"GBP\"\n          },\n          \"breakdowns\": [\n            {\n              \"type\": \"ITEM\",\n              \"subtotal\": {\n                \"amount\": \"89.97\",\n                \"currencyCode\": \"GBP\"\n              }\n            },\n            {\n              \"type\": \"SHIPPING\",\n              \"subtotal\": {\n                \"amount\": \"10.00\",\n                \"currencyCode\": \"GBP\"\n              }\n            },\n            {\n              \"type\": \"TAX\",\n              \"subtotal\": {\n                \"amount\": \"4.00\",\n                \"currencyCode\": \"GBP\"\n              },\n              \"detailedBreakdowns\": [\n                {\n                  \"subtype\": \"ITEM\",\n                  \"value\": {\n                    \"amount\": \"3.00\",\n                    \"currencyCode\": \"GBP\"\n                  }\n                },\n                {\n                  \"subtype\": \"SHIPPING\",\n                  \"value\": {\n                    \"amount\": \"1.00\",\n                    \"currencyCode\": \"GBP\"\n                  }\n                }\n              ]\n            }\n          ]\n        },\n        \"promotion\": {\n          \"breakdowns\": [\n            {\n              \"promotionId\": \"UK-BOXING-DAY-2024\"\n            }\n          ]\n        },\n        \"fulfillment\": {\n          \"quantityFulfilled\": 3,\n          \"quantityUnfulfilled\": 0,\n          \"packing\": {\n            \"giftOption\": {\n              \"giftMessage\": \"Happy Christmas! Hope you enjoy your new smart speakers.\",\n              \"giftWrapLevel\": \"PREMIUM\"\n            }\n          },\n          \"shipping\": {\n            \"scheduledDeliveryWindow\": {\n              \"earliestDateTime\": \"2024-12-27T09:00:00Z\",\n              \"latestDateTime\": \"2024-12-27T17:00:00Z\"\n            },\n            \"shippingConstraints\": {\n              \"signatureConfirmation\": \"MANDATORY\",\n              \"recipientIdentityVerification\": \"MANDATORY\"\n            },\n            \"internationalShipping\": {\n              \"iossNumber\": \"IM1234567890\"\n            }\n          }\n        }\n      }\n    ],\n    \"packages\": [\n      {\n        \"packageReferenceId\": \"UK-PKG-2024-001\",\n        \"createdTime\": \"2024-12-25T16:45:00Z\",\n        \"packageStatus\": {\n          \"status\": \"IN_TRANSIT\",\n          \"detailedStatus\": \"OUT_FOR_DELIVERY\"\n        },\n        \"carrier\": \"Royal Mail\",\n        \"shipTime\": \"2024-12-26T14:00:00Z\",\n        \"shippingService\": \"Royal Mail Tracked 48\",\n        \"trackingNumber\": \"RR123456789GB\",\n        \"shipFromAddress\": {\n          \"name\": \"TechGear UK Warehouse\",\n          \"addressLine1\": \"Industrial Estate Unit 15\",\n          \"addressLine2\": \"Riverside Business Park\",\n          \"addressLine3\": \"\",\n          \"city\": \"Birmingham\",\n          \"districtOrCounty\": \"West Midlands\",\n          \"stateOrRegion\": \"England\",\n          \"municipality\": \"\",\n          \"postalCode\": \"B12 0XY\",\n          \"countryCode\": \"GB\"\n        },\n        \"packageItems\": [\n          {\n            \"orderItemId\": \"20212345678901\",\n            \"quantity\": 3,\n            \"transparencyCodes\": [\n              \"T12345ABCDE67890UK\",\n              \"T12346ABCDF67891UK\",\n              \"T12347ABCDG67892UK\"\n            ]\n          }\n        ]\n      }\n    ],\n    \"fulfillmentOrders\": [\n      {\n        \"fulfillmentOrderId\": \"LdDv2jxM4\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42a05bba-c53a-42da-9850-731c772db9e6",
+              "name": "Request has missing or invalid parameters and cannot be parsed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "2026-01-01",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) An Amazon-defined order identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5bc9181a-013f-40e7-aa8c-bfd26e689ad7",
+              "name": "Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "2026-01-01",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) An Amazon-defined order identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d60decc3-ae40-439e-afa6-09ec1d0aa9f9",
+              "name": "The resource specified does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "2026-01-01",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) An Amazon-defined order identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Your rate limit (requests per second) for this operation.",
+                  "key": "x-amzn-RateLimit-Limit",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dab1a584-95a6-4780-9eba-ad2c6e6d6fec",
+              "name": "The request size exceeded the maximum accepted size.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "2026-01-01",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) An Amazon-defined order identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ccd79b8-e88e-48ac-a976-602f465cad16",
+              "name": "The request payload is in an unsupported format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "2026-01-01",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) An Amazon-defined order identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fff368a6-7795-42ee-a696-ca87908c5b7c",
+              "name": "The frequency of requests was greater than allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "2026-01-01",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) An Amazon-defined order identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b86f239-2cfe-44a6-a692-22a45e483dcd",
+              "name": "An unexpected condition occurred that prevented the server from fulfilling the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "2026-01-01",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) An Amazon-defined order identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18228909-1c8b-4b25-921f-8d9475cb6bf6",
+              "name": "Temporary overloading or maintenance of the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "2026-01-01",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includedData",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) An Amazon-defined order identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique request reference identifier.",
+                  "key": "x-amzn-RequestId",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"details\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sellingpartnerapi-na.amazon.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5a342949-18b3-4c65-b989-14152e1ad962",
+    "name": "Selling Partner API for Orders Get Order API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Selling Partner API for Orders returns orders information. This API supports the following types of orders:\n\n- FBM (Fulfilled by Merchant)\n- FBA (Fulfilled by Amazon) - read only\n- Amazon Fresh\n\nThis API does not display order data that is more than two years old, except in the JP, AU, and SG marketplaces, for which data from 2016 and after is available.\n\nContact Support:\n Name: Selling Partner API Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
