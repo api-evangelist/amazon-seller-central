@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-product-type-list-schema.json",
+  "title": "ProductTypeList",
+  "description": "A list of Amazon product types with definitions available.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-definitions-api-openapi.yml#/components/schemas/ProductTypeList",
+  "type": "object",
+  "required": [
+    "productTypes",
+    "productTypeVersion"
+  ],
+  "properties": {
+    "productTypes": {
+      "description": "A list of product types.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ProductType"
+      }
+    },
+    "productTypeVersion": {
+      "description": "Amazon product type version identifier.",
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "ProductType": {
+      "type": "object",
+      "required": [
+        "marketplaceIds",
+        "name",
+        "displayName"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the Amazon product type."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Human-readable and localized description of the Amazon product type."
+        },
+        "marketplaceIds": {
+          "type": "array",
+          "description": "The Amazon marketplace identifiers for which the product type definition is available.",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "An Amazon product type with a definition available."
+    }
+  }
+}

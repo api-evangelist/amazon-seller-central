@@ -1,0 +1,241 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-purchase-shipment-request-schema.json",
+  "title": "PurchaseShipmentRequest",
+  "description": "The request schema for the purchaseShipment operation.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-shipping-api-openapi.yml#/components/schemas/PurchaseShipmentRequest",
+  "type": "object",
+  "required": [
+    "rateId",
+    "requestedDocumentSpecification",
+    "requestToken"
+  ],
+  "properties": {
+    "requestToken": {
+      "$ref": "#/$defs/RequestToken"
+    },
+    "rateId": {
+      "$ref": "#/$defs/RateId"
+    },
+    "requestedDocumentSpecification": {
+      "$ref": "#/$defs/RequestedDocumentSpecification"
+    },
+    "requestedValueAddedServices": {
+      "$ref": "#/$defs/RequestedValueAddedServiceList"
+    },
+    "additionalInputs": {
+      "type": "object",
+      "additionalProperties": {},
+      "description": "The additional inputs required to purchase a shipping offering, in JSON format. The JSON provided here must adhere to the JSON schema that is returned in the response to the getAdditionalInputs operation.\n\nAdditional inputs are only required when indicated by the requiresAdditionalInputs property in the response to the getRates operation."
+    }
+  },
+  "$defs": {
+    "DocumentFormat": {
+      "type": "string",
+      "description": "The file format of the document.",
+      "enum": [
+        "PDF",
+        "PNG",
+        "ZPL"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "PDF",
+          "description": "The Portable Document Format (PDF) file format. Used to present documents, including text formatting and images, in a manner independent of application software, hardware, and operating systems."
+        },
+        {
+          "value": "PNG",
+          "description": "Portable Network Graphics (PNG) is a raster-graphics file format that supports lossless data compression."
+        },
+        {
+          "value": "ZPL",
+          "description": "Zebra Programming Language (ZPL) format is from Zebra Technologies. It's used primarily for labeling applications and can only be used with ZPL compatible printers."
+        }
+      ]
+    },
+    "DocumentSize": {
+      "type": "object",
+      "required": [
+        "length",
+        "unit",
+        "width"
+      ],
+      "properties": {
+        "width": {
+          "description": "The width of the document measured in the units specified.",
+          "type": "number"
+        },
+        "length": {
+          "description": "The length of the document measured in the units specified.",
+          "type": "number"
+        },
+        "unit": {
+          "type": "string",
+          "description": "The unit of measurement.",
+          "enum": [
+            "INCH",
+            "CENTIMETER"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "INCH",
+              "description": "The imperial unit of length equal to one twelfth of a foot."
+            },
+            {
+              "value": "CENTIMETER",
+              "description": "A metric unit of length, equal to one hundredth of a meter."
+            }
+          ]
+        }
+      },
+      "description": "The size dimensions of the label."
+    },
+    "DocumentType": {
+      "type": "string",
+      "description": "The type of shipping document.",
+      "enum": [
+        "PACKSLIP",
+        "LABEL",
+        "RECEIPT",
+        "CUSTOM_FORM"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "PACKSLIP",
+          "description": "A listing of the items packed within the shipment."
+        },
+        {
+          "value": "LABEL",
+          "description": "The shipping label for the specific shipment."
+        },
+        {
+          "value": "RECEIPT",
+          "description": "The receipt of the shipment."
+        },
+        {
+          "value": "CUSTOM_FORM",
+          "description": "The customs documentation for a cross-border shipment."
+        }
+      ]
+    },
+    "Dpi": {
+      "type": "integer",
+      "description": "The dots per inch (DPI) value used in printing. This value represents a measure of the resolution of the document."
+    },
+    "LabelAttribute": {
+      "type": "string",
+      "description": "Enumerates the attributes supported to be printed on a shipping label. The values for these attributes are retrieved from GetRates/OneClickShipment request",
+      "enum": [
+        "PACKAGE_CLIENT_REFERENCE_ID",
+        "SELLER_DISPLAY_NAME",
+        "COLLECT_ON_DELIVERY_AMOUNT"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "PACKAGE_CLIENT_REFERENCE_ID",
+          "description": "Prints client reference ID on the shipping label"
+        },
+        {
+          "value": "SELLER_DISPLAY_NAME",
+          "description": "Prints seller name on the shipping label"
+        },
+        {
+          "value": "COLLECT_ON_DELIVERY_AMOUNT",
+          "description": "Prints Collect On Delivery amount on the shipping label."
+        }
+      ]
+    },
+    "NeedFileJoining": {
+      "type": "boolean",
+      "description": "When true, files should be stitched together. Otherwise, files should be returned separately. Defaults to false."
+    },
+    "PageLayout": {
+      "type": "string",
+      "description": "Indicates the position of the label on the paper. Should be the same value as returned in getRates response."
+    },
+    "RateId": {
+      "type": "string",
+      "description": "An identifier for the rate (shipment offering) provided by a shipping service provider."
+    },
+    "RequestAttributes": {
+      "type": "array",
+      "description": "Specify the type of attributes to be added on a label.",
+      "items": {
+        "$ref": "#/$defs/LabelAttribute"
+      }
+    },
+    "RequestToken": {
+      "type": "string",
+      "description": "A unique token generated to identify a getRates operation."
+    },
+    "RequestedDocumentSpecification": {
+      "type": "object",
+      "required": [
+        "format",
+        "needFileJoining",
+        "requestedDocumentTypes",
+        "size"
+      ],
+      "properties": {
+        "format": {
+          "$ref": "#/$defs/DocumentFormat"
+        },
+        "size": {
+          "$ref": "#/$defs/DocumentSize"
+        },
+        "dpi": {
+          "$ref": "#/$defs/Dpi"
+        },
+        "pageLayout": {
+          "$ref": "#/$defs/PageLayout"
+        },
+        "needFileJoining": {
+          "$ref": "#/$defs/NeedFileJoining"
+        },
+        "requestedDocumentTypes": {
+          "description": "A list of the document types requested.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DocumentType"
+          }
+        },
+        "requestedLabelCustomization": {
+          "$ref": "#/$defs/RequestedLabelCustomization"
+        }
+      },
+      "description": "The document specifications requested. For calls to the purchaseShipment operation, the shipment purchase fails if the specified document specifications are not among those returned in the response to the getRates operation."
+    },
+    "RequestedLabelCustomization": {
+      "type": "object",
+      "description": "Object contains customised data requested by a shipper to be printed on a shipping label.",
+      "properties": {
+        "requestAttributes": {
+          "$ref": "#/$defs/RequestAttributes"
+        }
+      }
+    },
+    "RequestedValueAddedService": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The identifier of the selected value-added service. Must be among those returned in the response to the getRates operation."
+        }
+      },
+      "description": "A value-added service to be applied to a shipping service purchase."
+    },
+    "RequestedValueAddedServiceList": {
+      "type": "array",
+      "description": "The value-added services to be added to a shipping service purchase.",
+      "items": {
+        "$ref": "#/$defs/RequestedValueAddedService"
+      }
+    }
+  }
+}

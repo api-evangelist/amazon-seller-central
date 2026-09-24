@@ -1,0 +1,344 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-get-my-fees-estimate-response-schema.json",
+  "title": "GetMyFeesEstimateResponse",
+  "description": "The response object for the GetMyFeesEstimate operation.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-fees-api-openapi.yml#/components/schemas/GetMyFeesEstimateResponse",
+  "type": "object",
+  "properties": {
+    "payload": {
+      "description": "The payload for the operation.",
+      "$ref": "#/$defs/GetMyFeesEstimateResult"
+    },
+    "errors": {
+      "description": "A list of errors that may have occurred during the GetMyFeesEstimate operation.",
+      "$ref": "#/$defs/ErrorList"
+    }
+  },
+  "$defs": {
+    "Error": {
+      "type": "object",
+      "description": "An object representing an error that occurred during the API operation.",
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "An error code that identifies the type of error that occurred."
+        },
+        "message": {
+          "type": "string",
+          "description": "A message that describes the error condition."
+        },
+        "details": {
+          "type": "string",
+          "description": "Additional details that can help the caller understand or fix the issue."
+        }
+      }
+    },
+    "ErrorList": {
+      "type": "array",
+      "description": "A list of error responses returned when a request is unsuccessful.",
+      "items": {
+        "$ref": "#/$defs/Error"
+      }
+    },
+    "FeeDetail": {
+      "description": "The type of fee, fee amount, and other details.",
+      "type": "object",
+      "required": [
+        "FeeType",
+        "FeeAmount",
+        "FinalFee"
+      ],
+      "properties": {
+        "FeeType": {
+          "description": "The type of fee charged to a seller.",
+          "type": "string"
+        },
+        "FeeAmount": {
+          "description": "The amount charged for a given fee.",
+          "$ref": "#/$defs/MoneyType"
+        },
+        "FeePromotion": {
+          "description": "The promotion amount for a given fee.",
+          "$ref": "#/$defs/MoneyType"
+        },
+        "TaxAmount": {
+          "description": "The tax amount for a given fee.",
+          "$ref": "#/$defs/MoneyType"
+        },
+        "FinalFee": {
+          "description": "The final fee amount for a given fee.",
+          "$ref": "#/$defs/MoneyType"
+        },
+        "IncludedFeeDetailList": {
+          "$ref": "#/$defs/IncludedFeeDetailList"
+        }
+      }
+    },
+    "FeeDetailList": {
+      "description": "A list of other fees that contribute to a given fee.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/FeeDetail"
+      }
+    },
+    "FeesEstimate": {
+      "description": "The total estimated fees for an item and a list of details.",
+      "type": "object",
+      "required": [
+        "TimeOfFeesEstimation"
+      ],
+      "properties": {
+        "TimeOfFeesEstimation": {
+          "description": "The time at which the fees were estimated. This defaults to the time the request is made.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "TotalFeesEstimate": {
+          "description": "Total estimated fees for a given item, price, and fulfillment channel.",
+          "$ref": "#/$defs/MoneyType"
+        },
+        "FeeDetailList": {
+          "$ref": "#/$defs/FeeDetailList"
+        }
+      }
+    },
+    "FeesEstimateError": {
+      "description": "An unexpected error occurred during this operation.",
+      "type": "object",
+      "required": [
+        "Code",
+        "Detail",
+        "Message",
+        "Type"
+      ],
+      "properties": {
+        "Type": {
+          "description": "An error type, identifying either the receiver or the sender as the originator of the error.",
+          "type": "string"
+        },
+        "Code": {
+          "description": "An error code that identifies the type of error that occurred.",
+          "type": "string"
+        },
+        "Message": {
+          "description": "A message that describes the error condition.",
+          "type": "string"
+        },
+        "Detail": {
+          "$ref": "#/$defs/FeesEstimateErrorDetail"
+        }
+      }
+    },
+    "FeesEstimateErrorDetail": {
+      "description": "Additional information that can help the caller understand or fix the issue.",
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "FeesEstimateIdentifier": {
+      "description": "An item identifier, marketplace, time of request, and other details that identify an estimate.",
+      "type": "object",
+      "properties": {
+        "MarketplaceId": {
+          "description": "A marketplace identifier.",
+          "type": "string"
+        },
+        "SellerId": {
+          "description": "The seller identifier.",
+          "type": "string"
+        },
+        "IdType": {
+          "$ref": "#/$defs/IdType"
+        },
+        "IdValue": {
+          "description": "The item identifier.",
+          "type": "string"
+        },
+        "IsAmazonFulfilled": {
+          "description": "When true, the offer is fulfilled by Amazon.",
+          "type": "boolean"
+        },
+        "PriceToEstimateFees": {
+          "description": "The item price on which the fee estimate is based.",
+          "$ref": "#/$defs/PriceToEstimateFees"
+        },
+        "SellerInputIdentifier": {
+          "description": "A unique identifier provided by the caller to track this request.",
+          "type": "string"
+        },
+        "OptionalFulfillmentProgram": {
+          "$ref": "#/$defs/OptionalFulfillmentProgram"
+        }
+      }
+    },
+    "FeesEstimateResult": {
+      "description": "An item identifier and the estimated fees for the item.",
+      "type": "object",
+      "properties": {
+        "Status": {
+          "description": "The status of the fee request. Possible values: Success, ClientError, ServiceError.",
+          "type": "string"
+        },
+        "FeesEstimateIdentifier": {
+          "description": "Information used to identify a fees estimate request.",
+          "$ref": "#/$defs/FeesEstimateIdentifier"
+        },
+        "FeesEstimate": {
+          "description": "The total estimated fees for an item and a list of details.",
+          "$ref": "#/$defs/FeesEstimate"
+        },
+        "Error": {
+          "description": "An error object with a type, code, and message.",
+          "$ref": "#/$defs/FeesEstimateError"
+        }
+      }
+    },
+    "GetMyFeesEstimateResult": {
+      "description": "Response schema.",
+      "type": "object",
+      "properties": {
+        "FeesEstimateResult": {
+          "description": "The item's estimated fees.",
+          "$ref": "#/$defs/FeesEstimateResult"
+        }
+      }
+    },
+    "IdType": {
+      "type": "string",
+      "description": "The type of product identifier used in a `FeesEstimateByIdRequest`.",
+      "enum": [
+        "ASIN",
+        "SellerSKU"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "ASIN",
+          "description": "An Amazon Standard Identification Number (ASIN) of a listings item."
+        },
+        {
+          "value": "SellerSKU",
+          "description": "A selling partner provided identifier for an Amazon listing."
+        }
+      ]
+    },
+    "IncludedFeeDetail": {
+      "description": "The type of fee, fee amount, and other details.",
+      "type": "object",
+      "required": [
+        "FeeType",
+        "FeeAmount",
+        "FinalFee"
+      ],
+      "properties": {
+        "FeeType": {
+          "description": "The type of fee charged to a seller.",
+          "type": "string"
+        },
+        "FeeAmount": {
+          "description": "The amount charged for a given fee.",
+          "$ref": "#/$defs/MoneyType"
+        },
+        "FeePromotion": {
+          "description": "The promotion amount for a given fee.",
+          "$ref": "#/$defs/MoneyType"
+        },
+        "TaxAmount": {
+          "description": "The tax amount for a given fee.",
+          "$ref": "#/$defs/MoneyType"
+        },
+        "FinalFee": {
+          "description": "The final fee amount for a given fee.",
+          "$ref": "#/$defs/MoneyType"
+        }
+      }
+    },
+    "IncludedFeeDetailList": {
+      "description": "A list of other fees that contribute to a given fee.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/IncludedFeeDetail"
+      }
+    },
+    "MoneyType": {
+      "type": "object",
+      "description": "An object representing a monetary value with its currency information.",
+      "properties": {
+        "CurrencyCode": {
+          "description": "The currency code in ISO 4217 format.",
+          "type": "string"
+        },
+        "Amount": {
+          "description": "The monetary value.",
+          "type": "number"
+        }
+      }
+    },
+    "OptionalFulfillmentProgram": {
+      "type": "string",
+      "description": "An optional enrollment program to return the estimated fees when the offer is fulfilled by Amazon (IsAmazonFulfilled is set to true).",
+      "enum": [
+        "FBA_CORE",
+        "FBA_SNL",
+        "FBA_EFN"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "FBA_CORE",
+          "description": "Returns the standard Amazon fulfillment fees for the offer. This is the default."
+        },
+        {
+          "value": "FBA_SNL",
+          "description": "Returns the FBA Small and Light (SNL) fees for the offer. The SNL program offers reduced fulfillment costs on qualified items. To check item eligibility for the SNL program, use the getSmallAndLightEligibilityBySellerSKU operation of the FBA Small And Light API.\n\n**Note:** The FBA Small and Light program sunset in the US and EU regions on **September 26, 2023**. The program will be deprecated in the JP region on **March 31, 2024** and sunset on **April 1, 2024**. APIs announcing deprecation will no longer be supported after their deprecation date. Calls to deprecated APIs will fail beginning on their sunset date. For more information, refer to [FBA Small and Light program deprecation](https://developer-docs.amazon.com/sp-api/changelog/fba-small-and-light-program-deprecation)."
+        },
+        {
+          "value": "FBA_EFN",
+          "description": "Returns the cross-border European Fulfillment Network fees across EU countries for the offer."
+        }
+      ]
+    },
+    "Points": {
+      "type": "object",
+      "description": "The number of Amazon Points offered with the purchase of an item.The Amazon Points program is only available in Japan.",
+      "properties": {
+        "PointsNumber": {
+          "type": "integer",
+          "description": "The number of Amazon Points",
+          "format": "int32"
+        },
+        "PointsMonetaryValue": {
+          "$ref": "#/$defs/MoneyType"
+        }
+      }
+    },
+    "PriceToEstimateFees": {
+      "description": "Price information for an item, used to estimate fees.",
+      "type": "object",
+      "required": [
+        "ListingPrice"
+      ],
+      "properties": {
+        "ListingPrice": {
+          "description": "The price of the item.",
+          "$ref": "#/$defs/MoneyType"
+        },
+        "Shipping": {
+          "description": "The shipping cost.",
+          "$ref": "#/$defs/MoneyType"
+        },
+        "Points": {
+          "description": "The number of Amazon Points offered with the purchase of an item.",
+          "$ref": "#/$defs/Points"
+        }
+      }
+    }
+  }
+}

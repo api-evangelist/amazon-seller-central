@@ -1,0 +1,4 @@
+{
+  "resource": "https://sellingpartner-ai.amazon.com/mcp",
+  "authorization_servers": ["https://sellingpartner-ai.amazon.com/mcp"]
+}

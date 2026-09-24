@@ -1,0 +1,413 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-get-featured-offer-expected-price-batch-response-schema.json",
+  "title": "GetFeaturedOfferExpectedPriceBatchResponse",
+  "description": "The response schema for the `getFeaturedOfferExpectedPriceBatch` operation.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-productpricing-api-openapi.yml#/components/schemas/GetFeaturedOfferExpectedPriceBatchResponse",
+  "type": "object",
+  "properties": {
+    "responses": {
+      "$ref": "#/$defs/FeaturedOfferExpectedPriceResponseList"
+    }
+  },
+  "$defs": {
+    "Asin": {
+      "description": "The ASIN of the item.",
+      "type": "string"
+    },
+    "BatchResponse": {
+      "description": "The common properties for responses to individual requests within a batch.",
+      "type": "object",
+      "required": [
+        "status",
+        "headers"
+      ],
+      "properties": {
+        "headers": {
+          "$ref": "#/$defs/HttpHeaders"
+        },
+        "status": {
+          "$ref": "#/$defs/HttpStatusLine"
+        }
+      }
+    },
+    "Condition": {
+      "description": "The condition of the item.",
+      "type": "string",
+      "enum": [
+        "New",
+        "Used",
+        "Collectible",
+        "Refurbished",
+        "Club"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "New",
+          "description": "New"
+        },
+        {
+          "value": "Used",
+          "description": "Used"
+        },
+        {
+          "value": "Collectible",
+          "description": "Collectible"
+        },
+        {
+          "value": "Refurbished",
+          "description": "Refurbished"
+        },
+        {
+          "value": "Club",
+          "description": "Club"
+        }
+      ]
+    },
+    "Error": {
+      "type": "object",
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "An error code that identifies the type of error that occurred."
+        },
+        "message": {
+          "type": "string",
+          "description": "A message that describes the error condition."
+        },
+        "details": {
+          "type": "string",
+          "description": "Additional details that can help the caller understand or fix the issue."
+        }
+      },
+      "description": "Error response returned when the request is unsuccessful."
+    },
+    "ErrorList": {
+      "type": "array",
+      "description": "A list of error responses that are returned when a request is unsuccessful.",
+      "items": {
+        "$ref": "#/$defs/Error"
+      }
+    },
+    "FeaturedOffer": {
+      "type": "object",
+      "required": [
+        "offerIdentifier"
+      ],
+      "properties": {
+        "offerIdentifier": {
+          "description": "An offer identifier used to identify the merchant of the featured offer. Since this may not belong to the requester, the SKU field is omitted.",
+          "$ref": "#/$defs/OfferIdentifier"
+        },
+        "condition": {
+          "description": "The item condition.",
+          "$ref": "#/$defs/Condition"
+        },
+        "price": {
+          "description": "The current active price of the offer.",
+          "$ref": "#/$defs/Price"
+        }
+      },
+      "description": "Schema for `currentFeaturedOffer` or `competingFeaturedOffer`."
+    },
+    "FeaturedOfferExpectedPrice": {
+      "description": "The item price at or below which the target offer may be featured.",
+      "type": "object",
+      "required": [
+        "listingPrice"
+      ],
+      "properties": {
+        "listingPrice": {
+          "description": "A computed listing price at or below which a seller can expect to become the featured offer (before applicable promotions).",
+          "$ref": "#/$defs/MoneyType"
+        },
+        "points": {
+          "description": "The number of Amazon Points that are offered with the purchase of an item and the monetary value of these points.",
+          "$ref": "#/$defs/Points"
+        }
+      }
+    },
+    "FeaturedOfferExpectedPriceRequestParams": {
+      "description": "The parameters for an individual request.",
+      "type": "object",
+      "required": [
+        "marketplaceId",
+        "sku"
+      ],
+      "properties": {
+        "marketplaceId": {
+          "$ref": "#/$defs/MarketplaceId"
+        },
+        "sku": {
+          "$ref": "#/$defs/Sku"
+        },
+        "segment": {
+          "$ref": "#/$defs/Segment"
+        }
+      }
+    },
+    "FeaturedOfferExpectedPriceResponse": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/BatchResponse"
+        },
+        {
+          "type": "object",
+          "required": [
+            "request"
+          ],
+          "properties": {
+            "request": {
+              "$ref": "#/$defs/FeaturedOfferExpectedPriceRequestParams",
+              "description": "Use these request parameters to map the response back to the request."
+            },
+            "body": {
+              "$ref": "#/$defs/FeaturedOfferExpectedPriceResponseBody"
+            }
+          }
+        }
+      ],
+      "description": "Schema for an individual FOEP response."
+    },
+    "FeaturedOfferExpectedPriceResponseBody": {
+      "description": "The FOEP response data for a requested SKU.",
+      "type": "object",
+      "properties": {
+        "offerIdentifier": {
+          "description": "Metadata that identifies the target offer for which the FOEP result data was computed.",
+          "$ref": "#/$defs/OfferIdentifier"
+        },
+        "featuredOfferExpectedPriceResults": {
+          "description": "The FOEP results for the requested target offer.",
+          "$ref": "#/$defs/FeaturedOfferExpectedPriceResultList"
+        },
+        "errors": {
+          "description": "The errors that occurred if the operation wasn't successful (HTTP status code non-200).",
+          "$ref": "#/$defs/ErrorList"
+        }
+      }
+    },
+    "FeaturedOfferExpectedPriceResponseList": {
+      "description": "A batched list of FOEP responses.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/FeaturedOfferExpectedPriceResponse"
+      },
+      "minItems": 1
+    },
+    "FeaturedOfferExpectedPriceResult": {
+      "description": "The FOEP result data for the requested offer.",
+      "type": "object",
+      "required": [
+        "resultStatus"
+      ],
+      "properties": {
+        "featuredOfferExpectedPrice": {
+          "$ref": "#/$defs/FeaturedOfferExpectedPrice"
+        },
+        "resultStatus": {
+          "description": "The status of the FOEP computation. Possible values include `VALID_FOEP`, `NO_COMPETING_OFFER`, `OFFER_NOT_ELIGIBLE`, `OFFER_NOT_FOUND`, and `ASIN_NOT_ELIGIBLE`. Additional values might be added in the future.",
+          "type": "string"
+        },
+        "competingFeaturedOffer": {
+          "description": "The offer that will likely be the featured offer if the target offer is priced above its FOEP. If the target offer is currently the featured offer, this property will be different than `currentFeaturedOffer`.",
+          "$ref": "#/$defs/FeaturedOffer"
+        },
+        "currentFeaturedOffer": {
+          "description": "The offer that is currently the featured offer. If the target offer is not currently featured, then this property will be equal to `competingFeaturedOffer`.",
+          "$ref": "#/$defs/FeaturedOffer"
+        }
+      }
+    },
+    "FeaturedOfferExpectedPriceResultList": {
+      "type": "array",
+      "description": "A list of FOEP results for the requested offer.",
+      "items": {
+        "$ref": "#/$defs/FeaturedOfferExpectedPriceResult"
+      }
+    },
+    "FulfillmentType": {
+      "type": "string",
+      "description": "Indicates whether the item is fulfilled by Amazon or by the seller (merchant).",
+      "enum": [
+        "AFN",
+        "MFN"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "AFN",
+          "description": "Fulfilled by Amazon."
+        },
+        {
+          "value": "MFN",
+          "description": "Fulfilled by the seller."
+        }
+      ]
+    },
+    "HttpHeaders": {
+      "description": "A mapping of additional HTTP headers to send or receive for an individual request within a batch.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "HttpStatusLine": {
+      "description": "The HTTP status line associated with the response for an individual request within a batch. For more information, refer to [RFC 2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html).",
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "description": "The HTTP response status code.",
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 599
+        },
+        "reasonPhrase": {
+          "description": "The HTTP response reason phrase.",
+          "type": "string"
+        }
+      }
+    },
+    "MarketplaceId": {
+      "description": "The `MarketplaceID` is the globally unique identifier of an Amazon store. To find the ID for your Amazon store, refer to [Amazon store IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).",
+      "type": "string"
+    },
+    "MoneyType": {
+      "type": "object",
+      "properties": {
+        "currencyCode": {
+          "type": "string",
+          "description": "The currency code in ISO 4217 format."
+        },
+        "amount": {
+          "type": "number",
+          "description": "The monetary value."
+        }
+      },
+      "description": "Currency type and monetary value schema to demonstrate pricing information."
+    },
+    "OfferIdentifier": {
+      "description": "Identifies an offer from a particular seller for a specified ASIN.",
+      "type": "object",
+      "required": [
+        "marketplaceId",
+        "asin"
+      ],
+      "properties": {
+        "marketplaceId": {
+          "$ref": "#/$defs/MarketplaceId",
+          "description": "An Amazon store identifier."
+        },
+        "sellerId": {
+          "type": "string",
+          "description": "The seller identifier for the offer."
+        },
+        "sku": {
+          "type": "string",
+          "description": "The seller SKU of the item. This will only be present for the target offer, which belongs to the requesting seller."
+        },
+        "asin": {
+          "$ref": "#/$defs/Asin",
+          "description": "The Amazon identifier for the item."
+        },
+        "fulfillmentType": {
+          "$ref": "#/$defs/FulfillmentType",
+          "description": "The fulfillment type for the offer."
+        }
+      }
+    },
+    "Points": {
+      "type": "object",
+      "properties": {
+        "pointsNumber": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The number of Amazon Points."
+        },
+        "pointsMonetaryValue": {
+          "description": "The monetary value of the Amazon Points.",
+          "$ref": "#/$defs/MoneyType"
+        }
+      },
+      "description": "The number of Amazon Points that are offered with the purchase of an item and the monetary value of these points."
+    },
+    "PostalCode": {
+      "description": "Postal code value with country code",
+      "type": "object",
+      "properties": {
+        "countryCode": {
+          "description": "Country code value",
+          "type": "string"
+        },
+        "value": {
+          "description": "Postal code value",
+          "type": "string"
+        }
+      }
+    },
+    "Price": {
+      "type": "object",
+      "required": [
+        "listingPrice"
+      ],
+      "properties": {
+        "listingPrice": {
+          "description": "The listing price for the item, excluding any promotions.",
+          "$ref": "#/$defs/MoneyType"
+        },
+        "shippingPrice": {
+          "description": "The shipping cost of the product. Note that the shipping cost is not always available.",
+          "$ref": "#/$defs/MoneyType"
+        },
+        "points": {
+          "description": "The number of Amazon Points that are offered with the purchase of an item and the monetary value of these points.",
+          "$ref": "#/$defs/Points"
+        }
+      },
+      "description": "The schema for item's price information, including listing price, shipping price, and Amazon Points."
+    },
+    "SampleLocation": {
+      "description": "Information about a location. It uses a postal code to identify the location.",
+      "type": "object",
+      "properties": {
+        "postalCode": {
+          "$ref": "#/$defs/PostalCode"
+        }
+      }
+    },
+    "Segment": {
+      "description": "Input segment for featured offer expected price. The segment contains the location information for which featured offer expected price is requested.",
+      "properties": {
+        "segmentDetails": {
+          "description": "Segment details",
+          "$ref": "#/$defs/SegmentDetails"
+        }
+      },
+      "type": "object"
+    },
+    "SegmentDetails": {
+      "description": "The details about the segment. The FeaturedOfferExpectedPrice API uses only the sampleLocation portion as input.",
+      "type": "object",
+      "properties": {
+        "glanceViewWeightPercentage": {
+          "description": "The glance view weighted percentage for this segment, which is the glance views for this segment as a percentage of total glance views across all segments for the ASIN. A higher percentage indicates that more Amazon customers receive this offer as the Featured Offer.",
+          "type": "number"
+        },
+        "sampleLocation": {
+          "$ref": "#/$defs/SampleLocation",
+          "description": "The representative location that features the offer for the segment."
+        }
+      }
+    },
+    "Sku": {
+      "description": "The seller SKU of the item.",
+      "type": "string"
+    }
+  }
+}

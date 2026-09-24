@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-get-feeds-response-schema.json",
+  "title": "GetFeedsResponse",
+  "description": "Response schema.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-feeds-api-openapi.yml#/components/schemas/GetFeedsResponse",
+  "type": "object",
+  "required": [
+    "feeds"
+  ],
+  "properties": {
+    "feeds": {
+      "description": "The feeds.",
+      "$ref": "#/$defs/FeedList"
+    },
+    "nextToken": {
+      "description": "Returned when the number of results exceeds pageSize. To get the next page of results, call the getFeeds operation with this token as the only parameter.",
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "Feed": {
+      "type": "object",
+      "description": "Detailed information about the feed.",
+      "required": [
+        "createdTime",
+        "feedId",
+        "feedType",
+        "processingStatus"
+      ],
+      "properties": {
+        "feedId": {
+          "description": "The identifier for the feed. This identifier is unique only in combination with a seller ID.",
+          "type": "string"
+        },
+        "feedType": {
+          "description": "The feed type.",
+          "type": "string"
+        },
+        "marketplaceIds": {
+          "description": "A list of identifiers for the marketplaces that the feed is applied to.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdTime": {
+          "type": "string",
+          "description": "The date and time when the feed was created, in ISO 8601 date time format.",
+          "format": "date-time"
+        },
+        "processingStatus": {
+          "description": "The processing status of the feed.",
+          "type": "string",
+          "enum": [
+            "CANCELLED",
+            "DONE",
+            "FATAL",
+            "IN_PROGRESS",
+            "IN_QUEUE"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "CANCELLED",
+              "description": "The feed was cancelled before it started processing."
+            },
+            {
+              "value": "DONE",
+              "description": "The feed has completed processing. Examine the contents of the result document to determine if there were any errors during processing."
+            },
+            {
+              "value": "FATAL",
+              "description": "The feed was aborted due to a fatal error. Some, none, or all of the operations within the feed may have completed successfully."
+            },
+            {
+              "value": "IN_PROGRESS",
+              "description": "The feed is being processed."
+            },
+            {
+              "value": "IN_QUEUE",
+              "description": "The feed has not yet started processing. It may be waiting for another IN_PROGRESS feed."
+            }
+          ]
+        },
+        "processingStartTime": {
+          "description": "The date and time when feed processing started, in ISO 8601 date time format.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "processingEndTime": {
+          "description": "The date and time when feed processing completed, in ISO 8601 date time format.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "resultFeedDocumentId": {
+          "description": "The identifier for the feed document. This identifier is unique only in combination with a seller ID.",
+          "type": "string"
+        }
+      }
+    },
+    "FeedList": {
+      "type": "array",
+      "description": "A list of feeds.",
+      "items": {
+        "$ref": "#/$defs/Feed"
+      }
+    }
+  }
+}

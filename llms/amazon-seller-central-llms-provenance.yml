@@ -1,0 +1,8 @@
+generated: '2026-09-24'
+method: searched
+source: https://developer-docs.amazon.com/llms.txt
+final_url: https://developer-docs.amazon/llms.txt
+bytes: 205653
+note: saved verbatim; the provider's own document. harvest-llms.py missed it because
+  its candidate list only covers the Website pointer's registrable domain (amazonservices.com);
+  the docs host developer-docs.amazon.com 301s to developer-docs.amazon.

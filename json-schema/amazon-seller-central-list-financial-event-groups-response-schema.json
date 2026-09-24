@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-list-financial-event-groups-response-schema.json",
+  "title": "ListFinancialEventGroupsResponse",
+  "description": "The response schema for the `listFinancialEventGroups` operation.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-finances-api-openapi.yml#/components/schemas/ListFinancialEventGroupsResponse",
+  "type": "object",
+  "properties": {
+    "payload": {
+      "description": "The payload for the `listFinancialEventGroups` operation.",
+      "$ref": "#/$defs/ListFinancialEventGroupsPayload"
+    },
+    "errors": {
+      "description": "One or more unexpected errors occurred during the `listFinancialEventGroups` operation.",
+      "$ref": "#/$defs/ErrorList_2"
+    }
+  },
+  "$defs": {
+    "BigDecimal": {
+      "type": "number",
+      "description": "A signed decimal number."
+    },
+    "Currency_2": {
+      "type": "object",
+      "properties": {
+        "CurrencyCode": {
+          "type": "string",
+          "description": "The three-digit currency code in ISO 4217 format."
+        },
+        "CurrencyAmount": {
+          "description": "The monetary value.",
+          "$ref": "#/$defs/BigDecimal"
+        }
+      },
+      "description": "A currency type and amount."
+    },
+    "Date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "A date in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format."
+    },
+    "ErrorList_2": {
+      "type": "array",
+      "description": "A list of error responses returned when a request is unsuccessful.",
+      "items": {
+        "$ref": "#/$defs/Error_2"
+      }
+    },
+    "Error_2": {
+      "type": "object",
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "An error code that identifies the type of error that occurred."
+        },
+        "message": {
+          "type": "string",
+          "description": "A message that describes the error condition in a human-readable form."
+        },
+        "details": {
+          "type": "string",
+          "description": "Additional details that can help the caller understand or fix the issue."
+        }
+      },
+      "description": "Error response returned when the request is unsuccessful."
+    },
+    "FinancialEventGroup": {
+      "type": "object",
+      "properties": {
+        "FinancialEventGroupId": {
+          "type": "string",
+          "description": "A unique identifier for the financial event group."
+        },
+        "ProcessingStatus": {
+          "type": "string",
+          "description": "The processing status of the financial event group indicates whether the balance of the financial event group is settled.\n\nPossible values:\n\n* `Open`\n* `Closed`"
+        },
+        "FundTransferStatus": {
+          "type": "string",
+          "description": "The status of the fund transfer."
+        },
+        "OriginalTotal": {
+          "description": "The total amount in the currency of the marketplace in which the transactions occurred. For a closed financial group, this is the total amount of a disbursement or a charge amount. For an open financial event group, this is the current balance.",
+          "$ref": "#/$defs/Currency_2"
+        },
+        "ConvertedTotal": {
+          "description": "The total amount in the currency of the marketplace in which the funds were disbursed.",
+          "$ref": "#/$defs/Currency_2"
+        },
+        "FundTransferDate": {
+          "description": "The date and time when the disbursement or charge was initiated. Only present for closed settlements. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.",
+          "$ref": "#/$defs/Date"
+        },
+        "TraceId": {
+          "type": "string",
+          "description": "The trace identifier used by sellers to look up transactions externally."
+        },
+        "AccountTail": {
+          "type": "string",
+          "description": "The account tail of the payment instrument."
+        },
+        "BeginningBalance": {
+          "description": "The balance at the start of the settlement period.",
+          "$ref": "#/$defs/Currency_2"
+        },
+        "FinancialEventGroupStart": {
+          "description": "The date and time at which the financial event group is opened. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.",
+          "$ref": "#/$defs/Date"
+        },
+        "FinancialEventGroupEnd": {
+          "description": "The date and time at which the financial event group is closed. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.",
+          "$ref": "#/$defs/Date"
+        }
+      },
+      "description": "Information related to a financial event group."
+    },
+    "FinancialEventGroupList": {
+      "type": "array",
+      "description": "A list of financial event group information.",
+      "items": {
+        "$ref": "#/$defs/FinancialEventGroup"
+      }
+    },
+    "ListFinancialEventGroupsPayload": {
+      "type": "object",
+      "properties": {
+        "NextToken": {
+          "type": "string",
+          "description": "When present and not empty, pass this string token in the next request to return the next response page."
+        },
+        "FinancialEventGroupList": {
+          "$ref": "#/$defs/FinancialEventGroupList"
+        }
+      },
+      "description": "The payload for the `listFinancialEventGroups` operation."
+    }
+  }
+}

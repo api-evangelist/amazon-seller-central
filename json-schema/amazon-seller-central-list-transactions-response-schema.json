@@ -1,0 +1,489 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-list-transactions-response-schema.json",
+  "title": "ListTransactionsResponse",
+  "description": "The response to the `listTransactions` operation.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-finances-api-openapi.yml#/components/schemas/ListTransactionsResponse",
+  "type": "object",
+  "properties": {
+    "payload": {
+      "$ref": "#/$defs/TransactionsPayload",
+      "description": "The payload for the `listTransactions` operation."
+    }
+  },
+  "$defs": {
+    "AmazonPayContext": {
+      "description": "Additional information related to Amazon Pay.",
+      "type": "object",
+      "properties": {
+        "storeName": {
+          "type": "string",
+          "description": "The name of the store that is related to the transaction."
+        },
+        "orderType": {
+          "type": "string",
+          "description": "The order type of the transaction."
+        },
+        "channel": {
+          "type": "string",
+          "description": "The channel of the transaction. For example: `MFN`."
+        }
+      }
+    },
+    "BigDecimal": {
+      "type": "number",
+      "description": "A signed decimal number."
+    },
+    "Breakdown": {
+      "type": "object",
+      "properties": {
+        "breakdownType": {
+          "type": "string",
+          "description": "The type of charge."
+        },
+        "breakdownAmount": {
+          "description": "The monetary amount of the charge.",
+          "$ref": "#/$defs/Currency"
+        },
+        "breakdowns": {
+          "type": "array",
+          "description": "A list of breakdowns that detail how the total amount is calculated for the transaction.",
+          "items": {
+            "$ref": "#/$defs/Breakdown"
+          }
+        }
+      },
+      "description": "Details about the movement of money in the financial transaction."
+    },
+    "BusinessContext": {
+      "description": "Information about the line of business associated with a transaction.",
+      "type": "object",
+      "properties": {
+        "storeName": {
+          "type": "string",
+          "description": "The store name associated with the transaction.",
+          "enum": [
+            "AMAZON_HAUL"
+          ]
+        }
+      }
+    },
+    "Context": {
+      "description": "Additional information about the item.",
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "contextType"
+          ],
+          "properties": {
+            "contextType": {
+              "type": "string",
+              "description": "The type of context."
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/AmazonPayContext"
+        },
+        {
+          "$ref": "#/$defs/ProductContext"
+        },
+        {
+          "$ref": "#/$defs/PaymentsContext"
+        },
+        {
+          "$ref": "#/$defs/DeferredContext"
+        },
+        {
+          "$ref": "#/$defs/BusinessContext"
+        },
+        {
+          "$ref": "#/$defs/TimeRangeContext"
+        }
+      ],
+      "x-example": [
+        {
+          "contextType": "ProductContext",
+          "asin": "B07FGXZQZ1",
+          "sku": "sku-12",
+          "quantityShipped": 1,
+          "fulfillmentNetwork": "MFN"
+        },
+        {
+          "contextType": "AmazonPayContext",
+          "storeName": "Store 1",
+          "orderType": "Order Type",
+          "channel": "MFN"
+        }
+      ]
+    },
+    "Contexts": {
+      "type": "array",
+      "description": "A list of additional information about the item.",
+      "items": {
+        "$ref": "#/$defs/Context"
+      }
+    },
+    "Currency": {
+      "type": "object",
+      "properties": {
+        "currencyCode": {
+          "type": "string",
+          "description": "The three-digit currency code in ISO 4217 format."
+        },
+        "currencyAmount": {
+          "description": "The monetary value.",
+          "$ref": "#/$defs/BigDecimal"
+        }
+      },
+      "description": "A currency type and amount."
+    },
+    "Date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "A date in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format."
+    },
+    "DeferredContext": {
+      "description": "Additional information related to deferred transactions.",
+      "type": "object",
+      "properties": {
+        "deferralReason": {
+          "type": "string",
+          "description": "The deferral policy applied to the transaction.\n\n**Examples:** `B2B` (invoiced orders), `DD7` (delivery date policy)"
+        },
+        "maturityDate": {
+          "$ref": "#/$defs/Date",
+          "description": "The release date of the transaction."
+        }
+      }
+    },
+    "Item": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "A description of the items in a transaction."
+        },
+        "relatedIdentifiers": {
+          "description": "Related business identifiers of the item.",
+          "$ref": "#/$defs/ItemRelatedIdentifiers"
+        },
+        "totalAmount": {
+          "description": "The total monetary amount of the item.",
+          "$ref": "#/$defs/Currency"
+        },
+        "breakdowns": {
+          "type": "array",
+          "description": "A list of breakdowns that detail how the total amount is calculated for the transaction.",
+          "items": {
+            "$ref": "#/$defs/Breakdown"
+          }
+        },
+        "contexts": {
+          "description": "Additional Information about the item.",
+          "$ref": "#/$defs/Contexts"
+        }
+      },
+      "description": "Additional information about an item in a transaction."
+    },
+    "ItemRelatedIdentifier": {
+      "type": "object",
+      "properties": {
+        "itemRelatedIdentifierName": {
+          "type": "string",
+          "description": "Enumerated set of related item identifier names for the item.",
+          "enum": [
+            "ORDER_ADJUSTMENT_ITEM_ID",
+            "COUPON_ID",
+            "REMOVAL_SHIPMENT_ITEM_ID",
+            "TRANSACTION_ID"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "ORDER_ADJUSTMENT_ITEM_ID",
+              "description": "An Amazon-defined order adjustment identifier defined for refunds, guarantee claims, and chargeback events."
+            },
+            {
+              "value": "COUPON_ID",
+              "description": "An identifier for a coupon that is applied to a transaction."
+            },
+            {
+              "value": "REMOVAL_SHIPMENT_ITEM_ID",
+              "description": "An identifier for an item in a removal shipment."
+            },
+            {
+              "value": "TRANSACTION_ID",
+              "description": "The transaction ID of the item."
+            }
+          ]
+        },
+        "itemRelatedIdentifierValue": {
+          "type": "string",
+          "description": "Corresponding value to `ItemRelatedIdentifierName`."
+        }
+      },
+      "description": "Related business identifiers of the item."
+    },
+    "ItemRelatedIdentifiers": {
+      "type": "array",
+      "description": "Related business identifiers of the item in the transaction.",
+      "items": {
+        "$ref": "#/$defs/ItemRelatedIdentifier"
+      }
+    },
+    "Items": {
+      "type": "array",
+      "description": "A list of items in the transaction.",
+      "items": {
+        "$ref": "#/$defs/Item"
+      }
+    },
+    "MarketplaceDetails": {
+      "type": "object",
+      "properties": {
+        "marketplaceId": {
+          "type": "string",
+          "description": "The identifier of the marketplace where the transaction occurred. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids)."
+        },
+        "marketplaceName": {
+          "type": "string",
+          "description": "The name of the marketplace where the transaction occurred. For example: `Amazon.com`,`Amazon.in`"
+        }
+      },
+      "description": "Information about the marketplace where the transaction occurred."
+    },
+    "PaymentsContext": {
+      "description": "Additional information related to payments-related transactions.",
+      "type": "object",
+      "properties": {
+        "paymentType": {
+          "type": "string",
+          "description": "The type of payment."
+        },
+        "paymentMethod": {
+          "type": "string",
+          "description": "The method of payment."
+        },
+        "paymentReference": {
+          "type": "string",
+          "description": "The reference number of the payment."
+        },
+        "paymentDate": {
+          "$ref": "#/$defs/Date",
+          "description": "The date of the payment."
+        }
+      }
+    },
+    "ProductContext": {
+      "description": "Additional information related to the product.",
+      "type": "object",
+      "properties": {
+        "asin": {
+          "type": "string",
+          "description": "The Amazon Standard Identification Number (ASIN) of the item."
+        },
+        "sku": {
+          "type": "string",
+          "description": "The Stock Keeping Unit (SKU) of the item."
+        },
+        "quantityShipped": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The quantity of the item shipped."
+        },
+        "fulfillmentNetwork": {
+          "type": "string",
+          "description": "The fulfillment network of the item."
+        }
+      }
+    },
+    "RelatedIdentifier": {
+      "type": "object",
+      "properties": {
+        "relatedIdentifierName": {
+          "type": "string",
+          "description": "An enumerated set of related business identifier names.",
+          "enum": [
+            "ORDER_ID",
+            "SHIPMENT_ID",
+            "FINANCIAL_EVENT_GROUP_ID",
+            "REFUND_ID",
+            "INVOICE_ID",
+            "DISBURSEMENT_ID",
+            "TRANSFER_ID",
+            "DEFERRED_TRANSACTION_ID",
+            "RELEASE_TRANSACTION_ID",
+            "SETTLEMENT_ID"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "ORDER_ID",
+              "description": "The `OrderId` that is associated with the transaction."
+            },
+            {
+              "value": "SHIPMENT_ID",
+              "description": "The `ShipmentId` that is associated with the transaction."
+            },
+            {
+              "value": "FINANCIAL_EVENT_GROUP_ID",
+              "description": "The identifier that is associated with the transaction's financial event group."
+            },
+            {
+              "value": "SETTLEMENT_ID",
+              "description": "The identifier that is associated with the transaction's settlement group."
+            },
+            {
+              "value": "REFUND_ID",
+              "description": "The `RefundId` that is associated with the transaction."
+            },
+            {
+              "value": "INVOICE_ID",
+              "description": "The `InvoiceId` that is associated with the transaction."
+            },
+            {
+              "value": "DISBURSEMENT_ID",
+              "description": "The disbursement ID for Amazon's bank transfer."
+            },
+            {
+              "value": "TRANSFER_ID",
+              "description": "The `TransferId` associated with the transaction."
+            },
+            {
+              "value": "DEFERRED_TRANSACTION_ID",
+              "description": "The transaction ID for the related deferred transaction"
+            },
+            {
+              "value": "RELEASE_TRANSACTION_ID",
+              "description": "The transaction ID for the related released transaction"
+            }
+          ]
+        },
+        "relatedIdentifierValue": {
+          "type": "string",
+          "description": "Corresponding value of `RelatedIdentifierName`."
+        }
+      },
+      "description": "Related business identifier of the transaction."
+    },
+    "RelatedIdentifiers": {
+      "type": "array",
+      "description": "Related business identifiers of the transaction.",
+      "items": {
+        "$ref": "#/$defs/RelatedIdentifier"
+      }
+    },
+    "SellingPartnerMetadata": {
+      "type": "object",
+      "properties": {
+        "sellingPartnerId": {
+          "type": "string",
+          "description": "The unique seller identifier."
+        },
+        "accountType": {
+          "type": "string",
+          "description": "The type of account in the transaction."
+        },
+        "marketplaceId": {
+          "type": "string",
+          "description": "The identifier of the marketplace where the transaction occurred. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids)."
+        }
+      },
+      "description": "Metadata that describes the seller."
+    },
+    "TimeRangeContext": {
+      "description": "Additional information that is related to the time range of the transaction.",
+      "type": "object",
+      "properties": {
+        "startTime": {
+          "$ref": "#/$defs/Date",
+          "description": "The start time of the transaction."
+        },
+        "endTime": {
+          "$ref": "#/$defs/Date",
+          "description": "The end time of the transaction."
+        }
+      }
+    },
+    "Transaction": {
+      "type": "object",
+      "properties": {
+        "sellingPartnerMetadata": {
+          "description": "Metadata that describes the seller.",
+          "$ref": "#/$defs/SellingPartnerMetadata"
+        },
+        "relatedIdentifiers": {
+          "description": "Identifiers related to the transaction, such as order and shipment IDs.",
+          "$ref": "#/$defs/RelatedIdentifiers"
+        },
+        "transactionType": {
+          "type": "string",
+          "description": "The type of transaction.\n\n**Possible value:** `Shipment`"
+        },
+        "transactionId": {
+          "type": "string",
+          "description": "The unique identifier of the transaction."
+        },
+        "transactionStatus": {
+          "type": "string",
+          "description": "The status of the transaction.\n\n**Possible values:**\n\n* `DEFERRED`: the transaction is currently deferred.\n* `RELEASED`: the transaction is currently released.\n* `DEFERRED_RELEASED`: the transaction was deferred in the past, but is now released. The status of a deferred transaction is updated to `DEFERRED_RELEASED` when the transaction is released."
+        },
+        "description": {
+          "type": "string",
+          "description": "Describes the reasons for the transaction.\n\n**Example:** `Order Payment`, `Refund Order`"
+        },
+        "postedDate": {
+          "description": "The date and time when the transaction was posted.",
+          "$ref": "#/$defs/Date"
+        },
+        "totalAmount": {
+          "description": "The total amount of money in the transaction.",
+          "$ref": "#/$defs/Currency"
+        },
+        "marketplaceDetails": {
+          "description": "Information about the marketplace where the transaction occurred.",
+          "$ref": "#/$defs/MarketplaceDetails"
+        },
+        "items": {
+          "description": "Additional information about the items in the transaction.",
+          "$ref": "#/$defs/Items"
+        },
+        "contexts": {
+          "description": "Additional Information about the transaction.",
+          "$ref": "#/$defs/Contexts"
+        },
+        "breakdowns": {
+          "type": "array",
+          "description": "A list of breakdowns that detail how the total amount is calculated for the transaction.",
+          "items": {
+            "$ref": "#/$defs/Breakdown"
+          }
+        }
+      },
+      "description": "All the information related to a transaction."
+    },
+    "Transactions": {
+      "type": "array",
+      "description": "A list of transactions within the specified time period.",
+      "items": {
+        "$ref": "#/$defs/Transaction"
+      }
+    },
+    "TransactionsPayload": {
+      "type": "object",
+      "properties": {
+        "nextToken": {
+          "type": "string",
+          "description": "The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages."
+        },
+        "transactions": {
+          "$ref": "#/$defs/Transactions"
+        }
+      },
+      "description": "The payload for the `listTransactions` operation."
+    }
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-get-marketplace-participations-response-schema.json",
+  "title": "GetMarketplaceParticipationsResponse",
+  "description": "The response schema for the `getMarketplaceParticipations` operation.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-sellers-api-openapi.yml#/components/schemas/GetMarketplaceParticipationsResponse",
+  "type": "object",
+  "properties": {
+    "payload": {
+      "description": "The payload for the `getMarketplaceParticipations` operation.",
+      "$ref": "#/$defs/MarketplaceParticipationList"
+    },
+    "errors": {
+      "description": "The errors encountered by the `getMarketplaceParticipations` operation.",
+      "$ref": "#/$defs/ErrorList"
+    }
+  },
+  "$defs": {
+    "Error": {
+      "type": "object",
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "An error code that identifies the type of error that occurred."
+        },
+        "message": {
+          "type": "string",
+          "description": "A message that describes the error condition in a human-readable form."
+        },
+        "details": {
+          "type": "string",
+          "description": "Additional details that can help you understand or fix the issue."
+        }
+      },
+      "description": "Error response returned when the request is unsuccessful."
+    },
+    "ErrorList": {
+      "type": "array",
+      "description": "A list of error responses returned when a request is unsuccessful.",
+      "items": {
+        "$ref": "#/$defs/Error"
+      }
+    },
+    "Marketplace": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "countryCode",
+        "defaultCurrencyCode",
+        "defaultLanguageCode",
+        "domainName"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The encrypted marketplace value."
+        },
+        "name": {
+          "type": "string",
+          "description": "The marketplace name."
+        },
+        "countryCode": {
+          "type": "string",
+          "description": "The ISO 3166-1 alpha-2 format country code of the marketplace.",
+          "pattern": "^([A-Z]{2})$"
+        },
+        "defaultCurrencyCode": {
+          "type": "string",
+          "description": "The ISO 4217 format currency code of the marketplace."
+        },
+        "defaultLanguageCode": {
+          "type": "string",
+          "description": "The ISO 639-1 format language code of the marketplace."
+        },
+        "domainName": {
+          "type": "string",
+          "description": "The domain name of the marketplace."
+        }
+      },
+      "description": "Information about an Amazon marketplace where a seller can list items and customers can view and purchase items."
+    },
+    "MarketplaceParticipation": {
+      "type": "object",
+      "required": [
+        "marketplace",
+        "participation",
+        "storeName"
+      ],
+      "properties": {
+        "marketplace": {
+          "$ref": "#/$defs/Marketplace"
+        },
+        "participation": {
+          "$ref": "#/$defs/Participation"
+        },
+        "storeName": {
+          "type": "string",
+          "description": "The name of the seller's store as displayed in the marketplace."
+        }
+      }
+    },
+    "MarketplaceParticipationList": {
+      "type": "array",
+      "description": "List of marketplace participations.",
+      "items": {
+        "$ref": "#/$defs/MarketplaceParticipation"
+      }
+    },
+    "Participation": {
+      "type": "object",
+      "required": [
+        "hasSuspendedListings",
+        "isParticipating"
+      ],
+      "properties": {
+        "isParticipating": {
+          "type": "boolean",
+          "description": "If `true`, the seller participates in the marketplace. Otherwise `false`."
+        },
+        "hasSuspendedListings": {
+          "type": "boolean",
+          "description": "Specifies if the seller has suspended listings. `true` if the seller Listing Status is set to Inactive, otherwise `false`."
+        }
+      },
+      "description": "Information that is specific to a seller in a marketplace."
+    }
+  }
+}

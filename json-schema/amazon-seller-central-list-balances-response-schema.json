@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-list-balances-response-schema.json",
+  "title": "ListBalancesResponse",
+  "description": "The response to the `listBalances` operation.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-finances-api-openapi.yml#/components/schemas/ListBalancesResponse",
+  "type": "object",
+  "properties": {
+    "balances": {
+      "$ref": "#/$defs/Balances"
+    },
+    "nextToken": {
+      "type": "string",
+      "description": "A token to retrieve the next page of results. If null, no more results are available.",
+      "x-example": "jehgri34yo7jr9e8f984tr9i4o"
+    }
+  },
+  "$defs": {
+    "Balance": {
+      "type": "object",
+      "properties": {
+        "partnerMetadata": {
+          "description": "Metadata describing the seller.",
+          "$ref": "#/$defs/PartnerMetadata"
+        },
+        "balanceType": {
+          "type": "string",
+          "enum": [
+            "AVAILABLE",
+            "RESERVED",
+            "ACCOUNT_LEVEL_RESERVE",
+            "DEFERRED",
+            "TOTAL"
+          ],
+          "description": "The type of balance.",
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "AVAILABLE",
+              "description": "The total balance currently available in the account."
+            },
+            {
+              "value": "DEFERRED",
+              "description": "The deferred balance is a portion of sales revenue that is temporarily withheld before being transferred to the available balance after a specified period."
+            },
+            {
+              "value": "ACCOUNT_LEVEL_RESERVE",
+              "description": "Balance reserved as a safety measure to cover potential liabilities such as refunds, chargebacks, or other claims. Based on sales volume, product category, and account history. "
+            },
+            {
+              "value": "RESERVED",
+              "description": "The reserved balance is sum of Deferred and Account Level Reserved."
+            },
+            {
+              "value": "TOTAL",
+              "description": "Overall sum of balances including available and reserved."
+            }
+          ]
+        },
+        "amount": {
+          "description": "Total amount of the balance type.",
+          "$ref": "#/$defs/Currency"
+        },
+        "balances": {
+          "type": "array",
+          "description": "A list of balances that comprise this balance.",
+          "items": {
+            "$ref": "#/$defs/Balance"
+          }
+        },
+        "asOfDate": {
+          "description": "The date for which the ending balance was calculated. This field is present when an `asOfDate` query parameter is provided. Null for point-in-time balance queries.",
+          "$ref": "#/$defs/Date"
+        },
+        "lastUpdatedTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time when the balance was last updated, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The value is in the marketplace's local time zone. This field is present for point-in-time balance queries (when no `asOfDate` query parameter is provided). Null for ending balance queries.",
+          "x-example": "2025-01-12T10:30:00+09:00"
+        }
+      },
+      "description": "All information relevant to a balance."
+    },
+    "Balances": {
+      "type": "array",
+      "description": "A list of balances.",
+      "items": {
+        "$ref": "#/$defs/Balance"
+      }
+    },
+    "BigDecimal": {
+      "type": "number",
+      "description": "A signed decimal number."
+    },
+    "Currency": {
+      "type": "object",
+      "properties": {
+        "currencyCode": {
+          "type": "string",
+          "description": "The three-digit currency code in ISO 4217 format."
+        },
+        "currencyAmount": {
+          "description": "The monetary value.",
+          "$ref": "#/$defs/BigDecimal"
+        }
+      },
+      "description": "A currency type and amount."
+    },
+    "Date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "A date in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format."
+    },
+    "PartnerMetadata": {
+      "type": "object",
+      "properties": {
+        "partnerId": {
+          "type": "string",
+          "description": "The unique seller identifier."
+        },
+        "accountType": {
+          "type": "string",
+          "description": "The type of account."
+        },
+        "marketplaceId": {
+          "type": "string",
+          "description": "The identifier of the marketplace where the transaction occurred. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids)."
+        }
+      },
+      "description": "Metadata that describes the seller."
+    }
+  }
+}

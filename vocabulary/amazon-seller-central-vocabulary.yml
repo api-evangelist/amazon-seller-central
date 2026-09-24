@@ -1,0 +1,423 @@
+generated: '2026-09-24'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/amazon-seller-central-catalog-api-openapi.yml
+- openapi/amazon-seller-central-definitions-api-openapi.yml
+- openapi/amazon-seller-central-fbainbound-api-openapi.yml
+- openapi/amazon-seller-central-fbainventory-api-openapi.yml
+- openapi/amazon-seller-central-fbaoutbound-api-openapi.yml
+vocabulary:
+  name: Amazon Selling Partner API Domain Vocabulary
+  description: 'Terms declared by Amazon Selling Partner API''s own API contract: its resource groups, objects and enumerations, with the contract''s
+    definitions. Derived, not authored.'
+  version: '2026-09-24'
+  terms:
+  - term: Dimensions
+    definition: Dimensions of an Amazon catalog item or item in its packaging.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/Dimensions
+  - term: ItemDimensionsByMarketplace
+    definition: Dimensions that are associated with the item in the Amazon catalog for the indicated `marketplaceId`.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemDimensionsByMarketplace
+  - term: ItemContributor
+    definition: Individual contributor to the creation of an item, such as an author or actor.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemContributor
+  - term: ItemRelationships
+    definition: Relationships grouped by `marketplaceId` for an Amazon catalog item (for example, variations).
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemRelationships
+  - term: ItemSearchResults
+    definition: Items in the Amazon catalog and search-related metadata.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemSearchResults
+  - term: Item
+    definition: An item in the Amazon catalog.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/Item
+  - term: ItemVendorDetails
+    definition: The vendor details that are associated with an Amazon catalog item. Vendor details are only available to vendors.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemVendorDetails
+  - term: ItemIdentifiers
+    definition: Identifiers associated with the item in the Amazon catalog, such as UPC and EAN identifiers.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemIdentifiers
+  - term: ItemAsin
+    definition: The unique identifier of an item in the Amazon catalog.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemAsin
+  - term: ItemRelationship
+    definition: Relationship details for an Amazon catalog item.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemRelationship
+  - term: ItemAttributes
+    definition: A JSON object containing structured item attribute data that is keyed by attribute name. Catalog item attributes conform to the
+      related Amazon product type definitions that you can get from the [Product Type Definitions API](https://developer-docs.amazon.com/sp-api/reference/product-type-definitions-v2020-09-01).
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemAttributes
+  - term: ItemDisplayGroupSalesRank
+    definition: Sales rank of an Amazon catalog item, grouped by website display group.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemDisplayGroupSalesRank
+  - term: ItemBrowseClassifications
+    definition: An array of classifications (browse nodes) that is associated with the item in the Amazon catalog, grouped by `marketplaceId`.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemBrowseClassifications
+  - term: ItemImages
+    definition: The images for an item in the Amazon catalog.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemImages
+  - term: ItemSummaryByMarketplace
+    definition: Information about an Amazon catalog item for the indicated `marketplaceId`.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemSummaryByMarketplace
+  - term: ClassificationRefinement
+    definition: A classification that you can use to refine your search.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ClassificationRefinement
+  - term: Error
+    definition: Error response returned when the request is unsuccessful.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/Error
+  - term: ItemDimensions
+    definition: An array of dimensions that are associated with the item in the Amazon catalog, grouped by `marketplaceId`.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemDimensions
+  - term: ItemSummaries
+    definition: Summaries of Amazon catalog items.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemSummaries
+  - term: ItemProductTypes
+    definition: Product types that are associated with the Amazon catalog item.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemProductTypes
+  - term: ItemBrowseClassification
+    definition: Classification (browse node) for an Amazon catalog item.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemBrowseClassification
+  - term: ItemBrowseClassificationsByMarketplace
+    definition: Classifications (browse nodes) that are associated with the item in the Amazon catalog for the indicated `marketplaceId`.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemBrowseClassificationsByMarketplace
+  - term: ErrorList
+    definition: A list of error responses returned when a request is unsuccessful.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ErrorList
+  - term: ItemSalesRanks
+    definition: Sales ranks of an Amazon catalog item.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemSalesRanks
+  - term: ItemSalesRanksByMarketplace
+    definition: Sales ranks of an Amazon catalog item, grouped by `marketplaceId`.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemSalesRanksByMarketplace
+  - term: ItemClassificationSalesRank
+    definition: Sales rank of an Amazon catalog item.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemClassificationSalesRank
+  - term: ItemImagesByMarketplace
+    definition: Images for an item in the Amazon catalog, grouped by `marketplaceId`.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemImagesByMarketplace
+  - term: ItemProductTypeByMarketplace
+    definition: Product type that is associated with the Amazon catalog item, grouped by `marketplaceId`.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemProductTypeByMarketplace
+  - term: ItemImage
+    definition: Image for an item in the Amazon catalog.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemImage
+  - term: ItemVendorDetailsByMarketplace
+    definition: The vendor details that are associated with an Amazon catalog item for the specified `marketplaceId`.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemVendorDetailsByMarketplace
+  - term: ItemVendorDetailsCategory
+    definition: The product category or subcategory that is associated with an Amazon catalog item.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemVendorDetailsCategory
+  - term: ItemIdentifier
+    definition: The identifier that is associated with the item in the Amazon catalog, such as a UPC or EAN identifier.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemIdentifier
+  - term: ItemRelationshipsByMarketplace
+    definition: Relationship details for the Amazon catalog item for the specified Amazon `marketplaceId`.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemRelationshipsByMarketplace
+  - term: Dimension
+    definition: The value of an individual dimension for an Amazon catalog item or item package.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/Dimension
+  - term: Pagination
+    definition: Pagination occurs when a request produces a response that exceeds the `pageSize`. This means that the response is divided into
+      individual pages. To retrieve the next page or the previous page of results, you must pass the `nextToken` value or the `previousToken`
+      value as the `pageToken` parameter in the next request. There is no `nextToken` in the pagination object on the last page.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/Pagination
+  - term: ItemVariationTheme
+    definition: The variation theme is a list of Amazon catalog item attributes that define the variation family.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemVariationTheme
+  - term: BrandRefinement
+    definition: A brand that you can use to refine your search.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/BrandRefinement
+  - term: ItemContributorRole
+    definition: Role of an individual contributor in the creation of an item, such as author or actor.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemContributorRole
+  - term: ItemIdentifiersByMarketplace
+    definition: Identifiers that are associated with the item in the Amazon catalog, grouped by `marketplaceId`.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/ItemIdentifiersByMarketplace
+  - term: Refinements
+    definition: Optional fields that you can use to refine your search results.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-catalog-api-openapi.yml#/components/schemas/Refinements
+  - term: PropertyGroup
+    definition: A property group represents a logical grouping of schema properties that can be used for display or informational purposes.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-definitions-api-openapi.yml#/components/schemas/PropertyGroup
+  - term: ProductTypeVersion
+    definition: The version details for an Amazon product type.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-definitions-api-openapi.yml#/components/schemas/ProductTypeVersion
+  - term: ProductTypeDefinition
+    definition: A product type definition represents the attributes and data requirements for a product type in the Amazon catalog. Product type
+      definitions are used interchangeably between the Selling Partner API for Listings Items, Selling Partner API for Catalog Items, and JSON-based
+      listings feeds in the Selling Partner API for Feeds.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-definitions-api-openapi.yml#/components/schemas/ProductTypeDefinition
+  - term: ProductTypeList
+    definition: A list of Amazon product types with definitions available.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-definitions-api-openapi.yml#/components/schemas/ProductTypeList
+  - term: ProductType
+    definition: An Amazon product type with a definition available.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-definitions-api-openapi.yml#/components/schemas/ProductType
+  - term: SchemaLink
+    definition: A link to metadata schema.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-definitions-api-openapi.yml#/components/schemas/SchemaLink
+  - term: PrepOwner
+    definition: The owner of the preparations, if special preparations are required.
+    tags:
+    - Enumeration
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/PrepOwner
+  - term: ListInboundPlanBoxesResponse
+    definition: The `listInboundPlanBoxes` response.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/ListInboundPlanBoxesResponse
+  - term: PlacementOptionSummary
+    definition: Summary information about a placement option.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/PlacementOptionSummary
+  - term: ShippingRequirements
+    definition: The possible shipping modes for the packing option for a given shipping solution or program. Available solutions are Amazon-Partnered
+      Carrier and Use Your Own Carrier. Available modes are ground small parcel, freight less-than-truckload (LTL), freight full-truckload (FTL)
+      palletized, freight FTL non-palletized, ocean less-than-container-load (LCL), ocean full-container load (FCL), air small parcel
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/ShippingRequirements
+  - term: PrepCategory
+    definition: The preparation category for shipping an item to Amazon's fulfillment network.
+    tags:
+    - Enumeration
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/PrepCategory
+  - term: ScheduleSelfShipAppointmentRequest
+    definition: The `scheduleSelfShipAppointment` request.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/ScheduleSelfShipAppointmentRequest
+  - term: ListInboundPlanPalletsResponse
+    definition: The `listInboundPlanPallets` response.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/ListInboundPlanPalletsResponse
+  - term: TrackingDetailsInput
+    definition: Tracking information input for Less-Than-Truckload (LTL) and Small Parcel Delivery (SPD) shipments.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/TrackingDetailsInput
+  - term: PrepType
+    definition: Preparation instructions for shipping an item to Amazon's fulfillment network. For more information about preparing items for
+      shipment to Amazon's fulfillment network, refer to [Seller Central Help for your marketplace](https://developer-docs.amazon.com/sp-api/docs/seller-central-urls).
+    tags:
+    - Enumeration
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/PrepType
+  - term: BoxContentInformationSource
+    definition: Indication of how box content is meant to be provided.
+    tags:
+    - Enumeration
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/BoxContentInformationSource
+  - term: SelectedDeliveryWindow
+    definition: Selected delivery window attributes.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/SelectedDeliveryWindow
+  - term: CancelInboundPlanResponse
+    definition: The `cancelInboundPlan` response.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/CancelInboundPlanResponse
+  - term: BoxInput
+    definition: Input information for a given box.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/BoxInput
+  - term: InboundOperationStatus
+    definition: GetInboundOperationStatus response.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/InboundOperationStatus
+  - term: MskuPrepDetail
+    definition: An MSKU and its related prep details.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/MskuPrepDetail
+  - term: ConfirmDeliveryWindowOptionsResponse
+    definition: The `confirmDeliveryWindowOptions` response.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/ConfirmDeliveryWindowOptionsResponse
+  - term: Dates
+    definition: Specifies the date that the seller expects their shipment will be shipped.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/Dates
+  - term: ConfirmTransportationOptionsResponse
+    definition: The `confirmTransportationOptions` response.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/ConfirmTransportationOptionsResponse
+  - term: ComplianceDetail
+    definition: Contains item identifiers and related tax information.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/ComplianceDetail
+  - term: TaxDetails
+    definition: Information used to determine the tax compliance.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/TaxDetails
+  - term: UpdateShipmentTrackingDetailsResponse
+    definition: The `updateShipmentTrackingDetails` response.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/UpdateShipmentTrackingDetailsResponse
+  - term: GenerateDeliveryWindowOptionsResponse
+    definition: The `generateDeliveryWindowOptions` response.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/GenerateDeliveryWindowOptionsResponse
+  - term: MskuQuantity
+    definition: Represents an MSKU and the related quantity.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/MskuQuantity
+  - term: Shipment
+    definition: Contains information pertaining to a shipment in an inbound plan.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/Shipment
+  - term: GenerateTransportationOptionsRequest
+    definition: The `generateTransportationOptions` request.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/GenerateTransportationOptionsRequest
+  - term: ConfirmTransportationOptionsRequest
+    definition: The `confirmTransportationOptions` request.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/ConfirmTransportationOptionsRequest
+  - term: PrepInstruction
+    definition: Information pertaining to the preparation of inbound goods.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/PrepInstruction
+  - term: BoxUpdateInput
+    definition: Input information for updating a box
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/BoxUpdateInput
+  - term: AppointmentSlotTime
+    definition: An appointment slot time with start and end.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/AppointmentSlotTime
+  - term: UpdateShipmentSourceAddressResponse
+    definition: The `UpdateShipmentSourceAddress` response.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/UpdateShipmentSourceAddressResponse
+  - term: Window
+    definition: Contains a start and end DateTime representing a time range.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/Window
+  - term: Incentive
+    definition: Contains details about cost related modifications to the placement cost.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/Incentive
+  - term: InboundPlanSummary
+    definition: A light-weight inbound plan.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/InboundPlanSummary
+  - term: GenerateShipmentContentUpdatePreviewsResponse
+    definition: The `GenerateShipmentContentUpdatePreviews` response.
+    tags:
+    - Object
+    source: openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/GenerateShipmentContentUpdatePreviewsResponse

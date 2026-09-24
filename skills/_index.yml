@@ -1,0 +1,222 @@
+generated: '2026-09-24'
+method: searched
+source: https://github.com/amzn/selling-partner-agentic-toolkit
+note: 'Amazon publishes the Selling Partner Agentic Toolkit (github.com/amzn/selling-partner-agentic-toolkit,
+  Apache-2.0, repo created 2026-09-21), a Claude plugin that bundles the Amazon Selling Partner Connector
+  MCP server (https://sellingpartner-ai.amazon.com/mcp) in .mcp.json with 11 skills and 3 commands. Merged
+  into Anthropic''s official plugin marketplace on 2026-09-23 (anthropics/claude-plugins-official PR #6293).
+  Every file here is saved verbatim from commit 10573ba (2026-09-23): SKILL.md files as amazon-seller-central-<skill>.md,
+  their reference files under references/<skill>/, each skill''s eval/evals.json under evals/, the commands
+  under commands/, and the plugin manifest and .mcp.json under plugin/. The skills drive the MCP server''s
+  tools, not raw SP-API calls; write actions are drafted for the seller''s approval.'
+plugin:
+  manifest: plugin/plugin.json
+  mcp_config: plugin/mcp.json
+  source: https://github.com/amzn/selling-partner-agentic-toolkit/blob/10573bac239b7062a476667eaa574d400335c70e/.claude-plugin/plugin.json
+  marketplace: https://github.com/anthropics/claude-plugins-official/pull/6293
+skills:
+- file: amazon-seller-central-fba-inbound-management.md
+  name: fba-inbound-management
+  method: searched
+  source: https://github.com/amzn/selling-partner-agentic-toolkit/blob/10573bac239b7062a476667eaa574d400335c70e/skills/fba-inbound-management/SKILL.md
+  publisher: Amazon
+  license: Apache-2.0
+  description: 'Guides a seller end-to-end through sending inventory to Amazon''s fulfillment network:
+    creating an inbound plan, packing, placement, transportation, delivery windows, and shipment confirmation
+    — plus status checks, modifications, and cancellation. Drives the sequential CREATE→PACK→PLACE→TRANSPORT→DELIVER→SHIP
+    pipeline, polls async operations to completion, and pauses at every decision gate for the seller''s
+    choice. Triggers on: send inventory to Amazon, create inbound plan, ship to FBA, inbound shipment
+    status, cancel inbound plan, add tracking, FNSKU labels, prep requirements, schedule FC drop-off.
+    Do NOT use for: stockout / replenishment forecasting (use stockout-prevention), listing issues, advertising,
+    or orders.'
+  references:
+  - references/fba-inbound-management/carriers-and-shipping.md
+  - references/fba-inbound-management/special-workflows.md
+  - references/fba-inbound-management/tools-and-additional.md
+  evals: evals/fba-inbound-management-evals.json
+- file: amazon-seller-central-invite-secondary-users.md
+  name: invite-secondary-users
+  method: searched
+  source: https://github.com/amzn/selling-partner-agentic-toolkit/blob/10573bac239b7062a476667eaa574d400335c70e/skills/invite-secondary-users/SKILL.md
+  publisher: Amazon
+  license: Apache-2.0
+  description: 'Helps the account owner, an administrator, or a permissions manager of a Seller Central
+    account invite their secondary users to use the Selling Partner plugin. Runs right after the Amazon
+    Selling Partner Connector connector is connected: it confirms the person can grant agent access, asks
+    whether they want to invite secondary users, then walks them through Manage Your Permissions -> Manage
+    Agents, where they enable the agent for the account and choose which secondary users may authorize
+    it. When the skill runs in Amazon Quick, it adds one extra step — inviting that user as a collaborator
+    in the Quick account. Triggers on: invite users, add a secondary user, manage agents, grant agent
+    access, "let my team use the plugin", onboard my team, give access to another user. Do NOT use for:
+    setting up your own account/marketplace (established by the connect flow), taking selling actions,
+    or User Permissions unrelated to AI agents.'
+  references:
+  - references/invite-secondary-users/manage-agents-guide.md
+  - references/invite-secondary-users/quick-collaborator.md
+  evals: evals/invite-secondary-users-evals.json
+- file: amazon-seller-central-listing-buyability.md
+  name: listing-buyability
+  method: searched
+  source: https://github.com/amzn/selling-partner-agentic-toolkit/blob/10573bac239b7062a476667eaa574d400335c70e/skills/listing-buyability/SKILL.md
+  publisher: Amazon
+  license: Apache-2.0
+  description: 'Diagnoses why a seller''s listing isn''t buyable and relays the specific reason plus the
+    next step. Checks the three things that make a listing buyable — a complete product, a valid purchasable
+    offer, and available inventory — then fixes the offer (preview → approve) or routes inventory elsewhere.
+    Triggers on: not buyable, can''t be purchased, "why can''t customers buy this", no buy box, listing
+    inactive, missing price / offer. Do NOT use for: search/discoverability (use listing-searchability),
+    fixing reported listing issues (use listing-issues), or inventory replenishment (use stockout-prevention).'
+  evals: evals/listing-buyability-evals.json
+- file: amazon-seller-central-listing-compliance.md
+  name: listing-compliance
+  method: searched
+  source: https://github.com/amzn/selling-partner-agentic-toolkit/blob/10573bac239b7062a476667eaa574d400335c70e/skills/listing-compliance/SKILL.md
+  publisher: Amazon
+  license: Apache-2.0
+  description: 'Pre-flight compliance gate before any listing write. Identifies which Amazon listing and
+    regulatory requirements (FDA, EPA, CPSC, FCC, FTC, disclosures, GTIN, category gating) apply, asks
+    the seller once for the facts only they know, checks account-side gating, and holds the write until
+    the seller gives an explicit go. Triggers on: "can I list this", "what do I need to sell X", "is this
+    compliant", listing requirements, help me list, or when a sibling listing skill is about to change
+    product claims, ingredients, category, condition, images, or identifiers. Do NOT use for: reported
+    issues (listing-issues), buyability (listing-buyability), search optimization (listing-searchability),
+    or general program-policy Q&A unrelated to listings.'
+  references:
+  - references/listing-compliance/regulatory-map.md
+  - references/listing-compliance/seller-assistant-protocol.md
+  - references/listing-compliance/seller-questions.md
+  evals: evals/listing-compliance-evals.json
+- file: amazon-seller-central-listing-issues.md
+  name: listing-issues
+  method: searched
+  source: https://github.com/amzn/selling-partner-agentic-toolkit/blob/10573bac239b7062a476667eaa574d400335c70e/skills/listing-issues/SKILL.md
+  publisher: Amazon
+  license: Apache-2.0
+  description: 'Fixes listing problems that surface as reported issues on a listing — missing or invalid
+    attributes, and suppressions tied to an issue. Reads the listing''s issues (severity + enforcement),
+    prioritizes by impact, and previews every fix before it goes live. Triggers on: listing issues, listing
+    errors, fix my listing, attribute errors, suppressed because of an issue, "what''s wrong with this
+    listing". Do NOT use for: why a listing isn''t buyable when there''s no issue (use listing-buyability),
+    search visibility / optimization (use listing-searchability), creating new listings, inventory / stockout,
+    advertising, or orders.'
+  references:
+  - references/listing-issues/fix-playbook.md
+  - references/listing-issues/issue-taxonomy.md
+  evals: evals/listing-issues-evals.json
+- file: amazon-seller-central-listing-searchability.md
+  name: listing-searchability
+  method: searched
+  source: https://github.com/amzn/selling-partner-agentic-toolkit/blob/10573bac239b7062a476667eaa574d400335c70e/skills/listing-searchability/SKILL.md
+  publisher: Amazon
+  license: Apache-2.0
+  description: 'Diagnoses why a seller''s listing isn''t found in search and helps make it more discoverable.
+    Checks whether the listing is discoverable at all, then optimizes the content shoppers search on —
+    title, description, bullet points, and generic keywords — with the seller''s approval. Triggers on:
+    not showing up in search, can''t be found, not discoverable, improve ranking, search visibility, optimize
+    my listing, SEO. Do NOT use for: not-buyable (use listing-buyability) or fixing reported issues (use
+    listing-issues).'
+  evals: evals/listing-searchability-evals.json
+- file: amazon-seller-central-listing-troubleshooter.md
+  name: listing-troubleshooter
+  method: searched
+  source: https://github.com/amzn/selling-partner-agentic-toolkit/blob/10573bac239b7062a476667eaa574d400335c70e/skills/listing-troubleshooter/SKILL.md
+  publisher: Amazon
+  license: Apache-2.0
+  description: 'Top-level entry point for any "something''s wrong with my listing" question. Does a quick
+    scan to read the listing''s status and issues, identifies the symptom, and routes the seller to the
+    right specialist skill — issue-fixing, buyability, searchability, or compliance. Triggers on: something''s
+    wrong with my listing, troubleshoot my listing, my product has a problem, listing not working, where
+    do I start, "can I list this", "what do I need to sell X". Routes to: listing-issues, listing-buyability,
+    listing-searchability, listing-compliance.'
+  evals: evals/listing-troubleshooter-evals.json
+- file: amazon-seller-central-seller-analytics.md
+  name: seller-analytics
+  method: searched
+  source: https://github.com/amzn/selling-partner-agentic-toolkit/blob/10573bac239b7062a476667eaa574d400335c70e/skills/seller-analytics/SKILL.md
+  publisher: Amazon
+  license: Apache-2.0
+  description: 'Answers a seller''s business-performance questions — inventory health, traffic, and sales
+    — by querying the Amazon Selling Partner Connector analytics tools. Always discovers the real metric
+    IDs first (never guesses metric names), then retrieves the data with the correct filters, grouping,
+    and time range, and explains the result in plain language. Read-only: it reports numbers, it never
+    changes anything. Triggers on: "how are my sales / sessions / traffic", "am I at risk of a stockout",
+    "how much inventory do I have", "what''s my days of supply", "show me page views by ASIN", "when should
+    I restock", "seller analytics", "business report". Do NOT use for: changing prices or listings, creating
+    shipments, tax/GST/financial-settlement reports, or establishing which account/marketplace to use
+    (established by the connect flow).'
+  references:
+  - references/seller-analytics/metrics-catalog.md
+  - references/seller-analytics/request-reference.md
+  evals: evals/seller-analytics-evals.json
+- file: amazon-seller-central-sp-api-knowledge.md
+  name: sp-api-knowledge
+  method: searched
+  source: https://github.com/amzn/selling-partner-agentic-toolkit/blob/10573bac239b7062a476667eaa574d400335c70e/skills/sp-api-knowledge/SKILL.md
+  publisher: Amazon
+  license: Apache-2.0
+  description: 'Answers Selling Partner API (SP-API) questions and guides developers from idea to working
+    code, grounded strictly in the SP-API documentation knowledge base, never from general knowledge or
+    web guesses. Searches the docs first, fetches full content, routes by question shape (factual lookup,
+    how it works, getting started, which API to use, does-X-support, build an integration, design a solution),
+    and pairs every answer with a visual such as a mermaid diagram, a table, or a design-proposal artifact
+    when brainstorming. Read-only: it explains and designs, it never changes a seller account. Use for
+    SP-API developer questions: how do I, which SP-API to use, does SP-API support X, rate limits, error
+    codes, auth, getting started, build an integration, design or brainstorm, show me a schema or workflow,
+    across Orders, Feeds, Listings, FBA, Reports, Notifications, Catalog, Pricing, and Vendor. Do NOT
+    use for account actions (price, listing, inventory, shipment changes), live account analytics, or
+    non-SP-API topics.'
+  references:
+  - references/sp-api-knowledge/design-and-code.md
+  - references/sp-api-knowledge/query-craft.md
+  - references/sp-api-knowledge/tool-reference.md
+  evals: evals/sp-api-knowledge-evals.json
+- file: amazon-seller-central-stockout-prevention.md
+  name: stockout-prevention
+  method: searched
+  source: https://github.com/amzn/selling-partner-agentic-toolkit/blob/10573bac239b7062a476667eaa574d400335c70e/skills/stockout-prevention/SKILL.md
+  publisher: Amazon
+  license: Apache-2.0
+  description: 'Monitors FBA inventory health, identifies stockout risks from sales velocity, and orchestrates
+    prevention actions — primarily inbound-shipment gap analysis and restocking. Triggers on: inventory
+    check, stockout risk, FBA stock levels, days of cover, days of supply, replenishment, "am I going
+    to run out". Do NOT use for: catalog management, new product listings, advertising, or order fulfillment.'
+  references:
+  - references/stockout-prevention/price-change-guardrails.md
+  - references/stockout-prevention/reports-vs-ordermetrics.md
+  evals: evals/stockout-prevention-evals.json
+- file: amazon-seller-central-support-case-helper.md
+  name: support-case-helper
+  method: searched
+  source: https://github.com/amzn/selling-partner-agentic-toolkit/blob/10573bac239b7062a476667eaa574d400335c70e/skills/support-case-helper/SKILL.md
+  publisher: Amazon
+  license: Apache-2.0
+  description: 'Guides an Amazon seller (Seller Central) who has a Selling Partner account or selling
+    issue to the right Amazon support path. It gathers a few case details, assembles a clean, PII-free
+    summary, and either (a) uses an Amazon Selling Partner connector tool to contact Seller Support /
+    create a case when such a tool is available and the seller explicitly confirms, or (b) — when no such
+    tool exists — points the seller to the Seller Central Help Center to open the case themselves. Triggers
+    on: "I need to contact Amazon about my account", "How do I open a support case?", "Something''s wrong
+    with my account and I need help", "I need additional help with Amazon", "can you open a case", "contact
+    Amazon support", "connect me with Amazon support". Do NOT use for: Vendors (Vendor Central) or any
+    non–Seller Central use case; requests that are not Amazon Seller / Selling Partner support; diagnosing
+    or fixing the underlying problem; or submitting a case without the seller''s explicit confirmation.'
+  evals: evals/support-case-helper-evals.json
+commands:
+- file: commands/amazon-seller-central-sp-fix-listing.md
+  name: sp-fix-listing
+  method: searched
+  source: https://github.com/amzn/selling-partner-agentic-toolkit/blob/10573bac239b7062a476667eaa574d400335c70e/commands/sp-fix-listing.md
+  publisher: Amazon
+  description: Find your suppressed/inactive listings and fix them (with your approval)
+- file: commands/amazon-seller-central-sp-sales-drop.md
+  name: sp-sales-drop
+  method: searched
+  source: https://github.com/amzn/selling-partner-agentic-toolkit/blob/10573bac239b7062a476667eaa574d400335c70e/commands/sp-sales-drop.md
+  publisher: Amazon
+  description: Diagnose why your Amazon sales dropped and get safe next steps
+- file: commands/amazon-seller-central-sp-stockout-check.md
+  name: sp-stockout-check
+  method: searched
+  source: https://github.com/amzn/selling-partner-agentic-toolkit/blob/10573bac239b7062a476667eaa574d400335c70e/commands/sp-stockout-check.md
+  publisher: Amazon
+  description: Check your FBA inventory for stockout risk and get restock/price options (with your approval)

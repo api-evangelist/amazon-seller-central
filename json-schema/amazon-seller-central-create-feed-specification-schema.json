@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-create-feed-specification-schema.json",
+  "title": "CreateFeedSpecification",
+  "description": "Information required to create the feed.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-feeds-api-openapi.yml#/components/schemas/CreateFeedSpecification",
+  "type": "object",
+  "required": [
+    "inputFeedDocumentId",
+    "feedType",
+    "marketplaceIds"
+  ],
+  "properties": {
+    "feedType": {
+      "description": "The feed type.",
+      "type": "string"
+    },
+    "marketplaceIds": {
+      "description": "A list of identifiers for marketplaces that you want the feed to be applied to.",
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 25,
+      "items": {
+        "type": "string"
+      }
+    },
+    "inputFeedDocumentId": {
+      "description": "The document identifier returned by the createFeedDocument operation. Upload the feed document contents before calling the createFeed operation.",
+      "type": "string"
+    },
+    "feedOptions": {
+      "$ref": "#/$defs/FeedOptions"
+    }
+  },
+  "$defs": {
+    "FeedOptions": {
+      "description": "Additional options to control the feed. These vary by feed type.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

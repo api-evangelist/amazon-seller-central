@@ -1,0 +1,768 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-competitive-summary-batch-response-schema.json",
+  "title": "CompetitiveSummaryBatchResponse",
+  "description": "The response schema for the `competitiveSummaryBatch` operation.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-productpricing-api-openapi.yml#/components/schemas/CompetitiveSummaryBatchResponse",
+  "type": "object",
+  "required": [
+    "responses"
+  ],
+  "properties": {
+    "responses": {
+      "description": "The response list for the `competitiveSummaryBatch` operation.",
+      "$ref": "#/$defs/CompetitiveSummaryResponseList"
+    }
+  },
+  "$defs": {
+    "AmountThreshold": {
+      "type": "object",
+      "description": "Amount-based purchase conditions for basket building promotions. Customers must spend a minimum dollar amount.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Indicates how the amount requirement is evaluated. For spend-based conditions, the supported value is AT_LEAST, meaning the customer must spend at least the specified dollar amount to qualify."
+        },
+        "currency": {
+          "$ref": "#/$defs/MoneyType",
+          "description": "Minimum spend amount customers must meet."
+        }
+      },
+      "required": [
+        "type",
+        "currency"
+      ]
+    },
+    "Asin": {
+      "description": "The ASIN of the item.",
+      "type": "string"
+    },
+    "CompetitiveSummaryResponse": {
+      "description": "The response for the individual `competitiveSummary` request in the batch operation.",
+      "type": "object",
+      "required": [
+        "status",
+        "body"
+      ],
+      "properties": {
+        "status": {
+          "description": "The HTTP status line associated with the response. For more information, refer to [RFC 2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html).",
+          "$ref": "#/$defs/HttpStatusLine"
+        },
+        "body": {
+          "description": "The `competitiveSummaryResponse` body for a requested ASIN and `marketplaceId`.",
+          "$ref": "#/$defs/CompetitiveSummaryResponseBody"
+        }
+      }
+    },
+    "CompetitiveSummaryResponseBody": {
+      "description": "The `competitiveSummaryResponse` body for a requested ASIN and `marketplaceId`.",
+      "type": "object",
+      "required": [
+        "asin",
+        "marketplaceId"
+      ],
+      "properties": {
+        "asin": {
+          "description": "The Amazon identifier for the item.",
+          "$ref": "#/$defs/Asin"
+        },
+        "marketplaceId": {
+          "$ref": "#/$defs/MarketplaceId",
+          "description": "An Amazon store identifier."
+        },
+        "featuredBuyingOptions": {
+          "description": "A list of featured buying options for the specified ASIN `marketplaceId` combination.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FeaturedBuyingOption"
+          }
+        },
+        "lowestPricedOffers": {
+          "description": "A list of lowest priced offers for the specified ASIN `marketplaceId` combination.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LowestPricedOffer"
+          }
+        },
+        "referencePrices": {
+          "description": "A list of reference prices for the specified ASIN `marketplaceId` combination.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ReferencePrice"
+          }
+        },
+        "similarItems": {
+          "description": "A list of similar items for the specified ASIN `marketplaceId` combination.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SimilarItems"
+          }
+        },
+        "errors": {
+          "description": "A list of errors",
+          "$ref": "#/$defs/ErrorList"
+        }
+      }
+    },
+    "CompetitiveSummaryResponseList": {
+      "description": "The response list for the `competitiveSummaryBatch` operation.",
+      "type": "array",
+      "items": {
+        "description": "The response for the individual `competitiveSummary` request in the batch operation.",
+        "$ref": "#/$defs/CompetitiveSummaryResponse"
+      },
+      "minItems": 1,
+      "maxItems": 20
+    },
+    "Condition": {
+      "description": "The condition of the item.",
+      "type": "string",
+      "enum": [
+        "New",
+        "Used",
+        "Collectible",
+        "Refurbished",
+        "Club"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "New",
+          "description": "New"
+        },
+        {
+          "value": "Used",
+          "description": "Used"
+        },
+        {
+          "value": "Collectible",
+          "description": "Collectible"
+        },
+        {
+          "value": "Refurbished",
+          "description": "Refurbished"
+        },
+        {
+          "value": "Club",
+          "description": "Club"
+        }
+      ]
+    },
+    "DiscountType": {
+      "type": "string",
+      "description": "Method used to calculate the discount amount. Supported values: PERCENTAGE_OFF (discount applied as a percentage off the original price), AMOUNT_OFF (discount applied as a fixed amount off the original price)."
+    },
+    "Error": {
+      "type": "object",
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "An error code that identifies the type of error that occurred."
+        },
+        "message": {
+          "type": "string",
+          "description": "A message that describes the error condition."
+        },
+        "details": {
+          "type": "string",
+          "description": "Additional details that can help the caller understand or fix the issue."
+        }
+      },
+      "description": "Error response returned when the request is unsuccessful."
+    },
+    "ErrorList": {
+      "type": "array",
+      "description": "A list of error responses that are returned when a request is unsuccessful.",
+      "items": {
+        "$ref": "#/$defs/Error"
+      }
+    },
+    "FeaturedBuyingOption": {
+      "description": "Describes a featured buying option, which includes a list of segmented featured offers for a particular item condition.",
+      "type": "object",
+      "required": [
+        "buyingOptionType",
+        "segmentedFeaturedOffers"
+      ],
+      "properties": {
+        "buyingOptionType": {
+          "description": "The buying option type for the featured offer. `buyingOptionType` represents the buying options that a customer receives on the detail page, such as `B2B`, `Fresh`, and `Subscribe n Save`. `buyingOptionType` currently supports `NEW` as a value.",
+          "type": "string",
+          "enum": [
+            "New"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "New",
+              "description": "New"
+            }
+          ]
+        },
+        "segmentedFeaturedOffers": {
+          "description": "A list of segmented featured offers for the current buying option type. A segment can be considered as a group of regional contexts that all have the same featured offer. A regional context is a combination of factors such as customer type, region, or postal code and buying option.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SegmentedFeaturedOffer"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "FeaturedOfferSegment": {
+      "description": "Describes the segment in which the offer is featured.",
+      "type": "object",
+      "required": [
+        "customerMembership",
+        "segmentDetails"
+      ],
+      "properties": {
+        "customerMembership": {
+          "description": "The customer membership type that makes up this segment",
+          "type": "string",
+          "enum": [
+            "PRIME",
+            "NON_PRIME",
+            "DEFAULT"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "PRIME",
+              "description": "Customers that are Prime members."
+            },
+            {
+              "value": "NON_PRIME",
+              "description": "Customers that are not Prime members."
+            },
+            {
+              "value": "DEFAULT",
+              "description": "Customers whose Prime membership status is unknown."
+            }
+          ]
+        },
+        "segmentDetails": {
+          "description": "The details about the segment.",
+          "$ref": "#/$defs/SegmentDetails"
+        }
+      }
+    },
+    "FulfillmentType": {
+      "type": "string",
+      "description": "Indicates whether the item is fulfilled by Amazon or by the seller (merchant).",
+      "enum": [
+        "AFN",
+        "MFN"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "AFN",
+          "description": "Fulfilled by Amazon."
+        },
+        {
+          "value": "MFN",
+          "description": "Fulfilled by the seller."
+        }
+      ]
+    },
+    "HttpStatusLine": {
+      "description": "The HTTP status line associated with the response for an individual request within a batch. For more information, refer to [RFC 2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html).",
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "description": "The HTTP response status code.",
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 599
+        },
+        "reasonPhrase": {
+          "description": "The HTTP response reason phrase.",
+          "type": "string"
+        }
+      }
+    },
+    "Item": {
+      "description": "A similar item for the specified ASIN `marketplaceId` combination.",
+      "type": "object",
+      "required": [
+        "asin"
+      ],
+      "properties": {
+        "asin": {
+          "description": "The Amazon identifier for the item.",
+          "$ref": "#/$defs/Asin"
+        }
+      }
+    },
+    "LowestPricedOffer": {
+      "description": "Describes the lowest priced offers for the specified item condition and offer type.",
+      "type": "object",
+      "required": [
+        "lowestPricedOffersInput",
+        "offers"
+      ],
+      "properties": {
+        "lowestPricedOffersInput": {
+          "description": "The filtering criteria that are used to retrieve the lowest priced offers that correspond to the `lowestPricedOffersInputs` request.",
+          "type": "object",
+          "$ref": "#/$defs/LowestPricedOffersInput"
+        },
+        "offers": {
+          "description": "A list of up to 20 lowest priced offers that match the criteria specified in `lowestPricedOffersInput`.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Offer"
+          },
+          "minItems": 1,
+          "maxItems": 20
+        }
+      }
+    },
+    "LowestPricedOffersInput": {
+      "description": "The input required for building `LowestPricedOffers` data in the response.",
+      "type": "object",
+      "required": [
+        "itemCondition",
+        "offerType"
+      ],
+      "properties": {
+        "itemCondition": {
+          "type": "string",
+          "description": "The input parameter specifies the `itemCondition` of the offer that is requested for `LowestPricedOffers`. `New` is the default value for `itemCondition`.",
+          "$ref": "#/$defs/Condition"
+        },
+        "offerType": {
+          "type": "string",
+          "description": "The input parameter specifies the type of offers requested for `LowestPricedOffers`. This applies to `Consumer` and `Business` offers. `Consumer` is the default `offerType`.",
+          "enum": [
+            "Consumer"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "Consumer",
+              "description": "An offer that is available to all Amazon customers."
+            }
+          ]
+        }
+      }
+    },
+    "MarketplaceId": {
+      "description": "The `MarketplaceID` is the globally unique identifier of an Amazon store. To find the ID for your Amazon store, refer to [Amazon store IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).",
+      "type": "string"
+    },
+    "MoneyType": {
+      "type": "object",
+      "properties": {
+        "currencyCode": {
+          "type": "string",
+          "description": "The currency code in ISO 4217 format."
+        },
+        "amount": {
+          "type": "number",
+          "description": "The monetary value."
+        }
+      },
+      "description": "Currency type and monetary value schema to demonstrate pricing information."
+    },
+    "Offer": {
+      "description": "The offer data of a product.",
+      "type": "object",
+      "required": [
+        "sellerId",
+        "condition",
+        "fulfillmentType",
+        "listingPrice"
+      ],
+      "properties": {
+        "sellerId": {
+          "type": "string",
+          "description": "The seller identifier for the offer."
+        },
+        "condition": {
+          "description": "Item Condition.",
+          "$ref": "#/$defs/Condition"
+        },
+        "subCondition": {
+          "type": "string",
+          "description": "The item subcondition of the offer.",
+          "enum": [
+            "New",
+            "Mint",
+            "VeryGood",
+            "Good",
+            "Acceptable",
+            "Poor",
+            "Club",
+            "OEM",
+            "Warranty",
+            "RefurbishedWarranty",
+            "Refurbished",
+            "OpenBox",
+            "Other"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "New",
+              "description": "New"
+            },
+            {
+              "value": "Mint",
+              "description": "Mint"
+            },
+            {
+              "value": "VeryGood",
+              "description": "VeryGood"
+            },
+            {
+              "value": "Good",
+              "description": "Good"
+            },
+            {
+              "value": "Acceptable",
+              "description": "Acceptable"
+            },
+            {
+              "value": "Poor",
+              "description": "Poor"
+            },
+            {
+              "value": "Club",
+              "description": "Club"
+            },
+            {
+              "value": "OEM",
+              "description": "OEM"
+            },
+            {
+              "value": "Warranty",
+              "description": "Warranty"
+            },
+            {
+              "value": "RefurbishedWarranty",
+              "description": "RefurbishedWarranty"
+            },
+            {
+              "value": "Refurbished",
+              "description": "Refurbished"
+            },
+            {
+              "value": "OpenBox",
+              "description": "OpenBox"
+            },
+            {
+              "value": "Other",
+              "description": "Other"
+            }
+          ]
+        },
+        "fulfillmentType": {
+          "$ref": "#/$defs/FulfillmentType",
+          "description": "The fulfillment type for the offer. Possible values are `AFN` (Amazon Fulfillment Network) and `MFN` (Merchant Fulfillment Network)."
+        },
+        "listingPrice": {
+          "description": "The offer buying price. This doesn't include shipping, points, or applicable promotions.",
+          "$ref": "#/$defs/MoneyType"
+        },
+        "shippingOptions": {
+          "description": "A list of shipping options associated with this offer",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ShippingOption"
+          }
+        },
+        "points": {
+          "description": "The number of Amazon Points that are offered with the purchase of an item and the monetary value of these points. Note that the Points element is only returned in Japan (JP).",
+          "$ref": "#/$defs/Points"
+        },
+        "primeDetails": {
+          "description": "Amazon Prime details.",
+          "$ref": "#/$defs/PrimeDetails"
+        },
+        "promotions": {
+          "description": "A list of live promotions with this offer",
+          "$ref": "#/$defs/Promotions"
+        }
+      }
+    },
+    "Points": {
+      "type": "object",
+      "properties": {
+        "pointsNumber": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The number of Amazon Points."
+        },
+        "pointsMonetaryValue": {
+          "description": "The monetary value of the Amazon Points.",
+          "$ref": "#/$defs/MoneyType"
+        }
+      },
+      "description": "The number of Amazon Points that are offered with the purchase of an item and the monetary value of these points."
+    },
+    "PostalCode": {
+      "description": "Postal code value with country code",
+      "type": "object",
+      "properties": {
+        "countryCode": {
+          "description": "Country code value",
+          "type": "string"
+        },
+        "value": {
+          "description": "Postal code value",
+          "type": "string"
+        }
+      }
+    },
+    "PrimeDetails": {
+      "description": "Amazon Prime details.",
+      "type": "object",
+      "required": [
+        "eligibility"
+      ],
+      "properties": {
+        "eligibility": {
+          "description": "Indicates whether the offer is an Amazon Prime offer.",
+          "type": "string",
+          "enum": [
+            "NATIONAL",
+            "REGIONAL",
+            "NONE"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "NATIONAL",
+              "description": "Indicates that this offer has Amazon Prime eligibility in all regions within the Amazon store."
+            },
+            {
+              "value": "REGIONAL",
+              "description": "Indicates that this offer has Amazon Prime eligibility in some (but not all) regions within the Amazon store."
+            },
+            {
+              "value": "NONE",
+              "description": "Indicates that this offer is not an Amazon Prime offer in any region within the Amazon store."
+            }
+          ]
+        }
+      }
+    },
+    "Promotion": {
+      "description": "A promotion applicable to the offer.",
+      "type": "object",
+      "required": [
+        "promotionType",
+        "promotionSavings"
+      ],
+      "properties": {
+        "promotionType": {
+          "description": "The type of promotion, categorized by the customer-facing experience.",
+          "$ref": "#/$defs/PromotionType"
+        },
+        "promotionSavings": {
+          "description": "The savings applied by the promotion, including discount amount, percentage off, and discounted price.",
+          "$ref": "#/$defs/PromotionSavings"
+        },
+        "purchaseRequirements": {
+          "description": "Purchase requirements for BASKET_BUILDING promotions. Defines what customers must buy to qualify.",
+          "$ref": "#/$defs/PurchaseRequirements"
+        }
+      }
+    },
+    "PromotionDiscount": {
+      "description": "Discount details applied by the promotion.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "The type of discount off, categorized by the customer-facing experience.",
+          "$ref": "#/$defs/DiscountType"
+        },
+        "amountOff": {
+          "description": "The monetary amount discounted from the original price. Only valid when type is AMOUNT_OFF.",
+          "$ref": "#/$defs/MoneyType"
+        },
+        "percentOff": {
+          "description": "The percentage discount applied to the original price (1-100). Only valid when type is PERCENTAGE_OFF.",
+          "type": "number",
+          "minimum": 1,
+          "maximum": 100
+        }
+      }
+    },
+    "PromotionSavings": {
+      "description": "Details about the savings applied by the promotion.",
+      "type": "object",
+      "properties": {
+        "discount": {
+          "description": "The discount applied by the promotion.",
+          "$ref": "#/$defs/PromotionDiscount"
+        },
+        "discountedPrice": {
+          "description": "The final price after the promotion is applied.",
+          "$ref": "#/$defs/MoneyType"
+        }
+      }
+    },
+    "PromotionType": {
+      "type": "string",
+      "description": "Indicates the type of promotion based on the customer-facing experience. Possible values include:\n\n- COUPON: The offer has a live coupon that customers can clip and apply at checkout.\n- DEAL: The offer has a live deal (for example, Lightning Deal or Best Deal). Deals are time-limited, require meeting quality criteria, and automatically apply a discount when the customer purchases the item.\n- BASKET_BUILDING: The offer has a basket-building (multi-quantity) promotion where customers purchase multiple quantities of the same or different qualifying items to receive a discount on eligible items. Promotions created in Seller Central -> Advertising -> Manage Promotions fall into this category"
+    },
+    "Promotions": {
+      "description": "A list of live promotions applicable to this offer.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Promotion"
+      }
+    },
+    "PurchaseCondition": {
+      "description": "Specifies minimum purchase requirements using quantity-based or amount-based conditions for basket building promotions. Used in purchase requirements to specify conditions within those configurations. Exactly one of quantityThreshold or amountThreshold must be specified.",
+      "type": "object",
+      "properties": {
+        "quantityThreshold": {
+          "description": "Quantity-based purchase conditions for basket building promotions. Customer must purchase at least the specified quantity of items",
+          "$ref": "#/$defs/QuantityThreshold"
+        },
+        "amountThreshold": {
+          "description": "Amount-based purchase conditions for basket building promotions. Customers must purchase a minimum amount for the promotion to apply",
+          "$ref": "#/$defs/AmountThreshold"
+        }
+      }
+    },
+    "PurchaseRequirements": {
+      "description": "Purchase requirements that customers must meet to qualify for basket building promotions. Contains the purchase condition (how much to buy). Represents the 'Buy X' portion of Buy X Get Y promotions.",
+      "type": "object",
+      "properties": {
+        "condition": {
+          "description": "Minimum purchase requirement specifying either quantity of items or total spend amount that customers must meet to qualify.",
+          "$ref": "#/$defs/PurchaseCondition"
+        }
+      }
+    },
+    "QuantityThreshold": {
+      "type": "object",
+      "description": "Quantity-based purchase conditions for basket building promotions.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Indicates how the quantity requirement is evaluated. Possible values include:\n\n- AT_LEAST: The customer must purchase at least the specified quantity of items to qualify for the benefit.\n- FOR_EACH: The benefit applies for every group of the specified quantity purchased (for example, the discount applies for each set of 2 items purchased)."
+        },
+        "quantity": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of items required to meet this purchase condition."
+        }
+      },
+      "required": [
+        "type",
+        "quantity"
+      ]
+    },
+    "ReferencePrice": {
+      "description": "The reference price for the specified ASIN `marketplaceId` combination.",
+      "type": "object",
+      "required": [
+        "name",
+        "price"
+      ],
+      "properties": {
+        "name": {
+          "description": "Reference price type (e.g., `CompetitivePriceThreshold`, `WasPrice`, `CompetitivePrice`). For definitions, refer to the [Product Pricing API Use Case Guide](https://developer-docs.amazon.com/sp-api/docs/product-pricing-api).",
+          "type": "string"
+        },
+        "price": {
+          "description": "The reference price for the ASIN `marketplaceId` combination.",
+          "$ref": "#/$defs/MoneyType"
+        }
+      }
+    },
+    "SampleLocation": {
+      "description": "Information about a location. It uses a postal code to identify the location.",
+      "type": "object",
+      "properties": {
+        "postalCode": {
+          "$ref": "#/$defs/PostalCode"
+        }
+      }
+    },
+    "SegmentDetails": {
+      "description": "The details about the segment. The FeaturedOfferExpectedPrice API uses only the sampleLocation portion as input.",
+      "type": "object",
+      "properties": {
+        "glanceViewWeightPercentage": {
+          "description": "The glance view weighted percentage for this segment, which is the glance views for this segment as a percentage of total glance views across all segments for the ASIN. A higher percentage indicates that more Amazon customers receive this offer as the Featured Offer.",
+          "type": "number"
+        },
+        "sampleLocation": {
+          "$ref": "#/$defs/SampleLocation",
+          "description": "The representative location that features the offer for the segment."
+        }
+      }
+    },
+    "SegmentedFeaturedOffer": {
+      "description": "A product offer with segment information indicating where it's featured.",
+      "allOf": [
+        {
+          "$ref": "#/$defs/Offer"
+        },
+        {
+          "type": "object",
+          "description": "The list of segment information in which the offer is featured.",
+          "required": [
+            "featuredOfferSegments"
+          ],
+          "properties": {
+            "featuredOfferSegments": {
+              "description": "The list of segment information in which the offer is featured.",
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/FeaturedOfferSegment"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ShippingOption": {
+      "description": "The shipping option available for the offer.",
+      "type": "object",
+      "required": [
+        "shippingOptionType",
+        "price"
+      ],
+      "properties": {
+        "shippingOptionType": {
+          "description": "The type of shipping option.",
+          "enum": [
+            "DEFAULT"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "DEFAULT",
+              "description": "The estimated shipping cost of the product. Note that the shipping cost is not always available."
+            }
+          ]
+        },
+        "price": {
+          "description": "Shipping price for the offer.",
+          "$ref": "#/$defs/MoneyType"
+        }
+      }
+    },
+    "SimilarItems": {
+      "description": "The summary of similar items for the specified ASIN `marketplaceId` combination.",
+      "type": "object",
+      "properties": {
+        "items": {
+          "description": "A list of similar items for the specified ASIN `marketplaceId` combination.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Item"
+          }
+        }
+      }
+    }
+  }
+}

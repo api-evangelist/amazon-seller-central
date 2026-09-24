@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-listings-item-patch-request-schema.json",
+  "title": "ListingsItemPatchRequest",
+  "description": "The request body schema for the `patchListingsItem` operation.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-listings-api-openapi.yml#/components/schemas/ListingsItemPatchRequest",
+  "properties": {
+    "productType": {
+      "description": "The Amazon product type of the listings item.",
+      "type": "string"
+    },
+    "patches": {
+      "description": "One or more JSON Patch operations to perform on the listings item.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/PatchOperation"
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "productType",
+    "patches"
+  ],
+  "type": "object",
+  "$defs": {
+    "PatchOperation": {
+      "description": "Individual JSON Patch operation for an HTTP PATCH request.",
+      "properties": {
+        "op": {
+          "description": "Type of JSON Patch operation. Supported JSON Patch operations include `add`, `replace`, `merge` and `delete`. Refer to <https://tools.ietf.org/html/rfc6902>.",
+          "enum": [
+            "add",
+            "replace",
+            "merge",
+            "delete"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "add",
+              "description": "The `add` operation adds or replaces the target property."
+            },
+            {
+              "value": "replace",
+              "description": "The `replace` operation adds or replaces the target property."
+            },
+            {
+              "value": "merge",
+              "description": "The `merge` operation merges the target property."
+            },
+            {
+              "value": "delete",
+              "description": "The `delete` operation removes the target property."
+            }
+          ],
+          "type": "string"
+        },
+        "path": {
+          "description": "JSON Pointer path of the element to patch. Refer to [JavaScript Object Notation (JSON) Patch](https://tools.ietf.org/html/rfc6902) for more information.",
+          "type": "string"
+        },
+        "value": {
+          "description": "JSON value to `add`, `replace`, `merge` or `delete`.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "required": [
+        "op",
+        "path"
+      ],
+      "type": "object"
+    }
+  }
+}

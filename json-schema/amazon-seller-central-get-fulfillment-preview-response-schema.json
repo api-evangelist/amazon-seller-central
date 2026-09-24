@@ -1,0 +1,481 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-get-fulfillment-preview-response-schema.json",
+  "title": "GetFulfillmentPreviewResponse",
+  "description": "The response schema for the `getFulfillmentPreview` operation.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-fbaoutbound-api-openapi.yml#/components/schemas/GetFulfillmentPreviewResponse",
+  "type": "object",
+  "properties": {
+    "payload": {
+      "description": "The response payload for the `getFulfillmentPreview` operation.",
+      "$ref": "#/$defs/GetFulfillmentPreviewResult"
+    },
+    "errors": {
+      "description": "One or more unexpected errors occurred during the `getFulfillmentPreview` operation.",
+      "$ref": "#/$defs/ErrorList"
+    }
+  },
+  "$defs": {
+    "Decimal": {
+      "type": "string",
+      "description": "A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation."
+    },
+    "DeliveryWindow": {
+      "type": "object",
+      "required": [
+        "endDate",
+        "startDate"
+      ],
+      "properties": {
+        "startDate": {
+          "description": "The date and time of the start of the Scheduled Delivery window, in ISO 8601 date time format.",
+          "$ref": "#/$defs/Timestamp"
+        },
+        "endDate": {
+          "description": "The date and time of the end of the Scheduled Delivery window, in ISO 8601 date time format.",
+          "$ref": "#/$defs/Timestamp"
+        }
+      },
+      "description": "The time range within which a Scheduled Delivery fulfillment order should be delivered. This is only available in the JP marketplace."
+    },
+    "DeliveryWindowList": {
+      "type": "array",
+      "description": "An array of delivery windows.",
+      "items": {
+        "$ref": "#/$defs/DeliveryWindow"
+      }
+    },
+    "Error": {
+      "type": "object",
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "An error code that identifies the type of error that occurred."
+        },
+        "message": {
+          "type": "string",
+          "description": "A message that describes the error condition."
+        },
+        "details": {
+          "type": "string",
+          "description": "Additional details that can help the caller understand or fix the issue."
+        }
+      },
+      "description": "Error response returned when the request is unsuccessful."
+    },
+    "ErrorList": {
+      "type": "array",
+      "description": "A list of error responses returned when a request is unsuccessful.",
+      "items": {
+        "$ref": "#/$defs/Error"
+      }
+    },
+    "FeatureSettings": {
+      "type": "object",
+      "properties": {
+        "featureName": {
+          "type": "string",
+          "description": "The name of the feature. Valid feature names are:\n\n- `BLOCK_AMZL`: Blocks orders from being shipped using Amazon Logistics (AMZL).\n  - Note: Using this feature will incur additional fee surcharges on MCF orders and may increase the risk of unfulfilled or delayed deliveries if alternative carriers are unavailable. Using `BLOCK_AMZL` in an order request will take precedence over your Seller Central account setting.\n- `BLANK_BOX`: Ships orders in non-Amazon branded packaging (blank boxes).\n- `OVERBOX`: Requires items to be shipped in an overbox rather than in their original product packaging.\n- `PACKING_SLIP`: Requires a packing slip to be included with the order.\n- `SIGNATURE_CONFIRMATION`: Requires a signature from the recipient upon delivery. \n  - Note: Using signature confirmation features will incur additional fees on MCF orders and are currently supported only in the US marketplace."
+        },
+        "featureFulfillmentPolicy": {
+          "type": "string",
+          "description": "Specifies the policy to use when fulfilling an order.",
+          "enum": [
+            "Required",
+            "NotRequired"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "Required",
+              "description": "If the offer can't be shipped with the selected feature, reject the order."
+            },
+            {
+              "value": "NotRequired",
+              "description": "The feature is not required for shipping."
+            }
+          ]
+        }
+      },
+      "description": "Feature settings allows you to apply fulfillment features to an order. To block an order from being shipped using Amazon Logistics (AMZL) and an AMZL tracking number, set `featureName` to `BLOCK_AMZL` and `featureFulfillmentPolicy` to `Required`. Blocking AMZL will incur an additional fee surcharge on your MCF orders and increase the risk of some of your orders being unfulfilled or delivered late if there are no alternative carriers available. Using `BLOCK_AMZL` in an order request will take precedence over your Seller Central account setting. To ship in non-Amazon branded packaging (blank boxes), set `featureName` to `BLANK_BOX`. To require items to be shipped in an overbox rather than in their original product packaging, set `featureName` to `OVERBOX`. To require a packing slip to be included with the order, set `featureName` to `PACKING_SLIP`. To require a signature from the recipient upon delivery, set `featureName` to `SIGNATURE_CONFIRMATION`. Note that using signature confirmation features will incur additional fees on MCF orders and are currently supported only in the US marketplace. To ensure all items in an order are delivered together, set `featureName` to `DELIVER_TOGETHER`."
+    },
+    "Fee": {
+      "type": "object",
+      "required": [
+        "amount",
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The type of fee.",
+          "enum": [
+            "FBAPerUnitFulfillmentFee",
+            "FBAPerOrderFulfillmentFee",
+            "FBATransportationFee",
+            "FBAFulfillmentCODFee"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "FBAPerUnitFulfillmentFee",
+              "description": "Estimated fee for each unit in the fulfillment order."
+            },
+            {
+              "value": "FBAPerOrderFulfillmentFee",
+              "description": "Estimated order-level fee."
+            },
+            {
+              "value": "FBATransportationFee",
+              "description": "Estimated shipping fee."
+            },
+            {
+              "value": "FBAFulfillmentCODFee",
+              "description": "Estimated COD (Cash On Delivery) fee. This fee applies only to fulfillment order previews for COD."
+            }
+          ]
+        },
+        "amount": {
+          "description": "The amount of the fee.",
+          "$ref": "#/$defs/Money"
+        }
+      },
+      "description": "Fee type and cost."
+    },
+    "FeeList": {
+      "type": "array",
+      "description": "An array of fee type and cost pairs.",
+      "items": {
+        "$ref": "#/$defs/Fee"
+      }
+    },
+    "FulfillmentPreview": {
+      "type": "object",
+      "required": [
+        "isCODCapable",
+        "isFulfillable",
+        "marketplaceId",
+        "shippingSpeedCategory"
+      ],
+      "properties": {
+        "shippingSpeedCategory": {
+          "$ref": "#/$defs/ShippingSpeedCategory"
+        },
+        "scheduledDeliveryInfo": {
+          "$ref": "#/$defs/ScheduledDeliveryInfo"
+        },
+        "isFulfillable": {
+          "type": "boolean",
+          "description": "When true, this fulfillment order preview is fulfillable."
+        },
+        "isCODCapable": {
+          "type": "boolean",
+          "description": "When true, this fulfillment order preview is for COD (Cash On Delivery)."
+        },
+        "estimatedShippingWeight": {
+          "description": "Estimated shipping weight for this fulfillment order preview.",
+          "$ref": "#/$defs/Weight"
+        },
+        "estimatedFees": {
+          "description": "The estimated fulfillment fees for this fulfillment order preview, if applicable. The fees data will not be available for IN marketplace orders.",
+          "$ref": "#/$defs/FeeList"
+        },
+        "fulfillmentPreviewShipments": {
+          "$ref": "#/$defs/FulfillmentPreviewShipmentList"
+        },
+        "unfulfillablePreviewItems": {
+          "$ref": "#/$defs/UnfulfillablePreviewItemList"
+        },
+        "orderUnfulfillableReasons": {
+          "description": "Error codes associated with the fulfillment order preview that indicate why the order is not fulfillable.\n\nError code examples:\n\n`DeliverySLAUnavailable`\n`InvalidDestinationAddress`",
+          "$ref": "#/$defs/StringList"
+        },
+        "marketplaceId": {
+          "type": "string",
+          "description": "The marketplace the fulfillment order is placed against."
+        },
+        "featureConstraints": {
+          "type": "array",
+          "description": "A list of features and their fulfillment policies to apply to the order.",
+          "items": {
+            "$ref": "#/$defs/FeatureSettings"
+          }
+        }
+      },
+      "description": "Information about a fulfillment order preview, including delivery and fee information based on shipping method."
+    },
+    "FulfillmentPreviewItem": {
+      "type": "object",
+      "required": [
+        "quantity",
+        "sellerFulfillmentOrderItemId",
+        "sellerSku"
+      ],
+      "properties": {
+        "sellerSku": {
+          "type": "string",
+          "description": "The seller SKU of the item."
+        },
+        "quantity": {
+          "description": "The item quantity.",
+          "$ref": "#/$defs/Quantity"
+        },
+        "sellerFulfillmentOrderItemId": {
+          "type": "string",
+          "description": "A fulfillment order item identifier that the seller created with a call to the `createFulfillmentOrder` operation."
+        },
+        "estimatedShippingWeight": {
+          "description": "The estimated shipping weight of the item quantity for a single item, as identified by `sellerSku`, in a shipment.",
+          "$ref": "#/$defs/Weight"
+        },
+        "shippingWeightCalculationMethod": {
+          "type": "string",
+          "description": "The method used to calculate the estimated shipping weight.",
+          "enum": [
+            "Package",
+            "Dimensional"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "Package",
+              "description": "Based on the actual weight of the items."
+            },
+            {
+              "value": "Dimensional",
+              "description": "Based on the cubic space that the items occupy."
+            }
+          ]
+        }
+      },
+      "description": "Item information for a shipment in a fulfillment order preview."
+    },
+    "FulfillmentPreviewItemList": {
+      "type": "array",
+      "description": "An array of fulfillment preview item information.",
+      "items": {
+        "$ref": "#/$defs/FulfillmentPreviewItem"
+      }
+    },
+    "FulfillmentPreviewList": {
+      "type": "array",
+      "description": "An array of fulfillment preview information.",
+      "items": {
+        "$ref": "#/$defs/FulfillmentPreview"
+      }
+    },
+    "FulfillmentPreviewShipment": {
+      "type": "object",
+      "required": [
+        "fulfillmentPreviewItems"
+      ],
+      "properties": {
+        "earliestShipDate": {
+          "description": "The earliest date that the shipment is expected to be sent from the fulfillment center, in ISO 8601 date time format.",
+          "$ref": "#/$defs/Timestamp"
+        },
+        "latestShipDate": {
+          "description": "The latest date that the shipment is expected to be sent from the fulfillment center, in ISO 8601 date time format.",
+          "$ref": "#/$defs/Timestamp"
+        },
+        "earliestArrivalDate": {
+          "description": "The earliest date that the shipment is expected to arrive at its destination.",
+          "$ref": "#/$defs/Timestamp"
+        },
+        "latestArrivalDate": {
+          "description": "The latest date that the shipment is expected to arrive at its destination, in ISO 8601 date time format.",
+          "$ref": "#/$defs/Timestamp"
+        },
+        "shippingNotes": {
+          "type": "array",
+          "description": "Provides additional insight into the shipment timeline when exact delivery dates are not able to be precomputed.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "fulfillmentPreviewItems": {
+          "description": "Information about the items in the shipment.",
+          "$ref": "#/$defs/FulfillmentPreviewItemList"
+        }
+      },
+      "description": "Delivery and item information for a shipment in a fulfillment order preview."
+    },
+    "FulfillmentPreviewShipmentList": {
+      "type": "array",
+      "description": "An array of fulfillment preview shipment information.",
+      "items": {
+        "$ref": "#/$defs/FulfillmentPreviewShipment"
+      }
+    },
+    "GetFulfillmentPreviewResult": {
+      "type": "object",
+      "properties": {
+        "fulfillmentPreviews": {
+          "$ref": "#/$defs/FulfillmentPreviewList"
+        }
+      },
+      "description": "A list of fulfillment order previews, including estimated shipping weights, estimated shipping fees, and estimated ship dates and arrival dates."
+    },
+    "Money": {
+      "type": "object",
+      "required": [
+        "currencyCode",
+        "value"
+      ],
+      "properties": {
+        "currencyCode": {
+          "type": "string",
+          "description": "Three digit currency code in ISO 4217 format."
+        },
+        "value": {
+          "$ref": "#/$defs/Decimal"
+        }
+      },
+      "description": "An amount of money, including units in the form of currency."
+    },
+    "Quantity": {
+      "type": "integer",
+      "format": "int32",
+      "description": "The item quantity."
+    },
+    "ScheduledDeliveryInfo": {
+      "type": "object",
+      "required": [
+        "deliveryTimeZone",
+        "deliveryWindows"
+      ],
+      "properties": {
+        "deliveryTimeZone": {
+          "type": "string",
+          "description": "The time zone of the destination address for the fulfillment order preview. Must be an IANA time zone name. Example: Asia/Tokyo."
+        },
+        "deliveryWindows": {
+          "description": "An array of time ranges that are available for scheduled delivery.",
+          "$ref": "#/$defs/DeliveryWindowList"
+        }
+      },
+      "description": "Delivery information for a scheduled delivery. This is only available in the JP marketplace."
+    },
+    "ShippingSpeedCategory": {
+      "type": "string",
+      "description": "The shipping method used for the fulfillment order. When this value is `ScheduledDelivery`, choose `Ship` for the `fulfillmentAction`. `Hold` is not a valid `fulfillmentAction` value when the `shippingSpeedCategory` value is `ScheduledDelivery`.\nNote: Shipping method service level agreements vary by marketplace. Sellers should refer to the [Seller Central](https://developer-docs.amazon.com/sp-api/docs/seller-central-urls) website in their marketplace for shipping method service level agreements and fulfillment fees.",
+      "enum": [
+        "Standard",
+        "Expedited",
+        "Priority",
+        "ScheduledDelivery"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "Standard",
+          "description": "Standard shipping method."
+        },
+        {
+          "value": "Expedited",
+          "description": "Expedited shipping method."
+        },
+        {
+          "value": "Priority",
+          "description": "Priority shipping method."
+        },
+        {
+          "value": "ScheduledDelivery",
+          "description": "Scheduled Delivery shipping method. This is only available in the JP marketplace."
+        }
+      ]
+    },
+    "StringList": {
+      "description": "String list",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "Timestamp": {
+      "description": "Date timestamp",
+      "type": "string",
+      "format": "date-time"
+    },
+    "UnfulfillablePreviewItem": {
+      "type": "object",
+      "required": [
+        "quantity",
+        "sellerFulfillmentOrderItemId",
+        "sellerSku"
+      ],
+      "properties": {
+        "sellerSku": {
+          "type": "string",
+          "description": "The seller SKU of the item.",
+          "maxLength": 50
+        },
+        "quantity": {
+          "$ref": "#/$defs/Quantity"
+        },
+        "sellerFulfillmentOrderItemId": {
+          "type": "string",
+          "description": "A fulfillment order item identifier created with a call to the `getFulfillmentPreview` operation.",
+          "maxLength": 50
+        },
+        "itemUnfulfillableReasons": {
+          "description": "Error codes associated with the fulfillment order preview that indicate why the item is unfulfillable.",
+          "$ref": "#/$defs/StringList"
+        }
+      },
+      "description": "Information about unfulfillable items in a fulfillment order preview."
+    },
+    "UnfulfillablePreviewItemList": {
+      "type": "array",
+      "description": "An array of unfulfillable preview item information.",
+      "items": {
+        "$ref": "#/$defs/UnfulfillablePreviewItem"
+      }
+    },
+    "Weight": {
+      "type": "object",
+      "required": [
+        "unit",
+        "value"
+      ],
+      "properties": {
+        "unit": {
+          "type": "string",
+          "description": "The unit of weight.",
+          "enum": [
+            "KG",
+            "KILOGRAMS",
+            "LB",
+            "POUNDS"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "KG",
+              "description": "Kilograms."
+            },
+            {
+              "value": "KILOGRAMS",
+              "description": "Kilograms."
+            },
+            {
+              "value": "LB",
+              "description": "Pounds."
+            },
+            {
+              "value": "POUNDS",
+              "description": "Pounds."
+            }
+          ]
+        },
+        "value": {
+          "type": "string",
+          "description": "The weight value."
+        }
+      },
+      "description": "The weight."
+    }
+  }
+}

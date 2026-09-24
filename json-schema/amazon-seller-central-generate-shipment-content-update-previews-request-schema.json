@@ -1,0 +1,276 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-generate-shipment-content-update-previews-request-schema.json",
+  "title": "GenerateShipmentContentUpdatePreviewsRequest",
+  "description": "The `GenerateShipmentContentUpdatePreviews` request.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/GenerateShipmentContentUpdatePreviewsRequest",
+  "properties": {
+    "boxes": {
+      "description": "A list of boxes that will be present in the shipment after the update.",
+      "items": {
+        "$ref": "#/$defs/BoxUpdateInput"
+      },
+      "maxItems": 5000,
+      "minItems": 1,
+      "type": "array"
+    },
+    "items": {
+      "description": "A list of all items that will be present in the shipment after the update.",
+      "items": {
+        "$ref": "#/$defs/ItemInput"
+      },
+      "maxItems": 2000,
+      "minItems": 1,
+      "type": "array"
+    }
+  },
+  "required": [
+    "boxes",
+    "items"
+  ],
+  "type": "object",
+  "$defs": {
+    "BoxContentInformationSource": {
+      "description": "Indication of how box content is meant to be provided.",
+      "enum": [
+        "BOX_CONTENT_PROVIDED",
+        "MANUAL_PROCESS",
+        "BARCODE_2D"
+      ],
+      "type": "string",
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "BOX_CONTENT_PROVIDED",
+          "description": "Box contents have been provided by the seller."
+        },
+        {
+          "value": "MANUAL_PROCESS",
+          "description": "Box contents will be manually processed during receive. This service incurs charges."
+        },
+        {
+          "value": "BARCODE_2D",
+          "description": "Box contents information is provided by a barcode on the shipment. For more information, refer to [Using 2D barcodes for box content information](https://sellercentral.amazon.com/help/hub/reference/GJWALJCN6JKWJX5A) on Seller Central."
+        }
+      ]
+    },
+    "BoxUpdateInput": {
+      "description": "Input information for updating a box",
+      "properties": {
+        "contentInformationSource": {
+          "$ref": "#/$defs/BoxContentInformationSource"
+        },
+        "dimensions": {
+          "$ref": "#/$defs/Dimensions"
+        },
+        "items": {
+          "description": "The items and their quantity in the box. This must be empty if the box `contentInformationSource` is `BARCODE_2D` or `MANUAL_PROCESS`.",
+          "items": {
+            "$ref": "#/$defs/ItemInput"
+          },
+          "type": "array"
+        },
+        "packageId": {
+          "description": "Primary key to uniquely identify a Box Package. PackageId must be provided if the intent is to update an existing box. Adding a new box will not require providing this value. Any existing PackageIds not provided will be treated as to-be-removed",
+          "maxLength": 38,
+          "minLength": 38,
+          "pattern": "^[a-zA-Z0-9-]*$",
+          "type": "string"
+        },
+        "quantity": {
+          "description": "The number of containers where all other properties like weight or dimensions are identical.",
+          "maximum": 10000,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "weight": {
+          "$ref": "#/$defs/Weight"
+        }
+      },
+      "required": [
+        "contentInformationSource",
+        "dimensions",
+        "quantity",
+        "weight"
+      ],
+      "type": "object"
+    },
+    "Dimensions": {
+      "description": "Measurement of a package's dimensions.",
+      "properties": {
+        "height": {
+          "description": "The height of a package.",
+          "maximum": 100000,
+          "minimum": 0,
+          "type": "number"
+        },
+        "length": {
+          "description": "The length of a package.",
+          "maximum": 100000,
+          "minimum": 0,
+          "type": "number"
+        },
+        "unitOfMeasurement": {
+          "$ref": "#/$defs/UnitOfMeasurement"
+        },
+        "width": {
+          "description": "The width of a package.",
+          "maximum": 100000,
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "height",
+        "length",
+        "unitOfMeasurement",
+        "width"
+      ],
+      "type": "object"
+    },
+    "ItemInput": {
+      "description": "Defines an item's input parameters.",
+      "properties": {
+        "expiration": {
+          "description": "The expiration date of the MSKU. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern `YYYY-MM-DD`. Items with the same MSKU but different expiration dates cannot go into the same box.",
+          "pattern": "^([0-9]{4})-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$",
+          "type": "string"
+        },
+        "labelOwner": {
+          "$ref": "#/$defs/LabelOwner"
+        },
+        "manufacturingLotCode": {
+          "description": "The manufacturing lot code.",
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        "msku": {
+          "description": "The merchant SKU, a merchant-supplied identifier of a specific SKU.",
+          "maxLength": 255,
+          "minLength": 1,
+          "type": "string"
+        },
+        "prepOwner": {
+          "$ref": "#/$defs/PrepOwner"
+        },
+        "quantity": {
+          "description": "The number of units of the specified MSKU that will be shipped.",
+          "maximum": 500000,
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "labelOwner",
+        "msku",
+        "prepOwner",
+        "quantity"
+      ],
+      "type": "object"
+    },
+    "LabelOwner": {
+      "description": "Specifies who will label the items. Options include `AMAZON`, `SELLER` or `NONE`. `AMAZON` is not an accepted value in the US marketplace.",
+      "enum": [
+        "AMAZON",
+        "SELLER",
+        "NONE"
+      ],
+      "type": "string",
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "AMAZON",
+          "description": "Amazon provides the information."
+        },
+        {
+          "value": "SELLER",
+          "description": "Seller provides the information."
+        },
+        {
+          "value": "NONE",
+          "description": "No owner is required for the labelling."
+        }
+      ]
+    },
+    "PrepOwner": {
+      "description": "The owner of the preparations, if special preparations are required.",
+      "enum": [
+        "AMAZON",
+        "SELLER",
+        "NONE"
+      ],
+      "type": "string",
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "AMAZON",
+          "description": "Amazon provides the information."
+        },
+        {
+          "value": "SELLER",
+          "description": "The seller provides the information."
+        },
+        {
+          "value": "NONE",
+          "description": "No owner is required for the preparations."
+        }
+      ]
+    },
+    "UnitOfMeasurement": {
+      "description": "Unit of linear measure.",
+      "enum": [
+        "IN",
+        "CM"
+      ],
+      "type": "string",
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "IN",
+          "description": "Inches."
+        },
+        {
+          "value": "CM",
+          "description": "Centimeters."
+        }
+      ]
+    },
+    "UnitOfWeight": {
+      "description": "Unit of the weight being measured.",
+      "enum": [
+        "LB",
+        "KG"
+      ],
+      "type": "string",
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "LB",
+          "description": "Pounds."
+        },
+        {
+          "value": "KG",
+          "description": "Kilograms."
+        }
+      ]
+    },
+    "Weight": {
+      "description": "The weight of a package.",
+      "properties": {
+        "unit": {
+          "$ref": "#/$defs/UnitOfWeight"
+        },
+        "value": {
+          "description": "Value of a weight.",
+          "maximum": 100000,
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ],
+      "type": "object"
+    }
+  }
+}

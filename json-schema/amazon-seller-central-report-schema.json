@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-report-schema.json",
+  "title": "Report",
+  "description": "Detailed information about the report.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-reports-api-openapi.yml#/components/schemas/Report",
+  "type": "object",
+  "required": [
+    "processingStatus",
+    "reportId",
+    "reportType",
+    "createdTime"
+  ],
+  "properties": {
+    "marketplaceIds": {
+      "description": "A list of marketplace identifiers for the report.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "reportId": {
+      "description": "The identifier for the report. This identifier is unique only in combination with a seller ID.",
+      "type": "string"
+    },
+    "reportType": {
+      "description": "The report type. Refer to [Report Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.",
+      "type": "string"
+    },
+    "dataStartTime": {
+      "description": "The start of a date and time range used for selecting the data to report.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "dataEndTime": {
+      "description": "The end of a date and time range used for selecting the data to report.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "reportScheduleId": {
+      "description": "The identifier of the report schedule that created this report (if any). This identifier is unique only in combination with a seller ID.",
+      "type": "string"
+    },
+    "createdTime": {
+      "description": "The date and time when the report was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "processingStatus": {
+      "description": "The processing status of the report.",
+      "type": "string",
+      "enum": [
+        "CANCELLED",
+        "DONE",
+        "FATAL",
+        "IN_PROGRESS",
+        "IN_QUEUE"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "CANCELLED",
+          "description": "The report was cancelled. There are two ways a report can be cancelled: an explicit cancellation request before the report starts processing, or an automatic cancellation if there is no data to return."
+        },
+        {
+          "value": "DONE",
+          "description": "The report has completed processing."
+        },
+        {
+          "value": "FATAL",
+          "description": "The report was aborted due to a fatal error."
+        },
+        {
+          "value": "IN_PROGRESS",
+          "description": "The report is being processed."
+        },
+        {
+          "value": "IN_QUEUE",
+          "description": "The report has not yet started processing. It may be waiting for another `IN_PROGRESS` report."
+        }
+      ]
+    },
+    "processingStartTime": {
+      "description": "The date and time when the report processing started, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "processingEndTime": {
+      "description": "The date and time when the report processing completed, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "reportDocumentId": {
+      "description": "The identifier for the report document. Pass this into the `getReportDocument` operation to get the information you will need to retrieve the report document's contents.",
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-get-order-items-buyer-info-response-schema.json",
+  "title": "GetOrderItemsBuyerInfoResponse",
+  "description": "The response schema for the `getOrderItemsBuyerInfo` operation.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-ordersv0-api-openapi.yml#/components/schemas/GetOrderItemsBuyerInfoResponse",
+  "type": "object",
+  "properties": {
+    "payload": {
+      "description": "The payload for the `getOrderItemsBuyerInfo` operation.",
+      "$ref": "#/$defs/OrderItemsBuyerInfoList"
+    },
+    "errors": {
+      "description": "One or more unexpected errors occurred during the `getOrderItemsBuyerInfo` operation.",
+      "$ref": "#/$defs/ErrorList"
+    }
+  },
+  "$defs": {
+    "BuyerCustomizedInfoDetail": {
+      "type": "object",
+      "properties": {
+        "CustomizedURL": {
+          "type": "string",
+          "description": "The location of a ZIP file containing Amazon Custom data."
+        }
+      },
+      "description": "Buyer information for custom orders from the Amazon Custom program."
+    },
+    "Error": {
+      "type": "object",
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "An error code that identifies the type of error that occurred."
+        },
+        "message": {
+          "type": "string",
+          "description": "A message that describes the error condition."
+        },
+        "details": {
+          "type": "string",
+          "description": "Additional details that can help the caller understand or fix the issue."
+        }
+      },
+      "description": "Error response returned when the request is unsuccessful."
+    },
+    "ErrorList": {
+      "type": "array",
+      "description": "A list of error responses returned when a request is unsuccessful.",
+      "items": {
+        "$ref": "#/$defs/Error"
+      }
+    },
+    "Money": {
+      "type": "object",
+      "properties": {
+        "CurrencyCode": {
+          "type": "string",
+          "description": "The three-digit currency code. In ISO 4217 format."
+        },
+        "Amount": {
+          "type": "string",
+          "description": "The currency amount."
+        }
+      },
+      "description": "The monetary value of the order."
+    },
+    "OrderItemBuyerInfo": {
+      "type": "object",
+      "required": [
+        "OrderItemId"
+      ],
+      "properties": {
+        "OrderItemId": {
+          "type": "string",
+          "description": "An Amazon-defined order item identifier."
+        },
+        "BuyerCustomizedInfo": {
+          "description": "Buyer information for custom orders from the Amazon Custom program.\n\n**Note**: This attribute is only available for MFN (fulfilled by seller) orders.",
+          "$ref": "#/$defs/BuyerCustomizedInfoDetail"
+        },
+        "GiftWrapPrice": {
+          "description": "The gift wrap price of the item.",
+          "$ref": "#/$defs/Money"
+        },
+        "GiftWrapTax": {
+          "description": "The tax on the gift wrap price.",
+          "$ref": "#/$defs/Money"
+        },
+        "GiftMessageText": {
+          "type": "string",
+          "description": "A gift message provided by the buyer.\n\n**Note**: This attribute is only available for MFN (fulfilled by seller) orders."
+        },
+        "GiftWrapLevel": {
+          "type": "string",
+          "description": "The gift wrap level specified by the buyer."
+        }
+      },
+      "description": "A single order item's buyer information."
+    },
+    "OrderItemBuyerInfoList": {
+      "type": "array",
+      "description": "A single order item's buyer information list.",
+      "items": {
+        "$ref": "#/$defs/OrderItemBuyerInfo"
+      }
+    },
+    "OrderItemsBuyerInfoList": {
+      "type": "object",
+      "required": [
+        "AmazonOrderId",
+        "OrderItems"
+      ],
+      "properties": {
+        "OrderItems": {
+          "$ref": "#/$defs/OrderItemBuyerInfoList"
+        },
+        "NextToken": {
+          "type": "string",
+          "description": "When present and not empty, pass this string token in the next request to return the next response page."
+        },
+        "AmazonOrderId": {
+          "type": "string",
+          "description": "An Amazon-defined order identifier, in 3-7-7 format."
+        }
+      },
+      "description": "A single order item's buyer information list with the order ID."
+    }
+  }
+}

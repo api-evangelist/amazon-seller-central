@@ -1,0 +1,95 @@
+generated: '2026-09-24'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/amazon-seller-central-catalog-api-openapi.yml
+- openapi/amazon-seller-central-definitions-api-openapi.yml
+- openapi/amazon-seller-central-fbainbound-api-openapi.yml
+- openapi/amazon-seller-central-fbainventory-api-openapi.yml
+- openapi/amazon-seller-central-fbaoutbound-api-openapi.yml
+- openapi/amazon-seller-central-feeds-api-openapi.yml
+- openapi/amazon-seller-central-fees-api-openapi.yml
+- openapi/amazon-seller-central-finances-api-openapi.yml
+- openapi/amazon-seller-central-getorder-api-openapi.yml
+- openapi/amazon-seller-central-listings-api-openapi.yml
+- openapi/amazon-seller-central-notifications-api-openapi.yml
+- openapi/amazon-seller-central-ordersv0-api-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: ErrorList
+coverage:
+  operations: 152
+  statuses_declared: 10
+problems:
+- status: 400
+  title: Bad Request
+  description: Request has missing or invalid parameters and cannot be parsed.
+  operations: 152
+  media_types:
+  - application/json
+  schema: ErrorList
+- status: 401
+  title: Unauthorized
+  description: The request's Authorization header is not formatted correctly or does not contain a valid token.
+  operations: 60
+  media_types:
+  - application/json
+  schema: ErrorList
+- status: 403
+  title: Forbidden
+  description: Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized,
+    Expired Token, or Invalid Signatur
+  operations: 152
+  media_types:
+  - application/json
+  schema: ErrorList
+- status: 404
+  title: Not Found
+  description: The resource specified does not exist.
+  operations: 149
+  media_types:
+  - application/json
+  schema: ErrorList
+- status: 409
+  title: Conflict
+  description: The resource specified conflicts with the current state.
+  operations: 8
+  media_types:
+  - application/json
+  schema: CreateSubscriptionResponse
+- status: 413
+  title: Content Too Large
+  description: The request size exceeded the maximum accepted size.
+  operations: 96
+  media_types:
+  - application/json
+  schema: ErrorList
+- status: 415
+  title: Unsupported Media Type
+  description: The request payload is in an unsupported format.
+  operations: 111
+  media_types:
+  - application/json
+  schema: ErrorList
+- status: 429
+  title: Too Many Requests
+  description: The frequency of requests was greater than allowed.
+  operations: 152
+  media_types:
+  - application/json
+  schema: ErrorList
+- status: 500
+  title: Internal Server Error
+  description: An unexpected condition occurred that prevented the server from fulfilling the request.
+  operations: 152
+  media_types:
+  - application/json
+  schema: ErrorList
+- status: 503
+  title: Service Unavailable
+  description: Temporary overloading or maintenance of the server.
+  operations: 152
+  media_types:
+  - application/json
+  schema: ErrorList

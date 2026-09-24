@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-add-inventory-request-schema.json",
+  "title": "AddInventoryRequest",
+  "description": "The object with the list of Inventory to be added",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-fbainventory-api-openapi.yml#/components/schemas/AddInventoryRequest",
+  "type": "object",
+  "properties": {
+    "inventoryItems": {
+      "$ref": "#/$defs/InventoryItems"
+    }
+  },
+  "$defs": {
+    "InventoryItem": {
+      "description": "An item in the list of inventory to be added.",
+      "type": "object",
+      "properties": {
+        "sellerSku": {
+          "description": "The seller SKU of the item.",
+          "type": "string"
+        },
+        "marketplaceId": {
+          "description": "The marketplaceId.",
+          "type": "string"
+        },
+        "quantity": {
+          "description": "The quantity of item to add.",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "sellerSku",
+        "marketplaceId",
+        "quantity"
+      ]
+    },
+    "InventoryItems": {
+      "description": "List of Inventory to be added",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/InventoryItem"
+      }
+    }
+  }
+}

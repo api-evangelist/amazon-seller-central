@@ -1,13 +1,11 @@
 aid: amazon-seller-central
 name: Amazon Selling Partner API
-description: >-
-  The Amazon Selling Partner API (SP-API) is the modern REST-based API that
-  enables Amazon sellers, vendors, and third-party developers to programmatically
-  access Seller Central data and operations including catalog management,
-  orders, inventory, pricing, fulfillment, reports, finances, notifications,
-  and advertising. SP-API uses Login with Amazon (LWA) OAuth 2.0 access tokens
-  for authentication and replaces the legacy Amazon Marketplace Web Service
-  (MWS).
+description: 'The Amazon Selling Partner API (SP-API) is the modern REST-based API that enables Amazon sellers, vendors, and third-party developers
+  to programmatically access Seller Central data and operations including catalog management, orders, inventory, pricing, fulfillment, reports,
+  finances, notifications, and advertising. SP-API uses Login with Amazon (LWA) OAuth 2.0 access tokens for authentication and replaces the legacy
+  Amazon Marketplace Web Service (MWS). Since September 2026 Amazon also offers an agent surface: the Amazon Selling Partner Connector, a first-party
+  remote MCP server at https://sellingpartner-ai.amazon.com/mcp (beta, US stores, Seller Central OAuth, write actions drafted for seller approval),
+  and the Selling Partner Agentic Toolkit of provider-published Agent Skills.'
 type: Index
 deliveryModel:
   model: saas
@@ -39,38 +37,107 @@ x-docs-platform: readme
 x-docs-platform-confidence: medium
 x-docs-platform-checked: 2026-09-18
 tags:
-  - E-Commerce
-  - Marketplace
-  - Selling Partner
-  - Amazon
-  - Seller Central
-  - Catalog
-  - Order
-  - Inventory
-  - Fulfillment
+- E-Commerce
+- Marketplace
+- Selling Partner
+- Amazon
+- Seller Central
+- Catalog
+- Order
+- Inventory
+- Fulfillment
+- MCP
+- Agent Skills
 tags_raw:
-  - eCommerce
-  - Marketplace
-  - Selling Partner
-  - Amazon
-  - Seller Central
-  - Catalog
-  - Orders
-  - Inventory
-  - Fulfillment
-url: >-
-  https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/refs/heads/main/apis.yml
+- eCommerce
+- Marketplace
+- Selling Partner
+- Amazon
+- Seller Central
+- Catalog
+- Orders
+- Inventory
+- Fulfillment
+- MCP
+- Agent Skills
+url: https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/refs/heads/main/apis.yml
 created: '2026-05-11'
-modified: '2026-05-11'
+modified: '2026-09-24'
 specificationVersion: '0.23'
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+common:
+- type: LLMsTxt
+  url: llms/amazon-seller-central-llms.txt
+- type: ToolCrosswalk
+  url: mcp/amazon-seller-central-tool-crosswalk.yml
+- type: Spectral
+  url: rules/amazon-seller-central-rules.yml
+- type: JSONLD
+  url: json-ld/amazon-seller-central-context.jsonld
+- type: Vocabulary
+  url: vocabulary/amazon-seller-central-vocabulary.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/amazon-seller-central-data-model.yml
+- type: Idempotency
+  url: conventions/amazon-seller-central-conventions.yml
+- type: Conventions
+  url: conventions/amazon-seller-central-conventions.yml
+- type: ErrorCatalog
+  url: errors/amazon-seller-central-problem-types.yml
+- type: Conformance
+  url: conformance/amazon-seller-central-conformance.yml
+- type: MCPServer
+  url: mcp/amazon-seller-central-mcp.yml
+- type: WellKnown
+  url: well-known/amazon-seller-central-well-known.yml
+- type: Hosts
+  url: hosts/amazon-seller-central-hosts.yml
+- type: Vendors
+  url: vendors/amazon-seller-central-vendors.yml
+- type: CapabilityMap
+  url: capabilities/amazon-seller-central-capability-edges.yml
+  name: Amazon Selling Partner API Business Capability Map
+- type: AgenticAccess
+  url: agentic-access/amazon-seller-central-agentic-access.yml
+- type: DomainSecurity
+  url: security/amazon-seller-central-domain-security.yml
+- type: Authentication
+  url: authentication/amazon-seller-central-authentication.yml
+- type: Website
+  url: https://developer.amazonservices.com/
+- type: Documentation
+  url: https://developer-docs.amazon.com/sp-api
+- type: Pricing
+  url: https://sell.amazon.com/pricing
+- type: SignUp
+  url: https://sellercentral.amazon.com/
+- type: LlmsText
+  url: https://developer-docs.amazon.com/llms.txt
+- type: Webhooks
+  url: webhooks/amazon-seller-central-notifications.yml
+  name: SP-API Notifications (SQS / EventBridge) event catalog
+- type: APIReference
+  url: https://developer-docs.amazon.com/sp-api/reference
+- type: ChangeLog
+  url: https://developer-docs.amazon.com/sp-api/changelog
+- type: GitHubOrganization
+  url: https://github.com/amzn
+- type: GitHubRepository
+  url: https://github.com/amzn/selling-partner-agentic-toolkit
+  name: 'Selling Partner Agentic Toolkit (Claude plugin: MCP config + 11 Agent Skills)'
+- type: GitHubRepository
+  url: https://github.com/amzn/selling-partner-api-models
+  name: Official SP-API OpenAPI models
 apis:
 - aid: amazon-seller-central:sp-api
   name: Amazon Selling Partner API (SP-API)
-  description: >-
-    REST API that lets approved developers and sellers manage Amazon Selling Partner accounts including
-    catalog items, listings, orders, shipments, inventory, pricing, fees, reports, feeds, finances, notifications,
-    and FBA operations. Authentication uses Login with Amazon (LWA) OAuth 2.0 access tokens passed via
-    the x-amz-access-token header.
+  description: REST API that lets approved developers and sellers manage Amazon Selling Partner accounts including catalog items, listings, orders,
+    shipments, inventory, pricing, fees, reports, feeds, finances, notifications, and FBA operations. Authentication uses Login with Amazon (LWA)
+    OAuth 2.0 access tokens passed via the x-amz-access-token header.
   humanURL: https://developer-docs.amazon.com/sp-api
   baseURL: https://sellingpartnerapi-na.amazon.com
   tags:
@@ -93,23 +160,11 @@ apis:
   - type: Documentation
     url: https://developer-docs.amazon.com/sp-api
   - type: Authentication
-    url: >-
-      https://developer-docs.amazon.com/sp-api/docs/authorizing-selling-partner-api-applications
+    url: https://developer-docs.amazon.com/sp-api/docs/authorizing-selling-partner-api-applications
   - type: Connecting
     url: https://developer-docs.amazon.com/sp-api/docs/connecting-to-the-selling-partner-api
   - type: OpenAPI Models
     url: https://github.com/amzn/selling-partner-api-models
-- aid: amazon-seller-central:amazon-seller-central-authentication-api
-  name: Amazon Selling Partner API Authentication API
-  description: >-
-    The Authentication API from Amazon Selling Partner API — 1 operation(s) for authentication.
-  humanURL: https://developer-docs.amazon.com/sp-api
-  baseURL: https://sellingpartnerapi-na.amazon.com
-  tags:
-  - Authentication
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-seller-central-authentication-api-openapi.yml
 - aid: amazon-seller-central:amazon-seller-central-catalog-api
   name: Amazon Selling Partner API Catalog API
   description: The Catalog API from Amazon Selling Partner API — 2 operation(s) for catalog.
@@ -120,6 +175,10 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/amazon-seller-central-catalog-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-item-search-results-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-item-schema.json
 - aid: amazon-seller-central:amazon-seller-central-feeds-api
   name: Amazon Selling Partner API Feeds API
   description: The Feeds API from Amazon Selling Partner API — 1 operation(s) for feeds.
@@ -132,6 +191,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/amazon-seller-central-feeds-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-feed-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-feed-document-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-create-feed-specification-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-feeds-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-create-feed-document-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-create-feed-response-schema.json
 - aid: amazon-seller-central:amazon-seller-central-finances-api
   name: Amazon Selling Partner API Finances API
   description: The Finances API from Amazon Selling Partner API — 1 operation(s) for finances.
@@ -142,16 +213,16 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/amazon-seller-central-finances-api-openapi.yml
-- aid: amazon-seller-central:amazon-seller-central-inventory-api
-  name: Amazon Selling Partner API Inventory API
-  description: The Inventory API from Amazon Selling Partner API — 1 operation(s) for inventory.
-  humanURL: https://developer-docs.amazon.com/sp-api
-  baseURL: https://sellingpartnerapi-na.amazon.com
-  tags:
-  - Inventory
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-seller-central-inventory-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-list-financial-event-groups-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-list-financial-events-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-summary-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-list-balances-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-list-transactions-response-schema.json
 - aid: amazon-seller-central:amazon-seller-central-listings-api
   name: Amazon Selling Partner API Listings API
   description: The Listings API from Amazon Selling Partner API — 1 operation(s) for listings.
@@ -162,10 +233,21 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/amazon-seller-central-listings-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-listings-item-submission-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-listings-item-put-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-item-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-item-search-results-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-listings-item-patch-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-restriction-list-schema.json
 - aid: amazon-seller-central:amazon-seller-central-notifications-api
   name: Amazon Selling Partner API Notifications API
-  description: >-
-    The Notifications API from Amazon Selling Partner API — 1 operation(s) for notifications.
+  description: The Notifications API from Amazon Selling Partner API — 1 operation(s) for notifications.
   humanURL: https://developer-docs.amazon.com/sp-api
   baseURL: https://sellingpartnerapi-na.amazon.com
   tags:
@@ -175,28 +257,22 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/amazon-seller-central-notifications-api-openapi.yml
-- aid: amazon-seller-central:amazon-seller-central-orders-api
-  name: Amazon Selling Partner API Orders API
-  description: The Orders API from Amazon Selling Partner API — 3 operation(s) for orders.
-  humanURL: https://developer-docs.amazon.com/sp-api
-  baseURL: https://sellingpartnerapi-na.amazon.com
-  tags:
-  - Order
-  tags_raw:
-  - Orders
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-seller-central-orders-api-openapi.yml
-- aid: amazon-seller-central:amazon-seller-central-pricing-api
-  name: Amazon Selling Partner API Pricing API
-  description: The Pricing API from Amazon Selling Partner API — 1 operation(s) for pricing.
-  humanURL: https://developer-docs.amazon.com/sp-api
-  baseURL: https://sellingpartnerapi-na.amazon.com
-  tags:
-  - Pricing
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-seller-central-pricing-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-create-destination-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-create-subscription-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-subscriptions-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-create-subscription-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-subscription-by-id-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-create-destination-response-schema.json
+  - type: Webhooks
+    url: webhooks/amazon-seller-central-notifications.yml
+  - type: Documentation
+    url: https://developer-docs.amazon.com/sp-api/docs/notifications-api
 - aid: amazon-seller-central:amazon-seller-central-reports-api
   name: Amazon Selling Partner API Reports API
   description: The Reports API from Amazon Selling Partner API — 2 operation(s) for reports.
@@ -207,6 +283,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/amazon-seller-central-reports-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-report-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-create-report-schedule-specification-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-create-report-specification-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-report-schedule-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-report-document-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-reports-response-schema.json
 - aid: amazon-seller-central:amazon-seller-central-shipping-api
   name: Amazon Selling Partner API Shipping API
   description: The Shipping API from Amazon Selling Partner API — 1 operation(s) for shipping.
@@ -217,6 +305,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/amazon-seller-central-shipping-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-one-click-shipment-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-rates-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-direct-purchase-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-purchase-shipment-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-create-claim-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-link-carrier-account-request-schema.json
 - aid: amazon-seller-central:amazon-seller-central-tokens-api
   name: Amazon Selling Partner API Tokens API
   description: The Tokens API from Amazon Selling Partner API — 1 operation(s) for tokens.
@@ -227,28 +327,236 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/amazon-seller-central-tokens-api-openapi.yml
-common:
-  - type: CapabilityMap
-    url: capabilities/amazon-seller-central-capability-edges.yml
-    name: Amazon Selling Partner API Business Capability Map
-  - type: AgenticAccess
-    url: agentic-access/amazon-seller-central-agentic-access.yml
-  - type: DomainSecurity
-    url: security/amazon-seller-central-domain-security.yml
-  - type: Authentication
-    url: authentication/amazon-seller-central-authentication.yml
-  - type: Website
-    url: https://developer.amazonservices.com/
-  - type: Documentation
-    url: https://developer-docs.amazon.com/sp-api
-  - type: Pricing
-    url: https://sell.amazon.com/pricing
-  - type: Signup
-    url: https://sellercentral.amazon.com/
-  - type: LlmsText
-    url: https://developer-docs.amazon.com/llms.txt
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-create-restricted-data-token-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-create-restricted-data-token-request-schema.json
+- aid: amazon-seller-central:amazon-seller-central-definitions-api
+  name: Amazon Selling Partner API Definitions API
+  description: The definitions API from Amazon Selling Partner API — 2 operation(s) for definitions.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - definitions
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-definitions-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-product-type-definition-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-product-type-list-schema.json
+- aid: amazon-seller-central:amazon-seller-central-fbainbound-api
+  name: Amazon Selling Partner API Fba Inbound API
+  description: The fbaInbound API from Amazon Selling Partner API — 36 operation(s) for fbainbound.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - fbaInbound
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-fbainbound-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-inbound-plan-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-shipment-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-create-inbound-plan-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-create-marketplace-item-labels-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-generate-transportation-options-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-generate-shipment-content-update-previews-request-schema.json
+- aid: amazon-seller-central:amazon-seller-central-fbainventory-api
+  name: Amazon Selling Partner API Fba Inventory API
+  description: The fbaInventory API from Amazon Selling Partner API — 4 operation(s) for fbainventory.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - fbaInventory
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-fbainventory-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-inventory-summaries-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-create-inventory-item-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-create-inventory-item-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-delete-inventory-item-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-add-inventory-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-add-inventory-request-schema.json
+- aid: amazon-seller-central:amazon-seller-central-fbaoutbound-api
+  name: Amazon Selling Partner API Fba Outbound API
+  description: The fbaOutbound API from Amazon Selling Partner API — 12 operation(s) for fbaoutbound.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - fbaOutbound
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-fbaoutbound-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-create-fulfillment-order-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-update-fulfillment-order-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-fulfillment-preview-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-create-fulfillment-return-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-list-all-fulfillment-orders-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-fulfillment-preview-response-schema.json
+- aid: amazon-seller-central:amazon-seller-central-fees-api
+  name: Amazon Selling Partner API Fees API
+  description: The fees API from Amazon Selling Partner API — 3 operation(s) for fees.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - fees
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-fees-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-my-fees-estimate-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-my-fees-estimates-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-my-fees-estimate-request-schema.json
+- aid: amazon-seller-central:amazon-seller-central-getorder-api
+  name: Amazon Selling Partner API Get Order API
+  description: The getOrder API from Amazon Selling Partner API — 1 operation(s) for getorder.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - getOrder
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-getorder-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-order-response-schema.json
+- aid: amazon-seller-central:amazon-seller-central-ordersv0-api
+  name: Amazon Selling Partner API Orders V0 API
+  description: The ordersV0 API from Amazon Selling Partner API — 8 operation(s) for ordersv0.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - ordersV0
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-ordersv0-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-confirm-shipment-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-order-items-buyer-info-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-order-regulated-info-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-order-buyer-info-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-order-address-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-order-items-response-schema.json
+- aid: amazon-seller-central:amazon-seller-central-productpricing-api
+  name: Amazon Selling Partner API Product Pricing API
+  description: The productPricing API from Amazon Selling Partner API — 8 operation(s) for productpricing.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - productPricing
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-productpricing-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-offers-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-pricing-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-competitive-summary-batch-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-competitive-summary-batch-request-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-featured-offer-expected-price-batch-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-featured-offer-expected-price-batch-request-schema.json
+- aid: amazon-seller-central:amazon-seller-central-sales-api
+  name: Amazon Selling Partner API Sales API
+  description: The sales API from Amazon Selling Partner API — 1 operation(s) for sales.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - sales
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-sales-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-order-metrics-response-schema.json
+- aid: amazon-seller-central:amazon-seller-central-searchorders-api
+  name: Amazon Selling Partner API Search Orders API
+  description: The searchOrders API from Amazon Selling Partner API — 1 operation(s) for searchorders.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - searchOrders
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-searchorders-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-search-orders-response-schema.json
+- aid: amazon-seller-central:amazon-seller-central-sellers-api
+  name: Amazon Selling Partner API Sellers API
+  description: The sellers API from Amazon Selling Partner API — 2 operation(s) for sellers.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - sellers
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-sellers-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-marketplace-participations-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-get-account-response-schema.json
+- aid: amazon-seller-central:amazon-seller-central-shipment-api
+  name: Amazon Selling Partner API Shipment API
+  description: The shipment API from Amazon Selling Partner API — 1 operation(s) for shipment.
+  humanURL: https://developer-docs.amazon.com/sp-api
+  baseURL: https://sellingpartnerapi-na.amazon.com
+  tags:
+  - shipment
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-seller-central-shipment-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amazon-seller-central-update-shipment-status-request-schema.json
+- aid: amazon-seller-central:selling-partner-connector-mcp
+  name: Amazon Selling Partner Connector (MCP)
+  description: Amazon's first-party remote MCP server for Seller Central (streamable HTTP), announced at Amazon Accelerate on 2026-09-23 and in
+    beta for US stores. Sellers authorize access through the Seller Central OAuth consent flow; the assistant can only use tools the seller's
+    Seller Central roles allow, and write actions (listing, price, FBA inbound changes) are drafted for the seller's approval. Tools cover listings,
+    FBA inbound and inventory, sales and analytics metrics, and an SP-API documentation knowledge base. Bundled in the Selling Partner Agentic
+    Toolkit Claude plugin.
+  humanURL: https://github.com/amzn/selling-partner-agentic-toolkit
+  baseURL: https://sellingpartner-ai.amazon.com/mcp
+  tags:
+  - MCP
+  - Agent Skills
+  - Selling Partner
+  - E-Commerce
+  properties:
+  - type: MCPServer
+    url: mcp/amazon-seller-central-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/amazon-seller-central-tool-crosswalk.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: WellKnown
+    url: well-known/amazon-seller-central-well-known.yml
+  - type: GitHubRepository
+    url: https://github.com/amzn/selling-partner-agentic-toolkit
 x-parent: amazon
 x-relationship: product

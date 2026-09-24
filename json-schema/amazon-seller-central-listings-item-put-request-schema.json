@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-listings-item-put-request-schema.json",
+  "title": "ListingsItemPutRequest",
+  "description": "The request body schema for the `putListingsItem` operation.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-listings-api-openapi.yml#/components/schemas/ListingsItemPutRequest",
+  "properties": {
+    "productType": {
+      "description": "The listings item's Amazon product type.",
+      "type": "string"
+    },
+    "requirements": {
+      "description": "The name of the requirements set for the provided data.",
+      "enum": [
+        "LISTING",
+        "LISTING_PRODUCT_ONLY",
+        "LISTING_OFFER_ONLY"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "LISTING",
+          "description": "Indicates the submitted data contains product facts and sales terms."
+        },
+        {
+          "value": "LISTING_PRODUCT_ONLY",
+          "description": "Indicates the submitted data contains product facts only."
+        },
+        {
+          "value": "LISTING_OFFER_ONLY",
+          "description": "Indicates the submitted data contains sales terms only."
+        }
+      ],
+      "type": "string"
+    },
+    "attributes": {
+      "description": "JSON object containing structured listings item attribute data keyed by attribute name.",
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "productType",
+    "attributes"
+  ],
+  "type": "object"
+}

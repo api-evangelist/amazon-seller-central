@@ -1,0 +1,275 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-generate-transportation-options-request-schema.json",
+  "title": "GenerateTransportationOptionsRequest",
+  "description": "The `generateTransportationOptions` request.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/GenerateTransportationOptionsRequest",
+  "properties": {
+    "placementOptionId": {
+      "description": "The placement option to generate transportation options for.",
+      "maxLength": 38,
+      "minLength": 38,
+      "pattern": "^[a-zA-Z0-9-]*$",
+      "type": "string"
+    },
+    "shipmentTransportationConfigurations": {
+      "description": "List of shipment transportation configurations.",
+      "items": {
+        "$ref": "#/$defs/ShipmentTransportationConfiguration"
+      },
+      "minItems": 1,
+      "type": "array"
+    }
+  },
+  "required": [
+    "placementOptionId",
+    "shipmentTransportationConfigurations"
+  ],
+  "type": "object",
+  "$defs": {
+    "ContactInformation": {
+      "description": "The seller's contact information.",
+      "properties": {
+        "email": {
+          "description": "The email address.",
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "name": {
+          "description": "The contact's name.",
+          "maxLength": 50,
+          "minLength": 1,
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "The phone number.",
+          "maxLength": 20,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "phoneNumber"
+      ],
+      "type": "object"
+    },
+    "Currency": {
+      "description": "The type and amount of currency.",
+      "properties": {
+        "amount": {
+          "description": "Decimal value of the currency.",
+          "type": "number"
+        },
+        "code": {
+          "description": "ISO 4217 standard of a currency code.",
+          "maxLength": 3,
+          "minLength": 3,
+          "type": "string"
+        }
+      },
+      "required": [
+        "amount",
+        "code"
+      ],
+      "type": "object"
+    },
+    "Dimensions": {
+      "description": "Measurement of a package's dimensions.",
+      "properties": {
+        "height": {
+          "description": "The height of a package.",
+          "maximum": 100000,
+          "minimum": 0,
+          "type": "number"
+        },
+        "length": {
+          "description": "The length of a package.",
+          "maximum": 100000,
+          "minimum": 0,
+          "type": "number"
+        },
+        "unitOfMeasurement": {
+          "$ref": "#/$defs/UnitOfMeasurement"
+        },
+        "width": {
+          "description": "The width of a package.",
+          "maximum": 100000,
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "height",
+        "length",
+        "unitOfMeasurement",
+        "width"
+      ],
+      "type": "object"
+    },
+    "FreightInformation": {
+      "description": "Freight information describes the SKUs that are in transit. Freight carrier options and quotes will only be returned if the freight information is provided.",
+      "properties": {
+        "declaredValue": {
+          "$ref": "#/$defs/Currency"
+        },
+        "freightClass": {
+          "description": "Freight class.\n\nPossible values: `NONE`, `FC_50`, `FC_55`, `FC_60`, `FC_65`, `FC_70`, `FC_77_5`, `FC_85`, `FC_92_5`, `FC_100`, `FC_110`, `FC_125`, `FC_150`, `FC_175`, `FC_200`, `FC_250`, `FC_300`, `FC_400`, `FC_500`.",
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PalletInput": {
+      "description": "Contains input information about a pallet to be used in the inbound plan.",
+      "properties": {
+        "dimensions": {
+          "$ref": "#/$defs/Dimensions"
+        },
+        "quantity": {
+          "description": "The number of containers where all other properties like weight or dimensions are identical.",
+          "maximum": 10000,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "stackability": {
+          "$ref": "#/$defs/Stackability"
+        },
+        "weight": {
+          "$ref": "#/$defs/Weight"
+        }
+      },
+      "required": [
+        "quantity"
+      ],
+      "type": "object"
+    },
+    "ShipmentTransportationConfiguration": {
+      "description": "Details needed to generate the transportation options.",
+      "properties": {
+        "contactInformation": {
+          "$ref": "#/$defs/ContactInformation"
+        },
+        "freightInformation": {
+          "$ref": "#/$defs/FreightInformation"
+        },
+        "pallets": {
+          "description": "List of pallet configuration inputs.",
+          "items": {
+            "$ref": "#/$defs/PalletInput"
+          },
+          "type": "array"
+        },
+        "readyToShipWindow": {
+          "$ref": "#/$defs/WindowInput",
+          "description": "The range of dates within which the seller intends to ship their items. This is the pick-up date or 'ready to ship' date, not an estimated delivery date."
+        },
+        "shipmentId": {
+          "description": "Identifier of a shipment. A shipment contains the boxes and units being inbounded.",
+          "maxLength": 38,
+          "minLength": 38,
+          "pattern": "^[a-zA-Z0-9-]*$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "readyToShipWindow",
+        "shipmentId"
+      ],
+      "type": "object"
+    },
+    "Stackability": {
+      "description": "Indicates whether pallets will be stacked when carrier arrives for pick-up.",
+      "enum": [
+        "STACKABLE",
+        "NON_STACKABLE"
+      ],
+      "type": "string",
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "STACKABLE",
+          "description": "A pallet that can be stacked on top of another pallet."
+        },
+        {
+          "value": "NON_STACKABLE",
+          "description": "A pallet that cannot be stacked on top of another pallet."
+        }
+      ]
+    },
+    "UnitOfMeasurement": {
+      "description": "Unit of linear measure.",
+      "enum": [
+        "IN",
+        "CM"
+      ],
+      "type": "string",
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "IN",
+          "description": "Inches."
+        },
+        {
+          "value": "CM",
+          "description": "Centimeters."
+        }
+      ]
+    },
+    "UnitOfWeight": {
+      "description": "Unit of the weight being measured.",
+      "enum": [
+        "LB",
+        "KG"
+      ],
+      "type": "string",
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "LB",
+          "description": "Pounds."
+        },
+        {
+          "value": "KG",
+          "description": "Kilograms."
+        }
+      ]
+    },
+    "Weight": {
+      "description": "The weight of a package.",
+      "properties": {
+        "unit": {
+          "$ref": "#/$defs/UnitOfWeight"
+        },
+        "value": {
+          "description": "Value of a weight.",
+          "maximum": 100000,
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ],
+      "type": "object"
+    },
+    "WindowInput": {
+      "description": "Contains only a starting DateTime.",
+      "properties": {
+        "start": {
+          "description": "The start date of the window. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with minute precision. Supports patterns `yyyy-MM-ddTHH:mmZ`, `yyyy-MM-ddTHH:mm:ssZ`, or `yyyy-MM-ddTHH:mm:ss.sssZ`. Note that non-zero second and millisecond components are removed.",
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start"
+      ],
+      "type": "object"
+    }
+  }
+}

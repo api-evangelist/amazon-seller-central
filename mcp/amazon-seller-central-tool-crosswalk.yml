@@ -1,0 +1,433 @@
+generated: '2026-09-24'
+method: derived
+source: mcp/amazon-seller-central-mcp.yml (tool names from github.com/amzn/selling-partner-agentic-toolkit
+  skills) crossed with openapi/ operationIds (official amzn/selling-partner-api-models)
+description: Crosswalk between the Amazon Selling Partner Connector MCP tools, as invoked by Amazon's
+  own agentic-toolkit skills, and the official SP-API OpenAPI operationIds. tools/list is auth-gated,
+  so bindings are by name and marked medium confidence.
+surfaces:
+  openapi: openapi/ (official amzn/selling-partner-api-models, refined)
+  mcp:
+    url: https://sellingpartner-ai.amazon.com/mcp
+    tools_list: auth-gated (401, Seller Central OAuth)
+  graphql: null
+crosswalk:
+- tool: fbaInbound_cancelInboundPlan
+  category: fbaInbound
+  rest:
+  - cancelInboundPlan
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and cancelInboundPlan exists
+    verbatim in openapi/amazon-seller-central-fbainbound-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: fbaInbound_confirmDeliveryWindowOptions
+  category: fbaInbound
+  rest:
+  - confirmDeliveryWindowOptions
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and confirmDeliveryWindowOptions
+    exists verbatim in openapi/amazon-seller-central-fbainbound-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: fbaInbound_confirmPackingOption
+  category: fbaInbound
+  rest:
+  - confirmPackingOption
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and confirmPackingOption exists
+    verbatim in openapi/amazon-seller-central-fbainbound-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: fbaInbound_confirmPlacementOption
+  category: fbaInbound
+  rest:
+  - confirmPlacementOption
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and confirmPlacementOption
+    exists verbatim in openapi/amazon-seller-central-fbainbound-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: fbaInbound_confirmTransportationOptions
+  category: fbaInbound
+  rest:
+  - confirmTransportationOptions
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and confirmTransportationOptions
+    exists verbatim in openapi/amazon-seller-central-fbainbound-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: fbaInbound_createInboundPlan
+  category: fbaInbound
+  rest:
+  - createInboundPlan
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and createInboundPlan exists
+    verbatim in openapi/amazon-seller-central-fbainbound-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: fbaInbound_generateDeliveryWindowOptions
+  category: fbaInbound
+  rest:
+  - generateDeliveryWindowOptions
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and generateDeliveryWindowOptions
+    exists verbatim in openapi/amazon-seller-central-fbainbound-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: fbaInbound_generatePackingOptions
+  category: fbaInbound
+  rest:
+  - generatePackingOptions
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and generatePackingOptions
+    exists verbatim in openapi/amazon-seller-central-fbainbound-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: fbaInbound_generatePlacementOptions
+  category: fbaInbound
+  rest:
+  - generatePlacementOptions
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and generatePlacementOptions
+    exists verbatim in openapi/amazon-seller-central-fbainbound-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: fbaInbound_generateTransportationOptions
+  category: fbaInbound
+  rest:
+  - generateTransportationOptions
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and generateTransportationOptions
+    exists verbatim in openapi/amazon-seller-central-fbainbound-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: fbaInbound_getInboundOperationStatus
+  category: fbaInbound
+  rest:
+  - getInboundOperationStatus
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and getInboundOperationStatus
+    exists verbatim in openapi/amazon-seller-central-fbainbound-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: fbaInbound_getInboundPlan
+  category: fbaInbound
+  rest:
+  - getInboundPlan
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and getInboundPlan exists verbatim
+    in openapi/amazon-seller-central-fbainbound-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: fbaInbound_getShipment
+  category: fbaInbound
+  rest:
+  - getShipment
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and getShipment exists verbatim
+    in openapi/amazon-seller-central-fbainbound-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: fbaInbound_listDeliveryWindowOptions
+  category: fbaInbound
+  rest:
+  - listDeliveryWindowOptions
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and listDeliveryWindowOptions
+    exists verbatim in openapi/amazon-seller-central-fbainbound-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: fbaInbound_listInboundPlans
+  category: fbaInbound
+  rest:
+  - listInboundPlans
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and listInboundPlans exists
+    verbatim in openapi/amazon-seller-central-fbainbound-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: fbaInbound_listPackingGroupItems
+  category: fbaInbound
+  rest:
+  - listPackingGroupItems
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and listPackingGroupItems exists
+    verbatim in openapi/amazon-seller-central-fbainbound-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: fbaInbound_listPackingOptions
+  category: fbaInbound
+  rest:
+  - listPackingOptions
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and listPackingOptions exists
+    verbatim in openapi/amazon-seller-central-fbainbound-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: fbaInbound_listPlacementOptions
+  category: fbaInbound
+  rest:
+  - listPlacementOptions
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and listPlacementOptions exists
+    verbatim in openapi/amazon-seller-central-fbainbound-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: fbaInbound_listShipmentItems
+  category: fbaInbound
+  rest:
+  - listShipmentItems
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and listShipmentItems exists
+    verbatim in openapi/amazon-seller-central-fbainbound-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: fbaInbound_listTransportationOptions
+  category: fbaInbound
+  rest:
+  - listTransportationOptions
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and listTransportationOptions
+    exists verbatim in openapi/amazon-seller-central-fbainbound-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: fbaInbound_setPackingInformation
+  category: fbaInbound
+  rest:
+  - setPackingInformation
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and setPackingInformation exists
+    verbatim in openapi/amazon-seller-central-fbainbound-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: fbaInbound_updateShipmentTrackingDetails
+  category: fbaInbound
+  rest:
+  - updateShipmentTrackingDetails
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and updateShipmentTrackingDetails
+    exists verbatim in openapi/amazon-seller-central-fbainbound-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: fbaInventory_getInventorySummaries
+  category: fbaInventory
+  rest:
+  - getInventorySummaries
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and getInventorySummaries exists
+    verbatim in openapi/amazon-seller-central-fbainventory-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: listings_getListingsRestrictions
+  category: listings
+  rest:
+  - getListingsRestrictions
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and getListingsRestrictions
+    exists verbatim in openapi/amazon-seller-central-listings-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: listings_patchListingsItem
+  category: listings
+  rest:
+  - patchListingsItem
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and patchListingsItem exists
+    verbatim in openapi/amazon-seller-central-listings-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: listings_searchListingsItems
+  category: listings
+  rest:
+  - searchListingsItems
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and searchListingsItems exists
+    verbatim in openapi/amazon-seller-central-listings-api-openapi.yml. Live inputSchema is auth-gated.'
+- tool: sales_getOrderMetrics
+  category: sales
+  rest:
+  - getOrderMetrics
+  binding: rest
+  confidence: medium
+  note: 'Bound by name: the gateway tool name is <namespace>_<operationId> and getOrderMetrics exists
+    verbatim in openapi/amazon-seller-central-sales-api-openapi.yml. Live inputSchema is auth-gated.'
+mcp_only:
+- tool: analytics_getMetricData
+  reason: Seller analytics metrics (metadata and data) -- no public SP-API operation of this name in the
+    core models pulled
+- tool: analytics_getMetricMetadata
+  reason: Seller analytics metrics (metadata and data) -- no public SP-API operation of this name in the
+    core models pulled
+- tool: knowledgeTools_browseSpApiSection
+  reason: SP-API documentation knowledge base (search, fetch, browse, operation spec); read-only, backed
+    by SPAPIKnowledgeToolsMCP per the provider skill reference
+- tool: knowledgeTools_getSpApiDocuments
+  reason: SP-API documentation knowledge base (search, fetch, browse, operation spec); read-only, backed
+    by SPAPIKnowledgeToolsMCP per the provider skill reference
+- tool: knowledgeTools_getSpApiOperation
+  reason: SP-API documentation knowledge base (search, fetch, browse, operation spec); read-only, backed
+    by SPAPIKnowledgeToolsMCP per the provider skill reference
+- tool: knowledgeTools_searchSpApiDocs
+  reason: SP-API documentation knowledge base (search, fetch, browse, operation spec); read-only, backed
+    by SPAPIKnowledgeToolsMCP per the provider skill reference
+- tool: sellerAssistant_sellerAssistantCreate
+  reason: Seller Assistant conversation tools used by the listing-compliance skill; no public SP-API operation
+- tool: sellerAssistant_sellerAssistantGet
+  reason: Seller Assistant conversation tools used by the listing-compliance skill; no public SP-API operation
+meta_tools:
+- tool: call_tool
+  note: Gateway meta-tool named in the provider skills; namespaced tools are invoked through call_tool
+    (writes through call_destructive_tool).
+- tool: call_destructive_tool
+  note: Gateway meta-tool named in the provider skills; namespaced tools are invoked through call_tool
+    (writes through call_destructive_tool).
+- tool: search_tool
+  note: Gateway meta-tool named in the provider skills; namespaced tools are invoked through call_tool
+    (writes through call_destructive_tool).
+- tool: get_tool_schema
+  note: Gateway meta-tool named in the provider skills; namespaced tools are invoked through call_tool
+    (writes through call_destructive_tool).
+rest_only:
+- spec: openapi/amazon-seller-central-catalog-api-openapi.yml
+  operations:
+  - getCatalogItem
+  - searchCatalogItems
+- spec: openapi/amazon-seller-central-definitions-api-openapi.yml
+  operations:
+  - getDefinitionsProductType
+  - searchDefinitionsProductTypes
+- spec: openapi/amazon-seller-central-fbainbound-api-openapi.yml
+  operations:
+  - cancelSelfShipAppointment
+  - confirmShipmentContentUpdatePreview
+  - createMarketplaceItemLabels
+  - generateSelfShipAppointmentSlots
+  - generateShipmentContentUpdatePreviews
+  - getDeliveryChallanDocument
+  - getSelfShipAppointmentSlots
+  - getShipmentContentUpdatePreview
+  - listInboundPlanBoxes
+  - listInboundPlanItems
+  - listInboundPlanPallets
+  - listItemComplianceDetails
+  - listPackingGroupBoxes
+  - listPrepDetails
+  - listShipmentBoxes
+  - listShipmentContentUpdatePreviews
+  - listShipmentPallets
+  - scheduleSelfShipAppointment
+  - setPrepDetails
+  - updateInboundPlanName
+  - updateItemComplianceDetails
+  - updateShipmentName
+  - updateShipmentSourceAddress
+- spec: openapi/amazon-seller-central-fbainventory-api-openapi.yml
+  operations:
+  - addInventory
+  - createInventoryItem
+  - deleteInventoryItem
+- spec: openapi/amazon-seller-central-fbaoutbound-api-openapi.yml
+  operations:
+  - cancelFulfillmentOrder
+  - createFulfillmentOrder
+  - createFulfillmentReturn
+  - deliveryOffers
+  - getFeatureInventory
+  - getFeatureSKU
+  - getFeatures
+  - getFulfillmentOrder
+  - getFulfillmentPreview
+  - getPackageTrackingDetails
+  - listAllFulfillmentOrders
+  - listReturnReasonCodes
+  - submitFulfillmentOrderStatusUpdate
+  - updateFulfillmentOrder
+- spec: openapi/amazon-seller-central-feeds-api-openapi.yml
+  operations:
+  - cancelFeed
+  - createFeed
+  - createFeedDocument
+  - getFeed
+  - getFeedDocument
+  - getFeeds
+- spec: openapi/amazon-seller-central-fees-api-openapi.yml
+  operations:
+  - getMyFeesEstimateForASIN
+  - getMyFeesEstimateForSKU
+  - getMyFeesEstimates
+- spec: openapi/amazon-seller-central-finances-api-openapi.yml
+  operations:
+  - listBalances
+  - listFinancialEventGroups
+  - listFinancialEvents
+  - listFinancialEventsByGroupId
+  - listFinancialEventsByOrderId
+  - listSummary
+  - listTransactions
+- spec: openapi/amazon-seller-central-listings-api-openapi.yml
+  operations:
+  - deleteListingsItem
+  - getListingsItem
+  - putListingsItem
+- spec: openapi/amazon-seller-central-notifications-api-openapi.yml
+  operations:
+  - createDestination
+  - createSubscription
+  - deleteDestination
+  - deleteSubscriptionById
+  - getDestination
+  - getDestinations
+  - getSubscription
+  - getSubscriptionById
+  - getSubscriptions
+  - sendTestNotification
+- spec: openapi/amazon-seller-central-ordersv0-api-openapi.yml
+  operations:
+  - confirmShipment
+  - getOrder
+  - getOrderAddress
+  - getOrderBuyerInfo
+  - getOrderItems
+  - getOrderItemsBuyerInfo
+  - getOrderRegulatedInfo
+  - getOrders
+  - updateVerificationStatus
+- spec: openapi/amazon-seller-central-productpricing-api-openapi.yml
+  operations:
+  - getCompetitivePricing
+  - getCompetitiveSummary
+  - getFeaturedOfferExpectedPriceBatch
+  - getItemOffers
+  - getItemOffersBatch
+  - getListingOffers
+  - getListingOffersBatch
+  - getPricing
+- spec: openapi/amazon-seller-central-reports-api-openapi.yml
+  operations:
+  - cancelReport
+  - cancelReportSchedule
+  - createReport
+  - createReportSchedule
+  - getReport
+  - getReportDocument
+  - getReportSchedule
+  - getReportSchedules
+  - getReports
+- spec: openapi/amazon-seller-central-searchorders-api-openapi.yml
+  operations:
+  - searchOrders
+- spec: openapi/amazon-seller-central-sellers-api-openapi.yml
+  operations:
+  - getAccount
+  - getMarketplaceParticipations
+- spec: openapi/amazon-seller-central-shipment-api-openapi.yml
+  operations:
+  - updateShipmentStatus
+- spec: openapi/amazon-seller-central-shipping-api-openapi.yml
+  operations:
+  - cancelShipment
+  - createClaim
+  - directPurchaseShipment
+  - generateCollectionForm
+  - getAccessPoints
+  - getAdditionalInputs
+  - getCarrierAccountFormInputs
+  - getCarrierAccounts
+  - getCollectionForm
+  - getCollectionFormHistory
+  - getRates
+  - getShipmentDocuments
+  - getTracking
+  - getUnmanifestedShipments
+  - linkCarrierAccount
+  - oneClickShipment
+  - purchaseShipment
+  - submitNdrFeedback
+  - unlinkCarrierAccount
+- spec: openapi/amazon-seller-central-tokens-api-openapi.yml
+  operations:
+  - createRestrictedDataToken
+coverage:
+  tools_named: 35
+  tools_bound: 27
+  mcp_only: 8
+  meta_tools: 4
+  rest_ops_total: 150
+  rest_ops_with_tool: 27

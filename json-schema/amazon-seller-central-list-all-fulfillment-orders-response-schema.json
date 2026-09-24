@@ -1,0 +1,430 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-list-all-fulfillment-orders-response-schema.json",
+  "title": "ListAllFulfillmentOrdersResponse",
+  "description": "The response schema for the `listAllFulfillmentOrders` operation.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-fbaoutbound-api-openapi.yml#/components/schemas/ListAllFulfillmentOrdersResponse",
+  "type": "object",
+  "properties": {
+    "payload": {
+      "description": "The payload for the `listAllFulfillmentOrders` operation.",
+      "$ref": "#/$defs/ListAllFulfillmentOrdersResult"
+    },
+    "errors": {
+      "description": "One or more unexpected errors occurred during the `listAllFulfillmentOrders` operation.",
+      "$ref": "#/$defs/ErrorList"
+    }
+  },
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "required": [
+        "addressLine1",
+        "countryCode",
+        "name",
+        "postalCode"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the person, business or institution at the address."
+        },
+        "addressLine1": {
+          "type": "string",
+          "description": "The first line of the address."
+        },
+        "addressLine2": {
+          "type": "string",
+          "description": "Additional address information, if required."
+        },
+        "addressLine3": {
+          "type": "string",
+          "description": "Additional address information, if required."
+        },
+        "city": {
+          "type": "string",
+          "description": "The city where the person, business, or institution is located. This property is required in all countries except Japan. It should not be used in Japan."
+        },
+        "districtOrCounty": {
+          "type": "string",
+          "description": "The district or county where the person, business, or institution is located."
+        },
+        "stateOrRegion": {
+          "type": "string",
+          "description": "The state or region where the person, business or institution is located."
+        },
+        "postalCode": {
+          "type": "string",
+          "description": "The postal code of the address."
+        },
+        "countryCode": {
+          "type": "string",
+          "description": "The two digit country code. In ISO 3166-1 alpha-2 format."
+        },
+        "phone": {
+          "type": "string",
+          "description": "The phone number of the person, business, or institution located at the address."
+        }
+      },
+      "description": "A physical address."
+    },
+    "CODSettings": {
+      "type": "object",
+      "required": [
+        "isCodRequired"
+      ],
+      "properties": {
+        "isCodRequired": {
+          "type": "boolean",
+          "description": "When true, this fulfillment order requires a COD (Cash On Delivery) payment."
+        },
+        "codCharge": {
+          "description": "The amount of the COD charge to be collected from the recipient for a COD order.",
+          "$ref": "#/$defs/Money"
+        },
+        "codChargeTax": {
+          "description": "The amount of the tax on the COD charge to be collected from the recipient for a COD order.",
+          "$ref": "#/$defs/Money"
+        },
+        "shippingCharge": {
+          "description": "The amount of the tax on the COD charge to be collected from the recipient for a COD order.",
+          "$ref": "#/$defs/Money"
+        },
+        "shippingChargeTax": {
+          "description": "The amount of the tax on the shipping charge to be collected from the recipient for a COD order.",
+          "$ref": "#/$defs/Money"
+        }
+      },
+      "description": "The COD (Cash On Delivery) charges that you associate with a COD fulfillment order."
+    },
+    "Decimal": {
+      "type": "string",
+      "description": "A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation."
+    },
+    "DeliveryWindow": {
+      "type": "object",
+      "required": [
+        "endDate",
+        "startDate"
+      ],
+      "properties": {
+        "startDate": {
+          "description": "The date and time of the start of the Scheduled Delivery window, in ISO 8601 date time format.",
+          "$ref": "#/$defs/Timestamp"
+        },
+        "endDate": {
+          "description": "The date and time of the end of the Scheduled Delivery window, in ISO 8601 date time format.",
+          "$ref": "#/$defs/Timestamp"
+        }
+      },
+      "description": "The time range within which a Scheduled Delivery fulfillment order should be delivered. This is only available in the JP marketplace."
+    },
+    "Error": {
+      "type": "object",
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "An error code that identifies the type of error that occurred."
+        },
+        "message": {
+          "type": "string",
+          "description": "A message that describes the error condition."
+        },
+        "details": {
+          "type": "string",
+          "description": "Additional details that can help the caller understand or fix the issue."
+        }
+      },
+      "description": "Error response returned when the request is unsuccessful."
+    },
+    "ErrorList": {
+      "type": "array",
+      "description": "A list of error responses returned when a request is unsuccessful.",
+      "items": {
+        "$ref": "#/$defs/Error"
+      }
+    },
+    "FeatureSettings": {
+      "type": "object",
+      "properties": {
+        "featureName": {
+          "type": "string",
+          "description": "The name of the feature. Valid feature names are:\n\n- `BLOCK_AMZL`: Blocks orders from being shipped using Amazon Logistics (AMZL).\n  - Note: Using this feature will incur additional fee surcharges on MCF orders and may increase the risk of unfulfilled or delayed deliveries if alternative carriers are unavailable. Using `BLOCK_AMZL` in an order request will take precedence over your Seller Central account setting.\n- `BLANK_BOX`: Ships orders in non-Amazon branded packaging (blank boxes).\n- `OVERBOX`: Requires items to be shipped in an overbox rather than in their original product packaging.\n- `PACKING_SLIP`: Requires a packing slip to be included with the order.\n- `SIGNATURE_CONFIRMATION`: Requires a signature from the recipient upon delivery. \n  - Note: Using signature confirmation features will incur additional fees on MCF orders and are currently supported only in the US marketplace."
+        },
+        "featureFulfillmentPolicy": {
+          "type": "string",
+          "description": "Specifies the policy to use when fulfilling an order.",
+          "enum": [
+            "Required",
+            "NotRequired"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "Required",
+              "description": "If the offer can't be shipped with the selected feature, reject the order."
+            },
+            {
+              "value": "NotRequired",
+              "description": "The feature is not required for shipping."
+            }
+          ]
+        }
+      },
+      "description": "Feature settings allows you to apply fulfillment features to an order. To block an order from being shipped using Amazon Logistics (AMZL) and an AMZL tracking number, set `featureName` to `BLOCK_AMZL` and `featureFulfillmentPolicy` to `Required`. Blocking AMZL will incur an additional fee surcharge on your MCF orders and increase the risk of some of your orders being unfulfilled or delivered late if there are no alternative carriers available. Using `BLOCK_AMZL` in an order request will take precedence over your Seller Central account setting. To ship in non-Amazon branded packaging (blank boxes), set `featureName` to `BLANK_BOX`. To require items to be shipped in an overbox rather than in their original product packaging, set `featureName` to `OVERBOX`. To require a packing slip to be included with the order, set `featureName` to `PACKING_SLIP`. To require a signature from the recipient upon delivery, set `featureName` to `SIGNATURE_CONFIRMATION`. Note that using signature confirmation features will incur additional fees on MCF orders and are currently supported only in the US marketplace. To ensure all items in an order are delivered together, set `featureName` to `DELIVER_TOGETHER`."
+    },
+    "FulfillmentAction": {
+      "type": "string",
+      "description": "Specifies whether the fulfillment order should ship now or have an order hold put on it.",
+      "enum": [
+        "Ship",
+        "Hold"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "Ship",
+          "description": "The fulfillment order ships now."
+        },
+        {
+          "value": "Hold",
+          "description": "An order hold is put on the fulfillment order."
+        }
+      ]
+    },
+    "FulfillmentOrder": {
+      "type": "object",
+      "required": [
+        "destinationAddress",
+        "displayableOrderComment",
+        "displayableOrderDate",
+        "displayableOrderId",
+        "fulfillmentOrderStatus",
+        "marketplaceId",
+        "receivedDate",
+        "sellerFulfillmentOrderId",
+        "shippingSpeedCategory",
+        "statusUpdatedDate"
+      ],
+      "properties": {
+        "sellerFulfillmentOrderId": {
+          "type": "string",
+          "description": "The fulfillment order identifier submitted with the `createFulfillmentOrder` operation."
+        },
+        "marketplaceId": {
+          "type": "string",
+          "description": "The identifier for the marketplace the fulfillment order is placed against."
+        },
+        "displayableOrderId": {
+          "type": "string",
+          "description": "A fulfillment order identifier submitted with the `createFulfillmentOrder` operation. Displays as the order identifier in recipient-facing materials such as the packing slip."
+        },
+        "displayableOrderDate": {
+          "description": "A date and time submitted with the `createFulfillmentOrder` operation. Displays as the order date in recipient-facing materials such as the packing slip.",
+          "$ref": "#/$defs/Timestamp"
+        },
+        "displayableOrderComment": {
+          "type": "string",
+          "description": "A text block submitted with the `createFulfillmentOrder` operation. Displays in recipient-facing materials such as the packing slip."
+        },
+        "shippingSpeedCategory": {
+          "$ref": "#/$defs/ShippingSpeedCategory"
+        },
+        "deliveryWindow": {
+          "$ref": "#/$defs/DeliveryWindow"
+        },
+        "destinationAddress": {
+          "description": "The destination address submitted with the `createFulfillmentOrder` operation.",
+          "$ref": "#/$defs/Address"
+        },
+        "fulfillmentAction": {
+          "$ref": "#/$defs/FulfillmentAction"
+        },
+        "fulfillmentPolicy": {
+          "$ref": "#/$defs/FulfillmentPolicy"
+        },
+        "codSettings": {
+          "$ref": "#/$defs/CODSettings"
+        },
+        "receivedDate": {
+          "description": "The date and time that the fulfillment order was received by an Amazon fulfillment center.",
+          "$ref": "#/$defs/Timestamp"
+        },
+        "fulfillmentOrderStatus": {
+          "$ref": "#/$defs/FulfillmentOrderStatus"
+        },
+        "statusUpdatedDate": {
+          "description": "The date and time that the status of the fulfillment order last changed, in ISO 8601 date time format.",
+          "$ref": "#/$defs/Timestamp"
+        },
+        "notificationEmails": {
+          "$ref": "#/$defs/NotificationEmailList"
+        },
+        "featureConstraints": {
+          "type": "array",
+          "description": "A list of features and their fulfillment policies to apply to the order.",
+          "items": {
+            "$ref": "#/$defs/FeatureSettings"
+          }
+        }
+      },
+      "description": "General information about a fulfillment order, including its status."
+    },
+    "FulfillmentOrderStatus": {
+      "type": "string",
+      "description": "The current status of the fulfillment order.",
+      "enum": [
+        "New",
+        "Received",
+        "Planning",
+        "Processing",
+        "Cancelled",
+        "Complete",
+        "CompletePartialled",
+        "Unfulfillable",
+        "Invalid"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "New",
+          "description": "The fulfillment order was received but not yet validated."
+        },
+        {
+          "value": "Received",
+          "description": "The fulfillment order was received and validated. Validation includes determining that the destination address is valid and that Amazon's records indicate that the seller has enough sellable (undamaged) inventory to fulfill the order. The seller can cancel a fulfillment order that has a status of Received."
+        },
+        {
+          "value": "Planning",
+          "description": "The fulfillment order has been sent to Amazon's fulfillment network to begin shipment planning, but no unit in any shipment has been picked from inventory yet. The seller can cancel a fulfillment order that has a status of Planning."
+        },
+        {
+          "value": "Processing",
+          "description": "The process of picking units from inventory has begun on at least one shipment in the fulfillment order. The seller cannot cancel a fulfillment order that has a status of Processing."
+        },
+        {
+          "value": "Cancelled",
+          "description": "The fulfillment order has been cancelled by the seller."
+        },
+        {
+          "value": "Complete",
+          "description": "All item quantities in the fulfillment order have been fulfilled."
+        },
+        {
+          "value": "CompletePartialled",
+          "description": "Some item quantities in the fulfillment order were fulfilled; the rest were either cancelled or unfulfillable."
+        },
+        {
+          "value": "Unfulfillable",
+          "description": "No item quantities in the fulfillment order could be fulfilled because the Amazon fulfillment center workers found no inventory for those items or found no inventory that was in sellable (undamaged) condition."
+        },
+        {
+          "value": "Invalid",
+          "description": "The fulfillment order was received but could not be validated. The reasons for this include an invalid destination address or Amazon's records indicating that the seller does not have enough sellable inventory to fulfill the order. When this happens, the fulfillment order is invalid and no items in the order will ship."
+        }
+      ]
+    },
+    "FulfillmentPolicy": {
+      "type": "string",
+      "description": "The `FulfillmentPolicy` value specified when you called the `createFulfillmentOrder` operation.",
+      "enum": [
+        "FillOrKill",
+        "FillAll",
+        "FillAllAvailable"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "FillOrKill",
+          "description": "If an item in a fulfillment order is determined to be unfulfillable before any shipment in the order has acquired the status of Pending (the process of picking units from inventory has begun), then the entire order is considered unfulfillable. However, if an item in a fulfillment order is determined to be unfulfillable after a shipment in the order has acquired the status of Pending, Amazon cancels as much of the fulfillment order as possible. Refer to the `FulfillmentShipment` object for shipment status definitions."
+        },
+        {
+          "value": "FillAll",
+          "description": "All fulfillable items in the fulfillment order are shipped. The fulfillment order remains in a processing state until all items are either shipped by Amazon or cancelled by the seller. **Note:** The `Hold` state overrides the `FillAll` fulfillment policy. `Hold` orders are automatically canceled after 14 days. If you use the `FillAll` policy with the `Ship` state, and there are unshipped items, then the order becomes `Unfulfillable` or `CompletePartialled` after 24 hours."
+        },
+        {
+          "value": "FillAllAvailable",
+          "description": "All fulfillable items in the fulfillment order are shipped. All unfulfillable items in the order are cancelled."
+        }
+      ]
+    },
+    "ListAllFulfillmentOrdersResult": {
+      "description": "The request for the `listAllFulfillmentOrders` operation.",
+      "type": "object",
+      "properties": {
+        "nextToken": {
+          "type": "string",
+          "description": "When present and not empty, pass this string token in the next request to return the next response page."
+        },
+        "fulfillmentOrders": {
+          "type": "array",
+          "description": "An array of fulfillment order information.",
+          "items": {
+            "$ref": "#/$defs/FulfillmentOrder"
+          }
+        }
+      }
+    },
+    "Money": {
+      "type": "object",
+      "required": [
+        "currencyCode",
+        "value"
+      ],
+      "properties": {
+        "currencyCode": {
+          "type": "string",
+          "description": "Three digit currency code in ISO 4217 format."
+        },
+        "value": {
+          "$ref": "#/$defs/Decimal"
+        }
+      },
+      "description": "An amount of money, including units in the form of currency."
+    },
+    "NotificationEmailList": {
+      "type": "array",
+      "description": "A list of email addresses that the seller provides that are used by Amazon to send ship-complete notifications to recipients on behalf of the seller.",
+      "items": {
+        "type": "string",
+        "maxLength": 64
+      }
+    },
+    "ShippingSpeedCategory": {
+      "type": "string",
+      "description": "The shipping method used for the fulfillment order. When this value is `ScheduledDelivery`, choose `Ship` for the `fulfillmentAction`. `Hold` is not a valid `fulfillmentAction` value when the `shippingSpeedCategory` value is `ScheduledDelivery`.\nNote: Shipping method service level agreements vary by marketplace. Sellers should refer to the [Seller Central](https://developer-docs.amazon.com/sp-api/docs/seller-central-urls) website in their marketplace for shipping method service level agreements and fulfillment fees.",
+      "enum": [
+        "Standard",
+        "Expedited",
+        "Priority",
+        "ScheduledDelivery"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "Standard",
+          "description": "Standard shipping method."
+        },
+        {
+          "value": "Expedited",
+          "description": "Expedited shipping method."
+        },
+        {
+          "value": "Priority",
+          "description": "Priority shipping method."
+        },
+        {
+          "value": "ScheduledDelivery",
+          "description": "Scheduled Delivery shipping method. This is only available in the JP marketplace."
+        }
+      ]
+    },
+    "Timestamp": {
+      "description": "Date timestamp",
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

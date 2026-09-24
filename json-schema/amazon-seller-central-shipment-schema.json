@@ -1,0 +1,460 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-shipment-schema.json",
+  "title": "Shipment",
+  "description": "Contains information pertaining to a shipment in an inbound plan.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/Shipment",
+  "properties": {
+    "amazonReferenceId": {
+      "description": "A unique identifier created by Amazon that identifies this Amazon-partnered, Less Than Truckload/Full Truckload (LTL/FTL) shipment.",
+      "maxLength": 1024,
+      "minLength": 1,
+      "type": "string"
+    },
+    "contactInformation": {
+      "$ref": "#/$defs/ContactInformation"
+    },
+    "dates": {
+      "$ref": "#/$defs/Dates"
+    },
+    "destination": {
+      "$ref": "#/$defs/ShipmentDestination"
+    },
+    "freightInformation": {
+      "$ref": "#/$defs/FreightInformation"
+    },
+    "name": {
+      "description": "The name of the shipment.",
+      "type": "string"
+    },
+    "placementOptionId": {
+      "description": "The identifier of a placement option. A placement option represents the shipment splits and destinations of SKUs.",
+      "maxLength": 38,
+      "minLength": 38,
+      "pattern": "^[a-zA-Z0-9-]*$",
+      "type": "string"
+    },
+    "selectedDeliveryWindow": {
+      "$ref": "#/$defs/SelectedDeliveryWindow"
+    },
+    "selectedTransportationOptionId": {
+      "description": "Identifier of a transportation option. A transportation option represent one option for how to send a shipment.",
+      "maxLength": 38,
+      "minLength": 38,
+      "pattern": "^[a-zA-Z0-9-]*$",
+      "type": "string"
+    },
+    "selfShipAppointmentDetails": {
+      "description": "List of self ship appointment details.",
+      "items": {
+        "$ref": "#/$defs/SelfShipAppointmentDetails"
+      },
+      "type": "array"
+    },
+    "shipmentConfirmationId": {
+      "description": "The confirmed shipment ID which shows up on labels (for example, `FBA1234ABCD`).",
+      "maxLength": 1024,
+      "minLength": 1,
+      "type": "string"
+    },
+    "shipmentId": {
+      "description": "Identifier of a shipment. A shipment contains the boxes and units being inbounded.",
+      "maxLength": 38,
+      "minLength": 38,
+      "pattern": "^[a-zA-Z0-9-]*$",
+      "type": "string"
+    },
+    "source": {
+      "$ref": "#/$defs/ShipmentSource"
+    },
+    "status": {
+      "description": "The status of a shipment. The state of the shipment will typically start as `UNCONFIRMED`, then transition to `WORKING` after a placement option has been confirmed, and then to `READY_TO_SHIP` once labels are generated.\n\nPossible values: `ABANDONED`, `CANCELLED`, `CHECKED_IN`, `CLOSED`, `DELETED`, `DELIVERED`, `IN_TRANSIT`, `MIXED`, `READY_TO_SHIP`, `RECEIVING`, `SHIPPED`, `UNCONFIRMED`, `WORKING`",
+      "maxLength": 1024,
+      "minLength": 1,
+      "type": "string"
+    },
+    "trackingDetails": {
+      "$ref": "#/$defs/TrackingDetails"
+    }
+  },
+  "required": [
+    "destination",
+    "placementOptionId",
+    "shipmentId",
+    "source"
+  ],
+  "type": "object",
+  "$defs": {
+    "Address": {
+      "description": "Specific details to identify a place.",
+      "properties": {
+        "addressLine1": {
+          "description": "Street address information.",
+          "maxLength": 180,
+          "minLength": 1,
+          "type": "string"
+        },
+        "addressLine2": {
+          "description": "Additional street address information.",
+          "maxLength": 60,
+          "minLength": 1,
+          "type": "string"
+        },
+        "city": {
+          "description": "The city.",
+          "maxLength": 30,
+          "minLength": 1,
+          "type": "string"
+        },
+        "companyName": {
+          "description": "The name of the business.",
+          "maxLength": 50,
+          "minLength": 1,
+          "type": "string"
+        },
+        "countryCode": {
+          "description": "The country code in two-character ISO 3166-1 alpha-2 format.",
+          "maxLength": 2,
+          "minLength": 2,
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "districtOrCounty": {
+          "description": "The district or county.",
+          "maxLength": 50,
+          "minLength": 1,
+          "type": "string"
+        },
+        "email": {
+          "description": "The email address.",
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the individual who is the primary contact.",
+          "maxLength": 50,
+          "minLength": 1,
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "The phone number.",
+          "maxLength": 20,
+          "minLength": 1,
+          "type": "string"
+        },
+        "postalCode": {
+          "description": "The postal code.",
+          "maxLength": 32,
+          "minLength": 1,
+          "type": "string"
+        },
+        "stateOrProvinceCode": {
+          "description": "The state or province code.",
+          "maxLength": 64,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "addressLine1",
+        "city",
+        "countryCode",
+        "name",
+        "postalCode"
+      ],
+      "type": "object"
+    },
+    "AppointmentSlotTime": {
+      "description": "An appointment slot time with start and end.",
+      "properties": {
+        "endTime": {
+          "description": "The end timestamp of the appointment in UTC.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The start timestamp of the appointment in UTC.",
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "endTime",
+        "startTime"
+      ],
+      "type": "object"
+    },
+    "ContactInformation": {
+      "description": "The seller's contact information.",
+      "properties": {
+        "email": {
+          "description": "The email address.",
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "name": {
+          "description": "The contact's name.",
+          "maxLength": 50,
+          "minLength": 1,
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "The phone number.",
+          "maxLength": 20,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "phoneNumber"
+      ],
+      "type": "object"
+    },
+    "Currency": {
+      "description": "The type and amount of currency.",
+      "properties": {
+        "amount": {
+          "description": "Decimal value of the currency.",
+          "type": "number"
+        },
+        "code": {
+          "description": "ISO 4217 standard of a currency code.",
+          "maxLength": 3,
+          "minLength": 3,
+          "type": "string"
+        }
+      },
+      "required": [
+        "amount",
+        "code"
+      ],
+      "type": "object"
+    },
+    "Dates": {
+      "description": "Specifies the date that the seller expects their shipment will be shipped.",
+      "properties": {
+        "readyToShipWindow": {
+          "$ref": "#/$defs/Window"
+        }
+      },
+      "type": "object"
+    },
+    "FreightInformation": {
+      "description": "Freight information describes the SKUs that are in transit. Freight carrier options and quotes will only be returned if the freight information is provided.",
+      "properties": {
+        "declaredValue": {
+          "$ref": "#/$defs/Currency"
+        },
+        "freightClass": {
+          "description": "Freight class.\n\nPossible values: `NONE`, `FC_50`, `FC_55`, `FC_60`, `FC_65`, `FC_70`, `FC_77_5`, `FC_85`, `FC_92_5`, `FC_100`, `FC_110`, `FC_125`, `FC_150`, `FC_175`, `FC_200`, `FC_250`, `FC_300`, `FC_400`, `FC_500`.",
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LtlTrackingDetail": {
+      "description": "Contains information related to Less-Than-Truckload (LTL) shipment tracking.",
+      "properties": {
+        "billOfLadingNumber": {
+          "description": "The number of the carrier shipment acknowledgement document.",
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "freightBillNumber": {
+          "description": "The number associated with the freight bill.",
+          "items": {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9-._ ]*$",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SelectedDeliveryWindow": {
+      "description": "Selected delivery window attributes.",
+      "properties": {
+        "availabilityType": {
+          "description": "The type of delivery window availability. Values: `AVAILABLE`, `BLOCKED`, `CONGESTED`, `DISCOUNTED`",
+          "type": "string"
+        },
+        "deliveryWindowOptionId": {
+          "description": "Identifier of a delivery window option. A delivery window option represent one option for when a shipment is expected to be delivered.",
+          "maxLength": 38,
+          "minLength": 36,
+          "pattern": "^[a-zA-Z0-9-]*$",
+          "type": "string"
+        },
+        "editableUntil": {
+          "description": "The timestamp at which this Window can no longer be edited.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "endDate": {
+          "description": "The end timestamp of the window.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "startDate": {
+          "description": "The start timestamp of the window.",
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "availabilityType",
+        "deliveryWindowOptionId",
+        "endDate",
+        "startDate"
+      ],
+      "type": "object"
+    },
+    "SelfShipAppointmentDetails": {
+      "description": "Appointment details for carrier pickup or fulfillment center appointments.",
+      "properties": {
+        "appointmentId": {
+          "description": "Identifier for appointment.",
+          "type": "number"
+        },
+        "appointmentSlotTime": {
+          "$ref": "#/$defs/AppointmentSlotTime"
+        },
+        "appointmentStatus": {
+          "description": "Status of the appointment.",
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ShipmentDestination": {
+      "description": "The Amazon fulfillment center address and warehouse ID.",
+      "properties": {
+        "address": {
+          "$ref": "#/$defs/Address",
+          "description": "The address the shipment should be sent to. This can be empty if the destination type is `AMAZON_OPTIMIZED`."
+        },
+        "destinationType": {
+          "description": "The type of destination for this shipment. Possible values: `AMAZON_OPTIMIZED`, `AMAZON_WAREHOUSE`.",
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "warehouseId": {
+          "description": "The warehouse that the shipment should be sent to. This can be empty if the destination type is `AMAZON_OPTIMIZED`.",
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "destinationType"
+      ],
+      "type": "object"
+    },
+    "ShipmentSource": {
+      "description": "Specifies the 'ship from' address for the shipment.",
+      "properties": {
+        "address": {
+          "$ref": "#/$defs/Address"
+        },
+        "sourceType": {
+          "description": "The type of source for this shipment. Possible values: `SELLER_FACILITY`.",
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "sourceType"
+      ],
+      "type": "object"
+    },
+    "SpdTrackingDetail": {
+      "description": "Contains information related to Small Parcel Delivery (SPD) shipment tracking.",
+      "properties": {
+        "spdTrackingItems": {
+          "description": "List of Small Parcel Delivery (SPD) tracking items.",
+          "items": {
+            "$ref": "#/$defs/SpdTrackingItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SpdTrackingItem": {
+      "description": "Contains information used to track and identify a Small Parcel Delivery (SPD) item.",
+      "properties": {
+        "boxId": {
+          "description": "The ID provided by Amazon that identifies a given box. This ID is comprised of the external shipment ID (which is generated after transportation has been confirmed) and the index of the box.",
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "trackingId": {
+          "description": "The tracking ID associated with each box in a non-Amazon partnered Small Parcel Delivery (SPD) shipment.",
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "trackingNumberValidationStatus": {
+          "description": "Indicates whether Amazon has validated the tracking number. Because shipment validation is asynchronous, tracking IDs might not be validated immediately, and the status might change after a few hours. If more than 24 hours have passed and the status is not yet 'VALIDATED' or `NOT_SUPPORTED`, verify the number and update it if necessary. **Possible values:** `VALIDATED`, `NOT_VALIDATED`, `NOT_SUPPORTED` (Amazon is unable to find tracking information for the provided tracking ID).",
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TrackingDetails": {
+      "description": "Tracking information for Less-Than-Truckload (LTL) and Small Parcel Delivery (SPD) shipments.",
+      "properties": {
+        "ltlTrackingDetail": {
+          "$ref": "#/$defs/LtlTrackingDetail"
+        },
+        "spdTrackingDetail": {
+          "$ref": "#/$defs/SpdTrackingDetail"
+        }
+      },
+      "type": "object"
+    },
+    "Window": {
+      "description": "Contains a start and end DateTime representing a time range.",
+      "properties": {
+        "editableUntil": {
+          "description": "The timestamp at which this Window can no longer be edited.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "end": {
+          "description": "The end timestamp of the window.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "start": {
+          "description": "The start timestamp of the window.",
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "end",
+        "start"
+      ],
+      "type": "object"
+    }
+  }
+}

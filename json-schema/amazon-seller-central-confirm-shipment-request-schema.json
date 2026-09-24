@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-confirm-shipment-request-schema.json",
+  "title": "ConfirmShipmentRequest",
+  "description": "The request schema for an shipment confirmation.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-ordersv0-api-openapi.yml#/components/schemas/ConfirmShipmentRequest",
+  "type": "object",
+  "required": [
+    "marketplaceId",
+    "packageDetail"
+  ],
+  "properties": {
+    "packageDetail": {
+      "$ref": "#/$defs/PackageDetail"
+    },
+    "codCollectionMethod": {
+      "type": "string",
+      "description": "The COD collection method (only supported in the JP marketplace).",
+      "enum": [
+        "DirectPayment"
+      ]
+    },
+    "marketplaceId": {
+      "$ref": "#/$defs/MarketplaceId"
+    }
+  },
+  "$defs": {
+    "ConfirmShipmentOrderItem": {
+      "type": "object",
+      "description": "A single order item.",
+      "required": [
+        "orderItemId",
+        "quantity"
+      ],
+      "properties": {
+        "orderItemId": {
+          "type": "string",
+          "description": "The order item's unique identifier."
+        },
+        "quantity": {
+          "type": "integer",
+          "description": "The item's quantity."
+        },
+        "transparencyCodes": {
+          "description": "The list of transparency codes.",
+          "$ref": "#/$defs/TransparencyCodeList"
+        }
+      }
+    },
+    "ConfirmShipmentOrderItemsList": {
+      "type": "array",
+      "description": "A list of order items.",
+      "items": {
+        "$ref": "#/$defs/ConfirmShipmentOrderItem"
+      }
+    },
+    "MarketplaceId": {
+      "description": "The unobfuscated marketplace identifier.",
+      "type": "string"
+    },
+    "PackageDetail": {
+      "type": "object",
+      "description": "Properties of packages",
+      "required": [
+        "packageReferenceId",
+        "carrierCode",
+        "trackingNumber",
+        "shipDate",
+        "orderItems"
+      ],
+      "properties": {
+        "packageReferenceId": {
+          "$ref": "#/$defs/PackageReferenceId"
+        },
+        "carrierCode": {
+          "type": "string",
+          "description": "Identifies the carrier that will deliver the package. This field is required for all marketplaces. For more information, refer to the [`CarrierCode` announcement](https://developer-docs.amazon.com/sp-api/changelog/carriercode-value-required-in-shipment-confirmations-for-br-mx-ca-sg-au-in-jp-marketplaces)."
+        },
+        "carrierName": {
+          "type": "string",
+          "description": "Carrier name that will deliver the package. Required when `carrierCode` is \"Other\" "
+        },
+        "shippingMethod": {
+          "type": "string",
+          "description": "Ship method to be used for shipping the order."
+        },
+        "trackingNumber": {
+          "type": "string",
+          "description": "The tracking number used to obtain tracking and delivery information."
+        },
+        "shipDate": {
+          "type": "string",
+          "description": "The shipping date for the package. Must be in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date/time format.",
+          "format": "date-time"
+        },
+        "shipFromSupplySourceId": {
+          "type": "string",
+          "description": "The unique identifier for the supply source."
+        },
+        "orderItems": {
+          "description": "The list of order items and quantities to be updated.",
+          "$ref": "#/$defs/ConfirmShipmentOrderItemsList"
+        }
+      }
+    },
+    "PackageReferenceId": {
+      "type": "string",
+      "description": "A seller-supplied identifier that uniquely identifies a package within the scope of an order. Only positive numeric values are supported."
+    },
+    "TransparencyCode": {
+      "type": "string",
+      "description": "The transparency code associated with the item."
+    },
+    "TransparencyCodeList": {
+      "type": "array",
+      "description": "A list of order items.",
+      "items": {
+        "$ref": "#/$defs/TransparencyCode"
+      }
+    }
+  }
+}

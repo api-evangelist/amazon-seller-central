@@ -1,48 +1,4017 @@
 openapi: 3.2.0
 info:
-  title: Amazon Selling Partner API (SP-API) Finances API
-  version: 1.0.0
-  description: 'Modern REST API enabling Amazon sellers, vendors, and third-party
-
-    developers to programmatically access Seller Central data and
-
-    operations. Coverage includes catalog management, orders, inventory,
-
-    pricing, fulfillment, reports, feeds, finances, notifications, and
-
-    tokens. Authentication uses Login with Amazon (LWA) OAuth 2.0
-
-    access tokens (`x-amz-access-token`) and optional Restricted Data
-
-    Tokens for PII. SP-API replaces the legacy Amazon MWS.'
+  title: Amazon Seller Central Finances API
   contact:
-    name: Amazon Selling Partner API
-    url: https://developer-docs.amazon.com/sp-api
+    name: Selling Partner API Developer Support
+    url: https://sellercentral.amazon.com/gp/mws/contactus.html
+  license:
+    name: Apache License 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+  description: 'Operations tagged Finances across 2 of this provider''s published API definitions: amazon-seller-central-finances-2024-06-19-original.json, amazon-seller-central-finances-v0-original.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://sellingpartnerapi-na.amazon.com
-  description: North America
-- url: https://sellingpartnerapi-eu.amazon.com
-  description: Europe
-- url: https://sellingpartnerapi-fe.amazon.com
-  description: Far East
-security:
-- LwaBearer: []
 tags:
 - name: Finances
 paths:
-  /finances/v0/financialEvents:
+  /finances/2024-06-19/transactions:
     get:
-      tags:
-      - Finances
-      summary: List financial events
-      operationId: listFinancialEvents
+      description: 'Returns transactions for the given parameters. Financial events might not include orders from the last 48 hours. **Note:** If you want to retrieve MFN orders in the US store, do not supply the `marketplaceId` parameter.
+
+
+        **Usage plan:**
+
+
+        | Rate (requests per second) | Burst |
+
+        | ---- | ---- |
+
+        | 0.5 | 10 |
+
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits).'
+      operationId: listTransactions
+      parameters:
+      - name: postedAfter
+        in: query
+        description: 'The response includes financial events posted on or after this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The date-time must be more than two minutes before the time of the request.
+
+
+          This field is required if you do not specify a related identifier.'
+        required: false
+        x-example: '2023-01-12'
+        schema:
+          type: string
+          format: date-time
+      - name: postedBefore
+        in: query
+        description: 'The response includes financial events posted before (but not on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+
+
+          The date-time must be later than `PostedAfter` and more than two minutes before the request was submitted. If `PostedAfter` and `PostedBefore` are more than 180 days apart, the response is empty.
+
+
+          **Default:** Two minutes before the time of the request.'
+        required: false
+        x-example: '2023-02-12'
+        schema:
+          type: string
+          format: date-time
+      - name: marketplaceId
+        in: query
+        description: The identifier of the marketplace from which you want to retrieve transactions. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+        required: false
+        x-example: ATIV93840DER
+        schema:
+          type: string
+      - name: transactionStatus
+        in: query
+        description: 'The status of the transaction.
+
+
+          **Possible values:**
+
+
+          * `DEFERRED`: the transaction is currently deferred.
+
+          * `RELEASED`: the transaction is currently released.
+
+          * `DEFERRED_RELEASED`: the transaction was deferred in the past, but is now released. The status of a deferred transaction is updated to `DEFERRED_RELEASED` when the transaction is released.'
+        required: false
+        x-example: RELEASED
+        schema:
+          type: string
+      - name: relatedIdentifierName
+        in: query
+        description: "The name of the `relatedIdentifier`.\n\n**Possible values:**\n\n* `FINANCIAL_EVENT_GROUP_ID`: the financial event group ID associated with the transaction.\n\n* `ORDER_ID`: the order ID associated with the transaction.  \n\n**Note:**\n\n`FINANCIAL_EVENT_GROUP_ID` and `ORDER_ID` are the only `relatedIdentifier` with filtering capabilities at the moment. While other `relatedIdentifier` values will be included in the response when available, they cannot be used for filtering purposes."
+        required: false
+        x-example: FINANCIAL_EVENT_GROUP_ID
+        schema:
+          type: string
+      - name: relatedIdentifierValue
+        in: query
+        description: The value of the `relatedIdentifier`.
+        required: false
+        x-example: '8129762527551'
+        schema:
+          type: string
+      - name: nextToken
+        in: query
+        description: The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+        required: false
+        x-example: jehgri34yo7jr9e8f984tr9i4o
+        schema:
+          type: string
       responses:
         '200':
-          description: Events.
+          description: Success.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  postedAfter:
+                    value: '2023-03-07'
+                  nextToken:
+                    value: jehgri34yo7jr9e8f984tr9i4o
+              response:
+                payload:
+                  nextToken: Next token value
+                  transactions:
+                  - sellingPartnerMetadata:
+                      sellingPartnerId: A3TH9S8BH6GOGM
+                      accountType: PAYABLE
+                      marketplaceId: ATIV93840DER
+                    relatedIdentifiers:
+                    - relatedIdentifierName: FINANCIAL_EVENT_GROUP_ID
+                      relatedIdentifierValue: 4MVaHcsAfaYAlwlaPWrXJxrfUiKfYZ2ooWtY7528FUA
+                    - relatedIdentifierName: ORDER_ID
+                      relatedIdentifierValue: '8129762527551'
+                    transactionType: Shipment
+                    postedDate: '2020-07-14T03:35:13.214Z'
+                    totalAmount:
+                      currencyAmount: 10
+                      currencyCode: USD
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTransactionsResponse'
+        '400':
+          description: Request has missing or invalid parameters and cannot be parsed.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  postedBefore:
+                    value: '2022-03-07'
+              response:
+                errors:
+                - code: InvalidInput
+                  message: Start date cannot be null
+                  details: Start date cannot be null
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '403':
+          description: Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '404':
+          description: The resource specified does not exist.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '413':
+          description: The request size exceeded the maximum accepted size.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '415':
+          description: The request payload is in an unsupported format.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '429':
+          description: The frequency of requests was greater than allowed.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '500':
+          description: An unexpected condition occurred that prevented the server from fulfilling the request.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '503':
+          description: Temporary overloading or maintenance of the server.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+      tags:
+      - Finances
+    servers:
+    - url: https://sellingpartnerapi-na.amazon.com
+  /finances/2024-06-19/balances:
+    get:
+      description: 'Retrieve a balance. This balance can be a past balances at a specified date, or a current balance. Sub-balances are listed by account type and marketplace.
+
+
+        **Usage Plan:**
+
+
+        | Rate (requests per second) | Burst |
+
+        | ---- | ---- |
+
+        | 0.5 | 10 |
+
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that apply to the operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+      operationId: listBalances
+      parameters:
+      - name: marketplaceIds
+        in: query
+        description: The marketplaces from which to retrieve balances. If omitted, balances from all applicable marketplaces may be returned. To find the marketplace ID for a region, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+        required: false
+        x-example:
+        - AXXXXXXXXXER
+        schema:
+          type: array
+          items:
+            type: string
+      - name: balanceType
+        in: query
+        description: 'The type of balance to include in the response. If omitted, all balance types may be included in the response.
+
+
+          **Possible values:** `AVAILABLE`, `RESERVED`, `TOTAL`, `DEFERRED`, `ACCOUNT_LEVEL_RESERVE`'
+        required: false
+        x-example: TOTAL
+        schema:
+          type: string
+      - name: accountType
+        in: query
+        description: The type of account to include in the response.
+        required: false
+        x-example: Standard Orders
+        schema:
+          type: string
+      - name: asOfDate
+        in: query
+        description: The date from which you want to retrieve balances. If provided, the response includes historical balances at the specified date. The value must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date format. If omitted, the point in time balance is provided.
+        required: false
+        x-example: '2025-01-12'
+        schema:
+          type: string
+          format: date
+      - name: nextToken
+        in: query
+        description: A token that you use to retrieve subsequent pages of results. When there are more than 500 results available, the response will include a `nextToken` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. Repeat this process until the `nextToken` value is null to retrieve all results.
+        required: false
+        x-example: jehgri34yo7jr9e8f984tr9i4o
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  marketplaceIds:
+                    value:
+                    - AXXXXXXXXXER
+                  balanceType:
+                    value: TOTAL
+              response:
+                balances:
+                - partnerMetadata:
+                    partnerId: XXXXXXXXXXXXXX
+                    accountType: Standard Orders
+                    marketplaceId: AXXXXXXXXXER
+                  balanceType: TOTAL
+                  amount:
+                    currencyAmount: 15000
+                    currencyCode: USD
+                  lastUpdatedTime: '2025-01-12T10:30:00+09:00'
+                  balances:
+                  - balanceType: AVAILABLE
+                    amount:
+                      currencyAmount: 8000
+                      currencyCode: USD
+                  - balanceType: RESERVED
+                    amount:
+                      currencyAmount: 7000
+                      currencyCode: USD
+                    balances:
+                    - balanceType: DEFERRED
+                      amount:
+                        currencyAmount: 9000
+                        currencyCode: USD
+                    - balanceType: ACCOUNT_LEVEL_RESERVE
+                      amount:
+                        currencyAmount: -2000
+                        currencyCode: USD
+                nextToken: jehgri34yo7jr9e8f984tr9i4o
+            - request:
+                parameters:
+                  marketplaceIds:
+                    value:
+                    - AXXXXXXXXXER
+                  balanceType:
+                    value: TOTAL
+                  asOfDate:
+                    value: '2025-01-12'
+              response:
+                balances:
+                - partnerMetadata:
+                    partnerId: XXXXXXXXXXXXXX
+                    accountType: Standard Orders
+                    marketplaceId: AXXXXXXXXXER
+                  balanceType: TOTAL
+                  amount:
+                    currencyAmount: 15000
+                    currencyCode: USD
+                  asOfDate: '2025-01-12'
+                  balances:
+                  - balanceType: AVAILABLE
+                    amount:
+                      currencyAmount: 8000
+                      currencyCode: USD
+                  - balanceType: RESERVED
+                    amount:
+                      currencyAmount: 7000
+                      currencyCode: USD
+                    balances:
+                    - balanceType: DEFERRED
+                      amount:
+                        currencyAmount: 9000
+                        currencyCode: USD
+                    - balanceType: ACCOUNT_LEVEL_RESERVE
+                      amount:
+                        currencyAmount: -2000
+                        currencyCode: USD
+                nextToken: jehgri34yo7jr9e8f984tr9i4o
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListBalancesResponse'
+        '400':
+          description: Request has missing or invalid parameters and cannot be parsed.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  marketplaceIds:
+                    value:
+                    - INVALID_MARKETPLACE_ID
+              response:
+                errors:
+                - code: InvalidInput
+                  message: Invalid input
+                  details: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '403':
+          description: Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '404':
+          description: The resource specified does not exist.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '413':
+          description: The request size exceeded the maximum accepted size.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '415':
+          description: The request payload is in an unsupported format.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '429':
+          description: The frequency of requests was greater than allowed.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '500':
+          description: An unexpected condition occurred that prevented the server from fulfilling the request.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '503':
+          description: Temporary overloading or maintenance of the server.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+      tags:
+      - Finances
+    servers:
+    - url: https://sellingpartnerapi-na.amazon.com
+  /finances/2024-06-19/summary:
+    get:
+      description: 'Retrieve the financial summary for the specified time period or settlement period.
+
+
+        **Usage Plan:**
+
+
+        | Rate (requests per second) | Burst |
+
+        | ---- | ---- |
+
+        | 0.5 | 10 |
+
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that apply to the operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+      operationId: listSummary
+      parameters:
+      - name: marketplaceIds
+        in: query
+        description: The marketplaces from which to retrieve summaries. If omitted, summaries from all applicable marketplaces may be returned. To find the marketplace ID for a region, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+        required: false
+        x-example:
+        - AXXXXXXXXXER
+        schema:
+          type: array
+          items:
+            type: string
+      - name: accountType
+        in: query
+        description: The type of account to include in the response.
+        required: false
+        x-example: Standard Orders
+        schema:
+          type: string
+      - name: relatedIdentifierName
+        in: query
+        description: The name of the `relatedIdentifier`. The only possible value is `SETTLEMENT_ID`, the settlement ID associated with the summary.
+        required: false
+        x-example: SETTLEMENT_ID
+        schema:
+          type: string
+      - name: relatedIdentifierValue
+        in: query
+        description: The value of the `relatedIdentifier`.
+        required: false
+        x-example: '8129762527551'
+        schema:
+          type: string
+      - name: periodStart
+        in: query
+        description: The start of the period for which to retrieve summaries. When provided, the response will only include summaries with transactions that occurred on or after the specified date. The value must be formatted in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date format.
+        required: false
+        x-example: '2025-01-12'
+        schema:
+          type: string
+          format: date
+      - name: periodEnd
+        in: query
+        description: The end of the period for which to retrieve summaries. When provided, the response will only include summaries with transactions that occurred on or before the specified date. The value must be formatted in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date format.
+        required: false
+        x-example: '2025-01-12'
+        schema:
+          type: string
+          format: date
+      - name: nextToken
+        in: query
+        description: A token that you use to retrieve subsequent pages of results. When there are more results available, the response will include a `nextToken` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. Repeat this process until the `nextToken` value is null to retrieve all results.
+        required: false
+        x-example: jehgri34yo7jr9e8f984tr9i4o
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  marketplaceIds:
+                    value:
+                    - AXXXXXXXXXER
+                  periodStart:
+                    value: '2025-01-12'
+                  periodEnd:
+                    value: '2025-01-12'
+              response:
+                summaries:
+                - partnerMetadata:
+                    partnerId: XXXXXXXXXXXXXX
+                    accountType: Standard Orders
+                    marketplaceId: AXXXXXXXXXER
+                  periodStart: '2025-01-12'
+                  periodEnd: '2025-01-12'
+                  netProceeds:
+                    currencyAmount: 8000
+                    currencyCode: USD
+                  breakdowns:
+                  - breakdownType: Sales
+                    breakdownAmount:
+                      currencyAmount: 8000
+                      currencyCode: USD
+                    breakdowns:
+                    - breakdownType: Product Charges
+                      breakdownAmount:
+                        currencyAmount: 9000
+                        currencyCode: USD
+                      breakdowns: []
+                  - breakdownType: Expenses
+                    breakdownAmount:
+                      currencyAmount: -1000
+                      currencyCode: USD
+                    breakdowns:
+                    - breakdownType: FBA fees
+                      breakdownAmount:
+                        currencyAmount: -1000
+                        currencyCode: USD
+                      breakdowns: []
+                nextToken: jehgri34yo7jr9e8f984tr9i4o
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummaryResponse'
+        '400':
+          description: Request has missing or invalid parameters and cannot be parsed.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  marketplaceIds:
+                    value:
+                    - INVALID_MARKETPLACE_ID
+              response:
+                errors:
+                - code: InvalidInput
+                  message: Invalid input
+                  details: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '403':
+          description: Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '404':
+          description: The resource specified does not exist.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '413':
+          description: The request size exceeded the maximum accepted size.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '415':
+          description: The request payload is in an unsupported format.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '429':
+          description: The frequency of requests was greater than allowed.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '500':
+          description: An unexpected condition occurred that prevented the server from fulfilling the request.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '503':
+          description: Temporary overloading or maintenance of the server.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+      tags:
+      - Finances
+    servers:
+    - url: https://sellingpartnerapi-na.amazon.com
+  /finances/v0/financialEventGroups:
+    get:
+      description: 'Returns financial event groups for a given date range. Orders from the last 48 hours might not be included in financial events.
+
+
+        **Usage Plan:**
+
+
+        | Rate (requests per second) | Burst |
+
+        | ---- | ---- |
+
+        | 0.5 | 30 |
+
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits).'
+      operationId: listFinancialEventGroups
+      parameters:
+      - name: MaxResultsPerPage
+        in: query
+        description: The maximum number of results per page. If the response exceeds the maximum number of transactions or 10 MB, the response is `InvalidInput`.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 10
+          maximum: 100
+          minimum: 1
+      - name: FinancialEventGroupStartedBefore
+        in: query
+        description: A date that selects financial event groups that opened before (but not at) a specified date and time, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. The date-time must be after `FinancialEventGroupStartedAfter` and more than two minutes before the time of request. If `FinancialEventGroupStartedAfter` and `FinancialEventGroupStartedBefore` are more than 180 days apart, no financial event groups are returned.
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: FinancialEventGroupStartedAfter
+        in: query
+        description: A date that selects financial event groups that opened after (or at) a specified date and time, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format. The date-time must be more than two minutes before you submit the request.
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: NextToken
+        in: query
+        description: The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  MaxResultsPerPage:
+                    value: 1
+                  FinancialEventGroupStartedBefore:
+                    value: '2019-10-31'
+                  FinancialEventGroupStartedAfter:
+                    value: '2019-10-13'
+              response:
+                payload:
+                  NextToken: '3493805734095308457308475'
+                  FinancialEventGroupList:
+                  - FinancialEventGroupId: '1'
+                    ProcessingStatus: PROCESSED
+                    FundTransferStatus: TRANSFERED
+                    OriginalTotal:
+                      CurrencyCode: USD
+                      CurrencyAmount: 10.34
+                    ConvertedTotal:
+                      CurrencyCode: USD
+                      CurrencyAmount: 39.43
+                    FundTransferDate: '2020-02-07T14:38:42.128Z'
+                    TraceId: '34550454504545'
+                    AccountTail: '4854564857'
+                    BeginningBalance:
+                      CurrencyCode: USD
+                      CurrencyAmount: 55.33
+                    FinancialEventGroupStart: '2020-02-07T14:38:42.128Z'
+                    FinancialEventGroupEnd: '2020-02-07T14:38:42.128Z'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventGroupsResponse'
+        '400':
+          description: Request has missing or invalid parameters and cannot be parsed.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  MaxResultsPerPage:
+                    value: 10
+              response:
+                errors:
+                - code: InvalidInput
+                  message: Date range is invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventGroupsResponse'
+        '403':
+          description: Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventGroupsResponse'
+        '404':
+          description: The resource specified does not exist.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventGroupsResponse'
+        '429':
+          description: The frequency of requests was greater than allowed.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventGroupsResponse'
+        '500':
+          description: An unexpected condition occurred that prevented the server from fulfilling the request.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventGroupsResponse'
+        '503':
+          description: Temporary overloading or maintenance of the server.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventGroupsResponse'
+      tags:
+      - Finances
+    servers:
+    - url: https://sellingpartnerapi-na.amazon.com
+  /finances/v0/financialEventGroups/{eventGroupId}/financialEvents:
+    get:
+      description: 'Returns all financial events for the specified financial event group. Orders from the last 48 hours might not be included in financial events.
+
+
+        **Note:** Deferred events don''t appear in the `listFinancialEventsByGroupId` response until they are released.
+
+
+        **Note:** This operation only retrieves a group''s data for the past two years. A request for data spanning more than two years produces an empty response.
+
+
+        **Usage Plan:**
+
+
+        | Rate (requests per second) | Burst |
+
+        | ---- | ---- |
+
+        | 0.5 | 30 |
+
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits).'
+      operationId: listFinancialEventsByGroupId
+      parameters:
+      - name: MaxResultsPerPage
+        in: query
+        description: The maximum number of results to return per page. If the response exceeds the maximum number of transactions or 10 MB, the response is `InvalidInput`.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 100
+          maximum: 100
+          minimum: 1
+      - name: PostedAfter
+        in: query
+        description: The response includes financial events posted after (or on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The date-time must be more than two minutes before the time of the request.
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: PostedBefore
+        in: query
+        description: 'The response includes financial events posted before (but not on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+
+
+          The date-time must be later than `PostedAfter` and more than two minutes before the request was submitted. If `PostedAfter` and `PostedBefore` are more than 180 days apart, the response is empty. If you include the `PostedBefore` parameter in your request, you must also specify the `PostedAfter` parameter.
+
+
+          **Default:** Two minutes before the time of the request.'
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: eventGroupId
+        in: path
+        description: The identifier of the financial event group to which the events belong.
+        required: true
+        schema:
+          type: string
+      - name: NextToken
+        in: query
+        description: The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  MaxResultsPerPage:
+                    value: 10
+                  eventGroupId:
+                    value: '485734534857'
+              response:
+                payload:
+                  NextToken: Next token value
+                  FinancialEvents:
+                    ChargebackEventList:
+                    - AmazonOrderId: 444-555-3343433
+                      SellerOrderId: '454645645656456'
+                      MarketplaceName: '1'
+                      OrderChargeList:
+                      - ChargeType: Tax
+                        ChargeAmount:
+                          CurrencyCode: USD
+                          CurrencyAmount: 25.37
+                      OrderChargeAdjustmentList:
+                      - ChargeType: Tax
+                        ChargeAmount:
+                          CurrencyCode: USD
+                          CurrencyAmount: 25.37
+                      ShipmentFeeList:
+                      - FeeType: FixedClosingFee
+                        FeeAmount:
+                          CurrencyCode: USD
+                          CurrencyAmount: 25.37
+                      ShipmentFeeAdjustmentList:
+                      - FeeType: FixedClosingFee
+                        FeeAmount:
+                          CurrencyCode: USD
+                          CurrencyAmount: 25.37
+                      OrderFeeList:
+                      - FeeType: FixedClosingFee
+                        FeeAmount:
+                          CurrencyCode: USD
+                          CurrencyAmount: 25.37
+                      OrderFeeAdjustmentList:
+                      - FeeType: FixedClosingFee
+                        FeeAmount:
+                          CurrencyCode: USD
+                          CurrencyAmount: 25.37
+                      DirectPaymentList:
+                      - DirectPaymentType: StoredValueCardRevenue
+                        DirectPaymentAmount:
+                          CurrencyCode: USD
+                          CurrencyAmount: 25.37
+                      PostedDate: '2020-02-05T13:56:00.363Z'
+                      ShipmentItemList:
+                      - SellerSKU: '456454455464'
+                        OrderItemId: '4565465645646'
+                        OrderAdjustmentItemId: '456456465464'
+                        QuantityShipped: 0
+                        ItemChargeList:
+                        - ChargeType: Tax
+                          ChargeAmount:
+                            CurrencyCode: USD
+                            CurrencyAmount: 25.37
+                        ItemChargeAdjustmentList:
+                        - ChargeType: Tax
+                          ChargeAmount:
+                            CurrencyCode: USD
+                            CurrencyAmount: 25.37
+                        ItemFeeList:
+                        - FeeType: FixedClosingFee
+                          FeeAmount:
+                            CurrencyCode: USD
+                            CurrencyAmount: 25.37
+                        ItemFeeAdjustmentList:
+                        - FeeType: FixedClosingFee
+                          FeeAmount:
+                            CurrencyCode: USD
+                            CurrencyAmount: 25.37
+                        ItemTaxWithheldList:
+                        - TaxCollectionModel: Free
+                          TaxesWithheld:
+                          - ChargeType: Tax
+                            ChargeAmount:
+                              CurrencyCode: USD
+                              CurrencyAmount: 25.37
+                        PromotionList:
+                        - PromotionType: Free
+                          PromotionId: '546564565'
+                          PromotionAmount:
+                            CurrencyCode: USD
+                            CurrencyAmount: 25.37
+                        PromotionAdjustmentList:
+                        - PromotionType: Free
+                          PromotionId: '546564565'
+                          PromotionAmount:
+                            CurrencyCode: USD
+                            CurrencyAmount: 25.37
+                        CostOfPointsGranted:
+                          CurrencyCode: USD
+                          CurrencyAmount: 25.37
+                        CostOfPointsReturned:
+                          CurrencyCode: USD
+                          CurrencyAmount: 25.37
+                      ShipmentItemAdjustmentList:
+                      - SellerSKU: '456454455464'
+                        OrderItemId: '4565465645646'
+                        OrderAdjustmentItemId: '456456465464'
+                        QuantityShipped: 0
+                        ItemChargeList:
+                        - ChargeType: Tax
+                          ChargeAmount:
+                            CurrencyCode: USD
+                            CurrencyAmount: 25.37
+                        ItemChargeAdjustmentList:
+                        - ChargeType: Tax
+                          ChargeAmount:
+                            CurrencyCode: USD
+                            CurrencyAmount: 25.37
+                        ItemFeeList:
+                        - FeeType: FixedClosingFee
+                          FeeAmount:
+                            CurrencyCode: USD
+                            CurrencyAmount: 25.37
+                        ItemFeeAdjustmentList:
+                        - FeeType: FixedClosingFee
+                          FeeAmount:
+                            CurrencyCode: USD
+                            CurrencyAmount: 25.37
+                        ItemTaxWithheldList:
+                        - TaxCollectionModel: Free
+                          TaxesWithheld:
+                          - ChargeType: Tax
+                            ChargeAmount:
+                              CurrencyCode: USD
+                              CurrencyAmount: 25.37
+                        PromotionList:
+                        - PromotionType: Free
+                          PromotionId: '546564565'
+                          PromotionAmount:
+                            CurrencyCode: USD
+                            CurrencyAmount: 25.37
+                        PromotionAdjustmentList:
+                        - PromotionType: Free
+                          PromotionId: '546564565'
+                          PromotionAmount:
+                            CurrencyCode: USD
+                            CurrencyAmount: 25.37
+                        CostOfPointsGranted:
+                          CurrencyCode: USD
+                          CurrencyAmount: 25.37
+                        CostOfPointsReturned:
+                          CurrencyCode: USD
+                          CurrencyAmount: 25.37
+                    ImagingServicesFeeEventList:
+                    - ImagingRequestBillingItemID: '456456456'
+                      ASIN: '4564565456456546456'
+                      PostedDate: '2020-02-05T13:56:00.363Z'
+                      FeeList:
+                      - FeeType: FixedClosingFee
+                        FeeAmount:
+                          CurrencyCode: USD
+                          CurrencyAmount: 25.37
+                    NetworkComminglingTransactionEventList:
+                    - TransactionType: Free
+                      PostedDate: '2020-02-05T13:56:00.363Z'
+                      NetCoTransactionID: '4565645'
+                      SwapReason: None
+                      ASIN: '464567656576'
+                      MarketplaceId: string
+                      TaxExclusiveAmount:
+                        CurrencyCode: USD
+                        CurrencyAmount: 25.37
+                      TaxAmount:
+                        CurrencyCode: USD
+                        CurrencyAmount: 25.37
+                    AffordabilityExpenseReversalEventList:
+                    - AmazonOrderId: 444-555-3343433
+                      PostedDate: '2020-02-05T13:56:00.363Z'
+                      MarketplaceId: '1'
+                      TransactionType: Free
+                      BaseExpense:
+                        CurrencyCode: USD
+                        CurrencyAmount: 25.37
+                      TaxTypeCGST:
+                        CurrencyCode: USD
+                        CurrencyAmount: 25.37
+                      TaxTypeSGST:
+                        CurrencyCode: USD
+                        CurrencyAmount: 25.37
+                      TaxTypeIGST:
+                        CurrencyCode: USD
+                        CurrencyAmount: 25.37
+                      TotalExpense:
+                        CurrencyCode: USD
+                        CurrencyAmount: 25.37
+                    TrialShipmentEventList:
+                    - AmazonOrderId: 444-555-3343433
+                      FinancialEventGroupId: '1'
+                      PostedDate: '2020-02-05T13:56:00.363Z'
+                      SKU: '456454455464'
+                      FeeList:
+                      - FeeType: FixedClosingFee
+                        FeeAmount:
+                          CurrencyCode: USD
+                          CurrencyAmount: 25.37
+                    TaxWithholdingEventList:
+                    - PostedDate: '2020-02-05T13:56:00.363Z'
+                      BaseAmount:
+                        CurrencyCode: USD
+                        CurrencyAmount: 25.37
+                      WithheldAmount:
+                        CurrencyCode: USD
+                        CurrencyAmount: 25.37
+                      TaxWithholdingPeriod:
+                        StartDate: '2020-02-05T13:56:00.363Z'
+                        EndDate: '2020-02-05T13:56:00.363Z'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventsResponse'
+        '400':
+          description: Request has missing or invalid parameters and cannot be parsed.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  eventGroupId:
+                    value: BADID
+              response:
+                errors:
+                - code: InvalidInput
+                  message: Bad event group ID provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventsResponse'
+        '403':
+          description: Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventsResponse'
+        '404':
+          description: The resource specified does not exist.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventsResponse'
+        '429':
+          description: The frequency of requests was greater than allowed.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventsResponse'
+        '500':
+          description: An unexpected condition occurred that prevented the server from fulfilling the request.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventsResponse'
+        '503':
+          description: Temporary overloading or maintenance of the server.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventsResponse'
+      tags:
+      - Finances
+    servers:
+    - url: https://sellingpartnerapi-na.amazon.com
+  /finances/v0/orders/{orderId}/financialEvents:
+    get:
+      description: 'Returns all financial events for the specified order. Orders from the last 48 hours might not be included in financial events.
+
+
+        **Note:** Deferred events don''t appear in the `listFinancialEventsByOrderId` response until they are released.
+
+
+        **Usage Plan:**
+
+
+        | Rate (requests per second) | Burst |
+
+        | ---- | ---- |
+
+        | 0.5 | 30 |
+
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits).'
+      operationId: listFinancialEventsByOrderId
+      parameters:
+      - name: orderId
+        in: path
+        description: An Amazon-defined order identifier, in 3-7-7 format.
+        required: true
+        schema:
+          type: string
+      - name: MaxResultsPerPage
+        in: query
+        description: The maximum number of results to return per page. If the response exceeds the maximum number of transactions or 10 MB, the response is `InvalidInput`.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 100
+          maximum: 100
+          minimum: 1
+      - name: NextToken
+        in: query
+        description: The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Financial Events successfully retrieved.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  MaxResultsPerPage:
+                    value: 10
+                  orderId:
+                    value: 485-734-5434857
+              response:
+                payload:
+                  NextToken: Next token value
+                  FinancialEvents:
+                    RetrochargeEventList:
+                    - RetrochargeEventType: Retrocharge
+                      AmazonOrderId: 444-555-3343433
+                      PostedDate: '2020-02-05T13:56:00.363Z'
+                      BaseTax:
+                        CurrencyCode: USD
+                        CurrencyAmount: 25.37
+                      ShippingTax:
+                        CurrencyCode: USD
+                        CurrencyAmount: 25.37
+                      MarketplaceName: '1'
+                      RetrochargeTaxWithheldList:
+                      - TaxCollectionModel: Free
+                        TaxesWithheld:
+                        - ChargeType: Tax
+                          ChargeAmount:
+                            CurrencyCode: USD
+                            CurrencyAmount: 25.37
+                    RentalTransactionEventList:
+                    - AmazonOrderId: 444-555-3343433
+                      RentalEventType: string
+                      ExtensionLength: 0
+                      PostedDate: '2020-02-05T13:56:00.363Z'
+                      RentalChargeList:
+                      - ChargeType: Tax
+                        ChargeAmount:
+                          CurrencyCode: USD
+                          CurrencyAmount: 25.37
+                      RentalFeeList:
+                      - FeeType: FixedClosingFee
+                        FeeAmount:
+                          CurrencyCode: USD
+                          CurrencyAmount: 25.37
+                      MarketplaceName: '1'
+                      RentalInitialValue:
+                        CurrencyCode: USD
+                        CurrencyAmount: 25.37
+                      RentalReimbursement:
+                        CurrencyCode: USD
+                        CurrencyAmount: 25.37
+                      RentalTaxWithheldList:
+                      - TaxCollectionModel: Free
+                        TaxesWithheld:
+                        - ChargeType: Tax
+                          ChargeAmount:
+                            CurrencyCode: USD
+                            CurrencyAmount: 25.37
+                    ProductAdsPaymentEventList:
+                    - postedDate: '2020-02-05T13:56:00.363Z'
+                      transactionType: Free
+                      invoiceId: '3454535453'
+                      baseValue:
+                        CurrencyCode: USD
+                        CurrencyAmount: 25.37
+                      taxValue:
+                        CurrencyCode: USD
+                        CurrencyAmount: 25.37
+                      transactionValue:
+                        CurrencyCode: USD
+                        CurrencyAmount: 25.37
+                    ServiceFeeEventList:
+                    - AmazonOrderId: 444-555-3343433
+                      FeeReason: Free
+                      FeeList:
+                      - FeeType: FixedClosingFee
+                        FeeAmount:
+                          CurrencyCode: USD
+                          CurrencyAmount: 25.37
+                      SellerSKU: '456454455464'
+                      FnSKU: Fn134
+                      FeeDescription: FeeDescription
+                      ASIN: KJHJ457648GHD
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventsResponse'
+        '400':
+          description: Request has missing or invalid parameters and cannot be parsed.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  orderId:
+                    value: BAD-ORDER
+              response:
+                errors:
+                - code: InvalidInput
+                  message: Bad order ID provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventsResponse'
+        '403':
+          description: Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventsResponse'
+        '404':
+          description: The resource specified does not exist.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventsResponse'
+        '429':
+          description: The frequency of requests was greater than allowed.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventsResponse'
+        '500':
+          description: An unexpected condition occurred that prevented the server from fulfilling the request.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventsResponse'
+        '503':
+          description: Temporary overloading or maintenance of the server.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventsResponse'
+      tags:
+      - Finances
+    servers:
+    - url: https://sellingpartnerapi-na.amazon.com
+  /finances/v0/financialEvents:
+    get:
+      description: 'Returns financial events for the specified data range. Orders from the last 48 hours might not be included in financial events.
+
+
+        **Note:** in `ListFinancialEvents`, deferred events don''t show up in responses until they are released.
+
+
+        **Usage Plan:**
+
+
+        | Rate (requests per second) | Burst |
+
+        | ---- | ---- |
+
+        | 0.5 | 30 |
+
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits).'
+      operationId: listFinancialEvents
+      parameters:
+      - name: MaxResultsPerPage
+        in: query
+        description: The maximum number of results to return per page. If the response exceeds the maximum number of transactions or 10 MB, the response is `InvalidInput`.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 100
+          maximum: 100
+          minimum: 1
+      - name: PostedAfter
+        in: query
+        description: The response includes financial events posted after (or on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The date-time must be more than two minutes before the time of the request.
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: PostedBefore
+        in: query
+        description: 'The response includes financial events posted before (but not on) this date. This date must be in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+
+
+          The date-time must be later than `PostedAfter` and more than two minutes before the request was submitted. If `PostedAfter` and `PostedBefore` are more than 180 days apart, the response is empty. If you include the `PostedBefore` parameter in your request, you must also specify the `PostedAfter` parameter.
+
+
+          **Default:** Two minutes before the time of the request.'
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: NextToken
+        in: query
+        description: The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  MaxResultsPerPage:
+                    value: 10
+                  NextToken:
+                    value: jehgri34yo7jr9e8f984tr9i4o
+              response:
+                payload:
+                  NextToken: Next token value
+                  FinancialEvents:
+                    PayWithAmazonEventList:
+                    - SellerOrderId: '454645645656456'
+                      TransactionPostedDate: '2020-02-05T13:56:00.363Z'
+                      BusinessObjectType: Free
+                      SalesChannel: None
+                      Charge:
+                        ChargeType: Tax
+                        ChargeAmount:
+                          CurrencyCode: USD
+                          CurrencyAmount: 25.37
+                      FeeList:
+                      - FeeType: FixedClosingFee
+                        FeeAmount:
+                          CurrencyCode: USD
+                          CurrencyAmount: 25.37
+                      PaymentAmountType: Tax
+                      AmountDescription: Tax
+                      FulfillmentChannel: FulfillmentChannel
+                      StoreName: Etsy
+                    ServiceProviderCreditEventList:
+                    - ProviderTransactionType: Free
+                      SellerOrderId: '454645645656456'
+                      MarketplaceId: '1'
+                      MarketplaceCountryCode: US
+                      SellerId: '4564565546'
+                      SellerStoreName: Etsy
+                      ProviderId: '1'
+                      ProviderStoreName: Etsy
+                      TransactionAmount:
+                        CurrencyCode: USD
+                        CurrencyAmount: 25.37
+                      TransactionCreationDate: '2020-02-05T13:56:00.363Z'
+                    RentalTransactionEventList:
+                    - AmazonOrderId: 444-555-3343433
+                      RentalEventType: string
+                      ExtensionLength: 0
+                      PostedDate: '2020-02-05T13:56:00.363Z'
+                      RentalChargeList:
+                      - ChargeType: Tax
+                        ChargeAmount:
+                          CurrencyCode: USD
+                          CurrencyAmount: 25.37
+                      RentalFeeList:
+                      - FeeType: FixedClosingFee
+                        FeeAmount:
+                          CurrencyCode: USD
+                          CurrencyAmount: 25.37
+                      MarketplaceName: '1'
+                      RentalInitialValue:
+                        CurrencyCode: USD
+                        CurrencyAmount: 25.37
+                      RentalReimbursement:
+                        CurrencyCode: USD
+                        CurrencyAmount: 25.37
+                      RentalTaxWithheldList:
+                      - TaxCollectionModel: Free
+                        TaxesWithheld:
+                        - ChargeType: Tax
+                          ChargeAmount:
+                            CurrencyCode: USD
+                            CurrencyAmount: 25.37
+                    ProductAdsPaymentEventList:
+                    - postedDate: '2020-02-05T13:56:00.363Z'
+                      transactionType: Free
+                      invoiceId: '3454535453'
+                      baseValue:
+                        CurrencyCode: USD
+                        CurrencyAmount: 25.37
+                      taxValue:
+                        CurrencyCode: USD
+                        CurrencyAmount: 25.37
+                      transactionValue:
+                        CurrencyCode: USD
+                        CurrencyAmount: 25.37
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventsResponse'
+        '400':
+          description: Request has missing or invalid parameters and cannot be parsed.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  MaxResultsPerPage:
+                    value: 2
+              response:
+                errors:
+                - code: InvalidInput
+                  message: Input not valid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventsResponse'
+        '403':
+          description: Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventsResponse'
+        '404':
+          description: The resource specified does not exist.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventsResponse'
+        '429':
+          description: The frequency of requests was greater than allowed.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventsResponse'
+        '500':
+          description: An unexpected condition occurred that prevented the server from fulfilling the request.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventsResponse'
+        '503':
+          description: Temporary overloading or maintenance of the server.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFinancialEventsResponse'
+      tags:
+      - Finances
+    servers:
+    - url: https://sellingpartnerapi-na.amazon.com
 components:
-  securitySchemes:
-    LwaBearer:
-      type: apiKey
-      in: header
-      name: x-amz-access-token
-      description: Login with Amazon (LWA) OAuth 2.0 access token.
+  schemas:
+    MarketplaceDetails:
+      type: object
+      properties:
+        marketplaceId:
+          type: string
+          description: The identifier of the marketplace where the transaction occurred. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+        marketplaceName:
+          type: string
+          description: 'The name of the marketplace where the transaction occurred. For example: `Amazon.com`,`Amazon.in`'
+      description: Information about the marketplace where the transaction occurred.
+      example:
+        marketplaceId: ATVPDKIKX0DER
+        marketplaceName: Amazon.com
+    BusinessContext:
+      description: Information about the line of business associated with a transaction.
+      type: object
+      properties:
+        storeName:
+          type: string
+          description: The store name associated with the transaction.
+          enum:
+          - AMAZON_HAUL
+      example:
+        storeName: AMAZON_HAUL
+    RelatedIdentifier:
+      type: object
+      properties:
+        relatedIdentifierName:
+          type: string
+          description: An enumerated set of related business identifier names.
+          enum:
+          - ORDER_ID
+          - SHIPMENT_ID
+          - FINANCIAL_EVENT_GROUP_ID
+          - REFUND_ID
+          - INVOICE_ID
+          - DISBURSEMENT_ID
+          - TRANSFER_ID
+          - DEFERRED_TRANSACTION_ID
+          - RELEASE_TRANSACTION_ID
+          - SETTLEMENT_ID
+          x-docgen-enum-table-extension:
+          - value: ORDER_ID
+            description: The `OrderId` that is associated with the transaction.
+          - value: SHIPMENT_ID
+            description: The `ShipmentId` that is associated with the transaction.
+          - value: FINANCIAL_EVENT_GROUP_ID
+            description: The identifier that is associated with the transaction's financial event group.
+          - value: SETTLEMENT_ID
+            description: The identifier that is associated with the transaction's settlement group.
+          - value: REFUND_ID
+            description: The `RefundId` that is associated with the transaction.
+          - value: INVOICE_ID
+            description: The `InvoiceId` that is associated with the transaction.
+          - value: DISBURSEMENT_ID
+            description: The disbursement ID for Amazon's bank transfer.
+          - value: TRANSFER_ID
+            description: The `TransferId` associated with the transaction.
+          - value: DEFERRED_TRANSACTION_ID
+            description: The transaction ID for the related deferred transaction
+          - value: RELEASE_TRANSACTION_ID
+            description: The transaction ID for the related released transaction
+        relatedIdentifierValue:
+          type: string
+          description: Corresponding value of `RelatedIdentifierName`.
+      description: Related business identifier of the transaction.
+    Currency:
+      type: object
+      properties:
+        currencyCode:
+          type: string
+          description: The three-digit currency code in ISO 4217 format.
+        currencyAmount:
+          description: The monetary value.
+          $ref: '#/components/schemas/BigDecimal'
+      description: A currency type and amount.
+    Item:
+      type: object
+      properties:
+        description:
+          type: string
+          description: A description of the items in a transaction.
+        relatedIdentifiers:
+          description: Related business identifiers of the item.
+          $ref: '#/components/schemas/ItemRelatedIdentifiers'
+        totalAmount:
+          description: The total monetary amount of the item.
+          $ref: '#/components/schemas/Currency'
+        breakdowns:
+          type: array
+          description: A list of breakdowns that detail how the total amount is calculated for the transaction.
+          items:
+            $ref: '#/components/schemas/Breakdown'
+        contexts:
+          description: Additional Information about the item.
+          $ref: '#/components/schemas/Contexts'
+      description: Additional information about an item in a transaction.
+    Contexts:
+      type: array
+      description: A list of additional information about the item.
+      items:
+        $ref: '#/components/schemas/Context'
+    Summary:
+      type: object
+      properties:
+        partnerMetadata:
+          description: Metadata describing the seller.
+          $ref: '#/components/schemas/PartnerMetadata'
+        netProceeds:
+          description: The net proceeds for the summary period.
+          $ref: '#/components/schemas/Currency'
+        relatedIdentifiers:
+          description: Identifiers related to the summary, such as the settlement ID.
+          $ref: '#/components/schemas/RelatedIdentifiers'
+        breakdowns:
+          description: A list of breakdowns that detail how the net proceeds are calculated.
+          $ref: '#/components/schemas/Breakdowns'
+        periodStart:
+          description: The start date and time of the summary.
+          $ref: '#/components/schemas/Date'
+        periodEnd:
+          description: The end date and time of the summary.
+          $ref: '#/components/schemas/Date'
+      description: Contains all information related to the financial summary.
+      example:
+        partnerMetadata:
+          partnerId: XXXXXXXXXXXXXX
+          accountType: Standard Orders
+          marketplaceId: AXXXXXXXXXER
+        netProceeds:
+          currencyAmount: 17000
+          currencyCode: USD
+        relatedIdentifiers:
+        - relatedIdentifierName: SETTLEMENT_ID
+          relatedIdentifierValue: '123456789'
+        breakdowns:
+        - breakdownType: Sales
+          amount: 20000
+          breakdowns: []
+        - breakdownType: Expenses
+          amount: -1000
+          breakdowns: []
+        - breakdownType: Refunds
+          amount: -2000
+          breakdowns: []
+        periodStart: '2026-01-01T00:00:00Z'
+        periodEnd: '2026-01-31T23:59:59Z'
+    Breakdown:
+      type: object
+      properties:
+        breakdownType:
+          type: string
+          description: The type of charge.
+        breakdownAmount:
+          description: The monetary amount of the charge.
+          $ref: '#/components/schemas/Currency'
+        breakdowns:
+          type: array
+          description: A list of breakdowns that detail how the total amount is calculated for the transaction.
+          items:
+            $ref: '#/components/schemas/Breakdown'
+      description: Details about the movement of money in the financial transaction.
+    BigDecimal:
+      type: number
+      description: A signed decimal number.
+    DeferredContext:
+      description: Additional information related to deferred transactions.
+      type: object
+      properties:
+        deferralReason:
+          type: string
+          description: 'The deferral policy applied to the transaction.
+
+
+            **Examples:** `B2B` (invoiced orders), `DD7` (delivery date policy)'
+        maturityDate:
+          $ref: '#/components/schemas/Date'
+          description: The release date of the transaction.
+      example:
+        deferralReason: B2B
+        maturityDate: '2024-07-14T00:00:00Z'
+    Transaction:
+      type: object
+      properties:
+        sellingPartnerMetadata:
+          description: Metadata that describes the seller.
+          $ref: '#/components/schemas/SellingPartnerMetadata'
+        relatedIdentifiers:
+          description: Identifiers related to the transaction, such as order and shipment IDs.
+          $ref: '#/components/schemas/RelatedIdentifiers'
+        transactionType:
+          type: string
+          description: 'The type of transaction.
+
+
+            **Possible value:** `Shipment`'
+        transactionId:
+          type: string
+          description: The unique identifier of the transaction.
+        transactionStatus:
+          type: string
+          description: 'The status of the transaction.
+
+
+            **Possible values:**
+
+
+            * `DEFERRED`: the transaction is currently deferred.
+
+            * `RELEASED`: the transaction is currently released.
+
+            * `DEFERRED_RELEASED`: the transaction was deferred in the past, but is now released. The status of a deferred transaction is updated to `DEFERRED_RELEASED` when the transaction is released.'
+        description:
+          type: string
+          description: 'Describes the reasons for the transaction.
+
+
+            **Example:** `Order Payment`, `Refund Order`'
+        postedDate:
+          description: The date and time when the transaction was posted.
+          $ref: '#/components/schemas/Date'
+        totalAmount:
+          description: The total amount of money in the transaction.
+          $ref: '#/components/schemas/Currency'
+        marketplaceDetails:
+          description: Information about the marketplace where the transaction occurred.
+          $ref: '#/components/schemas/MarketplaceDetails'
+        items:
+          description: Additional information about the items in the transaction.
+          $ref: '#/components/schemas/Items'
+        contexts:
+          description: Additional Information about the transaction.
+          $ref: '#/components/schemas/Contexts'
+        breakdowns:
+          type: array
+          description: A list of breakdowns that detail how the total amount is calculated for the transaction.
+          items:
+            $ref: '#/components/schemas/Breakdown'
+      description: All the information related to a transaction.
+      example:
+        sellingPartnerMetadata:
+          sellingPartnerId: XXXXXXXXXXXXXX
+          accountType: PAYABLE
+          marketplaceId: ATVPDKIKX0DER
+        relatedIdentifiers:
+        - relatedIdentifierName: ORDER_ID
+          relatedIdentifierValue: '8129762527551'
+        transactionType: Shipment
+        transactionId: b1qD0oAliFkLiqRyGbmeT0DoS2Z2kHzi7TZ92z-vARI
+        transactionStatus: Released
+        description: Order Payment
+        postedDate: '2020-07-14T03:35:13.214Z'
+        totalAmount:
+          currencyAmount: 10
+          currencyCode: USD
+        marketplaceDetails:
+          marketplaceId: ATVPDKIKX0DER
+          marketplaceName: Amazon.com
+        items:
+        - description: Item title
+          totalAmount:
+            currencyAmount: 10
+            currencyCode: USD
+          relatedIdentifiers:
+          - itemRelatedIdentifierName: ORDER_ADJUSTMENT_ITEM_ID
+            itemRelatedIdentifierValue: 81297625-121-27551
+          breakdowns:
+          - breakdownType: Product Charges
+            breakdownAmount:
+              currencyAmount: 10
+              currencyCode: USD
+            breakdowns:
+            - breakdownType: Principle
+              breakdownAmount:
+                currencyAmount: 10
+                currencyCode: USD
+              breakdowns: []
+          contexts:
+          - contextType: ProductContext
+            asin: B07FGXZQZ1
+            sku: sku-12
+            quantityShipped: 1
+            fulfillmentNetwork: MFN
+        breakdowns:
+          breakdowns:
+          - breakdownType: Sales
+            breakdownAmount:
+              currencyAmount: 10
+              currencyCode: USD
+            breakdowns:
+            - breakdownType: Product Charges
+              breakdownAmount:
+                currencyAmount: 10
+                currencyCode: USD
+              breakdowns: []
+        contexts:
+        - contextType: AmazonPayContext
+          storeName: Store 1
+          orderType: Order Type
+          channel: MFN
+    Breakdowns:
+      type: array
+      description: A list of breakdowns that detail how the total amount is calculated for the transaction.
+      items:
+        $ref: '#/components/schemas/Breakdown'
+      example:
+      - breakdownType: Sales
+        breakdownAmount:
+          currencyAmount: 10
+          currencyCode: USD
+        breakdowns:
+        - breakdownType: Product Charges
+          breakdownAmount:
+            currencyAmount: 10
+            currencyCode: USD
+          breakdowns: []
+    ItemRelatedIdentifier:
+      type: object
+      properties:
+        itemRelatedIdentifierName:
+          type: string
+          description: Enumerated set of related item identifier names for the item.
+          enum:
+          - ORDER_ADJUSTMENT_ITEM_ID
+          - COUPON_ID
+          - REMOVAL_SHIPMENT_ITEM_ID
+          - TRANSACTION_ID
+          x-docgen-enum-table-extension:
+          - value: ORDER_ADJUSTMENT_ITEM_ID
+            description: An Amazon-defined order adjustment identifier defined for refunds, guarantee claims, and chargeback events.
+          - value: COUPON_ID
+            description: An identifier for a coupon that is applied to a transaction.
+          - value: REMOVAL_SHIPMENT_ITEM_ID
+            description: An identifier for an item in a removal shipment.
+          - value: TRANSACTION_ID
+            description: The transaction ID of the item.
+        itemRelatedIdentifierValue:
+          type: string
+          description: Corresponding value to `ItemRelatedIdentifierName`.
+      description: Related business identifiers of the item.
+      example:
+        itemRelatedIdentifierName: ORDER_ADJUSTMENT_ITEM_ID
+        itemRelatedIdentifierValue: OAI-123456789
+    Items:
+      type: array
+      description: A list of items in the transaction.
+      items:
+        $ref: '#/components/schemas/Item'
+    RelatedIdentifiers:
+      type: array
+      description: Related business identifiers of the transaction.
+      items:
+        $ref: '#/components/schemas/RelatedIdentifier'
+    PartnerMetadata:
+      type: object
+      properties:
+        partnerId:
+          type: string
+          description: The unique seller identifier.
+        accountType:
+          type: string
+          description: The type of account.
+        marketplaceId:
+          type: string
+          description: The identifier of the marketplace where the transaction occurred. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      description: Metadata that describes the seller.
+    Balances:
+      type: array
+      description: A list of balances.
+      items:
+        $ref: '#/components/schemas/Balance'
+    Transactions:
+      type: array
+      description: A list of transactions within the specified time period.
+      items:
+        $ref: '#/components/schemas/Transaction'
+    ListBalancesResponse:
+      type: object
+      properties:
+        balances:
+          $ref: '#/components/schemas/Balances'
+        nextToken:
+          type: string
+          description: A token to retrieve the next page of results. If null, no more results are available.
+          x-example: jehgri34yo7jr9e8f984tr9i4o
+      description: The response to the `listBalances` operation.
+    AmazonPayContext:
+      description: Additional information related to Amazon Pay.
+      type: object
+      properties:
+        storeName:
+          type: string
+          description: The name of the store that is related to the transaction.
+        orderType:
+          type: string
+          description: The order type of the transaction.
+        channel:
+          type: string
+          description: 'The channel of the transaction. For example: `MFN`.'
+      example:
+        storeName: Store 1
+        orderType: Order Type
+        channel: MFN
+    TransactionsPayload:
+      type: object
+      properties:
+        nextToken:
+          type: string
+          description: The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+        transactions:
+          $ref: '#/components/schemas/Transactions'
+      description: The payload for the `listTransactions` operation.
+    SummaryResponse:
+      type: object
+      properties:
+        summaries:
+          type: array
+          description: A list of financial summaries.
+          items:
+            $ref: '#/components/schemas/Summary'
+        nextToken:
+          type: string
+          description: A token to retrieve the next page of results. If null, no more results are available.
+          x-example: jehgri34yo7jr9e8f984tr9i4o
+      description: The response to the `listSummary` operation.
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: An error code that identifies the type of error that occurred.
+        message:
+          type: string
+          description: A message that describes the error condition.
+        details:
+          type: string
+          description: Additional details that can help the caller understand or fix the issue.
+      description: An error response returned when the request is unsuccessful.
+    Context:
+      description: Additional information about the item.
+      allOf:
+      - type: object
+        required:
+        - contextType
+        properties:
+          contextType:
+            type: string
+            description: The type of context.
+      - $ref: '#/components/schemas/AmazonPayContext'
+      - $ref: '#/components/schemas/ProductContext'
+      - $ref: '#/components/schemas/PaymentsContext'
+      - $ref: '#/components/schemas/DeferredContext'
+      - $ref: '#/components/schemas/BusinessContext'
+      - $ref: '#/components/schemas/TimeRangeContext'
+      x-example:
+      - contextType: ProductContext
+        asin: B07FGXZQZ1
+        sku: sku-12
+        quantityShipped: 1
+        fulfillmentNetwork: MFN
+      - contextType: AmazonPayContext
+        storeName: Store 1
+        orderType: Order Type
+        channel: MFN
+    PaymentsContext:
+      description: Additional information related to payments-related transactions.
+      type: object
+      properties:
+        paymentType:
+          type: string
+          description: The type of payment.
+        paymentMethod:
+          type: string
+          description: The method of payment.
+        paymentReference:
+          type: string
+          description: The reference number of the payment.
+        paymentDate:
+          $ref: '#/components/schemas/Date'
+          description: The date of the payment.
+      example:
+        paymentType: Debit Card
+        paymentMethod: BANK
+        paymentReference: XXXXX123
+        paymentDate: '2020-07-14T03:35:13.214Z'
+    SellingPartnerMetadata:
+      type: object
+      properties:
+        sellingPartnerId:
+          type: string
+          description: The unique seller identifier.
+        accountType:
+          type: string
+          description: The type of account in the transaction.
+        marketplaceId:
+          type: string
+          description: The identifier of the marketplace where the transaction occurred. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      description: Metadata that describes the seller.
+    ErrorList:
+      type: object
+      description: A list of error responses returned when a request is unsuccessful.
+      required:
+      - errors
+      properties:
+        errors:
+          description: The error responses that are returned when the request is unsuccessful.
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    TimeRangeContext:
+      description: Additional information that is related to the time range of the transaction.
+      type: object
+      properties:
+        startTime:
+          $ref: '#/components/schemas/Date'
+          description: The start time of the transaction.
+        endTime:
+          $ref: '#/components/schemas/Date'
+          description: The end time of the transaction.
+      example:
+        startTime: '2020-07-14T03:35:13.214Z'
+        endTime: '2020-07-14T03:35:13.214Z'
+    ProductContext:
+      description: Additional information related to the product.
+      type: object
+      properties:
+        asin:
+          type: string
+          description: The Amazon Standard Identification Number (ASIN) of the item.
+        sku:
+          type: string
+          description: The Stock Keeping Unit (SKU) of the item.
+        quantityShipped:
+          type: integer
+          format: int32
+          description: The quantity of the item shipped.
+        fulfillmentNetwork:
+          type: string
+          description: The fulfillment network of the item.
+      example:
+        asin: B07FGXZQZ1
+        sku: sku-12
+        quantityShipped: 1
+        fulfillmentNetwork: MFN
+    ListTransactionsResponse:
+      type: object
+      properties:
+        payload:
+          $ref: '#/components/schemas/TransactionsPayload'
+          description: The payload for the `listTransactions` operation.
+      description: The response to the `listTransactions` operation.
+    Date:
+      type: string
+      format: date-time
+      description: A date in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    Balance:
+      type: object
+      properties:
+        partnerMetadata:
+          description: Metadata describing the seller.
+          $ref: '#/components/schemas/PartnerMetadata'
+        balanceType:
+          type: string
+          enum:
+          - AVAILABLE
+          - RESERVED
+          - ACCOUNT_LEVEL_RESERVE
+          - DEFERRED
+          - TOTAL
+          description: The type of balance.
+          x-docgen-enum-table-extension:
+          - value: AVAILABLE
+            description: The total balance currently available in the account.
+          - value: DEFERRED
+            description: The deferred balance is a portion of sales revenue that is temporarily withheld before being transferred to the available balance after a specified period.
+          - value: ACCOUNT_LEVEL_RESERVE
+            description: 'Balance reserved as a safety measure to cover potential liabilities such as refunds, chargebacks, or other claims. Based on sales volume, product category, and account history. '
+          - value: RESERVED
+            description: The reserved balance is sum of Deferred and Account Level Reserved.
+          - value: TOTAL
+            description: Overall sum of balances including available and reserved.
+        amount:
+          description: Total amount of the balance type.
+          $ref: '#/components/schemas/Currency'
+        balances:
+          type: array
+          description: A list of balances that comprise this balance.
+          items:
+            $ref: '#/components/schemas/Balance'
+        asOfDate:
+          description: The date for which the ending balance was calculated. This field is present when an `asOfDate` query parameter is provided. Null for point-in-time balance queries.
+          $ref: '#/components/schemas/Date'
+        lastUpdatedTime:
+          type: string
+          format: date-time
+          description: The date and time when the balance was last updated, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The value is in the marketplace's local time zone. This field is present for point-in-time balance queries (when no `asOfDate` query parameter is provided). Null for ending balance queries.
+          x-example: '2025-01-12T10:30:00+09:00'
+      description: All information relevant to a balance.
+      example:
+        partnerMetadata:
+          partnerId: XXXXXXXXXXXXXX
+          accountType: Standard Orders
+          marketplaceId: AXXXXXXXXXER
+        balanceType: TOTAL
+        amount:
+          currencyAmount: 15000
+          currencyCode: USD
+        balances:
+        - balanceType: AVAILABLE
+          amount:
+            currencyAmount: 8000
+            currencyCode: USD
+        - balanceType: RESERVED
+          amount:
+            currencyAmount: 7000
+            currencyCode: USD
+          balances:
+          - balanceType: DEFERRED
+            amount:
+              currencyAmount: 9000
+              currencyCode: USD
+          - balanceType: ACCOUNT_LEVEL_RESERVE
+            amount:
+              currencyAmount: -2000
+              currencyCode: USD
+        lastUpdatedTime: '2025-01-12T10:30:00+09:00'
+    ItemRelatedIdentifiers:
+      type: array
+      description: Related business identifiers of the item in the transaction.
+      items:
+        $ref: '#/components/schemas/ItemRelatedIdentifier'
+    RemovalShipmentAdjustmentEvent:
+      type: object
+      properties:
+        PostedDate:
+          description: The date when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        AdjustmentEventId:
+          type: string
+          description: The unique identifier for the adjustment event.
+        MerchantOrderId:
+          type: string
+          description: The merchant removal orderId.
+        OrderId:
+          type: string
+          description: The orderId for shipping inventory.
+        TransactionType:
+          type: string
+          description: 'The type of removal order.
+
+
+            Possible values:
+
+
+            * `WHOLESALE_LIQUIDATION`.'
+        RemovalShipmentItemAdjustmentList:
+          type: array
+          description: A comma-delimited list of `RemovalShipmentItemAdjustment` details for FBA inventory.
+          items:
+            $ref: '#/components/schemas/RemovalShipmentItemAdjustment'
+      description: A financial adjustment event for FBA liquidated inventory. A positive value indicates money owed to Amazon by the buyer (for example, when the charge was incorrectly calculated as less than it should be). A negative value indicates a full or partial refund owed to the buyer (for example, when the buyer receives damaged items or fewer items than ordered).
+    AdjustmentEvent:
+      type: object
+      properties:
+        AdjustmentType:
+          type: string
+          description: 'The type of adjustment.
+
+
+            Possible values:
+
+
+            * `FBAInventoryReimbursement`: An FBA inventory reimbursement to a seller''s account. This occurs if a seller''s inventory is damaged.
+
+            * `ReserveEvent`: A reserve event that is generated at the time a settlement period closes. This occurs when some money from a seller''s account is held back.
+
+            * `PostageBilling`: The amount paid by a seller for shipping labels.
+
+            * `PostageRefund`: The reimbursement of shipping labels purchased for orders that were canceled or refunded.
+
+            * `LostOrDamagedReimbursement`: An Amazon Easy Ship reimbursement to a seller''s account for a package that we lost or damaged.
+
+            * `CanceledButPickedUpReimbursement`: An Amazon Easy Ship reimbursement to a seller''s account. This occurs when a package is picked up and the order is subsequently canceled. This value is used only in the India marketplace.
+
+            * `ReimbursementClawback`: An Amazon Easy Ship reimbursement clawback from a seller''s account. This occurs when a prior reimbursement is reversed. This value is used only in the India marketplace.
+
+            * `SellerRewards`: An award credited to a seller''s account for their participation in an offer in the Seller Rewards program. Applies only to the India marketplace.'
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        StoreName:
+          type: string
+          description: The name of the store where the event occurred.
+        AdjustmentAmount:
+          description: The amount adjusted as part of this event.
+          $ref: '#/components/schemas/Currency_2'
+        AdjustmentItemList:
+          description: A list of information about adjustments to an account.
+          $ref: '#/components/schemas/AdjustmentItemList'
+      description: An adjustment to the seller's account.
+    SellerDealPaymentEventList:
+      type: array
+      description: A list of payment events for deal-related fees.
+      items:
+        $ref: '#/components/schemas/SellerDealPaymentEvent'
+    ChargeRefundEvent:
+      type: object
+      properties:
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        ReasonCode:
+          type: string
+          description: The reason given for a charge refund. For example, `SubscriptionFeeCorrection`.
+        ReasonCodeDescription:
+          type: string
+          description: A description of the Reason Code. For example, `SubscriptionFeeCorrection`.
+        ChargeRefundTransactions:
+          description: The amount of the charge refund credit.
+          $ref: '#/components/schemas/ChargeRefundTransactions'
+      description: An event related to charge refund.
+    FeeComponent:
+      type: object
+      properties:
+        FeeType:
+          type: string
+          description: The type of fee. For more information about Selling on Amazon fees, see [Selling on Amazon Fee Schedule](https://sellercentral.amazon.com/gp/help/200336920) on Seller Central. For more information about Fulfillment by Amazon fees, see [FBA features, services and fees](https://sellercentral.amazon.com/gp/help/201074400) on Seller Central.
+        FeeAmount:
+          description: The amount of the fee.
+          $ref: '#/components/schemas/Currency_2'
+      description: A fee associated with the event.
+    CouponPaymentEventList:
+      type: array
+      description: A list of coupon payment event information.
+      items:
+        $ref: '#/components/schemas/CouponPaymentEvent'
+    TaxWithholdingEvent:
+      type: object
+      properties:
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        BaseAmount:
+          description: The amount which tax was withheld against.
+          $ref: '#/components/schemas/Currency_2'
+        WithheldAmount:
+          description: The amount of the tax withholding deducted from seller's account.
+          $ref: '#/components/schemas/Currency_2'
+        TaxWithholdingPeriod:
+          description: Time period for which tax is withheld.
+          $ref: '#/components/schemas/TaxWithholdingPeriod'
+      description: A tax withholding event on a seller's account.
+    Error_2:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: An error code that identifies the type of error that occurred.
+        message:
+          type: string
+          description: A message that describes the error condition in a human-readable form.
+        details:
+          type: string
+          description: Additional details that can help the caller understand or fix the issue.
+      description: Error response returned when the request is unsuccessful.
+    ProductAdsPaymentEvent:
+      type: object
+      properties:
+        postedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        transactionType:
+          type: string
+          description: 'Indicates if the transaction is for a charge or a refund.
+
+
+            Possible values:
+
+
+            * `charge`
+
+
+            * `refund`'
+        invoiceId:
+          type: string
+          description: The identifier for the invoice that includes the transaction.
+        baseValue:
+          description: Base amount of the transaction, before tax.
+          $ref: '#/components/schemas/Currency_2'
+        taxValue:
+          description: Tax amount of the transaction.
+          $ref: '#/components/schemas/Currency_2'
+        transactionValue:
+          description: The total amount of the transaction. Equal to `baseValue` + `taxValue`.
+          $ref: '#/components/schemas/Currency_2'
+      description: A Sponsored Products payment event.
+    TDSReimbursementEventList:
+      type: array
+      items:
+        $ref: '#/components/schemas/TDSReimbursementEvent'
+      description: A list of `TDSReimbursementEvent` items.
+    TaxWithheldComponentList:
+      type: array
+      description: A list of information about taxes withheld.
+      items:
+        $ref: '#/components/schemas/TaxWithheldComponent'
+    NetworkComminglingTransactionEvent:
+      type: object
+      properties:
+        TransactionType:
+          type: string
+          description: 'The type of network item swap.
+
+
+            Possible values:
+
+
+            * `NetCo`: A Fulfillment by Amazon inventory pooling transaction. Available only in the India marketplace.
+
+
+            * `ComminglingVAT`: A commingling VAT transaction. Available only in the Spain, UK, France, Germany, and Italy marketplaces.'
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        NetCoTransactionID:
+          type: string
+          description: The identifier for the network item swap.
+        SwapReason:
+          type: string
+          description: The reason for the network item swap.
+        ASIN:
+          type: string
+          description: The Amazon Standard Identification Number (ASIN) of the swapped item.
+        MarketplaceId:
+          type: string
+          description: The marketplace in which the event took place.
+        TaxExclusiveAmount:
+          description: The price of the swapped item minus `TaxAmount`.
+          $ref: '#/components/schemas/Currency_2'
+        TaxAmount:
+          description: The tax on the network item swap paid by the seller.
+          $ref: '#/components/schemas/Currency_2'
+      description: A network commingling transaction event.
+    LoanServicingEvent:
+      type: object
+      properties:
+        LoanAmount:
+          description: The amount of the loan.
+          $ref: '#/components/schemas/Currency_2'
+        SourceBusinessEventType:
+          type: string
+          description: 'The type of event.
+
+
+            Possible values:
+
+
+            * `LoanAdvance`
+
+
+            * `LoanPayment`
+
+
+            * `LoanRefund`'
+      description: A loan advance, loan payment, or loan refund.
+    TrialShipmentEventList:
+      type: array
+      items:
+        $ref: '#/components/schemas/TrialShipmentEvent'
+      description: A list of information about trial shipment financial events.
+    ErrorList_2:
+      type: array
+      description: A list of error responses returned when a request is unsuccessful.
+      items:
+        $ref: '#/components/schemas/Error_2'
+    ChargeComponent:
+      type: object
+      properties:
+        ChargeType:
+          type: string
+          description: The type of charge.
+        ChargeAmount:
+          description: The amount of the charge.
+          $ref: '#/components/schemas/Currency_2'
+      description: 'A charge on the seller''s account.
+
+
+        Possible values:
+
+
+        * `Principal`: The selling price of the order item, which is equal to the selling price of the item multiplied by the quantity ordered.
+
+
+        * `Tax`: The tax on the principal that is collected by the seller.
+
+
+        * `MarketplaceFacilitatorTax-Principal`: The tax that is withheld on the principal.
+
+
+        * `MarketplaceFacilitatorTax-Shipping`: The tax that is withheld on the `ShippingCharge`.
+
+
+        * `MarketplaceFacilitatorTax-Giftwrap`: The tax that is withheld on the Giftwrap charge.
+
+
+        * `MarketplaceFacilitatorTax-Other`: The tax that is withheld on other miscellaneous charges.
+
+
+        * `Discount`: The promotional discount for an order item.
+
+
+        * `TaxDiscount`: The tax that is deducted for promotional rebates.
+
+
+        * `CODItemCharge`: The COD charge for an order item.
+
+
+        * `CODItemTaxCharge`: The tax that is collected by the seller on a `CODItemCharge`.
+
+
+        * `CODOrderCharge`: The COD charge for an order.
+
+
+        * `CODOrderTaxCharge`: The tax that is collected by the seller on a `CODOrderCharge`.
+
+
+        * `CODShippingCharge`: Shipping charges for a COD order.
+
+
+        * `CODShippingTaxCharge`: The tax that is collected by the seller on a `CODShippingCharge`.
+
+
+        * `ShippingCharge`: The shipping charge.
+
+
+        * `ShippingTax`: The tax that is collected by the seller on a `ShippingCharge`.
+
+
+        * `Goodwill`: The amount of money that is given to a buyer as a gesture of goodwill or to compensate for pain and suffering in the buying experience.
+
+
+        * `Giftwrap`: The gift wrap charge.
+
+
+        * `GiftwrapTax`: The tax that is collected by the seller on a gift wrap charge.
+
+
+        * `RestockingFee`: The charge that is applied to the buyer when returning a product in certain categories.
+
+
+        * `ReturnShipping`: The amount of money that is given to the buyer to compensate for shipping the item back if we are at fault.
+
+
+        * `PointsFee`: The value of Amazon Points deducted from the refund if the buyer does not have enough Amazon Points to cover the deduction.
+
+
+        * `GenericDeduction`: A generic bad debt deduction.
+
+
+        * `FreeReplacementReturnShipping`: The compensation for return shipping when a buyer receives the wrong item, requests a free replacement, and returns the incorrect item.
+
+
+        * `PaymentMethodFee`: The fee that is collected for certain payment methods in certain marketplaces.
+
+
+        * `ExportCharge`: The export duty that is charged when an item is shipped to an international destination as part of the Amazon Global program.
+
+
+        * `SAFE-TReimbursement`: The SAFE-T claim amount for the item.
+
+
+        * `TCS-CGST`: Tax Collected at Source (TCS) for Central Goods and Services Tax (CGST).
+
+
+        * `TCS-SGST`: Tax Collected at Source for State Goods and Services Tax (SGST).
+
+
+        * `TCS-IGST`: Tax Collected at Source for Integrated Goods and Services Tax (IGST).
+
+
+        * `TCS-UTGST`: Tax Collected at Source for Union Territories Goods and Services Tax (UTGST).
+
+
+        * `PaidthroughEBT`: The amount of money paid with EBT for any order or shipment items.'
+    DebtRecoveryEvent:
+      type: object
+      properties:
+        DebtRecoveryType:
+          type: string
+          description: 'The debt recovery type.
+
+
+            Possible values:
+
+
+            * `DebtPayment`
+
+            * `DebtPaymentFailure`
+
+            * `DebtAdjustment`'
+        RecoveryAmount:
+          description: The amount applied for recovery.
+          $ref: '#/components/schemas/Currency_2'
+        OverPaymentCredit:
+          description: The amount returned for overpayment.
+          $ref: '#/components/schemas/Currency_2'
+        DebtRecoveryItemList:
+          $ref: '#/components/schemas/DebtRecoveryItemList'
+        ChargeInstrumentList:
+          $ref: '#/components/schemas/ChargeInstrumentList'
+      description: A debt payment or debt adjustment.
+    AdhocDisbursementEventList:
+      type: array
+      items:
+        $ref: '#/components/schemas/AdhocDisbursementEvent'
+      description: A list of `AdhocDisbursement` events.
+    ShipmentSettleEventList:
+      type: array
+      description: A list of `ShipmentEvent` items.
+      items:
+        $ref: '#/components/schemas/ShipmentEvent'
+    SellerDealPaymentEvent:
+      type: object
+      properties:
+        postedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        dealId:
+          type: string
+          description: The unique identifier of the deal.
+        dealDescription:
+          type: string
+          description: The internal description of the deal.
+        eventType:
+          type: string
+          description: 'The type of event: `SellerDealComplete`.'
+        feeType:
+          type: string
+          description: 'The type of fee: `RunLightningDealFee`.'
+        feeAmount:
+          description: The monetary amount of the fee.
+          $ref: '#/components/schemas/Currency_2'
+        taxAmount:
+          description: The monetary amount of the tax applied.
+          $ref: '#/components/schemas/Currency_2'
+        totalAmount:
+          description: The total monetary amount paid.
+          $ref: '#/components/schemas/Currency_2'
+      description: An event linked to the payment of a fee related to the specified deal.
+    SellerReviewEnrollmentPaymentEvent:
+      type: object
+      properties:
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        EnrollmentId:
+          type: string
+          description: An enrollment identifier.
+        ParentASIN:
+          type: string
+          description: The Amazon Standard Identification Number (ASIN) of the item that was enrolled in the Early Reviewer Program.
+        FeeComponent:
+          $ref: '#/components/schemas/FeeComponent'
+        ChargeComponent:
+          $ref: '#/components/schemas/ChargeComponent'
+        TotalAmount:
+          description: The `FeeComponent` value plus the `ChargeComponent` value.
+          $ref: '#/components/schemas/Currency_2'
+      description: A fee payment event for the Early Reviewer Program.
+    RetrochargeEvent:
+      type: object
+      properties:
+        RetrochargeEventType:
+          type: string
+          description: 'The type of event.
+
+
+            Possible values:
+
+
+            * `Retrocharge`
+
+
+            * `RetrochargeReversal`'
+        AmazonOrderId:
+          type: string
+          description: An Amazon-defined identifier for an order.
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        BaseTax:
+          description: The base tax associated with the retrocharge event.
+          $ref: '#/components/schemas/Currency_2'
+        ShippingTax:
+          description: The shipping tax associated with the retrocharge event.
+          $ref: '#/components/schemas/Currency_2'
+        MarketplaceName:
+          type: string
+          description: The name of the marketplace where the retrocharge event occurred.
+        RetrochargeTaxWithheldList:
+          description: A list of information about taxes withheld.
+          $ref: '#/components/schemas/TaxWithheldComponentList'
+      description: A retrocharge or retrocharge reversal.
+    FBALiquidationEvent:
+      type: object
+      properties:
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        OriginalRemovalOrderId:
+          type: string
+          description: The identifier for the original removal order.
+        LiquidationProceedsAmount:
+          description: The amount paid by the liquidator for the seller's inventory. The seller receives this amount minus `LiquidationFeeAmount`.
+          $ref: '#/components/schemas/Currency_2'
+        LiquidationFeeAmount:
+          description: The fee charged to the seller by Amazon for liquidating the seller's FBA inventory.
+          $ref: '#/components/schemas/Currency_2'
+      description: A payment event for Fulfillment by Amazon (FBA) inventory liquidation. This event is used only in the US marketplace.
+    RentalTransactionEvent:
+      type: object
+      properties:
+        AmazonOrderId:
+          type: string
+          description: An Amazon-defined identifier for an order.
+        RentalEventType:
+          type: string
+          description: 'The type of rental event.
+
+
+            Possible values:
+
+
+            * `RentalCustomerPayment-Buyout`: A transaction type that represents when the customer wants to buy out a rented item.
+
+
+            * `RentalCustomerPayment-Extension`: A transaction type that represents when the customer wants to extend the rental period.
+
+
+            * `RentalCustomerRefund-Buyout`: A transaction type that represents when the customer requests a refund for the buyout of the rented item.
+
+
+            * `RentalCustomerRefund-Extension`: A transaction type that represents when the customer requests a refund over the extension on the rented item.
+
+
+            * `RentalHandlingFee`: A transaction type that represents the fee that Amazon charges sellers who rent through Amazon.
+
+
+            * `RentalChargeFailureReimbursement`: A transaction type that represents when Amazon sends money to the seller to compensate for a failed charge.
+
+
+            * `RentalLostItemReimbursement`: A transaction type that represents when Amazon sends money to the seller to compensate for a lost item.'
+        ExtensionLength:
+          type: integer
+          format: int32
+          description: The number of days that the buyer extended an already rented item. This value is only returned for `RentalCustomerPayment-Extension` and `RentalCustomerRefund-Extension` events.
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        RentalChargeList:
+          description: A list of charges associated with the rental event.
+          $ref: '#/components/schemas/ChargeComponentList'
+        RentalFeeList:
+          description: A list of fees associated with the rental event.
+          $ref: '#/components/schemas/FeeComponentList'
+        MarketplaceName:
+          type: string
+          description: The name of the marketplace.
+        RentalInitialValue:
+          description: The amount of money that the customer originally paid to rent the item. This value is only returned for `RentalChargeFailureReimbursement` and `RentalLostItemReimbursement` events.
+          $ref: '#/components/schemas/Currency_2'
+        RentalReimbursement:
+          description: The amount of money that Amazon sends the seller to compensate for a lost item or a failed charge. This value is only returned for `RentalChargeFailureReimbursement` and `RentalLostItemReimbursement` events.
+          $ref: '#/components/schemas/Currency_2'
+        RentalTaxWithheldList:
+          description: A list of taxes withheld information for a rental item.
+          $ref: '#/components/schemas/TaxWithheldComponentList'
+      description: An event related to a rental transaction.
+    ListFinancialEventsResponse:
+      type: object
+      properties:
+        payload:
+          description: The payload for the `listFinancialEvents` operation.
+          $ref: '#/components/schemas/ListFinancialEventsPayload'
+        errors:
+          description: One or more unexpected errors occurred during the `listFinancialEvents` operation.
+          $ref: '#/components/schemas/ErrorList_2'
+      description: The response schema for the `listFinancialEvents` operation.
+    ShipmentItem:
+      type: object
+      properties:
+        SellerSKU:
+          type: string
+          description: The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
+        OrderItemId:
+          type: string
+          description: An Amazon-defined order item identifier.
+        OrderAdjustmentItemId:
+          type: string
+          description: An Amazon-defined order adjustment identifier defined for refunds, guarantee claims, and chargeback events.
+        QuantityShipped:
+          type: integer
+          format: int32
+          description: The number of items shipped.
+        ItemChargeList:
+          description: A list of charges associated with the shipment item.
+          $ref: '#/components/schemas/ChargeComponentList'
+        ItemChargeAdjustmentList:
+          description: A list of charge adjustments associated with the shipment item. This value is only returned for refunds, guarantee claims, and chargeback events.
+          $ref: '#/components/schemas/ChargeComponentList'
+        ItemFeeList:
+          description: A list of fees associated with the shipment item.
+          $ref: '#/components/schemas/FeeComponentList'
+        ItemFeeAdjustmentList:
+          description: A list of fee adjustments associated with the shipment item. This value is only returned for refunds, guarantee claims, and chargeback events.
+          $ref: '#/components/schemas/FeeComponentList'
+        ItemTaxWithheldList:
+          description: A list of taxes withheld information for a shipment item.
+          $ref: '#/components/schemas/TaxWithheldComponentList'
+        PromotionList:
+          $ref: '#/components/schemas/PromotionList'
+        PromotionAdjustmentList:
+          description: A list of promotion adjustments associated with the shipment item. This value is only returned for refunds, guarantee claims, and chargeback events.
+          $ref: '#/components/schemas/PromotionList'
+        CostOfPointsGranted:
+          description: The cost of Amazon Points granted for a shipment item.
+          $ref: '#/components/schemas/Currency_2'
+        CostOfPointsReturned:
+          description: The cost of Amazon Points returned for a shipment item. This value is only returned for refunds, guarantee claims, and chargeback events.
+          $ref: '#/components/schemas/Currency_2'
+      description: An item of a shipment, refund, guarantee claim, or chargeback.
+    RemovalShipmentItemList:
+      type: array
+      description: A list of `RemovalShipmentItem`.
+      items:
+        $ref: '#/components/schemas/RemovalShipmentItem'
+    CapacityReservationBillingEventList:
+      type: array
+      items:
+        $ref: '#/components/schemas/CapacityReservationBillingEvent'
+      description: A list of `CapacityReservationBillingEvent` events.
+    DebtRecoveryItemList:
+      type: array
+      description: A list of debt recovery item information.
+      items:
+        $ref: '#/components/schemas/DebtRecoveryItem'
+    EBTRefundReimbursementOnlyEvent:
+      type: object
+      properties:
+        OrderId:
+          type: string
+          description: The identifier of an order.
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        Amount:
+          description: The amount reimbursed during this event.
+          $ref: '#/components/schemas/Currency_2'
+      description: An EBT refund reimbursement event.
+    TaxWithheldComponent:
+      type: object
+      properties:
+        TaxCollectionModel:
+          type: string
+          description: 'The tax collection model applied to the item.
+
+
+            Possible values:
+
+
+            * `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
+
+            * `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.'
+        TaxesWithheld:
+          description: A list of charges that represent the types and amounts of taxes withheld.
+          $ref: '#/components/schemas/ChargeComponentList'
+      description: Information about the taxes withheld.
+    ShipmentEvent:
+      type: object
+      properties:
+        AmazonOrderId:
+          type: string
+          description: An Amazon-defined identifier for an order.
+        SellerOrderId:
+          type: string
+          description: A seller-defined identifier for an order.
+        MarketplaceName:
+          type: string
+          description: The name of the marketplace where the event occurred.
+        StoreName:
+          type: string
+          description: The name of the store where the event occurred.
+        OrderChargeList:
+          description: A list of order-level charges. These charges are applicable to Multi-Channel Fulfillment COD orders.
+          $ref: '#/components/schemas/ChargeComponentList'
+        OrderChargeAdjustmentList:
+          description: A list of order-level charge adjustments. These adjustments are applicable to Multi-Channel Fulfillment COD orders.
+          $ref: '#/components/schemas/ChargeComponentList'
+        ShipmentFeeList:
+          description: A list of shipment-level fees.
+          $ref: '#/components/schemas/FeeComponentList'
+        ShipmentFeeAdjustmentList:
+          description: A list of shipment-level fee adjustments.
+          $ref: '#/components/schemas/FeeComponentList'
+        OrderFeeList:
+          description: A list of order-level fees. These charges are applicable to Multi-Channel Fulfillment orders.
+          $ref: '#/components/schemas/FeeComponentList'
+        OrderFeeAdjustmentList:
+          description: A list of order-level fee adjustments. These adjustments are applicable to Multi-Channel Fulfillment orders.
+          $ref: '#/components/schemas/FeeComponentList'
+        DirectPaymentList:
+          description: A list of transactions where buyers pay Amazon through one of the credit cards offered by Amazon or where buyers pay a seller directly through COD.
+          $ref: '#/components/schemas/DirectPaymentList'
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        ShipmentItemList:
+          $ref: '#/components/schemas/ShipmentItemList'
+        ShipmentItemAdjustmentList:
+          description: A list of shipment item adjustments.
+          $ref: '#/components/schemas/ShipmentItemList'
+      description: A shipment, refund, guarantee claim, or chargeback.
+    LoanServicingEventList:
+      type: array
+      description: A list of loan servicing events.
+      items:
+        $ref: '#/components/schemas/LoanServicingEvent'
+    AdjustmentEventList:
+      type: array
+      description: A list of adjustment event information for the seller's account.
+      items:
+        $ref: '#/components/schemas/AdjustmentEvent'
+    ChargeComponentList:
+      type: array
+      description: A list of charge information on the seller's account.
+      items:
+        $ref: '#/components/schemas/ChargeComponent'
+    SolutionProviderCreditEventList:
+      type: array
+      description: A list of `SolutionProviderCreditEvent`.
+      items:
+        $ref: '#/components/schemas/SolutionProviderCreditEvent'
+    PayWithAmazonEventList:
+      type: array
+      description: A list of events related to the seller's Pay with Amazon account.
+      items:
+        $ref: '#/components/schemas/PayWithAmazonEvent'
+    ListFinancialEventsPayload:
+      type: object
+      properties:
+        NextToken:
+          type: string
+          description: When present and not empty, pass this string token in the next request to return the next response page.
+        FinancialEvents:
+          $ref: '#/components/schemas/FinancialEvents'
+      description: The payload for the `listFinancialEvents` operation.
+    ImagingServicesFeeEvent:
+      type: object
+      properties:
+        ImagingRequestBillingItemID:
+          type: string
+          description: The identifier for the imaging services request.
+        ASIN:
+          type: string
+          description: The Amazon Standard Identification Number (ASIN) of the item for which the imaging service was requested.
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        FeeList:
+          description: A list of fees associated with the event.
+          $ref: '#/components/schemas/FeeComponentList'
+      description: A fee event related to Amazon Imaging services.
+    RemovalShipmentItem:
+      type: object
+      properties:
+        RemovalShipmentItemId:
+          type: string
+          description: An identifier for an item in a removal shipment.
+        TaxCollectionModel:
+          type: string
+          description: 'The tax collection model that is applied to the item.
+
+
+            Possible values:
+
+
+            * `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
+
+            * `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.'
+        FulfillmentNetworkSKU:
+          type: string
+          description: The Amazon fulfillment network SKU for the item.
+        Quantity:
+          type: integer
+          format: int32
+          description: The quantity of the item.
+        Revenue:
+          description: The total amount paid to the seller for the removed item.
+          $ref: '#/components/schemas/Currency_2'
+        FeeAmount:
+          description: The fee that Amazon charged to the seller for the removal of the item. The amount is a negative number.
+          $ref: '#/components/schemas/Currency_2'
+        TaxAmount:
+          description: Tax collected on the revenue.
+          $ref: '#/components/schemas/Currency_2'
+        TaxWithheld:
+          description: The tax withheld and remitted to the taxing authority by Amazon on behalf of the seller. If `TaxCollectionModel` = `MarketplaceFacilitator`, then `TaxWithheld` = `TaxAmount` (except when the `TaxWithheld` amount is a negative number). Otherwise, `TaxWithheld` = `0`.
+          $ref: '#/components/schemas/Currency_2'
+      description: Item-level information for a removal shipment.
+    ChargeRefundEventList:
+      type: array
+      items:
+        $ref: '#/components/schemas/ChargeRefundEvent'
+      description: A list of charge refund events.
+    FailedAdhocDisbursementEvent:
+      type: object
+      properties:
+        FundsTransfersType:
+          type: string
+          description: The type of fund transfer. For example, `Refund`.
+        TransferId:
+          type: string
+          description: The transfer identifier.
+        DisbursementId:
+          type: string
+          description: The disbursement identifier.
+        PaymentDisbursementType:
+          type: string
+          description: The type of payment for disbursement. For example, `CREDIT_CARD`.
+        Status:
+          type: string
+          description: The status of the failed `AdhocDisbursement`. For example, `HARD_DECLINED`.
+        TransferAmount:
+          description: The amount of the Adhoc Disbursement.
+          $ref: '#/components/schemas/Currency_2'
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+      description: Failed ad hoc disbursement event list.
+    ChargeRefundTransaction:
+      type: object
+      properties:
+        ChargeAmount:
+          description: The amount of the charge refund credit.
+          $ref: '#/components/schemas/Currency_2'
+        ChargeType:
+          type: string
+          description: The type of charge.
+      description: The charge refund transaction.
+    FailedAdhocDisbursementEventList:
+      type: array
+      items:
+        $ref: '#/components/schemas/FailedAdhocDisbursementEvent'
+      description: A list of `FailedAdhocDisbursementEvent`.
+    RemovalShipmentAdjustmentEventList:
+      type: array
+      description: A comma-delimited list of `RemovalShipmentAdjustment` details for FBA inventory.
+      items:
+        $ref: '#/components/schemas/RemovalShipmentAdjustmentEvent'
+    SAFETReimbursementItemList:
+      type: array
+      description: A list of `SAFETReimbursementItem`.
+      items:
+        $ref: '#/components/schemas/SAFETReimbursementItem'
+    FBALiquidationEventList:
+      type: array
+      description: A list of FBA inventory liquidation payment events.
+      items:
+        $ref: '#/components/schemas/FBALiquidationEvent'
+    ChargeRefundTransactions:
+      type: array
+      description: A list of `ChargeRefund` transactions
+      items:
+        $ref: '#/components/schemas/ChargeRefundTransaction'
+    RemovalShipmentItemAdjustment:
+      type: object
+      properties:
+        RemovalShipmentItemId:
+          type: string
+          description: An identifier for an item in a removal shipment.
+        TaxCollectionModel:
+          type: string
+          description: 'The tax collection model that is applied to the item.
+
+
+            Possible values:
+
+
+            * `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
+
+            * `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.'
+        FulfillmentNetworkSKU:
+          type: string
+          description: The Amazon fulfillment network SKU for the item.
+        AdjustedQuantity:
+          type: integer
+          format: int32
+          description: Adjusted quantity of `RemovalShipmentItemAdjustment` items.
+        RevenueAdjustment:
+          description: The total amount adjusted for disputed items.
+          $ref: '#/components/schemas/Currency_2'
+        TaxAmountAdjustment:
+          description: Adjustment on the tax collected amount on the adjusted revenue.
+          $ref: '#/components/schemas/Currency_2'
+        TaxWithheldAdjustment:
+          description: Adjustment of the tax that is withheld and remitted to the taxing authority by Amazon on behalf of the seller. If `TaxCollectionModel` = `MarketplaceFacilitator`, then `TaxWithheld` = `TaxAmount` (except when the `TaxWithheld` amount is a negative number). Otherwise, `TaxWithheld` = `0`.
+          $ref: '#/components/schemas/Currency_2'
+      description: Item-level information for a removal shipment item adjustment.
+    RetrochargeEventList:
+      type: array
+      description: A list of information about `Retrocharge` or `RetrochargeReversal` events.
+      items:
+        $ref: '#/components/schemas/RetrochargeEvent'
+    ListFinancialEventGroupsResponse:
+      type: object
+      properties:
+        payload:
+          description: The payload for the `listFinancialEventGroups` operation.
+          $ref: '#/components/schemas/ListFinancialEventGroupsPayload'
+        errors:
+          description: One or more unexpected errors occurred during the `listFinancialEventGroups` operation.
+          $ref: '#/components/schemas/ErrorList_2'
+      description: The response schema for the `listFinancialEventGroups` operation.
+    TrialShipmentEvent:
+      type: object
+      properties:
+        AmazonOrderId:
+          type: string
+          description: An Amazon-defined identifier for an order.
+        FinancialEventGroupId:
+          type: string
+          description: The identifier of the financial event group.
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        SKU:
+          type: string
+          description: The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
+        FeeList:
+          description: A list of fees charged by Amazon for trial shipments.
+          $ref: '#/components/schemas/FeeComponentList'
+      description: An event related to a trial shipment.
+    ShipmentEventList:
+      type: array
+      description: A list of shipment event information.
+      items:
+        $ref: '#/components/schemas/ShipmentEvent'
+    ValueAddedServiceChargeEventList:
+      type: array
+      items:
+        $ref: '#/components/schemas/ValueAddedServiceChargeEvent'
+      description: A list of `ValueAddedServiceCharge` events.
+    TDSReimbursementEvent:
+      type: object
+      properties:
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        TDSOrderId:
+          type: string
+          description: The Tax-Deducted-at-Source (TDS) identifier.
+        ReimbursedAmount:
+          description: The amount reimbursed.
+          $ref: '#/components/schemas/Currency_2'
+      description: An event related to a Tax-Deducted-at-Source (TDS) reimbursement.
+    AdjustmentItem:
+      type: object
+      properties:
+        Quantity:
+          type: string
+          description: Represents the number of units in the seller's inventory when the `AdjustmentType` is `FBAInventoryReimbursement`.
+        PerUnitAmount:
+          description: The per-unit value of the item.
+          $ref: '#/components/schemas/Currency_2'
+        TotalAmount:
+          description: The total value of the item.
+          $ref: '#/components/schemas/Currency_2'
+        SellerSKU:
+          type: string
+          description: The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
+        FnSKU:
+          type: string
+          description: A unique identifier assigned to products stored in and fulfilled from a fulfillment center.
+        ProductDescription:
+          type: string
+          description: A short description of the item.
+        ASIN:
+          type: string
+          description: The Amazon Standard Identification Number (ASIN) of the item.
+        TransactionNumber:
+          type: string
+          description: The transaction number that is related to the adjustment.
+      description: An item in an adjustment to the seller's account.
+    AdjustmentItemList:
+      type: array
+      description: A list of information about items in an adjustment to the seller's account.
+      items:
+        $ref: '#/components/schemas/AdjustmentItem'
+    ImagingServicesFeeEventList:
+      type: array
+      description: A list of fee events related to Amazon Imaging services.
+      items:
+        $ref: '#/components/schemas/ImagingServicesFeeEvent'
+    FinancialEventGroup:
+      type: object
+      properties:
+        FinancialEventGroupId:
+          type: string
+          description: A unique identifier for the financial event group.
+        ProcessingStatus:
+          type: string
+          description: 'The processing status of the financial event group indicates whether the balance of the financial event group is settled.
+
+
+            Possible values:
+
+
+            * `Open`
+
+            * `Closed`'
+        FundTransferStatus:
+          type: string
+          description: The status of the fund transfer.
+        OriginalTotal:
+          description: The total amount in the currency of the marketplace in which the transactions occurred. For a closed financial group, this is the total amount of a disbursement or a charge amount. For an open financial event group, this is the current balance.
+          $ref: '#/components/schemas/Currency_2'
+        ConvertedTotal:
+          description: The total amount in the currency of the marketplace in which the funds were disbursed.
+          $ref: '#/components/schemas/Currency_2'
+        FundTransferDate:
+          description: The date and time when the disbursement or charge was initiated. Only present for closed settlements. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+          $ref: '#/components/schemas/Date'
+        TraceId:
+          type: string
+          description: The trace identifier used by sellers to look up transactions externally.
+        AccountTail:
+          type: string
+          description: The account tail of the payment instrument.
+        BeginningBalance:
+          description: The balance at the start of the settlement period.
+          $ref: '#/components/schemas/Currency_2'
+        FinancialEventGroupStart:
+          description: The date and time at which the financial event group is opened. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+          $ref: '#/components/schemas/Date'
+        FinancialEventGroupEnd:
+          description: The date and time at which the financial event group is closed. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+          $ref: '#/components/schemas/Date'
+      description: Information related to a financial event group.
+    FeeComponentList:
+      type: array
+      description: A list of fee component information.
+      items:
+        $ref: '#/components/schemas/FeeComponent'
+    TaxWithholdingPeriod:
+      type: object
+      properties:
+        StartDate:
+          description: Start of the time range.
+          $ref: '#/components/schemas/Date'
+        EndDate:
+          description: End of the time range.
+          $ref: '#/components/schemas/Date'
+      description: The period during which tax withholding on a seller's account is calculated.
+    SAFETReimbursementEvent:
+      type: object
+      properties:
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        SAFETClaimId:
+          type: string
+          description: A SAFE-T claim identifier.
+        ReimbursedAmount:
+          description: The amount of the reimbursement.
+          $ref: '#/components/schemas/Currency_2'
+        ReasonCode:
+          type: string
+          description: Indicates why the seller was reimbursed.
+        SAFETReimbursementItemList:
+          $ref: '#/components/schemas/SAFETReimbursementItemList'
+      description: A SAFE-T claim reimbursement on the seller's account.
+    ShipmentItemList:
+      type: array
+      description: A list of shipment items.
+      items:
+        $ref: '#/components/schemas/ShipmentItem'
+    DirectPayment:
+      type: object
+      properties:
+        DirectPaymentType:
+          type: string
+          description: 'The type of payment.
+
+
+            Possible values:
+
+
+            * `StoredValueCardRevenue` - The amount that is deducted from the seller''s account because the seller received money through a stored value card.
+
+
+            * `StoredValueCardRefund` - The amount that Amazon returns to the seller if the order that is purchased using a stored value card is refunded.
+
+
+            * `PrivateLabelCreditCardRevenue` - The amount that is deducted from the seller''s account because the seller received money through a private label credit card offered by Amazon.
+
+
+            * `PrivateLabelCreditCardRefund` - The amount that Amazon returns to the seller if the order that is purchased using a private label credit card offered by Amazon is refunded.
+
+
+            * `CollectOnDeliveryRevenue` - The COD amount that the seller collected directly from the buyer.
+
+
+            * `CollectOnDeliveryRefund` - The amount that Amazon refunds to the buyer if an order paid for by COD is refunded.'
+        DirectPaymentAmount:
+          description: The amount of the direct payment.
+          $ref: '#/components/schemas/Currency_2'
+      description: A payment made directly to a seller.
+    ProductAdsPaymentEventList:
+      type: array
+      description: A list of sponsored products payment events.
+      items:
+        $ref: '#/components/schemas/ProductAdsPaymentEvent'
+    Currency_2:
+      type: object
+      properties:
+        CurrencyCode:
+          type: string
+          description: The three-digit currency code in ISO 4217 format.
+        CurrencyAmount:
+          description: The monetary value.
+          $ref: '#/components/schemas/BigDecimal'
+      description: A currency type and amount.
+    ListFinancialEventGroupsPayload:
+      type: object
+      properties:
+        NextToken:
+          type: string
+          description: When present and not empty, pass this string token in the next request to return the next response page.
+        FinancialEventGroupList:
+          $ref: '#/components/schemas/FinancialEventGroupList'
+      description: The payload for the `listFinancialEventGroups` operation.
+    CouponPaymentEvent:
+      type: object
+      properties:
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        CouponId:
+          type: string
+          description: A coupon identifier.
+        SellerCouponDescription:
+          type: string
+          description: The description provided by the seller when they created the coupon.
+        ClipOrRedemptionCount:
+          type: integer
+          format: int64
+          description: The number of coupon clips or redemptions.
+        PaymentEventId:
+          type: string
+          description: A payment event identifier.
+        FeeComponent:
+          $ref: '#/components/schemas/FeeComponent'
+        ChargeComponent:
+          $ref: '#/components/schemas/ChargeComponent'
+        TotalAmount:
+          description: The `FeeComponent` value plus the `ChargeComponent` value.
+          $ref: '#/components/schemas/Currency_2'
+      description: An event related to coupon payments.
+    FinancialEvents:
+      type: object
+      properties:
+        ShipmentEventList:
+          description: A list of shipment events.
+          $ref: '#/components/schemas/ShipmentEventList'
+        ShipmentSettleEventList:
+          description: A list of Shipment Settle events.
+          $ref: '#/components/schemas/ShipmentSettleEventList'
+        RefundEventList:
+          description: A list of refund events.
+          $ref: '#/components/schemas/ShipmentEventList'
+        GuaranteeClaimEventList:
+          description: A list of guarantee claim events.
+          $ref: '#/components/schemas/ShipmentEventList'
+        EBTRefundReimbursementOnlyEventList:
+          description: A list of EBT refund reimbursement events.
+          $ref: '#/components/schemas/EBTRefundReimbursementOnlyEventList'
+        ChargebackEventList:
+          description: A list of chargeback events.
+          $ref: '#/components/schemas/ShipmentEventList'
+        PayWithAmazonEventList:
+          $ref: '#/components/schemas/PayWithAmazonEventList'
+        ServiceProviderCreditEventList:
+          $ref: '#/components/schemas/SolutionProviderCreditEventList'
+        RetrochargeEventList:
+          $ref: '#/components/schemas/RetrochargeEventList'
+        RentalTransactionEventList:
+          $ref: '#/components/schemas/RentalTransactionEventList'
+        ProductAdsPaymentEventList:
+          $ref: '#/components/schemas/ProductAdsPaymentEventList'
+        ServiceFeeEventList:
+          $ref: '#/components/schemas/ServiceFeeEventList'
+        SellerDealPaymentEventList:
+          $ref: '#/components/schemas/SellerDealPaymentEventList'
+        DebtRecoveryEventList:
+          $ref: '#/components/schemas/DebtRecoveryEventList'
+        LoanServicingEventList:
+          $ref: '#/components/schemas/LoanServicingEventList'
+        AdjustmentEventList:
+          $ref: '#/components/schemas/AdjustmentEventList'
+        SAFETReimbursementEventList:
+          $ref: '#/components/schemas/SAFETReimbursementEventList'
+        SellerReviewEnrollmentPaymentEventList:
+          $ref: '#/components/schemas/SellerReviewEnrollmentPaymentEventList'
+        FBALiquidationEventList:
+          $ref: '#/components/schemas/FBALiquidationEventList'
+        CouponPaymentEventList:
+          $ref: '#/components/schemas/CouponPaymentEventList'
+        ImagingServicesFeeEventList:
+          $ref: '#/components/schemas/ImagingServicesFeeEventList'
+        NetworkComminglingTransactionEventList:
+          $ref: '#/components/schemas/NetworkComminglingTransactionEventList'
+        AffordabilityExpenseEventList:
+          $ref: '#/components/schemas/AffordabilityExpenseEventList'
+        AffordabilityExpenseReversalEventList:
+          $ref: '#/components/schemas/AffordabilityExpenseEventList'
+        RemovalShipmentEventList:
+          $ref: '#/components/schemas/RemovalShipmentEventList'
+        RemovalShipmentAdjustmentEventList:
+          $ref: '#/components/schemas/RemovalShipmentAdjustmentEventList'
+        TrialShipmentEventList:
+          $ref: '#/components/schemas/TrialShipmentEventList'
+        TDSReimbursementEventList:
+          $ref: '#/components/schemas/TDSReimbursementEventList'
+        AdhocDisbursementEventList:
+          $ref: '#/components/schemas/AdhocDisbursementEventList'
+        TaxWithholdingEventList:
+          $ref: '#/components/schemas/TaxWithholdingEventList'
+        ChargeRefundEventList:
+          $ref: '#/components/schemas/ChargeRefundEventList'
+        FailedAdhocDisbursementEventList:
+          $ref: '#/components/schemas/FailedAdhocDisbursementEventList'
+        ValueAddedServiceChargeEventList:
+          $ref: '#/components/schemas/ValueAddedServiceChargeEventList'
+        CapacityReservationBillingEventList:
+          $ref: '#/components/schemas/CapacityReservationBillingEventList'
+      description: All the information that is related to a financial event.
+    FinancialEventGroupList:
+      type: array
+      description: A list of financial event group information.
+      items:
+        $ref: '#/components/schemas/FinancialEventGroup'
+    SellerReviewEnrollmentPaymentEventList:
+      type: array
+      description: A list of information about fee events for the Early Reviewer Program.
+      items:
+        $ref: '#/components/schemas/SellerReviewEnrollmentPaymentEvent'
+    PayWithAmazonEvent:
+      type: object
+      properties:
+        SellerOrderId:
+          type: string
+          description: An order identifier that is specified by the seller.
+        TransactionPostedDate:
+          description: The date and time when the payment transaction is posted. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+          $ref: '#/components/schemas/Date'
+        BusinessObjectType:
+          type: string
+          description: The type of business object.
+        SalesChannel:
+          type: string
+          description: The sales channel for the transaction.
+        Charge:
+          description: The charge associated with the event.
+          $ref: '#/components/schemas/ChargeComponent'
+        FeeList:
+          description: A list of fees associated with the event.
+          $ref: '#/components/schemas/FeeComponentList'
+        PaymentAmountType:
+          type: string
+          description: 'The type of payment.
+
+
+            Possible values:
+
+
+            * `Sales`'
+        AmountDescription:
+          type: string
+          description: A short description of this payment event.
+        FulfillmentChannel:
+          type: string
+          description: 'The fulfillment channel.
+
+
+            Possible values:
+
+
+            * `AFN`: Amazon Fulfillment Network (Fulfillment by Amazon)
+
+
+            * `MFN`: Merchant Fulfillment Network (self-fulfilled)'
+        StoreName:
+          type: string
+          description: The name of the store where the event occurred.
+      description: An event related to the seller's Pay with Amazon account.
+    DebtRecoveryItem:
+      type: object
+      properties:
+        RecoveryAmount:
+          description: The amount applied for the recovery item.
+          $ref: '#/components/schemas/Currency_2'
+        OriginalAmount:
+          description: The original debt amount.
+          $ref: '#/components/schemas/Currency_2'
+        GroupBeginDate:
+          description: The start date and time of the financial event group that contains the debt. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+          $ref: '#/components/schemas/Date'
+        GroupEndDate:
+          description: The end date and time of the financial event group that contains the debt. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+          $ref: '#/components/schemas/Date'
+      description: An item of a debt payment or debt adjustment.
+    EBTRefundReimbursementOnlyEventList:
+      type: array
+      items:
+        $ref: '#/components/schemas/EBTRefundReimbursementOnlyEvent'
+      description: A list of EBT refund reimbursement events.
+    DirectPaymentList:
+      type: array
+      description: A list of direct payment information.
+      items:
+        $ref: '#/components/schemas/DirectPayment'
+    CapacityReservationBillingEvent:
+      type: object
+      properties:
+        TransactionType:
+          type: string
+          description: The transaction type. For example, FBA Inventory Fee.
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        Description:
+          type: string
+          description: A short description of the capacity reservation billing event.
+        TransactionAmount:
+          description: The amount of the capacity reservation billing event.
+          $ref: '#/components/schemas/Currency_2'
+      description: An event related to a capacity reservation billing charge.
+    SolutionProviderCreditEvent:
+      type: object
+      properties:
+        ProviderTransactionType:
+          type: string
+          description: The transaction type.
+        SellerOrderId:
+          type: string
+          description: A seller-defined identifier for an order.
+        MarketplaceId:
+          type: string
+          description: The identifier of the marketplace where the order was placed.
+        MarketplaceCountryCode:
+          type: string
+          description: The two-letter country code of the country associated with the marketplace where the order was placed.
+        SellerId:
+          type: string
+          description: The Amazon-defined identifier of the seller.
+        SellerStoreName:
+          type: string
+          description: The store name where the payment event occurred.
+        ProviderId:
+          type: string
+          description: The Amazon-defined identifier of the solution provider.
+        ProviderStoreName:
+          type: string
+          description: The store name where the payment event occurred.
+        TransactionAmount:
+          description: The amount of the credit.
+          $ref: '#/components/schemas/Currency_2'
+        TransactionCreationDate:
+          description: The date and time that the credit transaction was created, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+          $ref: '#/components/schemas/Date'
+      description: A credit given to a solution provider.
+    RemovalShipmentEvent:
+      type: object
+      properties:
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        MerchantOrderId:
+          type: string
+          description: The merchant removal `orderId`.
+        OrderId:
+          type: string
+          description: The identifier for the removal shipment order.
+        TransactionType:
+          type: string
+          description: 'The type of removal order.
+
+
+            Possible values:
+
+
+            * `WHOLESALE_LIQUIDATION`'
+        StoreName:
+          type: string
+          description: The name of the store where the event occurred.
+        RemovalShipmentItemList:
+          description: A list of removal shipment items.
+          $ref: '#/components/schemas/RemovalShipmentItemList'
+      description: A removal shipment event for a removal order.
+    AdhocDisbursementEvent:
+      type: object
+      properties:
+        TransactionType:
+          type: string
+          description: The type of transaction. For example, "Disbursed to Amazon Gift Card balance".
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        TransactionId:
+          type: string
+          description: The identifier for the transaction.
+        TransactionAmount:
+          description: The amount of the transaction.
+          $ref: '#/components/schemas/Currency_2'
+      description: An event related to an Adhoc Disbursement.
+    DebtRecoveryEventList:
+      type: array
+      description: A list of debt recovery event information.
+      items:
+        $ref: '#/components/schemas/DebtRecoveryEvent'
+    ChargeInstrument:
+      type: object
+      properties:
+        Description:
+          type: string
+          description: A short description of the charge instrument.
+        Tail:
+          type: string
+          description: The account tail (trailing digits) of the charge instrument.
+        Amount:
+          description: The amount charged to this charge instrument.
+          $ref: '#/components/schemas/Currency_2'
+      description: A payment instrument.
+    RentalTransactionEventList:
+      type: array
+      description: A list of rental transaction event information.
+      items:
+        $ref: '#/components/schemas/RentalTransactionEvent'
+    PromotionList:
+      type: array
+      description: A list of promotions.
+      items:
+        $ref: '#/components/schemas/Promotion'
+    Promotion:
+      type: object
+      properties:
+        PromotionType:
+          type: string
+          description: The type of promotion.
+        PromotionId:
+          type: string
+          description: The seller-specified identifier for the promotion.
+        PromotionAmount:
+          description: The amount of promotional discount applied to the item.
+          $ref: '#/components/schemas/Currency_2'
+      description: A promotion applied to an item.
+    RemovalShipmentEventList:
+      type: array
+      description: A list of removal shipment event information.
+      items:
+        $ref: '#/components/schemas/RemovalShipmentEvent'
+    ChargeInstrumentList:
+      type: array
+      description: A list of payment instruments.
+      items:
+        $ref: '#/components/schemas/ChargeInstrument'
+    ValueAddedServiceChargeEvent:
+      type: object
+      properties:
+        TransactionType:
+          type: string
+          description: The transaction type. For example, 'Other Support Service fees'
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        Description:
+          type: string
+          description: A short description of the service charge event.
+        TransactionAmount:
+          description: The amount of the service charge event.
+          $ref: '#/components/schemas/Currency_2'
+      description: An event related to a value added service charge.
+    SAFETReimbursementItem:
+      type: object
+      properties:
+        itemChargeList:
+          description: A list of charges associated with the item.
+          $ref: '#/components/schemas/ChargeComponentList'
+        productDescription:
+          type: string
+          description: The description of the item as shown on the product detail page on the retail website.
+        quantity:
+          type: string
+          description: The number of units of the item being reimbursed.
+      description: An item from a SAFE-T claim reimbursement.
+    ServiceFeeEvent:
+      type: object
+      properties:
+        AmazonOrderId:
+          type: string
+          description: An Amazon-defined identifier for an order.
+        FeeReason:
+          type: string
+          description: A short description of the service fee reason.
+        FeeList:
+          description: A list of fee components associated with the service fee.
+          $ref: '#/components/schemas/FeeComponentList'
+        SellerSKU:
+          type: string
+          description: The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
+        FnSKU:
+          type: string
+          description: A unique identifier assigned by Amazon to products stored in and fulfilled from an Amazon fulfillment center.
+        FeeDescription:
+          type: string
+          description: A short description of the service fee event.
+        ASIN:
+          type: string
+          description: The Amazon Standard Identification Number (ASIN) of the item.
+        StoreName:
+          type: string
+          description: The name of the store where the event occurred.
+      description: A service fee on the seller's account.
+    TaxWithholdingEventList:
+      type: array
+      items:
+        $ref: '#/components/schemas/TaxWithholdingEvent'
+      description: A list of tax withholding events.
+    ServiceFeeEventList:
+      type: array
+      description: A list of information about service fee events.
+      items:
+        $ref: '#/components/schemas/ServiceFeeEvent'
+    AffordabilityExpenseEventList:
+      type: array
+      description: A list of expense information related to an affordability promotion.
+      items:
+        $ref: '#/components/schemas/AffordabilityExpenseEvent'
+    SAFETReimbursementEventList:
+      type: array
+      description: A list of `SAFETReimbursementEvent`.
+      items:
+        $ref: '#/components/schemas/SAFETReimbursementEvent'
+    NetworkComminglingTransactionEventList:
+      type: array
+      description: A list of network commingling transaction events.
+      items:
+        $ref: '#/components/schemas/NetworkComminglingTransactionEvent'
+    AffordabilityExpenseEvent:
+      type: object
+      required:
+      - TaxTypeCGST
+      - TaxTypeIGST
+      - TaxTypeSGST
+      properties:
+        AmazonOrderId:
+          type: string
+          description: An Amazon-defined identifier for an order.
+        PostedDate:
+          description: The date and time when the financial event was created.
+          $ref: '#/components/schemas/Date'
+        MarketplaceId:
+          type: string
+          description: The Amazon-defined marketplace identifier.
+        TransactionType:
+          type: string
+          description: "The type of transaction. \n\nPossible values:\n\n* `Charge`: an affordability promotion expense.\n* `Refund`: an affordability promotion expense reversal."
+        BaseExpense:
+          description: The amount charged for clicks incurred under the Sponsored Products program.
+          $ref: '#/components/schemas/Currency_2'
+        TaxTypeCGST:
+          description: Central Goods and Service Tax, charged and collected by the central government.
+          $ref: '#/components/schemas/Currency_2'
+        TaxTypeSGST:
+          description: State Goods and Service Tax, charged and collected by the state government.
+          $ref: '#/components/schemas/Currency_2'
+        TaxTypeIGST:
+          description: Integrated Goods and Service Tax, charged and collected by the central government.
+          $ref: '#/components/schemas/Currency_2'
+        TotalExpense:
+          description: The total amount charged to the seller. `TotalExpense` = `BaseExpense` + `TaxTypeIGST` + `TaxTypeCGST` + `TaxTypeSGST`.
+          $ref: '#/components/schemas/Currency_2'
+      description: An expense related to an affordability promotion.
+x-refined-from:
+- amazon-seller-central-finances-2024-06-19-original.json
+- amazon-seller-central-finances-v0-original.json

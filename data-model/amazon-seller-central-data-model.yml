@@ -1,0 +1,3824 @@
+generated: '2026-09-24'
+method: derived
+generator: derive-data-model.py
+source:
+- openapi/amazon-seller-central-catalog-api-openapi.yml
+- openapi/amazon-seller-central-definitions-api-openapi.yml
+- openapi/amazon-seller-central-fbainbound-api-openapi.yml
+- openapi/amazon-seller-central-fbainventory-api-openapi.yml
+- openapi/amazon-seller-central-fbaoutbound-api-openapi.yml
+- openapi/amazon-seller-central-feeds-api-openapi.yml
+- openapi/amazon-seller-central-fees-api-openapi.yml
+- openapi/amazon-seller-central-finances-api-openapi.yml
+- openapi/amazon-seller-central-getorder-api-openapi.yml
+- openapi/amazon-seller-central-listings-api-openapi.yml
+- openapi/amazon-seller-central-notifications-api-openapi.yml
+- openapi/amazon-seller-central-ordersv0-api-openapi.yml
+notation: has_one = property $ref; has_many = array of $ref; belongs_to = <entity>_id field
+summary:
+  entities: 400
+  entities_in_spec: 707
+  relationships: 638
+entities:
+- name: ASINIdentifier
+  fields: 2
+  description: Schema to identify an item by MarketPlaceId and ASIN.
+- name: AccessPoint
+  fields: 10
+  description: Access point details
+- name: AccessPointDetails
+  fields: 1
+  description: AccessPointDetails object
+- name: AccessPointsMap
+  fields: 0
+  description: Map of type of access point to list of access points
+- name: AccessibilityAttributes
+  fields: 2
+  description: Defines the accessibility details of the access point.
+- name: Account
+  fields: 5
+  description: The response schema for the `getAccount` operation.
+- name: ActiveAccount
+  fields: 2
+  description: Active Account Details
+- name: AddInventoryResponse
+  fields: 1
+  description: The response schema for the AddInventory operation.
+- name: Address
+  fields: 11
+  description: Specific details to identify a place.
+- name: AddressExtendedFields
+  fields: 4
+  description: 'Additional address components that provide more detailed location information, helping with precise
+    delivery routing. '
+- name: AddressInput
+  fields: 11
+  description: Specific details to identify a place.
+- name: AdhocDisbursementEvent
+  fields: 4
+  description: An event related to an Adhoc Disbursement.
+- name: AdjustmentEvent
+  fields: 5
+  description: An adjustment to the seller's account.
+- name: AdjustmentItem
+  fields: 8
+  description: An item in an adjustment to the seller's account.
+- name: AffordabilityExpenseEvent
+  fields: 9
+  description: An expense related to an affordability promotion.
+- name: AggregationFilter
+  fields: 1
+  description: A filter you can use to select the aggregation time period at which to send notifications (for example,
+    limit to one notification every five minutes for high frequency notifications).
+- name: AggregationSettings
+  fields: 1
+  description: A container that holds all of the necessary properties to configure the aggregation of notifications.
+- name: Alias
+  fields: 2
+  description: An alternative identifier that provides a different way to reference the same order.
+- name: AmazonOrderDetails
+  fields: 1
+  description: Amazon order information. This is required if the shipment source channel is Amazon.
+- name: AmazonShipmentDetails
+  fields: 1
+  description: Amazon shipment information.
+- name: Amount
+  fields: 2
+  description: A quantity based on the specified unit of measurement.
+- name: AmountThreshold
+  fields: 2
+  description: Amount-based purchase conditions for basket building promotions. Customers must spend a minimum dollar
+    amount.
+- name: AppointmentSlot
+  fields: 2
+  description: The fulfillment center appointment slot for the transportation option.
+- name: AppointmentSlotTime
+  fields: 2
+  description: An appointment slot time with start and end.
+- name: AssociatedItem
+  fields: 3
+  description: An item that is associated with an order item. For example, a tire installation service that is purchased
+    with tires.
+- name: AssociatedOrder
+  fields: 2
+  description: Another order that has a direct business relationship with the current order, such as replacements
+    or exchanges.
+- name: AssociatedOrderItem
+  fields: 3
+  description: An associated order item that a customer has purchased with the product. For example, a tire installation
+    service purchased with tires.
+- name: Audience
+  fields: 2
+  description: Buyer segment or program this offer is applicable to.
+- name: AvailableValueAddedServiceGroup
+  fields: 4
+  description: The value-added services available for purchase with a shipping service offering.
+- name: Balance
+  fields: 6
+  description: All information relevant to a balance.
+- name: BatchOffersRequestParams
+  fields: 3
+  description: Common request parameters that can be accepted by `ItemOffersRequest` and `ListingOffersRequest`
+- name: BatchOffersResponse
+  fields: 3
+  description: Common schema that present in `ItemOffersResponse` and `ListingOffersResponse`
+- name: BatchRequest
+  fields: 4
+  description: The common properties for individual requests within a batch.
+- name: BatchRequest_2
+  fields: 3
+  description: Common properties of batch requests against individual APIs.
+- name: BatchResponse
+  fields: 2
+  description: The common properties for responses to individual requests within a batch.
+- name: Benefits
+  fields: 2
+  description: Benefits that are included and excluded for each shipping offer. Benefits represents services provided
+    by Amazon (eg. CLAIMS_PROTECTED, etc.) when sellers purchase shipping through Amazon. Benefit det
+- name: Box
+  fields: 11
+  description: Contains information about a box that is used in the inbound plan. The box is a container that holds
+    multiple items.
+- name: BoxInput
+  fields: 5
+  description: Input information for a given box.
+- name: BoxRequirements
+  fields: 1
+  description: The requirements for a box in the packing option.
+- name: BoxUpdateInput
+  fields: 6
+  description: Input information for updating a box
+- name: BrandRefinement
+  fields: 2
+  description: A brand that you can use to refine your search.
+- name: Breakdown
+  fields: 3
+  description: Details about the movement of money in the financial transaction.
+- name: Business
+  fields: 5
+  description: Information about the seller's business. Certain fields may be omitted depending on the seller's
+    `businessType`.
+- name: BusinessHour
+  fields: 2
+  description: Business days and hours when the destination is open for deliveries.
+- name: BusinessHours
+  fields: 2
+  description: Business days and hours when the destination is open for deliveries.
+- name: BuyBoxPriceType
+  fields: 9
+  description: Schema for an individual buybox price.
+- name: Buyer
+  fields: 4
+  description: Information about the customer who purchased the order.
+- name: BuyerCustomizedInfoDetail
+  fields: 1
+  description: Buyer information for custom orders from the Amazon Custom program.
+- name: BuyerInfo
+  fields: 5
+  description: Buyer information.
+- name: BuyerTaxInfo
+  fields: 3
+  description: Tax information about the buyer.
+- name: CODSettings
+  fields: 5
+  description: The COD (Cash On Delivery) charges that you associate with a COD fulfillment order.
+- name: CancelFulfillmentOrderResponse
+  fields: 1
+  description: The response schema for the `cancelFulfillmentOrder` operation.
+- name: CancelShipmentResponse
+  fields: 1
+  description: Response schema for the cancelShipment operation.
+- name: CancelShipmentResult
+  fields: 0
+  description: The payload for the cancelShipment operation.
+- name: CapacityReservationBillingEvent
+  fields: 4
+  description: An event related to a capacity reservation billing charge.
+- name: Carrier
+  fields: 2
+  description: The carrier for the inbound shipment.
+- name: CarrierAccount
+  fields: 2
+  description: Carrier Account details used to fetch rates.
+- name: CarrierAppointment
+  fields: 2
+  description: Contains details for a transportation carrier appointment. This appointment is vended out by Amazon
+    and is an indicator for when a transportation carrier is accepting shipments to be picked up.
+- name: ChannelDetails
+  fields: 3
+  description: Shipment source channel related information.
+- name: ChargeComponent
+  fields: 2
+  description: A charge on the seller's account.
+- name: ChargeInstrument
+  fields: 3
+  description: A payment instrument.
+- name: ChargeRefundTransaction
+  fields: 2
+  description: The charge refund transaction.
+- name: ClassificationRefinement
+  fields: 3
+  description: A classification that you can use to refine your search.
+- name: CollectOnDelivery
+  fields: 1
+  description: The amount to collect on delivery.
+- name: CollectionFormsHistoryRecord
+  fields: 5
+  description: Active Account Details
+- name: CollectionsFormDocument
+  fields: 2
+  description: Collection Form Document Details
+- name: CompetitivePriceType
+  fields: 9
+  description: Schema for competitive pricing information
+- name: CompetitivePricingType
+  fields: 3
+  description: Competitive pricing information for the item.
+- name: CompetitiveSummaryRequest
+  fields: 6
+  description: An individual `competitiveSummary` request for an ASIN and `marketplaceId`.
+- name: CompetitiveSummaryResponse
+  fields: 2
+  description: The response for the individual `competitiveSummary` request in the batch operation.
+- name: CompetitiveSummaryResponseBody
+  fields: 7
+  description: The `competitiveSummaryResponse` body for a requested ASIN and `marketplaceId`.
+- name: ComplianceDetail
+  fields: 4
+  description: Contains item identifiers and related tax information.
+- name: ConfirmShipmentErrorResponse
+  fields: 1
+  description: The error response schema for the `confirmShipment` operation.
+- name: ConfirmShipmentOrderItem
+  fields: 3
+  description: A single order item.
+- name: ConfirmShipmentRequest
+  fields: 3
+  description: The request schema for an shipment confirmation.
+- name: ConfirmTransportationOptionsRequest
+  fields: 1
+  description: The `confirmTransportationOptions` request.
+- name: ContactInformation
+  fields: 3
+  description: The seller's contact information.
+- name: ContentUpdatePreview
+  fields: 4
+  description: Preview of the changes that will be applied to the shipment.
+- name: CouponPaymentEvent
+  fields: 8
+  description: An event related to coupon payments.
+- name: CreateDestinationResponse
+  fields: 2
+  description: The response schema for the createDestination operation.
+- name: CreateFeedSpecification
+  fields: 4
+  description: Information required to create the feed.
+- name: CreateFulfillmentOrderItem
+  fields: 9
+  description: Item information for creating a fulfillment order.
+- name: CreateFulfillmentOrderRequest
+  fields: 17
+  description: The request body schema for the `createFulfillmentOrder` operation.
+- name: CreateFulfillmentReturnResponse
+  fields: 2
+  description: The response schema for the `createFulfillmentReturn` operation.
+- name: CreateInboundPlanRequest
+  fields: 4
+  description: The `createInboundPlan` request.
+- name: CreateMarketplaceItemLabelsRequest
+  fields: 7
+  description: The `createMarketplaceItemLabels` request.
+- name: CreateReportScheduleSpecification
+  fields: 5
+  description: Information required to create the report schedule.
+- name: CreateReportSpecification
+  fields: 5
+  description: Information required to create the report.
+- name: CreateSubscriptionRequest
+  fields: 3
+  description: The request schema for the `createSubscription` operation.
+- name: CreateSubscriptionResponse
+  fields: 2
+  description: The response schema for the `createSubscription` operation.
+- name: Currency
+  fields: 2
+  description: The type and amount of currency.
+- name: Currency_2
+  fields: 2
+  description: A currency type and amount.
+- name: CustomPlacementInput
+  fields: 2
+  description: Provide units going to the warehouse.
+- name: CustomerAddress
+  fields: 14
+  description: The physical address of the customer.
+- name: DateRange
+  fields: 2
+  description: The time range within which something (for example, a delivery) will occur.
+- name: DateTimeRange
+  fields: 2
+  description: A time period with start and end boundaries.
+- name: Dates
+  fields: 1
+  description: Specifies the date that the seller expects their shipment will be shipped.
+- name: DebtRecoveryEvent
+  fields: 5
+  description: A debt payment or debt adjustment.
+- name: DebtRecoveryItem
+  fields: 4
+  description: An item of a debt payment or debt adjustment.
+- name: DeliveryInformation
+  fields: 2
+  description: The delivery information of the package, this information is only available post package delivery
+    to its intended destination.
+- name: DeliveryOffer
+  fields: 3
+  description: An available offer for delivery of a product.
+- name: DeliveryPolicy
+  fields: 1
+  description: The policy for a delivery offering.
+- name: DeliveryPreference
+  fields: 4
+  description: Contains all delivery instructions that the customer provides for the shipping address.
+- name: DeliveryPreferences
+  fields: 2
+  description: The delivery preferences applied to the destination address. These preferences are applied when possible
+    and are best effort.
+- name: DeliveryWindow
+  fields: 2
+  description: The time range within which a Scheduled Delivery fulfillment order should be delivered. This is only
+    available in the JP marketplace.
+- name: DeliveryWindowOption
+  fields: 6
+  description: Contains information pertaining to a delivery window option.
+- name: Destination
+  fields: 2
+  description: The destination for the delivery offer.
+- name: DestinationResource
+  fields: 2
+  description: The destination resource types.
+- name: DestinationResourceSpecification
+  fields: 2
+  description: The information required to create a destination resource. Applications should use one resource type
+    (sqs or eventBridge) per destination.
+- name: Dimension
+  fields: 2
+  description: The value of an individual dimension for an Amazon catalog item or item package.
+- name: Dimensions
+  fields: 4
+  description: Dimensions of an Amazon catalog item or item in its packaging.
+- name: DirectPurchaseRequest
+  fields: 6
+  description: The request schema for the directPurchaseShipment operation. When the channel type is Amazon, the
+    shipTo address is not required and will be ignored.
+- name: DirectPurchaseResult
+  fields: 2
+  description: The payload for the directPurchaseShipment operation.
+- name: DocumentDownload
+  fields: 3
+  description: Resource to download the requested document.
+- name: DocumentSize
+  fields: 3
+  description: The size dimensions of the label.
+- name: DropOffLocation
+  fields: 2
+  description: The drop-off location at the destination address.
+- name: EBTRefundReimbursementOnlyEvent
+  fields: 3
+  description: An EBT refund reimbursement event.
+- name: Error
+  fields: 3
+  description: Error response returned when the request is unsuccessful.
+- name: ErrorList
+  fields: 1
+  description: A list of error responses returned when a request is unsuccessful.
+- name: Event
+  fields: 4
+  description: A tracking event.
+- name: EventBridgeResource
+  fields: 3
+  description: The Amazon EventBridge destination.
+- name: EventBridgeResourceSpecification
+  fields: 2
+  description: The information required to create an Amazon EventBridge destination.
+- name: ExceptionDate
+  fields: 3
+  description: Special dates when normal business hours are modified or suspended, requiring different delivery
+    scheduling.
+- name: ExceptionOperatingHours
+  fields: 2
+  description: Defines exceptions to standard operating hours for certain date ranges.
+- name: FBALiquidationEvent
+  fields: 4
+  description: A payment event for Fulfillment by Amazon (FBA) inventory liquidation. This event is used only in
+    the US marketplace.
+- name: FeatureSettings
+  fields: 2
+  description: Feature settings allows you to apply fulfillment features to an order. To block an order from being
+    shipped using Amazon Logistics (AMZL) and an AMZL tracking number, set `featureName` to `BLOCK_AMZL`
+- name: FeaturedBuyingOption
+  fields: 2
+  description: Describes a featured buying option, which includes a list of segmented featured offers for a particular
+    item condition.
+- name: FeaturedOffer
+  fields: 3
+  description: Schema for `currentFeaturedOffer` or `competingFeaturedOffer`.
+- name: FeaturedOfferExpectedPrice
+  fields: 2
+  description: The item price at or below which the target offer may be featured.
+- name: FeaturedOfferExpectedPriceRequestParams
+  fields: 3
+  description: The parameters for an individual request.
+- name: FeaturedOfferExpectedPriceResponse
+  fields: 0
+  description: Schema for an individual FOEP response.
+- name: FeaturedOfferExpectedPriceResponseBody
+  fields: 3
+  description: The FOEP response data for a requested SKU.
+- name: FeaturedOfferExpectedPriceResult
+  fields: 4
+  description: The FOEP result data for the requested offer.
+- name: FeaturedOfferSegment
+  fields: 2
+  description: Describes the segment in which the offer is featured.
+- name: FeeComponent
+  fields: 2
+  description: A fee associated with the event.
+- name: FeeDetail
+  fields: 6
+  description: The type of fee, fee amount, and other details.
+- name: Feed
+  fields: 8
+  description: Detailed information about the feed.
+- name: FeesEstimate
+  fields: 3
+  description: The total estimated fees for an item and a list of details.
+- name: FeesEstimateIdentifier
+  fields: 8
+  description: An item identifier, marketplace, time of request, and other details that identify an estimate.
+- name: FeesEstimateRequest
+  fields: 5
+  description: A product, marketplace, and proposed price used to request estimated fees.
+- name: FeesEstimateResult
+  fields: 4
+  description: An item identifier and the estimated fees for the item.
+- name: FinancialEventGroup
+  fields: 11
+  description: Information related to a financial event group.
+- name: FreightInformation
+  fields: 2
+  description: Freight information describes the SKUs that are in transit. Freight carrier options and quotes will
+    only be returned if the freight information is provided.
+- name: FulfillmentOrder
+  fields: 16
+  description: General information about a fulfillment order, including its status.
+- name: FulfillmentOrderItem
+  fields: 14
+  description: Item information for a fulfillment order.
+- name: FulfillmentPreview
+  fields: 11
+  description: Information about a fulfillment order preview, including delivery and fee information based on shipping
+    method.
+- name: FulfillmentShipmentPackage
+  fields: 7
+  description: Package information for a shipment in a fulfillment order.
+- name: GenerateCollectionFormRequest
+  fields: 3
+  description: The request schema Call to generate the collection form.
+- name: GenerateShipmentContentUpdatePreviewsRequest
+  fields: 2
+  description: The `GenerateShipmentContentUpdatePreviews` request.
+- name: GenerateTransportationOptionsRequest
+  fields: 2
+  description: The `generateTransportationOptions` request.
+- name: GetAccessPointsResult
+  fields: 1
+  description: The payload for the GetAccessPoints API.
+- name: GetAccountResponse
+  fields: 2
+  description: The response schema for the `getAccount` operation.
+- name: GetCollectionFormHistoryRequest
+  fields: 5
+  description: The request schema to get query collections form history API .
+- name: GetDeliveryOffersProduct
+  fields: 2
+  description: The product details for the delivery offer.
+- name: GetDeliveryOffersRequest
+  fields: 2
+  description: The request body schema for the `getDeliveryOffers` operation.
+- name: GetDeliveryOffersResponse
+  fields: 2
+  description: The response schema for the `getDeliveryOffers` operation.
+- name: GetDeliveryOffersTerms
+  fields: 2
+  description: The delivery terms for the delivery offer.
+- name: GetDestinationResponse
+  fields: 2
+  description: The response schema for the `getDestination` operation.
+- name: GetFeatureInventoryResponse
+  fields: 2
+  description: The breakdown of eligibility inventory by feature.
+- name: GetFeatureInventoryResult
+  fields: 4
+  description: The payload for the `getEligibleInventory` operation.
+- name: GetFeatureSkuResponse
+  fields: 2
+  description: The response schema for the `getFeatureSKU` operation.
+- name: GetFeatureSkuResult
+  fields: 8
+  description: The payload for the `getFeatureSKU` operation.
+- name: GetFeaturesResponse
+  fields: 2
+  description: The response schema for the `getFeatures` operation.
+- name: GetFulfillmentOrderResponse
+  fields: 2
+  description: The response schema for the `getFulfillmentOrder` operation.
+- name: GetFulfillmentOrderResult
+  fields: 6
+  description: The request for the `getFulfillmentOrder` operation.
+- name: GetFulfillmentPreviewRequest
+  fields: 7
+  description: The request body schema for the `getFulfillmentPreview` operation.
+- name: GetFulfillmentPreviewResponse
+  fields: 2
+  description: The response schema for the `getFulfillmentPreview` operation.
+- name: GetInventorySummariesResponse
+  fields: 3
+  description: The Response schema.
+- name: GetInventorySummariesResult
+  fields: 2
+  description: The payload schema for the getInventorySummaries operation.
+- name: GetMyFeesEstimateResponse
+  fields: 2
+  description: The response object for the GetMyFeesEstimate operation.
+- name: GetMyFeesEstimateResult
+  fields: 1
+  description: Response schema.
+- name: GetOffersResponse
+  fields: 2
+  description: The response schema for the `getListingOffers` and `getItemOffers` operations.
+- name: GetOffersResult
+  fields: 8
+  description: The payload for the getListingOffers and getItemOffers operations.
+- name: GetOrderAddressResponse
+  fields: 2
+  description: The response schema for the `getOrderAddress` operation.
+- name: GetOrderBuyerInfoResponse
+  fields: 2
+  description: The response schema for the `getOrderBuyerInfo` operation.
+- name: GetOrderItemsBuyerInfoResponse
+  fields: 2
+  description: The response schema for the `getOrderItemsBuyerInfo` operation.
+- name: GetOrderItemsResponse
+  fields: 2
+  description: The response schema for the `getOrderItems` operation.
+- name: GetOrderRegulatedInfoResponse
+  fields: 2
+  description: The response schema for the `getOrderRegulatedInfo` operation.
+- name: GetOrdersResponse
+  fields: 2
+  description: The response schema for the `getOrders` operation.
+- name: GetPackageTrackingDetailsResponse
+  fields: 2
+  description: The response schema for the `getPackageTrackingDetails` operation.
+- name: GetRatesRequest
+  fields: 13
+  description: The request schema for the getRates operation. When the channelType is Amazon, the shipTo address
+    is not required and will be ignored.
+- name: GetSelfShipAppointmentSlotsResponse
+  fields: 2
+  description: The `getSelfShipAppointmentSlots` response.
+- name: GetShipmentDocumentsResult
+  fields: 3
+  description: The payload for the getShipmentDocuments operation.
+- name: GetSubscriptionByIdResponse
+  fields: 2
+  description: The response schema for the `getSubscriptionById` operation.
+- name: GetSubscriptionResponse
+  fields: 2
+  description: The response schema for the `getSubscription` operation.
+- name: GetSubscriptionsResponse
+  fields: 2
+  description: The response schema for the `getSubscriptions` operation.
+- name: GetTrackingResult
+  fields: 5
+  description: The payload for the getTracking operation.
+- name: HourMinute
+  fields: 2
+  description: The time when the business opens or closes.
+- name: HttpHeaders
+  fields: 0
+  description: A mapping of additional HTTP headers to send or receive for an individual request within a batch.
+- name: HttpStatusLine
+  fields: 2
+  description: The HTTP status line associated with the response for an individual request within a batch. For more
+    information, refer to [RFC 2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html).
+- name: IdentifierType
+  fields: 2
+  description: Specifies the identifiers used to uniquely identify an item.
+- name: InboundPlan
+  fields: 10
+  description: Inbound plan containing details of the inbound workflow.
+- name: InboundPlanSummary
+  fields: 7
+  description: A light-weight inbound plan.
+- name: Incentive
+  fields: 4
+  description: Contains details about cost related modifications to the placement cost.
+- name: IncludedFeeDetail
+  fields: 5
+  description: The type of fee, fee amount, and other details.
+- name: IneligibleRate
+  fields: 5
+  description: Detailed information for an ineligible shipping service offering.
+- name: InventoryDetails
+  fields: 7
+  description: Summarized inventory details. This object will not appear if the details parameter in the request
+    is false.
+- name: Issue
+  fields: 7
+  description: An issue with a listings item.
+- name: IssueEnforcements
+  fields: 2
+  description: Provides information about the enforcement actions taken by Amazon that affect the publishing or
+    status of a listing. It also includes details about any associated exemptions.
+- name: Item
+  fields: 11
+  description: An item in the Amazon catalog.
+- name: ItemBrowseClassification
+  fields: 3
+  description: Classification (browse node) for an Amazon catalog item.
+- name: ItemBrowseClassificationsByMarketplace
+  fields: 2
+  description: Classifications (browse nodes) that are associated with the item in the Amazon catalog for the indicated
+    `marketplaceId`.
+- name: ItemBuyerInfo
+  fields: 5
+  description: A single item's buyer information.
+- name: ItemCancellation
+  fields: 2
+  description: The cancellation information of the order item.
+- name: ItemCondition
+  fields: 3
+  description: Detailed information about the physical condition and quality state of the item being sold.
+- name: ItemContributor
+  fields: 2
+  description: Individual contributor to the creation of an item, such as an author or actor.
+- name: ItemDimensionsByMarketplace
+  fields: 3
+  description: Dimensions that are associated with the item in the Amazon catalog for the indicated `marketplaceId`.
+- name: ItemExpense
+  fields: 1
+  description: The expense information related to this specific item.
+- name: ItemFulfillment
+  fields: 5
+  description: Information about how the order item should be processed, packed, and shipped to the customer.
+- name: ItemIdentifier
+  fields: 2
+  description: The identifier that is associated with the item in the Amazon catalog, such as a UPC or EAN identifier.
+- name: ItemIdentifiersByMarketplace
+  fields: 2
+  description: Identifiers that are associated with the item in the Amazon catalog, grouped by `marketplaceId`.
+- name: ItemImagesByMarketplace
+  fields: 2
+  description: Images for an item in the Amazon catalog, grouped by `marketplaceId`.
+- name: ItemInput
+  fields: 6
+  description: Defines an item's input parameters.
+- name: ItemOfferByMarketplace
+  fields: 5
+  description: Offer details for a listings item for the specified Amazon store.
+- name: ItemPacking
+  fields: 2
+  description: Information related to the packaging process for an order item.
+- name: ItemPicking
+  fields: 1
+  description: Information related to the warehouse picking process for an order item.
+- name: ItemPointsCost
+  fields: 1
+  description: Information about Amazon Points granted with the purchase of an item, including both quantity and
+    monetary equivalent value.
+- name: ItemPrice
+  fields: 2
+  description: Pricing information for the order item.
+- name: ItemProceeds
+  fields: 2
+  description: The money that the seller receives from the sale of this specific item.
+- name: ItemProceedsBreakdown
+  fields: 3
+  description: Detailed proceeds breakdown for a specific order item.
+- name: ItemProceedsDetailedBreakdown
+  fields: 2
+  description: Further granular breakdown of the subtotal of the proceeds breakdown, only available for TAX and
+    DISCOUNT proceeds types.
+- name: ItemProduct
+  fields: 7
+  description: Product information for an order item.
+- name: ItemPromotion
+  fields: 1
+  description: Details about any discounts, coupons, or promotional offers applied to this item.
+- name: ItemPromotionBreakdown
+  fields: 1
+  description: Detailed information about a specific promotional offer applied to an order item.
+- name: ItemRelationship
+  fields: 4
+  description: Relationship details for an Amazon catalog item.
+- name: ItemRelationshipsByMarketplace
+  fields: 2
+  description: Relationship details for the Amazon catalog item for the specified Amazon `marketplaceId`.
+- name: ItemSalesRanksByMarketplace
+  fields: 3
+  description: Sales ranks of an Amazon catalog item, grouped by `marketplaceId`.
+- name: ItemSearchResults
+  fields: 4
+  description: Items in the Amazon catalog and search-related metadata.
+- name: ItemShipping
+  fields: 3
+  description: Information related to the shipping and delivery process for an order item.
+- name: ItemSubstitutionOption
+  fields: 5
+  description: Alternative product that can be substituted for an original order item when it becomes unavailable
+    during fulfillment.
+- name: ItemSubstitutionPreference
+  fields: 2
+  description: Substitution preference for an order item when it becomes unavailable during fulfillment.
+- name: ItemSummaryByMarketplace
+  fields: 20
+  description: Information about an Amazon catalog item for the indicated `marketplaceId`.
+- name: ItemTax
+  fields: 2
+  description: Tax information for an order item.
+- name: ItemVendorDetailsByMarketplace
+  fields: 8
+  description: The vendor details that are associated with an Amazon catalog item for the specified `marketplaceId`.
+- name: ItemVendorDetailsCategory
+  fields: 2
+  description: The product category or subcategory that is associated with an Amazon catalog item.
+- name: ListAllFulfillmentOrdersResponse
+  fields: 2
+  description: The response schema for the `listAllFulfillmentOrders` operation.
+- name: ListAllFulfillmentOrdersResult
+  fields: 2
+  description: The request for the `listAllFulfillmentOrders` operation.
+- name: ListDeliveryWindowOptionsResponse
+  fields: 2
+  description: The `listDeliveryWindowOptions` response.
+- name: ListFinancialEventsPayload
+  fields: 2
+  description: The payload for the `listFinancialEvents` operation.
+- name: ListInboundPlanBoxesResponse
+  fields: 2
+  description: The `listInboundPlanBoxes` response.
+- name: ListInboundPlanItemsResponse
+  fields: 2
+  description: The `listInboundPlanItems` response.
+- name: ListInboundPlanPalletsResponse
+  fields: 2
+  description: The `listInboundPlanPallets` response.
+- name: ListInboundPlansResponse
+  fields: 2
+  description: The `listInboundPlans` response.
+- name: ListPackingGroupBoxesResponse
+  fields: 2
+  description: The `listPackingGroupBoxes` response.
+- name: ListPackingGroupItemsResponse
+  fields: 2
+  description: The `listPackingGroupItems` response.
+- name: ListPackingOptionsResponse
+  fields: 2
+  description: The `listPlacementOptions` response.
+- name: ListPlacementOptionsResponse
+  fields: 2
+  description: The `listPlacementOptions` response.
+- name: ListReturnReasonCodesResponse
+  fields: 2
+  description: The response schema for the `listReturnReasonCodes` operation.
+- name: ListShipmentBoxesResponse
+  fields: 2
+  description: The `listShipmentBoxes` response.
+- name: ListShipmentContentUpdatePreviewsResponse
+  fields: 2
+  description: The `ListShipmentContentUpdatePreviews` response.
+- name: ListShipmentItemsResponse
+  fields: 2
+  description: The `listShipmentItems` response.
+- name: ListShipmentPalletsResponse
+  fields: 2
+  description: The `listShipmentPallets` response.
+- name: ListTransportationOptionsResponse
+  fields: 2
+  description: The `listTransportationOptions` response.
+- name: Location
+  fields: 4
+  description: The location where the person, business or institution is located.
+- name: LowestPriceType
+  fields: 9
+  description: Schema for an individual lowest price.
+- name: LowestPricedOffer
+  fields: 2
+  description: Describes the lowest priced offers for the specified item condition and offer type.
+- name: LowestPricedOffersInput
+  fields: 2
+  description: The input required for building `LowestPricedOffers` data in the response.
+- name: Marketplace
+  fields: 6
+  description: Information about an Amazon marketplace where a seller can list items and customers can view and
+    purchase items.
+- name: MarketplaceDetails
+  fields: 2
+  description: Information about the marketplace where the transaction occurred.
+- name: MarketplaceParticipation
+  fields: 3
+- name: Measurement
+  fields: 2
+  description: Specifies the unit of measure and quantity for items that are sold by weight, volume, length, or
+    other measurements rather than simple count.
+- name: Money
+  fields: 2
+  description: An amount of money, including units in the form of currency.
+- name: MoneyType
+  fields: 2
+  description: An object representing a monetary value with its currency information.
+- name: MoneyType_2
+  fields: 2
+  description: Currency type and monetary value. Schema for demonstrating pricing info.
+- name: NetworkComminglingTransactionEvent
+  fields: 8
+  description: A network commingling transaction event.
+- name: Offer
+  fields: 9
+  description: The offer data of a product.
+- name: OfferDetail
+  fields: 16
+  description: Schema for an individual offer. Object in `OfferDetailList`.
+- name: OfferIdentifier
+  fields: 5
+  description: Identifies an offer from a particular seller for a specified ASIN.
+- name: OfferType
+  fields: 9
+  description: Schema for an individual offer.
+- name: OneClickShipmentRequest
+  fields: 13
+  description: The request schema for the OneClickShipment operation. When the channelType is not Amazon, shipTo
+    is required and when channelType is Amazon shipTo is ignored.
+- name: OneClickShipmentResult
+  fields: 6
+  description: The payload for the OneClickShipment API.
+- name: OpenInterval
+  fields: 2
+  description: The time interval for which the business is open.
+- name: OpenTimeInterval
+  fields: 2
+  description: The time when the business opens or closes.
+- name: OperatingHours
+  fields: 3
+  description: The hours in which the access point shall remain operational
+- name: Order
+  fields: 16
+  description: Comprehensive information about a customer order.
+- name: OrderAddress
+  fields: 4
+  description: The shipping address for the order.
+- name: OrderBuyerInfo
+  fields: 6
+  description: Buyer information for an order.
+- name: OrderFulfillment
+  fields: 6
+  description: Information about how the order is being processed, packed, and shipped to the customer.
+- name: OrderItem
+  fields: 12
+  description: Information about a single product within an order.
+- name: OrderItemBuyerInfo
+  fields: 6
+  description: A single order item's buyer information.
+- name: OrderMetricsInterval
+  fields: 6
+  description: Contains order metrics.
+- name: OrderPackage
+  fields: 9
+  description: Information about a physical shipping package, including tracking details. **Note:** Only available
+    for merchant-fulfilled (FBM) orders.
+- name: OrderPayment
+  fields: 1
+  description: Payment information about the order.
+- name: OrderProceeds
+  fields: 2
+  description: The money that the seller receives from the sale of the order.
+- name: OrderProceedsBreakdown
+  fields: 3
+  description: An entry detailing proceeds information.
+- name: OrderRegulatedInfo
+  fields: 4
+  description: The order's regulated information along with its verification status.
+- name: OrderTax
+  fields: 2
+  description: Tax information about the order.
+- name: OrderTaxRegistration
+  fields: 6
+  description: Tax registration information for an entity associated with the order.
+- name: Package
+  fields: 8
+  description: A package to be shipped through a shipping service offering.
+- name: PackageGroupingInput
+  fields: 3
+  description: Packing information for the inbound plan.
+- name: PackageItem
+  fields: 3
+  description: Individual order item contained within a shipping package.
+- name: PackageTrackingDetails
+  fields: 15
+  description: Tracking details of package
+- name: PackingConfiguration
+  fields: 3
+  description: A way to configure this packing option. Some box content information sources might not be allowed.
+    Non-standard minimum and maximum box weights might be enforced.
+- name: PackingOption
+  fields: 8
+  description: A packing option contains a set of pack groups plus additional information about the packing option,
+    such as any discounts or fees if it's selected.
+- name: PackingOptionSummary
+  fields: 2
+  description: Summary information about a packing option.
+- name: Pagination
+  fields: 2
+  description: Pagination occurs when a request produces a response that exceeds the `pageSize`. This means that
+    the response is divided into individual pages. To retrieve the next page or the previous page of resul
+- name: Pallet
+  fields: 5
+  description: Contains information about a pallet that is used in the inbound plan. The pallet is a container that
+    holds multiple items or boxes.
+- name: PalletInput
+  fields: 4
+  description: Contains input information about a pallet to be used in the inbound plan.
+- name: PartnerMetadata
+  fields: 3
+  description: Metadata that describes the seller.
+- name: PaymentExecution
+  fields: 5
+  description: Payment execution details for an order.
+- name: PlacementOption
+  fields: 6
+  description: Contains information pertaining to the placement of the contents of an inbound plan and the related
+    costs.
+- name: PlacementOptionSummary
+  fields: 2
+  description: Summary information about a placement option.
+- name: Points
+  fields: 2
+  description: The number of Amazon Points offered with the purchase of an item.The Amazon Points program is only
+    available in Japan.
+- name: PointsGranted
+  fields: 2
+  description: Information about Amazon Points awarded with an item purchase.
+- name: Points_2
+  fields: 2
+  description: The number of Amazon Points offered with the purchase of an item, and their monetary value.
+- name: PostalCode
+  fields: 2
+  description: Postal code value with country code
+- name: PreferredDeliveryTime
+  fields: 2
+  description: Customer-specified time preferences for when deliveries should be attempted at the destination address.
+- name: Price
+  fields: 3
+  description: The schema for item's price information, including listing price, shipping price, and Amazon Points.
+- name: PriceToEstimateFees
+  fields: 3
+  description: Price information for an item, used to estimate fees.
+- name: PriceType
+  fields: 4
+  description: Schema for item's price information, including listing price, shipping price, and Amazon points.
+- name: PrimaryContact
+  fields: 3
+  description: Information about the seller's primary contact.
+- name: ProcessingDirective
+  fields: 2
+  description: Additional information passed to the subscription to control the processing of notifications. For
+    example, you can use an `eventFilter` to customize your subscription to send notifications for only th
+- name: Product
+  fields: 6
+  description: An item.
+- name: ProductAdsPaymentEvent
+  fields: 6
+  description: A Sponsored Products payment event.
+- name: ProductType
+  fields: 3
+  description: An Amazon product type with a definition available.
+- name: ProductTypeDefinition
+  fields: 10
+  description: A product type definition represents the attributes and data requirements for a product type in the
+    Amazon catalog. Product type definitions are used interchangeably between the Selling Partner API fo
+- name: Promise
+  fields: 2
+  description: The time windows promised for pickup and delivery events.
+- name: Promotion
+  fields: 3
+  description: A promotion applied to an item.
+- name: PromotionDiscount
+  fields: 3
+  description: Discount details applied by the promotion.
+- name: PromotionSavings
+  fields: 2
+  description: Details about the savings applied by the promotion.
+- name: PurchaseCondition
+  fields: 2
+  description: Specifies minimum purchase requirements using quantity-based or amount-based conditions for basket
+    building promotions. Used in purchase requirements to specify conditions within those configurations.
+- name: PurchaseShipmentRequest
+  fields: 5
+  description: The request schema for the purchaseShipment operation.
+- name: PurchaseShipmentResult
+  fields: 4
+  description: The payload for the purchaseShipment operation.
+- name: QuantityDiscountPriceType
+  fields: 3
+  description: Contains pricing information that includes special pricing when buying in bulk.
+- name: Quote
+  fields: 3
+  description: The estimated shipping cost associated with the transportation option.
+- name: Rate
+  fields: 14
+  description: The details of a shipping service offering.
+- name: Reason
+  fields: 3
+  description: A reason for the restriction, including path forward links that may allow Selling Partners to remove
+    the restriction, if available.
+- name: Recipient
+  fields: 2
+  description: Information about the recipient to whom the order should be delivered.
+- name: ReferencePrice
+  fields: 2
+  description: The reference price for the specified ASIN `marketplaceId` combination.
+- name: Refinements
+  fields: 2
+  description: Optional fields that you can use to refine your search results.
+- name: RegulatedInformation
+  fields: 1
+  description: The regulated information collected during purchase and used to verify the order.
+- name: RegulatedOrderVerificationStatus
+  fields: 8
+  description: The verification status of the order, along with associated approval or rejection metadata.
+- name: RejectionReason
+  fields: 2
+  description: The reason for rejecting the order's regulated information. This is only present if the order is
+    rejected.
+- name: RemovalShipmentAdjustmentEvent
+  fields: 6
+  description: 'A financial adjustment event for FBA liquidated inventory. A positive value indicates money owed
+    to Amazon by the buyer (for example, when the charge was incorrectly calculated as less than it should '
+- name: RemovalShipmentItem
+  fields: 8
+  description: Item-level information for a removal shipment.
+- name: RemovalShipmentItemAdjustment
+  fields: 7
+  description: Item-level information for a removal shipment item adjustment.
+- name: RentalTransactionEvent
+  fields: 10
+  description: An event related to a rental transaction.
+- name: Report
+  fields: 11
+  description: Detailed information about the report.
+- name: ReportOptions
+  fields: 0
+  description: Additional information passed to reports. This varies by report type.
+- name: ReportSchedule
+  fields: 6
+  description: Detailed information about a report schedule.
+- name: RequestedDocumentSpecification
+  fields: 7
+  description: The document specifications requested. For calls to the purchaseShipment operation, the shipment
+    purchase fails if the specified document specifications are not among those returned in the response to
+- name: RequestedUpdates
+  fields: 2
+  description: Objects that were included in the update request.
+- name: ResearchingQuantity
+  fields: 2
+  description: The number of misplaced or warehouse damaged units that are actively being confirmed at our fulfillment
+    centers.
+- name: Restriction
+  fields: 3
+  description: A listing restriction, optionally qualified by a condition, with a list of reasons for the restriction.
+- name: RetrochargeEvent
+  fields: 7
+  description: A retrocharge or retrocharge reversal.
+- name: ReturnAuthorization
+  fields: 5
+  description: Return authorization information for items accepted for return.
+- name: SalesChannel
+  fields: 3
+  description: Information about where the customer placed this order.
+- name: SampleLocation
+  fields: 1
+  description: Information about a location. It uses a postal code to identify the location.
+- name: SchemaLink
+  fields: 2
+  description: A link to metadata schema.
+- name: SearchOrdersResponse
+  fields: 4
+  description: A list of orders.
+- name: Segment
+  fields: 1
+  description: Input segment for featured offer expected price. The segment contains the location information for
+    which featured offer expected price is requested.
+- name: SegmentDetails
+  fields: 2
+  description: The details about the segment. The FeaturedOfferExpectedPrice API uses only the sampleLocation portion
+    as input.
+- name: SegmentedFeaturedOffer
+  fields: 0
+  description: A product offer with segment information indicating where it's featured.
+- name: SelectedDeliveryWindow
+  fields: 5
+  description: Selected delivery window attributes.
+- name: SelfShipAppointmentDetails
+  fields: 3
+  description: Appointment details for carrier pickup or fulfillment center appointments.
+- name: SelfShipAppointmentSlotsAvailability
+  fields: 2
+  description: The self ship appointment time slots availability and an expiration date for which the slots can
+    be scheduled.
+- name: SellerDealPaymentEvent
+  fields: 8
+  description: An event linked to the payment of a fee related to the specified deal.
+- name: SellerReviewEnrollmentPaymentEvent
+  fields: 6
+  description: A fee payment event for the Early Reviewer Program.
+- name: SellerSKUIdentifier
+  fields: 3
+  description: Schema to identify an item by MarketPlaceId, SellerId, and SellerSKU.
+- name: SellingPartnerMetadata
+  fields: 3
+  description: Metadata that describes the seller.
+- name: SendTestNotificationRequest
+  fields: 2
+  description: The request schema for the `sendTestNotification` operation.
+- name: Service
+  fields: 2
+  description: Service Related Info
+- name: ServiceSelection
+  fields: 1
+  description: Service Selection Criteria.
+- name: SetPrepDetailsRequest
+  fields: 2
+  description: The `setPrepDetails` request.
+- name: Shipment
+  fields: 15
+  description: Contains information pertaining to a shipment in an inbound plan.
+- name: ShipmentDestination
+  fields: 3
+  description: The Amazon fulfillment center address and warehouse ID.
+- name: ShipmentItem
+  fields: 13
+  description: An item of a shipment, refund, guarantee claim, or chargeback.
+- name: ShipmentSource
+  fields: 2
+  description: Specifies the 'ship from' address for the shipment.
+- name: ShipmentSummary
+  fields: 2
+  description: Summary information about a shipment.
+- name: ShipmentTransportationConfiguration
+  fields: 5
+  description: Details needed to generate the transportation options.
+- name: ShipperInstruction
+  fields: 1
+  description: The shipper instruction.
+- name: ShippingOption
+  fields: 2
+  description: The shipping option available for the offer.
+- name: SimilarItems
+  fields: 1
+  description: The summary of similar items for the specified ASIN `marketplaceId` combination.
+- name: SolutionProviderCreditEvent
+  fields: 10
+  description: A credit given to a solution provider.
+- name: SpdTrackingDetail
+  fields: 1
+  description: Contains information related to Small Parcel Delivery (SPD) shipment tracking.
+- name: SpdTrackingDetailInput
+  fields: 1
+  description: Contains input information to update Small Parcel Delivery (SPD) tracking information.
+- name: SpdTrackingItem
+  fields: 3
+  description: Contains information used to track and identify a Small Parcel Delivery (SPD) item.
+- name: SpdTrackingItemInput
+  fields: 2
+  description: Small Parcel Delivery (SPD) tracking items input information.
+- name: SqsResource
+  fields: 1
+  description: The information required to create an Amazon Simple Queue Service (Amazon SQS) queue destination.
+- name: Subscription
+  fields: 4
+  description: Information about the subscription.
+- name: Summary
+  fields: 6
+  description: Contains all information related to the financial summary.
+- name: TaxClassification
+  fields: 2
+  description: The tax classification of the order.
+- name: TaxDetails
+  fields: 3
+  description: Information used to determine the tax compliance.
+- name: TaxWithholdingEvent
+  fields: 4
+  description: A tax withholding event on a seller's account.
+- name: TimeOfDay
+  fields: 3
+  description: Denotes time of the day, used for defining opening or closing time of access points
+- name: TimeWindow
+  fields: 2
+  description: Specific time interval defining the start and end times.
+- name: TrackingAddress
+  fields: 3
+  description: Address information for tracking the package.
+- name: TrackingDetails
+  fields: 2
+  description: Tracking information for Less-Than-Truckload (LTL) and Small Parcel Delivery (SPD) shipments.
+- name: TrackingDetailsInput
+  fields: 2
+  description: Tracking information input for Less-Than-Truckload (LTL) and Small Parcel Delivery (SPD) shipments.
+- name: TrackingSummary
+  fields: 2
+  description: A package status summary.
+- name: Transaction
+  fields: 12
+  description: All the information related to a transaction.
+- name: TransportationOption
+  fields: 8
+  description: Contains information pertaining to a transportation option and the related carrier.
+- name: TransportationSelection
+  fields: 3
+  description: The transportation option selected to confirm.
+- name: UpdateFulfillmentOrderItem
+  fields: 10
+  description: Item information for updating a fulfillment order.
+- name: UpdateFulfillmentOrderRequest
+  fields: 12
+  description: The request body schema for the `updateFulfillmentOrder` operation.
+- name: UpdateVerificationStatusRequestBody
+  fields: 4
+  description: The updated values of the `VerificationStatus` field.
+- name: ValueAddedService
+  fields: 3
+  description: A value-added service available for purchase with a shipment service offering.
+- name: ValueAddedServiceDetails
+  fields: 1
+  description: A collection of supported value-added services.
+- name: VerificationDetails
+  fields: 3
+  description: Additional information related to the verification of a regulated order.
+- name: Weight
+  fields: 2
+  description: The weight of a package.
+relationships:
+- from: Dimensions
+  to: Dimension
+  type: has_one
+  via: height
+- from: Dimensions
+  to: Dimension
+  type: has_one
+  via: length
+- from: Dimensions
+  to: Dimension
+  type: has_one
+  via: weight
+- from: Dimensions
+  to: Dimension
+  type: has_one
+  via: width
+- from: ItemDimensionsByMarketplace
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: ItemDimensionsByMarketplace
+  to: Dimensions
+  type: has_one
+  via: item
+- from: ItemDimensionsByMarketplace
+  to: Dimensions
+  type: has_one
+  via: package
+- from: ItemSearchResults
+  to: Pagination
+  type: has_one
+  via: pagination
+- from: ItemSearchResults
+  to: Refinements
+  type: has_one
+  via: refinements
+- from: ItemSearchResults
+  to: Item
+  type: has_many
+  via: items
+- from: ItemSummaryByMarketplace
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: ItemSummaryByMarketplace
+  to: ItemBrowseClassification
+  type: has_one
+  via: browseClassification
+- from: ItemSummaryByMarketplace
+  to: ItemContributor
+  type: has_many
+  via: contributors
+- from: ItemBrowseClassificationsByMarketplace
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: ItemBrowseClassificationsByMarketplace
+  to: ItemBrowseClassification
+  type: has_many
+  via: classifications
+- from: ErrorList
+  to: Error
+  type: has_many
+  via: errors
+- from: ItemSalesRanksByMarketplace
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: ItemImagesByMarketplace
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: ItemVendorDetailsByMarketplace
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: ItemVendorDetailsByMarketplace
+  to: ItemVendorDetailsCategory
+  type: has_one
+  via: productCategory
+- from: ItemVendorDetailsByMarketplace
+  to: ItemVendorDetailsCategory
+  type: has_one
+  via: productSubcategory
+- from: ItemRelationshipsByMarketplace
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: ItemRelationshipsByMarketplace
+  to: ItemRelationship
+  type: has_many
+  via: relationships
+- from: ItemIdentifiersByMarketplace
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: ItemIdentifiersByMarketplace
+  to: ItemIdentifier
+  type: has_many
+  via: identifiers
+- from: Refinements
+  to: BrandRefinement
+  type: has_many
+  via: brands
+- from: Refinements
+  to: ClassificationRefinement
+  type: has_many
+  via: classifications
+- from: ProductTypeDefinition
+  to: SchemaLink
+  type: has_one
+  via: metaSchema
+- from: ProductTypeDefinition
+  to: SchemaLink
+  type: has_one
+  via: schema
+- from: ProductTypeDefinition
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceIds
+- from: ProductType
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceIds
+- from: ListInboundPlanBoxesResponse
+  to: Box
+  type: has_many
+  via: boxes
+- from: ListInboundPlanBoxesResponse
+  to: Pagination
+  type: has_one
+  via: pagination
+- from: PlacementOptionSummary
+  to: PlacementOption
+  type: belongs_to
+  via: placementOptionId
+- from: ListInboundPlanPalletsResponse
+  to: Pagination
+  type: has_one
+  via: pagination
+- from: ListInboundPlanPalletsResponse
+  to: Pallet
+  type: has_many
+  via: pallets
+- from: TrackingDetailsInput
+  to: SpdTrackingDetailInput
+  type: has_one
+  via: spdTrackingDetail
+- from: SelectedDeliveryWindow
+  to: DeliveryWindowOption
+  type: belongs_to
+  via: deliveryWindowOptionId
+- from: BoxInput
+  to: Dimensions
+  type: has_one
+  via: dimensions
+- from: BoxInput
+  to: ItemInput
+  type: has_many
+  via: items
+- from: BoxInput
+  to: Weight
+  type: has_one
+  via: weight
+- from: ComplianceDetail
+  to: TaxDetails
+  type: has_one
+  via: taxDetails
+- from: TaxDetails
+  to: Currency
+  type: has_one
+  via: declaredValue
+- from: Shipment
+  to: ContactInformation
+  type: has_one
+  via: contactInformation
+- from: Shipment
+  to: Dates
+  type: has_one
+  via: dates
+- from: Shipment
+  to: ShipmentDestination
+  type: has_one
+  via: destination
+- from: Shipment
+  to: FreightInformation
+  type: has_one
+  via: freightInformation
+- from: Shipment
+  to: PlacementOption
+  type: belongs_to
+  via: placementOptionId
+- from: Shipment
+  to: SelectedDeliveryWindow
+  type: has_one
+  via: selectedDeliveryWindow
+- from: Shipment
+  to: SelfShipAppointmentDetails
+  type: has_many
+  via: selfShipAppointmentDetails
+- from: Shipment
+  to: ShipmentSource
+  type: has_one
+  via: source
+- from: Shipment
+  to: TrackingDetails
+  type: has_one
+  via: trackingDetails
+- from: GenerateTransportationOptionsRequest
+  to: PlacementOption
+  type: belongs_to
+  via: placementOptionId
+- from: GenerateTransportationOptionsRequest
+  to: ShipmentTransportationConfiguration
+  type: has_many
+  via: shipmentTransportationConfigurations
+- from: ConfirmTransportationOptionsRequest
+  to: TransportationSelection
+  type: has_many
+  via: transportationSelections
+- from: BoxUpdateInput
+  to: Dimensions
+  type: has_one
+  via: dimensions
+- from: BoxUpdateInput
+  to: ItemInput
+  type: has_many
+  via: items
+- from: BoxUpdateInput
+  to: Package
+  type: belongs_to
+  via: packageId
+- from: BoxUpdateInput
+  to: Weight
+  type: has_one
+  via: weight
+- from: Incentive
+  to: Currency
+  type: has_one
+  via: value
+- from: InboundPlanSummary
+  to: InboundPlan
+  type: belongs_to
+  via: inboundPlanId
+- from: InboundPlanSummary
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceIds
+- from: InboundPlanSummary
+  to: Address
+  type: has_one
+  via: sourceAddress
+- from: ListPackingOptionsResponse
+  to: PackingOption
+  type: has_many
+  via: packingOptions
+- from: ListPackingOptionsResponse
+  to: Pagination
+  type: has_one
+  via: pagination
+- from: FreightInformation
+  to: Currency
+  type: has_one
+  via: declaredValue
+- from: SetPrepDetailsRequest
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: PalletInput
+  to: Dimensions
+  type: has_one
+  via: dimensions
+- from: PalletInput
+  to: Weight
+  type: has_one
+  via: weight
+- from: Pallet
+  to: Dimensions
+  type: has_one
+  via: dimensions
+- from: Pallet
+  to: Package
+  type: belongs_to
+  via: packageId
+- from: Pallet
+  to: Weight
+  type: has_one
+  via: weight
+- from: PackingConfiguration
+  to: BoxRequirements
+  type: has_one
+  via: boxRequirements
+- from: ListInboundPlanItemsResponse
+  to: Item
+  type: has_many
+  via: items
+- from: ListInboundPlanItemsResponse
+  to: Pagination
+  type: has_one
+  via: pagination
+- from: ContentUpdatePreview
+  to: RequestedUpdates
+  type: has_one
+  via: requestedUpdates
+- from: ContentUpdatePreview
+  to: TransportationOption
+  type: has_one
+  via: transportationOption
+- from: ShipmentTransportationConfiguration
+  to: ContactInformation
+  type: has_one
+  via: contactInformation
+- from: ShipmentTransportationConfiguration
+  to: FreightInformation
+  type: has_one
+  via: freightInformation
+- from: ShipmentTransportationConfiguration
+  to: PalletInput
+  type: has_many
+  via: pallets
+- from: ShipmentTransportationConfiguration
+  to: Shipment
+  type: belongs_to
+  via: shipmentId
+- from: ListShipmentBoxesResponse
+  to: Box
+  type: has_many
+  via: boxes
+- from: ListShipmentBoxesResponse
+  to: Pagination
+  type: has_one
+  via: pagination
+- from: ListPackingGroupBoxesResponse
+  to: Box
+  type: has_many
+  via: boxes
+- from: ListPackingGroupBoxesResponse
+  to: Pagination
+  type: has_one
+  via: pagination
+- from: SpdTrackingItem
+  to: Box
+  type: belongs_to
+  via: boxId
+- from: PackingOptionSummary
+  to: PackingOption
+  type: belongs_to
+  via: packingOptionId
+- from: ShipmentSummary
+  to: Shipment
+  type: belongs_to
+  via: shipmentId
+- from: Quote
+  to: Currency
+  type: has_one
+  via: cost
+- from: CreateInboundPlanRequest
+  to: ItemInput
+  type: has_many
+  via: items
+- from: CreateInboundPlanRequest
+  to: AddressInput
+  type: has_one
+  via: sourceAddress
+- from: TransportationSelection
+  to: ContactInformation
+  type: has_one
+  via: contactInformation
+- from: TransportationSelection
+  to: Shipment
+  type: belongs_to
+  via: shipmentId
+- from: TransportationSelection
+  to: TransportationOption
+  type: belongs_to
+  via: transportationOptionId
+- from: ShipmentDestination
+  to: Address
+  type: has_one
+  via: address
+- from: PackageGroupingInput
+  to: BoxInput
+  type: has_many
+  via: boxes
+- from: PackageGroupingInput
+  to: Shipment
+  type: belongs_to
+  via: shipmentId
+- from: ListPlacementOptionsResponse
+  to: Pagination
+  type: has_one
+  via: pagination
+- from: ListPlacementOptionsResponse
+  to: PlacementOption
+  type: has_many
+  via: placementOptions
+- from: ListDeliveryWindowOptionsResponse
+  to: DeliveryWindowOption
+  type: has_many
+  via: deliveryWindowOptions
+- from: ListDeliveryWindowOptionsResponse
+  to: Pagination
+  type: has_one
+  via: pagination
+- from: SelfShipAppointmentSlotsAvailability
+  to: AppointmentSlot
+  type: has_many
+  via: slots
+- from: GetSelfShipAppointmentSlotsResponse
+  to: Pagination
+  type: has_one
+  via: pagination
+- from: GetSelfShipAppointmentSlotsResponse
+  to: SelfShipAppointmentSlotsAvailability
+  type: has_one
+  via: selfShipAppointmentSlotsAvailability
+- from: SpdTrackingDetailInput
+  to: SpdTrackingItemInput
+  type: has_many
+  via: spdTrackingItems
+- from: CustomPlacementInput
+  to: ItemInput
+  type: has_many
+  via: items
+- from: InboundPlan
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceIds
+- from: InboundPlan
+  to: PackingOptionSummary
+  type: has_many
+  via: packingOptions
+- from: InboundPlan
+  to: PlacementOptionSummary
+  type: has_many
+  via: placementOptions
+- from: InboundPlan
+  to: ShipmentSummary
+  type: has_many
+  via: shipments
+- from: InboundPlan
+  to: Address
+  type: has_one
+  via: sourceAddress
+- from: PlacementOption
+  to: Incentive
+  type: has_many
+  via: discounts
+- from: PlacementOption
+  to: Incentive
+  type: has_many
+  via: fees
+- from: PlacementOption
+  to: Shipment
+  type: belongs_to
+  via: shipmentIds
+- from: GenerateShipmentContentUpdatePreviewsRequest
+  to: BoxUpdateInput
+  type: has_many
+  via: boxes
+- from: GenerateShipmentContentUpdatePreviewsRequest
+  to: ItemInput
+  type: has_many
+  via: items
+- from: ListShipmentItemsResponse
+  to: Item
+  type: has_many
+  via: items
+- from: ListShipmentItemsResponse
+  to: Pagination
+  type: has_one
+  via: pagination
+- from: ListPackingGroupItemsResponse
+  to: Item
+  type: has_many
+  via: items
+- from: ListPackingGroupItemsResponse
+  to: Pagination
+  type: has_one
+  via: pagination
+- from: SelfShipAppointmentDetails
+  to: AppointmentSlotTime
+  type: has_one
+  via: appointmentSlotTime
+- from: TransportationOption
+  to: Carrier
+  type: has_one
+  via: carrier
+- from: TransportationOption
+  to: CarrierAppointment
+  type: has_one
+  via: carrierAppointment
+- from: TransportationOption
+  to: Quote
+  type: has_one
+  via: quote
+- from: TransportationOption
+  to: Shipment
+  type: belongs_to
+  via: shipmentId
+- from: SpdTrackingItemInput
+  to: Box
+  type: belongs_to
+  via: boxId
+- from: RequestedUpdates
+  to: BoxUpdateInput
+  type: has_many
+  via: boxes
+- from: RequestedUpdates
+  to: ItemInput
+  type: has_many
+  via: items
+- from: CreateMarketplaceItemLabelsRequest
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: ListShipmentPalletsResponse
+  to: Pagination
+  type: has_one
+  via: pagination
+- from: ListShipmentPalletsResponse
+  to: Pallet
+  type: has_many
+  via: pallets
+- from: ListInboundPlansResponse
+  to: InboundPlanSummary
+  type: has_many
+  via: inboundPlans
+- from: ListInboundPlansResponse
+  to: Pagination
+  type: has_one
+  via: pagination
+- from: ShipmentSource
+  to: Address
+  type: has_one
+  via: address
+- from: TrackingDetails
+  to: SpdTrackingDetail
+  type: has_one
+  via: spdTrackingDetail
+- from: ListShipmentContentUpdatePreviewsResponse
+  to: ContentUpdatePreview
+  type: has_many
+  via: contentUpdatePreviews
+- from: ListShipmentContentUpdatePreviewsResponse
+  to: Pagination
+  type: has_one
+  via: pagination
+- from: SpdTrackingDetail
+  to: SpdTrackingItem
+  type: has_many
+  via: spdTrackingItems
+- from: PackingOption
+  to: Incentive
+  type: has_many
+  via: discounts
+- from: PackingOption
+  to: Incentive
+  type: has_many
+  via: fees
+- from: PackingOption
+  to: PackingConfiguration
+  type: has_many
+  via: supportedConfigurations
+- from: ListTransportationOptionsResponse
+  to: Pagination
+  type: has_one
+  via: pagination
+- from: ListTransportationOptionsResponse
+  to: TransportationOption
+  type: has_many
+  via: transportationOptions
+- from: Box
+  to: Dimensions
+  type: has_one
+  via: dimensions
+- from: Box
+  to: Item
+  type: has_many
+  via: items
+- from: Box
+  to: Package
+  type: belongs_to
+  via: packageId
+- from: Box
+  to: Weight
+  type: has_one
+  via: weight
+- from: DeliveryWindowOption
+  to: Incentive
+  type: has_many
+  via: discounts
+- from: AppointmentSlot
+  to: AppointmentSlotTime
+  type: has_one
+  via: slotTime
+- from: AddInventoryResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: InventoryDetails
+  to: ResearchingQuantity
+  type: has_one
+  via: researchingQuantity
+- from: GetInventorySummariesResponse
+  to: GetInventorySummariesResult
+  type: has_one
+  via: payload
+- from: GetInventorySummariesResponse
+  to: Pagination
+  type: has_one
+  via: pagination
+- from: GetInventorySummariesResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: ListReturnReasonCodesResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: ListAllFulfillmentOrdersResponse
+  to: ListAllFulfillmentOrdersResult
+  type: has_one
+  via: payload
+- from: ListAllFulfillmentOrdersResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: GetDeliveryOffersProduct
+  to: Amount
+  type: has_one
+  via: amount
+- from: GetPackageTrackingDetailsResponse
+  to: PackageTrackingDetails
+  type: has_one
+  via: payload
+- from: GetPackageTrackingDetailsResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: GetFulfillmentOrderResponse
+  to: GetFulfillmentOrderResult
+  type: has_one
+  via: payload
+- from: GetFulfillmentOrderResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: FulfillmentOrderItem
+  to: Money
+  type: has_one
+  via: perUnitPrice
+- from: FulfillmentOrderItem
+  to: Money
+  type: has_one
+  via: perUnitTax
+- from: FulfillmentOrderItem
+  to: Money
+  type: has_one
+  via: perUnitDeclaredValue
+- from: GetFeaturesResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: UpdateFulfillmentOrderItem
+  to: Money
+  type: has_one
+  via: perUnitDeclaredValue
+- from: UpdateFulfillmentOrderItem
+  to: Money
+  type: has_one
+  via: perUnitPrice
+- from: UpdateFulfillmentOrderItem
+  to: Money
+  type: has_one
+  via: perUnitTax
+- from: ListAllFulfillmentOrdersResult
+  to: FulfillmentOrder
+  type: has_many
+  via: fulfillmentOrders
+- from: GetFeatureSkuResponse
+  to: GetFeatureSkuResult
+  type: has_one
+  via: payload
+- from: GetFeatureSkuResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: GetDeliveryOffersResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: GetFulfillmentPreviewResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: GetDeliveryOffersTerms
+  to: Destination
+  type: has_one
+  via: destination
+- from: FulfillmentOrder
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: FulfillmentOrder
+  to: DeliveryWindow
+  type: has_one
+  via: deliveryWindow
+- from: FulfillmentOrder
+  to: Address
+  type: has_one
+  via: destinationAddress
+- from: FulfillmentOrder
+  to: CODSettings
+  type: has_one
+  via: codSettings
+- from: FulfillmentOrder
+  to: FeatureSettings
+  type: has_many
+  via: featureConstraints
+- from: GetFulfillmentOrderResult
+  to: FulfillmentOrder
+  type: has_one
+  via: fulfillmentOrder
+- from: FulfillmentPreview
+  to: Weight
+  type: has_one
+  via: estimatedShippingWeight
+- from: FulfillmentPreview
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: FulfillmentPreview
+  to: FeatureSettings
+  type: has_many
+  via: featureConstraints
+- from: PackageTrackingDetails
+  to: TrackingAddress
+  type: has_one
+  via: shipToAddress
+- from: PackageTrackingDetails
+  to: DateRange
+  type: has_one
+  via: deliveryWindow
+- from: CreateFulfillmentOrderItem
+  to: Money
+  type: has_one
+  via: perUnitDeclaredValue
+- from: CreateFulfillmentOrderItem
+  to: Money
+  type: has_one
+  via: perUnitPrice
+- from: CreateFulfillmentOrderItem
+  to: Money
+  type: has_one
+  via: perUnitTax
+- from: GetFeatureInventoryResult
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: CancelFulfillmentOrderResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: UpdateFulfillmentOrderRequest
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: UpdateFulfillmentOrderRequest
+  to: Address
+  type: has_one
+  via: destinationAddress
+- from: UpdateFulfillmentOrderRequest
+  to: FeatureSettings
+  type: has_many
+  via: featureConstraints
+- from: GetFeatureInventoryResponse
+  to: GetFeatureInventoryResult
+  type: has_one
+  via: payload
+- from: GetFeatureInventoryResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: CreateFulfillmentReturnResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: ReturnAuthorization
+  to: Address
+  type: has_one
+  via: returnToAddress
+- from: CODSettings
+  to: Money
+  type: has_one
+  via: codCharge
+- from: CODSettings
+  to: Money
+  type: has_one
+  via: codChargeTax
+- from: CODSettings
+  to: Money
+  type: has_one
+  via: shippingCharge
+- from: CODSettings
+  to: Money
+  type: has_one
+  via: shippingChargeTax
+- from: GetFulfillmentPreviewRequest
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: GetFulfillmentPreviewRequest
+  to: Address
+  type: has_one
+  via: address
+- from: GetFulfillmentPreviewRequest
+  to: FeatureSettings
+  type: has_many
+  via: featureConstraints
+- from: GetFeatureSkuResult
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: GetDeliveryOffersRequest
+  to: GetDeliveryOffersProduct
+  type: has_one
+  via: product
+- from: GetDeliveryOffersRequest
+  to: GetDeliveryOffersTerms
+  type: has_one
+  via: terms
+- from: DeliveryInformation
+  to: DropOffLocation
+  type: has_one
+  via: dropOffLocation
+- from: DeliveryOffer
+  to: DateRange
+  type: has_one
+  via: dateRange
+- from: DeliveryOffer
+  to: DeliveryPolicy
+  type: has_one
+  via: policy
+- from: FulfillmentShipmentPackage
+  to: DeliveryInformation
+  type: has_one
+  via: deliveryInformation
+- from: DeliveryPreferences
+  to: DropOffLocation
+  type: has_one
+  via: dropOffLocation
+- from: CreateFulfillmentOrderRequest
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: CreateFulfillmentOrderRequest
+  to: DeliveryWindow
+  type: has_one
+  via: deliveryWindow
+- from: CreateFulfillmentOrderRequest
+  to: Address
+  type: has_one
+  via: destinationAddress
+- from: CreateFulfillmentOrderRequest
+  to: DeliveryPreferences
+  type: has_one
+  via: deliveryPreferences
+- from: CreateFulfillmentOrderRequest
+  to: CODSettings
+  type: has_one
+  via: codSettings
+- from: CreateFulfillmentOrderRequest
+  to: FeatureSettings
+  type: has_many
+  via: featureConstraints
+- from: Feed
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceIds
+- from: CreateFeedSpecification
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceIds
+- from: FeeDetail
+  to: MoneyType
+  type: has_one
+  via: FeeAmount
+- from: FeeDetail
+  to: MoneyType
+  type: has_one
+  via: FeePromotion
+- from: FeeDetail
+  to: MoneyType
+  type: has_one
+  via: TaxAmount
+- from: FeeDetail
+  to: MoneyType
+  type: has_one
+  via: FinalFee
+- from: GetMyFeesEstimateResult
+  to: FeesEstimateResult
+  type: has_one
+  via: FeesEstimateResult
+- from: GetMyFeesEstimateResponse
+  to: GetMyFeesEstimateResult
+  type: has_one
+  via: payload
+- from: GetMyFeesEstimateResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: FeesEstimateRequest
+  to: Marketplace
+  type: belongs_to
+  via: MarketplaceId
+- from: FeesEstimateRequest
+  to: PriceToEstimateFees
+  type: has_one
+  via: PriceToEstimateFees
+- from: IncludedFeeDetail
+  to: MoneyType
+  type: has_one
+  via: FeeAmount
+- from: IncludedFeeDetail
+  to: MoneyType
+  type: has_one
+  via: FeePromotion
+- from: IncludedFeeDetail
+  to: MoneyType
+  type: has_one
+  via: TaxAmount
+- from: IncludedFeeDetail
+  to: MoneyType
+  type: has_one
+  via: FinalFee
+- from: PriceToEstimateFees
+  to: MoneyType
+  type: has_one
+  via: ListingPrice
+- from: PriceToEstimateFees
+  to: MoneyType
+  type: has_one
+  via: Shipping
+- from: PriceToEstimateFees
+  to: Points
+  type: has_one
+  via: Points
+- from: FeesEstimate
+  to: MoneyType
+  type: has_one
+  via: TotalFeesEstimate
+- from: Points
+  to: MoneyType
+  type: has_one
+  via: PointsMonetaryValue
+- from: FeesEstimateIdentifier
+  to: Marketplace
+  type: belongs_to
+  via: MarketplaceId
+- from: FeesEstimateIdentifier
+  to: PriceToEstimateFees
+  type: has_one
+  via: PriceToEstimateFees
+- from: FeesEstimateResult
+  to: FeesEstimateIdentifier
+  type: has_one
+  via: FeesEstimateIdentifier
+- from: FeesEstimateResult
+  to: FeesEstimate
+  type: has_one
+  via: FeesEstimate
+- from: MarketplaceDetails
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: Summary
+  to: PartnerMetadata
+  type: has_one
+  via: partnerMetadata
+- from: Summary
+  to: Currency
+  type: has_one
+  via: netProceeds
+- from: Breakdown
+  to: Currency
+  type: has_one
+  via: breakdownAmount
+- from: Transaction
+  to: SellingPartnerMetadata
+  type: has_one
+  via: sellingPartnerMetadata
+- from: Transaction
+  to: Currency
+  type: has_one
+  via: totalAmount
+- from: Transaction
+  to: MarketplaceDetails
+  type: has_one
+  via: marketplaceDetails
+- from: Transaction
+  to: Breakdown
+  type: has_many
+  via: breakdowns
+- from: PartnerMetadata
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: SellingPartnerMetadata
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: Balance
+  to: PartnerMetadata
+  type: has_one
+  via: partnerMetadata
+- from: Balance
+  to: Currency
+  type: has_one
+  via: amount
+- from: RemovalShipmentAdjustmentEvent
+  to: AdjustmentEvent
+  type: belongs_to
+  via: AdjustmentEventId
+- from: RemovalShipmentAdjustmentEvent
+  to: Order
+  type: belongs_to
+  via: OrderId
+- from: RemovalShipmentAdjustmentEvent
+  to: RemovalShipmentItemAdjustment
+  type: has_many
+  via: RemovalShipmentItemAdjustmentList
+- from: AdjustmentEvent
+  to: Currency_2
+  type: has_one
+  via: AdjustmentAmount
+- from: FeeComponent
+  to: Currency_2
+  type: has_one
+  via: FeeAmount
+- from: TaxWithholdingEvent
+  to: Currency_2
+  type: has_one
+  via: BaseAmount
+- from: TaxWithholdingEvent
+  to: Currency_2
+  type: has_one
+  via: WithheldAmount
+- from: ProductAdsPaymentEvent
+  to: Currency_2
+  type: has_one
+  via: baseValue
+- from: ProductAdsPaymentEvent
+  to: Currency_2
+  type: has_one
+  via: taxValue
+- from: ProductAdsPaymentEvent
+  to: Currency_2
+  type: has_one
+  via: transactionValue
+- from: NetworkComminglingTransactionEvent
+  to: Marketplace
+  type: belongs_to
+  via: MarketplaceId
+- from: NetworkComminglingTransactionEvent
+  to: Currency_2
+  type: has_one
+  via: TaxExclusiveAmount
+- from: NetworkComminglingTransactionEvent
+  to: Currency_2
+  type: has_one
+  via: TaxAmount
+- from: ChargeComponent
+  to: Currency_2
+  type: has_one
+  via: ChargeAmount
+- from: DebtRecoveryEvent
+  to: Currency_2
+  type: has_one
+  via: RecoveryAmount
+- from: DebtRecoveryEvent
+  to: Currency_2
+  type: has_one
+  via: OverPaymentCredit
+- from: SellerDealPaymentEvent
+  to: Currency_2
+  type: has_one
+  via: feeAmount
+- from: SellerDealPaymentEvent
+  to: Currency_2
+  type: has_one
+  via: taxAmount
+- from: SellerDealPaymentEvent
+  to: Currency_2
+  type: has_one
+  via: totalAmount
+- from: SellerReviewEnrollmentPaymentEvent
+  to: FeeComponent
+  type: has_one
+  via: FeeComponent
+- from: SellerReviewEnrollmentPaymentEvent
+  to: ChargeComponent
+  type: has_one
+  via: ChargeComponent
+- from: SellerReviewEnrollmentPaymentEvent
+  to: Currency_2
+  type: has_one
+  via: TotalAmount
+- from: RetrochargeEvent
+  to: Currency_2
+  type: has_one
+  via: BaseTax
+- from: RetrochargeEvent
+  to: Currency_2
+  type: has_one
+  via: ShippingTax
+- from: FBALiquidationEvent
+  to: Currency_2
+  type: has_one
+  via: LiquidationProceedsAmount
+- from: FBALiquidationEvent
+  to: Currency_2
+  type: has_one
+  via: LiquidationFeeAmount
+- from: RentalTransactionEvent
+  to: Currency_2
+  type: has_one
+  via: RentalInitialValue
+- from: RentalTransactionEvent
+  to: Currency_2
+  type: has_one
+  via: RentalReimbursement
+- from: ShipmentItem
+  to: OrderItem
+  type: belongs_to
+  via: OrderItemId
+- from: ShipmentItem
+  to: Currency_2
+  type: has_one
+  via: CostOfPointsGranted
+- from: ShipmentItem
+  to: Currency_2
+  type: has_one
+  via: CostOfPointsReturned
+- from: EBTRefundReimbursementOnlyEvent
+  to: Order
+  type: belongs_to
+  via: OrderId
+- from: EBTRefundReimbursementOnlyEvent
+  to: Currency_2
+  type: has_one
+  via: Amount
+- from: RemovalShipmentItem
+  to: Currency_2
+  type: has_one
+  via: Revenue
+- from: RemovalShipmentItem
+  to: Currency_2
+  type: has_one
+  via: FeeAmount
+- from: RemovalShipmentItem
+  to: Currency_2
+  type: has_one
+  via: TaxAmount
+- from: RemovalShipmentItem
+  to: Currency_2
+  type: has_one
+  via: TaxWithheld
+- from: ChargeRefundTransaction
+  to: Currency_2
+  type: has_one
+  via: ChargeAmount
+- from: RemovalShipmentItemAdjustment
+  to: RemovalShipmentItem
+  type: belongs_to
+  via: RemovalShipmentItemId
+- from: RemovalShipmentItemAdjustment
+  to: Currency_2
+  type: has_one
+  via: RevenueAdjustment
+- from: RemovalShipmentItemAdjustment
+  to: Currency_2
+  type: has_one
+  via: TaxAmountAdjustment
+- from: RemovalShipmentItemAdjustment
+  to: Currency_2
+  type: has_one
+  via: TaxWithheldAdjustment
+- from: AdjustmentItem
+  to: Currency_2
+  type: has_one
+  via: PerUnitAmount
+- from: AdjustmentItem
+  to: Currency_2
+  type: has_one
+  via: TotalAmount
+- from: FinancialEventGroup
+  to: Currency_2
+  type: has_one
+  via: OriginalTotal
+- from: FinancialEventGroup
+  to: Currency_2
+  type: has_one
+  via: ConvertedTotal
+- from: FinancialEventGroup
+  to: Currency_2
+  type: has_one
+  via: BeginningBalance
+- from: CouponPaymentEvent
+  to: FeeComponent
+  type: has_one
+  via: FeeComponent
+- from: CouponPaymentEvent
+  to: ChargeComponent
+  type: has_one
+  via: ChargeComponent
+- from: CouponPaymentEvent
+  to: Currency_2
+  type: has_one
+  via: TotalAmount
+- from: DebtRecoveryItem
+  to: Currency_2
+  type: has_one
+  via: RecoveryAmount
+- from: DebtRecoveryItem
+  to: Currency_2
+  type: has_one
+  via: OriginalAmount
+- from: CapacityReservationBillingEvent
+  to: Currency_2
+  type: has_one
+  via: TransactionAmount
+- from: SolutionProviderCreditEvent
+  to: Marketplace
+  type: belongs_to
+  via: MarketplaceId
+- from: SolutionProviderCreditEvent
+  to: Currency_2
+  type: has_one
+  via: TransactionAmount
+- from: AdhocDisbursementEvent
+  to: Transaction
+  type: belongs_to
+  via: TransactionId
+- from: AdhocDisbursementEvent
+  to: Currency_2
+  type: has_one
+  via: TransactionAmount
+- from: ChargeInstrument
+  to: Currency_2
+  type: has_one
+  via: Amount
+- from: Promotion
+  to: Currency_2
+  type: has_one
+  via: PromotionAmount
+- from: AffordabilityExpenseEvent
+  to: Marketplace
+  type: belongs_to
+  via: MarketplaceId
+- from: AffordabilityExpenseEvent
+  to: Currency_2
+  type: has_one
+  via: BaseExpense
+- from: AffordabilityExpenseEvent
+  to: Currency_2
+  type: has_one
+  via: TaxTypeCGST
+- from: AffordabilityExpenseEvent
+  to: Currency_2
+  type: has_one
+  via: TaxTypeSGST
+- from: AffordabilityExpenseEvent
+  to: Currency_2
+  type: has_one
+  via: TaxTypeIGST
+- from: AffordabilityExpenseEvent
+  to: Currency_2
+  type: has_one
+  via: TotalExpense
+- from: ExceptionDate
+  to: TimeWindow
+  type: has_many
+  via: timeWindows
+- from: BusinessHour
+  to: TimeWindow
+  type: has_many
+  via: timeWindows
+- from: ItemPromotionBreakdown
+  to: Promotion
+  type: belongs_to
+  via: promotionId
+- from: OrderProceeds
+  to: Money
+  type: has_one
+  via: grandTotal
+- from: OrderProceeds
+  to: OrderProceedsBreakdown
+  type: has_many
+  via: breakdowns
+- from: OrderProceedsBreakdown
+  to: Money
+  type: has_one
+  via: subtotal
+- from: Recipient
+  to: CustomerAddress
+  type: has_one
+  via: deliveryAddress
+- from: Recipient
+  to: DeliveryPreference
+  type: has_one
+  via: deliveryPreference
+- from: OrderPackage
+  to: PackageItem
+  type: has_many
+  via: packageItems
+- from: CustomerAddress
+  to: AddressExtendedFields
+  type: has_one
+  via: extendedFields
+- from: ItemProceedsBreakdown
+  to: Money
+  type: has_one
+  via: subtotal
+- from: ItemProceedsBreakdown
+  to: ItemProceedsDetailedBreakdown
+  type: has_many
+  via: detailedBreakdowns
+- from: ItemPrice
+  to: Money
+  type: has_one
+  via: unitPrice
+- from: ItemPicking
+  to: ItemSubstitutionPreference
+  type: has_one
+  via: substitutionPreference
+- from: ItemPointsCost
+  to: PointsGranted
+  type: has_one
+  via: pointsGranted
+- from: PointsGranted
+  to: Money
+  type: has_one
+  via: pointsMonetaryValue
+- from: PreferredDeliveryTime
+  to: BusinessHour
+  type: has_many
+  via: businessHours
+- from: PreferredDeliveryTime
+  to: ExceptionDate
+  type: has_many
+  via: exceptionDates
+- from: OrderPayment
+  to: PaymentExecution
+  type: has_many
+  via: paymentExecutions
+- from: PackageItem
+  to: OrderItem
+  type: belongs_to
+  via: orderItemId
+- from: ItemProduct
+  to: ItemCondition
+  type: has_one
+  via: condition
+- from: ItemProduct
+  to: ItemPrice
+  type: has_one
+  via: price
+- from: ItemSubstitutionPreference
+  to: ItemSubstitutionOption
+  type: has_many
+  via: substitutionOptions
+- from: ItemProceeds
+  to: Money
+  type: has_one
+  via: proceedsTotal
+- from: ItemProceeds
+  to: ItemProceedsBreakdown
+  type: has_many
+  via: breakdowns
+- from: OrderTaxRegistration
+  to: CustomerAddress
+  type: has_one
+  via: taxRegistrationAddress
+- from: OrderItem
+  to: Measurement
+  type: has_one
+  via: measurement
+- from: OrderItem
+  to: AssociatedOrderItem
+  type: has_many
+  via: associatedOrderItems
+- from: OrderItem
+  to: ItemProduct
+  type: has_one
+  via: product
+- from: OrderItem
+  to: ItemProceeds
+  type: has_one
+  via: proceeds
+- from: OrderItem
+  to: ItemExpense
+  type: has_one
+  via: expense
+- from: OrderItem
+  to: ItemPromotion
+  type: has_one
+  via: promotion
+- from: OrderItem
+  to: ItemCancellation
+  type: has_one
+  via: cancellation
+- from: OrderItem
+  to: ItemFulfillment
+  type: has_one
+  via: fulfillment
+- from: OrderItem
+  to: ItemTax
+  type: has_one
+  via: tax
+- from: ItemFulfillment
+  to: ItemPicking
+  type: has_one
+  via: picking
+- from: ItemFulfillment
+  to: ItemPacking
+  type: has_one
+  via: packing
+- from: ItemFulfillment
+  to: ItemShipping
+  type: has_one
+  via: shipping
+- from: TimeWindow
+  to: HourMinute
+  type: has_one
+  via: startTime
+- from: TimeWindow
+  to: HourMinute
+  type: has_one
+  via: endTime
+- from: ItemExpense
+  to: ItemPointsCost
+  type: has_one
+  via: pointsCost
+- from: ItemProceedsDetailedBreakdown
+  to: Money
+  type: has_one
+  via: value
+- from: ItemSubstitutionOption
+  to: Measurement
+  type: has_one
+  via: measurement
+- from: SalesChannel
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: OrderFulfillment
+  to: DateTimeRange
+  type: has_one
+  via: shipByWindow
+- from: OrderFulfillment
+  to: DateTimeRange
+  type: has_one
+  via: deliverByWindow
+- from: OrderFulfillment
+  to: DateTimeRange
+  type: has_one
+  via: labelPrintingWindow
+- from: AssociatedOrder
+  to: Order
+  type: belongs_to
+  via: orderId
+- from: DeliveryPreference
+  to: PreferredDeliveryTime
+  type: has_one
+  via: deliveryTime
+- from: Order
+  to: Alias
+  type: has_many
+  via: orderAliases
+- from: Order
+  to: AssociatedOrder
+  type: has_many
+  via: associatedOrders
+- from: Order
+  to: SalesChannel
+  type: has_one
+  via: salesChannel
+- from: Order
+  to: Buyer
+  type: has_one
+  via: buyer
+- from: Order
+  to: Recipient
+  type: has_one
+  via: recipient
+- from: Order
+  to: OrderProceeds
+  type: has_one
+  via: proceeds
+- from: Order
+  to: OrderPayment
+  type: has_one
+  via: payment
+- from: Order
+  to: OrderTax
+  type: has_one
+  via: tax
+- from: Order
+  to: OrderFulfillment
+  type: has_one
+  via: fulfillment
+- from: Order
+  to: OrderItem
+  type: has_many
+  via: orderItems
+- from: Order
+  to: OrderPackage
+  type: has_many
+  via: packages
+- from: Order
+  to: FulfillmentOrder
+  type: has_many
+  via: fulfillmentOrders
+- from: ItemShipping
+  to: DateTimeRange
+  type: has_one
+  via: scheduledDeliveryWindow
+- from: OrderTax
+  to: OrderTaxRegistration
+  type: has_many
+  via: taxRegistrations
+- from: PaymentExecution
+  to: Money
+  type: has_one
+  via: paymentAmount
+- from: ItemPromotion
+  to: ItemPromotionBreakdown
+  type: has_many
+  via: breakdowns
+- from: AssociatedOrderItem
+  to: Order
+  type: belongs_to
+  via: orderId
+- from: AssociatedOrderItem
+  to: OrderItem
+  type: belongs_to
+  via: orderItemId
+- from: Issue
+  to: IssueEnforcements
+  type: has_one
+  via: enforcements
+- from: Issue
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceIds
+- from: ItemOfferByMarketplace
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: ItemOfferByMarketplace
+  to: Money
+  type: has_one
+  via: price
+- from: ItemOfferByMarketplace
+  to: Points
+  type: has_one
+  via: points
+- from: ItemOfferByMarketplace
+  to: Audience
+  type: has_one
+  via: audience
+- from: Restriction
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: Restriction
+  to: Reason
+  type: has_many
+  via: reasons
+- from: GetDestinationResponse
+  to: Destination
+  type: has_one
+  via: payload
+- from: GetDestinationResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: GetSubscriptionsResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: CreateSubscriptionResponse
+  to: Subscription
+  type: has_one
+  via: payload
+- from: CreateSubscriptionResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: SendTestNotificationRequest
+  to: Destination
+  type: belongs_to
+  via: destinationId
+- from: DestinationResource
+  to: SqsResource
+  type: has_one
+  via: sqs
+- from: DestinationResource
+  to: EventBridgeResource
+  type: has_one
+  via: eventBridge
+- from: CreateSubscriptionRequest
+  to: Destination
+  type: belongs_to
+  via: destinationId
+- from: CreateSubscriptionRequest
+  to: ProcessingDirective
+  type: has_one
+  via: processingDirective
+- from: Subscription
+  to: Destination
+  type: belongs_to
+  via: destinationId
+- from: Subscription
+  to: ProcessingDirective
+  type: has_one
+  via: processingDirective
+- from: EventBridgeResource
+  to: Account
+  type: belongs_to
+  via: accountId
+- from: DestinationResourceSpecification
+  to: SqsResource
+  type: has_one
+  via: sqs
+- from: DestinationResourceSpecification
+  to: EventBridgeResourceSpecification
+  type: has_one
+  via: eventBridge
+- from: EventBridgeResourceSpecification
+  to: Account
+  type: belongs_to
+  via: accountId
+- from: GetSubscriptionByIdResponse
+  to: Subscription
+  type: has_one
+  via: payload
+- from: GetSubscriptionByIdResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: CreateDestinationResponse
+  to: Destination
+  type: has_one
+  via: payload
+- from: CreateDestinationResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: GetSubscriptionResponse
+  to: Subscription
+  type: has_one
+  via: payload
+- from: GetSubscriptionResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: AggregationFilter
+  to: AggregationSettings
+  type: has_one
+  via: aggregationSettings
+- from: ConfirmShipmentOrderItem
+  to: OrderItem
+  type: belongs_to
+  via: orderItemId
+- from: ConfirmShipmentRequest
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: BusinessHours
+  to: OpenInterval
+  type: has_many
+  via: OpenIntervals
+- from: ItemBuyerInfo
+  to: BuyerCustomizedInfoDetail
+  type: has_one
+  via: BuyerCustomizedInfo
+- from: ItemBuyerInfo
+  to: Money
+  type: has_one
+  via: GiftWrapPrice
+- from: ItemBuyerInfo
+  to: Money
+  type: has_one
+  via: GiftWrapTax
+- from: AssociatedItem
+  to: Order
+  type: belongs_to
+  via: OrderId
+- from: AssociatedItem
+  to: OrderItem
+  type: belongs_to
+  via: OrderItemId
+- from: GetOrderRegulatedInfoResponse
+  to: OrderRegulatedInfo
+  type: has_one
+  via: payload
+- from: GetOrderRegulatedInfoResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: GetOrderItemsResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: GetOrdersResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: OrderAddress
+  to: Address
+  type: has_one
+  via: ShippingAddress
+- from: OrderAddress
+  to: DeliveryPreferences
+  type: has_one
+  via: DeliveryPreferences
+- from: GetOrderItemsBuyerInfoResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: OrderItemBuyerInfo
+  to: OrderItem
+  type: belongs_to
+  via: OrderItemId
+- from: OrderItemBuyerInfo
+  to: BuyerCustomizedInfoDetail
+  type: has_one
+  via: BuyerCustomizedInfo
+- from: OrderItemBuyerInfo
+  to: Money
+  type: has_one
+  via: GiftWrapPrice
+- from: OrderItemBuyerInfo
+  to: Money
+  type: has_one
+  via: GiftWrapTax
+- from: ConfirmShipmentErrorResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: RegulatedOrderVerificationStatus
+  to: RejectionReason
+  type: has_many
+  via: ValidRejectionReasons
+- from: RegulatedOrderVerificationStatus
+  to: RejectionReason
+  type: has_one
+  via: RejectionReason
+- from: BuyerTaxInfo
+  to: TaxClassification
+  type: has_many
+  via: TaxClassifications
+- from: UpdateVerificationStatusRequestBody
+  to: RejectionReason
+  type: belongs_to
+  via: rejectionReasonId
+- from: UpdateVerificationStatusRequestBody
+  to: VerificationDetails
+  type: has_one
+  via: verificationDetails
+- from: GetOrderBuyerInfoResponse
+  to: OrderBuyerInfo
+  type: has_one
+  via: payload
+- from: GetOrderBuyerInfoResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: OrderRegulatedInfo
+  to: RegulatedInformation
+  type: has_one
+  via: RegulatedInformation
+- from: OrderRegulatedInfo
+  to: RegulatedOrderVerificationStatus
+  type: has_one
+  via: RegulatedOrderVerificationStatus
+- from: GetOrderAddressResponse
+  to: OrderAddress
+  type: has_one
+  via: payload
+- from: GetOrderAddressResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: OpenInterval
+  to: OpenTimeInterval
+  type: has_one
+  via: StartTime
+- from: OpenInterval
+  to: OpenTimeInterval
+  type: has_one
+  via: EndTime
+- from: OrderBuyerInfo
+  to: BuyerTaxInfo
+  type: has_one
+  via: BuyerTaxInfo
+- from: BuyerInfo
+  to: BuyerTaxInfo
+  type: has_one
+  via: BuyerTaxInfo
+- from: CompetitiveSummaryRequest
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: CompetitiveSummaryRequest
+  to: LowestPricedOffersInput
+  type: has_many
+  via: lowestPricedOffersInputs
+- from: PromotionSavings
+  to: PromotionDiscount
+  type: has_one
+  via: discount
+- from: PromotionSavings
+  to: MoneyType
+  type: has_one
+  via: discountedPrice
+- from: BatchRequest
+  to: HttpHeaders
+  type: has_one
+  via: headers
+- from: ShippingOption
+  to: MoneyType
+  type: has_one
+  via: price
+- from: CompetitiveSummaryResponse
+  to: HttpStatusLine
+  type: has_one
+  via: status
+- from: CompetitiveSummaryResponse
+  to: CompetitiveSummaryResponseBody
+  type: has_one
+  via: body
+- from: FeaturedBuyingOption
+  to: SegmentedFeaturedOffer
+  type: has_many
+  via: segmentedFeaturedOffers
+- from: FeaturedOfferExpectedPriceRequestParams
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: FeaturedOfferExpectedPriceRequestParams
+  to: Segment
+  type: has_one
+  via: segment
+- from: AmountThreshold
+  to: MoneyType
+  type: has_one
+  via: currency
+- from: FeaturedOfferExpectedPriceResponse
+  to: FeaturedOfferExpectedPriceRequestParams
+  type: has_one
+  via: request
+- from: FeaturedOfferExpectedPriceResponse
+  to: FeaturedOfferExpectedPriceResponseBody
+  type: has_one
+  via: body
+- from: FeaturedOfferExpectedPriceResult
+  to: FeaturedOfferExpectedPrice
+  type: has_one
+  via: featuredOfferExpectedPrice
+- from: FeaturedOfferExpectedPriceResult
+  to: FeaturedOffer
+  type: has_one
+  via: competingFeaturedOffer
+- from: FeaturedOfferExpectedPriceResult
+  to: FeaturedOffer
+  type: has_one
+  via: currentFeaturedOffer
+- from: FeaturedOfferExpectedPriceResponseBody
+  to: OfferIdentifier
+  type: has_one
+  via: offerIdentifier
+- from: FeaturedOfferExpectedPriceResponseBody
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: ReferencePrice
+  to: MoneyType
+  type: has_one
+  via: price
+- from: FeaturedOfferExpectedPrice
+  to: MoneyType
+  type: has_one
+  via: listingPrice
+- from: FeaturedOfferExpectedPrice
+  to: Points
+  type: has_one
+  via: points
+- from: Offer
+  to: MoneyType
+  type: has_one
+  via: listingPrice
+- from: Offer
+  to: ShippingOption
+  type: has_many
+  via: shippingOptions
+- from: Offer
+  to: Points
+  type: has_one
+  via: points
+- from: SimilarItems
+  to: Item
+  type: has_many
+  via: items
+- from: FeaturedOffer
+  to: OfferIdentifier
+  type: has_one
+  via: offerIdentifier
+- from: FeaturedOffer
+  to: Price
+  type: has_one
+  via: price
+- from: FeaturedOfferSegment
+  to: SegmentDetails
+  type: has_one
+  via: segmentDetails
+- from: OfferIdentifier
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: BatchResponse
+  to: HttpHeaders
+  type: has_one
+  via: headers
+- from: BatchResponse
+  to: HttpStatusLine
+  type: has_one
+  via: status
+- from: SegmentDetails
+  to: SampleLocation
+  type: has_one
+  via: sampleLocation
+- from: CompetitiveSummaryResponseBody
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: CompetitiveSummaryResponseBody
+  to: FeaturedBuyingOption
+  type: has_many
+  via: featuredBuyingOptions
+- from: CompetitiveSummaryResponseBody
+  to: LowestPricedOffer
+  type: has_many
+  via: lowestPricedOffers
+- from: CompetitiveSummaryResponseBody
+  to: ReferencePrice
+  type: has_many
+  via: referencePrices
+- from: CompetitiveSummaryResponseBody
+  to: SimilarItems
+  type: has_many
+  via: similarItems
+- from: CompetitiveSummaryResponseBody
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: Segment
+  to: SegmentDetails
+  type: has_one
+  via: segmentDetails
+- from: SampleLocation
+  to: PostalCode
+  type: has_one
+  via: postalCode
+- from: PromotionDiscount
+  to: MoneyType
+  type: has_one
+  via: amountOff
+- from: SegmentedFeaturedOffer
+  to: FeaturedOfferSegment
+  type: has_many
+  via: featuredOfferSegments
+- from: PurchaseCondition
+  to: AmountThreshold
+  type: has_one
+  via: amountThreshold
+- from: Price
+  to: MoneyType
+  type: has_one
+  via: listingPrice
+- from: Price
+  to: MoneyType
+  type: has_one
+  via: shippingPrice
+- from: Price
+  to: Points
+  type: has_one
+  via: points
+- from: LowestPricedOffer
+  to: LowestPricedOffersInput
+  type: has_one
+  via: lowestPricedOffersInput
+- from: LowestPricedOffer
+  to: Offer
+  type: has_many
+  via: offers
+- from: IdentifierType
+  to: ASINIdentifier
+  type: has_one
+  via: MarketplaceASIN
+- from: IdentifierType
+  to: SellerSKUIdentifier
+  type: has_one
+  via: SKUIdentifier
+- from: GetOffersResult
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceId
+- from: GetOffersResult
+  to: ItemIdentifier
+  type: has_one
+  via: Identifier
+- from: GetOffersResult
+  to: Summary
+  type: has_one
+  via: Summary
+- from: ASINIdentifier
+  to: Marketplace
+  type: belongs_to
+  via: MarketplaceId
+- from: Product
+  to: IdentifierType
+  type: has_one
+  via: Identifiers
+- from: Product
+  to: CompetitivePricingType
+  type: has_one
+  via: CompetitivePricing
+- from: BatchOffersResponse
+  to: GetOffersResponse
+  type: has_one
+  via: body
+- from: BuyBoxPriceType
+  to: MoneyType_2
+  type: has_one
+  via: LandedPrice
+- from: BuyBoxPriceType
+  to: MoneyType_2
+  type: has_one
+  via: ListingPrice
+- from: BuyBoxPriceType
+  to: MoneyType_2
+  type: has_one
+  via: Shipping
+- from: BuyBoxPriceType
+  to: Points_2
+  type: has_one
+  via: Points
+- from: BatchOffersRequestParams
+  to: Marketplace
+  type: belongs_to
+  via: MarketplaceId
+- from: BatchOffersRequestParams
+  to: ItemCondition
+  type: has_one
+  via: ItemCondition
+- from: SellerSKUIdentifier
+  to: Marketplace
+  type: belongs_to
+  via: MarketplaceId
+- from: OfferType
+  to: PriceType
+  type: has_one
+  via: BuyingPrice
+- from: OfferType
+  to: MoneyType_2
+  type: has_one
+  via: RegularPrice
+- from: OfferType
+  to: MoneyType_2
+  type: has_one
+  via: businessPrice
+- from: OfferType
+  to: QuantityDiscountPriceType
+  type: has_many
+  via: quantityDiscountPrices
+- from: GetOffersResponse
+  to: GetOffersResult
+  type: has_one
+  via: payload
+- from: CompetitivePricingType
+  to: MoneyType_2
+  type: has_one
+  via: TradeInValue
+- from: OfferDetail
+  to: MoneyType_2
+  type: has_one
+  via: ListingPrice
+- from: OfferDetail
+  to: QuantityDiscountPriceType
+  type: has_many
+  via: quantityDiscountPrices
+- from: OfferDetail
+  to: Points_2
+  type: has_one
+  via: Points
+- from: OfferDetail
+  to: MoneyType_2
+  type: has_one
+  via: Shipping
+- from: LowestPriceType
+  to: MoneyType_2
+  type: has_one
+  via: LandedPrice
+- from: LowestPriceType
+  to: MoneyType_2
+  type: has_one
+  via: ListingPrice
+- from: LowestPriceType
+  to: MoneyType_2
+  type: has_one
+  via: Shipping
+- from: LowestPriceType
+  to: Points_2
+  type: has_one
+  via: Points
+- from: Points_2
+  to: MoneyType_2
+  type: has_one
+  via: PointsMonetaryValue
+- from: CompetitivePriceType
+  to: PriceType
+  type: has_one
+  via: Price
+- from: QuantityDiscountPriceType
+  to: MoneyType_2
+  type: has_one
+  via: listingPrice
+- from: PriceType
+  to: MoneyType_2
+  type: has_one
+  via: LandedPrice
+- from: PriceType
+  to: MoneyType_2
+  type: has_one
+  via: ListingPrice
+- from: PriceType
+  to: MoneyType_2
+  type: has_one
+  via: Shipping
+- from: PriceType
+  to: Points_2
+  type: has_one
+  via: Points
+- from: CreateReportSpecification
+  to: ReportOptions
+  type: has_one
+  via: reportOptions
+- from: CreateReportSpecification
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceIds
+- from: Report
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceIds
+- from: Report
+  to: ReportSchedule
+  type: belongs_to
+  via: reportScheduleId
+- from: CreateReportScheduleSpecification
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceIds
+- from: CreateReportScheduleSpecification
+  to: ReportOptions
+  type: has_one
+  via: reportOptions
+- from: ReportSchedule
+  to: Marketplace
+  type: belongs_to
+  via: marketplaceIds
+- from: ReportSchedule
+  to: ReportOptions
+  type: has_one
+  via: reportOptions
+- from: OrderMetricsInterval
+  to: Money
+  type: has_one
+  via: averageUnitPrice
+- from: OrderMetricsInterval
+  to: Money
+  type: has_one
+  via: totalSales
+- from: SearchOrdersResponse
+  to: Order
+  type: has_many
+  via: orders
+- from: SearchOrdersResponse
+  to: Pagination
+  type: has_one
+  via: pagination
+- from: Business
+  to: Address
+  type: has_one
+  via: registeredBusinessAddress
+- from: GetAccountResponse
+  to: Account
+  type: has_one
+  via: payload
+- from: GetAccountResponse
+  to: ErrorList
+  type: has_one
+  via: errors
+- from: MarketplaceParticipation
+  to: Marketplace
+  type: has_one
+  via: marketplace
+- from: PrimaryContact
+  to: Address
+  type: has_one
+  via: address
+- from: Account
+  to: Business
+  type: has_one
+  via: business
+- from: Account
+  to: PrimaryContact
+  type: has_one
+  via: primaryContact
+- from: DirectPurchaseResult
+  to: Shipment
+  type: belongs_to
+  via: shipmentId
+- from: PurchaseShipmentResult
+  to: Shipment
+  type: belongs_to
+  via: shipmentId
+- from: PurchaseShipmentResult
+  to: Promise
+  type: has_one
+  via: promise
+- from: PurchaseShipmentResult
+  to: Benefits
+  type: has_one
+  via: benefits
+- from: GetAccessPointsResult
+  to: AccessPointsMap
+  type: has_one
+  via: accessPointsMap
+- from: GetTrackingResult
+  to: Event
+  type: has_many
+  via: eventHistory
+- from: GetTrackingResult
+  to: TrackingSummary
+  type: has_one
+  via: summary
+- from: Location
+  to: PostalCode
+  type: has_one
+  via: postalCode
+- from: DirectPurchaseRequest
+  to: Address
+  type: has_one
+  via: shipTo
+- from: DirectPurchaseRequest
+  to: Address
+  type: has_one
+  via: shipFrom
+- from: DirectPurchaseRequest
+  to: Address
+  type: has_one
+  via: returnTo
+- from: DirectPurchaseRequest
+  to: ChannelDetails
+  type: has_one
+  via: channelDetails
+- from: DirectPurchaseRequest
+  to: RequestedDocumentSpecification
+  type: has_one
+  via: labelSpecifications
+- from: GetShipmentDocumentsResult
+  to: Shipment
+  type: belongs_to
+  via: shipmentId
+- from: GetShipmentDocumentsResult
+  to: Benefits
+  type: has_one
+  via: benefits
+- from: GetCollectionFormHistoryRequest
+  to: Carrier
+  type: belongs_to
+  via: carrierId
+- from: GetCollectionFormHistoryRequest
+  to: Address
+  type: has_one
+  via: shipFromAddress
+- from: GetCollectionFormHistoryRequest
+  to: DateRange
+  type: has_one
+  via: dateRange
+- from: CancelShipmentResponse
+  to: CancelShipmentResult
+  type: has_one
+  via: payload
+- from: PurchaseShipmentRequest
+  to: Rate
+  type: belongs_to
+  via: rateId
+- from: PurchaseShipmentRequest
+  to: RequestedDocumentSpecification
+  type: has_one
+  via: requestedDocumentSpecification
+- from: AccessPointDetails
+  to: AccessPoint
+  type: belongs_to
+  via: accessPointId
+- from: OperatingHours
+  to: TimeOfDay
+  type: has_one
+  via: closingTime
+- from: OperatingHours
+  to: TimeOfDay
+  type: has_one
+  via: openingTime
+- from: OperatingHours
+  to: TimeOfDay
+  type: has_many
+  via: midDayClosures
+- from: AmazonShipmentDetails
+  to: Shipment
+  type: belongs_to
+  via: shipmentId
+- from: ExceptionOperatingHours
+  to: DateRange
+  type: has_one
+  via: dateRange
+- from: ExceptionOperatingHours
+  to: OperatingHours
+  type: has_one
+  via: operatingHours
+- from: ValueAddedServiceDetails
+  to: CollectOnDelivery
+  type: has_one
+  via: collectOnDelivery
+- from: RequestedDocumentSpecification
+  to: DocumentSize
+  type: has_one
+  via: size
+- from: Package
+  to: Dimensions
+  type: has_one
+  via: dimensions
+- from: Package
+  to: Weight
+  type: has_one
+  via: weight
+- from: Package
+  to: Currency
+  type: has_one
+  via: insuredValue
+- from: OneClickShipmentResult
+  to: Shipment
+  type: belongs_to
+  via: shipmentId
+- from: OneClickShipmentResult
+  to: Promise
+  type: has_one
+  via: promise
+- from: OneClickShipmentResult
+  to: Carrier
+  type: has_one
+  via: carrier
+- from: OneClickShipmentResult
+  to: Service
+  type: has_one
+  via: service
+- from: OneClickShipmentResult
+  to: Currency
+  type: has_one
+  via: totalCharge
+- from: ChannelDetails
+  to: AmazonOrderDetails
+  type: has_one
+  via: amazonOrderDetails
+- from: ChannelDetails
+  to: AmazonShipmentDetails
+  type: has_one
+  via: amazonShipmentDetails
+- from: IneligibleRate
+  to: Service
+  type: belongs_to
+  via: serviceId
+- from: IneligibleRate
+  to: Carrier
+  type: belongs_to
+  via: carrierId
+- from: Event
+  to: Location
+  type: has_one
+  via: location
+- from: ActiveAccount
+  to: Account
+  type: belongs_to
+  via: accountId
+- from: ActiveAccount
+  to: Carrier
+  type: belongs_to
+  via: carrierId
+- from: CollectionFormsHistoryRecord
+  to: Address
+  type: has_one
+  via: shipFromAddress
+- from: CarrierAccount
+  to: Carrier
+  type: belongs_to
+  via: carrierId
+- from: GenerateCollectionFormRequest
+  to: Carrier
+  type: belongs_to
+  via: carrierId
+- from: GenerateCollectionFormRequest
+  to: Address
+  type: has_one
+  via: shipFromAddress
+- from: AvailableValueAddedServiceGroup
+  to: ValueAddedService
+  type: has_many
+  via: valueAddedServices
+- from: OneClickShipmentRequest
+  to: Address
+  type: has_one
+  via: shipTo
+- from: OneClickShipmentRequest
+  to: Address
+  type: has_one
+  via: shipFrom
+- from: OneClickShipmentRequest
+  to: Address
+  type: has_one
+  via: returnTo
+- from: OneClickShipmentRequest
+  to: ChannelDetails
+  type: has_one
+  via: channelDetails
+- from: OneClickShipmentRequest
+  to: RequestedDocumentSpecification
+  type: has_one
+  via: labelSpecifications
+- from: OneClickShipmentRequest
+  to: ServiceSelection
+  type: has_one
+  via: serviceSelection
+- from: OneClickShipmentRequest
+  to: ShipperInstruction
+  type: has_one
+  via: shipperInstruction
+- from: OneClickShipmentRequest
+  to: AccessPointDetails
+  type: has_one
+  via: destinationAccessPointDetails
+- from: ServiceSelection
+  to: Service
+  type: belongs_to
+  via: serviceId
+- from: Rate
+  to: Carrier
+  type: belongs_to
+  via: carrierId
+- from: Rate
+  to: Service
+  type: belongs_to
+  via: serviceId
+- from: Rate
+  to: Weight
+  type: has_one
+  via: billedWeight
+- from: Rate
+  to: Currency
+  type: has_one
+  via: totalCharge
+- from: Rate
+  to: Promise
+  type: has_one
+  via: promise
+- from: Rate
+  to: Benefits
+  type: has_one
+  via: benefits
+- from: ValueAddedService
+  to: Currency
+  type: has_one
+  via: cost
+- from: AccessPoint
+  to: AccessibilityAttributes
+  type: has_one
+  via: accessibilityAttributes
+- from: AccessPoint
+  to: Address
+  type: has_one
+  via: address
+- from: AccessPoint
+  to: ExceptionOperatingHours
+  type: has_many
+  via: exceptionOperatingHours
+- from: GetRatesRequest
+  to: Address
+  type: has_one
+  via: shipTo
+- from: GetRatesRequest
+  to: Address
+  type: has_one
+  via: shipFrom
+- from: GetRatesRequest
+  to: Address
+  type: has_one
+  via: returnTo
+- from: GetRatesRequest
+  to: ShipperInstruction
+  type: has_one
+  via: shipperInstruction
+- from: GetRatesRequest
+  to: ValueAddedServiceDetails
+  type: has_one
+  via: valueAddedServices
+- from: GetRatesRequest
+  to: ChannelDetails
+  type: has_one
+  via: channelDetails
+- from: GetRatesRequest
+  to: AccessPointDetails
+  type: has_one
+  via: destinationAccessPointDetails
+- from: AmazonOrderDetails
+  to: Order
+  type: belongs_to
+  via: orderId
+- from: CollectOnDelivery
+  to: Currency
+  type: has_one
+  via: amount
+- from: Promise
+  to: TimeWindow
+  type: has_one
+  via: deliveryWindow
+- from: Promise
+  to: TimeWindow
+  type: has_one
+  via: pickupWindow

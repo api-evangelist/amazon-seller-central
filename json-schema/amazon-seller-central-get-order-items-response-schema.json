@@ -1,0 +1,689 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-get-order-items-response-schema.json",
+  "title": "GetOrderItemsResponse",
+  "description": "The response schema for the `getOrderItems` operation.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-ordersv0-api-openapi.yml#/components/schemas/GetOrderItemsResponse",
+  "type": "object",
+  "properties": {
+    "payload": {
+      "description": "The payload for the `getOrderItems` operation.",
+      "$ref": "#/$defs/OrderItemsList"
+    },
+    "errors": {
+      "description": "One or more unexpected errors occurred during the `getOrderItems` operation.",
+      "$ref": "#/$defs/ErrorList"
+    }
+  },
+  "$defs": {
+    "AmazonPrograms": {
+      "type": "object",
+      "description": "Contains the list of programs that Amazon associates with an item.\n\nPossible programs are:\n - **Subscribe and Save**: Offers recurring, scheduled deliveries to Amazon customers and Amazon Business customers for their frequently ordered products. - **FBM Ship+**: Unlocks expedited shipping without the extra cost. Helps you to provide accurate and fast delivery dates to Amazon customers. You also receive protection from late deliveries, a discount on expedited shipping rates, and cash back when you ship.",
+      "required": [
+        "Programs"
+      ],
+      "properties": {
+        "Programs": {
+          "type": "array",
+          "description": "A list of the programs that Amazon associates with the order item.\n\n**Possible values**: `SUBSCRIBE_AND_SAVE`, `FBM_SHIP_PLUS`",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "AssociatedItem": {
+      "description": "An item that is associated with an order item. For example, a tire installation service that is purchased with tires.",
+      "type": "object",
+      "properties": {
+        "OrderId": {
+          "type": "string",
+          "description": "The order item's order identifier, in 3-7-7 format."
+        },
+        "OrderItemId": {
+          "type": "string",
+          "description": "An Amazon-defined item identifier for the associated item."
+        },
+        "AssociationType": {
+          "$ref": "#/$defs/AssociationType"
+        }
+      }
+    },
+    "AssociationType": {
+      "type": "string",
+      "description": "The type of association an item has with an order item.",
+      "enum": [
+        "VALUE_ADD_SERVICE"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "VALUE_ADD_SERVICE",
+          "description": "The associated item is a service order."
+        }
+      ]
+    },
+    "BuyerCustomizedInfoDetail": {
+      "type": "object",
+      "properties": {
+        "CustomizedURL": {
+          "type": "string",
+          "description": "The location of a ZIP file containing Amazon Custom data."
+        }
+      },
+      "description": "Buyer information for custom orders from the Amazon Custom program."
+    },
+    "BuyerRequestedCancel": {
+      "type": "object",
+      "properties": {
+        "IsBuyerRequestedCancel": {
+          "type": "string",
+          "description": "Indicate whether the buyer has requested cancellation.\n\n**Possible Values**: `true`, `false`."
+        },
+        "BuyerCancelReason": {
+          "type": "string",
+          "description": "The reason that the buyer requested cancellation."
+        }
+      },
+      "description": "Information about whether or not a buyer requested cancellation."
+    },
+    "ConstraintType": {
+      "type": "string",
+      "description": "Details the importance of the constraint present on the item",
+      "enum": [
+        "MANDATORY"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "MANDATORY",
+          "description": "Item must follow the constraint to ensure order is met with buyer's delivery requirements."
+        }
+      ]
+    },
+    "Error": {
+      "type": "object",
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "An error code that identifies the type of error that occurred."
+        },
+        "message": {
+          "type": "string",
+          "description": "A message that describes the error condition."
+        },
+        "details": {
+          "type": "string",
+          "description": "Additional details that can help the caller understand or fix the issue."
+        }
+      },
+      "description": "Error response returned when the request is unsuccessful."
+    },
+    "ErrorList": {
+      "type": "array",
+      "description": "A list of error responses returned when a request is unsuccessful.",
+      "items": {
+        "$ref": "#/$defs/Error"
+      }
+    },
+    "ItemBuyerInfo": {
+      "type": "object",
+      "properties": {
+        "BuyerCustomizedInfo": {
+          "description": "Buyer information for custom orders from the Amazon Custom program.\n\n**Note**: This attribute is only available for MFN (fulfilled by seller) orders.",
+          "$ref": "#/$defs/BuyerCustomizedInfoDetail"
+        },
+        "GiftWrapPrice": {
+          "description": "The gift wrap price of the item.",
+          "$ref": "#/$defs/Money"
+        },
+        "GiftWrapTax": {
+          "description": "The tax on the gift wrap price.",
+          "$ref": "#/$defs/Money"
+        },
+        "GiftMessageText": {
+          "type": "string",
+          "description": "A gift message provided by the buyer.\n\n**Note**: This attribute is only available for MFN (fulfilled by seller) orders."
+        },
+        "GiftWrapLevel": {
+          "type": "string",
+          "description": "The gift wrap level specified by the buyer."
+        }
+      },
+      "description": "A single item's buyer information."
+    },
+    "Measurement": {
+      "type": "object",
+      "description": "Measurement information for an order item.",
+      "required": [
+        "Unit",
+        "Value"
+      ],
+      "properties": {
+        "Unit": {
+          "type": "string",
+          "description": "The unit of measure.",
+          "enum": [
+            "OUNCES",
+            "POUNDS",
+            "KILOGRAMS",
+            "GRAMS",
+            "MILLIGRAMS",
+            "INCHES",
+            "FEET",
+            "METERS",
+            "CENTIMETERS",
+            "MILLIMETERS",
+            "SQUARE_METERS",
+            "SQUARE_CENTIMETERS",
+            "SQUARE_FEET",
+            "SQUARE_INCHES",
+            "GALLONS",
+            "PINTS",
+            "QUARTS",
+            "FLUID_OUNCES",
+            "LITERS",
+            "CUBIC_METERS",
+            "CUBIC_FEET",
+            "CUBIC_INCHES",
+            "CUBIC_CENTIMETERS",
+            "COUNT"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "OUNCES",
+              "description": "The item is measured in ounces."
+            },
+            {
+              "value": "POUNDS",
+              "description": "The item is measured in pounds."
+            },
+            {
+              "value": "KILOGRAMS",
+              "description": "The item is measured in kilograms."
+            },
+            {
+              "value": "GRAMS",
+              "description": "The item is measured in grams."
+            },
+            {
+              "value": "MILLIGRAMS",
+              "description": "The item is measured in milligrams."
+            },
+            {
+              "value": "INCHES",
+              "description": "The item is measured in inches."
+            },
+            {
+              "value": "FEET",
+              "description": "The item is measured in feet."
+            },
+            {
+              "value": "METERS",
+              "description": "The item is measured in meters."
+            },
+            {
+              "value": "CENTIMETERS",
+              "description": "The item is measured in centimeters."
+            },
+            {
+              "value": "MILLIMETERS",
+              "description": "The item is measured in millimeters."
+            },
+            {
+              "value": "SQUARE_METERS",
+              "description": "The item is measured in square meters."
+            },
+            {
+              "value": "SQUARE_CENTIMETERS",
+              "description": "The item is measured in square centimeters."
+            },
+            {
+              "value": "SQUARE_FEET",
+              "description": "The item is measured in square feet."
+            },
+            {
+              "value": "SQUARE_INCHES",
+              "description": "The item is measured in square inches."
+            },
+            {
+              "value": "GALLONS",
+              "description": "The item is measured in gallons."
+            },
+            {
+              "value": "PINTS",
+              "description": "The item is measured in pints."
+            },
+            {
+              "value": "QUARTS",
+              "description": "The item is measured in quarts."
+            },
+            {
+              "value": "FLUID_OUNCES",
+              "description": "The item is measured in fluid ounces."
+            },
+            {
+              "value": "LITERS",
+              "description": "The item is measured in liters."
+            },
+            {
+              "value": "CUBIC_METERS",
+              "description": "The item is measured in cubic meters."
+            },
+            {
+              "value": "CUBIC_FEET",
+              "description": "The item is measured in cubic feet."
+            },
+            {
+              "value": "CUBIC_INCHES",
+              "description": "The item is measured in cubic inches."
+            },
+            {
+              "value": "CUBIC_CENTIMETERS",
+              "description": "The item is measured in cubic centimeters."
+            },
+            {
+              "value": "COUNT",
+              "description": "The item is measured by count."
+            }
+          ]
+        },
+        "Value": {
+          "type": "number",
+          "description": "The measurement value."
+        }
+      }
+    },
+    "Money": {
+      "type": "object",
+      "properties": {
+        "CurrencyCode": {
+          "type": "string",
+          "description": "The three-digit currency code. In ISO 4217 format."
+        },
+        "Amount": {
+          "type": "string",
+          "description": "The currency amount."
+        }
+      },
+      "description": "The monetary value of the order."
+    },
+    "OrderItem": {
+      "type": "object",
+      "required": [
+        "ASIN",
+        "OrderItemId",
+        "QuantityOrdered"
+      ],
+      "properties": {
+        "ASIN": {
+          "type": "string",
+          "description": "The item's Amazon Standard Identification Number (ASIN)."
+        },
+        "SellerSKU": {
+          "type": "string",
+          "description": "The item's seller stock keeping unit (SKU)."
+        },
+        "OrderItemId": {
+          "type": "string",
+          "description": "An Amazon-defined order item identifier."
+        },
+        "AssociatedItems": {
+          "type": "array",
+          "description": "A list of associated items that a customer has purchased with a product. For example, a tire installation service purchased with tires.",
+          "items": {
+            "$ref": "#/$defs/AssociatedItem"
+          }
+        },
+        "Title": {
+          "type": "string",
+          "description": "The item's name."
+        },
+        "QuantityOrdered": {
+          "type": "integer",
+          "description": "The number of items in the order. "
+        },
+        "QuantityShipped": {
+          "type": "integer",
+          "description": "The number of items shipped."
+        },
+        "ProductInfo": {
+          "description": "The item's product information.",
+          "$ref": "#/$defs/ProductInfoDetail"
+        },
+        "PointsGranted": {
+          "description": "The number and value of Amazon Points granted with the purchase of an item.",
+          "$ref": "#/$defs/PointsGrantedDetail"
+        },
+        "ItemPrice": {
+          "description": "The selling price of the order item. Note that an order item is an item and a quantity. This means that the value of `ItemPrice` is equal to the selling price of the item multiplied by the quantity ordered. `ItemPrice` excludes `ShippingPrice` and GiftWrapPrice.",
+          "$ref": "#/$defs/Money"
+        },
+        "ShippingPrice": {
+          "description": "The item's shipping price.",
+          "$ref": "#/$defs/Money"
+        },
+        "ItemTax": {
+          "description": "The tax on the item price.",
+          "$ref": "#/$defs/Money"
+        },
+        "ShippingTax": {
+          "description": "The tax on the shipping price.",
+          "$ref": "#/$defs/Money"
+        },
+        "ShippingDiscount": {
+          "description": "The discount on the shipping price.",
+          "$ref": "#/$defs/Money"
+        },
+        "ShippingDiscountTax": {
+          "description": "The tax on the discount on the shipping price.",
+          "$ref": "#/$defs/Money"
+        },
+        "PromotionDiscount": {
+          "description": "The total of all promotional discounts in the offer.",
+          "$ref": "#/$defs/Money"
+        },
+        "PromotionDiscountTax": {
+          "description": "The tax on the total of all promotional discounts in the offer.",
+          "$ref": "#/$defs/Money"
+        },
+        "PromotionIds": {
+          "$ref": "#/$defs/PromotionIdList"
+        },
+        "CODFee": {
+          "description": "The fee charged for COD service.",
+          "$ref": "#/$defs/Money"
+        },
+        "CODFeeDiscount": {
+          "description": "The discount on the COD fee.",
+          "$ref": "#/$defs/Money"
+        },
+        "IsGift": {
+          "type": "string",
+          "description": "Indicates whether the item is a gift.\n\n**Possible values**: `true` and `false`."
+        },
+        "ConditionNote": {
+          "type": "string",
+          "description": "The condition of the item, as described by the seller."
+        },
+        "ConditionId": {
+          "type": "string",
+          "description": "The condition of the item.\n\n**Possible values**: `New`, `Used`, `Collectible`, `Refurbished`, `Preorder`, and `Club`."
+        },
+        "ConditionSubtypeId": {
+          "type": "string",
+          "description": "The subcondition of the item.\n\n**Possible values**: `New`, `Mint`, `Very Good`, `Good`, `Acceptable`, `Poor`, `Club`, `OEM`, `Warranty`, `Refurbished Warranty`, `Refurbished`, `Open Box`, `Any`, and `Other`."
+        },
+        "ScheduledDeliveryStartDate": {
+          "type": "string",
+          "description": "The start date of the scheduled delivery window in the time zone for the order destination. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format."
+        },
+        "ScheduledDeliveryEndDate": {
+          "type": "string",
+          "description": "The end date of the scheduled delivery window in the time zone for the order destination. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format."
+        },
+        "PriceDesignation": {
+          "type": "string",
+          "description": "Indicates that the selling price is a special price that is only available for Amazon Business orders. For more information about the Amazon Business Seller Program, refer to the [Amazon Business website](https://www.amazon.com/b2b/info/amazon-business). \n\n**Possible values**: `BusinessPrice`"
+        },
+        "TaxCollection": {
+          "description": "Information about withheld taxes.",
+          "$ref": "#/$defs/TaxCollection"
+        },
+        "SerialNumberRequired": {
+          "type": "boolean",
+          "description": "When true, the product type for this item has a serial number.\n\n Only returned for Amazon Easy Ship orders."
+        },
+        "IsTransparency": {
+          "type": "boolean",
+          "description": "When true, the ASIN is enrolled in Transparency. The Transparency serial number that you must submit is determined by:\n\n**1D or 2D Barcode:** This has a **T** logo. Submit either the 29-character alpha-numeric identifier beginning with **AZ** or **ZA**, or the 38-character Serialized Global Trade Item Number (SGTIN).\n**2D Barcode SN:** Submit the 7- to 20-character serial number barcode, which likely has the prefix **SN**. The serial number is applied to the same side of the packaging as the GTIN (UPC/EAN/ISBN) barcode.\n**QR code SN:** Submit the URL that the QR code generates."
+        },
+        "IossNumber": {
+          "type": "string",
+          "description": "The IOSS number of the marketplace. Sellers shipping to the EU from outside the EU must provide this IOSS number to their carrier when Amazon has collected the VAT on the sale."
+        },
+        "StoreChainStoreId": {
+          "type": "string",
+          "description": "The store chain store identifier. Linked to a specific store in a store chain."
+        },
+        "DeemedResellerCategory": {
+          "type": "string",
+          "description": "The category of deemed reseller. This applies to selling partners that are not based in the EU and is used to help them meet the VAT Deemed Reseller tax laws in the EU and UK.",
+          "enum": [
+            "IOSS",
+            "UOSS"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "IOSS",
+              "description": "Import one stop shop. The item being purchased is not held in the EU for shipment."
+            },
+            {
+              "value": "UOSS",
+              "description": "Union one stop shop. The item being purchased is held in the EU for shipment."
+            }
+          ]
+        },
+        "BuyerInfo": {
+          "description": "A single item's buyer information.\n\n**Note**: The `BuyerInfo` contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access the restricted data in `BuyerInfo`. For example, `BuyerCustomizedInfo` and `GiftMessageText`.",
+          "$ref": "#/$defs/ItemBuyerInfo"
+        },
+        "BuyerRequestedCancel": {
+          "description": "Information about whether or not a buyer requested cancellation.",
+          "$ref": "#/$defs/BuyerRequestedCancel"
+        },
+        "SerialNumbers": {
+          "type": "array",
+          "description": "A list of serial numbers for electronic products that are shipped to customers. Returned for FBA orders only.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "SubstitutionPreferences": {
+          "description": "Substitution preferences for the order item. This is an optional field that is only present if a seller supports substitutions, as is the case with some grocery sellers.",
+          "$ref": "#/$defs/SubstitutionPreferences"
+        },
+        "Measurement": {
+          "description": "Measurement information for the order item.",
+          "$ref": "#/$defs/Measurement"
+        },
+        "ShippingConstraints": {
+          "description": "Shipping constraints applicable to this order.",
+          "$ref": "#/$defs/ShippingConstraints"
+        },
+        "AmazonPrograms": {
+          "description": "Contains the list of programs that are associated with an item.",
+          "$ref": "#/$defs/AmazonPrograms"
+        }
+      },
+      "description": "A single order item."
+    },
+    "OrderItemList": {
+      "type": "array",
+      "description": "A list of order items.",
+      "items": {
+        "$ref": "#/$defs/OrderItem"
+      }
+    },
+    "OrderItemsList": {
+      "type": "object",
+      "required": [
+        "AmazonOrderId",
+        "OrderItems"
+      ],
+      "properties": {
+        "OrderItems": {
+          "$ref": "#/$defs/OrderItemList"
+        },
+        "NextToken": {
+          "type": "string",
+          "description": "When present and not empty, pass this string token in the next request to return the next response page."
+        },
+        "AmazonOrderId": {
+          "type": "string",
+          "description": "An Amazon-defined order identifier, in 3-7-7 format."
+        }
+      },
+      "description": "The order items list along with the order ID."
+    },
+    "PointsGrantedDetail": {
+      "type": "object",
+      "properties": {
+        "PointsNumber": {
+          "type": "integer",
+          "description": "The number of Amazon Points granted with the purchase of an item."
+        },
+        "PointsMonetaryValue": {
+          "description": "The monetary value of the Amazon Points granted.",
+          "$ref": "#/$defs/Money"
+        }
+      },
+      "description": "The number of Amazon Points offered with the purchase of an item, and their monetary value."
+    },
+    "ProductInfoDetail": {
+      "type": "object",
+      "properties": {
+        "NumberOfItems": {
+          "type": "string",
+          "description": "The total number of items that are included in the ASIN."
+        }
+      },
+      "description": "Product information on the number of items."
+    },
+    "PromotionIdList": {
+      "type": "array",
+      "description": "A list of promotion identifiers provided by the seller when the promotions were created.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ShippingConstraints": {
+      "type": "object",
+      "description": "Delivery constraints applicable to this order.",
+      "properties": {
+        "PalletDelivery": {
+          "description": "Indicates if the line item needs to be delivered by pallet.",
+          "$ref": "#/$defs/ConstraintType"
+        },
+        "SignatureConfirmation": {
+          "description": "Indicates that the recipient of the line item must sign to confirm its delivery.",
+          "$ref": "#/$defs/ConstraintType"
+        },
+        "RecipientIdentityVerification": {
+          "description": "Indicates that the person receiving the line item must be the same as the intended recipient of the order.",
+          "$ref": "#/$defs/ConstraintType"
+        },
+        "RecipientAgeVerification": {
+          "description": "Indicates that the carrier must confirm the recipient is of the legal age to receive the line item upon delivery.",
+          "$ref": "#/$defs/ConstraintType"
+        }
+      }
+    },
+    "SubstitutionOption": {
+      "type": "object",
+      "description": "Substitution options for an order item.",
+      "properties": {
+        "ASIN": {
+          "type": "string",
+          "description": "The item's Amazon Standard Identification Number (ASIN)."
+        },
+        "QuantityOrdered": {
+          "type": "integer",
+          "description": "The number of items to be picked for this substitution option. "
+        },
+        "SellerSKU": {
+          "type": "string",
+          "description": "The item's seller stock keeping unit (SKU)."
+        },
+        "Title": {
+          "type": "string",
+          "description": "The item's title."
+        },
+        "Measurement": {
+          "description": "Measurement information for the substitution option.",
+          "$ref": "#/$defs/Measurement"
+        }
+      }
+    },
+    "SubstitutionOptionList": {
+      "type": "array",
+      "description": "A collection of substitution options.",
+      "items": {
+        "$ref": "#/$defs/SubstitutionOption"
+      }
+    },
+    "SubstitutionPreferences": {
+      "type": "object",
+      "description": "Substitution preferences for an order item.",
+      "required": [
+        "SubstitutionType"
+      ],
+      "properties": {
+        "SubstitutionType": {
+          "type": "string",
+          "description": "The type of substitution that these preferences represent.",
+          "enum": [
+            "CUSTOMER_PREFERENCE",
+            "AMAZON_RECOMMENDED",
+            "DO_NOT_SUBSTITUTE"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "CUSTOMER_PREFERENCE",
+              "description": "Customer has provided the substitution preferences."
+            },
+            {
+              "value": "AMAZON_RECOMMENDED",
+              "description": "Amazon has provided the substitution preferences."
+            },
+            {
+              "value": "DO_NOT_SUBSTITUTE",
+              "description": "Do not provide a substitute if item is not found."
+            }
+          ]
+        },
+        "SubstitutionOptions": {
+          "description": "Substitution options for the order item.",
+          "$ref": "#/$defs/SubstitutionOptionList"
+        }
+      }
+    },
+    "TaxCollection": {
+      "type": "object",
+      "properties": {
+        "Model": {
+          "type": "string",
+          "description": "The tax collection model applied to the item.",
+          "enum": [
+            "MarketplaceFacilitator"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "MarketplaceFacilitator",
+              "description": "Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller."
+            }
+          ]
+        },
+        "ResponsibleParty": {
+          "type": "string",
+          "description": "The party responsible for withholding the taxes and remitting them to the taxing authority.",
+          "enum": [
+            "Amazon Services, Inc."
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "Amazon Services, Inc.",
+              "description": "The `MarketplaceFacilitator` entity for the US marketplace."
+            }
+          ]
+        }
+      },
+      "description": "Information about withheld taxes."
+    }
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-get-featured-offer-expected-price-batch-request-schema.json",
+  "title": "GetFeaturedOfferExpectedPriceBatchRequest",
+  "description": "The request body for the `getFeaturedOfferExpectedPriceBatch` operation.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-productpricing-api-openapi.yml#/components/schemas/GetFeaturedOfferExpectedPriceBatchRequest",
+  "type": "object",
+  "properties": {
+    "requests": {
+      "$ref": "#/$defs/FeaturedOfferExpectedPriceRequestList"
+    }
+  },
+  "$defs": {
+    "BatchRequest": {
+      "description": "The common properties for individual requests within a batch.",
+      "type": "object",
+      "required": [
+        "uri",
+        "method"
+      ],
+      "properties": {
+        "uri": {
+          "description": "The URI associated with an individual request within a batch. For `FeaturedOfferExpectedPrice`, this is `/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice`.",
+          "type": "string"
+        },
+        "method": {
+          "$ref": "#/$defs/HttpMethod"
+        },
+        "body": {
+          "$ref": "#/$defs/HttpBody"
+        },
+        "headers": {
+          "$ref": "#/$defs/HttpHeaders"
+        }
+      }
+    },
+    "FeaturedOfferExpectedPriceRequest": {
+      "description": "An individual FOEP request for a particular SKU.",
+      "allOf": [
+        {
+          "$ref": "#/$defs/BatchRequest"
+        },
+        {
+          "$ref": "#/$defs/FeaturedOfferExpectedPriceRequestParams"
+        }
+      ]
+    },
+    "FeaturedOfferExpectedPriceRequestList": {
+      "description": "A batched list of FOEP requests.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/FeaturedOfferExpectedPriceRequest"
+      },
+      "minItems": 1
+    },
+    "FeaturedOfferExpectedPriceRequestParams": {
+      "description": "The parameters for an individual request.",
+      "type": "object",
+      "required": [
+        "marketplaceId",
+        "sku"
+      ],
+      "properties": {
+        "marketplaceId": {
+          "$ref": "#/$defs/MarketplaceId"
+        },
+        "sku": {
+          "$ref": "#/$defs/Sku"
+        },
+        "segment": {
+          "$ref": "#/$defs/Segment"
+        }
+      }
+    },
+    "HttpBody": {
+      "description": "Additional HTTP body information that is associated with an individual request within a batch.",
+      "additionalProperties": {}
+    },
+    "HttpHeaders": {
+      "description": "A mapping of additional HTTP headers to send or receive for an individual request within a batch.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "HttpMethod": {
+      "description": "The HTTP method associated with an individual request within a batch.",
+      "type": "string",
+      "enum": [
+        "GET",
+        "PUT",
+        "PATCH",
+        "DELETE",
+        "POST"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "GET",
+          "description": "GET"
+        },
+        {
+          "value": "PUT",
+          "description": "PUT"
+        },
+        {
+          "value": "PATCH",
+          "description": "PATCH"
+        },
+        {
+          "value": "DELETE",
+          "description": "DELETE"
+        },
+        {
+          "value": "POST",
+          "description": "POST"
+        }
+      ]
+    },
+    "MarketplaceId": {
+      "description": "The `MarketplaceID` is the globally unique identifier of an Amazon store. To find the ID for your Amazon store, refer to [Amazon store IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).",
+      "type": "string"
+    },
+    "PostalCode": {
+      "description": "Postal code value with country code",
+      "type": "object",
+      "properties": {
+        "countryCode": {
+          "description": "Country code value",
+          "type": "string"
+        },
+        "value": {
+          "description": "Postal code value",
+          "type": "string"
+        }
+      }
+    },
+    "SampleLocation": {
+      "description": "Information about a location. It uses a postal code to identify the location.",
+      "type": "object",
+      "properties": {
+        "postalCode": {
+          "$ref": "#/$defs/PostalCode"
+        }
+      }
+    },
+    "Segment": {
+      "description": "Input segment for featured offer expected price. The segment contains the location information for which featured offer expected price is requested.",
+      "properties": {
+        "segmentDetails": {
+          "description": "Segment details",
+          "$ref": "#/$defs/SegmentDetails"
+        }
+      },
+      "type": "object"
+    },
+    "SegmentDetails": {
+      "description": "The details about the segment. The FeaturedOfferExpectedPrice API uses only the sampleLocation portion as input.",
+      "type": "object",
+      "properties": {
+        "glanceViewWeightPercentage": {
+          "description": "The glance view weighted percentage for this segment, which is the glance views for this segment as a percentage of total glance views across all segments for the ASIN. A higher percentage indicates that more Amazon customers receive this offer as the Featured Offer.",
+          "type": "number"
+        },
+        "sampleLocation": {
+          "$ref": "#/$defs/SampleLocation",
+          "description": "The representative location that features the offer for the segment."
+        }
+      }
+    },
+    "Sku": {
+      "description": "The seller SKU of the item.",
+      "type": "string"
+    }
+  }
+}

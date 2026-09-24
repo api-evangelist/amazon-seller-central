@@ -13,11 +13,11 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   collections/amazon-seller-central-authentication-api.opencollection.json:
-    method: derived
-    evidence: openapi/amazon-seller-central-authentication-api
+    method: unknown
+    evidence: no authorship recorded
   collections/amazon-seller-central-authentication-api.postman_collection.json:
-    method: derived
-    evidence: openapi/amazon-seller-central-authentication-api
+    method: unknown
+    evidence: no authorship recorded
   collections/amazon-seller-central-catalog-api.opencollection.json:
     method: derived
     evidence: openapi/amazon-seller-central-catalog-api
@@ -37,11 +37,11 @@ artifacts:
     method: derived
     evidence: openapi/amazon-seller-central-finances-api
   collections/amazon-seller-central-inventory-api.opencollection.json:
-    method: derived
-    evidence: openapi/amazon-seller-central-inventory-api
+    method: unknown
+    evidence: no authorship recorded
   collections/amazon-seller-central-inventory-api.postman_collection.json:
-    method: derived
-    evidence: openapi/amazon-seller-central-inventory-api
+    method: unknown
+    evidence: no authorship recorded
   collections/amazon-seller-central-listings-api.opencollection.json:
     method: derived
     evidence: openapi/amazon-seller-central-listings-api
@@ -55,17 +55,17 @@ artifacts:
     method: derived
     evidence: openapi/amazon-seller-central-notifications-api
   collections/amazon-seller-central-orders-api.opencollection.json:
-    method: derived
-    evidence: openapi/amazon-seller-central-orders-api
+    method: unknown
+    evidence: no authorship recorded
   collections/amazon-seller-central-orders-api.postman_collection.json:
-    method: derived
-    evidence: openapi/amazon-seller-central-orders-api
+    method: unknown
+    evidence: no authorship recorded
   collections/amazon-seller-central-pricing-api.opencollection.json:
-    method: derived
-    evidence: openapi/amazon-seller-central-pricing-api
+    method: unknown
+    evidence: no authorship recorded
   collections/amazon-seller-central-pricing-api.postman_collection.json:
-    method: derived
-    evidence: openapi/amazon-seller-central-pricing-api
+    method: unknown
+    evidence: no authorship recorded
   collections/amazon-seller-central-reports-api.opencollection.json:
     method: derived
     evidence: openapi/amazon-seller-central-reports-api
@@ -90,55 +90,262 @@ artifacts:
   collections/amazon-seller-central.postman_collection.json:
     method: derived
     evidence: openapi/amazon-seller-central
-  kin/checks-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-06T210741.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-07T135032.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-10T093022.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-10T111628.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-11T211707.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-12T193225.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-17T064519.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-19T080027.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-19T082702.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-19T114122.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-20T165047.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-20T191845.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-20T205517.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-21T110057.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-24T064859.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-24T171257.yml:
+  conformance/amazon-seller-central-conformance.yml:
+    method: derived
+    evidence: declared in the artifact
+  conventions/amazon-seller-central-conventions.yml:
+    method: derived
+    evidence: declared in the artifact
+  data-model/amazon-seller-central-data-model.yml:
+    method: derived
+    evidence: declared in the artifact
+  errors/amazon-seller-central-problem-types.yml:
+    method: derived
+    evidence: declared in the artifact
+  front-door-ai/2026-09-17.yml:
+    method: unknown
+    evidence: no authorship recorded
+  hosts/amazon-seller-central-hosts.yml:
+    method: derived
+    evidence: declared in the artifact
+  json-ld/amazon-seller-central-context.jsonld:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-add-inventory-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-add-inventory-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-competitive-summary-batch-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-competitive-summary-batch-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-confirm-shipment-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-create-claim-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-create-destination-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-create-destination-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-create-feed-document-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-create-feed-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-create-feed-specification-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-create-fulfillment-order-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-create-fulfillment-return-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-create-inbound-plan-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-create-inventory-item-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-create-inventory-item-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-create-marketplace-item-labels-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-create-report-schedule-specification-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-create-report-specification-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-create-restricted-data-token-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-create-restricted-data-token-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-create-subscription-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-create-subscription-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-delete-inventory-item-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-direct-purchase-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-feed-document-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-feed-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-generate-shipment-content-update-previews-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-generate-transportation-options-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-account-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-featured-offer-expected-price-batch-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-featured-offer-expected-price-batch-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-feeds-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-fulfillment-preview-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-fulfillment-preview-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-inventory-summaries-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-marketplace-participations-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-my-fees-estimate-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-my-fees-estimate-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-my-fees-estimates-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-offers-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-order-address-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-order-buyer-info-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-order-items-buyer-info-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-order-items-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-order-metrics-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-order-regulated-info-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-order-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-pricing-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-rates-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-reports-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-subscription-by-id-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-get-subscriptions-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-inbound-plan-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-item-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-item-search-results-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-link-carrier-account-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-list-all-fulfillment-orders-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-list-balances-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-list-financial-event-groups-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-list-financial-events-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-list-transactions-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-listings-item-patch-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-listings-item-put-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-listings-item-submission-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-one-click-shipment-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-product-type-definition-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-product-type-list-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-purchase-shipment-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-report-document-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-report-schedule-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-report-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-restriction-list-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-search-orders-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-shipment-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-summary-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-update-fulfillment-order-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-seller-central-update-shipment-status-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  kin/checks-2026-09-24T064009.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-08-25T125852.yml:
@@ -225,25 +432,322 @@ artifacts:
   kin/score-2026-09-05T072335.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T144739.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T195450.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T211839.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T011047.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T211804.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T224210.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-07T200636.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-07T213054.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-08T214843.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-08T232836.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-10T204815.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-10T222408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T062655.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T080032.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T204651.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T221936.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-13T214537.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T064754.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T210656.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T225847.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-15T211329.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-15T230249.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-16T210549.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-16T225339.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-17T211151.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-17T233623.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-18T205255.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-18T231945.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-19T165737.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-19T193153.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-20T205903.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-20T232958.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-21T211425.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-21T233935.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-22T213221.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-23T000603.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T064009.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  llms/amazon-seller-central-llms-provenance.yml:
+    method: searched
+    evidence: declared in the artifact
   llms/amazon-seller-central-llms.txt:
     method: searched
     evidence: 'derive-llms-provenance.py: harvested'
-  openapi/_original/amazon-seller-central-openapi.yml:
+  mcp/amazon-seller-central-mcp.yml:
+    method: searched
+    evidence: declared in the artifact
+  mcp/amazon-seller-central-tool-crosswalk.yml:
+    method: derived
+    evidence: declared in the artifact
+  openapi/_original/amazon-seller-central-catalog-items-2022-04-01-original.json:
     method: harvested
-    evidence: fetched from the provider as-is; byte-identical to the source
-  openapi/amazon-seller-central-authentication-api-openapi.yml:
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-catalog-items-2022-04-01-original.json.archived.txt:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-fba-inventory-v1-original.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-fba-inventory-v1-original.json.archived.txt:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-feeds-2021-06-30-original.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-feeds-2021-06-30-original.json.archived.txt:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-finances-2024-06-19-original.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-finances-2024-06-19-original.json.archived.txt:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-finances-v0-original.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-finances-v0-original.json.archived.txt:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-fulfillment-inbound-2024-03-20-original.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-fulfillment-inbound-2024-03-20-original.json.archived.txt:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-fulfillment-outbound-2020-07-01-original.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-fulfillment-outbound-2020-07-01-original.json.archived.txt:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-listings-items-2021-08-01-original.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-listings-items-2021-08-01-original.json.archived.txt:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-listings-restrictions-2021-08-01-original.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-listings-restrictions-2021-08-01-original.json.archived.txt:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-notifications-v1-original.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-notifications-v1-original.json.archived.txt:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-orders-2026-01-01-original.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-orders-2026-01-01-original.json.archived.txt:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-orders-v0-original.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-orders-v0-original.json.archived.txt:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-product-fees-v0-original.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-product-fees-v0-original.json.archived.txt:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-product-pricing-2022-05-01-original.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-product-pricing-2022-05-01-original.json.archived.txt:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-product-pricing-v0-original.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-product-pricing-v0-original.json.archived.txt:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-product-type-definitions-2020-09-01-original.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-product-type-definitions-2020-09-01-original.json.archived.txt:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-reports-2021-06-30-original.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-reports-2021-06-30-original.json.archived.txt:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-sales-v1-original.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-sales-v1-original.json.archived.txt:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-sellers-v1-original.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-sellers-v1-original.json.archived.txt:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-shipping-v2-original.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-shipping-v2-original.json.archived.txt:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-tokens-2021-03-01-original.json:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/_original/amazon-seller-central-tokens-2021-03-01-original.json.archived.txt:
+    method: harvested
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
+  openapi/amazon-seller-central-catalog-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/amazon-seller-central-catalog-api-openapi.yml:
+  openapi/amazon-seller-central-definitions-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/amazon-seller-central-fbainbound-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/amazon-seller-central-fbainventory-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/amazon-seller-central-fbaoutbound-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/amazon-seller-central-feeds-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/amazon-seller-central-fees-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/amazon-seller-central-finances-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/amazon-seller-central-inventory-api-openapi.yml:
+  openapi/amazon-seller-central-getorder-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/amazon-seller-central-listings-api-openapi.yml:
@@ -252,13 +756,25 @@ artifacts:
   openapi/amazon-seller-central-notifications-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/amazon-seller-central-orders-api-openapi.yml:
+  openapi/amazon-seller-central-ordersv0-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/amazon-seller-central-pricing-api-openapi.yml:
+  openapi/amazon-seller-central-productpricing-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/amazon-seller-central-reports-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/amazon-seller-central-sales-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/amazon-seller-central-searchorders-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/amazon-seller-central-sellers-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/amazon-seller-central-shipment-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/amazon-seller-central-shipping-api-openapi.yml:
@@ -267,6 +783,66 @@ artifacts:
   openapi/amazon-seller-central-tokens-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  rules/amazon-seller-central-rules.yml:
+    method: generated
+    evidence: declared in the artifact
   security/amazon-seller-central-domain-security.yml:
     method: unknown
     evidence: no authorship recorded
+  skills/_index.yml:
+    method: searched
+    evidence: declared in the artifact
+  skills/amazon-seller-central-fba-inbound-management.md:
+    method: unknown
+    evidence: no authorship recorded
+  skills/amazon-seller-central-invite-secondary-users.md:
+    method: unknown
+    evidence: no authorship recorded
+  skills/amazon-seller-central-listing-buyability.md:
+    method: unknown
+    evidence: no authorship recorded
+  skills/amazon-seller-central-listing-compliance.md:
+    method: unknown
+    evidence: no authorship recorded
+  skills/amazon-seller-central-listing-issues.md:
+    method: unknown
+    evidence: no authorship recorded
+  skills/amazon-seller-central-listing-searchability.md:
+    method: unknown
+    evidence: no authorship recorded
+  skills/amazon-seller-central-listing-troubleshooter.md:
+    method: unknown
+    evidence: no authorship recorded
+  skills/amazon-seller-central-seller-analytics.md:
+    method: unknown
+    evidence: no authorship recorded
+  skills/amazon-seller-central-sp-api-knowledge.md:
+    method: unknown
+    evidence: no authorship recorded
+  skills/amazon-seller-central-stockout-prevention.md:
+    method: unknown
+    evidence: no authorship recorded
+  skills/amazon-seller-central-support-case-helper.md:
+    method: unknown
+    evidence: no authorship recorded
+  vendors/amazon-seller-central-vendors.yml:
+    method: unknown
+    evidence: no authorship recorded
+  vocabulary/amazon-seller-central-vocabulary.yml:
+    method: derived
+    evidence: declared in the artifact
+  webhooks/amazon-seller-central-notifications.yml:
+    method: searched
+    evidence: declared in the artifact
+  well-known/amazon-seller-central-api-catalog.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/amazon-seller-central-mcp-oauth-authorization-server.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/amazon-seller-central-mcp-oauth-protected-resource.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/amazon-seller-central-well-known.yml:
+    method: searched
+    evidence: declared in the artifact

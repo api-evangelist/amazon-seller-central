@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-restriction-list-schema.json",
+  "title": "RestrictionList",
+  "description": "A list of restrictions for the specified Amazon catalog item.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-listings-api-openapi.yml#/components/schemas/RestrictionList",
+  "type": "object",
+  "properties": {
+    "restrictions": {
+      "description": "A list of restrictions.",
+      "items": {
+        "$ref": "#/$defs/Restriction"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "restrictions"
+  ],
+  "$defs": {
+    "Link": {
+      "description": "A link to resources related to a listing restriction.",
+      "type": "object",
+      "properties": {
+        "resource": {
+          "description": "The URI of the related resource.",
+          "type": "string",
+          "format": "uri"
+        },
+        "verb": {
+          "description": "The HTTP verb used to interact with the related resource.",
+          "type": "string",
+          "enum": [
+            "GET"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "GET",
+              "description": "The provided resource is accessed with the HTTP GET method."
+            }
+          ]
+        },
+        "title": {
+          "description": "The title of the related resource.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The media type of the related resource.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "resource",
+        "verb"
+      ]
+    },
+    "Reason": {
+      "description": "A reason for the restriction, including path forward links that may allow Selling Partners to remove the restriction, if available.",
+      "type": "object",
+      "properties": {
+        "message": {
+          "description": "A message describing the reason for the restriction.",
+          "type": "string"
+        },
+        "reasonCode": {
+          "description": "A code indicating why the listing is restricted.",
+          "type": "string",
+          "enum": [
+            "APPROVAL_REQUIRED",
+            "ASIN_NOT_FOUND",
+            "NOT_ELIGIBLE"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "APPROVAL_REQUIRED",
+              "description": "Approval is required to create a listing for the specified ASIN. A path forward link will be provided that may allow Selling Partners to remove the restriction."
+            },
+            {
+              "value": "ASIN_NOT_FOUND",
+              "description": "The specified ASIN does not exist in the requested marketplace."
+            },
+            {
+              "value": "NOT_ELIGIBLE",
+              "description": "Not eligible to create a listing for the specified ASIN. No path forward link will be provided to remove the restriction."
+            }
+          ]
+        },
+        "links": {
+          "description": "A list of path forward links that may allow Selling Partners to remove the restriction.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Link"
+          }
+        }
+      },
+      "required": [
+        "message"
+      ]
+    },
+    "Restriction": {
+      "description": "A listing restriction, optionally qualified by a condition, with a list of reasons for the restriction.",
+      "type": "object",
+      "properties": {
+        "marketplaceId": {
+          "description": "A marketplace identifier. Identifies the Amazon marketplace where the restriction is enforced.",
+          "type": "string"
+        },
+        "conditionType": {
+          "description": "The condition that applies to the restriction.",
+          "type": "string",
+          "enum": [
+            "new_new",
+            "new_open_box",
+            "new_oem",
+            "refurbished_refurbished",
+            "used_like_new",
+            "used_very_good",
+            "used_good",
+            "used_acceptable",
+            "collectible_like_new",
+            "collectible_very_good",
+            "collectible_good",
+            "collectible_acceptable",
+            "club_club"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "new_new",
+              "description": "New"
+            },
+            {
+              "value": "new_open_box",
+              "description": "New - Open Box."
+            },
+            {
+              "value": "new_oem",
+              "description": "New - OEM."
+            },
+            {
+              "value": "refurbished_refurbished",
+              "description": "Refurbished"
+            },
+            {
+              "value": "used_like_new",
+              "description": "Used - Like New."
+            },
+            {
+              "value": "used_very_good",
+              "description": "Used - Very Good."
+            },
+            {
+              "value": "used_good",
+              "description": "Used - Good."
+            },
+            {
+              "value": "used_acceptable",
+              "description": "Used - Acceptable."
+            },
+            {
+              "value": "collectible_like_new",
+              "description": "Collectible - Like New."
+            },
+            {
+              "value": "collectible_very_good",
+              "description": "Collectible - Very Good."
+            },
+            {
+              "value": "collectible_good",
+              "description": "Collectible - Good."
+            },
+            {
+              "value": "collectible_acceptable",
+              "description": "Collectible - Acceptable."
+            },
+            {
+              "value": "club_club",
+              "description": "Club"
+            }
+          ]
+        },
+        "reasons": {
+          "description": "A list of reasons for the restriction.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Reason"
+          }
+        }
+      },
+      "required": [
+        "marketplaceId"
+      ]
+    }
+  }
+}

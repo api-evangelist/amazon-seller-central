@@ -1,0 +1,234 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-inbound-plan-schema.json",
+  "title": "InboundPlan",
+  "description": "Inbound plan containing details of the inbound workflow.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/InboundPlan",
+  "properties": {
+    "createdAt": {
+      "description": "The time at which the inbound plan was created. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime with pattern `yyyy-MM-ddTHH:mm:ssZ`.",
+      "format": "date-time",
+      "type": "string"
+    },
+    "inboundPlanId": {
+      "description": "Identifier of an inbound plan.",
+      "maxLength": 38,
+      "minLength": 38,
+      "pattern": "^[a-zA-Z0-9-]*$",
+      "type": "string"
+    },
+    "lastUpdatedAt": {
+      "description": "The time at which the inbound plan was last updated. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern `yyyy-MM-ddTHH:mm:ssZ`.",
+      "format": "date-time",
+      "type": "string"
+    },
+    "marketplaceIds": {
+      "description": "A list of marketplace IDs.",
+      "items": {
+        "description": "The Marketplace ID. For a list of possible values, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).",
+        "maxLength": 20,
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "name": {
+      "description": "Human-readable name of the inbound plan.",
+      "type": "string"
+    },
+    "packingOptions": {
+      "description": "Packing options for the inbound plan. This property will be populated when it has been generated via the corresponding operation. If there is a chosen placement option, only packing options for that placement option will be returned. If there are confirmed shipments, only packing options for those shipments will be returned. Query the packing option for more details.",
+      "items": {
+        "$ref": "#/$defs/PackingOptionSummary"
+      },
+      "type": "array"
+    },
+    "placementOptions": {
+      "description": "Placement options for the inbound plan. This property will be populated when it has been generated via the corresponding operation. If there is a chosen placement option, that will be the only returned option. Query the placement option for more details.",
+      "items": {
+        "$ref": "#/$defs/PlacementOptionSummary"
+      },
+      "type": "array"
+    },
+    "shipments": {
+      "description": "A list of shipment IDs for the inbound plan. This property is populated when it has been generated with the `confirmPlacementOptions` operation. Only shipments from the chosen placement option are returned. Query the shipment for more details.",
+      "items": {
+        "$ref": "#/$defs/ShipmentSummary"
+      },
+      "type": "array"
+    },
+    "sourceAddress": {
+      "$ref": "#/$defs/Address"
+    },
+    "status": {
+      "description": "Current status of the inbound plan. Possible values: `ACTIVE`, `VOIDED`, `SHIPPED`, `ERRORED`.",
+      "maxLength": 1024,
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "createdAt",
+    "inboundPlanId",
+    "lastUpdatedAt",
+    "marketplaceIds",
+    "name",
+    "sourceAddress",
+    "status"
+  ],
+  "type": "object",
+  "$defs": {
+    "Address": {
+      "description": "Specific details to identify a place.",
+      "properties": {
+        "addressLine1": {
+          "description": "Street address information.",
+          "maxLength": 180,
+          "minLength": 1,
+          "type": "string"
+        },
+        "addressLine2": {
+          "description": "Additional street address information.",
+          "maxLength": 60,
+          "minLength": 1,
+          "type": "string"
+        },
+        "city": {
+          "description": "The city.",
+          "maxLength": 30,
+          "minLength": 1,
+          "type": "string"
+        },
+        "companyName": {
+          "description": "The name of the business.",
+          "maxLength": 50,
+          "minLength": 1,
+          "type": "string"
+        },
+        "countryCode": {
+          "description": "The country code in two-character ISO 3166-1 alpha-2 format.",
+          "maxLength": 2,
+          "minLength": 2,
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "districtOrCounty": {
+          "description": "The district or county.",
+          "maxLength": 50,
+          "minLength": 1,
+          "type": "string"
+        },
+        "email": {
+          "description": "The email address.",
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the individual who is the primary contact.",
+          "maxLength": 50,
+          "minLength": 1,
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "The phone number.",
+          "maxLength": 20,
+          "minLength": 1,
+          "type": "string"
+        },
+        "postalCode": {
+          "description": "The postal code.",
+          "maxLength": 32,
+          "minLength": 1,
+          "type": "string"
+        },
+        "stateOrProvinceCode": {
+          "description": "The state or province code.",
+          "maxLength": 64,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "addressLine1",
+        "city",
+        "countryCode",
+        "name",
+        "postalCode"
+      ],
+      "type": "object"
+    },
+    "PackingOptionSummary": {
+      "description": "Summary information about a packing option.",
+      "properties": {
+        "packingOptionId": {
+          "description": "Identifier of a packing option.",
+          "maxLength": 38,
+          "minLength": 38,
+          "pattern": "^[a-zA-Z0-9-]*$",
+          "type": "string"
+        },
+        "status": {
+          "description": "The status of a packing option. Possible values: 'OFFERED', 'ACCEPTED', 'EXPIRED'.",
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "packingOptionId",
+        "status"
+      ],
+      "type": "object"
+    },
+    "PlacementOptionSummary": {
+      "description": "Summary information about a placement option.",
+      "properties": {
+        "placementOptionId": {
+          "description": "The identifier of a placement option. A placement option represents the shipment splits and destinations of SKUs.",
+          "maxLength": 38,
+          "minLength": 38,
+          "pattern": "^[a-zA-Z0-9-]*$",
+          "type": "string"
+        },
+        "status": {
+          "description": "The status of a placement option. Possible values: `OFFERED`, `ACCEPTED`.",
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "placementOptionId",
+        "status"
+      ],
+      "type": "object"
+    },
+    "ShipmentSummary": {
+      "description": "Summary information about a shipment.",
+      "properties": {
+        "shipmentId": {
+          "description": "Identifier of a shipment. A shipment contains the boxes and units being inbounded.",
+          "maxLength": 38,
+          "minLength": 38,
+          "pattern": "^[a-zA-Z0-9-]*$",
+          "type": "string"
+        },
+        "status": {
+          "description": "The status of a shipment. The state of the shipment will typically start as `UNCONFIRMED`, then transition to `WORKING` after a placement option has been confirmed, and then to `READY_TO_SHIP` once labels are generated.\n\nPossible values: `ABANDONED`, `CANCELLED`, `CHECKED_IN`, `CLOSED`, `DELETED`, `DELIVERED`, `IN_TRANSIT`, `MIXED`, `READY_TO_SHIP`, `RECEIVING`, `SHIPPED`, `UNCONFIRMED`, `WORKING`",
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "shipmentId",
+        "status"
+      ],
+      "type": "object"
+    }
+  }
+}

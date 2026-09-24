@@ -1,56 +1,1248 @@
 openapi: 3.2.0
 info:
-  title: Amazon Selling Partner API (SP-API) Feeds API
-  version: 1.0.0
-  description: 'Modern REST API enabling Amazon sellers, vendors, and third-party
-
-    developers to programmatically access Seller Central data and
-
-    operations. Coverage includes catalog management, orders, inventory,
-
-    pricing, fulfillment, reports, feeds, finances, notifications, and
-
-    tokens. Authentication uses Login with Amazon (LWA) OAuth 2.0
-
-    access tokens (`x-amz-access-token`) and optional Restricted Data
-
-    Tokens for PII. SP-API replaces the legacy Amazon MWS.'
+  description: The Selling Partner API for Feeds lets you upload data to Amazon on behalf of a selling partner.
+  version: '2021-06-30'
+  title: Selling Partner Feeds API
   contact:
-    name: Amazon Selling Partner API
-    url: https://developer-docs.amazon.com/sp-api
+    name: Selling Partner API Developer Support
+    url: https://sellercentral.amazon.com/gp/mws/contactus.html
+  license:
+    name: Apache License 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
 servers:
 - url: https://sellingpartnerapi-na.amazon.com
-  description: North America
-- url: https://sellingpartnerapi-eu.amazon.com
-  description: Europe
-- url: https://sellingpartnerapi-fe.amazon.com
-  description: Far East
-security:
-- LwaBearer: []
 tags:
-- name: Feeds
+- name: feeds
 paths:
   /feeds/2021-06-30/feeds:
+    parameters: []
     get:
       tags:
-      - Feeds
-      summary: List feeds
+      - feeds
+      description: 'Returns feed details for the feeds that match the filters that you specify.
+
+
+        **Usage Plan:**
+
+
+        | Rate (requests per second) | Burst |
+
+        | ---- | ---- |
+
+        | 0.0222 | 10 |
+
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
       operationId: getFeeds
+      parameters:
+      - name: feedTypes
+        in: query
+        required: false
+        description: A list of feed types used to filter feeds. When feedTypes is provided, the other filter parameters (processingStatuses, marketplaceIds, createdSince, createdUntil) and pageSize may also be provided. Either feedTypes or nextToken is required.
+        schema:
+          type: array
+          items:
+            type: string
+          maxItems: 10
+          minItems: 1
+      - name: marketplaceIds
+        description: A list of marketplace identifiers used to filter feeds. The feeds returned will match at least one of the marketplaces that you specify.
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+          maxItems: 10
+          minItems: 1
+      - name: pageSize
+        in: query
+        description: The maximum number of feeds to return in a single call.
+        required: false
+        schema:
+          type: integer
+          default: 10
+          maximum: 100
+          minimum: 1
+      - name: processingStatuses
+        in: query
+        description: A list of processing statuses used to filter feeds.
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - CANCELLED
+            - DONE
+            - FATAL
+            - IN_PROGRESS
+            - IN_QUEUE
+            x-docgen-enum-table-extension:
+            - value: CANCELLED
+              description: The feed was cancelled before it started processing.
+            - value: DONE
+              description: The feed has completed processing. Examine the contents of the result document to determine if there were any errors during processing.
+            - value: FATAL
+              description: The feed was aborted due to a fatal error. Some, none, or all of the operations within the feed may have completed successfully.
+            - value: IN_PROGRESS
+              description: The feed is being processed.
+            - value: IN_QUEUE
+              description: The feed has not yet started processing. It may be waiting for another IN_PROGRESS feed.
+          minItems: 1
+      - name: createdSince
+        in: query
+        description: The earliest feed creation date and time for feeds included in the response, in ISO 8601 format. The default is 90 days ago. Feeds are retained for a maximum of 90 days.
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: createdUntil
+        in: query
+        description: The latest feed creation date and time for feeds included in the response, in ISO 8601 format. The default is now.
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: nextToken
+        in: query
+        description: A string token returned in the response to your previous request. nextToken is returned when the number of results exceeds the specified pageSize value. To get the next page of results, call the getFeeds operation and include this token as the only parameter. Specifying nextToken with any other parameters will cause the request to fail.
+        required: false
+        schema:
+          type: string
       responses:
         '200':
-          description: Feeds.
+          description: Success.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  feedTypes:
+                    value:
+                    - POST_PRODUCT_DATA
+                  pageSize:
+                    value: 10
+                  processingStatuses:
+                    value:
+                    - CANCELLED
+                    - DONE
+              response:
+                feeds:
+                - feedId: FeedId1
+                  feedType: POST_PRODUCT_DATA
+                  createdTime: '2024-03-11T13:16:24.630Z'
+                  processingStatus: CANCELLED
+                  processingStartTime: '2024-03-11T13:16:24.630Z'
+                  processingEndTime: '2024-03-11T13:16:24.630Z'
+                nextToken: VGhpcyB0b2tlbiBpcyBvcGFxdWUgYW5kIGludGVudGlvbmFsbHkgb2JmdXNjYXRlZA==
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetFeedsResponse'
+        '400':
+          description: Request has missing or invalid parameters and cannot be parsed.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  feedTypes:
+                    value:
+                    - POST_PRODUCT_DATA
+                  processingStatuses:
+                    value:
+                    - BAD_VALUE
+                    - DONE
+              response:
+                errors:
+                - code: '400'
+                  message: Invalid input
+                  details: Dates were not provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '401':
+          description: The request's Authorization header is not formatted correctly or does not contain a valid token.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '403':
+          description: Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '404':
+          description: The specified resource does not exist.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '415':
+          description: The request's Content-Type header is invalid.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '429':
+          description: The frequency of requests was greater than allowed.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '500':
+          description: An unexpected condition occurred that prevented the server from fulfilling the request.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '503':
+          description: Temporary overloading or maintenance of the server.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
     post:
       tags:
-      - Feeds
-      summary: Create a feed
+      - feeds
+      description: 'Creates a feed. Upload the contents of the feed document before calling this operation.
+
+
+        **Usage Plan:**
+
+
+        | Rate (requests per second) | Burst |
+
+        | ---- | ---- |
+
+        | 0.0083 | 15 |
+
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+
+
+        The rate limit for the [`JSON_LISTINGS_FEED`](https://developer-docs.amazon.com/sp-api/docs/listings-feed-type-values#listings-feed) feed type differs from the rate limit for the [`createFeed`](https://developer-docs.amazon.com/sp-api/reference/createfeed) operation. For more information, refer to the [Building Listings Management Workflows Guide](https://developer-docs.amazon.com/sp-api/docs/building-listings-management-workflows-guide#should-i-submit-in-bulk-using-the-json_listings_feed-or-individually-with-the-listings-items-api).'
       operationId: createFeed
       responses:
         '202':
-          description: Feed accepted.
+          description: Success.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  body:
+                    value:
+                      feedType: POST_PRODUCT_DATA
+                      marketplaceIds:
+                      - ATVPDKIKX0DER
+                      - A1F83G8C2ARO7P
+                      inputFeedDocumentId: 3d4e42b5-1d6e-44e8-a89c-2abfca0625bb
+              response:
+                feedId: '3485934'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateFeedResponse'
+        '400':
+          description: Request has missing or invalid parameters and cannot be parsed.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  body:
+                    value:
+                      marketplaceIds:
+                      - ATVPDKIKX0DER
+                      - A1F83G8C2ARO7P
+                      inputFeedDocumentId: badDocumentId
+              response:
+                errors:
+                - code: '400'
+                  message: Invalid input
+                  details: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '401':
+          description: The request's Authorization header is not formatted correctly or does not contain a valid token.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '403':
+          description: Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '404':
+          description: The specified resource does not exist.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '415':
+          description: The request's Content-Type header is invalid.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '429':
+          description: The frequency of requests was greater than allowed.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '500':
+          description: An unexpected condition occurred that prevented the server from fulfilling the request.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '503':
+          description: Temporary overloading or maintenance of the server.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFeedSpecification'
+        description: Information required to create the feed.
+        required: true
+  /feeds/2021-06-30/feeds/{feedId}:
+    parameters: []
+    delete:
+      tags:
+      - feeds
+      description: 'Cancels the feed that you specify. Only feeds with `processingStatus=IN_QUEUE` can be cancelled. Cancelled feeds are returned in subsequent calls to the [`getFeed`](https://developer-docs.amazon.com/sp-api/reference/getfeed) and [`getFeeds`](https://developer-docs.amazon.com/sp-api/reference/getfeeds) operations.
+
+
+        **Usage Plan:**
+
+
+        | Rate (requests per second) | Burst |
+
+        | ---- | ---- |
+
+        | 2 | 15 |
+
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+      operationId: cancelFeed
+      parameters:
+      - name: feedId
+        in: path
+        description: The identifier for the feed. This identifier is unique only in combination with a seller ID.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  feedId:
+                    value: ID1
+        '400':
+          description: Request has missing or invalid parameters and cannot be parsed.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  feedId:
+                    value: BADID1
+              response:
+                errors:
+                - code: '400'
+                  message: Invalid input
+                  details: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '401':
+          description: The request's Authorization header is not formatted correctly or does not contain a valid token.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '403':
+          description: Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '404':
+          description: The specified resource does not exist.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '415':
+          description: The request's Content-Type header is invalid.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '429':
+          description: The frequency of requests was greater than allowed.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '500':
+          description: An unexpected condition occurred that prevented the server from fulfilling the request.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '503':
+          description: Temporary overloading or maintenance of the server.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+    get:
+      tags:
+      - feeds
+      description: 'Returns feed details (including the `resultDocumentId`, if available) for the feed that you specify.
+
+
+        **Usage Plan:**
+
+
+        | Rate (requests per second) | Burst |
+
+        | ---- | ---- |
+
+        | 2 | 15 |
+
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+      operationId: getFeed
+      parameters:
+      - name: feedId
+        in: path
+        description: The identifier for the feed. This identifier is unique only in combination with a seller ID.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  feedId:
+                    value: feedId1
+              response:
+                feedId: FeedId1
+                feedType: POST_PRODUCT_DATA
+                createdTime: '2024-03-11T13:16:24.630Z'
+                processingStatus: CANCELLED
+                processingStartTime: '2024-03-11T13:16:24.630Z'
+                processingEndTime: '2024-03-11T13:16:24.630Z'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feed'
+        '400':
+          description: Request has missing or invalid parameters and cannot be parsed.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  feedId:
+                    value: badFeedId1
+              response:
+                errors:
+                - code: '400'
+                  message: Invalid input
+                  details: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '401':
+          description: The request's Authorization header is not formatted correctly or does not contain a valid token.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '403':
+          description: Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '404':
+          description: The specified resource does not exist.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '415':
+          description: The request's Content-Type header is invalid.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '429':
+          description: The frequency of requests was greater than allowed.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '500':
+          description: An unexpected condition occurred that prevented the server from fulfilling the request.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '503':
+          description: Temporary overloading or maintenance of the server.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+  /feeds/2021-06-30/documents:
+    parameters: []
+    post:
+      description: 'Creates a feed document for the feed type that you specify. This operation returns a presigned URL for uploading the feed document contents. It also returns a `feedDocumentId` value that you can pass in with a subsequent call to the [`createFeed`](https://developer-docs.amazon.com/sp-api/reference/createfeed) operation.
+
+
+        **Usage Plan:**
+
+
+        | Rate (requests per second) | Burst |
+
+        | ---- | ---- |
+
+        | 0.5 | 15 |
+
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+      operationId: createFeedDocument
+      tags:
+      - feeds
+      responses:
+        '201':
+          description: Successfully created a feed document that is ready to receive contents.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  body:
+                    value:
+                      contentType: text/tab-separated-values; charset=UTF-8
+              response:
+                feedDocumentId: 3d4e42b5-1d6e-44e8-a89c-2abfca0625bb
+                url: https://d34o8swod1owfl.cloudfront.net/Feed_101__POST_PRODUCT_DATA_.xml
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateFeedDocumentResponse'
+        '400':
+          description: Request has missing or invalid parameters and cannot be parsed.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  body:
+                    value: {}
+              response:
+                errors:
+                - code: '400'
+                  message: Invalid input
+                  details: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '403':
+          description: Indicates that access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '404':
+          description: The resource specified does not exist.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '413':
+          description: The request size exceeded the maximum accepted size.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '415':
+          description: The request payload is in an unsupported format.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '429':
+          description: The frequency of requests was greater than allowed.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '500':
+          description: An unexpected condition occurred that prevented the server from fulfilling the request.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '503':
+          description: Temporary overloading or maintenance of the server.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFeedDocumentSpecification'
+        description: Specifies the content type for the createFeedDocument operation.
+        required: true
+  /feeds/2021-06-30/documents/{feedDocumentId}:
+    get:
+      tags:
+      - feeds
+      description: 'Returns the information required for retrieving a feed document''s contents.
+
+
+        **Usage Plan:**
+
+
+        | Rate (requests per second) | Burst |
+
+        | ---- | ---- |
+
+        | 0.0222 | 10 |
+
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+      operationId: getFeedDocument
+      parameters:
+      - name: feedDocumentId
+        in: path
+        description: The identifier of the feed document.
+        required: true
+        schema:
+          type: string
+      - name: enableContentEncodingUrlHeader
+        in: query
+        description: When `true`, the Content-Encoding header on the returned URL is set to `gzip` instead of the default `identity` when `compressionAlgorithm` is `GZIP`. This allows automatic decompression by HTTP clients.
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Success.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  feedDocumentId:
+                    value: 0356cf79-b8b0-4226-b4b9-0ee058ea5760
+              response:
+                feedDocumentId: 0356cf79-b8b0-4226-b4b9-0ee058ea5760
+                url: https://d34o8swod1owfl.cloudfront.net/Feed_101__POST_PRODUCT_DATA_.xml
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedDocument'
+        '400':
+          description: Request has missing or invalid parameters and cannot be parsed.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          x-amzn-api-sandbox:
+            static:
+            - request:
+                parameters:
+                  feedDocumentId:
+                    value: badDocumentId1
+              response:
+                errors:
+                - code: '400'
+                  message: Invalid input
+                  details: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '401':
+          description: The request's Authorization header is not formatted correctly or does not contain a valid token.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '403':
+          description: Indicates access to the resource is forbidden. Possible reasons include Access Denied, Unauthorized, Expired Token, or Invalid Signature.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '404':
+          description: The specified resource does not exist.
+          headers:
+            x-amzn-RateLimit-Limit:
+              description: Your rate limit (requests per second) for this operation.
+              schema:
+                type: string
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '415':
+          description: The request's Content-Type header is invalid.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '429':
+          description: The frequency of requests was greater than allowed.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '500':
+          description: An unexpected condition occurred that prevented the server from fulfilling the request.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+        '503':
+          description: Temporary overloading or maintenance of the server.
+          headers:
+            x-amzn-RequestId:
+              description: Unique request reference identifier.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
 components:
-  securitySchemes:
-    LwaBearer:
-      type: apiKey
-      in: header
-      name: x-amz-access-token
-      description: Login with Amazon (LWA) OAuth 2.0 access token.
+  schemas:
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: An error code that identifies the type of error that occurred.
+        message:
+          type: string
+          description: A message that describes the error condition.
+        details:
+          type: string
+          description: Additional details that can help the caller understand or fix the issue.
+      description: An error response returned when the request is unsuccessful.
+    Feed:
+      type: object
+      description: Detailed information about the feed.
+      required:
+      - createdTime
+      - feedId
+      - feedType
+      - processingStatus
+      properties:
+        feedId:
+          description: The identifier for the feed. This identifier is unique only in combination with a seller ID.
+          type: string
+        feedType:
+          description: The feed type.
+          type: string
+        marketplaceIds:
+          description: A list of identifiers for the marketplaces that the feed is applied to.
+          type: array
+          items:
+            type: string
+        createdTime:
+          type: string
+          description: The date and time when the feed was created, in ISO 8601 date time format.
+          format: date-time
+        processingStatus:
+          description: The processing status of the feed.
+          type: string
+          enum:
+          - CANCELLED
+          - DONE
+          - FATAL
+          - IN_PROGRESS
+          - IN_QUEUE
+          x-docgen-enum-table-extension:
+          - value: CANCELLED
+            description: The feed was cancelled before it started processing.
+          - value: DONE
+            description: The feed has completed processing. Examine the contents of the result document to determine if there were any errors during processing.
+          - value: FATAL
+            description: The feed was aborted due to a fatal error. Some, none, or all of the operations within the feed may have completed successfully.
+          - value: IN_PROGRESS
+            description: The feed is being processed.
+          - value: IN_QUEUE
+            description: The feed has not yet started processing. It may be waiting for another IN_PROGRESS feed.
+        processingStartTime:
+          description: The date and time when feed processing started, in ISO 8601 date time format.
+          type: string
+          format: date-time
+        processingEndTime:
+          description: The date and time when feed processing completed, in ISO 8601 date time format.
+          type: string
+          format: date-time
+        resultFeedDocumentId:
+          description: The identifier for the feed document. This identifier is unique only in combination with a seller ID.
+          type: string
+    CreateFeedDocumentResponse:
+      description: Information required to upload a feed document's contents.
+      type: object
+      required:
+      - feedDocumentId
+      - url
+      properties:
+        feedDocumentId:
+          description: The identifier of the feed document.
+          type: string
+        url:
+          description: The presigned URL for uploading the feed contents. This URL expires after 5 minutes.
+          type: string
+    FeedOptions:
+      description: Additional options to control the feed. These vary by feed type.
+      type: object
+      additionalProperties:
+        type: string
+    CreateFeedSpecification:
+      type: object
+      description: Information required to create the feed.
+      required:
+      - inputFeedDocumentId
+      - feedType
+      - marketplaceIds
+      properties:
+        feedType:
+          description: The feed type.
+          type: string
+        marketplaceIds:
+          description: A list of identifiers for marketplaces that you want the feed to be applied to.
+          type: array
+          minItems: 1
+          maxItems: 25
+          items:
+            type: string
+        inputFeedDocumentId:
+          description: The document identifier returned by the createFeedDocument operation. Upload the feed document contents before calling the createFeed operation.
+          type: string
+        feedOptions:
+          $ref: '#/components/schemas/FeedOptions'
+    FeedDocument:
+      type: object
+      description: Information required for the feed document.
+      required:
+      - feedDocumentId
+      - url
+      properties:
+        feedDocumentId:
+          description: The identifier for the feed document. This identifier is unique only in combination with a seller ID.
+          type: string
+        url:
+          description: A presigned URL for the feed document. If `compressionAlgorithm` is not returned, you can download the feed directly from this URL. This URL expires after 5 minutes.
+          type: string
+        compressionAlgorithm:
+          description: If the feed document contents have been compressed, the compression algorithm used is returned in this property and you must decompress the feed when you download. Otherwise, you can download the feed directly. Refer to [Step 7. Download the feed processing report](doc:feeds-api-v2021-06-30-use-case-guide#step-7-download-the-feed-processing-report) in the use case guide, where sample code is provided.
+          type: string
+          enum:
+          - GZIP
+          x-docgen-enum-table-extension:
+          - value: GZIP
+            description: The gzip compression algorithm.
+    CreateFeedDocumentSpecification:
+      type: object
+      description: Specifies the content type for the createFeedDocument operation.
+      required:
+      - contentType
+      properties:
+        contentType:
+          description: The content type of the feed.
+          type: string
+    ErrorList:
+      type: object
+      description: A list of error responses returned when a request is unsuccessful.
+      required:
+      - errors
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+          description: An error response returned when the request is unsuccessful.
+    GetFeedsResponse:
+      type: object
+      required:
+      - feeds
+      properties:
+        feeds:
+          description: The feeds.
+          $ref: '#/components/schemas/FeedList'
+        nextToken:
+          description: Returned when the number of results exceeds pageSize. To get the next page of results, call the getFeeds operation with this token as the only parameter.
+          type: string
+      description: Response schema.
+    CreateFeedResponse:
+      type: object
+      required:
+      - feedId
+      properties:
+        feedId:
+          description: The identifier for the feed. This identifier is unique only in combination with a seller ID.
+          type: string
+      description: Response schema.
+    FeedList:
+      type: array
+      description: A list of feeds.
+      items:
+        $ref: '#/components/schemas/Feed'

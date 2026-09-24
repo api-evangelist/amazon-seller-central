@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-feed-document-schema.json",
+  "title": "FeedDocument",
+  "description": "Information required for the feed document.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-feeds-api-openapi.yml#/components/schemas/FeedDocument",
+  "type": "object",
+  "required": [
+    "feedDocumentId",
+    "url"
+  ],
+  "properties": {
+    "feedDocumentId": {
+      "description": "The identifier for the feed document. This identifier is unique only in combination with a seller ID.",
+      "type": "string"
+    },
+    "url": {
+      "description": "A presigned URL for the feed document. If `compressionAlgorithm` is not returned, you can download the feed directly from this URL. This URL expires after 5 minutes.",
+      "type": "string"
+    },
+    "compressionAlgorithm": {
+      "description": "If the feed document contents have been compressed, the compression algorithm used is returned in this property and you must decompress the feed when you download. Otherwise, you can download the feed directly. Refer to [Step 7. Download the feed processing report](doc:feeds-api-v2021-06-30-use-case-guide#step-7-download-the-feed-processing-report) in the use case guide, where sample code is provided.",
+      "type": "string",
+      "enum": [
+        "GZIP"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "GZIP",
+          "description": "The gzip compression algorithm."
+        }
+      ]
+    }
+  }
+}

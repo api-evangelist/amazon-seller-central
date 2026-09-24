@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-summary-response-schema.json",
+  "title": "SummaryResponse",
+  "description": "The response to the `listSummary` operation.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-finances-api-openapi.yml#/components/schemas/SummaryResponse",
+  "type": "object",
+  "properties": {
+    "summaries": {
+      "type": "array",
+      "description": "A list of financial summaries.",
+      "items": {
+        "$ref": "#/$defs/Summary"
+      }
+    },
+    "nextToken": {
+      "type": "string",
+      "description": "A token to retrieve the next page of results. If null, no more results are available.",
+      "x-example": "jehgri34yo7jr9e8f984tr9i4o"
+    }
+  },
+  "$defs": {
+    "BigDecimal": {
+      "type": "number",
+      "description": "A signed decimal number."
+    },
+    "Breakdown": {
+      "type": "object",
+      "properties": {
+        "breakdownType": {
+          "type": "string",
+          "description": "The type of charge."
+        },
+        "breakdownAmount": {
+          "description": "The monetary amount of the charge.",
+          "$ref": "#/$defs/Currency"
+        },
+        "breakdowns": {
+          "type": "array",
+          "description": "A list of breakdowns that detail how the total amount is calculated for the transaction.",
+          "items": {
+            "$ref": "#/$defs/Breakdown"
+          }
+        }
+      },
+      "description": "Details about the movement of money in the financial transaction."
+    },
+    "Breakdowns": {
+      "type": "array",
+      "description": "A list of breakdowns that detail how the total amount is calculated for the transaction.",
+      "items": {
+        "$ref": "#/$defs/Breakdown"
+      }
+    },
+    "Currency": {
+      "type": "object",
+      "properties": {
+        "currencyCode": {
+          "type": "string",
+          "description": "The three-digit currency code in ISO 4217 format."
+        },
+        "currencyAmount": {
+          "description": "The monetary value.",
+          "$ref": "#/$defs/BigDecimal"
+        }
+      },
+      "description": "A currency type and amount."
+    },
+    "Date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "A date in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format."
+    },
+    "PartnerMetadata": {
+      "type": "object",
+      "properties": {
+        "partnerId": {
+          "type": "string",
+          "description": "The unique seller identifier."
+        },
+        "accountType": {
+          "type": "string",
+          "description": "The type of account."
+        },
+        "marketplaceId": {
+          "type": "string",
+          "description": "The identifier of the marketplace where the transaction occurred. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids)."
+        }
+      },
+      "description": "Metadata that describes the seller."
+    },
+    "RelatedIdentifier": {
+      "type": "object",
+      "properties": {
+        "relatedIdentifierName": {
+          "type": "string",
+          "description": "An enumerated set of related business identifier names.",
+          "enum": [
+            "ORDER_ID",
+            "SHIPMENT_ID",
+            "FINANCIAL_EVENT_GROUP_ID",
+            "REFUND_ID",
+            "INVOICE_ID",
+            "DISBURSEMENT_ID",
+            "TRANSFER_ID",
+            "DEFERRED_TRANSACTION_ID",
+            "RELEASE_TRANSACTION_ID",
+            "SETTLEMENT_ID"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "ORDER_ID",
+              "description": "The `OrderId` that is associated with the transaction."
+            },
+            {
+              "value": "SHIPMENT_ID",
+              "description": "The `ShipmentId` that is associated with the transaction."
+            },
+            {
+              "value": "FINANCIAL_EVENT_GROUP_ID",
+              "description": "The identifier that is associated with the transaction's financial event group."
+            },
+            {
+              "value": "SETTLEMENT_ID",
+              "description": "The identifier that is associated with the transaction's settlement group."
+            },
+            {
+              "value": "REFUND_ID",
+              "description": "The `RefundId` that is associated with the transaction."
+            },
+            {
+              "value": "INVOICE_ID",
+              "description": "The `InvoiceId` that is associated with the transaction."
+            },
+            {
+              "value": "DISBURSEMENT_ID",
+              "description": "The disbursement ID for Amazon's bank transfer."
+            },
+            {
+              "value": "TRANSFER_ID",
+              "description": "The `TransferId` associated with the transaction."
+            },
+            {
+              "value": "DEFERRED_TRANSACTION_ID",
+              "description": "The transaction ID for the related deferred transaction"
+            },
+            {
+              "value": "RELEASE_TRANSACTION_ID",
+              "description": "The transaction ID for the related released transaction"
+            }
+          ]
+        },
+        "relatedIdentifierValue": {
+          "type": "string",
+          "description": "Corresponding value of `RelatedIdentifierName`."
+        }
+      },
+      "description": "Related business identifier of the transaction."
+    },
+    "RelatedIdentifiers": {
+      "type": "array",
+      "description": "Related business identifiers of the transaction.",
+      "items": {
+        "$ref": "#/$defs/RelatedIdentifier"
+      }
+    },
+    "Summary": {
+      "type": "object",
+      "properties": {
+        "partnerMetadata": {
+          "description": "Metadata describing the seller.",
+          "$ref": "#/$defs/PartnerMetadata"
+        },
+        "netProceeds": {
+          "description": "The net proceeds for the summary period.",
+          "$ref": "#/$defs/Currency"
+        },
+        "relatedIdentifiers": {
+          "description": "Identifiers related to the summary, such as the settlement ID.",
+          "$ref": "#/$defs/RelatedIdentifiers"
+        },
+        "breakdowns": {
+          "description": "A list of breakdowns that detail how the net proceeds are calculated.",
+          "$ref": "#/$defs/Breakdowns"
+        },
+        "periodStart": {
+          "description": "The start date and time of the summary.",
+          "$ref": "#/$defs/Date"
+        },
+        "periodEnd": {
+          "description": "The end date and time of the summary.",
+          "$ref": "#/$defs/Date"
+        }
+      },
+      "description": "Contains all information related to the financial summary."
+    }
+  }
+}

@@ -1,0 +1,131 @@
+generated: '2026-09-24'
+method: searched
+source: openapi/_original/amazon-seller-central-notifications-v1-original.json and https://github.com/amzn/selling-partner-api-models/tree/713565ff394d136629a342120872e65cb073d162/schemas/notifications
+provider: Amazon Selling Partner API
+providerId: amazon-seller-central
+description: 'SP-API event surface. The Notifications API (/notifications/v1, 10 operations) creates destinations
+  and subscribes a selling partner to notification types; Amazon then pushes notifications to the destination.
+  Delivery is to AWS infrastructure, not to an HTTP webhook URL: an Amazon SQS queue (destination resource
+  sqs.arn) or an Amazon EventBridge partner event source (eventBridge.accountId + region). Amazon publishes
+  a JSON Schema for each notification payload in amzn/selling-partner-api-models/schemas/notifications,
+  saved verbatim under json-schema/notifications/. No AsyncAPI document is published; this catalogue is
+  the machine-readable stand-in.'
+asyncapi_published: false
+delivery:
+  transports:
+  - type: Amazon SQS
+    destination_field: sqs.arn
+    note: ARN pattern ^arn:aws:sqs:\S+:\S+:\S+ per the Notifications model
+  - type: Amazon EventBridge
+    destination_field: eventBridge (accountId, region)
+    note: Creates a partner event source in the named AWS account and region
+  filtering: processingDirective.eventFilter (marketplace, aggregation period, order-change-type filters)
+    per the Notifications model
+subscription_api:
+  spec: openapi/amazon-seller-central-notifications-api-openapi.yml
+  operations:
+  - createDestination
+  - createSubscription
+  - deleteDestination
+  - deleteSubscriptionById
+  - getDestination
+  - getDestinations
+  - getSubscription
+  - getSubscriptionById
+  - getSubscriptions
+  - sendTestNotification
+events:
+- name: AnyOfferChangedNotification
+  notification_type: ANY_OFFER_CHANGED
+  schema: json-schema/notifications/amazon-seller-central-AnyOfferChangedNotification.json
+  source: https://github.com/amzn/selling-partner-api-models/blob/713565ff394d136629a342120872e65cb073d162/schemas/notifications/AnyOfferChangedNotification.json
+- name: B2bAnyOfferChangedNotification
+  notification_type: null
+  schema: json-schema/notifications/amazon-seller-central-B2bAnyOfferChangedNotification.json
+  source: https://github.com/amzn/selling-partner-api-models/blob/713565ff394d136629a342120872e65cb073d162/schemas/notifications/B2bAnyOfferChangedNotification.json
+  note: The schema does not state the notificationType as a literal; not inferred.
+- name: BrandedItemContentChangeNotification
+  notification_type: BRANDED_ITEM_CONTENT_CHANGE
+  schema: json-schema/notifications/amazon-seller-central-BrandedItemContentChangeNotification.json
+  source: https://github.com/amzn/selling-partner-api-models/blob/713565ff394d136629a342120872e65cb073d162/schemas/notifications/BrandedItemContentChangeNotification.json
+- name: DataKioskQueryProcessingFinishedNotification
+  notification_type: DATA_KIOSK_QUERY_PROCESSING_FINISHED
+  schema: json-schema/notifications/amazon-seller-central-DataKioskQueryProcessingFinishedNotification.json
+  source: https://github.com/amzn/selling-partner-api-models/blob/713565ff394d136629a342120872e65cb073d162/schemas/notifications/DataKioskQueryProcessingFinishedNotification.json
+- name: DetailPageTrafficEventNotification
+  notification_type: DETAIL_PAGE_TRAFFIC_EVENT
+  schema: json-schema/notifications/amazon-seller-central-DetailPageTrafficEventNotification.json
+  source: https://github.com/amzn/selling-partner-api-models/blob/713565ff394d136629a342120872e65cb073d162/schemas/notifications/DetailPageTrafficEventNotification.json
+- name: FBAInventoryAvailabilityChangeNotification
+  notification_type: null
+  schema: json-schema/notifications/amazon-seller-central-FBAInventoryAvailabilityChangeNotification.json
+  source: https://github.com/amzn/selling-partner-api-models/blob/713565ff394d136629a342120872e65cb073d162/schemas/notifications/FBAInventoryAvailabilityChangeNotification.json
+  note: The schema does not state the notificationType as a literal; not inferred.
+- name: FBAOutboundShipmentStatusNotification
+  notification_type: FBA_OUTBOUND_SHIPMENT_STATUS
+  schema: json-schema/notifications/amazon-seller-central-FBAOutboundShipmentStatusNotification.json
+  source: https://github.com/amzn/selling-partner-api-models/blob/713565ff394d136629a342120872e65cb073d162/schemas/notifications/FBAOutboundShipmentStatusNotification.json
+- name: FeePromotionNotification
+  notification_type: FEE_PROMOTION
+  schema: json-schema/notifications/amazon-seller-central-FeePromotionNotification.json
+  source: https://github.com/amzn/selling-partner-api-models/blob/713565ff394d136629a342120872e65cb073d162/schemas/notifications/FeePromotionNotification.json
+- name: FeedProcessingFinishedNotification
+  notification_type: FEED_PROCESSING_FINISHED
+  schema: json-schema/notifications/amazon-seller-central-FeedProcessingFinishedNotification.json
+  source: https://github.com/amzn/selling-partner-api-models/blob/713565ff394d136629a342120872e65cb073d162/schemas/notifications/FeedProcessingFinishedNotification.json
+- name: FulfillmentOrderStatusNotification
+  notification_type: FULFILLMENT_ORDER_STATUS
+  schema: json-schema/notifications/amazon-seller-central-FulfillmentOrderStatusNotification.json
+  source: https://github.com/amzn/selling-partner-api-models/blob/713565ff394d136629a342120872e65cb073d162/schemas/notifications/FulfillmentOrderStatusNotification.json
+- name: ItemInventoryEventChangeNotification
+  notification_type: ITEM_INVENTORY_EVENT_CHANGE
+  schema: json-schema/notifications/amazon-seller-central-ItemInventoryEventChangeNotification.json
+  source: https://github.com/amzn/selling-partner-api-models/blob/713565ff394d136629a342120872e65cb073d162/schemas/notifications/ItemInventoryEventChangeNotification.json
+- name: ItemProductTypeChangeNotification
+  notification_type: ITEM_PRODUCT_TYPE_CHANGE
+  schema: json-schema/notifications/amazon-seller-central-ItemProductTypeChangeNotification.json
+  source: https://github.com/amzn/selling-partner-api-models/blob/713565ff394d136629a342120872e65cb073d162/schemas/notifications/ItemProductTypeChangeNotification.json
+- name: ItemSalesEventChangeNotification
+  notification_type: ITEM_SALES_EVENT_CHANGE
+  schema: json-schema/notifications/amazon-seller-central-ItemSalesEventChangeNotification.json
+  source: https://github.com/amzn/selling-partner-api-models/blob/713565ff394d136629a342120872e65cb073d162/schemas/notifications/ItemSalesEventChangeNotification.json
+- name: ListingsItemIssuesChangeNotification
+  notification_type: LISTINGS_ITEM_ISSUES_CHANGE
+  schema: json-schema/notifications/amazon-seller-central-ListingsItemIssuesChangeNotification.json
+  source: https://github.com/amzn/selling-partner-api-models/blob/713565ff394d136629a342120872e65cb073d162/schemas/notifications/ListingsItemIssuesChangeNotification.json
+- name: ListingsItemIssuesChangeNotification_2023-12-13
+  notification_type: LISTINGS_ITEM_ISSUES_CHANGE
+  schema: json-schema/notifications/amazon-seller-central-ListingsItemIssuesChangeNotification_2023-12-13.json
+  source: https://github.com/amzn/selling-partner-api-models/blob/713565ff394d136629a342120872e65cb073d162/schemas/notifications/ListingsItemIssuesChangeNotification_2023-12-13.json
+- name: ListingsItemMfnQuantityChange
+  notification_type: LISTINGS_ITEM_MFN_QUANTITY_CHANGE
+  schema: json-schema/notifications/amazon-seller-central-ListingsItemMfnQuantityChange.json
+  source: https://github.com/amzn/selling-partner-api-models/blob/713565ff394d136629a342120872e65cb073d162/schemas/notifications/ListingsItemMfnQuantityChange.json
+- name: ListingsItemStatusChangeNotification
+  notification_type: LISTINGS_ITEM_STATUS_CHANGE
+  schema: json-schema/notifications/amazon-seller-central-ListingsItemStatusChangeNotification.json
+  source: https://github.com/amzn/selling-partner-api-models/blob/713565ff394d136629a342120872e65cb073d162/schemas/notifications/ListingsItemStatusChangeNotification.json
+- name: OrderChangeNotification
+  notification_type: ORDER_CHANGE
+  schema: json-schema/notifications/amazon-seller-central-OrderChangeNotification.json
+  source: https://github.com/amzn/selling-partner-api-models/blob/713565ff394d136629a342120872e65cb073d162/schemas/notifications/OrderChangeNotification.json
+- name: PricingHealthNotification
+  notification_type: PRICING_HEALTH
+  schema: json-schema/notifications/amazon-seller-central-PricingHealthNotification.json
+  source: https://github.com/amzn/selling-partner-api-models/blob/713565ff394d136629a342120872e65cb073d162/schemas/notifications/PricingHealthNotification.json
+- name: ProductTypeDefinitionsChangeNotification
+  notification_type: PRODUCT_TYPE_DEFINITIONS_CHANGE
+  schema: json-schema/notifications/amazon-seller-central-ProductTypeDefinitionsChangeNotification.json
+  source: https://github.com/amzn/selling-partner-api-models/blob/713565ff394d136629a342120872e65cb073d162/schemas/notifications/ProductTypeDefinitionsChangeNotification.json
+- name: ReportProcessingFinishedNotification
+  notification_type: REPORT_PROCESSING_FINISHED
+  schema: json-schema/notifications/amazon-seller-central-ReportProcessingFinishedNotification.json
+  source: https://github.com/amzn/selling-partner-api-models/blob/713565ff394d136629a342120872e65cb073d162/schemas/notifications/ReportProcessingFinishedNotification.json
+- name: ShipmentTrackingMilestoneChangedNotification
+  notification_type: SHIPMENT_TRACKING_MILESTONE_CHANGED
+  schema: json-schema/notifications/amazon-seller-central-ShipmentTrackingMilestoneChangedNotification.json
+  source: https://github.com/amzn/selling-partner-api-models/blob/713565ff394d136629a342120872e65cb073d162/schemas/notifications/ShipmentTrackingMilestoneChangedNotification.json
+- name: TransactionUpdateNotification
+  notification_type: TRANSACTION_UPDATE
+  schema: json-schema/notifications/amazon-seller-central-TransactionUpdateNotification.json
+  source: https://github.com/amzn/selling-partner-api-models/blob/713565ff394d136629a342120872e65cb073d162/schemas/notifications/TransactionUpdateNotification.json

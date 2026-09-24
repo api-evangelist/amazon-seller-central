@@ -1,0 +1,218 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-create-inbound-plan-request-schema.json",
+  "title": "CreateInboundPlanRequest",
+  "description": "The `createInboundPlan` request.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-fbainbound-api-openapi.yml#/components/schemas/CreateInboundPlanRequest",
+  "properties": {
+    "destinationMarketplaces": {
+      "description": "Marketplaces where the items need to be shipped to. Currently only one marketplace can be selected in this request.",
+      "items": {
+        "description": "The Marketplace ID. For a list of possible values, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).",
+        "maxLength": 20,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 1,
+      "minItems": 1,
+      "type": "array"
+    },
+    "items": {
+      "description": "Items included in this plan.",
+      "items": {
+        "$ref": "#/$defs/ItemInput"
+      },
+      "maxItems": 2000,
+      "minItems": 1,
+      "type": "array"
+    },
+    "name": {
+      "description": "Name for the Inbound Plan. If one isn't provided, a default name will be provided.",
+      "maxLength": 40,
+      "minLength": 1,
+      "type": "string"
+    },
+    "sourceAddress": {
+      "$ref": "#/$defs/AddressInput"
+    }
+  },
+  "required": [
+    "destinationMarketplaces",
+    "items",
+    "sourceAddress"
+  ],
+  "type": "object",
+  "$defs": {
+    "AddressInput": {
+      "description": "Specific details to identify a place.",
+      "properties": {
+        "addressLine1": {
+          "description": "Street address information.",
+          "maxLength": 180,
+          "minLength": 1,
+          "type": "string"
+        },
+        "addressLine2": {
+          "description": "Additional street address information.",
+          "maxLength": 60,
+          "minLength": 1,
+          "type": "string"
+        },
+        "city": {
+          "description": "The city.",
+          "maxLength": 30,
+          "minLength": 1,
+          "type": "string"
+        },
+        "companyName": {
+          "description": "The name of the business.",
+          "maxLength": 50,
+          "minLength": 1,
+          "type": "string"
+        },
+        "countryCode": {
+          "description": "The country code in two-character ISO 3166-1 alpha-2 format.",
+          "maxLength": 2,
+          "minLength": 2,
+          "pattern": "^[A-Z]{2}$",
+          "type": "string"
+        },
+        "districtOrCounty": {
+          "description": "The district or county.",
+          "maxLength": 50,
+          "minLength": 1,
+          "type": "string"
+        },
+        "email": {
+          "description": "The email address.",
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the individual who is the primary contact.",
+          "maxLength": 50,
+          "minLength": 1,
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "The phone number.",
+          "maxLength": 20,
+          "minLength": 1,
+          "type": "string"
+        },
+        "postalCode": {
+          "description": "The postal code.",
+          "maxLength": 32,
+          "minLength": 1,
+          "type": "string"
+        },
+        "stateOrProvinceCode": {
+          "description": "The state or province code.",
+          "maxLength": 64,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "addressLine1",
+        "city",
+        "countryCode",
+        "name",
+        "phoneNumber",
+        "postalCode"
+      ],
+      "type": "object"
+    },
+    "ItemInput": {
+      "description": "Defines an item's input parameters.",
+      "properties": {
+        "expiration": {
+          "description": "The expiration date of the MSKU. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) datetime format with pattern `YYYY-MM-DD`. Items with the same MSKU but different expiration dates cannot go into the same box.",
+          "pattern": "^([0-9]{4})-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$",
+          "type": "string"
+        },
+        "labelOwner": {
+          "$ref": "#/$defs/LabelOwner"
+        },
+        "manufacturingLotCode": {
+          "description": "The manufacturing lot code.",
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        "msku": {
+          "description": "The merchant SKU, a merchant-supplied identifier of a specific SKU.",
+          "maxLength": 255,
+          "minLength": 1,
+          "type": "string"
+        },
+        "prepOwner": {
+          "$ref": "#/$defs/PrepOwner"
+        },
+        "quantity": {
+          "description": "The number of units of the specified MSKU that will be shipped.",
+          "maximum": 500000,
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "labelOwner",
+        "msku",
+        "prepOwner",
+        "quantity"
+      ],
+      "type": "object"
+    },
+    "LabelOwner": {
+      "description": "Specifies who will label the items. Options include `AMAZON`, `SELLER` or `NONE`. `AMAZON` is not an accepted value in the US marketplace.",
+      "enum": [
+        "AMAZON",
+        "SELLER",
+        "NONE"
+      ],
+      "type": "string",
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "AMAZON",
+          "description": "Amazon provides the information."
+        },
+        {
+          "value": "SELLER",
+          "description": "Seller provides the information."
+        },
+        {
+          "value": "NONE",
+          "description": "No owner is required for the labelling."
+        }
+      ]
+    },
+    "PrepOwner": {
+      "description": "The owner of the preparations, if special preparations are required.",
+      "enum": [
+        "AMAZON",
+        "SELLER",
+        "NONE"
+      ],
+      "type": "string",
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "AMAZON",
+          "description": "Amazon provides the information."
+        },
+        {
+          "value": "SELLER",
+          "description": "The seller provides the information."
+        },
+        {
+          "value": "NONE",
+          "description": "No owner is required for the preparations."
+        }
+      ]
+    }
+  }
+}

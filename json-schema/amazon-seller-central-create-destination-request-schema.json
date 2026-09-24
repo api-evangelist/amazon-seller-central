@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-create-destination-request-schema.json",
+  "title": "CreateDestinationRequest",
+  "description": "The request schema for the `createDestination` operation.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-notifications-api-openapi.yml#/components/schemas/CreateDestinationRequest",
+  "type": "object",
+  "required": [
+    "name",
+    "resourceSpecification"
+  ],
+  "properties": {
+    "resourceSpecification": {
+      "description": "The information required to create a destination resource. Applications should use one resource type (sqs or eventBridge) per destination.",
+      "$ref": "#/$defs/DestinationResourceSpecification"
+    },
+    "name": {
+      "type": "string",
+      "description": "A developer-defined name to help identify this destination."
+    }
+  },
+  "$defs": {
+    "DestinationResourceSpecification": {
+      "type": "object",
+      "properties": {
+        "sqs": {
+          "description": "The information required to create an Amazon Simple Queue Service (SQS) queue destination.",
+          "$ref": "#/$defs/SqsResource"
+        },
+        "eventBridge": {
+          "description": "The information required to create an Amazon EventBridge destination.",
+          "$ref": "#/$defs/EventBridgeResourceSpecification"
+        }
+      },
+      "description": "The information required to create a destination resource. Applications should use one resource type (sqs or eventBridge) per destination."
+    },
+    "EventBridgeResourceSpecification": {
+      "type": "object",
+      "required": [
+        "accountId",
+        "region"
+      ],
+      "properties": {
+        "region": {
+          "type": "string",
+          "description": "The AWS region in which you will be receiving the notifications."
+        },
+        "accountId": {
+          "type": "string",
+          "description": "The identifier for the AWS account that is responsible for charges related to receiving notifications."
+        }
+      },
+      "description": "The information required to create an Amazon EventBridge destination."
+    },
+    "SqsResource": {
+      "type": "object",
+      "required": [
+        "arn"
+      ],
+      "properties": {
+        "arn": {
+          "type": "string",
+          "description": "The Amazon Resource Name (ARN) associated with the SQS queue.",
+          "maxLength": 1000,
+          "pattern": "^arn:aws:sqs:\\S+:\\S+:\\S+"
+        }
+      },
+      "description": "The information required to create an Amazon Simple Queue Service (Amazon SQS) queue destination."
+    }
+  }
+}

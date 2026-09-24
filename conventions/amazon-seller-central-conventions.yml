@@ -1,0 +1,18 @@
+generated: '2026-09-24'
+method: derived
+generator: derive-conformance.py
+source: openapi/ (20 document(s), 73 mutating operations)
+idempotency:
+  coverage: partial
+  header: x-amzn-idempotency-token (FBA Inventory addInventory); x-amzn-IdempotencyKey (Shipping v2 directPurchaseShipment,
+    purchaseShipment, generateCollectionForm)
+  mechanism: request header / body token declared in the OpenAPI
+  evidence: Idempotency header parameters declared on 4 of 73 mutating operations in the official models
+    (grep of openapi/ parameters, 2026-09-24). The derive script's original evidence named requestToken,
+    which is a Shipping v2 rate-quote token in a request body, not an idempotency key.
+  verified: derived
+  scope:
+  - addInventory
+  - directPurchaseShipment
+  - purchaseShipment
+  - generateCollectionForm

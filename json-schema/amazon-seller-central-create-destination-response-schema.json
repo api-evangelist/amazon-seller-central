@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-create-destination-response-schema.json",
+  "title": "CreateDestinationResponse",
+  "description": "The response schema for the createDestination operation.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-notifications-api-openapi.yml#/components/schemas/CreateDestinationResponse",
+  "type": "object",
+  "properties": {
+    "payload": {
+      "description": "The payload for the `createDestination` operation.",
+      "$ref": "#/$defs/Destination"
+    },
+    "errors": {
+      "description": "One or more unexpected errors occurred during the `createDestination` operation.",
+      "$ref": "#/$defs/ErrorList"
+    }
+  },
+  "$defs": {
+    "Destination": {
+      "type": "object",
+      "required": [
+        "destinationId",
+        "name",
+        "resource"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The developer-defined name for this destination.",
+          "maxLength": 256
+        },
+        "destinationId": {
+          "type": "string",
+          "description": "The destination identifier generated when you created the destination."
+        },
+        "resource": {
+          "description": "The resource that will receive notifications associated with this destination.",
+          "$ref": "#/$defs/DestinationResource"
+        }
+      },
+      "description": "Information about the destination you create when you call the `createDestination` operation."
+    },
+    "DestinationResource": {
+      "type": "object",
+      "properties": {
+        "sqs": {
+          "description": "An Amazon Simple Queue Service (SQS) queue destination.",
+          "$ref": "#/$defs/SqsResource"
+        },
+        "eventBridge": {
+          "description": "An Amazon EventBridge destination.",
+          "$ref": "#/$defs/EventBridgeResource"
+        }
+      },
+      "description": "The destination resource types."
+    },
+    "Error": {
+      "type": "object",
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "An error code that identifies the type of error that occurred."
+        },
+        "message": {
+          "type": "string",
+          "description": "A message that describes the error condition."
+        },
+        "details": {
+          "type": "string",
+          "description": "Additional details that can help the caller understand or fix the issue."
+        }
+      },
+      "description": "An error response returned when the request is unsuccessful."
+    },
+    "ErrorList": {
+      "type": "array",
+      "description": "A list of error responses returned when a request is unsuccessful.",
+      "items": {
+        "$ref": "#/$defs/Error"
+      }
+    },
+    "EventBridgeResource": {
+      "type": "object",
+      "required": [
+        "accountId",
+        "name",
+        "region"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the partner event source associated with the destination.",
+          "maxLength": 256
+        },
+        "region": {
+          "type": "string",
+          "description": "The AWS region in which you receive the notifications. For AWS regions that Amazon EventBridge supports, refer to [Amazon EventBridge endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/ev.html)."
+        },
+        "accountId": {
+          "type": "string",
+          "description": "The identifier for the AWS account that is responsible for charges related to receiving notifications."
+        }
+      },
+      "description": "The Amazon EventBridge destination."
+    },
+    "SqsResource": {
+      "type": "object",
+      "required": [
+        "arn"
+      ],
+      "properties": {
+        "arn": {
+          "type": "string",
+          "description": "The Amazon Resource Name (ARN) associated with the SQS queue.",
+          "maxLength": 1000,
+          "pattern": "^arn:aws:sqs:\\S+:\\S+:\\S+"
+        }
+      },
+      "description": "The information required to create an Amazon Simple Queue Service (Amazon SQS) queue destination."
+    }
+  }
+}

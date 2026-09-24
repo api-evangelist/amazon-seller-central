@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-get-my-fees-estimates-request-schema.json",
+  "title": "GetMyFeesEstimatesRequest",
+  "description": "Request for estimated fees for a list of products.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-fees-api-openapi.yml#/components/schemas/GetMyFeesEstimatesRequest",
+  "type": "array",
+  "items": {
+    "$ref": "#/$defs/FeesEstimateByIdRequest"
+  },
+  "$defs": {
+    "FeesEstimateByIdRequest": {
+      "type": "object",
+      "description": "A product, marketplace, and proposed price used to request estimated fees.",
+      "required": [
+        "IdType",
+        "IdValue"
+      ],
+      "properties": {
+        "FeesEstimateRequest": {
+          "$ref": "#/$defs/FeesEstimateRequest"
+        },
+        "IdType": {
+          "$ref": "#/$defs/IdType"
+        },
+        "IdValue": {
+          "description": "The item identifier.",
+          "type": "string"
+        }
+      }
+    },
+    "FeesEstimateRequest": {
+      "description": "A product, marketplace, and proposed price used to request estimated fees.",
+      "type": "object",
+      "required": [
+        "MarketplaceId",
+        "PriceToEstimateFees",
+        "Identifier"
+      ],
+      "properties": {
+        "MarketplaceId": {
+          "description": "A marketplace identifier.",
+          "type": "string"
+        },
+        "IsAmazonFulfilled": {
+          "description": "When true, the offer is fulfilled by Amazon.",
+          "type": "boolean"
+        },
+        "PriceToEstimateFees": {
+          "description": "The product price that the fee estimate is based on.",
+          "$ref": "#/$defs/PriceToEstimateFees"
+        },
+        "Identifier": {
+          "description": "A unique identifier provided by the caller to track this request.",
+          "type": "string"
+        },
+        "OptionalFulfillmentProgram": {
+          "$ref": "#/$defs/OptionalFulfillmentProgram"
+        }
+      }
+    },
+    "IdType": {
+      "type": "string",
+      "description": "The type of product identifier used in a `FeesEstimateByIdRequest`.",
+      "enum": [
+        "ASIN",
+        "SellerSKU"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "ASIN",
+          "description": "An Amazon Standard Identification Number (ASIN) of a listings item."
+        },
+        {
+          "value": "SellerSKU",
+          "description": "A selling partner provided identifier for an Amazon listing."
+        }
+      ]
+    },
+    "MoneyType": {
+      "type": "object",
+      "description": "An object representing a monetary value with its currency information.",
+      "properties": {
+        "CurrencyCode": {
+          "description": "The currency code in ISO 4217 format.",
+          "type": "string"
+        },
+        "Amount": {
+          "description": "The monetary value.",
+          "type": "number"
+        }
+      }
+    },
+    "OptionalFulfillmentProgram": {
+      "type": "string",
+      "description": "An optional enrollment program to return the estimated fees when the offer is fulfilled by Amazon (IsAmazonFulfilled is set to true).",
+      "enum": [
+        "FBA_CORE",
+        "FBA_SNL",
+        "FBA_EFN"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "FBA_CORE",
+          "description": "Returns the standard Amazon fulfillment fees for the offer. This is the default."
+        },
+        {
+          "value": "FBA_SNL",
+          "description": "Returns the FBA Small and Light (SNL) fees for the offer. The SNL program offers reduced fulfillment costs on qualified items. To check item eligibility for the SNL program, use the getSmallAndLightEligibilityBySellerSKU operation of the FBA Small And Light API.\n\n**Note:** The FBA Small and Light program sunset in the US and EU regions on **September 26, 2023**. The program will be deprecated in the JP region on **March 31, 2024** and sunset on **April 1, 2024**. APIs announcing deprecation will no longer be supported after their deprecation date. Calls to deprecated APIs will fail beginning on their sunset date. For more information, refer to [FBA Small and Light program deprecation](https://developer-docs.amazon.com/sp-api/changelog/fba-small-and-light-program-deprecation)."
+        },
+        {
+          "value": "FBA_EFN",
+          "description": "Returns the cross-border European Fulfillment Network fees across EU countries for the offer."
+        }
+      ]
+    },
+    "Points": {
+      "type": "object",
+      "description": "The number of Amazon Points offered with the purchase of an item.The Amazon Points program is only available in Japan.",
+      "properties": {
+        "PointsNumber": {
+          "type": "integer",
+          "description": "The number of Amazon Points",
+          "format": "int32"
+        },
+        "PointsMonetaryValue": {
+          "$ref": "#/$defs/MoneyType"
+        }
+      }
+    },
+    "PriceToEstimateFees": {
+      "description": "Price information for an item, used to estimate fees.",
+      "type": "object",
+      "required": [
+        "ListingPrice"
+      ],
+      "properties": {
+        "ListingPrice": {
+          "description": "The price of the item.",
+          "$ref": "#/$defs/MoneyType"
+        },
+        "Shipping": {
+          "description": "The shipping cost.",
+          "$ref": "#/$defs/MoneyType"
+        },
+        "Points": {
+          "description": "The number of Amazon Points offered with the purchase of an item.",
+          "$ref": "#/$defs/Points"
+        }
+      }
+    }
+  }
+}

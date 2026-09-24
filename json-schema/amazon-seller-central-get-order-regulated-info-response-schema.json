@@ -1,0 +1,280 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-get-order-regulated-info-response-schema.json",
+  "title": "GetOrderRegulatedInfoResponse",
+  "description": "The response schema for the `getOrderRegulatedInfo` operation.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-ordersv0-api-openapi.yml#/components/schemas/GetOrderRegulatedInfoResponse",
+  "type": "object",
+  "properties": {
+    "payload": {
+      "description": "The payload for the `getOrderRegulatedInfo` operation.",
+      "$ref": "#/$defs/OrderRegulatedInfo"
+    },
+    "errors": {
+      "description": "One or more unexpected errors occurred during the `getOrderRegulatedInfo` operation.",
+      "$ref": "#/$defs/ErrorList"
+    }
+  },
+  "$defs": {
+    "Error": {
+      "type": "object",
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "An error code that identifies the type of error that occurred."
+        },
+        "message": {
+          "type": "string",
+          "description": "A message that describes the error condition."
+        },
+        "details": {
+          "type": "string",
+          "description": "Additional details that can help the caller understand or fix the issue."
+        }
+      },
+      "description": "Error response returned when the request is unsuccessful."
+    },
+    "ErrorList": {
+      "type": "array",
+      "description": "A list of error responses returned when a request is unsuccessful.",
+      "items": {
+        "$ref": "#/$defs/Error"
+      }
+    },
+    "OrderRegulatedInfo": {
+      "description": "The order's regulated information along with its verification status.",
+      "type": "object",
+      "required": [
+        "AmazonOrderId",
+        "RegulatedInformation",
+        "RegulatedOrderVerificationStatus",
+        "RequiresDosageLabel"
+      ],
+      "properties": {
+        "AmazonOrderId": {
+          "type": "string",
+          "description": "An Amazon-defined order identifier, in 3-7-7 format."
+        },
+        "RegulatedInformation": {
+          "$ref": "#/$defs/RegulatedInformation",
+          "description": "The regulated information collected during purchase and used to verify the order."
+        },
+        "RequiresDosageLabel": {
+          "type": "boolean",
+          "description": "When true, the order requires attaching a dosage information label when shipped."
+        },
+        "RegulatedOrderVerificationStatus": {
+          "$ref": "#/$defs/RegulatedOrderVerificationStatus",
+          "description": "The order's verification status."
+        }
+      }
+    },
+    "RegulatedInformation": {
+      "type": "object",
+      "description": "The regulated information collected during purchase and used to verify the order.",
+      "required": [
+        "Fields"
+      ],
+      "properties": {
+        "Fields": {
+          "type": "array",
+          "description": "A list of regulated information fields as collected from the regulatory form.",
+          "items": {
+            "$ref": "#/$defs/RegulatedInformationField"
+          }
+        }
+      }
+    },
+    "RegulatedInformationField": {
+      "type": "object",
+      "required": [
+        "FieldId",
+        "FieldLabel",
+        "FieldType",
+        "FieldValue"
+      ],
+      "description": "A field collected from the regulatory form.",
+      "properties": {
+        "FieldId": {
+          "type": "string",
+          "description": "The unique identifier of the field."
+        },
+        "FieldLabel": {
+          "type": "string",
+          "description": "The name of the field."
+        },
+        "FieldType": {
+          "type": "string",
+          "description": "The type of field.",
+          "enum": [
+            "Text",
+            "FileAttachment"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "Text",
+              "description": "This field is a text representation of the response collected from the regulatory form."
+            },
+            {
+              "value": "FileAttachment",
+              "description": "This field contains a link to an attachment collected from the regulatory form."
+            }
+          ]
+        },
+        "FieldValue": {
+          "type": "string",
+          "description": "The content of the field as collected in regulatory form. Note that `FileAttachment` type fields contain a URL where you can download the attachment."
+        }
+      }
+    },
+    "RegulatedOrderVerificationStatus": {
+      "type": "object",
+      "description": "The verification status of the order, along with associated approval or rejection metadata.",
+      "required": [
+        "Status",
+        "RequiresMerchantAction",
+        "ValidRejectionReasons"
+      ],
+      "properties": {
+        "Status": {
+          "description": "The verification status of the order.",
+          "$ref": "#/$defs/VerificationStatus"
+        },
+        "RequiresMerchantAction": {
+          "type": "boolean",
+          "description": "When true, the regulated information provided in the order requires a review by the merchant."
+        },
+        "ValidRejectionReasons": {
+          "type": "array",
+          "description": "A list of valid rejection reasons that may be used to reject the order's regulated information.",
+          "items": {
+            "$ref": "#/$defs/RejectionReason"
+          }
+        },
+        "RejectionReason": {
+          "$ref": "#/$defs/RejectionReason",
+          "description": "The reason for rejecting the order's regulated information. Not present if the order isn't rejected."
+        },
+        "ReviewDate": {
+          "type": "string",
+          "description": "The date the order was reviewed. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date time format."
+        },
+        "ExternalReviewerId": {
+          "type": "string",
+          "description": "The identifier for the order's regulated information reviewer."
+        },
+        "ValidVerificationDetails": {
+          "type": "array",
+          "description": "A list of valid verification details that may be provided and the criteria required for when the verification detail can be provided.",
+          "items": {
+            "$ref": "#/$defs/ValidVerificationDetail"
+          }
+        },
+        "ValidInterimStatusCodes": {
+          "type": "array",
+          "description": "Valid interim status codes that may be used when populating `InterimStatusDetail`. Each element contains a `StatusCode` identifier and its customer-facing `StatusDescription`.",
+          "items": {
+            "$ref": "#/$defs/ValidInterimStatusCode"
+          }
+        }
+      }
+    },
+    "RejectionReason": {
+      "type": "object",
+      "description": "The reason for rejecting the order's regulated information. This is only present if the order is rejected.",
+      "required": [
+        "RejectionReasonId",
+        "RejectionReasonDescription"
+      ],
+      "properties": {
+        "RejectionReasonId": {
+          "type": "string",
+          "description": "The unique identifier for the rejection reason."
+        },
+        "RejectionReasonDescription": {
+          "type": "string",
+          "description": "The description of this rejection reason."
+        }
+      }
+    },
+    "ValidInterimStatusCode": {
+      "type": "object",
+      "required": [
+        "StatusCode",
+        "StatusDescription"
+      ],
+      "properties": {
+        "StatusCode": {
+          "type": "string",
+          "description": "The identifier for the interim status type."
+        },
+        "StatusDescription": {
+          "type": "string",
+          "description": "A customer-facing description of the interim status."
+        }
+      },
+      "description": "A valid interim status code and its customer-facing description. Available with the `getOrderRegulatedInfo` operation to indicate which status codes can populate the `InterimStatusDetail` field."
+    },
+    "ValidVerificationDetail": {
+      "type": "object",
+      "required": [
+        "VerificationDetailType",
+        "ValidVerificationStatuses"
+      ],
+      "properties": {
+        "VerificationDetailType": {
+          "type": "string",
+          "description": "A supported type of verification detail. The type indicates which verification detail could be shared while updating the regulated order. Valid values: `prescriptionDetail`, `approvedAlternativeDetails`, `interimStatusDetail`."
+        },
+        "ValidVerificationStatuses": {
+          "type": "array",
+          "description": "A list of valid verification statuses where the associated verification detail type may be provided. For example, if the value of this field is [\"Approved\"], calls to provide the associated verification detail will fail for orders with a `VerificationStatus` of `Pending`, `Rejected`, `Expired`, or `Cancelled`.",
+          "items": {
+            "$ref": "#/$defs/VerificationStatus"
+          }
+        }
+      },
+      "description": "The types of verification details that may be provided for the order and the criteria required for when the type of verification detail can be provided. The types of verification details allowed depend on the type of regulated product and will not change order to order."
+    },
+    "VerificationStatus": {
+      "type": "string",
+      "description": "The verification status of the order.",
+      "enum": [
+        "Pending",
+        "Approved",
+        "Rejected",
+        "Expired",
+        "Cancelled"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "Pending",
+          "description": "The order is pending approval. Note that the approval might be needed from someone other than the merchant as determined by the `RequiresMerchantAction` property."
+        },
+        {
+          "value": "Approved",
+          "description": "The order's regulated information has been reviewed and approved."
+        },
+        {
+          "value": "Rejected",
+          "description": "The order's regulated information has been reviewed and rejected."
+        },
+        {
+          "value": "Expired",
+          "description": "The time to review the order's regulated information has expired."
+        },
+        {
+          "value": "Cancelled",
+          "description": "The order was cancelled by the purchaser."
+        }
+      ]
+    }
+  }
+}

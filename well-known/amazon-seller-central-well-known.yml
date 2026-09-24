@@ -1,0 +1,288 @@
+generated: '2026-09-24'
+method: searched
+source: Direct HTTPS probes, 2026-09-24, of the named path list on each host below (no redirects followed;
+  redirects recorded)
+description: 'Probe of the contract''s named /.well-known/ path list (plus /apis.json, /apis.yml, agent-card
+  paths and a negative control) on every host the Amazon Selling Partner record knows: the MCP server
+  host sellingpartner-ai.amazon.com (plus its path-suffixed /mcp RFC 9728 / RFC 8414 documents, which
+  harvest-well-known.py does not probe), the SP-API gateway, the docs host developer-docs.amazon.com and
+  its redirect target developer-docs.amazon, developer.amazonservices.com and sellercentral.amazon.com.
+  Three documents saved verbatim. Probed 2026-09-24 without following redirects; redirects recorded.'
+hosts:
+- host: https://sellingpartner-ai.amazon.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/mcp/server-card.json
+    status: 404
+  - path: /.well-known/oauth-protected-resource/mcp
+    status: 200
+    file: amazon-seller-central-mcp-oauth-protected-resource.json
+    bytes: 134
+    type: application/json
+    standard: RFC 9728
+  - path: /.well-known/oauth-authorization-server/mcp
+    status: 200
+    file: amazon-seller-central-mcp-oauth-authorization-server.json
+    bytes: 569
+    type: application/json
+    standard: RFC 8414
+    note: issuer https://sellingpartner-ai.amazon.com/mcp; authorization_endpoint on sellercentral.amazon.com,
+      token_endpoint api.amazon.com (Login with Amazon). No registration_endpoint; client_id_metadata_document_supported
+      true; PKCE S256.
+  - path: /.well-known/openid-configuration/mcp
+    status: 404
+  note: MCP server host (Amazon Selling Partner Connector). Root well-known paths 404; the RFC 9728 and
+    RFC 8414 documents are served path-suffixed for the /mcp resource (the anonymous initialize 401 names
+    the protected-resource URL in WWW-Authenticate resource_metadata). Both saved verbatim.
+  negative_control:
+    path: /.well-known/asc-negative-control-4b9d2e.json
+    status: 404
+  path_echo_control: passed
+- host: https://sellingpartnerapi-na.amazon.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+  - path: /.well-known/openid-configuration
+    status: 403
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+  - path: /.well-known/oauth-protected-resource
+    status: 403
+  - path: /.well-known/api-catalog
+    status: 403
+  - path: /.well-known/ai-plugin.json
+    status: 403
+  - path: /.well-known/ucp.json
+    status: 403
+  - path: /.well-known/acp.json
+    status: 403
+  - path: /.well-known/aauth-resource.json
+    status: 403
+  - path: /.well-known/apis.json
+    status: 403
+  - path: /apis.json
+    status: 403
+  - path: /apis.yml
+    status: 403
+  - path: /.well-known/agent-card.json
+    status: 403
+  - path: /.well-known/agent.json
+    status: 403
+  - path: /.well-known/mcp/server-card.json
+    status: 403
+  note: 'SP-API gateway answers every path, including the negative control, with 403 JSON {"errors":[{"code":"Unauthorized"...}]}:
+    no discovery documents, gateway auth error.'
+  negative_control:
+    path: /.well-known/asc-negative-control-4b9d2e.json
+    status: 403
+  path_echo_control: passed
+- host: https://developer-docs.amazon.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 301
+    redirect: https://developer-docs.amazon/.well-known/security.txt
+  - path: /.well-known/openid-configuration
+    status: 301
+    redirect: https://developer-docs.amazon/.well-known/openid-configuration
+  - path: /.well-known/oauth-authorization-server
+    status: 301
+    redirect: https://developer-docs.amazon/.well-known/oauth-authorization-server
+  - path: /.well-known/oauth-protected-resource
+    status: 301
+    redirect: https://developer-docs.amazon/.well-known/oauth-protected-resource
+  - path: /.well-known/api-catalog
+    status: 301
+    redirect: https://developer-docs.amazon/.well-known/api-catalog
+  - path: /.well-known/ai-plugin.json
+    status: 301
+    redirect: https://developer-docs.amazon/.well-known/ai-plugin.json
+  - path: /.well-known/ucp.json
+    status: 301
+    redirect: https://developer-docs.amazon/.well-known/ucp.json
+  - path: /.well-known/acp.json
+    status: 301
+    redirect: https://developer-docs.amazon/.well-known/acp.json
+  - path: /.well-known/aauth-resource.json
+    status: 301
+    redirect: https://developer-docs.amazon/.well-known/aauth-resource.json
+  - path: /.well-known/apis.json
+    status: 301
+    redirect: https://developer-docs.amazon/.well-known/apis.json
+  - path: /apis.json
+    status: 301
+    redirect: https://developer-docs.amazon/apis.json
+  - path: /apis.yml
+    status: 301
+    redirect: https://developer-docs.amazon/apis.yml
+  - path: /.well-known/agent-card.json
+    status: 301
+    redirect: https://developer-docs.amazon/.well-known/agent-card.json
+  - path: /.well-known/agent.json
+    status: 301
+    redirect: https://developer-docs.amazon/.well-known/agent.json
+  - path: /.well-known/mcp/server-card.json
+    status: 301
+    redirect: https://developer-docs.amazon/.well-known/mcp/server-card.json
+  note: Every path 301-redirects to developer-docs.amazon (same path); probed there.
+  negative_control:
+    path: /.well-known/asc-negative-control-4b9d2e.json
+    status: 301
+  path_echo_control: passed
+- host: https://developer-docs.amazon
+  documents:
+  - path: /.well-known/security.txt
+    status: 301
+    redirect: https://developer-docs.amazon/sp-api/page/404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 200
+    file: amazon-seller-central-api-catalog.json
+    bytes: 279
+    type: application/linkset+json
+    standard: RFC 9727
+    note: Top-level linkset saved verbatim; nested service-desc https://developer-docs.amazon/sp-api/.well-known/api-catalog
+      is 404.
+  - path: /.well-known/ai-plugin.json
+    status: 301
+    redirect: https://developer-docs.amazon/sp-api/page/404
+  - path: /.well-known/ucp.json
+    status: 301
+    redirect: https://developer-docs.amazon/sp-api/page/404
+  - path: /.well-known/acp.json
+    status: 301
+    redirect: https://developer-docs.amazon/sp-api/page/404
+  - path: /.well-known/aauth-resource.json
+    status: 301
+    redirect: https://developer-docs.amazon/sp-api/page/404
+  - path: /.well-known/apis.json
+    status: 301
+    redirect: https://developer-docs.amazon/sp-api/page/404
+  - path: /apis.json
+    status: 301
+    redirect: https://developer-docs.amazon/sp-api/page/404
+  - path: /apis.yml
+    status: 301
+    redirect: https://developer-docs.amazon/sp-api/page/404
+  - path: /.well-known/agent-card.json
+    status: 301
+    redirect: https://developer-docs.amazon/sp-api/page/404
+  - path: /.well-known/agent.json
+    status: 301
+    redirect: https://developer-docs.amazon/sp-api/page/404
+  - path: /.well-known/mcp/server-card.json
+    status: 404
+  note: 'Serves a genuine RFC 9727 api-catalog (application/linkset+json, 279 B) distinct from the host
+    catch-all: unknown paths (incl. the negative control) 301 to /sp-api/page/404. The linkset service-desc
+    href https://developer-docs.amazon/sp-api/.well-known/api-catalog returns 404 (broken nested link,
+    checked 2026-09-24); service-doc https://developer-docs.amazon/sp-api/reference is the API reference.'
+  negative_control:
+    path: /.well-known/asc-negative-control-4b9d2e.json
+    status: 301
+  path_echo_control: passed
+- host: https://developer.amazonservices.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/mcp/server-card.json
+    status: 404
+  note: All named paths 404.
+  negative_control:
+    path: /.well-known/asc-negative-control-4b9d2e.json
+    status: 404
+  path_echo_control: passed
+- host: https://sellercentral.amazon.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/mcp/server-card.json
+    status: 404
+  note: All named paths 404. Hosts the MCP authorization_endpoint (/apps/agents/authorize) named in the
+    sellingpartner-ai RFC 8414 document.
+  negative_control:
+    path: /.well-known/asc-negative-control-4b9d2e.json
+    status: 404
+  path_echo_control: passed

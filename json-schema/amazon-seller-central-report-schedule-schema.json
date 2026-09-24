@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-report-schedule-schema.json",
+  "title": "ReportSchedule",
+  "description": "Detailed information about a report schedule.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-reports-api-openapi.yml#/components/schemas/ReportSchedule",
+  "type": "object",
+  "required": [
+    "period",
+    "reportScheduleId",
+    "reportType"
+  ],
+  "properties": {
+    "reportScheduleId": {
+      "description": "The identifier for the report schedule. This identifier is unique only in combination with a seller ID.",
+      "type": "string"
+    },
+    "reportType": {
+      "description": "The report type. Refer to [Report Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.",
+      "type": "string"
+    },
+    "marketplaceIds": {
+      "description": "A list of marketplace identifiers. The report document's contents will contain data for all of the specified marketplaces, unless the report type indicates otherwise.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "reportOptions": {
+      "$ref": "#/$defs/ReportOptions"
+    },
+    "period": {
+      "description": "An <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> period value that indicates how often a report should be created.",
+      "type": "string"
+    },
+    "nextReportCreationTime": {
+      "description": "The date and time when the schedule will create its next report, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format.",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "ReportOptions": {
+      "description": "Additional information passed to reports. This varies by report type.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

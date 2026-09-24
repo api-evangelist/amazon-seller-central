@@ -1,0 +1,939 @@
+{
+  "@context": {
+    "@vocab": "https://amazonservices.com/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "amazon": "https://amazonservices.com/schema#",
+    "Dimensions": "amazon:Dimensions",
+    "height": {
+      "@id": "amazon:height",
+      "@type": "@id"
+    },
+    "length": {
+      "@id": "amazon:length",
+      "@type": "@id"
+    },
+    "weight": {
+      "@id": "amazon:weight",
+      "@type": "@id"
+    },
+    "width": {
+      "@id": "amazon:width",
+      "@type": "@id"
+    },
+    "ItemDimensionsByMarketplace": "amazon:ItemDimensionsByMarketplace",
+    "marketplaceId": {
+      "@id": "amazon:marketplaceId",
+      "@type": "xsd:string"
+    },
+    "item": {
+      "@id": "amazon:item",
+      "@type": "@id"
+    },
+    "package": {
+      "@id": "amazon:package",
+      "@type": "@id"
+    },
+    "ItemContributor": "amazon:ItemContributor",
+    "role": {
+      "@id": "amazon:role",
+      "@type": "@id"
+    },
+    "value": {
+      "@id": "amazon:value",
+      "@type": "xsd:string"
+    },
+    "ItemSearchResults": "amazon:ItemSearchResults",
+    "numberOfResults": {
+      "@id": "amazon:numberOfResults",
+      "@type": "xsd:integer"
+    },
+    "pagination": {
+      "@id": "amazon:pagination",
+      "@type": "@id"
+    },
+    "refinements": {
+      "@id": "amazon:refinements",
+      "@type": "@id"
+    },
+    "items": {
+      "@id": "amazon:items",
+      "@container": "@list"
+    },
+    "Item": "amazon:Item",
+    "asin": {
+      "@id": "amazon:asin",
+      "@type": "@id"
+    },
+    "attributes": {
+      "@id": "amazon:attributes",
+      "@type": "@id"
+    },
+    "classifications": {
+      "@id": "amazon:classifications",
+      "@type": "@id"
+    },
+    "dimensions": {
+      "@id": "amazon:dimensions",
+      "@type": "@id"
+    },
+    "identifiers": {
+      "@id": "amazon:identifiers",
+      "@type": "@id"
+    },
+    "images": {
+      "@id": "amazon:images",
+      "@type": "@id"
+    },
+    "productTypes": {
+      "@id": "amazon:productTypes",
+      "@type": "@id"
+    },
+    "relationships": {
+      "@id": "amazon:relationships",
+      "@type": "@id"
+    },
+    "salesRanks": {
+      "@id": "amazon:salesRanks",
+      "@type": "@id"
+    },
+    "summaries": {
+      "@id": "amazon:summaries",
+      "@type": "@id"
+    },
+    "vendorDetails": {
+      "@id": "amazon:vendorDetails",
+      "@type": "@id"
+    },
+    "ItemRelationship": "amazon:ItemRelationship",
+    "childAsins": {
+      "@id": "amazon:childAsins",
+      "@container": "@list"
+    },
+    "parentAsins": {
+      "@id": "amazon:parentAsins",
+      "@container": "@list"
+    },
+    "variationTheme": {
+      "@id": "amazon:variationTheme",
+      "@type": "@id"
+    },
+    "type": {
+      "@id": "amazon:type",
+      "@type": "xsd:string"
+    },
+    "ItemDisplayGroupSalesRank": "amazon:ItemDisplayGroupSalesRank",
+    "websiteDisplayGroup": {
+      "@id": "amazon:websiteDisplayGroup",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "amazon:title",
+      "@type": "xsd:string"
+    },
+    "link": {
+      "@id": "amazon:link",
+      "@type": "xsd:string"
+    },
+    "rank": {
+      "@id": "amazon:rank",
+      "@type": "xsd:integer"
+    },
+    "ItemSummaryByMarketplace": "amazon:ItemSummaryByMarketplace",
+    "adultProduct": {
+      "@id": "amazon:adultProduct",
+      "@type": "xsd:boolean"
+    },
+    "autographed": {
+      "@id": "amazon:autographed",
+      "@type": "xsd:boolean"
+    },
+    "brand": {
+      "@id": "amazon:brand",
+      "@type": "xsd:string"
+    },
+    "browseClassification": {
+      "@id": "amazon:browseClassification",
+      "@type": "@id"
+    },
+    "color": {
+      "@id": "amazon:color",
+      "@type": "xsd:string"
+    },
+    "contributors": {
+      "@id": "amazon:contributors",
+      "@container": "@list"
+    },
+    "itemClassification": {
+      "@id": "amazon:itemClassification",
+      "@type": "xsd:string"
+    },
+    "itemName": {
+      "@id": "amazon:itemName",
+      "@type": "xsd:string"
+    },
+    "manufacturer": {
+      "@id": "amazon:manufacturer",
+      "@type": "xsd:string"
+    },
+    "memorabilia": {
+      "@id": "amazon:memorabilia",
+      "@type": "xsd:boolean"
+    },
+    "modelNumber": {
+      "@id": "amazon:modelNumber",
+      "@type": "xsd:string"
+    },
+    "packageQuantity": {
+      "@id": "amazon:packageQuantity",
+      "@type": "xsd:integer"
+    },
+    "partNumber": {
+      "@id": "amazon:partNumber",
+      "@type": "xsd:string"
+    },
+    "releaseDate": {
+      "@id": "amazon:releaseDate",
+      "@type": "xsd:date"
+    },
+    "size": {
+      "@id": "amazon:size",
+      "@type": "xsd:string"
+    },
+    "style": {
+      "@id": "amazon:style",
+      "@type": "xsd:string"
+    },
+    "tradeInEligible": {
+      "@id": "amazon:tradeInEligible",
+      "@type": "xsd:boolean"
+    },
+    "websiteDisplayGroupName": {
+      "@id": "amazon:websiteDisplayGroupName",
+      "@type": "xsd:string"
+    },
+    "ClassificationRefinement": "amazon:ClassificationRefinement",
+    "displayName": {
+      "@id": "amazon:displayName",
+      "@type": "xsd:string"
+    },
+    "classificationId": {
+      "@id": "amazon:classificationId",
+      "@type": "xsd:string"
+    },
+    "Error": "amazon:Error",
+    "code": {
+      "@id": "amazon:code",
+      "@type": "xsd:string"
+    },
+    "message": {
+      "@id": "amazon:message",
+      "@type": "xsd:string"
+    },
+    "details": {
+      "@id": "amazon:details",
+      "@type": "xsd:string"
+    },
+    "ItemBrowseClassification": "amazon:ItemBrowseClassification",
+    "parent": {
+      "@id": "amazon:parent",
+      "@type": "@id"
+    },
+    "ItemBrowseClassificationsByMarketplace": "amazon:ItemBrowseClassificationsByMarketplace",
+    "ErrorList": "amazon:ErrorList",
+    "errors": {
+      "@id": "amazon:errors",
+      "@container": "@list"
+    },
+    "ItemSalesRanksByMarketplace": "amazon:ItemSalesRanksByMarketplace",
+    "classificationRanks": {
+      "@id": "amazon:classificationRanks",
+      "@container": "@list"
+    },
+    "displayGroupRanks": {
+      "@id": "amazon:displayGroupRanks",
+      "@container": "@list"
+    },
+    "ItemClassificationSalesRank": "amazon:ItemClassificationSalesRank",
+    "ItemImagesByMarketplace": "amazon:ItemImagesByMarketplace",
+    "ItemProductTypeByMarketplace": "amazon:ItemProductTypeByMarketplace",
+    "productType": {
+      "@id": "amazon:productType",
+      "@type": "xsd:string"
+    },
+    "ItemImage": "amazon:ItemImage",
+    "variant": {
+      "@id": "amazon:variant",
+      "@type": "xsd:string"
+    },
+    "ItemVendorDetailsByMarketplace": "amazon:ItemVendorDetailsByMarketplace",
+    "brandCode": {
+      "@id": "amazon:brandCode",
+      "@type": "xsd:string"
+    },
+    "manufacturerCode": {
+      "@id": "amazon:manufacturerCode",
+      "@type": "xsd:string"
+    },
+    "manufacturerCodeParent": {
+      "@id": "amazon:manufacturerCodeParent",
+      "@type": "xsd:string"
+    },
+    "productCategory": {
+      "@id": "amazon:productCategory",
+      "@type": "@id"
+    },
+    "productGroup": {
+      "@id": "amazon:productGroup",
+      "@type": "xsd:string"
+    },
+    "productSubcategory": {
+      "@id": "amazon:productSubcategory",
+      "@type": "@id"
+    },
+    "replenishmentCategory": {
+      "@id": "amazon:replenishmentCategory",
+      "@type": "xsd:string"
+    },
+    "ItemVendorDetailsCategory": "amazon:ItemVendorDetailsCategory",
+    "ItemIdentifier": "amazon:ItemIdentifier",
+    "identifierType": {
+      "@id": "amazon:identifierType",
+      "@type": "xsd:string"
+    },
+    "identifier": {
+      "@id": "amazon:identifier",
+      "@type": "xsd:string"
+    },
+    "ItemRelationshipsByMarketplace": "amazon:ItemRelationshipsByMarketplace",
+    "Dimension": "amazon:Dimension",
+    "unit": {
+      "@id": "amazon:unit",
+      "@type": "xsd:string"
+    },
+    "Pagination": "amazon:Pagination",
+    "nextToken": {
+      "@id": "amazon:nextToken",
+      "@type": "xsd:string"
+    },
+    "previousToken": {
+      "@id": "amazon:previousToken",
+      "@type": "xsd:string"
+    },
+    "ItemVariationTheme": "amazon:ItemVariationTheme",
+    "theme": {
+      "@id": "amazon:theme",
+      "@type": "xsd:string"
+    },
+    "BrandRefinement": "amazon:BrandRefinement",
+    "brandName": {
+      "@id": "amazon:brandName",
+      "@type": "xsd:string"
+    },
+    "ItemContributorRole": "amazon:ItemContributorRole",
+    "ItemIdentifiersByMarketplace": "amazon:ItemIdentifiersByMarketplace",
+    "Refinements": "amazon:Refinements",
+    "brands": {
+      "@id": "amazon:brands",
+      "@container": "@list"
+    },
+    "PropertyGroup": "amazon:PropertyGroup",
+    "description": {
+      "@id": "amazon:description",
+      "@type": "xsd:string"
+    },
+    "propertyNames": {
+      "@id": "amazon:propertyNames",
+      "@container": "@list"
+    },
+    "ProductTypeVersion": "amazon:ProductTypeVersion",
+    "version": {
+      "@id": "amazon:version",
+      "@type": "xsd:string"
+    },
+    "latest": {
+      "@id": "amazon:latest",
+      "@type": "xsd:boolean"
+    },
+    "releaseCandidate": {
+      "@id": "amazon:releaseCandidate",
+      "@type": "xsd:boolean"
+    },
+    "ProductTypeDefinition": "amazon:ProductTypeDefinition",
+    "metaSchema": {
+      "@id": "amazon:metaSchema",
+      "@type": "@id"
+    },
+    "requirements": {
+      "@id": "amazon:requirements",
+      "@type": "xsd:string"
+    },
+    "requirementsEnforced": {
+      "@id": "amazon:requirementsEnforced",
+      "@type": "xsd:string"
+    },
+    "propertyGroups": {
+      "@id": "amazon:propertyGroups"
+    },
+    "locale": {
+      "@id": "amazon:locale",
+      "@type": "xsd:string"
+    },
+    "marketplaceIds": {
+      "@id": "amazon:marketplaceIds",
+      "@container": "@list"
+    },
+    "productTypeVersion": {
+      "@id": "amazon:productTypeVersion",
+      "@type": "@id"
+    },
+    "ProductTypeList": "amazon:ProductTypeList",
+    "ProductType": "amazon:ProductType",
+    "name": {
+      "@id": "amazon:name",
+      "@type": "xsd:string"
+    },
+    "SchemaLink": "amazon:SchemaLink",
+    "checksum": {
+      "@id": "amazon:checksum",
+      "@type": "xsd:string"
+    },
+    "PrepOwner": "amazon:PrepOwner",
+    "ListInboundPlanBoxesResponse": "amazon:ListInboundPlanBoxesResponse",
+    "boxes": {
+      "@id": "amazon:boxes",
+      "@container": "@list"
+    },
+    "PlacementOptionSummary": "amazon:PlacementOptionSummary",
+    "placementOptionId": {
+      "@id": "amazon:placementOptionId",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "amazon:status",
+      "@type": "xsd:string"
+    },
+    "ShippingRequirements": "amazon:ShippingRequirements",
+    "modes": {
+      "@id": "amazon:modes",
+      "@container": "@list"
+    },
+    "solution": {
+      "@id": "amazon:solution",
+      "@type": "xsd:string"
+    },
+    "PrepCategory": "amazon:PrepCategory",
+    "ScheduleSelfShipAppointmentRequest": "amazon:ScheduleSelfShipAppointmentRequest",
+    "reasonComment": {
+      "@id": "amazon:reasonComment",
+      "@type": "@id"
+    },
+    "ListInboundPlanPalletsResponse": "amazon:ListInboundPlanPalletsResponse",
+    "pallets": {
+      "@id": "amazon:pallets",
+      "@container": "@list"
+    },
+    "TrackingDetailsInput": "amazon:TrackingDetailsInput",
+    "ltlTrackingDetail": {
+      "@id": "amazon:ltlTrackingDetail",
+      "@type": "@id"
+    },
+    "spdTrackingDetail": {
+      "@id": "amazon:spdTrackingDetail",
+      "@type": "@id"
+    },
+    "PrepType": "amazon:PrepType",
+    "BoxContentInformationSource": "amazon:BoxContentInformationSource",
+    "SelectedDeliveryWindow": "amazon:SelectedDeliveryWindow",
+    "availabilityType": {
+      "@id": "amazon:availabilityType",
+      "@type": "xsd:string"
+    },
+    "deliveryWindowOptionId": {
+      "@id": "amazon:deliveryWindowOptionId",
+      "@type": "xsd:string"
+    },
+    "editableUntil": {
+      "@id": "amazon:editableUntil",
+      "@type": "xsd:dateTime"
+    },
+    "endDate": {
+      "@id": "amazon:endDate",
+      "@type": "xsd:dateTime"
+    },
+    "startDate": {
+      "@id": "amazon:startDate",
+      "@type": "xsd:dateTime"
+    },
+    "CancelInboundPlanResponse": "amazon:CancelInboundPlanResponse",
+    "operationId": {
+      "@id": "amazon:operationId",
+      "@type": "xsd:string"
+    },
+    "BoxInput": "amazon:BoxInput",
+    "contentInformationSource": {
+      "@id": "amazon:contentInformationSource",
+      "@type": "@id"
+    },
+    "quantity": {
+      "@id": "amazon:quantity",
+      "@type": "xsd:integer"
+    },
+    "InboundOperationStatus": "amazon:InboundOperationStatus",
+    "operation": {
+      "@id": "amazon:operation",
+      "@type": "xsd:string"
+    },
+    "operationProblems": {
+      "@id": "amazon:operationProblems",
+      "@container": "@list"
+    },
+    "operationStatus": {
+      "@id": "amazon:operationStatus",
+      "@type": "@id"
+    },
+    "MskuPrepDetail": "amazon:MskuPrepDetail",
+    "allOwnersConstraint": {
+      "@id": "amazon:allOwnersConstraint",
+      "@type": "@id"
+    },
+    "labelOwnerConstraint": {
+      "@id": "amazon:labelOwnerConstraint",
+      "@type": "@id"
+    },
+    "msku": {
+      "@id": "amazon:msku",
+      "@type": "xsd:string"
+    },
+    "prepCategory": {
+      "@id": "amazon:prepCategory",
+      "@type": "@id"
+    },
+    "prepOwnerConstraint": {
+      "@id": "amazon:prepOwnerConstraint",
+      "@type": "@id"
+    },
+    "prepTypes": {
+      "@id": "amazon:prepTypes",
+      "@container": "@list"
+    },
+    "ConfirmDeliveryWindowOptionsResponse": "amazon:ConfirmDeliveryWindowOptionsResponse",
+    "Dates": "amazon:Dates",
+    "readyToShipWindow": {
+      "@id": "amazon:readyToShipWindow",
+      "@type": "@id"
+    },
+    "ConfirmTransportationOptionsResponse": "amazon:ConfirmTransportationOptionsResponse",
+    "ComplianceDetail": "amazon:ComplianceDetail",
+    "fnsku": {
+      "@id": "amazon:fnsku",
+      "@type": "xsd:string"
+    },
+    "taxDetails": {
+      "@id": "amazon:taxDetails",
+      "@type": "@id"
+    },
+    "TaxDetails": "amazon:TaxDetails",
+    "declaredValue": {
+      "@id": "amazon:declaredValue",
+      "@type": "@id"
+    },
+    "hsnCode": {
+      "@id": "amazon:hsnCode",
+      "@type": "xsd:string"
+    },
+    "taxRates": {
+      "@id": "amazon:taxRates",
+      "@container": "@list"
+    },
+    "UpdateShipmentTrackingDetailsResponse": "amazon:UpdateShipmentTrackingDetailsResponse",
+    "GenerateDeliveryWindowOptionsResponse": "amazon:GenerateDeliveryWindowOptionsResponse",
+    "MskuQuantity": "amazon:MskuQuantity",
+    "Shipment": "amazon:Shipment",
+    "amazonReferenceId": {
+      "@id": "amazon:amazonReferenceId",
+      "@type": "xsd:string"
+    },
+    "contactInformation": {
+      "@id": "amazon:contactInformation",
+      "@type": "@id"
+    },
+    "dates": {
+      "@id": "amazon:dates",
+      "@type": "@id"
+    },
+    "destination": {
+      "@id": "amazon:destination",
+      "@type": "@id"
+    },
+    "freightInformation": {
+      "@id": "amazon:freightInformation",
+      "@type": "@id"
+    },
+    "selectedDeliveryWindow": {
+      "@id": "amazon:selectedDeliveryWindow",
+      "@type": "@id"
+    },
+    "selectedTransportationOptionId": {
+      "@id": "amazon:selectedTransportationOptionId",
+      "@type": "xsd:string"
+    },
+    "selfShipAppointmentDetails": {
+      "@id": "amazon:selfShipAppointmentDetails",
+      "@container": "@list"
+    },
+    "shipmentConfirmationId": {
+      "@id": "amazon:shipmentConfirmationId",
+      "@type": "xsd:string"
+    },
+    "shipmentId": {
+      "@id": "amazon:shipmentId",
+      "@type": "xsd:string"
+    },
+    "source": {
+      "@id": "amazon:source",
+      "@type": "@id"
+    },
+    "trackingDetails": {
+      "@id": "amazon:trackingDetails",
+      "@type": "@id"
+    },
+    "GenerateTransportationOptionsRequest": "amazon:GenerateTransportationOptionsRequest",
+    "shipmentTransportationConfigurations": {
+      "@id": "amazon:shipmentTransportationConfigurations",
+      "@container": "@list"
+    },
+    "ConfirmTransportationOptionsRequest": "amazon:ConfirmTransportationOptionsRequest",
+    "transportationSelections": {
+      "@id": "amazon:transportationSelections",
+      "@container": "@list"
+    },
+    "PrepInstruction": "amazon:PrepInstruction",
+    "fee": {
+      "@id": "amazon:fee",
+      "@type": "@id"
+    },
+    "prepOwner": {
+      "@id": "amazon:prepOwner",
+      "@type": "xsd:string"
+    },
+    "prepType": {
+      "@id": "amazon:prepType",
+      "@type": "xsd:string"
+    },
+    "BoxUpdateInput": "amazon:BoxUpdateInput",
+    "packageId": {
+      "@id": "amazon:packageId",
+      "@type": "xsd:string"
+    },
+    "AppointmentSlotTime": "amazon:AppointmentSlotTime",
+    "endTime": {
+      "@id": "amazon:endTime",
+      "@type": "xsd:dateTime"
+    },
+    "startTime": {
+      "@id": "amazon:startTime",
+      "@type": "xsd:dateTime"
+    },
+    "UpdateShipmentSourceAddressResponse": "amazon:UpdateShipmentSourceAddressResponse",
+    "Window": "amazon:Window",
+    "end": {
+      "@id": "amazon:end",
+      "@type": "xsd:dateTime"
+    },
+    "start": {
+      "@id": "amazon:start",
+      "@type": "xsd:dateTime"
+    },
+    "Incentive": "amazon:Incentive",
+    "target": {
+      "@id": "amazon:target",
+      "@type": "xsd:string"
+    },
+    "InboundPlanSummary": "amazon:InboundPlanSummary",
+    "createdAt": {
+      "@id": "amazon:createdAt",
+      "@type": "xsd:dateTime"
+    },
+    "inboundPlanId": {
+      "@id": "amazon:inboundPlanId",
+      "@type": "xsd:string"
+    },
+    "lastUpdatedAt": {
+      "@id": "amazon:lastUpdatedAt",
+      "@type": "xsd:dateTime"
+    },
+    "sourceAddress": {
+      "@id": "amazon:sourceAddress",
+      "@type": "@id"
+    },
+    "GenerateShipmentContentUpdatePreviewsResponse": "amazon:GenerateShipmentContentUpdatePreviewsResponse",
+    "UpdateShipmentSourceAddressRequest": "amazon:UpdateShipmentSourceAddressRequest",
+    "address": {
+      "@id": "amazon:address",
+      "@type": "@id"
+    },
+    "ListPackingOptionsResponse": "amazon:ListPackingOptionsResponse",
+    "packingOptions": {
+      "@id": "amazon:packingOptions",
+      "@container": "@list"
+    },
+    "Stackability": "amazon:Stackability",
+    "FreightInformation": "amazon:FreightInformation",
+    "freightClass": {
+      "@id": "amazon:freightClass",
+      "@type": "xsd:string"
+    },
+    "SetPrepDetailsRequest": "amazon:SetPrepDetailsRequest",
+    "mskuPrepDetails": {
+      "@id": "amazon:mskuPrepDetails",
+      "@container": "@list"
+    },
+    "PalletInput": "amazon:PalletInput",
+    "stackability": {
+      "@id": "amazon:stackability",
+      "@type": "@id"
+    },
+    "Pallet": "amazon:Pallet",
+    "OperationStatus": "amazon:OperationStatus",
+    "UpdateShipmentTrackingDetailsRequest": "amazon:UpdateShipmentTrackingDetailsRequest",
+    "PackingConfiguration": "amazon:PackingConfiguration",
+    "boxPackingMethods": {
+      "@id": "amazon:boxPackingMethods",
+      "@container": "@list"
+    },
+    "boxRequirements": {
+      "@id": "amazon:boxRequirements",
+      "@type": "@id"
+    },
+    "shippingRequirements": {
+      "@id": "amazon:shippingRequirements",
+      "@container": "@list"
+    },
+    "ListInboundPlanItemsResponse": "amazon:ListInboundPlanItemsResponse",
+    "CancelSelfShipAppointmentResponse": "amazon:CancelSelfShipAppointmentResponse",
+    "ConfirmPlacementOptionResponse": "amazon:ConfirmPlacementOptionResponse",
+    "MskuPrepDetailInput": "amazon:MskuPrepDetailInput",
+    "Carrier": "amazon:Carrier",
+    "alphaCode": {
+      "@id": "amazon:alphaCode",
+      "@type": "xsd:string"
+    },
+    "ContentUpdatePreview": "amazon:ContentUpdatePreview",
+    "contentUpdatePreviewId": {
+      "@id": "amazon:contentUpdatePreviewId",
+      "@type": "xsd:string"
+    },
+    "expiration": {
+      "@id": "amazon:expiration",
+      "@type": "xsd:dateTime"
+    },
+    "requestedUpdates": {
+      "@id": "amazon:requestedUpdates",
+      "@type": "@id"
+    },
+    "transportationOption": {
+      "@id": "amazon:transportationOption",
+      "@type": "@id"
+    },
+    "GenerateSelfShipAppointmentSlotsResponse": "amazon:GenerateSelfShipAppointmentSlotsResponse",
+    "ShipmentTransportationConfiguration": "amazon:ShipmentTransportationConfiguration",
+    "ListShipmentBoxesResponse": "amazon:ListShipmentBoxesResponse",
+    "GeneratePackingOptionsResponse": "amazon:GeneratePackingOptionsResponse",
+    "ListPackingGroupBoxesResponse": "amazon:ListPackingGroupBoxesResponse",
+    "SpdTrackingItem": "amazon:SpdTrackingItem",
+    "boxId": {
+      "@id": "amazon:boxId",
+      "@type": "xsd:string"
+    },
+    "trackingId": {
+      "@id": "amazon:trackingId",
+      "@type": "xsd:string"
+    },
+    "trackingNumberValidationStatus": {
+      "@id": "amazon:trackingNumberValidationStatus",
+      "@type": "xsd:string"
+    },
+    "ContactInformation": "amazon:ContactInformation",
+    "email": {
+      "@id": "amazon:email",
+      "@type": "xsd:string"
+    },
+    "phoneNumber": {
+      "@id": "amazon:phoneNumber",
+      "@type": "xsd:string"
+    },
+    "PackingOptionSummary": "amazon:PackingOptionSummary",
+    "packingOptionId": {
+      "@id": "amazon:packingOptionId",
+      "@type": "xsd:string"
+    },
+    "ShippingConfiguration": "amazon:ShippingConfiguration",
+    "shippingMode": {
+      "@id": "amazon:shippingMode",
+      "@type": "xsd:string"
+    },
+    "shippingSolution": {
+      "@id": "amazon:shippingSolution",
+      "@type": "xsd:string"
+    },
+    "ShipmentSummary": "amazon:ShipmentSummary",
+    "Quote": "amazon:Quote",
+    "cost": {
+      "@id": "amazon:cost",
+      "@type": "@id"
+    },
+    "voidableUntil": {
+      "@id": "amazon:voidableUntil",
+      "@type": "xsd:dateTime"
+    },
+    "ListPrepDetailsResponse": "amazon:ListPrepDetailsResponse",
+    "CreateInboundPlanRequest": "amazon:CreateInboundPlanRequest",
+    "destinationMarketplaces": {
+      "@id": "amazon:destinationMarketplaces",
+      "@container": "@list"
+    },
+    "TransportationSelection": "amazon:TransportationSelection",
+    "transportationOptionId": {
+      "@id": "amazon:transportationOptionId",
+      "@type": "xsd:string"
+    },
+    "GetDeliveryChallanDocumentResponse": "amazon:GetDeliveryChallanDocumentResponse",
+    "documentDownload": {
+      "@id": "amazon:documentDownload",
+      "@type": "@id"
+    },
+    "DocumentDownload": "amazon:DocumentDownload",
+    "downloadType": {
+      "@id": "amazon:downloadType",
+      "@type": "xsd:string"
+    },
+    "uri": {
+      "@id": "amazon:uri",
+      "@type": "xsd:string"
+    },
+    "ShipmentDestination": "amazon:ShipmentDestination",
+    "destinationType": {
+      "@id": "amazon:destinationType",
+      "@type": "xsd:string"
+    },
+    "warehouseId": {
+      "@id": "amazon:warehouseId",
+      "@type": "xsd:string"
+    },
+    "ListItemComplianceDetailsResponse": "amazon:ListItemComplianceDetailsResponse",
+    "complianceDetails": {
+      "@id": "amazon:complianceDetails",
+      "@container": "@list"
+    },
+    "Address": "amazon:Address",
+    "addressLine1": {
+      "@id": "amazon:addressLine1",
+      "@type": "xsd:string"
+    },
+    "addressLine2": {
+      "@id": "amazon:addressLine2",
+      "@type": "xsd:string"
+    },
+    "city": {
+      "@id": "amazon:city",
+      "@type": "xsd:string"
+    },
+    "companyName": {
+      "@id": "amazon:companyName",
+      "@type": "xsd:string"
+    },
+    "countryCode": {
+      "@id": "amazon:countryCode",
+      "@type": "xsd:string"
+    },
+    "districtOrCounty": {
+      "@id": "amazon:districtOrCounty",
+      "@type": "xsd:string"
+    },
+    "postalCode": {
+      "@id": "amazon:postalCode",
+      "@type": "xsd:string"
+    },
+    "stateOrProvinceCode": {
+      "@id": "amazon:stateOrProvinceCode",
+      "@type": "xsd:string"
+    },
+    "PackageGroupingInput": "amazon:PackageGroupingInput",
+    "packingGroupId": {
+      "@id": "amazon:packingGroupId",
+      "@type": "xsd:string"
+    },
+    "ListPlacementOptionsResponse": "amazon:ListPlacementOptionsResponse",
+    "placementOptions": {
+      "@id": "amazon:placementOptions",
+      "@container": "@list"
+    },
+    "GeneratePlacementOptionsRequest": "amazon:GeneratePlacementOptionsRequest",
+    "customPlacement": {
+      "@id": "amazon:customPlacement",
+      "@container": "@list"
+    },
+    "ReasonComment": "amazon:ReasonComment",
+    "UpdateShipmentNameRequest": "amazon:UpdateShipmentNameRequest",
+    "ListDeliveryWindowOptionsResponse": "amazon:ListDeliveryWindowOptionsResponse",
+    "deliveryWindowOptions": {
+      "@id": "amazon:deliveryWindowOptions",
+      "@container": "@list"
+    },
+    "LtlTrackingDetailInput": "amazon:LtlTrackingDetailInput",
+    "billOfLadingNumber": {
+      "@id": "amazon:billOfLadingNumber",
+      "@type": "xsd:string"
+    },
+    "freightBillNumber": {
+      "@id": "amazon:freightBillNumber",
+      "@container": "@list"
+    },
+    "UnitOfMeasurement": "amazon:UnitOfMeasurement",
+    "LtlTrackingDetail": "amazon:LtlTrackingDetail",
+    "SelfShipAppointmentSlotsAvailability": "amazon:SelfShipAppointmentSlotsAvailability",
+    "expiresAt": {
+      "@id": "amazon:expiresAt",
+      "@type": "xsd:dateTime"
+    },
+    "slots": {
+      "@id": "amazon:slots",
+      "@container": "@list"
+    },
+    "SetPackingInformationRequest": "amazon:SetPackingInformationRequest",
+    "packageGroupings": {
+      "@id": "amazon:packageGroupings",
+      "@container": "@list"
+    },
+    "GetSelfShipAppointmentSlotsResponse": "amazon:GetSelfShipAppointmentSlotsResponse",
+    "selfShipAppointmentSlotsAvailability": {
+      "@id": "amazon:selfShipAppointmentSlotsAvailability",
+      "@type": "@id"
+    },
+    "SpdTrackingDetailInput": "amazon:SpdTrackingDetailInput",
+    "spdTrackingItems": {
+      "@id": "amazon:spdTrackingItems",
+      "@container": "@list"
+    },
+    "ScheduleSelfShipAppointmentResponse": "amazon:ScheduleSelfShipAppointmentResponse",
+    "CreateInboundPlanResponse": "amazon:CreateInboundPlanResponse",
+    "OperationProblem": "amazon:OperationProblem",
+    "severity": {
+      "@id": "amazon:severity",
+      "@type": "xsd:string"
+    }
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "Amazon Selling Partner API API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects Amazon Selling Partner API's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-09-24) from openapi/amazon-seller-central-catalog-api-openapi.yml, openapi/amazon-seller-central-definitions-api-openapi.yml, openapi/amazon-seller-central-fbainbound-api-openapi.yml.",
+  "dcterms:created": "2026-09-24",
+  "dcterms:source": [
+    "openapi/amazon-seller-central-catalog-api-openapi.yml",
+    "openapi/amazon-seller-central-definitions-api-openapi.yml",
+    "openapi/amazon-seller-central-fbainbound-api-openapi.yml",
+    "openapi/amazon-seller-central-fbainventory-api-openapi.yml",
+    "openapi/amazon-seller-central-fbaoutbound-api-openapi.yml"
+  ]
+}

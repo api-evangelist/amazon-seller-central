@@ -1,0 +1,298 @@
+generated: '2026-09-24'
+method: searched
+status: published
+source: https://github.com/amzn/selling-partner-agentic-toolkit (.mcp.json, README.md, skills/*); https://github.com/anthropics/claude-plugins-official/pull/6293
+description: Amazon's first-party remote MCP server, the Amazon Selling Partner Connector, at https://sellingpartner-ai.amazon.com/mcp
+  (streamable HTTP). Announced at Amazon Accelerate on 2026-09-23 alongside the Selling Partner Agentic
+  Toolkit, a Claude plugin that bundles this server in .mcp.json with 11 skills and 3 commands; merged
+  into Anthropic's official plugin marketplace the same day. Beta, US stores. Access is granted through
+  the Seller Central OAuth consent flow; the assistant can only use tools the seller's Seller Central
+  roles allow, and write actions are human-in-the-loop (drafted for the seller's approval). Account admins
+  grant AI-agent access to secondary users in Seller Central "Manage Agents". tools/list is auth-gated,
+  so the tool names below are the ones Amazon's own skills invoke, not a live listing.
+server:
+  name: amazon-selling-partner
+  label: Amazon Selling Partner Connector
+  transport: http
+  url: https://sellingpartner-ai.amazon.com/mcp
+  auth: oauth2
+  auth_detail: Seller Central OAuth consent (authorization_endpoint https://sellercentral.amazon.com/apps/agents/authorize,
+    token_endpoint https://api.amazon.com/auth/o2/token); PKCE S256; Client ID Metadata Documents supported,
+    no dynamic client registration endpoint. See well-known/.
+  status: beta
+  availability: US stores
+  announced: '2026-09-23'
+  human_in_the_loop: Write actions are drafted for approval and never executed without explicit seller
+    approval (toolkit README).
+  authorization_scope: Limited to the tools the seller's Seller Central roles allow.
+  docs: https://github.com/amzn/selling-partner-agentic-toolkit
+  clients:
+  - Claude
+gateway_meta_tools:
+- name: call_tool
+  note: Gateway meta-tool named in the provider skills; namespaced tools are invoked through call_tool
+    (writes through call_destructive_tool).
+- name: call_destructive_tool
+  note: Gateway meta-tool named in the provider skills; namespaced tools are invoked through call_tool
+    (writes through call_destructive_tool).
+- name: search_tool
+  note: Gateway meta-tool named in the provider skills; namespaced tools are invoked through call_tool
+    (writes through call_destructive_tool).
+- name: get_tool_schema
+  note: Gateway meta-tool named in the provider skills; namespaced tools are invoked through call_tool
+    (writes through call_destructive_tool).
+tools_source: 'Tool names extracted from the provider-published skills and commands in amzn/selling-partner-agentic-toolkit
+  (commit 10573ba, 2026-09-23). Not a tools/list result: tools/list requires Seller Central OAuth.'
+tools:
+- name: analytics_getMetricData
+  namespace: analytics
+  referenced_by_skills:
+  - seller-analytics
+  description: Seller analytics metrics (metadata and data) -- no public SP-API operation of this name
+    in the core models pulled
+- name: analytics_getMetricMetadata
+  namespace: analytics
+  referenced_by_skills:
+  - seller-analytics
+  description: Seller analytics metrics (metadata and data) -- no public SP-API operation of this name
+    in the core models pulled
+- name: fbaInbound_cancelInboundPlan
+  namespace: fbaInbound
+  referenced_by_skills:
+  - fba-inbound-management
+  source_operation: openapi/amazon-seller-central-fbainbound-api-openapi.yml#cancelInboundPlan
+  method: PUT
+  path: /inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/cancellation
+- name: fbaInbound_confirmDeliveryWindowOptions
+  namespace: fbaInbound
+  referenced_by_skills:
+  - fba-inbound-management
+  source_operation: openapi/amazon-seller-central-fbainbound-api-openapi.yml#confirmDeliveryWindowOptions
+  method: POST
+  path: /inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/deliveryWindowOptions/{deliveryWindowOptionId}/confirmation
+- name: fbaInbound_confirmPackingOption
+  namespace: fbaInbound
+  referenced_by_skills:
+  - fba-inbound-management
+  source_operation: openapi/amazon-seller-central-fbainbound-api-openapi.yml#confirmPackingOption
+  method: POST
+  path: /inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/packingOptions/{packingOptionId}/confirmation
+- name: fbaInbound_confirmPlacementOption
+  namespace: fbaInbound
+  referenced_by_skills:
+  - fba-inbound-management
+  source_operation: openapi/amazon-seller-central-fbainbound-api-openapi.yml#confirmPlacementOption
+  method: POST
+  path: /inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/placementOptions/{placementOptionId}/confirmation
+- name: fbaInbound_confirmTransportationOptions
+  namespace: fbaInbound
+  referenced_by_skills:
+  - fba-inbound-management
+  source_operation: openapi/amazon-seller-central-fbainbound-api-openapi.yml#confirmTransportationOptions
+  method: POST
+  path: /inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/transportationOptions/confirmation
+- name: fbaInbound_createInboundPlan
+  namespace: fbaInbound
+  referenced_by_skills:
+  - fba-inbound-management
+  source_operation: openapi/amazon-seller-central-fbainbound-api-openapi.yml#createInboundPlan
+  method: POST
+  path: /inbound/fba/2024-03-20/inboundPlans
+- name: fbaInbound_generateDeliveryWindowOptions
+  namespace: fbaInbound
+  referenced_by_skills:
+  - fba-inbound-management
+  source_operation: openapi/amazon-seller-central-fbainbound-api-openapi.yml#generateDeliveryWindowOptions
+  method: POST
+  path: /inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/deliveryWindowOptions
+- name: fbaInbound_generatePackingOptions
+  namespace: fbaInbound
+  referenced_by_skills:
+  - fba-inbound-management
+  source_operation: openapi/amazon-seller-central-fbainbound-api-openapi.yml#generatePackingOptions
+  method: POST
+  path: /inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/packingOptions
+- name: fbaInbound_generatePlacementOptions
+  namespace: fbaInbound
+  referenced_by_skills:
+  - fba-inbound-management
+  source_operation: openapi/amazon-seller-central-fbainbound-api-openapi.yml#generatePlacementOptions
+  method: POST
+  path: /inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/placementOptions
+- name: fbaInbound_generateTransportationOptions
+  namespace: fbaInbound
+  referenced_by_skills:
+  - fba-inbound-management
+  source_operation: openapi/amazon-seller-central-fbainbound-api-openapi.yml#generateTransportationOptions
+  method: POST
+  path: /inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/transportationOptions
+- name: fbaInbound_getInboundOperationStatus
+  namespace: fbaInbound
+  referenced_by_skills:
+  - fba-inbound-management
+  source_operation: openapi/amazon-seller-central-fbainbound-api-openapi.yml#getInboundOperationStatus
+  method: GET
+  path: /inbound/fba/2024-03-20/operations/{operationId}
+- name: fbaInbound_getInboundPlan
+  namespace: fbaInbound
+  referenced_by_skills:
+  - fba-inbound-management
+  source_operation: openapi/amazon-seller-central-fbainbound-api-openapi.yml#getInboundPlan
+  method: GET
+  path: /inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}
+- name: fbaInbound_getShipment
+  namespace: fbaInbound
+  referenced_by_skills:
+  - fba-inbound-management
+  source_operation: openapi/amazon-seller-central-fbainbound-api-openapi.yml#getShipment
+  method: GET
+  path: /inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}
+- name: fbaInbound_listDeliveryWindowOptions
+  namespace: fbaInbound
+  referenced_by_skills:
+  - fba-inbound-management
+  source_operation: openapi/amazon-seller-central-fbainbound-api-openapi.yml#listDeliveryWindowOptions
+  method: GET
+  path: /inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/deliveryWindowOptions
+- name: fbaInbound_listInboundPlans
+  namespace: fbaInbound
+  referenced_by_skills:
+  - fba-inbound-management
+  - stockout-prevention
+  source_operation: openapi/amazon-seller-central-fbainbound-api-openapi.yml#listInboundPlans
+  method: GET
+  path: /inbound/fba/2024-03-20/inboundPlans
+- name: fbaInbound_listPackingGroupItems
+  namespace: fbaInbound
+  referenced_by_skills:
+  - fba-inbound-management
+  source_operation: openapi/amazon-seller-central-fbainbound-api-openapi.yml#listPackingGroupItems
+  method: GET
+  path: /inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/packingGroups/{packingGroupId}/items
+- name: fbaInbound_listPackingOptions
+  namespace: fbaInbound
+  referenced_by_skills:
+  - fba-inbound-management
+  source_operation: openapi/amazon-seller-central-fbainbound-api-openapi.yml#listPackingOptions
+  method: GET
+  path: /inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/packingOptions
+- name: fbaInbound_listPlacementOptions
+  namespace: fbaInbound
+  referenced_by_skills:
+  - fba-inbound-management
+  source_operation: openapi/amazon-seller-central-fbainbound-api-openapi.yml#listPlacementOptions
+  method: GET
+  path: /inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/placementOptions
+- name: fbaInbound_listShipmentItems
+  namespace: fbaInbound
+  referenced_by_skills:
+  - fba-inbound-management
+  source_operation: openapi/amazon-seller-central-fbainbound-api-openapi.yml#listShipmentItems
+  method: GET
+  path: /inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/items
+- name: fbaInbound_listTransportationOptions
+  namespace: fbaInbound
+  referenced_by_skills:
+  - fba-inbound-management
+  source_operation: openapi/amazon-seller-central-fbainbound-api-openapi.yml#listTransportationOptions
+  method: GET
+  path: /inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/transportationOptions
+- name: fbaInbound_setPackingInformation
+  namespace: fbaInbound
+  referenced_by_skills:
+  - fba-inbound-management
+  source_operation: openapi/amazon-seller-central-fbainbound-api-openapi.yml#setPackingInformation
+  method: POST
+  path: /inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/packingInformation
+- name: fbaInbound_updateShipmentTrackingDetails
+  namespace: fbaInbound
+  referenced_by_skills:
+  - fba-inbound-management
+  source_operation: openapi/amazon-seller-central-fbainbound-api-openapi.yml#updateShipmentTrackingDetails
+  method: PUT
+  path: /inbound/fba/2024-03-20/inboundPlans/{inboundPlanId}/shipments/{shipmentId}/trackingDetails
+- name: fbaInventory_getInventorySummaries
+  namespace: fbaInventory
+  referenced_by_skills:
+  - stockout-prevention
+  source_operation: openapi/amazon-seller-central-fbainventory-api-openapi.yml#getInventorySummaries
+  method: GET
+  path: /fba/inventory/v1/summaries
+- name: knowledgeTools_browseSpApiSection
+  namespace: knowledgeTools
+  referenced_by_skills:
+  - sp-api-knowledge
+  description: SP-API documentation knowledge base (search, fetch, browse, operation spec); read-only,
+    backed by SPAPIKnowledgeToolsMCP per the provider skill reference
+- name: knowledgeTools_getSpApiDocuments
+  namespace: knowledgeTools
+  referenced_by_skills:
+  - sp-api-knowledge
+  description: SP-API documentation knowledge base (search, fetch, browse, operation spec); read-only,
+    backed by SPAPIKnowledgeToolsMCP per the provider skill reference
+- name: knowledgeTools_getSpApiOperation
+  namespace: knowledgeTools
+  referenced_by_skills:
+  - sp-api-knowledge
+  description: SP-API documentation knowledge base (search, fetch, browse, operation spec); read-only,
+    backed by SPAPIKnowledgeToolsMCP per the provider skill reference
+- name: knowledgeTools_searchSpApiDocs
+  namespace: knowledgeTools
+  referenced_by_skills:
+  - sp-api-knowledge
+  description: SP-API documentation knowledge base (search, fetch, browse, operation spec); read-only,
+    backed by SPAPIKnowledgeToolsMCP per the provider skill reference
+- name: listings_getListingsRestrictions
+  namespace: listings
+  referenced_by_skills:
+  - listing-compliance
+  source_operation: openapi/amazon-seller-central-listings-api-openapi.yml#getListingsRestrictions
+  method: GET
+  path: /listings/2021-08-01/restrictions
+- name: listings_patchListingsItem
+  namespace: listings
+  referenced_by_skills:
+  - listing-buyability
+  - listing-issues
+  - listing-searchability
+  - stockout-prevention
+  source_operation: openapi/amazon-seller-central-listings-api-openapi.yml#patchListingsItem
+  method: PATCH
+  path: /listings/2021-08-01/items/{sellerId}/{sku}
+- name: listings_searchListingsItems
+  namespace: listings
+  referenced_by_skills:
+  - listing-buyability
+  - listing-issues
+  - listing-searchability
+  - listing-troubleshooter
+  source_operation: openapi/amazon-seller-central-listings-api-openapi.yml#searchListingsItems
+  method: GET
+  path: /listings/2021-08-01/items/{sellerId}
+- name: sales_getOrderMetrics
+  namespace: sales
+  referenced_by_skills:
+  - stockout-prevention
+  source_operation: openapi/amazon-seller-central-sales-api-openapi.yml#getOrderMetrics
+  method: GET
+  path: /sales/v1/orderMetrics
+- name: sellerAssistant_sellerAssistantCreate
+  namespace: sellerAssistant
+  referenced_by_skills:
+  - listing-compliance
+  description: Seller Assistant conversation tools used by the listing-compliance skill; no public SP-API
+    operation
+- name: sellerAssistant_sellerAssistantGet
+  namespace: sellerAssistant
+  referenced_by_skills:
+  - listing-compliance
+  description: Seller Assistant conversation tools used by the listing-compliance skill; no public SP-API
+    operation
+deployment:
+  mode: remote
+  endpoint: https://sellingpartner-ai.amazon.com/mcp
+  verified: probed
+  probe: gated
+  checked: '2026-09-24'
+  evidence: 'Anonymous initialize returns HTTP 401 with WWW-Authenticate: Bearer resource_metadata="https://sellingpartner-ai.amazon.com/.well-known/oauth-protected-resource/mcp"
+    and JSON-RPC error {"code":-32001,"message":"Authentication required"}.'

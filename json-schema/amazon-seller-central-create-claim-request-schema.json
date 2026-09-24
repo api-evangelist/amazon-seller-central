@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-create-claim-request-schema.json",
+  "title": "CreateClaimRequest",
+  "description": "The request schema for the CreateClaim operation",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-shipping-api-openapi.yml#/components/schemas/CreateClaimRequest",
+  "type": "object",
+  "required": [
+    "trackingId",
+    "claimReason",
+    "settlementType"
+  ],
+  "properties": {
+    "trackingId": {
+      "$ref": "#/$defs/TrackingId"
+    },
+    "declaredValue": {
+      "$ref": "#/$defs/Currency",
+      "description": "This is required for off-Amazon shipments to determine value of shipments"
+    },
+    "claimReason": {
+      "$ref": "#/$defs/ClaimReason"
+    },
+    "isReplacementPackageSent": {
+      "type": "boolean",
+      "description": "Applicable for only On Amazon shipments to identify if replacement was sent"
+    },
+    "proofs": {
+      "$ref": "#/$defs/ClaimProofURLs"
+    },
+    "settlementType": {
+      "$ref": "#/$defs/SettlementType"
+    }
+  },
+  "$defs": {
+    "ClaimProofURLs": {
+      "type": "array",
+      "description": "A list of proof URLs for a claim. Basic URL validation will happen for each URLs present in the list",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ClaimReason": {
+      "type": "string",
+      "description": "The reason for which shipper is filing the claim for a particular shipment.",
+      "enum": [
+        "LOST_IN_TRANSIT",
+        "DAMAGED_IN_TRANSIT",
+        "DELIVERED_NOT_RECEIVED",
+        "ITEM_MISSING_SWITCHEROO",
+        "COD_ABUSE"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "LOST_IN_TRANSIT",
+          "description": "Shipment was lost in-transit"
+        },
+        {
+          "value": "DAMAGED_IN_TRANSIT",
+          "description": "Shipment was received in damaged condition"
+        },
+        {
+          "value": "DELIVERED_NOT_RECEIVED",
+          "description": "Shipment was delivered but is not received"
+        },
+        {
+          "value": "ITEM_MISSING_SWITCHEROO",
+          "description": "Shipment was delivered but the content is missing/different"
+        },
+        {
+          "value": "COD_ABUSE",
+          "description": "Cash was collected from customer but delivery agent marked it rejected"
+        }
+      ]
+    },
+    "Currency": {
+      "description": "The monetary value in the currency indicated, in ISO 4217 standard format.",
+      "type": "object",
+      "required": [
+        "unit",
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "The monetary value."
+        },
+        "unit": {
+          "type": "string",
+          "description": "The ISO 4217 format 3-character currency code.",
+          "minLength": 3,
+          "maxLength": 3
+        }
+      }
+    },
+    "SettlementType": {
+      "type": "string",
+      "description": "Type of settlement the shipper wants to receive for a particular shipment.",
+      "default": "REFUND",
+      "enum": [
+        "REFUND",
+        "CERTIFICATE_OF_FACT"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "REFUND",
+          "description": "File a claim for item value to get refund."
+        },
+        {
+          "value": "CERTIFICATE_OF_FACT",
+          "description": "File a claim to request for a COF[Certificate Of Fact]."
+        }
+      ]
+    },
+    "TrackingId": {
+      "type": "string",
+      "description": "The carrier generated identifier for a package in a purchased shipment."
+    }
+  }
+}

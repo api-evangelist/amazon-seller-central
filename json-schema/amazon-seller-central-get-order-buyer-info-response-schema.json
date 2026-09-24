@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-get-order-buyer-info-response-schema.json",
+  "title": "GetOrderBuyerInfoResponse",
+  "description": "The response schema for the `getOrderBuyerInfo` operation.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-ordersv0-api-openapi.yml#/components/schemas/GetOrderBuyerInfoResponse",
+  "type": "object",
+  "properties": {
+    "payload": {
+      "description": "The payload for the `getOrderBuyerInfo` operation.",
+      "$ref": "#/$defs/OrderBuyerInfo"
+    },
+    "errors": {
+      "description": "One or more unexpected errors occurred during the `getOrderBuyerInfo` operation.",
+      "$ref": "#/$defs/ErrorList"
+    }
+  },
+  "$defs": {
+    "BuyerTaxInfo": {
+      "type": "object",
+      "properties": {
+        "CompanyLegalName": {
+          "type": "string",
+          "description": "The legal name of the company."
+        },
+        "TaxingRegion": {
+          "type": "string",
+          "description": "The country or region imposing the tax."
+        },
+        "TaxClassifications": {
+          "type": "array",
+          "description": "A list of tax classifications that apply to the order.",
+          "items": {
+            "$ref": "#/$defs/TaxClassification"
+          }
+        }
+      },
+      "description": "Tax information about the buyer."
+    },
+    "Error": {
+      "type": "object",
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "An error code that identifies the type of error that occurred."
+        },
+        "message": {
+          "type": "string",
+          "description": "A message that describes the error condition."
+        },
+        "details": {
+          "type": "string",
+          "description": "Additional details that can help the caller understand or fix the issue."
+        }
+      },
+      "description": "Error response returned when the request is unsuccessful."
+    },
+    "ErrorList": {
+      "type": "array",
+      "description": "A list of error responses returned when a request is unsuccessful.",
+      "items": {
+        "$ref": "#/$defs/Error"
+      }
+    },
+    "OrderBuyerInfo": {
+      "type": "object",
+      "required": [
+        "AmazonOrderId"
+      ],
+      "properties": {
+        "AmazonOrderId": {
+          "type": "string",
+          "description": "An Amazon-defined order identifier, in 3-7-7 format."
+        },
+        "BuyerEmail": {
+          "type": "string",
+          "description": "The anonymized email address of the buyer."
+        },
+        "BuyerName": {
+          "type": "string",
+          "description": "The buyer name or the recipient name."
+        },
+        "BuyerCounty": {
+          "type": "string",
+          "description": "The county of the buyer.\n\n**Note**: This attribute is only available in the Brazil marketplace."
+        },
+        "BuyerTaxInfo": {
+          "description": "Tax information about the buyer. Sellers can use this data to issue electronic invoices for business orders.\n\n**Note**: This attribute is only available for business orders in the Brazil, Mexico and India marketplaces.",
+          "$ref": "#/$defs/BuyerTaxInfo"
+        },
+        "PurchaseOrderNumber": {
+          "type": "string",
+          "description": "The purchase order (PO) number entered by the buyer at checkout. Only returned for orders where the buyer entered a PO number at checkout."
+        }
+      },
+      "description": "Buyer information for an order."
+    },
+    "TaxClassification": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string",
+          "description": "The type of tax."
+        },
+        "Value": {
+          "type": "string",
+          "description": "The buyer's tax identifier."
+        }
+      },
+      "description": "The tax classification of the order."
+    }
+  }
+}

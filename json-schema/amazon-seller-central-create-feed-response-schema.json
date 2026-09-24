@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-create-feed-response-schema.json",
+  "title": "CreateFeedResponse",
+  "description": "Response schema.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-feeds-api-openapi.yml#/components/schemas/CreateFeedResponse",
+  "type": "object",
+  "required": [
+    "feedId"
+  ],
+  "properties": {
+    "feedId": {
+      "description": "The identifier for the feed. This identifier is unique only in combination with a seller ID.",
+      "type": "string"
+    }
+  }
+}

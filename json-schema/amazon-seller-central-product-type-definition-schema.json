@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-product-type-definition-schema.json",
+  "title": "ProductTypeDefinition",
+  "description": "A product type definition represents the attributes and data requirements for a product type in the Amazon catalog. Product type definitions are used interchangeably between the Selling Partner API for Listings Items, Selling Partner API for Catalog Items, and JSON-based listings feeds in the Selling Partner API for Feeds.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-definitions-api-openapi.yml#/components/schemas/ProductTypeDefinition",
+  "type": "object",
+  "required": [
+    "locale",
+    "marketplaceIds",
+    "productType",
+    "displayName",
+    "productTypeVersion",
+    "propertyGroups",
+    "requirements",
+    "requirementsEnforced",
+    "schema"
+  ],
+  "properties": {
+    "metaSchema": {
+      "description": "Link to meta-schema describing the vocabulary used by the product type schema.",
+      "$ref": "#/$defs/SchemaLink"
+    },
+    "schema": {
+      "description": "Link to schema describing the attributes and requirements for the product type.",
+      "$ref": "#/$defs/SchemaLink"
+    },
+    "requirements": {
+      "type": "string",
+      "description": "Name of the requirements set represented in this product type definition.",
+      "enum": [
+        "LISTING",
+        "LISTING_PRODUCT_ONLY",
+        "LISTING_OFFER_ONLY"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "LISTING",
+          "description": "Indicates the schema data contains product facts and sales terms."
+        },
+        {
+          "value": "LISTING_PRODUCT_ONLY",
+          "description": "Indicates the schema data contains product facts only."
+        },
+        {
+          "value": "LISTING_OFFER_ONLY",
+          "description": "Indicates the schema data contains sales terms only."
+        }
+      ]
+    },
+    "requirementsEnforced": {
+      "type": "string",
+      "description": "Identifies if the required attributes for a requirements set are enforced by the product type definition schema. Non-enforced requirements enable structural validation of individual attributes without all of the required attributes being present (such as for partial updates).",
+      "enum": [
+        "ENFORCED",
+        "NOT_ENFORCED"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "ENFORCED",
+          "description": "Schema enforces required and conditionally required attributes (used for full payload validation)."
+        },
+        {
+          "value": "NOT_ENFORCED",
+          "description": "Schema does not enforce required and conditionally required attributes (used for partial payload validation, such as for single attributes)."
+        }
+      ]
+    },
+    "propertyGroups": {
+      "type": "object",
+      "description": "Mapping of property group names to property groups. Property groups represent logical groupings of schema properties that can be used for display or informational purposes.",
+      "additionalProperties": {
+        "$ref": "#/$defs/PropertyGroup"
+      }
+    },
+    "locale": {
+      "type": "string",
+      "description": "Locale of the display elements contained in the product type definition."
+    },
+    "marketplaceIds": {
+      "type": "array",
+      "description": "Amazon marketplace identifiers for which the product type definition is applicable.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "productType": {
+      "type": "string",
+      "description": "The name of the Amazon product type that this product type definition applies to."
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Human-readable and localized description of the Amazon product type."
+    },
+    "productTypeVersion": {
+      "description": "The version details for the Amazon product type.",
+      "$ref": "#/$defs/ProductTypeVersion"
+    }
+  },
+  "$defs": {
+    "ProductTypeVersion": {
+      "type": "object",
+      "required": [
+        "latest",
+        "version"
+      ],
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "Version identifier."
+        },
+        "latest": {
+          "type": "boolean",
+          "description": "When true, the version indicated by the version identifier is the latest available for the Amazon product type."
+        },
+        "releaseCandidate": {
+          "type": "boolean",
+          "description": "When true, the version indicated by the version identifier is the prerelease (release candidate) for the Amazon product type."
+        }
+      },
+      "description": "The version details for an Amazon product type."
+    },
+    "PropertyGroup": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "The display label of the property group."
+        },
+        "description": {
+          "type": "string",
+          "description": "The description of the property group."
+        },
+        "propertyNames": {
+          "type": "array",
+          "description": "The names of the schema properties for the property group.",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "A property group represents a logical grouping of schema properties that can be used for display or informational purposes."
+    },
+    "SchemaLink": {
+      "description": "A link to metadata schema.",
+      "type": "object",
+      "required": [
+        "checksum",
+        "link"
+      ],
+      "properties": {
+        "link": {
+          "type": "object",
+          "description": "Link to retrieve the schema.",
+          "properties": {
+            "resource": {
+              "type": "string",
+              "description": "URI resource for the link."
+            },
+            "verb": {
+              "type": "string",
+              "description": "HTTP method for the link operation.",
+              "enum": [
+                "GET"
+              ],
+              "x-docgen-enum-table-extension": [
+                {
+                  "value": "GET",
+                  "description": "The provided resource is accessed with the HTTP GET method."
+                }
+              ]
+            }
+          },
+          "required": [
+            "resource",
+            "verb"
+          ]
+        },
+        "checksum": {
+          "type": "string",
+          "description": "Checksum hash of the schema (Base64 MD5). Use this to verify schema contents, identify changes between schema versions, and for caching."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-create-fulfillment-return-request-schema.json",
+  "title": "CreateFulfillmentReturnRequest",
+  "description": "The `createFulfillmentReturn` operation creates a fulfillment return for items that were fulfilled using the `createFulfillmentOrder` operation. For calls to `createFulfillmentReturn`, you must include `returnReasonCode` values returned by a previous call to the `listReturnReasonCodes` operation.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-fbaoutbound-api-openapi.yml#/components/schemas/CreateFulfillmentReturnRequest",
+  "type": "object",
+  "required": [
+    "items"
+  ],
+  "properties": {
+    "items": {
+      "$ref": "#/$defs/CreateReturnItemList"
+    }
+  },
+  "$defs": {
+    "CreateReturnItem": {
+      "type": "object",
+      "required": [
+        "amazonShipmentId",
+        "returnReasonCode",
+        "sellerFulfillmentOrderItemId",
+        "sellerReturnItemId"
+      ],
+      "properties": {
+        "sellerReturnItemId": {
+          "type": "string",
+          "description": "An identifier the seller assigns to the return item.",
+          "maxLength": 80
+        },
+        "sellerFulfillmentOrderItemId": {
+          "type": "string",
+          "description": "The identifier assigned to the item by the seller when the fulfillment order was created."
+        },
+        "amazonShipmentId": {
+          "type": "string",
+          "description": "The identifier for the shipment that is associated with the return item."
+        },
+        "returnReasonCode": {
+          "type": "string",
+          "description": "The return reason code assigned to the return item by the seller."
+        },
+        "returnComment": {
+          "type": "string",
+          "description": "An optional comment about the return item.",
+          "maxLength": 1000
+        }
+      },
+      "description": "An item that Amazon accepted for return."
+    },
+    "CreateReturnItemList": {
+      "type": "array",
+      "description": "An array of items to be returned.",
+      "items": {
+        "$ref": "#/$defs/CreateReturnItem"
+      }
+    }
+  }
+}

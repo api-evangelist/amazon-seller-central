@@ -1,0 +1,371 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-seller-central/main/json-schema/amazon-seller-central-get-order-address-response-schema.json",
+  "title": "GetOrderAddressResponse",
+  "description": "The response schema for the `getOrderAddress` operation.",
+  "x-generated": "2026-09-24",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amazon-seller-central-ordersv0-api-openapi.yml#/components/schemas/GetOrderAddressResponse",
+  "type": "object",
+  "properties": {
+    "payload": {
+      "description": "The payload for the `getOrderAddress` operations.",
+      "$ref": "#/$defs/OrderAddress"
+    },
+    "errors": {
+      "description": "One or more unexpected errors occurred during the `getOrderAddress` operation.",
+      "$ref": "#/$defs/ErrorList"
+    }
+  },
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string",
+          "description": "The name."
+        },
+        "CompanyName": {
+          "type": "string",
+          "description": "The company name of the recipient.\n\n**Note**: This attribute is only available for shipping address."
+        },
+        "AddressLine1": {
+          "type": "string",
+          "description": "The street address."
+        },
+        "AddressLine2": {
+          "type": "string",
+          "description": "Additional street address information, if required."
+        },
+        "AddressLine3": {
+          "type": "string",
+          "description": "Additional street address information, if required."
+        },
+        "City": {
+          "type": "string",
+          "description": "The city."
+        },
+        "County": {
+          "type": "string",
+          "description": "The county."
+        },
+        "District": {
+          "type": "string",
+          "description": "The district."
+        },
+        "StateOrRegion": {
+          "type": "string",
+          "description": "The state or region."
+        },
+        "Municipality": {
+          "type": "string",
+          "description": "The municipality."
+        },
+        "PostalCode": {
+          "type": "string",
+          "description": "The postal code."
+        },
+        "CountryCode": {
+          "type": "string",
+          "description": "The country code. A two-character country code, in ISO 3166-1 alpha-2 format."
+        },
+        "Phone": {
+          "type": "string",
+          "description": "The phone number of the buyer.\n\n**Note**: \n1. This attribute is only available for shipping address.\n2. In some cases, the buyer phone number is suppressed: \na. Phone is suppressed for all `AFN` (fulfilled by Amazon) orders.\nb. Phone is suppressed for the shipped `MFN` (fulfilled by seller) order when the current date is past the Latest Delivery Date."
+        },
+        "ExtendedFields": {
+          "description": "Extended address fields for additional address components including the street name or number. \n\nNote: Available for grocery sellers and Brazil shipping addresses.",
+          "$ref": "#/$defs/AddressExtendedFields"
+        },
+        "AddressType": {
+          "type": "string",
+          "description": "The address type of the shipping address.",
+          "enum": [
+            "Residential",
+            "Commercial"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "Residential",
+              "description": "The shipping address is a residential address."
+            },
+            {
+              "value": "Commercial",
+              "description": "The shipping address is a commercial address."
+            }
+          ]
+        }
+      },
+      "description": "The shipping address for the order."
+    },
+    "AddressExtendedFields": {
+      "type": "object",
+      "properties": {
+        "StreetName": {
+          "type": "string",
+          "description": "The street name."
+        },
+        "StreetNumber": {
+          "type": "string",
+          "description": "The house, building, or property number associated with the location's street address."
+        },
+        "Complement": {
+          "type": "string",
+          "description": "The floor number/unit number in the building/private house number."
+        },
+        "Neighborhood": {
+          "type": "string",
+          "description": "The neighborhood. This value is only used in some countries (such as Brazil)."
+        },
+        "GeoCoordinates": {
+          "description": "Latitude and longitude coordinates for the shipping address using the WGS84 coordinate system. \n\nNote: Available for sellers that support geographic coordinates.",
+          "$ref": "#/$defs/GeoCoordinates"
+        }
+      },
+      "description": "Extended address fields for additional address components including the street name or number. \n\nNote: Available for grocery sellers and Brazil shipping addresses."
+    },
+    "BusinessHours": {
+      "type": "object",
+      "description": "Business days and hours when the destination is open for deliveries.",
+      "properties": {
+        "DayOfWeek": {
+          "type": "string",
+          "description": "Day of the week.",
+          "enum": [
+            "SUN",
+            "MON",
+            "TUE",
+            "WED",
+            "THU",
+            "FRI",
+            "SAT"
+          ],
+          "x-docgen-enum-table-extension": [
+            {
+              "value": "SUN",
+              "description": "Sunday - Day of the week."
+            },
+            {
+              "value": "MON",
+              "description": "Monday - Day of the week."
+            },
+            {
+              "value": "TUE",
+              "description": "Tuesday - Day of the week."
+            },
+            {
+              "value": "WED",
+              "description": "Wednesday - Day of the week."
+            },
+            {
+              "value": "THU",
+              "description": "Thursday - Day of the week."
+            },
+            {
+              "value": "FRI",
+              "description": "Friday - Day of the week."
+            },
+            {
+              "value": "SAT",
+              "description": "Saturday - Day of the week."
+            }
+          ]
+        },
+        "OpenIntervals": {
+          "type": "array",
+          "description": "Time window during the day when the business is open.",
+          "items": {
+            "$ref": "#/$defs/OpenInterval"
+          }
+        }
+      }
+    },
+    "DeliveryPreferences": {
+      "type": "object",
+      "properties": {
+        "DropOffLocation": {
+          "type": "string",
+          "description": "Drop-off location selected by the customer."
+        },
+        "PreferredDeliveryTime": {
+          "$ref": "#/$defs/PreferredDeliveryTime",
+          "description": "Business hours and days when the delivery is preferred."
+        },
+        "OtherAttributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/OtherDeliveryAttributes"
+          },
+          "description": "Enumerated list of miscellaneous delivery attributes associated with the shipping address."
+        },
+        "AddressInstructions": {
+          "type": "string",
+          "description": "Building instructions, nearby landmark or navigation instructions."
+        }
+      },
+      "description": "Contains all of the delivery instructions provided by the customer for the shipping address."
+    },
+    "Error": {
+      "type": "object",
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "An error code that identifies the type of error that occurred."
+        },
+        "message": {
+          "type": "string",
+          "description": "A message that describes the error condition."
+        },
+        "details": {
+          "type": "string",
+          "description": "Additional details that can help the caller understand or fix the issue."
+        }
+      },
+      "description": "Error response returned when the request is unsuccessful."
+    },
+    "ErrorList": {
+      "type": "array",
+      "description": "A list of error responses returned when a request is unsuccessful.",
+      "items": {
+        "$ref": "#/$defs/Error"
+      }
+    },
+    "ExceptionDates": {
+      "type": "object",
+      "description": "Dates when the business is closed or open with a different time window.",
+      "properties": {
+        "ExceptionDate": {
+          "type": "string",
+          "description": "Date when the business is closed, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date format."
+        },
+        "IsOpen": {
+          "type": "boolean",
+          "description": "Boolean indicating if the business is closed or open on that date."
+        },
+        "OpenIntervals": {
+          "type": "array",
+          "description": "Time window during the day when the business is open.",
+          "items": {
+            "$ref": "#/$defs/OpenInterval"
+          }
+        }
+      }
+    },
+    "GeoCoordinates": {
+      "type": "object",
+      "properties": {
+        "Latitude": {
+          "type": "number",
+          "format": "double",
+          "description": "The latitude coordinate of the shipping address using the WGS84 coordinate system."
+        },
+        "Longitude": {
+          "type": "number",
+          "format": "double",
+          "description": "The longitude coordinate of the shipping address using the WGS84 coordinate system."
+        }
+      },
+      "description": "The latitude and longitude coordinates of the shipping address using the WGS84 coordinate system."
+    },
+    "OpenInterval": {
+      "type": "object",
+      "description": "The time interval for which the business is open.",
+      "properties": {
+        "StartTime": {
+          "$ref": "#/$defs/OpenTimeInterval",
+          "description": "The time when the business opens."
+        },
+        "EndTime": {
+          "$ref": "#/$defs/OpenTimeInterval",
+          "description": "The time when the business closes."
+        }
+      }
+    },
+    "OpenTimeInterval": {
+      "type": "object",
+      "description": "The time when the business opens or closes.",
+      "properties": {
+        "Hour": {
+          "type": "integer",
+          "description": "The hour when the business opens or closes."
+        },
+        "Minute": {
+          "type": "integer",
+          "description": "The minute when the business opens or closes."
+        }
+      }
+    },
+    "OrderAddress": {
+      "type": "object",
+      "required": [
+        "AmazonOrderId"
+      ],
+      "properties": {
+        "AmazonOrderId": {
+          "type": "string",
+          "description": "An Amazon-defined order identifier, in 3-7-7 format."
+        },
+        "BuyerCompanyName": {
+          "type": "string",
+          "description": "The company name of the contact buyer. For IBA orders, the buyer company must be Amazon entities."
+        },
+        "ShippingAddress": {
+          "description": "The shipping address for the order.\n\n**Note**: `ShippingAddress` is only available for orders with the following status values: `Unshipped`, `PartiallyShipped`, `Shipped`, and `InvoiceUnconfirmed`.",
+          "$ref": "#/$defs/Address"
+        },
+        "DeliveryPreferences": {
+          "$ref": "#/$defs/DeliveryPreferences"
+        }
+      },
+      "description": "The shipping address for the order."
+    },
+    "OtherDeliveryAttributes": {
+      "type": "string",
+      "description": "Miscellaneous delivery attributes associated with the shipping address.",
+      "enum": [
+        "HAS_ACCESS_POINT",
+        "PALLET_ENABLED",
+        "PALLET_DISABLED"
+      ],
+      "x-docgen-enum-table-extension": [
+        {
+          "value": "HAS_ACCESS_POINT",
+          "description": "Indicates whether the delivery has an access point pickup or drop-off location."
+        },
+        {
+          "value": "PALLET_ENABLED",
+          "description": "Indicates whether pallet delivery is enabled for the address."
+        },
+        {
+          "value": "PALLET_DISABLED",
+          "description": "Indicates whether pallet delivery is disabled for the address."
+        }
+      ]
+    },
+    "PreferredDeliveryTime": {
+      "type": "object",
+      "description": "The time window when the delivery is preferred.",
+      "properties": {
+        "BusinessHours": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/BusinessHours"
+          },
+          "description": "Business hours when the business is open for deliveries."
+        },
+        "ExceptionDates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ExceptionDates"
+          },
+          "description": "Dates when the business is closed during the next 30 days."
+        }
+      }
+    }
+  }
+}
