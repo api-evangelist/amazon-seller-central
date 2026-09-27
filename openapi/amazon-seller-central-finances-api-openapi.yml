@@ -29,7 +29,7 @@ paths:
         | 0.5 | 10 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to Usage Plans and Rate Limits.'
       operationId: listTransactions
       parameters:
       - name: postedAfter
@@ -253,6 +253,8 @@ paths:
                 $ref: '#/components/schemas/ErrorList'
       tags:
       - Finances
+      summary: List transactions
+      x-summary-source: derived
     servers:
     - url: https://sellingpartnerapi-na.amazon.com
   /finances/2024-06-19/balances:
@@ -270,7 +272,7 @@ paths:
         | 0.5 | 10 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that apply to the operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that apply to the operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: listBalances
       parameters:
       - name: marketplaceIds
@@ -519,6 +521,8 @@ paths:
                 $ref: '#/components/schemas/ErrorList'
       tags:
       - Finances
+      summary: List balances
+      x-summary-source: derived
     servers:
     - url: https://sellingpartnerapi-na.amazon.com
   /finances/2024-06-19/summary:
@@ -536,7 +540,7 @@ paths:
         | 0.5 | 10 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that apply to the operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that apply to the operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: listSummary
       parameters:
       - name: marketplaceIds
@@ -763,6 +767,8 @@ paths:
                 $ref: '#/components/schemas/ErrorList'
       tags:
       - Finances
+      summary: List summary
+      x-summary-source: derived
     servers:
     - url: https://sellingpartnerapi-na.amazon.com
   /finances/v0/financialEventGroups:
@@ -780,7 +786,7 @@ paths:
         | 0.5 | 30 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can have higher rate and burst values than those shown here. For more information, refer to Usage Plans and Rate Limits.'
       operationId: listFinancialEventGroups
       parameters:
       - name: MaxResultsPerPage
@@ -946,6 +952,8 @@ paths:
                 $ref: '#/components/schemas/ListFinancialEventGroupsResponse'
       tags:
       - Finances
+      summary: List financial event groups
+      x-summary-source: derived
     servers:
     - url: https://sellingpartnerapi-na.amazon.com
   /finances/v0/financialEventGroups/{eventGroupId}/financialEvents:
@@ -969,7 +977,7 @@ paths:
         | 0.5 | 30 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can have higher rate and burst values than those shown here. For more information, refer to Usage Plans and Rate Limits.'
       operationId: listFinancialEventsByGroupId
       parameters:
       - name: MaxResultsPerPage
@@ -1331,6 +1339,8 @@ paths:
                 $ref: '#/components/schemas/ListFinancialEventsResponse'
       tags:
       - Finances
+      summary: List financial events by group id
+      x-summary-source: derived
     servers:
     - url: https://sellingpartnerapi-na.amazon.com
   /finances/v0/orders/{orderId}/financialEvents:
@@ -1351,7 +1361,7 @@ paths:
         | 0.5 | 30 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can have higher rate and burst values than those shown here. For more information, refer to Usage Plans and Rate Limits.'
       operationId: listFinancialEventsByOrderId
       parameters:
       - name: orderId
@@ -1562,6 +1572,8 @@ paths:
                 $ref: '#/components/schemas/ListFinancialEventsResponse'
       tags:
       - Finances
+      summary: List financial events by order id
+      x-summary-source: derived
     servers:
     - url: https://sellingpartnerapi-na.amazon.com
   /finances/v0/financialEvents:
@@ -1582,7 +1594,7 @@ paths:
         | 0.5 | 30 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can have higher rate and burst values than those shown here. For more information, refer to Usage Plans and Rate Limits.'
       operationId: listFinancialEvents
       parameters:
       - name: MaxResultsPerPage
@@ -1809,112 +1821,52 @@ paths:
                 $ref: '#/components/schemas/ListFinancialEventsResponse'
       tags:
       - Finances
+      summary: List financial events
+      x-summary-source: derived
     servers:
     - url: https://sellingpartnerapi-na.amazon.com
 components:
   schemas:
-    MarketplaceDetails:
+    TransactionsPayload:
       type: object
       properties:
-        marketplaceId:
+        nextToken:
           type: string
-          description: The identifier of the marketplace where the transaction occurred. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
-        marketplaceName:
-          type: string
-          description: 'The name of the marketplace where the transaction occurred. For example: `Amazon.com`,`Amazon.in`'
-      description: Information about the marketplace where the transaction occurred.
-      example:
-        marketplaceId: ATVPDKIKX0DER
-        marketplaceName: Amazon.com
-    BusinessContext:
-      description: Information about the line of business associated with a transaction.
-      type: object
-      properties:
-        storeName:
-          type: string
-          description: The store name associated with the transaction.
-          enum:
-          - AMAZON_HAUL
-      example:
-        storeName: AMAZON_HAUL
-    RelatedIdentifier:
-      type: object
-      properties:
-        relatedIdentifierName:
-          type: string
-          description: An enumerated set of related business identifier names.
-          enum:
-          - ORDER_ID
-          - SHIPMENT_ID
-          - FINANCIAL_EVENT_GROUP_ID
-          - REFUND_ID
-          - INVOICE_ID
-          - DISBURSEMENT_ID
-          - TRANSFER_ID
-          - DEFERRED_TRANSACTION_ID
-          - RELEASE_TRANSACTION_ID
-          - SETTLEMENT_ID
-          x-docgen-enum-table-extension:
-          - value: ORDER_ID
-            description: The `OrderId` that is associated with the transaction.
-          - value: SHIPMENT_ID
-            description: The `ShipmentId` that is associated with the transaction.
-          - value: FINANCIAL_EVENT_GROUP_ID
-            description: The identifier that is associated with the transaction's financial event group.
-          - value: SETTLEMENT_ID
-            description: The identifier that is associated with the transaction's settlement group.
-          - value: REFUND_ID
-            description: The `RefundId` that is associated with the transaction.
-          - value: INVOICE_ID
-            description: The `InvoiceId` that is associated with the transaction.
-          - value: DISBURSEMENT_ID
-            description: The disbursement ID for Amazon's bank transfer.
-          - value: TRANSFER_ID
-            description: The `TransferId` associated with the transaction.
-          - value: DEFERRED_TRANSACTION_ID
-            description: The transaction ID for the related deferred transaction
-          - value: RELEASE_TRANSACTION_ID
-            description: The transaction ID for the related released transaction
-        relatedIdentifierValue:
-          type: string
-          description: Corresponding value of `RelatedIdentifierName`.
-      description: Related business identifier of the transaction.
-    Currency:
-      type: object
-      properties:
-        currencyCode:
-          type: string
-          description: The three-digit currency code in ISO 4217 format.
-        currencyAmount:
-          description: The monetary value.
-          $ref: '#/components/schemas/BigDecimal'
-      description: A currency type and amount.
-    Item:
-      type: object
-      properties:
-        description:
-          type: string
-          description: A description of the items in a transaction.
-        relatedIdentifiers:
-          description: Related business identifiers of the item.
-          $ref: '#/components/schemas/ItemRelatedIdentifiers'
-        totalAmount:
-          description: The total monetary amount of the item.
-          $ref: '#/components/schemas/Currency'
-        breakdowns:
-          type: array
-          description: A list of breakdowns that detail how the total amount is calculated for the transaction.
-          items:
-            $ref: '#/components/schemas/Breakdown'
-        contexts:
-          description: Additional Information about the item.
-          $ref: '#/components/schemas/Contexts'
-      description: Additional information about an item in a transaction.
-    Contexts:
+          description: The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
+        transactions:
+          $ref: '#/components/schemas/Transactions'
+      description: The payload for the `listTransactions` operation.
+    Breakdowns:
       type: array
-      description: A list of additional information about the item.
+      description: A list of breakdowns that detail how the total amount is calculated for the transaction.
       items:
-        $ref: '#/components/schemas/Context'
+        $ref: '#/components/schemas/Breakdown'
+      example:
+      - breakdownType: Sales
+        breakdownAmount:
+          currencyAmount: 10
+          currencyCode: USD
+        breakdowns:
+        - breakdownType: Product Charges
+          breakdownAmount:
+            currencyAmount: 10
+            currencyCode: USD
+          breakdowns: []
+    ListBalancesResponse:
+      type: object
+      properties:
+        balances:
+          $ref: '#/components/schemas/Balances'
+        nextToken:
+          type: string
+          description: A token to retrieve the next page of results. If null, no more results are available.
+          x-example: jehgri34yo7jr9e8f984tr9i4o
+      description: The response to the `listBalances` operation.
+    Balances:
+      type: array
+      description: A list of balances.
+      items:
+        $ref: '#/components/schemas/Balance'
     Summary:
       type: object
       properties:
@@ -1960,24 +1912,122 @@ components:
           breakdowns: []
         periodStart: '2026-01-01T00:00:00Z'
         periodEnd: '2026-01-31T23:59:59Z'
-    Breakdown:
+    ListTransactionsResponse:
       type: object
       properties:
-        breakdownType:
+        payload:
+          $ref: '#/components/schemas/TransactionsPayload'
+          description: The payload for the `listTransactions` operation.
+      description: The response to the `listTransactions` operation.
+    BusinessContext:
+      description: Information about the line of business associated with a transaction.
+      type: object
+      properties:
+        storeName:
           type: string
-          description: The type of charge.
-        breakdownAmount:
-          description: The monetary amount of the charge.
+          description: The store name associated with the transaction.
+          enum:
+          - AMAZON_HAUL
+      example:
+        storeName: AMAZON_HAUL
+    Balance:
+      type: object
+      properties:
+        partnerMetadata:
+          description: Metadata describing the seller.
+          $ref: '#/components/schemas/PartnerMetadata'
+        balanceType:
+          type: string
+          enum:
+          - AVAILABLE
+          - RESERVED
+          - ACCOUNT_LEVEL_RESERVE
+          - DEFERRED
+          - TOTAL
+          description: The type of balance.
+          x-docgen-enum-table-extension:
+          - value: AVAILABLE
+            description: The total balance currently available in the account.
+          - value: DEFERRED
+            description: The deferred balance is a portion of sales revenue that is temporarily withheld before being transferred to the available balance after a specified period.
+          - value: ACCOUNT_LEVEL_RESERVE
+            description: 'Balance reserved as a safety measure to cover potential liabilities such as refunds, chargebacks, or other claims. Based on sales volume, product category, and account history. '
+          - value: RESERVED
+            description: The reserved balance is sum of Deferred and Account Level Reserved.
+          - value: TOTAL
+            description: Overall sum of balances including available and reserved.
+        amount:
+          description: Total amount of the balance type.
           $ref: '#/components/schemas/Currency'
-        breakdowns:
+        balances:
           type: array
-          description: A list of breakdowns that detail how the total amount is calculated for the transaction.
+          description: A list of balances that comprise this balance.
           items:
-            $ref: '#/components/schemas/Breakdown'
-      description: Details about the movement of money in the financial transaction.
-    BigDecimal:
-      type: number
-      description: A signed decimal number.
+            $ref: '#/components/schemas/Balance'
+        asOfDate:
+          description: The date for which the ending balance was calculated. This field is present when an `asOfDate` query parameter is provided. Null for point-in-time balance queries.
+          $ref: '#/components/schemas/Date'
+        lastUpdatedTime:
+          type: string
+          format: date-time
+          description: The date and time when the balance was last updated, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The value is in the marketplace's local time zone. This field is present for point-in-time balance queries (when no `asOfDate` query parameter is provided). Null for ending balance queries.
+          x-example: '2025-01-12T10:30:00+09:00'
+      description: All information relevant to a balance.
+      example:
+        partnerMetadata:
+          partnerId: XXXXXXXXXXXXXX
+          accountType: Standard Orders
+          marketplaceId: AXXXXXXXXXER
+        balanceType: TOTAL
+        amount:
+          currencyAmount: 15000
+          currencyCode: USD
+        balances:
+        - balanceType: AVAILABLE
+          amount:
+            currencyAmount: 8000
+            currencyCode: USD
+        - balanceType: RESERVED
+          amount:
+            currencyAmount: 7000
+            currencyCode: USD
+          balances:
+          - balanceType: DEFERRED
+            amount:
+              currencyAmount: 9000
+              currencyCode: USD
+          - balanceType: ACCOUNT_LEVEL_RESERVE
+            amount:
+              currencyAmount: -2000
+              currencyCode: USD
+        lastUpdatedTime: '2025-01-12T10:30:00+09:00'
+    ErrorList:
+      type: object
+      description: A list of error responses returned when a request is unsuccessful.
+      required:
+      - errors
+      properties:
+        errors:
+          description: The error responses that are returned when the request is unsuccessful.
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: An error code that identifies the type of error that occurred.
+        message:
+          type: string
+          description: A message that describes the error condition.
+        details:
+          type: string
+          description: Additional details that can help the caller understand or fix the issue.
+      description: An error response returned when the request is unsuccessful.
     DeferredContext:
       description: Additional information related to deferred transactions.
       type: object
@@ -1994,6 +2044,270 @@ components:
       example:
         deferralReason: B2B
         maturityDate: '2024-07-14T00:00:00Z'
+    Contexts:
+      type: array
+      description: A list of additional information about the item.
+      items:
+        $ref: '#/components/schemas/Context'
+    ItemRelatedIdentifiers:
+      type: array
+      description: Related business identifiers of the item in the transaction.
+      items:
+        $ref: '#/components/schemas/ItemRelatedIdentifier'
+    ProductContext:
+      description: Additional information related to the product.
+      type: object
+      properties:
+        asin:
+          type: string
+          description: The Amazon Standard Identification Number (ASIN) of the item.
+        sku:
+          type: string
+          description: The Stock Keeping Unit (SKU) of the item.
+        quantityShipped:
+          type: integer
+          format: int32
+          description: The quantity of the item shipped.
+        fulfillmentNetwork:
+          type: string
+          description: The fulfillment network of the item.
+      example:
+        asin: B07FGXZQZ1
+        sku: sku-12
+        quantityShipped: 1
+        fulfillmentNetwork: MFN
+    MarketplaceDetails:
+      type: object
+      properties:
+        marketplaceId:
+          type: string
+          description: The identifier of the marketplace where the transaction occurred. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+        marketplaceName:
+          type: string
+          description: 'The name of the marketplace where the transaction occurred. For example: `Amazon.com`,`Amazon.in`'
+      description: Information about the marketplace where the transaction occurred.
+      example:
+        marketplaceId: ATVPDKIKX0DER
+        marketplaceName: Amazon.com
+    RelatedIdentifier:
+      type: object
+      properties:
+        relatedIdentifierName:
+          type: string
+          description: An enumerated set of related business identifier names.
+          enum:
+          - ORDER_ID
+          - SHIPMENT_ID
+          - FINANCIAL_EVENT_GROUP_ID
+          - REFUND_ID
+          - INVOICE_ID
+          - DISBURSEMENT_ID
+          - TRANSFER_ID
+          - DEFERRED_TRANSACTION_ID
+          - RELEASE_TRANSACTION_ID
+          - SETTLEMENT_ID
+          x-docgen-enum-table-extension:
+          - value: ORDER_ID
+            description: The `OrderId` that is associated with the transaction.
+          - value: SHIPMENT_ID
+            description: The `ShipmentId` that is associated with the transaction.
+          - value: FINANCIAL_EVENT_GROUP_ID
+            description: The identifier that is associated with the transaction's financial event group.
+          - value: SETTLEMENT_ID
+            description: The identifier that is associated with the transaction's settlement group.
+          - value: REFUND_ID
+            description: The `RefundId` that is associated with the transaction.
+          - value: INVOICE_ID
+            description: The `InvoiceId` that is associated with the transaction.
+          - value: DISBURSEMENT_ID
+            description: The disbursement ID for Amazon's bank transfer.
+          - value: TRANSFER_ID
+            description: The `TransferId` associated with the transaction.
+          - value: DEFERRED_TRANSACTION_ID
+            description: The transaction ID for the related deferred transaction
+          - value: RELEASE_TRANSACTION_ID
+            description: The transaction ID for the related released transaction
+        relatedIdentifierValue:
+          type: string
+          description: Corresponding value of `RelatedIdentifierName`.
+      description: Related business identifier of the transaction.
+    ItemRelatedIdentifier:
+      type: object
+      properties:
+        itemRelatedIdentifierName:
+          type: string
+          description: Enumerated set of related item identifier names for the item.
+          enum:
+          - ORDER_ADJUSTMENT_ITEM_ID
+          - COUPON_ID
+          - REMOVAL_SHIPMENT_ITEM_ID
+          - TRANSACTION_ID
+          x-docgen-enum-table-extension:
+          - value: ORDER_ADJUSTMENT_ITEM_ID
+            description: An Amazon-defined order adjustment identifier defined for refunds, guarantee claims, and chargeback events.
+          - value: COUPON_ID
+            description: An identifier for a coupon that is applied to a transaction.
+          - value: REMOVAL_SHIPMENT_ITEM_ID
+            description: An identifier for an item in a removal shipment.
+          - value: TRANSACTION_ID
+            description: The transaction ID of the item.
+        itemRelatedIdentifierValue:
+          type: string
+          description: Corresponding value to `ItemRelatedIdentifierName`.
+      description: Related business identifiers of the item.
+      example:
+        itemRelatedIdentifierName: ORDER_ADJUSTMENT_ITEM_ID
+        itemRelatedIdentifierValue: OAI-123456789
+    Item:
+      type: object
+      properties:
+        description:
+          type: string
+          description: A description of the items in a transaction.
+        relatedIdentifiers:
+          description: Related business identifiers of the item.
+          $ref: '#/components/schemas/ItemRelatedIdentifiers'
+        totalAmount:
+          description: The total monetary amount of the item.
+          $ref: '#/components/schemas/Currency'
+        breakdowns:
+          type: array
+          description: A list of breakdowns that detail how the total amount is calculated for the transaction.
+          items:
+            $ref: '#/components/schemas/Breakdown'
+        contexts:
+          description: Additional Information about the item.
+          $ref: '#/components/schemas/Contexts'
+      description: Additional information about an item in a transaction.
+    Breakdown:
+      type: object
+      properties:
+        breakdownType:
+          type: string
+          description: The type of charge.
+        breakdownAmount:
+          description: The monetary amount of the charge.
+          $ref: '#/components/schemas/Currency'
+        breakdowns:
+          type: array
+          description: A list of breakdowns that detail how the total amount is calculated for the transaction.
+          items:
+            $ref: '#/components/schemas/Breakdown'
+      description: Details about the movement of money in the financial transaction.
+    TimeRangeContext:
+      description: Additional information that is related to the time range of the transaction.
+      type: object
+      properties:
+        startTime:
+          $ref: '#/components/schemas/Date'
+          description: The start time of the transaction.
+        endTime:
+          $ref: '#/components/schemas/Date'
+          description: The end time of the transaction.
+      example:
+        startTime: '2020-07-14T03:35:13.214Z'
+        endTime: '2020-07-14T03:35:13.214Z'
+    Items:
+      type: array
+      description: A list of items in the transaction.
+      items:
+        $ref: '#/components/schemas/Item'
+    PartnerMetadata:
+      type: object
+      properties:
+        partnerId:
+          type: string
+          description: The unique seller identifier.
+        accountType:
+          type: string
+          description: The type of account.
+        marketplaceId:
+          type: string
+          description: The identifier of the marketplace where the transaction occurred. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      description: Metadata that describes the seller.
+    BigDecimal:
+      type: number
+      description: A signed decimal number.
+    RelatedIdentifiers:
+      type: array
+      description: Related business identifiers of the transaction.
+      items:
+        $ref: '#/components/schemas/RelatedIdentifier'
+    Currency:
+      type: object
+      properties:
+        currencyCode:
+          type: string
+          description: The three-digit currency code in ISO 4217 format.
+        currencyAmount:
+          description: The monetary value.
+          $ref: '#/components/schemas/BigDecimal'
+      description: A currency type and amount.
+    Context:
+      description: Additional information about the item.
+      allOf:
+      - type: object
+        required:
+        - contextType
+        properties:
+          contextType:
+            type: string
+            description: The type of context.
+      - $ref: '#/components/schemas/AmazonPayContext'
+      - $ref: '#/components/schemas/ProductContext'
+      - $ref: '#/components/schemas/PaymentsContext'
+      - $ref: '#/components/schemas/DeferredContext'
+      - $ref: '#/components/schemas/BusinessContext'
+      - $ref: '#/components/schemas/TimeRangeContext'
+      x-example:
+      - contextType: ProductContext
+        asin: B07FGXZQZ1
+        sku: sku-12
+        quantityShipped: 1
+        fulfillmentNetwork: MFN
+      - contextType: AmazonPayContext
+        storeName: Store 1
+        orderType: Order Type
+        channel: MFN
+    SellingPartnerMetadata:
+      type: object
+      properties:
+        sellingPartnerId:
+          type: string
+          description: The unique seller identifier.
+        accountType:
+          type: string
+          description: The type of account in the transaction.
+        marketplaceId:
+          type: string
+          description: The identifier of the marketplace where the transaction occurred. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      description: Metadata that describes the seller.
+    Date:
+      type: string
+      format: date-time
+      description: A date in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+    Transactions:
+      type: array
+      description: A list of transactions within the specified time period.
+      items:
+        $ref: '#/components/schemas/Transaction'
+    AmazonPayContext:
+      description: Additional information related to Amazon Pay.
+      type: object
+      properties:
+        storeName:
+          type: string
+          description: The name of the store that is related to the transaction.
+        orderType:
+          type: string
+          description: The order type of the transaction.
+        channel:
+          type: string
+          description: 'The channel of the transaction. For example: `MFN`.'
+      example:
+        storeName: Store 1
+        orderType: Order Type
+        channel: MFN
     Transaction:
       type: object
       properties:
@@ -2113,118 +2427,6 @@ components:
           storeName: Store 1
           orderType: Order Type
           channel: MFN
-    Breakdowns:
-      type: array
-      description: A list of breakdowns that detail how the total amount is calculated for the transaction.
-      items:
-        $ref: '#/components/schemas/Breakdown'
-      example:
-      - breakdownType: Sales
-        breakdownAmount:
-          currencyAmount: 10
-          currencyCode: USD
-        breakdowns:
-        - breakdownType: Product Charges
-          breakdownAmount:
-            currencyAmount: 10
-            currencyCode: USD
-          breakdowns: []
-    ItemRelatedIdentifier:
-      type: object
-      properties:
-        itemRelatedIdentifierName:
-          type: string
-          description: Enumerated set of related item identifier names for the item.
-          enum:
-          - ORDER_ADJUSTMENT_ITEM_ID
-          - COUPON_ID
-          - REMOVAL_SHIPMENT_ITEM_ID
-          - TRANSACTION_ID
-          x-docgen-enum-table-extension:
-          - value: ORDER_ADJUSTMENT_ITEM_ID
-            description: An Amazon-defined order adjustment identifier defined for refunds, guarantee claims, and chargeback events.
-          - value: COUPON_ID
-            description: An identifier for a coupon that is applied to a transaction.
-          - value: REMOVAL_SHIPMENT_ITEM_ID
-            description: An identifier for an item in a removal shipment.
-          - value: TRANSACTION_ID
-            description: The transaction ID of the item.
-        itemRelatedIdentifierValue:
-          type: string
-          description: Corresponding value to `ItemRelatedIdentifierName`.
-      description: Related business identifiers of the item.
-      example:
-        itemRelatedIdentifierName: ORDER_ADJUSTMENT_ITEM_ID
-        itemRelatedIdentifierValue: OAI-123456789
-    Items:
-      type: array
-      description: A list of items in the transaction.
-      items:
-        $ref: '#/components/schemas/Item'
-    RelatedIdentifiers:
-      type: array
-      description: Related business identifiers of the transaction.
-      items:
-        $ref: '#/components/schemas/RelatedIdentifier'
-    PartnerMetadata:
-      type: object
-      properties:
-        partnerId:
-          type: string
-          description: The unique seller identifier.
-        accountType:
-          type: string
-          description: The type of account.
-        marketplaceId:
-          type: string
-          description: The identifier of the marketplace where the transaction occurred. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
-      description: Metadata that describes the seller.
-    Balances:
-      type: array
-      description: A list of balances.
-      items:
-        $ref: '#/components/schemas/Balance'
-    Transactions:
-      type: array
-      description: A list of transactions within the specified time period.
-      items:
-        $ref: '#/components/schemas/Transaction'
-    ListBalancesResponse:
-      type: object
-      properties:
-        balances:
-          $ref: '#/components/schemas/Balances'
-        nextToken:
-          type: string
-          description: A token to retrieve the next page of results. If null, no more results are available.
-          x-example: jehgri34yo7jr9e8f984tr9i4o
-      description: The response to the `listBalances` operation.
-    AmazonPayContext:
-      description: Additional information related to Amazon Pay.
-      type: object
-      properties:
-        storeName:
-          type: string
-          description: The name of the store that is related to the transaction.
-        orderType:
-          type: string
-          description: The order type of the transaction.
-        channel:
-          type: string
-          description: 'The channel of the transaction. For example: `MFN`.'
-      example:
-        storeName: Store 1
-        orderType: Order Type
-        channel: MFN
-    TransactionsPayload:
-      type: object
-      properties:
-        nextToken:
-          type: string
-          description: The response includes `nextToken` when the number of results exceeds the specified `pageSize` value. To get the next page of results, call the operation with this token and include the same arguments as the call that produced the token. To get a complete list, call this operation until `nextToken` is null. Note that this operation can return empty pages.
-        transactions:
-          $ref: '#/components/schemas/Transactions'
-      description: The payload for the `listTransactions` operation.
     SummaryResponse:
       type: object
       properties:
@@ -2238,48 +2440,6 @@ components:
           description: A token to retrieve the next page of results. If null, no more results are available.
           x-example: jehgri34yo7jr9e8f984tr9i4o
       description: The response to the `listSummary` operation.
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: An error code that identifies the type of error that occurred.
-        message:
-          type: string
-          description: A message that describes the error condition.
-        details:
-          type: string
-          description: Additional details that can help the caller understand or fix the issue.
-      description: An error response returned when the request is unsuccessful.
-    Context:
-      description: Additional information about the item.
-      allOf:
-      - type: object
-        required:
-        - contextType
-        properties:
-          contextType:
-            type: string
-            description: The type of context.
-      - $ref: '#/components/schemas/AmazonPayContext'
-      - $ref: '#/components/schemas/ProductContext'
-      - $ref: '#/components/schemas/PaymentsContext'
-      - $ref: '#/components/schemas/DeferredContext'
-      - $ref: '#/components/schemas/BusinessContext'
-      - $ref: '#/components/schemas/TimeRangeContext'
-      x-example:
-      - contextType: ProductContext
-        asin: B07FGXZQZ1
-        sku: sku-12
-        quantityShipped: 1
-        fulfillmentNetwork: MFN
-      - contextType: AmazonPayContext
-        storeName: Store 1
-        orderType: Order Type
-        channel: MFN
     PaymentsContext:
       description: Additional information related to payments-related transactions.
       type: object
@@ -2301,152 +2461,171 @@ components:
         paymentMethod: BANK
         paymentReference: XXXXX123
         paymentDate: '2020-07-14T03:35:13.214Z'
-    SellingPartnerMetadata:
+    ShipmentEventList:
+      type: array
+      description: A list of shipment event information.
+      items:
+        $ref: '#/components/schemas/ShipmentEvent'
+    RemovalShipmentItemAdjustment:
       type: object
       properties:
-        sellingPartnerId:
+        RemovalShipmentItemId:
           type: string
-          description: The unique seller identifier.
-        accountType:
+          description: An identifier for an item in a removal shipment.
+        TaxCollectionModel:
           type: string
-          description: The type of account in the transaction.
-        marketplaceId:
+          description: 'The tax collection model that is applied to the item.
+
+
+            Possible values:
+
+
+            * `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
+
+            * `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.'
+        FulfillmentNetworkSKU:
           type: string
-          description: The identifier of the marketplace where the transaction occurred. The marketplace ID is the globally unique identifier of a marketplace. To find the ID for a marketplace, refer to [Marketplace IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
-      description: Metadata that describes the seller.
-    ErrorList:
-      type: object
-      description: A list of error responses returned when a request is unsuccessful.
-      required:
-      - errors
-      properties:
-        errors:
-          description: The error responses that are returned when the request is unsuccessful.
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    TimeRangeContext:
-      description: Additional information that is related to the time range of the transaction.
-      type: object
-      properties:
-        startTime:
-          $ref: '#/components/schemas/Date'
-          description: The start time of the transaction.
-        endTime:
-          $ref: '#/components/schemas/Date'
-          description: The end time of the transaction.
-      example:
-        startTime: '2020-07-14T03:35:13.214Z'
-        endTime: '2020-07-14T03:35:13.214Z'
-    ProductContext:
-      description: Additional information related to the product.
-      type: object
-      properties:
-        asin:
-          type: string
-          description: The Amazon Standard Identification Number (ASIN) of the item.
-        sku:
-          type: string
-          description: The Stock Keeping Unit (SKU) of the item.
-        quantityShipped:
+          description: The Amazon fulfillment network SKU for the item.
+        AdjustedQuantity:
           type: integer
           format: int32
-          description: The quantity of the item shipped.
-        fulfillmentNetwork:
-          type: string
-          description: The fulfillment network of the item.
-      example:
-        asin: B07FGXZQZ1
-        sku: sku-12
-        quantityShipped: 1
-        fulfillmentNetwork: MFN
-    ListTransactionsResponse:
+          description: Adjusted quantity of `RemovalShipmentItemAdjustment` items.
+        RevenueAdjustment:
+          description: The total amount adjusted for disputed items.
+          $ref: '#/components/schemas/Currency_2'
+        TaxAmountAdjustment:
+          description: Adjustment on the tax collected amount on the adjusted revenue.
+          $ref: '#/components/schemas/Currency_2'
+        TaxWithheldAdjustment:
+          description: Adjustment of the tax that is withheld and remitted to the taxing authority by Amazon on behalf of the seller. If `TaxCollectionModel` = `MarketplaceFacilitator`, then `TaxWithheld` = `TaxAmount` (except when the `TaxWithheld` amount is a negative number). Otherwise, `TaxWithheld` = `0`.
+          $ref: '#/components/schemas/Currency_2'
+      description: Item-level information for a removal shipment item adjustment.
+    FeeComponent:
       type: object
       properties:
-        payload:
-          $ref: '#/components/schemas/TransactionsPayload'
-          description: The payload for the `listTransactions` operation.
-      description: The response to the `listTransactions` operation.
-    Date:
-      type: string
-      format: date-time
-      description: A date in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
-    Balance:
+        FeeType:
+          type: string
+          description: The type of fee. For more information about Selling on Amazon fees, see [Selling on Amazon Fee Schedule](https://sellercentral.amazon.com/gp/help/200336920) on Seller Central. For more information about Fulfillment by Amazon fees, see [FBA features, services and fees](https://sellercentral.amazon.com/gp/help/201074400) on Seller Central.
+        FeeAmount:
+          description: The amount of the fee.
+          $ref: '#/components/schemas/Currency_2'
+      description: A fee associated with the event.
+    TrialShipmentEvent:
       type: object
       properties:
-        partnerMetadata:
-          description: Metadata describing the seller.
-          $ref: '#/components/schemas/PartnerMetadata'
-        balanceType:
+        AmazonOrderId:
           type: string
-          enum:
-          - AVAILABLE
-          - RESERVED
-          - ACCOUNT_LEVEL_RESERVE
-          - DEFERRED
-          - TOTAL
-          description: The type of balance.
-          x-docgen-enum-table-extension:
-          - value: AVAILABLE
-            description: The total balance currently available in the account.
-          - value: DEFERRED
-            description: The deferred balance is a portion of sales revenue that is temporarily withheld before being transferred to the available balance after a specified period.
-          - value: ACCOUNT_LEVEL_RESERVE
-            description: 'Balance reserved as a safety measure to cover potential liabilities such as refunds, chargebacks, or other claims. Based on sales volume, product category, and account history. '
-          - value: RESERVED
-            description: The reserved balance is sum of Deferred and Account Level Reserved.
-          - value: TOTAL
-            description: Overall sum of balances including available and reserved.
-        amount:
-          description: Total amount of the balance type.
-          $ref: '#/components/schemas/Currency'
-        balances:
-          type: array
-          description: A list of balances that comprise this balance.
-          items:
-            $ref: '#/components/schemas/Balance'
-        asOfDate:
-          description: The date for which the ending balance was calculated. This field is present when an `asOfDate` query parameter is provided. Null for point-in-time balance queries.
+          description: An Amazon-defined identifier for an order.
+        FinancialEventGroupId:
+          type: string
+          description: The identifier of the financial event group.
+        PostedDate:
+          description: The date and time when the financial event was posted.
           $ref: '#/components/schemas/Date'
-        lastUpdatedTime:
+        SKU:
           type: string
-          format: date-time
-          description: The date and time when the balance was last updated, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format. The value is in the marketplace's local time zone. This field is present for point-in-time balance queries (when no `asOfDate` query parameter is provided). Null for ending balance queries.
-          x-example: '2025-01-12T10:30:00+09:00'
-      description: All information relevant to a balance.
-      example:
-        partnerMetadata:
-          partnerId: XXXXXXXXXXXXXX
-          accountType: Standard Orders
-          marketplaceId: AXXXXXXXXXER
-        balanceType: TOTAL
-        amount:
-          currencyAmount: 15000
-          currencyCode: USD
-        balances:
-        - balanceType: AVAILABLE
-          amount:
-            currencyAmount: 8000
-            currencyCode: USD
-        - balanceType: RESERVED
-          amount:
-            currencyAmount: 7000
-            currencyCode: USD
-          balances:
-          - balanceType: DEFERRED
-            amount:
-              currencyAmount: 9000
-              currencyCode: USD
-          - balanceType: ACCOUNT_LEVEL_RESERVE
-            amount:
-              currencyAmount: -2000
-              currencyCode: USD
-        lastUpdatedTime: '2025-01-12T10:30:00+09:00'
-    ItemRelatedIdentifiers:
+          description: The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
+        FeeList:
+          description: A list of fees charged by Amazon for trial shipments.
+          $ref: '#/components/schemas/FeeComponentList'
+      description: An event related to a trial shipment.
+    TaxWithholdingEvent:
+      type: object
+      properties:
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        BaseAmount:
+          description: The amount which tax was withheld against.
+          $ref: '#/components/schemas/Currency_2'
+        WithheldAmount:
+          description: The amount of the tax withholding deducted from seller's account.
+          $ref: '#/components/schemas/Currency_2'
+        TaxWithholdingPeriod:
+          description: Time period for which tax is withheld.
+          $ref: '#/components/schemas/TaxWithholdingPeriod'
+      description: A tax withholding event on a seller's account.
+    ShipmentEvent:
+      type: object
+      properties:
+        AmazonOrderId:
+          type: string
+          description: An Amazon-defined identifier for an order.
+        SellerOrderId:
+          type: string
+          description: A seller-defined identifier for an order.
+        MarketplaceName:
+          type: string
+          description: The name of the marketplace where the event occurred.
+        StoreName:
+          type: string
+          description: The name of the store where the event occurred.
+        OrderChargeList:
+          description: A list of order-level charges. These charges are applicable to Multi-Channel Fulfillment COD orders.
+          $ref: '#/components/schemas/ChargeComponentList'
+        OrderChargeAdjustmentList:
+          description: A list of order-level charge adjustments. These adjustments are applicable to Multi-Channel Fulfillment COD orders.
+          $ref: '#/components/schemas/ChargeComponentList'
+        ShipmentFeeList:
+          description: A list of shipment-level fees.
+          $ref: '#/components/schemas/FeeComponentList'
+        ShipmentFeeAdjustmentList:
+          description: A list of shipment-level fee adjustments.
+          $ref: '#/components/schemas/FeeComponentList'
+        OrderFeeList:
+          description: A list of order-level fees. These charges are applicable to Multi-Channel Fulfillment orders.
+          $ref: '#/components/schemas/FeeComponentList'
+        OrderFeeAdjustmentList:
+          description: A list of order-level fee adjustments. These adjustments are applicable to Multi-Channel Fulfillment orders.
+          $ref: '#/components/schemas/FeeComponentList'
+        DirectPaymentList:
+          description: A list of transactions where buyers pay Amazon through one of the credit cards offered by Amazon or where buyers pay a seller directly through COD.
+          $ref: '#/components/schemas/DirectPaymentList'
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        ShipmentItemList:
+          $ref: '#/components/schemas/ShipmentItemList'
+        ShipmentItemAdjustmentList:
+          description: A list of shipment item adjustments.
+          $ref: '#/components/schemas/ShipmentItemList'
+      description: A shipment, refund, guarantee claim, or chargeback.
+    ValueAddedServiceChargeEventList:
       type: array
-      description: Related business identifiers of the item in the transaction.
       items:
-        $ref: '#/components/schemas/ItemRelatedIdentifier'
+        $ref: '#/components/schemas/ValueAddedServiceChargeEvent'
+      description: A list of `ValueAddedServiceCharge` events.
+    ProductAdsPaymentEvent:
+      type: object
+      properties:
+        postedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        transactionType:
+          type: string
+          description: 'Indicates if the transaction is for a charge or a refund.
+
+
+            Possible values:
+
+
+            * `charge`
+
+
+            * `refund`'
+        invoiceId:
+          type: string
+          description: The identifier for the invoice that includes the transaction.
+        baseValue:
+          description: Base amount of the transaction, before tax.
+          $ref: '#/components/schemas/Currency_2'
+        taxValue:
+          description: Tax amount of the transaction.
+          $ref: '#/components/schemas/Currency_2'
+        transactionValue:
+          description: The total amount of the transaction. Equal to `baseValue` + `taxValue`.
+          $ref: '#/components/schemas/Currency_2'
+      description: A Sponsored Products payment event.
     RemovalShipmentAdjustmentEvent:
       type: object
       properties:
@@ -2477,6 +2656,967 @@ components:
           items:
             $ref: '#/components/schemas/RemovalShipmentItemAdjustment'
       description: A financial adjustment event for FBA liquidated inventory. A positive value indicates money owed to Amazon by the buyer (for example, when the charge was incorrectly calculated as less than it should be). A negative value indicates a full or partial refund owed to the buyer (for example, when the buyer receives damaged items or fewer items than ordered).
+    DebtRecoveryItemList:
+      type: array
+      description: A list of debt recovery item information.
+      items:
+        $ref: '#/components/schemas/DebtRecoveryItem'
+    SellerDealPaymentEventList:
+      type: array
+      description: A list of payment events for deal-related fees.
+      items:
+        $ref: '#/components/schemas/SellerDealPaymentEvent'
+    DebtRecoveryItem:
+      type: object
+      properties:
+        RecoveryAmount:
+          description: The amount applied for the recovery item.
+          $ref: '#/components/schemas/Currency_2'
+        OriginalAmount:
+          description: The original debt amount.
+          $ref: '#/components/schemas/Currency_2'
+        GroupBeginDate:
+          description: The start date and time of the financial event group that contains the debt. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+          $ref: '#/components/schemas/Date'
+        GroupEndDate:
+          description: The end date and time of the financial event group that contains the debt. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+          $ref: '#/components/schemas/Date'
+      description: An item of a debt payment or debt adjustment.
+    LoanServicingEvent:
+      type: object
+      properties:
+        LoanAmount:
+          description: The amount of the loan.
+          $ref: '#/components/schemas/Currency_2'
+        SourceBusinessEventType:
+          type: string
+          description: 'The type of event.
+
+
+            Possible values:
+
+
+            * `LoanAdvance`
+
+
+            * `LoanPayment`
+
+
+            * `LoanRefund`'
+      description: A loan advance, loan payment, or loan refund.
+    SellerReviewEnrollmentPaymentEvent:
+      type: object
+      properties:
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        EnrollmentId:
+          type: string
+          description: An enrollment identifier.
+        ParentASIN:
+          type: string
+          description: The Amazon Standard Identification Number (ASIN) of the item that was enrolled in the Early Reviewer Program.
+        FeeComponent:
+          $ref: '#/components/schemas/FeeComponent'
+        ChargeComponent:
+          $ref: '#/components/schemas/ChargeComponent'
+        TotalAmount:
+          description: The `FeeComponent` value plus the `ChargeComponent` value.
+          $ref: '#/components/schemas/Currency_2'
+      description: A fee payment event for the Early Reviewer Program.
+    ChargeRefundEventList:
+      type: array
+      items:
+        $ref: '#/components/schemas/ChargeRefundEvent'
+      description: A list of charge refund events.
+    SAFETReimbursementItem:
+      type: object
+      properties:
+        itemChargeList:
+          description: A list of charges associated with the item.
+          $ref: '#/components/schemas/ChargeComponentList'
+        productDescription:
+          type: string
+          description: The description of the item as shown on the product detail page on the retail website.
+        quantity:
+          type: string
+          description: The number of units of the item being reimbursed.
+      description: An item from a SAFE-T claim reimbursement.
+    AdjustmentEventList:
+      type: array
+      description: A list of adjustment event information for the seller's account.
+      items:
+        $ref: '#/components/schemas/AdjustmentEvent'
+    DebtRecoveryEvent:
+      type: object
+      properties:
+        DebtRecoveryType:
+          type: string
+          description: 'The debt recovery type.
+
+
+            Possible values:
+
+
+            * `DebtPayment`
+
+            * `DebtPaymentFailure`
+
+            * `DebtAdjustment`'
+        RecoveryAmount:
+          description: The amount applied for recovery.
+          $ref: '#/components/schemas/Currency_2'
+        OverPaymentCredit:
+          description: The amount returned for overpayment.
+          $ref: '#/components/schemas/Currency_2'
+        DebtRecoveryItemList:
+          $ref: '#/components/schemas/DebtRecoveryItemList'
+        ChargeInstrumentList:
+          $ref: '#/components/schemas/ChargeInstrumentList'
+      description: A debt payment or debt adjustment.
+    ShipmentItemList:
+      type: array
+      description: A list of shipment items.
+      items:
+        $ref: '#/components/schemas/ShipmentItem'
+    ChargeRefundEvent:
+      type: object
+      properties:
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        ReasonCode:
+          type: string
+          description: The reason given for a charge refund. For example, `SubscriptionFeeCorrection`.
+        ReasonCodeDescription:
+          type: string
+          description: A description of the Reason Code. For example, `SubscriptionFeeCorrection`.
+        ChargeRefundTransactions:
+          description: The amount of the charge refund credit.
+          $ref: '#/components/schemas/ChargeRefundTransactions'
+      description: An event related to charge refund.
+    NetworkComminglingTransactionEventList:
+      type: array
+      description: A list of network commingling transaction events.
+      items:
+        $ref: '#/components/schemas/NetworkComminglingTransactionEvent'
+    CapacityReservationBillingEvent:
+      type: object
+      properties:
+        TransactionType:
+          type: string
+          description: The transaction type. For example, FBA Inventory Fee.
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        Description:
+          type: string
+          description: A short description of the capacity reservation billing event.
+        TransactionAmount:
+          description: The amount of the capacity reservation billing event.
+          $ref: '#/components/schemas/Currency_2'
+      description: An event related to a capacity reservation billing charge.
+    FBALiquidationEvent:
+      type: object
+      properties:
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        OriginalRemovalOrderId:
+          type: string
+          description: The identifier for the original removal order.
+        LiquidationProceedsAmount:
+          description: The amount paid by the liquidator for the seller's inventory. The seller receives this amount minus `LiquidationFeeAmount`.
+          $ref: '#/components/schemas/Currency_2'
+        LiquidationFeeAmount:
+          description: The fee charged to the seller by Amazon for liquidating the seller's FBA inventory.
+          $ref: '#/components/schemas/Currency_2'
+      description: A payment event for Fulfillment by Amazon (FBA) inventory liquidation. This event is used only in the US marketplace.
+    RemovalShipmentItem:
+      type: object
+      properties:
+        RemovalShipmentItemId:
+          type: string
+          description: An identifier for an item in a removal shipment.
+        TaxCollectionModel:
+          type: string
+          description: 'The tax collection model that is applied to the item.
+
+
+            Possible values:
+
+
+            * `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
+
+            * `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.'
+        FulfillmentNetworkSKU:
+          type: string
+          description: The Amazon fulfillment network SKU for the item.
+        Quantity:
+          type: integer
+          format: int32
+          description: The quantity of the item.
+        Revenue:
+          description: The total amount paid to the seller for the removed item.
+          $ref: '#/components/schemas/Currency_2'
+        FeeAmount:
+          description: The fee that Amazon charged to the seller for the removal of the item. The amount is a negative number.
+          $ref: '#/components/schemas/Currency_2'
+        TaxAmount:
+          description: Tax collected on the revenue.
+          $ref: '#/components/schemas/Currency_2'
+        TaxWithheld:
+          description: The tax withheld and remitted to the taxing authority by Amazon on behalf of the seller. If `TaxCollectionModel` = `MarketplaceFacilitator`, then `TaxWithheld` = `TaxAmount` (except when the `TaxWithheld` amount is a negative number). Otherwise, `TaxWithheld` = `0`.
+          $ref: '#/components/schemas/Currency_2'
+      description: Item-level information for a removal shipment.
+    ChargeInstrument:
+      type: object
+      properties:
+        Description:
+          type: string
+          description: A short description of the charge instrument.
+        Tail:
+          type: string
+          description: The account tail (trailing digits) of the charge instrument.
+        Amount:
+          description: The amount charged to this charge instrument.
+          $ref: '#/components/schemas/Currency_2'
+      description: A payment instrument.
+    SellerDealPaymentEvent:
+      type: object
+      properties:
+        postedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        dealId:
+          type: string
+          description: The unique identifier of the deal.
+        dealDescription:
+          type: string
+          description: The internal description of the deal.
+        eventType:
+          type: string
+          description: 'The type of event: `SellerDealComplete`.'
+        feeType:
+          type: string
+          description: 'The type of fee: `RunLightningDealFee`.'
+        feeAmount:
+          description: The monetary amount of the fee.
+          $ref: '#/components/schemas/Currency_2'
+        taxAmount:
+          description: The monetary amount of the tax applied.
+          $ref: '#/components/schemas/Currency_2'
+        totalAmount:
+          description: The total monetary amount paid.
+          $ref: '#/components/schemas/Currency_2'
+      description: An event linked to the payment of a fee related to the specified deal.
+    AdhocDisbursementEventList:
+      type: array
+      items:
+        $ref: '#/components/schemas/AdhocDisbursementEvent'
+      description: A list of `AdhocDisbursement` events.
+    NetworkComminglingTransactionEvent:
+      type: object
+      properties:
+        TransactionType:
+          type: string
+          description: 'The type of network item swap.
+
+
+            Possible values:
+
+
+            * `NetCo`: A Fulfillment by Amazon inventory pooling transaction. Available only in the India marketplace.
+
+
+            * `ComminglingVAT`: A commingling VAT transaction. Available only in the Spain, UK, France, Germany, and Italy marketplaces.'
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        NetCoTransactionID:
+          type: string
+          description: The identifier for the network item swap.
+        SwapReason:
+          type: string
+          description: The reason for the network item swap.
+        ASIN:
+          type: string
+          description: The Amazon Standard Identification Number (ASIN) of the swapped item.
+        MarketplaceId:
+          type: string
+          description: The marketplace in which the event took place.
+        TaxExclusiveAmount:
+          description: The price of the swapped item minus `TaxAmount`.
+          $ref: '#/components/schemas/Currency_2'
+        TaxAmount:
+          description: The tax on the network item swap paid by the seller.
+          $ref: '#/components/schemas/Currency_2'
+      description: A network commingling transaction event.
+    FailedAdhocDisbursementEventList:
+      type: array
+      items:
+        $ref: '#/components/schemas/FailedAdhocDisbursementEvent'
+      description: A list of `FailedAdhocDisbursementEvent`.
+    ChargeInstrumentList:
+      type: array
+      description: A list of payment instruments.
+      items:
+        $ref: '#/components/schemas/ChargeInstrument'
+    AdhocDisbursementEvent:
+      type: object
+      properties:
+        TransactionType:
+          type: string
+          description: The type of transaction. For example, "Disbursed to Amazon Gift Card balance".
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        TransactionId:
+          type: string
+          description: The identifier for the transaction.
+        TransactionAmount:
+          description: The amount of the transaction.
+          $ref: '#/components/schemas/Currency_2'
+      description: An event related to an Adhoc Disbursement.
+    RemovalShipmentAdjustmentEventList:
+      type: array
+      description: A comma-delimited list of `RemovalShipmentAdjustment` details for FBA inventory.
+      items:
+        $ref: '#/components/schemas/RemovalShipmentAdjustmentEvent'
+    PayWithAmazonEventList:
+      type: array
+      description: A list of events related to the seller's Pay with Amazon account.
+      items:
+        $ref: '#/components/schemas/PayWithAmazonEvent'
+    TDSReimbursementEventList:
+      type: array
+      items:
+        $ref: '#/components/schemas/TDSReimbursementEvent'
+      description: A list of `TDSReimbursementEvent` items.
+    TDSReimbursementEvent:
+      type: object
+      properties:
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        TDSOrderId:
+          type: string
+          description: The Tax-Deducted-at-Source (TDS) identifier.
+        ReimbursedAmount:
+          description: The amount reimbursed.
+          $ref: '#/components/schemas/Currency_2'
+      description: An event related to a Tax-Deducted-at-Source (TDS) reimbursement.
+    DirectPayment:
+      type: object
+      properties:
+        DirectPaymentType:
+          type: string
+          description: 'The type of payment.
+
+
+            Possible values:
+
+
+            * `StoredValueCardRevenue` - The amount that is deducted from the seller''s account because the seller received money through a stored value card.
+
+
+            * `StoredValueCardRefund` - The amount that Amazon returns to the seller if the order that is purchased using a stored value card is refunded.
+
+
+            * `PrivateLabelCreditCardRevenue` - The amount that is deducted from the seller''s account because the seller received money through a private label credit card offered by Amazon.
+
+
+            * `PrivateLabelCreditCardRefund` - The amount that Amazon returns to the seller if the order that is purchased using a private label credit card offered by Amazon is refunded.
+
+
+            * `CollectOnDeliveryRevenue` - The COD amount that the seller collected directly from the buyer.
+
+
+            * `CollectOnDeliveryRefund` - The amount that Amazon refunds to the buyer if an order paid for by COD is refunded.'
+        DirectPaymentAmount:
+          description: The amount of the direct payment.
+          $ref: '#/components/schemas/Currency_2'
+      description: A payment made directly to a seller.
+    FinancialEventGroupList:
+      type: array
+      description: A list of financial event group information.
+      items:
+        $ref: '#/components/schemas/FinancialEventGroup'
+    Promotion:
+      type: object
+      properties:
+        PromotionType:
+          type: string
+          description: The type of promotion.
+        PromotionId:
+          type: string
+          description: The seller-specified identifier for the promotion.
+        PromotionAmount:
+          description: The amount of promotional discount applied to the item.
+          $ref: '#/components/schemas/Currency_2'
+      description: A promotion applied to an item.
+    FeeComponentList:
+      type: array
+      description: A list of fee component information.
+      items:
+        $ref: '#/components/schemas/FeeComponent'
+    DirectPaymentList:
+      type: array
+      description: A list of direct payment information.
+      items:
+        $ref: '#/components/schemas/DirectPayment'
+    Currency_2:
+      type: object
+      properties:
+        CurrencyCode:
+          type: string
+          description: The three-digit currency code in ISO 4217 format.
+        CurrencyAmount:
+          description: The monetary value.
+          $ref: '#/components/schemas/BigDecimal'
+      description: A currency type and amount.
+    FBALiquidationEventList:
+      type: array
+      description: A list of FBA inventory liquidation payment events.
+      items:
+        $ref: '#/components/schemas/FBALiquidationEvent'
+    SAFETReimbursementEventList:
+      type: array
+      description: A list of `SAFETReimbursementEvent`.
+      items:
+        $ref: '#/components/schemas/SAFETReimbursementEvent'
+    ImagingServicesFeeEventList:
+      type: array
+      description: A list of fee events related to Amazon Imaging services.
+      items:
+        $ref: '#/components/schemas/ImagingServicesFeeEvent'
+    ListFinancialEventGroupsResponse:
+      type: object
+      properties:
+        payload:
+          description: The payload for the `listFinancialEventGroups` operation.
+          $ref: '#/components/schemas/ListFinancialEventGroupsPayload'
+        errors:
+          description: One or more unexpected errors occurred during the `listFinancialEventGroups` operation.
+          $ref: '#/components/schemas/ErrorList_2'
+      description: The response schema for the `listFinancialEventGroups` operation.
+    AffordabilityExpenseEvent:
+      type: object
+      required:
+      - TaxTypeCGST
+      - TaxTypeIGST
+      - TaxTypeSGST
+      properties:
+        AmazonOrderId:
+          type: string
+          description: An Amazon-defined identifier for an order.
+        PostedDate:
+          description: The date and time when the financial event was created.
+          $ref: '#/components/schemas/Date'
+        MarketplaceId:
+          type: string
+          description: The Amazon-defined marketplace identifier.
+        TransactionType:
+          type: string
+          description: "The type of transaction. \n\nPossible values:\n\n* `Charge`: an affordability promotion expense.\n* `Refund`: an affordability promotion expense reversal."
+        BaseExpense:
+          description: The amount charged for clicks incurred under the Sponsored Products program.
+          $ref: '#/components/schemas/Currency_2'
+        TaxTypeCGST:
+          description: Central Goods and Service Tax, charged and collected by the central government.
+          $ref: '#/components/schemas/Currency_2'
+        TaxTypeSGST:
+          description: State Goods and Service Tax, charged and collected by the state government.
+          $ref: '#/components/schemas/Currency_2'
+        TaxTypeIGST:
+          description: Integrated Goods and Service Tax, charged and collected by the central government.
+          $ref: '#/components/schemas/Currency_2'
+        TotalExpense:
+          description: The total amount charged to the seller. `TotalExpense` = `BaseExpense` + `TaxTypeIGST` + `TaxTypeCGST` + `TaxTypeSGST`.
+          $ref: '#/components/schemas/Currency_2'
+      description: An expense related to an affordability promotion.
+    PromotionList:
+      type: array
+      description: A list of promotions.
+      items:
+        $ref: '#/components/schemas/Promotion'
+    AffordabilityExpenseEventList:
+      type: array
+      description: A list of expense information related to an affordability promotion.
+      items:
+        $ref: '#/components/schemas/AffordabilityExpenseEvent'
+    TaxWithheldComponentList:
+      type: array
+      description: A list of information about taxes withheld.
+      items:
+        $ref: '#/components/schemas/TaxWithheldComponent'
+    FinancialEventGroup:
+      type: object
+      properties:
+        FinancialEventGroupId:
+          type: string
+          description: A unique identifier for the financial event group.
+        ProcessingStatus:
+          type: string
+          description: 'The processing status of the financial event group indicates whether the balance of the financial event group is settled.
+
+
+            Possible values:
+
+
+            * `Open`
+
+            * `Closed`'
+        FundTransferStatus:
+          type: string
+          description: The status of the fund transfer.
+        OriginalTotal:
+          description: The total amount in the currency of the marketplace in which the transactions occurred. For a closed financial group, this is the total amount of a disbursement or a charge amount. For an open financial event group, this is the current balance.
+          $ref: '#/components/schemas/Currency_2'
+        ConvertedTotal:
+          description: The total amount in the currency of the marketplace in which the funds were disbursed.
+          $ref: '#/components/schemas/Currency_2'
+        FundTransferDate:
+          description: The date and time when the disbursement or charge was initiated. Only present for closed settlements. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+          $ref: '#/components/schemas/Date'
+        TraceId:
+          type: string
+          description: The trace identifier used by sellers to look up transactions externally.
+        AccountTail:
+          type: string
+          description: The account tail of the payment instrument.
+        BeginningBalance:
+          description: The balance at the start of the settlement period.
+          $ref: '#/components/schemas/Currency_2'
+        FinancialEventGroupStart:
+          description: The date and time at which the financial event group is opened. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+          $ref: '#/components/schemas/Date'
+        FinancialEventGroupEnd:
+          description: The date and time at which the financial event group is closed. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+          $ref: '#/components/schemas/Date'
+      description: Information related to a financial event group.
+    Error_2:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: An error code that identifies the type of error that occurred.
+        message:
+          type: string
+          description: A message that describes the error condition in a human-readable form.
+        details:
+          type: string
+          description: Additional details that can help the caller understand or fix the issue.
+      description: Error response returned when the request is unsuccessful.
+    AdjustmentItemList:
+      type: array
+      description: A list of information about items in an adjustment to the seller's account.
+      items:
+        $ref: '#/components/schemas/AdjustmentItem'
+    EBTRefundReimbursementOnlyEvent:
+      type: object
+      properties:
+        OrderId:
+          type: string
+          description: The identifier of an order.
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        Amount:
+          description: The amount reimbursed during this event.
+          $ref: '#/components/schemas/Currency_2'
+      description: An EBT refund reimbursement event.
+    LoanServicingEventList:
+      type: array
+      description: A list of loan servicing events.
+      items:
+        $ref: '#/components/schemas/LoanServicingEvent'
+    SAFETReimbursementEvent:
+      type: object
+      properties:
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        SAFETClaimId:
+          type: string
+          description: A SAFE-T claim identifier.
+        ReimbursedAmount:
+          description: The amount of the reimbursement.
+          $ref: '#/components/schemas/Currency_2'
+        ReasonCode:
+          type: string
+          description: Indicates why the seller was reimbursed.
+        SAFETReimbursementItemList:
+          $ref: '#/components/schemas/SAFETReimbursementItemList'
+      description: A SAFE-T claim reimbursement on the seller's account.
+    RemovalShipmentEvent:
+      type: object
+      properties:
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        MerchantOrderId:
+          type: string
+          description: The merchant removal `orderId`.
+        OrderId:
+          type: string
+          description: The identifier for the removal shipment order.
+        TransactionType:
+          type: string
+          description: 'The type of removal order.
+
+
+            Possible values:
+
+
+            * `WHOLESALE_LIQUIDATION`'
+        StoreName:
+          type: string
+          description: The name of the store where the event occurred.
+        RemovalShipmentItemList:
+          description: A list of removal shipment items.
+          $ref: '#/components/schemas/RemovalShipmentItemList'
+      description: A removal shipment event for a removal order.
+    TrialShipmentEventList:
+      type: array
+      items:
+        $ref: '#/components/schemas/TrialShipmentEvent'
+      description: A list of information about trial shipment financial events.
+    SellerReviewEnrollmentPaymentEventList:
+      type: array
+      description: A list of information about fee events for the Early Reviewer Program.
+      items:
+        $ref: '#/components/schemas/SellerReviewEnrollmentPaymentEvent'
+    ProductAdsPaymentEventList:
+      type: array
+      description: A list of sponsored products payment events.
+      items:
+        $ref: '#/components/schemas/ProductAdsPaymentEvent'
+    SolutionProviderCreditEventList:
+      type: array
+      description: A list of `SolutionProviderCreditEvent`.
+      items:
+        $ref: '#/components/schemas/SolutionProviderCreditEvent'
+    EBTRefundReimbursementOnlyEventList:
+      type: array
+      items:
+        $ref: '#/components/schemas/EBTRefundReimbursementOnlyEvent'
+      description: A list of EBT refund reimbursement events.
+    AdjustmentItem:
+      type: object
+      properties:
+        Quantity:
+          type: string
+          description: Represents the number of units in the seller's inventory when the `AdjustmentType` is `FBAInventoryReimbursement`.
+        PerUnitAmount:
+          description: The per-unit value of the item.
+          $ref: '#/components/schemas/Currency_2'
+        TotalAmount:
+          description: The total value of the item.
+          $ref: '#/components/schemas/Currency_2'
+        SellerSKU:
+          type: string
+          description: The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
+        FnSKU:
+          type: string
+          description: A unique identifier assigned to products stored in and fulfilled from a fulfillment center.
+        ProductDescription:
+          type: string
+          description: A short description of the item.
+        ASIN:
+          type: string
+          description: The Amazon Standard Identification Number (ASIN) of the item.
+        TransactionNumber:
+          type: string
+          description: The transaction number that is related to the adjustment.
+      description: An item in an adjustment to the seller's account.
+    RemovalShipmentItemList:
+      type: array
+      description: A list of `RemovalShipmentItem`.
+      items:
+        $ref: '#/components/schemas/RemovalShipmentItem'
+    ShipmentItem:
+      type: object
+      properties:
+        SellerSKU:
+          type: string
+          description: The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
+        OrderItemId:
+          type: string
+          description: An Amazon-defined order item identifier.
+        OrderAdjustmentItemId:
+          type: string
+          description: An Amazon-defined order adjustment identifier defined for refunds, guarantee claims, and chargeback events.
+        QuantityShipped:
+          type: integer
+          format: int32
+          description: The number of items shipped.
+        ItemChargeList:
+          description: A list of charges associated with the shipment item.
+          $ref: '#/components/schemas/ChargeComponentList'
+        ItemChargeAdjustmentList:
+          description: A list of charge adjustments associated with the shipment item. This value is only returned for refunds, guarantee claims, and chargeback events.
+          $ref: '#/components/schemas/ChargeComponentList'
+        ItemFeeList:
+          description: A list of fees associated with the shipment item.
+          $ref: '#/components/schemas/FeeComponentList'
+        ItemFeeAdjustmentList:
+          description: A list of fee adjustments associated with the shipment item. This value is only returned for refunds, guarantee claims, and chargeback events.
+          $ref: '#/components/schemas/FeeComponentList'
+        ItemTaxWithheldList:
+          description: A list of taxes withheld information for a shipment item.
+          $ref: '#/components/schemas/TaxWithheldComponentList'
+        PromotionList:
+          $ref: '#/components/schemas/PromotionList'
+        PromotionAdjustmentList:
+          description: A list of promotion adjustments associated with the shipment item. This value is only returned for refunds, guarantee claims, and chargeback events.
+          $ref: '#/components/schemas/PromotionList'
+        CostOfPointsGranted:
+          description: The cost of Amazon Points granted for a shipment item.
+          $ref: '#/components/schemas/Currency_2'
+        CostOfPointsReturned:
+          description: The cost of Amazon Points returned for a shipment item. This value is only returned for refunds, guarantee claims, and chargeback events.
+          $ref: '#/components/schemas/Currency_2'
+      description: An item of a shipment, refund, guarantee claim, or chargeback.
+    ValueAddedServiceChargeEvent:
+      type: object
+      properties:
+        TransactionType:
+          type: string
+          description: The transaction type. For example, 'Other Support Service fees'
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        Description:
+          type: string
+          description: A short description of the service charge event.
+        TransactionAmount:
+          description: The amount of the service charge event.
+          $ref: '#/components/schemas/Currency_2'
+      description: An event related to a value added service charge.
+    RentalTransactionEvent:
+      type: object
+      properties:
+        AmazonOrderId:
+          type: string
+          description: An Amazon-defined identifier for an order.
+        RentalEventType:
+          type: string
+          description: 'The type of rental event.
+
+
+            Possible values:
+
+
+            * `RentalCustomerPayment-Buyout`: A transaction type that represents when the customer wants to buy out a rented item.
+
+
+            * `RentalCustomerPayment-Extension`: A transaction type that represents when the customer wants to extend the rental period.
+
+
+            * `RentalCustomerRefund-Buyout`: A transaction type that represents when the customer requests a refund for the buyout of the rented item.
+
+
+            * `RentalCustomerRefund-Extension`: A transaction type that represents when the customer requests a refund over the extension on the rented item.
+
+
+            * `RentalHandlingFee`: A transaction type that represents the fee that Amazon charges sellers who rent through Amazon.
+
+
+            * `RentalChargeFailureReimbursement`: A transaction type that represents when Amazon sends money to the seller to compensate for a failed charge.
+
+
+            * `RentalLostItemReimbursement`: A transaction type that represents when Amazon sends money to the seller to compensate for a lost item.'
+        ExtensionLength:
+          type: integer
+          format: int32
+          description: The number of days that the buyer extended an already rented item. This value is only returned for `RentalCustomerPayment-Extension` and `RentalCustomerRefund-Extension` events.
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        RentalChargeList:
+          description: A list of charges associated with the rental event.
+          $ref: '#/components/schemas/ChargeComponentList'
+        RentalFeeList:
+          description: A list of fees associated with the rental event.
+          $ref: '#/components/schemas/FeeComponentList'
+        MarketplaceName:
+          type: string
+          description: The name of the marketplace.
+        RentalInitialValue:
+          description: The amount of money that the customer originally paid to rent the item. This value is only returned for `RentalChargeFailureReimbursement` and `RentalLostItemReimbursement` events.
+          $ref: '#/components/schemas/Currency_2'
+        RentalReimbursement:
+          description: The amount of money that Amazon sends the seller to compensate for a lost item or a failed charge. This value is only returned for `RentalChargeFailureReimbursement` and `RentalLostItemReimbursement` events.
+          $ref: '#/components/schemas/Currency_2'
+        RentalTaxWithheldList:
+          description: A list of taxes withheld information for a rental item.
+          $ref: '#/components/schemas/TaxWithheldComponentList'
+      description: An event related to a rental transaction.
+    CouponPaymentEventList:
+      type: array
+      description: A list of coupon payment event information.
+      items:
+        $ref: '#/components/schemas/CouponPaymentEvent'
+    FailedAdhocDisbursementEvent:
+      type: object
+      properties:
+        FundsTransfersType:
+          type: string
+          description: The type of fund transfer. For example, `Refund`.
+        TransferId:
+          type: string
+          description: The transfer identifier.
+        DisbursementId:
+          type: string
+          description: The disbursement identifier.
+        PaymentDisbursementType:
+          type: string
+          description: The type of payment for disbursement. For example, `CREDIT_CARD`.
+        Status:
+          type: string
+          description: The status of the failed `AdhocDisbursement`. For example, `HARD_DECLINED`.
+        TransferAmount:
+          description: The amount of the Adhoc Disbursement.
+          $ref: '#/components/schemas/Currency_2'
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+      description: Failed ad hoc disbursement event list.
+    ChargeRefundTransactions:
+      type: array
+      description: A list of `ChargeRefund` transactions
+      items:
+        $ref: '#/components/schemas/ChargeRefundTransaction'
+    CouponPaymentEvent:
+      type: object
+      properties:
+        PostedDate:
+          description: The date and time when the financial event was posted.
+          $ref: '#/components/schemas/Date'
+        CouponId:
+          type: string
+          description: A coupon identifier.
+        SellerCouponDescription:
+          type: string
+          description: The description provided by the seller when they created the coupon.
+        ClipOrRedemptionCount:
+          type: integer
+          format: int64
+          description: The number of coupon clips or redemptions.
+        PaymentEventId:
+          type: string
+          description: A payment event identifier.
+        FeeComponent:
+          $ref: '#/components/schemas/FeeComponent'
+        ChargeComponent:
+          $ref: '#/components/schemas/ChargeComponent'
+        TotalAmount:
+          description: The `FeeComponent` value plus the `ChargeComponent` value.
+          $ref: '#/components/schemas/Currency_2'
+      description: An event related to coupon payments.
+    ServiceFeeEvent:
+      type: object
+      properties:
+        AmazonOrderId:
+          type: string
+          description: An Amazon-defined identifier for an order.
+        FeeReason:
+          type: string
+          description: A short description of the service fee reason.
+        FeeList:
+          description: A list of fee components associated with the service fee.
+          $ref: '#/components/schemas/FeeComponentList'
+        SellerSKU:
+          type: string
+          description: The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
+        FnSKU:
+          type: string
+          description: A unique identifier assigned by Amazon to products stored in and fulfilled from an Amazon fulfillment center.
+        FeeDescription:
+          type: string
+          description: A short description of the service fee event.
+        ASIN:
+          type: string
+          description: The Amazon Standard Identification Number (ASIN) of the item.
+        StoreName:
+          type: string
+          description: The name of the store where the event occurred.
+      description: A service fee on the seller's account.
+    ListFinancialEventGroupsPayload:
+      type: object
+      properties:
+        NextToken:
+          type: string
+          description: When present and not empty, pass this string token in the next request to return the next response page.
+        FinancialEventGroupList:
+          $ref: '#/components/schemas/FinancialEventGroupList'
+      description: The payload for the `listFinancialEventGroups` operation.
+    TaxWithheldComponent:
+      type: object
+      properties:
+        TaxCollectionModel:
+          type: string
+          description: 'The tax collection model applied to the item.
+
+
+            Possible values:
+
+
+            * `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
+
+            * `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.'
+        TaxesWithheld:
+          description: A list of charges that represent the types and amounts of taxes withheld.
+          $ref: '#/components/schemas/ChargeComponentList'
+      description: Information about the taxes withheld.
+    SolutionProviderCreditEvent:
+      type: object
+      properties:
+        ProviderTransactionType:
+          type: string
+          description: The transaction type.
+        SellerOrderId:
+          type: string
+          description: A seller-defined identifier for an order.
+        MarketplaceId:
+          type: string
+          description: The identifier of the marketplace where the order was placed.
+        MarketplaceCountryCode:
+          type: string
+          description: The two-letter country code of the country associated with the marketplace where the order was placed.
+        SellerId:
+          type: string
+          description: The Amazon-defined identifier of the seller.
+        SellerStoreName:
+          type: string
+          description: The store name where the payment event occurred.
+        ProviderId:
+          type: string
+          description: The Amazon-defined identifier of the solution provider.
+        ProviderStoreName:
+          type: string
+          description: The store name where the payment event occurred.
+        TransactionAmount:
+          description: The amount of the credit.
+          $ref: '#/components/schemas/Currency_2'
+        TransactionCreationDate:
+          description: The date and time that the credit transaction was created, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
+          $ref: '#/components/schemas/Date'
+      description: A credit given to a solution provider.
+    ShipmentSettleEventList:
+      type: array
+      description: A list of `ShipmentEvent` items.
+      items:
+        $ref: '#/components/schemas/ShipmentEvent'
+    RetrochargeEventList:
+      type: array
+      description: A list of information about `Retrocharge` or `RetrochargeReversal` events.
+      items:
+        $ref: '#/components/schemas/RetrochargeEvent'
     AdjustmentEvent:
       type: object
       properties:
@@ -2516,184 +3656,99 @@ components:
           description: A list of information about adjustments to an account.
           $ref: '#/components/schemas/AdjustmentItemList'
       description: An adjustment to the seller's account.
-    SellerDealPaymentEventList:
-      type: array
-      description: A list of payment events for deal-related fees.
-      items:
-        $ref: '#/components/schemas/SellerDealPaymentEvent'
-    ChargeRefundEvent:
+    FinancialEvents:
       type: object
       properties:
-        PostedDate:
-          description: The date and time when the financial event was posted.
-          $ref: '#/components/schemas/Date'
-        ReasonCode:
-          type: string
-          description: The reason given for a charge refund. For example, `SubscriptionFeeCorrection`.
-        ReasonCodeDescription:
-          type: string
-          description: A description of the Reason Code. For example, `SubscriptionFeeCorrection`.
-        ChargeRefundTransactions:
-          description: The amount of the charge refund credit.
-          $ref: '#/components/schemas/ChargeRefundTransactions'
-      description: An event related to charge refund.
-    FeeComponent:
-      type: object
-      properties:
-        FeeType:
-          type: string
-          description: The type of fee. For more information about Selling on Amazon fees, see [Selling on Amazon Fee Schedule](https://sellercentral.amazon.com/gp/help/200336920) on Seller Central. For more information about Fulfillment by Amazon fees, see [FBA features, services and fees](https://sellercentral.amazon.com/gp/help/201074400) on Seller Central.
-        FeeAmount:
-          description: The amount of the fee.
-          $ref: '#/components/schemas/Currency_2'
-      description: A fee associated with the event.
-    CouponPaymentEventList:
-      type: array
-      description: A list of coupon payment event information.
-      items:
-        $ref: '#/components/schemas/CouponPaymentEvent'
-    TaxWithholdingEvent:
-      type: object
-      properties:
-        PostedDate:
-          description: The date and time when the financial event was posted.
-          $ref: '#/components/schemas/Date'
-        BaseAmount:
-          description: The amount which tax was withheld against.
-          $ref: '#/components/schemas/Currency_2'
-        WithheldAmount:
-          description: The amount of the tax withholding deducted from seller's account.
-          $ref: '#/components/schemas/Currency_2'
-        TaxWithholdingPeriod:
-          description: Time period for which tax is withheld.
-          $ref: '#/components/schemas/TaxWithholdingPeriod'
-      description: A tax withholding event on a seller's account.
-    Error_2:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: An error code that identifies the type of error that occurred.
-        message:
-          type: string
-          description: A message that describes the error condition in a human-readable form.
-        details:
-          type: string
-          description: Additional details that can help the caller understand or fix the issue.
-      description: Error response returned when the request is unsuccessful.
-    ProductAdsPaymentEvent:
-      type: object
-      properties:
-        postedDate:
-          description: The date and time when the financial event was posted.
-          $ref: '#/components/schemas/Date'
-        transactionType:
-          type: string
-          description: 'Indicates if the transaction is for a charge or a refund.
-
-
-            Possible values:
-
-
-            * `charge`
-
-
-            * `refund`'
-        invoiceId:
-          type: string
-          description: The identifier for the invoice that includes the transaction.
-        baseValue:
-          description: Base amount of the transaction, before tax.
-          $ref: '#/components/schemas/Currency_2'
-        taxValue:
-          description: Tax amount of the transaction.
-          $ref: '#/components/schemas/Currency_2'
-        transactionValue:
-          description: The total amount of the transaction. Equal to `baseValue` + `taxValue`.
-          $ref: '#/components/schemas/Currency_2'
-      description: A Sponsored Products payment event.
-    TDSReimbursementEventList:
-      type: array
-      items:
-        $ref: '#/components/schemas/TDSReimbursementEvent'
-      description: A list of `TDSReimbursementEvent` items.
-    TaxWithheldComponentList:
-      type: array
-      description: A list of information about taxes withheld.
-      items:
-        $ref: '#/components/schemas/TaxWithheldComponent'
-    NetworkComminglingTransactionEvent:
-      type: object
-      properties:
-        TransactionType:
-          type: string
-          description: 'The type of network item swap.
-
-
-            Possible values:
-
-
-            * `NetCo`: A Fulfillment by Amazon inventory pooling transaction. Available only in the India marketplace.
-
-
-            * `ComminglingVAT`: A commingling VAT transaction. Available only in the Spain, UK, France, Germany, and Italy marketplaces.'
-        PostedDate:
-          description: The date and time when the financial event was posted.
-          $ref: '#/components/schemas/Date'
-        NetCoTransactionID:
-          type: string
-          description: The identifier for the network item swap.
-        SwapReason:
-          type: string
-          description: The reason for the network item swap.
-        ASIN:
-          type: string
-          description: The Amazon Standard Identification Number (ASIN) of the swapped item.
-        MarketplaceId:
-          type: string
-          description: The marketplace in which the event took place.
-        TaxExclusiveAmount:
-          description: The price of the swapped item minus `TaxAmount`.
-          $ref: '#/components/schemas/Currency_2'
-        TaxAmount:
-          description: The tax on the network item swap paid by the seller.
-          $ref: '#/components/schemas/Currency_2'
-      description: A network commingling transaction event.
-    LoanServicingEvent:
-      type: object
-      properties:
-        LoanAmount:
-          description: The amount of the loan.
-          $ref: '#/components/schemas/Currency_2'
-        SourceBusinessEventType:
-          type: string
-          description: 'The type of event.
-
-
-            Possible values:
-
-
-            * `LoanAdvance`
-
-
-            * `LoanPayment`
-
-
-            * `LoanRefund`'
-      description: A loan advance, loan payment, or loan refund.
-    TrialShipmentEventList:
-      type: array
-      items:
-        $ref: '#/components/schemas/TrialShipmentEvent'
-      description: A list of information about trial shipment financial events.
+        ShipmentEventList:
+          description: A list of shipment events.
+          $ref: '#/components/schemas/ShipmentEventList'
+        ShipmentSettleEventList:
+          description: A list of Shipment Settle events.
+          $ref: '#/components/schemas/ShipmentSettleEventList'
+        RefundEventList:
+          description: A list of refund events.
+          $ref: '#/components/schemas/ShipmentEventList'
+        GuaranteeClaimEventList:
+          description: A list of guarantee claim events.
+          $ref: '#/components/schemas/ShipmentEventList'
+        EBTRefundReimbursementOnlyEventList:
+          description: A list of EBT refund reimbursement events.
+          $ref: '#/components/schemas/EBTRefundReimbursementOnlyEventList'
+        ChargebackEventList:
+          description: A list of chargeback events.
+          $ref: '#/components/schemas/ShipmentEventList'
+        PayWithAmazonEventList:
+          $ref: '#/components/schemas/PayWithAmazonEventList'
+        ServiceProviderCreditEventList:
+          $ref: '#/components/schemas/SolutionProviderCreditEventList'
+        RetrochargeEventList:
+          $ref: '#/components/schemas/RetrochargeEventList'
+        RentalTransactionEventList:
+          $ref: '#/components/schemas/RentalTransactionEventList'
+        ProductAdsPaymentEventList:
+          $ref: '#/components/schemas/ProductAdsPaymentEventList'
+        ServiceFeeEventList:
+          $ref: '#/components/schemas/ServiceFeeEventList'
+        SellerDealPaymentEventList:
+          $ref: '#/components/schemas/SellerDealPaymentEventList'
+        DebtRecoveryEventList:
+          $ref: '#/components/schemas/DebtRecoveryEventList'
+        LoanServicingEventList:
+          $ref: '#/components/schemas/LoanServicingEventList'
+        AdjustmentEventList:
+          $ref: '#/components/schemas/AdjustmentEventList'
+        SAFETReimbursementEventList:
+          $ref: '#/components/schemas/SAFETReimbursementEventList'
+        SellerReviewEnrollmentPaymentEventList:
+          $ref: '#/components/schemas/SellerReviewEnrollmentPaymentEventList'
+        FBALiquidationEventList:
+          $ref: '#/components/schemas/FBALiquidationEventList'
+        CouponPaymentEventList:
+          $ref: '#/components/schemas/CouponPaymentEventList'
+        ImagingServicesFeeEventList:
+          $ref: '#/components/schemas/ImagingServicesFeeEventList'
+        NetworkComminglingTransactionEventList:
+          $ref: '#/components/schemas/NetworkComminglingTransactionEventList'
+        AffordabilityExpenseEventList:
+          $ref: '#/components/schemas/AffordabilityExpenseEventList'
+        AffordabilityExpenseReversalEventList:
+          $ref: '#/components/schemas/AffordabilityExpenseEventList'
+        RemovalShipmentEventList:
+          $ref: '#/components/schemas/RemovalShipmentEventList'
+        RemovalShipmentAdjustmentEventList:
+          $ref: '#/components/schemas/RemovalShipmentAdjustmentEventList'
+        TrialShipmentEventList:
+          $ref: '#/components/schemas/TrialShipmentEventList'
+        TDSReimbursementEventList:
+          $ref: '#/components/schemas/TDSReimbursementEventList'
+        AdhocDisbursementEventList:
+          $ref: '#/components/schemas/AdhocDisbursementEventList'
+        TaxWithholdingEventList:
+          $ref: '#/components/schemas/TaxWithholdingEventList'
+        ChargeRefundEventList:
+          $ref: '#/components/schemas/ChargeRefundEventList'
+        FailedAdhocDisbursementEventList:
+          $ref: '#/components/schemas/FailedAdhocDisbursementEventList'
+        ValueAddedServiceChargeEventList:
+          $ref: '#/components/schemas/ValueAddedServiceChargeEventList'
+        CapacityReservationBillingEventList:
+          $ref: '#/components/schemas/CapacityReservationBillingEventList'
+      description: All the information that is related to a financial event.
     ErrorList_2:
       type: array
       description: A list of error responses returned when a request is unsuccessful.
       items:
         $ref: '#/components/schemas/Error_2'
+    ServiceFeeEventList:
+      type: array
+      description: A list of information about service fee events.
+      items:
+        $ref: '#/components/schemas/ServiceFeeEvent'
+    ChargeComponentList:
+      type: array
+      description: A list of charge information on the seller's account.
+      items:
+        $ref: '#/components/schemas/ChargeComponent'
     ChargeComponent:
       type: object
       properties:
@@ -2803,878 +3858,6 @@ components:
 
 
         * `PaidthroughEBT`: The amount of money paid with EBT for any order or shipment items.'
-    DebtRecoveryEvent:
-      type: object
-      properties:
-        DebtRecoveryType:
-          type: string
-          description: 'The debt recovery type.
-
-
-            Possible values:
-
-
-            * `DebtPayment`
-
-            * `DebtPaymentFailure`
-
-            * `DebtAdjustment`'
-        RecoveryAmount:
-          description: The amount applied for recovery.
-          $ref: '#/components/schemas/Currency_2'
-        OverPaymentCredit:
-          description: The amount returned for overpayment.
-          $ref: '#/components/schemas/Currency_2'
-        DebtRecoveryItemList:
-          $ref: '#/components/schemas/DebtRecoveryItemList'
-        ChargeInstrumentList:
-          $ref: '#/components/schemas/ChargeInstrumentList'
-      description: A debt payment or debt adjustment.
-    AdhocDisbursementEventList:
-      type: array
-      items:
-        $ref: '#/components/schemas/AdhocDisbursementEvent'
-      description: A list of `AdhocDisbursement` events.
-    ShipmentSettleEventList:
-      type: array
-      description: A list of `ShipmentEvent` items.
-      items:
-        $ref: '#/components/schemas/ShipmentEvent'
-    SellerDealPaymentEvent:
-      type: object
-      properties:
-        postedDate:
-          description: The date and time when the financial event was posted.
-          $ref: '#/components/schemas/Date'
-        dealId:
-          type: string
-          description: The unique identifier of the deal.
-        dealDescription:
-          type: string
-          description: The internal description of the deal.
-        eventType:
-          type: string
-          description: 'The type of event: `SellerDealComplete`.'
-        feeType:
-          type: string
-          description: 'The type of fee: `RunLightningDealFee`.'
-        feeAmount:
-          description: The monetary amount of the fee.
-          $ref: '#/components/schemas/Currency_2'
-        taxAmount:
-          description: The monetary amount of the tax applied.
-          $ref: '#/components/schemas/Currency_2'
-        totalAmount:
-          description: The total monetary amount paid.
-          $ref: '#/components/schemas/Currency_2'
-      description: An event linked to the payment of a fee related to the specified deal.
-    SellerReviewEnrollmentPaymentEvent:
-      type: object
-      properties:
-        PostedDate:
-          description: The date and time when the financial event was posted.
-          $ref: '#/components/schemas/Date'
-        EnrollmentId:
-          type: string
-          description: An enrollment identifier.
-        ParentASIN:
-          type: string
-          description: The Amazon Standard Identification Number (ASIN) of the item that was enrolled in the Early Reviewer Program.
-        FeeComponent:
-          $ref: '#/components/schemas/FeeComponent'
-        ChargeComponent:
-          $ref: '#/components/schemas/ChargeComponent'
-        TotalAmount:
-          description: The `FeeComponent` value plus the `ChargeComponent` value.
-          $ref: '#/components/schemas/Currency_2'
-      description: A fee payment event for the Early Reviewer Program.
-    RetrochargeEvent:
-      type: object
-      properties:
-        RetrochargeEventType:
-          type: string
-          description: 'The type of event.
-
-
-            Possible values:
-
-
-            * `Retrocharge`
-
-
-            * `RetrochargeReversal`'
-        AmazonOrderId:
-          type: string
-          description: An Amazon-defined identifier for an order.
-        PostedDate:
-          description: The date and time when the financial event was posted.
-          $ref: '#/components/schemas/Date'
-        BaseTax:
-          description: The base tax associated with the retrocharge event.
-          $ref: '#/components/schemas/Currency_2'
-        ShippingTax:
-          description: The shipping tax associated with the retrocharge event.
-          $ref: '#/components/schemas/Currency_2'
-        MarketplaceName:
-          type: string
-          description: The name of the marketplace where the retrocharge event occurred.
-        RetrochargeTaxWithheldList:
-          description: A list of information about taxes withheld.
-          $ref: '#/components/schemas/TaxWithheldComponentList'
-      description: A retrocharge or retrocharge reversal.
-    FBALiquidationEvent:
-      type: object
-      properties:
-        PostedDate:
-          description: The date and time when the financial event was posted.
-          $ref: '#/components/schemas/Date'
-        OriginalRemovalOrderId:
-          type: string
-          description: The identifier for the original removal order.
-        LiquidationProceedsAmount:
-          description: The amount paid by the liquidator for the seller's inventory. The seller receives this amount minus `LiquidationFeeAmount`.
-          $ref: '#/components/schemas/Currency_2'
-        LiquidationFeeAmount:
-          description: The fee charged to the seller by Amazon for liquidating the seller's FBA inventory.
-          $ref: '#/components/schemas/Currency_2'
-      description: A payment event for Fulfillment by Amazon (FBA) inventory liquidation. This event is used only in the US marketplace.
-    RentalTransactionEvent:
-      type: object
-      properties:
-        AmazonOrderId:
-          type: string
-          description: An Amazon-defined identifier for an order.
-        RentalEventType:
-          type: string
-          description: 'The type of rental event.
-
-
-            Possible values:
-
-
-            * `RentalCustomerPayment-Buyout`: A transaction type that represents when the customer wants to buy out a rented item.
-
-
-            * `RentalCustomerPayment-Extension`: A transaction type that represents when the customer wants to extend the rental period.
-
-
-            * `RentalCustomerRefund-Buyout`: A transaction type that represents when the customer requests a refund for the buyout of the rented item.
-
-
-            * `RentalCustomerRefund-Extension`: A transaction type that represents when the customer requests a refund over the extension on the rented item.
-
-
-            * `RentalHandlingFee`: A transaction type that represents the fee that Amazon charges sellers who rent through Amazon.
-
-
-            * `RentalChargeFailureReimbursement`: A transaction type that represents when Amazon sends money to the seller to compensate for a failed charge.
-
-
-            * `RentalLostItemReimbursement`: A transaction type that represents when Amazon sends money to the seller to compensate for a lost item.'
-        ExtensionLength:
-          type: integer
-          format: int32
-          description: The number of days that the buyer extended an already rented item. This value is only returned for `RentalCustomerPayment-Extension` and `RentalCustomerRefund-Extension` events.
-        PostedDate:
-          description: The date and time when the financial event was posted.
-          $ref: '#/components/schemas/Date'
-        RentalChargeList:
-          description: A list of charges associated with the rental event.
-          $ref: '#/components/schemas/ChargeComponentList'
-        RentalFeeList:
-          description: A list of fees associated with the rental event.
-          $ref: '#/components/schemas/FeeComponentList'
-        MarketplaceName:
-          type: string
-          description: The name of the marketplace.
-        RentalInitialValue:
-          description: The amount of money that the customer originally paid to rent the item. This value is only returned for `RentalChargeFailureReimbursement` and `RentalLostItemReimbursement` events.
-          $ref: '#/components/schemas/Currency_2'
-        RentalReimbursement:
-          description: The amount of money that Amazon sends the seller to compensate for a lost item or a failed charge. This value is only returned for `RentalChargeFailureReimbursement` and `RentalLostItemReimbursement` events.
-          $ref: '#/components/schemas/Currency_2'
-        RentalTaxWithheldList:
-          description: A list of taxes withheld information for a rental item.
-          $ref: '#/components/schemas/TaxWithheldComponentList'
-      description: An event related to a rental transaction.
-    ListFinancialEventsResponse:
-      type: object
-      properties:
-        payload:
-          description: The payload for the `listFinancialEvents` operation.
-          $ref: '#/components/schemas/ListFinancialEventsPayload'
-        errors:
-          description: One or more unexpected errors occurred during the `listFinancialEvents` operation.
-          $ref: '#/components/schemas/ErrorList_2'
-      description: The response schema for the `listFinancialEvents` operation.
-    ShipmentItem:
-      type: object
-      properties:
-        SellerSKU:
-          type: string
-          description: The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
-        OrderItemId:
-          type: string
-          description: An Amazon-defined order item identifier.
-        OrderAdjustmentItemId:
-          type: string
-          description: An Amazon-defined order adjustment identifier defined for refunds, guarantee claims, and chargeback events.
-        QuantityShipped:
-          type: integer
-          format: int32
-          description: The number of items shipped.
-        ItemChargeList:
-          description: A list of charges associated with the shipment item.
-          $ref: '#/components/schemas/ChargeComponentList'
-        ItemChargeAdjustmentList:
-          description: A list of charge adjustments associated with the shipment item. This value is only returned for refunds, guarantee claims, and chargeback events.
-          $ref: '#/components/schemas/ChargeComponentList'
-        ItemFeeList:
-          description: A list of fees associated with the shipment item.
-          $ref: '#/components/schemas/FeeComponentList'
-        ItemFeeAdjustmentList:
-          description: A list of fee adjustments associated with the shipment item. This value is only returned for refunds, guarantee claims, and chargeback events.
-          $ref: '#/components/schemas/FeeComponentList'
-        ItemTaxWithheldList:
-          description: A list of taxes withheld information for a shipment item.
-          $ref: '#/components/schemas/TaxWithheldComponentList'
-        PromotionList:
-          $ref: '#/components/schemas/PromotionList'
-        PromotionAdjustmentList:
-          description: A list of promotion adjustments associated with the shipment item. This value is only returned for refunds, guarantee claims, and chargeback events.
-          $ref: '#/components/schemas/PromotionList'
-        CostOfPointsGranted:
-          description: The cost of Amazon Points granted for a shipment item.
-          $ref: '#/components/schemas/Currency_2'
-        CostOfPointsReturned:
-          description: The cost of Amazon Points returned for a shipment item. This value is only returned for refunds, guarantee claims, and chargeback events.
-          $ref: '#/components/schemas/Currency_2'
-      description: An item of a shipment, refund, guarantee claim, or chargeback.
-    RemovalShipmentItemList:
-      type: array
-      description: A list of `RemovalShipmentItem`.
-      items:
-        $ref: '#/components/schemas/RemovalShipmentItem'
-    CapacityReservationBillingEventList:
-      type: array
-      items:
-        $ref: '#/components/schemas/CapacityReservationBillingEvent'
-      description: A list of `CapacityReservationBillingEvent` events.
-    DebtRecoveryItemList:
-      type: array
-      description: A list of debt recovery item information.
-      items:
-        $ref: '#/components/schemas/DebtRecoveryItem'
-    EBTRefundReimbursementOnlyEvent:
-      type: object
-      properties:
-        OrderId:
-          type: string
-          description: The identifier of an order.
-        PostedDate:
-          description: The date and time when the financial event was posted.
-          $ref: '#/components/schemas/Date'
-        Amount:
-          description: The amount reimbursed during this event.
-          $ref: '#/components/schemas/Currency_2'
-      description: An EBT refund reimbursement event.
-    TaxWithheldComponent:
-      type: object
-      properties:
-        TaxCollectionModel:
-          type: string
-          description: 'The tax collection model applied to the item.
-
-
-            Possible values:
-
-
-            * `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
-
-            * `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.'
-        TaxesWithheld:
-          description: A list of charges that represent the types and amounts of taxes withheld.
-          $ref: '#/components/schemas/ChargeComponentList'
-      description: Information about the taxes withheld.
-    ShipmentEvent:
-      type: object
-      properties:
-        AmazonOrderId:
-          type: string
-          description: An Amazon-defined identifier for an order.
-        SellerOrderId:
-          type: string
-          description: A seller-defined identifier for an order.
-        MarketplaceName:
-          type: string
-          description: The name of the marketplace where the event occurred.
-        StoreName:
-          type: string
-          description: The name of the store where the event occurred.
-        OrderChargeList:
-          description: A list of order-level charges. These charges are applicable to Multi-Channel Fulfillment COD orders.
-          $ref: '#/components/schemas/ChargeComponentList'
-        OrderChargeAdjustmentList:
-          description: A list of order-level charge adjustments. These adjustments are applicable to Multi-Channel Fulfillment COD orders.
-          $ref: '#/components/schemas/ChargeComponentList'
-        ShipmentFeeList:
-          description: A list of shipment-level fees.
-          $ref: '#/components/schemas/FeeComponentList'
-        ShipmentFeeAdjustmentList:
-          description: A list of shipment-level fee adjustments.
-          $ref: '#/components/schemas/FeeComponentList'
-        OrderFeeList:
-          description: A list of order-level fees. These charges are applicable to Multi-Channel Fulfillment orders.
-          $ref: '#/components/schemas/FeeComponentList'
-        OrderFeeAdjustmentList:
-          description: A list of order-level fee adjustments. These adjustments are applicable to Multi-Channel Fulfillment orders.
-          $ref: '#/components/schemas/FeeComponentList'
-        DirectPaymentList:
-          description: A list of transactions where buyers pay Amazon through one of the credit cards offered by Amazon or where buyers pay a seller directly through COD.
-          $ref: '#/components/schemas/DirectPaymentList'
-        PostedDate:
-          description: The date and time when the financial event was posted.
-          $ref: '#/components/schemas/Date'
-        ShipmentItemList:
-          $ref: '#/components/schemas/ShipmentItemList'
-        ShipmentItemAdjustmentList:
-          description: A list of shipment item adjustments.
-          $ref: '#/components/schemas/ShipmentItemList'
-      description: A shipment, refund, guarantee claim, or chargeback.
-    LoanServicingEventList:
-      type: array
-      description: A list of loan servicing events.
-      items:
-        $ref: '#/components/schemas/LoanServicingEvent'
-    AdjustmentEventList:
-      type: array
-      description: A list of adjustment event information for the seller's account.
-      items:
-        $ref: '#/components/schemas/AdjustmentEvent'
-    ChargeComponentList:
-      type: array
-      description: A list of charge information on the seller's account.
-      items:
-        $ref: '#/components/schemas/ChargeComponent'
-    SolutionProviderCreditEventList:
-      type: array
-      description: A list of `SolutionProviderCreditEvent`.
-      items:
-        $ref: '#/components/schemas/SolutionProviderCreditEvent'
-    PayWithAmazonEventList:
-      type: array
-      description: A list of events related to the seller's Pay with Amazon account.
-      items:
-        $ref: '#/components/schemas/PayWithAmazonEvent'
-    ListFinancialEventsPayload:
-      type: object
-      properties:
-        NextToken:
-          type: string
-          description: When present and not empty, pass this string token in the next request to return the next response page.
-        FinancialEvents:
-          $ref: '#/components/schemas/FinancialEvents'
-      description: The payload for the `listFinancialEvents` operation.
-    ImagingServicesFeeEvent:
-      type: object
-      properties:
-        ImagingRequestBillingItemID:
-          type: string
-          description: The identifier for the imaging services request.
-        ASIN:
-          type: string
-          description: The Amazon Standard Identification Number (ASIN) of the item for which the imaging service was requested.
-        PostedDate:
-          description: The date and time when the financial event was posted.
-          $ref: '#/components/schemas/Date'
-        FeeList:
-          description: A list of fees associated with the event.
-          $ref: '#/components/schemas/FeeComponentList'
-      description: A fee event related to Amazon Imaging services.
-    RemovalShipmentItem:
-      type: object
-      properties:
-        RemovalShipmentItemId:
-          type: string
-          description: An identifier for an item in a removal shipment.
-        TaxCollectionModel:
-          type: string
-          description: 'The tax collection model that is applied to the item.
-
-
-            Possible values:
-
-
-            * `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
-
-            * `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.'
-        FulfillmentNetworkSKU:
-          type: string
-          description: The Amazon fulfillment network SKU for the item.
-        Quantity:
-          type: integer
-          format: int32
-          description: The quantity of the item.
-        Revenue:
-          description: The total amount paid to the seller for the removed item.
-          $ref: '#/components/schemas/Currency_2'
-        FeeAmount:
-          description: The fee that Amazon charged to the seller for the removal of the item. The amount is a negative number.
-          $ref: '#/components/schemas/Currency_2'
-        TaxAmount:
-          description: Tax collected on the revenue.
-          $ref: '#/components/schemas/Currency_2'
-        TaxWithheld:
-          description: The tax withheld and remitted to the taxing authority by Amazon on behalf of the seller. If `TaxCollectionModel` = `MarketplaceFacilitator`, then `TaxWithheld` = `TaxAmount` (except when the `TaxWithheld` amount is a negative number). Otherwise, `TaxWithheld` = `0`.
-          $ref: '#/components/schemas/Currency_2'
-      description: Item-level information for a removal shipment.
-    ChargeRefundEventList:
-      type: array
-      items:
-        $ref: '#/components/schemas/ChargeRefundEvent'
-      description: A list of charge refund events.
-    FailedAdhocDisbursementEvent:
-      type: object
-      properties:
-        FundsTransfersType:
-          type: string
-          description: The type of fund transfer. For example, `Refund`.
-        TransferId:
-          type: string
-          description: The transfer identifier.
-        DisbursementId:
-          type: string
-          description: The disbursement identifier.
-        PaymentDisbursementType:
-          type: string
-          description: The type of payment for disbursement. For example, `CREDIT_CARD`.
-        Status:
-          type: string
-          description: The status of the failed `AdhocDisbursement`. For example, `HARD_DECLINED`.
-        TransferAmount:
-          description: The amount of the Adhoc Disbursement.
-          $ref: '#/components/schemas/Currency_2'
-        PostedDate:
-          description: The date and time when the financial event was posted.
-          $ref: '#/components/schemas/Date'
-      description: Failed ad hoc disbursement event list.
-    ChargeRefundTransaction:
-      type: object
-      properties:
-        ChargeAmount:
-          description: The amount of the charge refund credit.
-          $ref: '#/components/schemas/Currency_2'
-        ChargeType:
-          type: string
-          description: The type of charge.
-      description: The charge refund transaction.
-    FailedAdhocDisbursementEventList:
-      type: array
-      items:
-        $ref: '#/components/schemas/FailedAdhocDisbursementEvent'
-      description: A list of `FailedAdhocDisbursementEvent`.
-    RemovalShipmentAdjustmentEventList:
-      type: array
-      description: A comma-delimited list of `RemovalShipmentAdjustment` details for FBA inventory.
-      items:
-        $ref: '#/components/schemas/RemovalShipmentAdjustmentEvent'
-    SAFETReimbursementItemList:
-      type: array
-      description: A list of `SAFETReimbursementItem`.
-      items:
-        $ref: '#/components/schemas/SAFETReimbursementItem'
-    FBALiquidationEventList:
-      type: array
-      description: A list of FBA inventory liquidation payment events.
-      items:
-        $ref: '#/components/schemas/FBALiquidationEvent'
-    ChargeRefundTransactions:
-      type: array
-      description: A list of `ChargeRefund` transactions
-      items:
-        $ref: '#/components/schemas/ChargeRefundTransaction'
-    RemovalShipmentItemAdjustment:
-      type: object
-      properties:
-        RemovalShipmentItemId:
-          type: string
-          description: An identifier for an item in a removal shipment.
-        TaxCollectionModel:
-          type: string
-          description: 'The tax collection model that is applied to the item.
-
-
-            Possible values:
-
-
-            * `MarketplaceFacilitator`: Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
-
-            * `Standard`: Tax is paid to the seller and not remitted to the taxing authority by Amazon.'
-        FulfillmentNetworkSKU:
-          type: string
-          description: The Amazon fulfillment network SKU for the item.
-        AdjustedQuantity:
-          type: integer
-          format: int32
-          description: Adjusted quantity of `RemovalShipmentItemAdjustment` items.
-        RevenueAdjustment:
-          description: The total amount adjusted for disputed items.
-          $ref: '#/components/schemas/Currency_2'
-        TaxAmountAdjustment:
-          description: Adjustment on the tax collected amount on the adjusted revenue.
-          $ref: '#/components/schemas/Currency_2'
-        TaxWithheldAdjustment:
-          description: Adjustment of the tax that is withheld and remitted to the taxing authority by Amazon on behalf of the seller. If `TaxCollectionModel` = `MarketplaceFacilitator`, then `TaxWithheld` = `TaxAmount` (except when the `TaxWithheld` amount is a negative number). Otherwise, `TaxWithheld` = `0`.
-          $ref: '#/components/schemas/Currency_2'
-      description: Item-level information for a removal shipment item adjustment.
-    RetrochargeEventList:
-      type: array
-      description: A list of information about `Retrocharge` or `RetrochargeReversal` events.
-      items:
-        $ref: '#/components/schemas/RetrochargeEvent'
-    ListFinancialEventGroupsResponse:
-      type: object
-      properties:
-        payload:
-          description: The payload for the `listFinancialEventGroups` operation.
-          $ref: '#/components/schemas/ListFinancialEventGroupsPayload'
-        errors:
-          description: One or more unexpected errors occurred during the `listFinancialEventGroups` operation.
-          $ref: '#/components/schemas/ErrorList_2'
-      description: The response schema for the `listFinancialEventGroups` operation.
-    TrialShipmentEvent:
-      type: object
-      properties:
-        AmazonOrderId:
-          type: string
-          description: An Amazon-defined identifier for an order.
-        FinancialEventGroupId:
-          type: string
-          description: The identifier of the financial event group.
-        PostedDate:
-          description: The date and time when the financial event was posted.
-          $ref: '#/components/schemas/Date'
-        SKU:
-          type: string
-          description: The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
-        FeeList:
-          description: A list of fees charged by Amazon for trial shipments.
-          $ref: '#/components/schemas/FeeComponentList'
-      description: An event related to a trial shipment.
-    ShipmentEventList:
-      type: array
-      description: A list of shipment event information.
-      items:
-        $ref: '#/components/schemas/ShipmentEvent'
-    ValueAddedServiceChargeEventList:
-      type: array
-      items:
-        $ref: '#/components/schemas/ValueAddedServiceChargeEvent'
-      description: A list of `ValueAddedServiceCharge` events.
-    TDSReimbursementEvent:
-      type: object
-      properties:
-        PostedDate:
-          description: The date and time when the financial event was posted.
-          $ref: '#/components/schemas/Date'
-        TDSOrderId:
-          type: string
-          description: The Tax-Deducted-at-Source (TDS) identifier.
-        ReimbursedAmount:
-          description: The amount reimbursed.
-          $ref: '#/components/schemas/Currency_2'
-      description: An event related to a Tax-Deducted-at-Source (TDS) reimbursement.
-    AdjustmentItem:
-      type: object
-      properties:
-        Quantity:
-          type: string
-          description: Represents the number of units in the seller's inventory when the `AdjustmentType` is `FBAInventoryReimbursement`.
-        PerUnitAmount:
-          description: The per-unit value of the item.
-          $ref: '#/components/schemas/Currency_2'
-        TotalAmount:
-          description: The total value of the item.
-          $ref: '#/components/schemas/Currency_2'
-        SellerSKU:
-          type: string
-          description: The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
-        FnSKU:
-          type: string
-          description: A unique identifier assigned to products stored in and fulfilled from a fulfillment center.
-        ProductDescription:
-          type: string
-          description: A short description of the item.
-        ASIN:
-          type: string
-          description: The Amazon Standard Identification Number (ASIN) of the item.
-        TransactionNumber:
-          type: string
-          description: The transaction number that is related to the adjustment.
-      description: An item in an adjustment to the seller's account.
-    AdjustmentItemList:
-      type: array
-      description: A list of information about items in an adjustment to the seller's account.
-      items:
-        $ref: '#/components/schemas/AdjustmentItem'
-    ImagingServicesFeeEventList:
-      type: array
-      description: A list of fee events related to Amazon Imaging services.
-      items:
-        $ref: '#/components/schemas/ImagingServicesFeeEvent'
-    FinancialEventGroup:
-      type: object
-      properties:
-        FinancialEventGroupId:
-          type: string
-          description: A unique identifier for the financial event group.
-        ProcessingStatus:
-          type: string
-          description: 'The processing status of the financial event group indicates whether the balance of the financial event group is settled.
-
-
-            Possible values:
-
-
-            * `Open`
-
-            * `Closed`'
-        FundTransferStatus:
-          type: string
-          description: The status of the fund transfer.
-        OriginalTotal:
-          description: The total amount in the currency of the marketplace in which the transactions occurred. For a closed financial group, this is the total amount of a disbursement or a charge amount. For an open financial event group, this is the current balance.
-          $ref: '#/components/schemas/Currency_2'
-        ConvertedTotal:
-          description: The total amount in the currency of the marketplace in which the funds were disbursed.
-          $ref: '#/components/schemas/Currency_2'
-        FundTransferDate:
-          description: The date and time when the disbursement or charge was initiated. Only present for closed settlements. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
-          $ref: '#/components/schemas/Date'
-        TraceId:
-          type: string
-          description: The trace identifier used by sellers to look up transactions externally.
-        AccountTail:
-          type: string
-          description: The account tail of the payment instrument.
-        BeginningBalance:
-          description: The balance at the start of the settlement period.
-          $ref: '#/components/schemas/Currency_2'
-        FinancialEventGroupStart:
-          description: The date and time at which the financial event group is opened. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
-          $ref: '#/components/schemas/Date'
-        FinancialEventGroupEnd:
-          description: The date and time at which the financial event group is closed. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
-          $ref: '#/components/schemas/Date'
-      description: Information related to a financial event group.
-    FeeComponentList:
-      type: array
-      description: A list of fee component information.
-      items:
-        $ref: '#/components/schemas/FeeComponent'
-    TaxWithholdingPeriod:
-      type: object
-      properties:
-        StartDate:
-          description: Start of the time range.
-          $ref: '#/components/schemas/Date'
-        EndDate:
-          description: End of the time range.
-          $ref: '#/components/schemas/Date'
-      description: The period during which tax withholding on a seller's account is calculated.
-    SAFETReimbursementEvent:
-      type: object
-      properties:
-        PostedDate:
-          description: The date and time when the financial event was posted.
-          $ref: '#/components/schemas/Date'
-        SAFETClaimId:
-          type: string
-          description: A SAFE-T claim identifier.
-        ReimbursedAmount:
-          description: The amount of the reimbursement.
-          $ref: '#/components/schemas/Currency_2'
-        ReasonCode:
-          type: string
-          description: Indicates why the seller was reimbursed.
-        SAFETReimbursementItemList:
-          $ref: '#/components/schemas/SAFETReimbursementItemList'
-      description: A SAFE-T claim reimbursement on the seller's account.
-    ShipmentItemList:
-      type: array
-      description: A list of shipment items.
-      items:
-        $ref: '#/components/schemas/ShipmentItem'
-    DirectPayment:
-      type: object
-      properties:
-        DirectPaymentType:
-          type: string
-          description: 'The type of payment.
-
-
-            Possible values:
-
-
-            * `StoredValueCardRevenue` - The amount that is deducted from the seller''s account because the seller received money through a stored value card.
-
-
-            * `StoredValueCardRefund` - The amount that Amazon returns to the seller if the order that is purchased using a stored value card is refunded.
-
-
-            * `PrivateLabelCreditCardRevenue` - The amount that is deducted from the seller''s account because the seller received money through a private label credit card offered by Amazon.
-
-
-            * `PrivateLabelCreditCardRefund` - The amount that Amazon returns to the seller if the order that is purchased using a private label credit card offered by Amazon is refunded.
-
-
-            * `CollectOnDeliveryRevenue` - The COD amount that the seller collected directly from the buyer.
-
-
-            * `CollectOnDeliveryRefund` - The amount that Amazon refunds to the buyer if an order paid for by COD is refunded.'
-        DirectPaymentAmount:
-          description: The amount of the direct payment.
-          $ref: '#/components/schemas/Currency_2'
-      description: A payment made directly to a seller.
-    ProductAdsPaymentEventList:
-      type: array
-      description: A list of sponsored products payment events.
-      items:
-        $ref: '#/components/schemas/ProductAdsPaymentEvent'
-    Currency_2:
-      type: object
-      properties:
-        CurrencyCode:
-          type: string
-          description: The three-digit currency code in ISO 4217 format.
-        CurrencyAmount:
-          description: The monetary value.
-          $ref: '#/components/schemas/BigDecimal'
-      description: A currency type and amount.
-    ListFinancialEventGroupsPayload:
-      type: object
-      properties:
-        NextToken:
-          type: string
-          description: When present and not empty, pass this string token in the next request to return the next response page.
-        FinancialEventGroupList:
-          $ref: '#/components/schemas/FinancialEventGroupList'
-      description: The payload for the `listFinancialEventGroups` operation.
-    CouponPaymentEvent:
-      type: object
-      properties:
-        PostedDate:
-          description: The date and time when the financial event was posted.
-          $ref: '#/components/schemas/Date'
-        CouponId:
-          type: string
-          description: A coupon identifier.
-        SellerCouponDescription:
-          type: string
-          description: The description provided by the seller when they created the coupon.
-        ClipOrRedemptionCount:
-          type: integer
-          format: int64
-          description: The number of coupon clips or redemptions.
-        PaymentEventId:
-          type: string
-          description: A payment event identifier.
-        FeeComponent:
-          $ref: '#/components/schemas/FeeComponent'
-        ChargeComponent:
-          $ref: '#/components/schemas/ChargeComponent'
-        TotalAmount:
-          description: The `FeeComponent` value plus the `ChargeComponent` value.
-          $ref: '#/components/schemas/Currency_2'
-      description: An event related to coupon payments.
-    FinancialEvents:
-      type: object
-      properties:
-        ShipmentEventList:
-          description: A list of shipment events.
-          $ref: '#/components/schemas/ShipmentEventList'
-        ShipmentSettleEventList:
-          description: A list of Shipment Settle events.
-          $ref: '#/components/schemas/ShipmentSettleEventList'
-        RefundEventList:
-          description: A list of refund events.
-          $ref: '#/components/schemas/ShipmentEventList'
-        GuaranteeClaimEventList:
-          description: A list of guarantee claim events.
-          $ref: '#/components/schemas/ShipmentEventList'
-        EBTRefundReimbursementOnlyEventList:
-          description: A list of EBT refund reimbursement events.
-          $ref: '#/components/schemas/EBTRefundReimbursementOnlyEventList'
-        ChargebackEventList:
-          description: A list of chargeback events.
-          $ref: '#/components/schemas/ShipmentEventList'
-        PayWithAmazonEventList:
-          $ref: '#/components/schemas/PayWithAmazonEventList'
-        ServiceProviderCreditEventList:
-          $ref: '#/components/schemas/SolutionProviderCreditEventList'
-        RetrochargeEventList:
-          $ref: '#/components/schemas/RetrochargeEventList'
-        RentalTransactionEventList:
-          $ref: '#/components/schemas/RentalTransactionEventList'
-        ProductAdsPaymentEventList:
-          $ref: '#/components/schemas/ProductAdsPaymentEventList'
-        ServiceFeeEventList:
-          $ref: '#/components/schemas/ServiceFeeEventList'
-        SellerDealPaymentEventList:
-          $ref: '#/components/schemas/SellerDealPaymentEventList'
-        DebtRecoveryEventList:
-          $ref: '#/components/schemas/DebtRecoveryEventList'
-        LoanServicingEventList:
-          $ref: '#/components/schemas/LoanServicingEventList'
-        AdjustmentEventList:
-          $ref: '#/components/schemas/AdjustmentEventList'
-        SAFETReimbursementEventList:
-          $ref: '#/components/schemas/SAFETReimbursementEventList'
-        SellerReviewEnrollmentPaymentEventList:
-          $ref: '#/components/schemas/SellerReviewEnrollmentPaymentEventList'
-        FBALiquidationEventList:
-          $ref: '#/components/schemas/FBALiquidationEventList'
-        CouponPaymentEventList:
-          $ref: '#/components/schemas/CouponPaymentEventList'
-        ImagingServicesFeeEventList:
-          $ref: '#/components/schemas/ImagingServicesFeeEventList'
-        NetworkComminglingTransactionEventList:
-          $ref: '#/components/schemas/NetworkComminglingTransactionEventList'
-        AffordabilityExpenseEventList:
-          $ref: '#/components/schemas/AffordabilityExpenseEventList'
-        AffordabilityExpenseReversalEventList:
-          $ref: '#/components/schemas/AffordabilityExpenseEventList'
-        RemovalShipmentEventList:
-          $ref: '#/components/schemas/RemovalShipmentEventList'
-        RemovalShipmentAdjustmentEventList:
-          $ref: '#/components/schemas/RemovalShipmentAdjustmentEventList'
-        TrialShipmentEventList:
-          $ref: '#/components/schemas/TrialShipmentEventList'
-        TDSReimbursementEventList:
-          $ref: '#/components/schemas/TDSReimbursementEventList'
-        AdhocDisbursementEventList:
-          $ref: '#/components/schemas/AdhocDisbursementEventList'
-        TaxWithholdingEventList:
-          $ref: '#/components/schemas/TaxWithholdingEventList'
-        ChargeRefundEventList:
-          $ref: '#/components/schemas/ChargeRefundEventList'
-        FailedAdhocDisbursementEventList:
-          $ref: '#/components/schemas/FailedAdhocDisbursementEventList'
-        ValueAddedServiceChargeEventList:
-          $ref: '#/components/schemas/ValueAddedServiceChargeEventList'
-        CapacityReservationBillingEventList:
-          $ref: '#/components/schemas/CapacityReservationBillingEventList'
-      description: All the information that is related to a financial event.
-    FinancialEventGroupList:
-      type: array
-      description: A list of financial event group information.
-      items:
-        $ref: '#/components/schemas/FinancialEventGroup'
-    SellerReviewEnrollmentPaymentEventList:
-      type: array
-      description: A list of information about fee events for the Early Reviewer Program.
-      items:
-        $ref: '#/components/schemas/SellerReviewEnrollmentPaymentEvent'
     PayWithAmazonEvent:
       type: object
       properties:
@@ -3724,294 +3907,125 @@ components:
           type: string
           description: The name of the store where the event occurred.
       description: An event related to the seller's Pay with Amazon account.
-    DebtRecoveryItem:
-      type: object
-      properties:
-        RecoveryAmount:
-          description: The amount applied for the recovery item.
-          $ref: '#/components/schemas/Currency_2'
-        OriginalAmount:
-          description: The original debt amount.
-          $ref: '#/components/schemas/Currency_2'
-        GroupBeginDate:
-          description: The start date and time of the financial event group that contains the debt. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
-          $ref: '#/components/schemas/Date'
-        GroupEndDate:
-          description: The end date and time of the financial event group that contains the debt. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
-          $ref: '#/components/schemas/Date'
-      description: An item of a debt payment or debt adjustment.
-    EBTRefundReimbursementOnlyEventList:
+    CapacityReservationBillingEventList:
       type: array
       items:
-        $ref: '#/components/schemas/EBTRefundReimbursementOnlyEvent'
-      description: A list of EBT refund reimbursement events.
-    DirectPaymentList:
-      type: array
-      description: A list of direct payment information.
-      items:
-        $ref: '#/components/schemas/DirectPayment'
-    CapacityReservationBillingEvent:
-      type: object
-      properties:
-        TransactionType:
-          type: string
-          description: The transaction type. For example, FBA Inventory Fee.
-        PostedDate:
-          description: The date and time when the financial event was posted.
-          $ref: '#/components/schemas/Date'
-        Description:
-          type: string
-          description: A short description of the capacity reservation billing event.
-        TransactionAmount:
-          description: The amount of the capacity reservation billing event.
-          $ref: '#/components/schemas/Currency_2'
-      description: An event related to a capacity reservation billing charge.
-    SolutionProviderCreditEvent:
-      type: object
-      properties:
-        ProviderTransactionType:
-          type: string
-          description: The transaction type.
-        SellerOrderId:
-          type: string
-          description: A seller-defined identifier for an order.
-        MarketplaceId:
-          type: string
-          description: The identifier of the marketplace where the order was placed.
-        MarketplaceCountryCode:
-          type: string
-          description: The two-letter country code of the country associated with the marketplace where the order was placed.
-        SellerId:
-          type: string
-          description: The Amazon-defined identifier of the seller.
-        SellerStoreName:
-          type: string
-          description: The store name where the payment event occurred.
-        ProviderId:
-          type: string
-          description: The Amazon-defined identifier of the solution provider.
-        ProviderStoreName:
-          type: string
-          description: The store name where the payment event occurred.
-        TransactionAmount:
-          description: The amount of the credit.
-          $ref: '#/components/schemas/Currency_2'
-        TransactionCreationDate:
-          description: The date and time that the credit transaction was created, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) date-time format.
-          $ref: '#/components/schemas/Date'
-      description: A credit given to a solution provider.
-    RemovalShipmentEvent:
-      type: object
-      properties:
-        PostedDate:
-          description: The date and time when the financial event was posted.
-          $ref: '#/components/schemas/Date'
-        MerchantOrderId:
-          type: string
-          description: The merchant removal `orderId`.
-        OrderId:
-          type: string
-          description: The identifier for the removal shipment order.
-        TransactionType:
-          type: string
-          description: 'The type of removal order.
-
-
-            Possible values:
-
-
-            * `WHOLESALE_LIQUIDATION`'
-        StoreName:
-          type: string
-          description: The name of the store where the event occurred.
-        RemovalShipmentItemList:
-          description: A list of removal shipment items.
-          $ref: '#/components/schemas/RemovalShipmentItemList'
-      description: A removal shipment event for a removal order.
-    AdhocDisbursementEvent:
-      type: object
-      properties:
-        TransactionType:
-          type: string
-          description: The type of transaction. For example, "Disbursed to Amazon Gift Card balance".
-        PostedDate:
-          description: The date and time when the financial event was posted.
-          $ref: '#/components/schemas/Date'
-        TransactionId:
-          type: string
-          description: The identifier for the transaction.
-        TransactionAmount:
-          description: The amount of the transaction.
-          $ref: '#/components/schemas/Currency_2'
-      description: An event related to an Adhoc Disbursement.
+        $ref: '#/components/schemas/CapacityReservationBillingEvent'
+      description: A list of `CapacityReservationBillingEvent` events.
     DebtRecoveryEventList:
       type: array
       description: A list of debt recovery event information.
       items:
         $ref: '#/components/schemas/DebtRecoveryEvent'
-    ChargeInstrument:
-      type: object
-      properties:
-        Description:
-          type: string
-          description: A short description of the charge instrument.
-        Tail:
-          type: string
-          description: The account tail (trailing digits) of the charge instrument.
-        Amount:
-          description: The amount charged to this charge instrument.
-          $ref: '#/components/schemas/Currency_2'
-      description: A payment instrument.
-    RentalTransactionEventList:
+    SAFETReimbursementItemList:
       type: array
-      description: A list of rental transaction event information.
+      description: A list of `SAFETReimbursementItem`.
       items:
-        $ref: '#/components/schemas/RentalTransactionEvent'
-    PromotionList:
-      type: array
-      description: A list of promotions.
-      items:
-        $ref: '#/components/schemas/Promotion'
-    Promotion:
-      type: object
-      properties:
-        PromotionType:
-          type: string
-          description: The type of promotion.
-        PromotionId:
-          type: string
-          description: The seller-specified identifier for the promotion.
-        PromotionAmount:
-          description: The amount of promotional discount applied to the item.
-          $ref: '#/components/schemas/Currency_2'
-      description: A promotion applied to an item.
+        $ref: '#/components/schemas/SAFETReimbursementItem'
     RemovalShipmentEventList:
       type: array
       description: A list of removal shipment event information.
       items:
         $ref: '#/components/schemas/RemovalShipmentEvent'
-    ChargeInstrumentList:
-      type: array
-      description: A list of payment instruments.
-      items:
-        $ref: '#/components/schemas/ChargeInstrument'
-    ValueAddedServiceChargeEvent:
+    ImagingServicesFeeEvent:
       type: object
       properties:
-        TransactionType:
+        ImagingRequestBillingItemID:
           type: string
-          description: The transaction type. For example, 'Other Support Service fees'
+          description: The identifier for the imaging services request.
+        ASIN:
+          type: string
+          description: The Amazon Standard Identification Number (ASIN) of the item for which the imaging service was requested.
         PostedDate:
           description: The date and time when the financial event was posted.
           $ref: '#/components/schemas/Date'
-        Description:
-          type: string
-          description: A short description of the service charge event.
-        TransactionAmount:
-          description: The amount of the service charge event.
-          $ref: '#/components/schemas/Currency_2'
-      description: An event related to a value added service charge.
-    SAFETReimbursementItem:
-      type: object
-      properties:
-        itemChargeList:
-          description: A list of charges associated with the item.
-          $ref: '#/components/schemas/ChargeComponentList'
-        productDescription:
-          type: string
-          description: The description of the item as shown on the product detail page on the retail website.
-        quantity:
-          type: string
-          description: The number of units of the item being reimbursed.
-      description: An item from a SAFE-T claim reimbursement.
-    ServiceFeeEvent:
-      type: object
-      properties:
-        AmazonOrderId:
-          type: string
-          description: An Amazon-defined identifier for an order.
-        FeeReason:
-          type: string
-          description: A short description of the service fee reason.
         FeeList:
-          description: A list of fee components associated with the service fee.
+          description: A list of fees associated with the event.
           $ref: '#/components/schemas/FeeComponentList'
-        SellerSKU:
+      description: A fee event related to Amazon Imaging services.
+    ListFinancialEventsPayload:
+      type: object
+      properties:
+        NextToken:
           type: string
-          description: The seller SKU of the item. The seller SKU is qualified by the seller's seller ID, which is included with every call to the Selling Partner API.
-        FnSKU:
-          type: string
-          description: A unique identifier assigned by Amazon to products stored in and fulfilled from an Amazon fulfillment center.
-        FeeDescription:
-          type: string
-          description: A short description of the service fee event.
-        ASIN:
-          type: string
-          description: The Amazon Standard Identification Number (ASIN) of the item.
-        StoreName:
-          type: string
-          description: The name of the store where the event occurred.
-      description: A service fee on the seller's account.
+          description: When present and not empty, pass this string token in the next request to return the next response page.
+        FinancialEvents:
+          $ref: '#/components/schemas/FinancialEvents'
+      description: The payload for the `listFinancialEvents` operation.
     TaxWithholdingEventList:
       type: array
       items:
         $ref: '#/components/schemas/TaxWithholdingEvent'
       description: A list of tax withholding events.
-    ServiceFeeEventList:
-      type: array
-      description: A list of information about service fee events.
-      items:
-        $ref: '#/components/schemas/ServiceFeeEvent'
-    AffordabilityExpenseEventList:
-      type: array
-      description: A list of expense information related to an affordability promotion.
-      items:
-        $ref: '#/components/schemas/AffordabilityExpenseEvent'
-    SAFETReimbursementEventList:
-      type: array
-      description: A list of `SAFETReimbursementEvent`.
-      items:
-        $ref: '#/components/schemas/SAFETReimbursementEvent'
-    NetworkComminglingTransactionEventList:
-      type: array
-      description: A list of network commingling transaction events.
-      items:
-        $ref: '#/components/schemas/NetworkComminglingTransactionEvent'
-    AffordabilityExpenseEvent:
+    RetrochargeEvent:
       type: object
-      required:
-      - TaxTypeCGST
-      - TaxTypeIGST
-      - TaxTypeSGST
       properties:
+        RetrochargeEventType:
+          type: string
+          description: 'The type of event.
+
+
+            Possible values:
+
+
+            * `Retrocharge`
+
+
+            * `RetrochargeReversal`'
         AmazonOrderId:
           type: string
           description: An Amazon-defined identifier for an order.
         PostedDate:
-          description: The date and time when the financial event was created.
+          description: The date and time when the financial event was posted.
           $ref: '#/components/schemas/Date'
-        MarketplaceId:
+        BaseTax:
+          description: The base tax associated with the retrocharge event.
+          $ref: '#/components/schemas/Currency_2'
+        ShippingTax:
+          description: The shipping tax associated with the retrocharge event.
+          $ref: '#/components/schemas/Currency_2'
+        MarketplaceName:
           type: string
-          description: The Amazon-defined marketplace identifier.
-        TransactionType:
+          description: The name of the marketplace where the retrocharge event occurred.
+        RetrochargeTaxWithheldList:
+          description: A list of information about taxes withheld.
+          $ref: '#/components/schemas/TaxWithheldComponentList'
+      description: A retrocharge or retrocharge reversal.
+    ListFinancialEventsResponse:
+      type: object
+      properties:
+        payload:
+          description: The payload for the `listFinancialEvents` operation.
+          $ref: '#/components/schemas/ListFinancialEventsPayload'
+        errors:
+          description: One or more unexpected errors occurred during the `listFinancialEvents` operation.
+          $ref: '#/components/schemas/ErrorList_2'
+      description: The response schema for the `listFinancialEvents` operation.
+    RentalTransactionEventList:
+      type: array
+      description: A list of rental transaction event information.
+      items:
+        $ref: '#/components/schemas/RentalTransactionEvent'
+    ChargeRefundTransaction:
+      type: object
+      properties:
+        ChargeAmount:
+          description: The amount of the charge refund credit.
+          $ref: '#/components/schemas/Currency_2'
+        ChargeType:
           type: string
-          description: "The type of transaction. \n\nPossible values:\n\n* `Charge`: an affordability promotion expense.\n* `Refund`: an affordability promotion expense reversal."
-        BaseExpense:
-          description: The amount charged for clicks incurred under the Sponsored Products program.
-          $ref: '#/components/schemas/Currency_2'
-        TaxTypeCGST:
-          description: Central Goods and Service Tax, charged and collected by the central government.
-          $ref: '#/components/schemas/Currency_2'
-        TaxTypeSGST:
-          description: State Goods and Service Tax, charged and collected by the state government.
-          $ref: '#/components/schemas/Currency_2'
-        TaxTypeIGST:
-          description: Integrated Goods and Service Tax, charged and collected by the central government.
-          $ref: '#/components/schemas/Currency_2'
-        TotalExpense:
-          description: The total amount charged to the seller. `TotalExpense` = `BaseExpense` + `TaxTypeIGST` + `TaxTypeCGST` + `TaxTypeSGST`.
-          $ref: '#/components/schemas/Currency_2'
-      description: An expense related to an affordability promotion.
+          description: The type of charge.
+      description: The charge refund transaction.
+    TaxWithholdingPeriod:
+      type: object
+      properties:
+        StartDate:
+          description: Start of the time range.
+          $ref: '#/components/schemas/Date'
+        EndDate:
+          description: End of the time range.
+          $ref: '#/components/schemas/Date'
+      description: The period during which tax withholding on a seller's account is calculated.
 x-refined-from:
 - amazon-seller-central-finances-2024-06-19-original.json
 - amazon-seller-central-finances-v0-original.json

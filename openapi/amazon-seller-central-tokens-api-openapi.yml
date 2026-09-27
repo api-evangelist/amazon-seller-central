@@ -3,7 +3,7 @@ info:
   description: 'The Selling Partner API for Tokens provides a secure way to access a customer''s PII (Personally Identifiable Information). You can call the Tokens API to get a Restricted Data Token (RDT) for one or more restricted resources that you specify. The RDT authorizes subsequent calls to restricted operations that correspond to the restricted resources that you specified.
 
 
-    For more information, see the [Tokens API Use Case Guide](doc:tokens-api-use-case-guide).'
+    For more information, see the Tokens API Use Case Guide.'
   version: '2021-03-01'
   title: Selling Partner Tokens API
   contact:
@@ -15,13 +15,13 @@ info:
 servers:
 - url: https://sellingpartnerapi-na.amazon.com
 tags:
-- name: tokens
+- name: Tokens
 paths:
   /tokens/2021-03-01/restrictedDataToken:
     post:
       operationId: createRestrictedDataToken
       tags:
-      - tokens
+      - Tokens
       description: 'Returns a Restricted Data Token (RDT) for one or more restricted resources that you specify. A restricted resource is the HTTP method and path from a restricted operation that returns Personally Identifiable Information (PII), plus a dataElements value that indicates the type of PII requested. See the Tokens API Use Case Guide for a list of restricted operations. Use the RDT returned here as the access token in subsequent calls to the corresponding restricted operations.
 
 
@@ -35,7 +35,7 @@ paths:
         | 1 | 10 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
       responses:
         '200':
           description: Success.
@@ -217,42 +217,26 @@ paths:
               $ref: '#/components/schemas/CreateRestrictedDataTokenRequest'
         description: The restricted data token request details.
         required: true
+      summary: Create restricted data token
+      x-summary-source: derived
 components:
   schemas:
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: An error code that identifies the type of error that occurred.
-        message:
-          type: string
-          description: A message that describes the error condition.
-        details:
-          type: string
-          description: Additional details that can help the caller understand or fix the issue.
-      description: An error response returned when the request is unsuccessful.
-    CreateRestrictedDataTokenResponse:
-      type: object
-      description: The response schema for the createRestrictedDataToken operation.
-      properties:
-        restrictedDataToken:
-          description: A Restricted Data Token (RDT). This is a short-lived access token that authorizes calls to restricted operations. Pass this value with the x-amz-access-token header when making subsequent calls to these restricted resources.
-          type: string
-        expiresIn:
-          description: The lifetime of the Restricted Data Token, in seconds.
-          type: integer
-    ErrorList:
+    CreateRestrictedDataTokenRequest:
+      description: The request schema for the createRestrictedDataToken operation.
       type: object
       properties:
-        errors:
+        targetApplication:
+          type: string
+          description: The application ID for the target application to which access is being delegated.
+        restrictedResources:
           type: array
+          description: 'A list of restricted resources.
+
+            Maximum: 50'
           items:
-            $ref: '#/components/schemas/Error'
-      description: A list of error responses returned when a request is unsuccessful.
+            $ref: '#/components/schemas/RestrictedResource'
+      required:
+      - restrictedResources
     RestrictedResource:
       description: Model of a restricted resource.
       type: object
@@ -301,19 +285,37 @@ components:
             - **buyerTaxInformation**. This includes information for issuing tax invoices.'
           items:
             type: string
-    CreateRestrictedDataTokenRequest:
-      description: The request schema for the createRestrictedDataToken operation.
+    CreateRestrictedDataTokenResponse:
+      type: object
+      description: The response schema for the createRestrictedDataToken operation.
+      properties:
+        restrictedDataToken:
+          description: A Restricted Data Token (RDT). This is a short-lived access token that authorizes calls to restricted operations. Pass this value with the x-amz-access-token header when making subsequent calls to these restricted resources.
+          type: string
+        expiresIn:
+          description: The lifetime of the Restricted Data Token, in seconds.
+          type: integer
+    ErrorList:
       type: object
       properties:
-        targetApplication:
-          type: string
-          description: The application ID for the target application to which access is being delegated.
-        restrictedResources:
+        errors:
           type: array
-          description: 'A list of restricted resources.
-
-            Maximum: 50'
           items:
-            $ref: '#/components/schemas/RestrictedResource'
+            $ref: '#/components/schemas/Error'
+      description: A list of error responses returned when a request is unsuccessful.
+    Error:
+      type: object
       required:
-      - restrictedResources
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: An error code that identifies the type of error that occurred.
+        message:
+          type: string
+          description: A message that describes the error condition.
+        details:
+          type: string
+          description: Additional details that can help the caller understand or fix the issue.
+      description: An error response returned when the request is unsuccessful.

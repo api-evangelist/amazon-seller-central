@@ -12,12 +12,12 @@ info:
 servers:
 - url: https://sellingpartnerapi-na.amazon.com
 tags:
-- name: listings
+- name: Listings
 paths:
   /listings/2021-08-01/items/{sellerId}/{sku}:
     delete:
       tags:
-      - listings
+      - Listings
       description: 'Delete a listings item for a selling partner.
 
 
@@ -31,7 +31,7 @@ paths:
         | 5 | 5 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can receive higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api) in the Selling Partner API documentation.'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can receive higher rate and burst values than those shown here. For more information, refer to Usage Plans and Rate Limits in the Selling Partner API documentation.'
       operationId: deleteListingsItem
       parameters:
       - name: sellerId
@@ -187,9 +187,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorList'
+      summary: Delete listings item
+      x-summary-source: derived
     get:
       tags:
-      - listings
+      - Listings
       description: 'Returns details about a listings item for a selling partner.
 
 
@@ -203,7 +205,7 @@ paths:
         | 5 | 10 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can receive higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api) in the Selling Partner API documentation.'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can receive higher rate and burst values than those shown here. For more information, refer to Usage Plans and Rate Limits in the Selling Partner API documentation.'
       operationId: getListingsItem
       parameters:
       - name: sellerId
@@ -627,9 +629,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorList'
+      summary: Get listings item
+      x-summary-source: derived
     patch:
       tags:
-      - listings
+      - Listings
       description: 'Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be patched. Patching nested attributes is not supported.
 
 
@@ -643,7 +647,7 @@ paths:
         | 5 | 5 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can receive higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api) in the Selling Partner API documentation.'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can receive higher rate and burst values than those shown here. For more information, refer to Usage Plans and Rate Limits in the Selling Partner API documentation.'
       operationId: patchListingsItem
       parameters:
       - name: sellerId
@@ -892,9 +896,11 @@ paths:
               $ref: '#/components/schemas/ListingsItemPatchRequest'
         description: The request body schema for the `patchListingsItem` operation.
         required: true
+      summary: Patch listings item
+      x-summary-source: derived
     put:
       tags:
-      - listings
+      - Listings
       description: 'Creates a new or fully-updates an existing listings item for a selling partner.
 
 
@@ -908,7 +914,7 @@ paths:
         | 5 | 10 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can receive higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api) in the Selling Partner API documentation.'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput can receive higher rate and burst values than those shown here. For more information, refer to Usage Plans and Rate Limits in the Selling Partner API documentation.'
       operationId: putListingsItem
       parameters:
       - name: sellerId
@@ -1165,12 +1171,14 @@ paths:
               $ref: '#/components/schemas/ListingsItemPutRequest'
         description: The request body schema for the `putListingsItem` operation.
         required: true
+      summary: Put listings item
+      x-summary-source: derived
     servers:
     - url: https://sellingpartnerapi-na.amazon.com
   /listings/2021-08-01/items/{sellerId}:
     get:
       tags:
-      - listings
+      - Listings
       description: 'Search for and return a list of selling partner listings items and their respective details.
 
 
@@ -1184,7 +1192,7 @@ paths:
         | 5 | 5 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that are applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput might have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that are applied to the requested operation, when available. The preceding table contains the default rate and burst values for this operation. Selling partners whose business demands require higher throughput might have higher rate and burst values than those shown here. For more information, refer to Usage Plans and Rate Limits.'
       operationId: searchListingsItems
       parameters:
       - name: sellerId
@@ -2237,13 +2245,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorList'
+      summary: Search listings items
+      x-summary-source: derived
     servers:
     - url: https://sellingpartnerapi-na.amazon.com
   /listings/2021-08-01/restrictions:
     get:
       tags:
-      - listings
-      description: "Returns listing restrictions for an item in the Amazon Catalog. \n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api)."
+      - Listings
+      description: 'Returns listing restrictions for an item in the Amazon Catalog.
+
+
+        **Usage Plan:**
+
+
+        | Rate (requests per second) | Burst |
+
+        | ---- | ---- |
+
+        | 5 | 10 |
+
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: getListingsRestrictions
       parameters:
       - name: asin
@@ -2480,36 +2503,174 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorList_2'
+      summary: Get listings restrictions
+      x-summary-source: derived
     servers:
     - url: https://sellingpartnerapi-na.amazon.com
 components:
   schemas:
-    ItemRelationships:
-      description: Relationships for a listing item, by Amazon store (for example, variations).
-      items:
-        $ref: '#/components/schemas/ItemRelationshipsByMarketplace'
-      type: array
-    ItemSearchResults:
-      description: Selling partner listings items and search related metadata.
+    Issue:
+      description: An issue with a listings item.
       properties:
-        numberOfResults:
-          description: 'The total number of selling partner listings items found for the search criteria (only results up to the page count limit is returned per request regardless of the number found).
-
-
-            Note: The maximum number of items (SKUs) that can be returned and paged through is 1000.'
-          type: integer
-        pagination:
-          description: If available, the `nextToken` and/or `previousToken` values required to return paginated results.
-          $ref: '#/components/schemas/Pagination'
-        items:
-          description: A list of listings items.
+        code:
+          description: An issue code that identifies the type of issue.
+          type: string
+        message:
+          description: A message that describes the issue.
+          type: string
+        severity:
+          description: The severity of the issue.
+          enum:
+          - ERROR
+          - WARNING
+          - INFO
+          x-docgen-enum-table-extension:
+          - value: ERROR
+            description: Indicates an issue has occurred preventing the submission from processing, such as a validation error.
+          - value: WARNING
+            description: Indicates an issue has occurred that should be reviewed, but has not prevented the submission from processing.
+          - value: INFO
+            description: Indicates additional information has been provided that should be reviewed.
+          type: string
+        attributeNames:
+          description: Names of the attributes that are associated with the issue, if applicable.
           type: array
           items:
-            $ref: '#/components/schemas/Item'
+            type: string
+        categories:
+          description: List of issue categories.
+          type: array
+          items:
+            type: string
+            x-docgen-enum-table-extension:
+            - value: INVALID_ATTRIBUTE
+              description: One or more attributes are invalid.
+            - value: MISSING_ATTRIBUTE
+              description: One or more required attributes are missing.
+            - value: INVALID_IMAGE
+              description: One or more images are invalid.
+            - value: MISSING_IMAGE
+              description: One or more required images are missing.
+            - value: INVALID_PRICE
+              description: One or more price attributes are invalid.
+            - value: MISSING_PRICE
+              description: One or more required price attributes are missing.
+            - value: DUPLICATE
+              description: The listing has potential duplicate problems, such as this ASIN potentially being a duplicate of another ASIN.
+            - value: QUALIFICATION_REQUIRED
+              description: Approval or qualification is required to list the product.
+            - value: PRODUCT
+              description: Issue applies to the product (ASIN).
+            - value: LISTING
+              description: Issue applies to the listing (SKU).
+          example:
+          - INVALID_ATTRIBUTE
+        enforcements:
+          description: Provides information about the enforcement actions taken by Amazon that affect the publishing or status of a listing. It also includes details about any associated exemptions.
+          $ref: '#/components/schemas/IssueEnforcements'
+        marketplaceIds:
+          description: List of Amazon store identifiers.
+          type: array
+          items:
+            type: string
       required:
-      - numberOfResults
-      - items
+      - code
+      - message
+      - severity
+      - categories
       type: object
+    ItemProcurement:
+      description: The listings item's vendor procurement information.
+      properties:
+        costPrice:
+          description: The price (numeric value) that you want Amazon to pay you for this product.
+          $ref: '#/components/schemas/Money'
+      required:
+      - costPrice
+      type: object
+    ItemRelationship:
+      description: The relationship details for a listing item.
+      properties:
+        childSkus:
+          description: Identifiers (SKUs) of the related items that are children of this listing item.
+          items:
+            type: string
+          type: array
+        parentSkus:
+          description: Identifiers (SKUs) of the related items that are parents of this listing item.
+          items:
+            type: string
+          type: array
+        variationTheme:
+          description: For `VARIATION` relationships, the variation theme is the combination of listing item attributes that define the variation family.
+          $ref: '#/components/schemas/ItemVariationTheme'
+        type:
+          description: The type of relationship.
+          example: VARIATION
+          enum:
+          - VARIATION
+          - PACKAGE_HIERARCHY
+          x-docgen-enum-table-extension:
+          - value: VARIATION
+            description: The listing item in the request is a variation parent or variation child of the related listing items, indicated by SKU.
+          - value: PACKAGE_HIERARCHY
+            description: The listing item in the request is a package container or is contained by the related listing items, indicated by SKU.
+          type: string
+      required:
+      - type
+      type: object
+    ItemOfferByMarketplace:
+      description: Offer details for a listings item for the specified Amazon store.
+      properties:
+        marketplaceId:
+          description: Amazon store identifier.
+          type: string
+        offerType:
+          description: The listings item's offer type.
+          enum:
+          - B2C
+          - B2B
+          x-docgen-enum-table-extension:
+          - value: B2C
+            description: The offer on this listings item is available for Business to Consumer purchase, meaning that it is available to shoppers on Amazon retail sites.
+          - value: B2B
+            description: The offer on this listings item is available for Business to Business purchase.
+          type: string
+        price:
+          description: Purchase price of the listings item
+          $ref: '#/components/schemas/Money'
+        points:
+          $ref: '#/components/schemas/Points'
+        audience:
+          description: Buyer segment or program this offer is applicable to.
+          $ref: '#/components/schemas/Audience'
+      required:
+      - marketplaceId
+      - offerType
+      - price
+      type: object
+    FulfillmentAvailability:
+      description: The listings item's fulfillment availability details.
+      properties:
+        fulfillmentChannelCode:
+          description: Designates which fulfillment network is used.
+          type: string
+        quantity:
+          description: The item quantity that you're making available for sale.
+          type: integer
+          minimum: 0
+      required:
+      - fulfillmentChannelCode
+      type: object
+    Points:
+      description: The number of Amazon Points offered with the purchase of an item, and their monetary value. Note that the `Points` element is only returned in Japan (JP).
+      type: object
+      properties:
+        pointsNumber:
+          description: The number of Amazon Points offered with the purchase of an item, and their monetary value.
+          type: integer
+      required:
+      - pointsNumber
     PatchOperation:
       description: Individual JSON Patch operation for an HTTP PATCH request.
       properties:
@@ -2543,134 +2704,27 @@ components:
       - op
       - path
       type: object
-    Item:
-      description: A listings item.
+    ItemSearchResults:
+      description: Selling partner listings items and search related metadata.
       properties:
-        sku:
-          description: A selling partner-provided identifier for an Amazon listing.
-          type: string
-        summaries:
-          $ref: '#/components/schemas/ItemSummaries'
-        attributes:
-          $ref: '#/components/schemas/ItemAttributes'
-        issues:
-          $ref: '#/components/schemas/ItemIssues'
-        offers:
-          $ref: '#/components/schemas/ItemOffers'
-        fulfillmentAvailability:
-          description: The listings item's fulfillment availability.
-          type: array
-          items:
-            $ref: '#/components/schemas/FulfillmentAvailability'
-        procurement:
-          description: The listings item's vendor procurement information.
-          type: array
-          items:
-            $ref: '#/components/schemas/ItemProcurement'
-        relationships:
-          $ref: '#/components/schemas/ItemRelationships'
-        productTypes:
-          $ref: '#/components/schemas/ItemProductTypes'
-      required:
-      - sku
-      type: object
-    ItemIdentifiers:
-      description: Identity attributes associated with the item in the Amazon catalog, such as the ASIN.
-      items:
-        $ref: '#/components/schemas/ItemIdentifiersByMarketplace'
-      type: array
-    FulfillmentAvailability:
-      description: The listings item's fulfillment availability details.
-      properties:
-        fulfillmentChannelCode:
-          description: Designates which fulfillment network is used.
-          type: string
-        quantity:
-          description: The item quantity that you're making available for sale.
+        numberOfResults:
+          description: 'The total number of selling partner listings items found for the search criteria (only results up to the page count limit is returned per request regardless of the number found).
+
+
+            Note: The maximum number of items (SKUs) that can be returned and paged through is 1000.'
           type: integer
-          minimum: 0
-      required:
-      - fulfillmentChannelCode
-      type: object
-    ItemRelationship:
-      description: The relationship details for a listing item.
-      properties:
-        childSkus:
-          description: Identifiers (SKUs) of the related items that are children of this listing item.
-          items:
-            type: string
+        pagination:
+          description: If available, the `nextToken` and/or `previousToken` values required to return paginated results.
+          $ref: '#/components/schemas/Pagination'
+        items:
+          description: A list of listings items.
           type: array
-        parentSkus:
-          description: Identifiers (SKUs) of the related items that are parents of this listing item.
           items:
-            type: string
-          type: array
-        variationTheme:
-          description: For `VARIATION` relationships, the variation theme is the combination of listing item attributes that define the variation family.
-          $ref: '#/components/schemas/ItemVariationTheme'
-        type:
-          description: The type of relationship.
-          example: VARIATION
-          enum:
-          - VARIATION
-          - PACKAGE_HIERARCHY
-          x-docgen-enum-table-extension:
-          - value: VARIATION
-            description: The listing item in the request is a variation parent or variation child of the related listing items, indicated by SKU.
-          - value: PACKAGE_HIERARCHY
-            description: The listing item in the request is a package container or is contained by the related listing items, indicated by SKU.
-          type: string
+            $ref: '#/components/schemas/Item'
       required:
-      - type
+      - numberOfResults
+      - items
       type: object
-    ListingsItemPutRequest:
-      description: The request body schema for the `putListingsItem` operation.
-      properties:
-        productType:
-          description: The listings item's Amazon product type.
-          type: string
-        requirements:
-          description: The name of the requirements set for the provided data.
-          enum:
-          - LISTING
-          - LISTING_PRODUCT_ONLY
-          - LISTING_OFFER_ONLY
-          x-docgen-enum-table-extension:
-          - value: LISTING
-            description: Indicates the submitted data contains product facts and sales terms.
-          - value: LISTING_PRODUCT_ONLY
-            description: Indicates the submitted data contains product facts only.
-          - value: LISTING_OFFER_ONLY
-            description: Indicates the submitted data contains sales terms only.
-          type: string
-        attributes:
-          description: JSON object containing structured listings item attribute data keyed by attribute name.
-          type: object
-          additionalProperties: true
-      required:
-      - productType
-      - attributes
-      type: object
-    ItemAttributes:
-      description: JSON object containing structured listings item attribute data keyed by attribute name.
-      type: object
-      additionalProperties: true
-    ItemOffers:
-      description: The listings item's offer details.
-      items:
-        $ref: '#/components/schemas/ItemOfferByMarketplace'
-      type: array
-    Audience:
-      description: Buyer segment or program this offer is applicable to.
-      type: object
-      properties:
-        value:
-          description: "Name of the audience an offer is applicable to. \n\nCommon values: \n\n* 'ALL' - Standard offer audience for buyers on Amazon retail websites. \n\n* 'B2B' - Offer audience for Amazon Business website buyers."
-          type: string
-          example: ALL
-        displayName:
-          description: Localized display name for the audience.
-          type: string
     ItemSummaryByMarketplace:
       description: Summary details for a listings item for an Amazon store.
       properties:
@@ -2764,6 +2818,45 @@ components:
       - createdDate
       - lastUpdatedDate
       type: object
+    ListingsItemPutRequest:
+      description: The request body schema for the `putListingsItem` operation.
+      properties:
+        productType:
+          description: The listings item's Amazon product type.
+          type: string
+        requirements:
+          description: The name of the requirements set for the provided data.
+          enum:
+          - LISTING
+          - LISTING_PRODUCT_ONLY
+          - LISTING_OFFER_ONLY
+          x-docgen-enum-table-extension:
+          - value: LISTING
+            description: Indicates the submitted data contains product facts and sales terms.
+          - value: LISTING_PRODUCT_ONLY
+            description: Indicates the submitted data contains product facts only.
+          - value: LISTING_OFFER_ONLY
+            description: Indicates the submitted data contains sales terms only.
+          type: string
+        attributes:
+          description: JSON object containing structured listings item attribute data keyed by attribute name.
+          type: object
+          additionalProperties: true
+      required:
+      - productType
+      - attributes
+      type: object
+    ErrorList:
+      description: A list of error responses returned when a request is unsuccessful.
+      type: object
+      properties:
+        errors:
+          description: A list of error responses.
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+      required:
+      - errors
     Error:
       description: Error response returned when the request is unsuccessful.
       properties:
@@ -2780,16 +2873,16 @@ components:
       - code
       - message
       type: object
-    ItemSummaries:
-      description: Summary details for a listings item.
-      items:
-        $ref: '#/components/schemas/ItemSummaryByMarketplace'
-      type: array
-    ItemProductTypes:
-      description: Product types for a listing item, by Amazon store.
-      items:
-        $ref: '#/components/schemas/ItemProductTypeByMarketplace'
-      type: array
+    Pagination:
+      description: When a request produces a response that exceeds the `pageSize`, pagination occurs. This means the response is divided into individual pages. To retrieve the next page or the previous page, you must pass the `nextToken` value or the `previousToken` value as the `pageToken` parameter in the next request. When you receive the last page, there is no `nextToken` key in the pagination object.
+      properties:
+        nextToken:
+          description: A token that can be used to fetch the next page.
+          type: string
+        previousToken:
+          description: A token that can be used to fetch the previous page.
+          type: string
+      type: object
     IssueEnforcementAction:
       description: The enforcement action taken by Amazon that affect the publishing or status of a listing
       type: object
@@ -2800,6 +2893,104 @@ components:
           example: LISTING_SUPPRESSED
       required:
       - action
+    ItemProductTypeByMarketplace:
+      description: Product types that are associated with the listing item for the specified Amazon store.
+      properties:
+        marketplaceId:
+          description: Amazon store identifier.
+          type: string
+        productType:
+          description: The name of the product type that is submitted by the Selling Partner.
+          example: LUGGAGE
+          type: string
+      required:
+      - marketplaceId
+      - productType
+      type: object
+    ItemVariationTheme:
+      description: A variation theme that indicates the combination of listing item attributes that define the variation family.
+      properties:
+        attributes:
+          description: The names of the listing item attributes that are associated with the variation theme.
+          items:
+            type: string
+          type: array
+        theme:
+          description: The variation theme that indicates the combination of listing item attributes that define the variation family.
+          example: COLOR_NAME/STYLE_NAME
+          type: string
+      required:
+      - attributes
+      - theme
+      type: object
+    ItemProductTypes:
+      description: Product types for a listing item, by Amazon store.
+      items:
+        $ref: '#/components/schemas/ItemProductTypeByMarketplace'
+      type: array
+    ItemAttributes:
+      description: JSON object containing structured listings item attribute data keyed by attribute name.
+      type: object
+      additionalProperties: true
+    Item:
+      description: A listings item.
+      properties:
+        sku:
+          description: A selling partner-provided identifier for an Amazon listing.
+          type: string
+        summaries:
+          $ref: '#/components/schemas/ItemSummaries'
+        attributes:
+          $ref: '#/components/schemas/ItemAttributes'
+        issues:
+          $ref: '#/components/schemas/ItemIssues'
+        offers:
+          $ref: '#/components/schemas/ItemOffers'
+        fulfillmentAvailability:
+          description: The listings item's fulfillment availability.
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentAvailability'
+        procurement:
+          description: The listings item's vendor procurement information.
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemProcurement'
+        relationships:
+          $ref: '#/components/schemas/ItemRelationships'
+        productTypes:
+          $ref: '#/components/schemas/ItemProductTypes'
+      required:
+      - sku
+      type: object
+    ItemIdentifiersByMarketplace:
+      description: Identity attributes associated with the item in the Amazon catalog for the indicated Amazon store.
+      properties:
+        marketplaceId:
+          description: Amazon store identifier. Identifies the listings item's Amazon store.
+          type: string
+        asin:
+          description: The ASIN of the listings item.
+          type: string
+      type: object
+    Decimal:
+      type: string
+      description: A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.
+    IssueEnforcements:
+      description: Provides information about the enforcement actions taken by Amazon that affect the publishing or status of a listing. It also includes details about any associated exemptions.
+      type: object
+      properties:
+        actions:
+          description: List of enforcement actions taken by Amazon that affect the publishing or status of a listing.
+          type: array
+          items:
+            $ref: '#/components/schemas/IssueEnforcementAction'
+        exemption:
+          description: The `exemption` field serves to convey the status of enforcement actions by Amazon.
+          $ref: '#/components/schemas/IssueExemption'
+      required:
+      - actions
+      - exemption
     ListingsItemSubmissionResponse:
       description: Response containing the results of a submission to the Selling Partner API for Listings Items.
       properties:
@@ -2836,104 +3027,31 @@ components:
       - status
       - submissionId
       type: object
-    Issue:
-      description: An issue with a listings item.
+    IssueExemption:
+      description: Conveying the status of the listed enforcement actions and, if applicable, provides information about the exemption's expiry date.
+      type: object
       properties:
-        code:
-          description: An issue code that identifies the type of issue.
-          type: string
-        message:
-          description: A message that describes the issue.
-          type: string
-        severity:
-          description: The severity of the issue.
+        status:
+          description: Indicates the current exemption status for the listed enforcement actions. It can take values such as `EXEMPT`, signifying permanent exemption, `EXEMPT_UNTIL_EXPIRY_DATE` indicating temporary exemption until a specified date, or `NOT_EXEMPT` signifying no exemptions, and enforcement actions were already applied.
           enum:
-          - ERROR
-          - WARNING
-          - INFO
+          - EXEMPT
+          - EXEMPT_UNTIL_EXPIRY_DATE
+          - NOT_EXEMPT
           x-docgen-enum-table-extension:
-          - value: ERROR
-            description: Indicates an issue has occurred preventing the submission from processing, such as a validation error.
-          - value: WARNING
-            description: Indicates an issue has occurred that should be reviewed, but has not prevented the submission from processing.
-          - value: INFO
-            description: Indicates additional information has been provided that should be reviewed.
+          - value: EXEMPT
+            description: This status is assigned to a product listing when it has been exempted from the listed enforcement actions. In cases of `EXEMPT`, Amazon acknowledges the existence of enforcement actions but ensures the user that these actions are not applied to the listing. The user is advised to consider addressing the issue, although enforcement actions are not taken.
+          - value: EXEMPT_UNTIL_EXPIRY_DATE
+            description: This status indicates that a product listing has been granted a temporary exemption from the listed enforcement actions. The exemption remains in effect until a specified expiry date. After this date, Amazon enforces the listed actions. The `expiryDate` field provides the timestamp indicating when the temporary exemption ends, adhering to the ISO 8601 format
+          - value: NOT_EXEMPT
+            description: This status is assigned to a product listing when it has no exemptions from the listed enforcement actions. When the status is `NOT_EXEMPT`, it signifies that Amazon has already taken the specified enforcement actions. There is no exemption in place, and the listed actions are actively enforced
           type: string
-        attributeNames:
-          description: Names of the attributes that are associated with the issue, if applicable.
-          type: array
-          items:
-            type: string
-        categories:
-          description: List of issue categories.
-          type: array
-          items:
-            type: string
-            x-docgen-enum-table-extension:
-            - value: INVALID_ATTRIBUTE
-              description: One or more attributes are invalid.
-            - value: MISSING_ATTRIBUTE
-              description: One or more required attributes are missing.
-            - value: INVALID_IMAGE
-              description: One or more images are invalid.
-            - value: MISSING_IMAGE
-              description: One or more required images are missing.
-            - value: INVALID_PRICE
-              description: One or more price attributes are invalid.
-            - value: MISSING_PRICE
-              description: One or more required price attributes are missing.
-            - value: DUPLICATE
-              description: The listing has potential duplicate problems, such as this ASIN potentially being a duplicate of another ASIN.
-            - value: QUALIFICATION_REQUIRED
-              description: Approval or qualification is required to list the product.
-            - value: PRODUCT
-              description: Issue applies to the product (ASIN).
-            - value: LISTING
-              description: Issue applies to the listing (SKU).
-          example:
-          - INVALID_ATTRIBUTE
-        enforcements:
-          description: Provides information about the enforcement actions taken by Amazon that affect the publishing or status of a listing. It also includes details about any associated exemptions.
-          $ref: '#/components/schemas/IssueEnforcements'
-        marketplaceIds:
-          description: List of Amazon store identifiers.
-          type: array
-          items:
-            type: string
-      required:
-      - code
-      - message
-      - severity
-      - categories
-      type: object
-    ErrorList:
-      description: A list of error responses returned when a request is unsuccessful.
-      type: object
-      properties:
-        errors:
-          description: A list of error responses.
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-      required:
-      - errors
-    Decimal:
-      type: string
-      description: A decimal number with no loss of precision. Useful when precision loss is unacceptable, as with currencies. Follows RFC7159 for number representation.
-    ItemProductTypeByMarketplace:
-      description: Product types that are associated with the listing item for the specified Amazon store.
-      properties:
-        marketplaceId:
-          description: Amazon store identifier.
+        expiryDate:
+          description: Represents the timestamp, in ISO 8601 format, that specifies the date when the temporary exemptions expires, and Amazon begins enforcing the listed actions.
           type: string
-        productType:
-          description: The name of the product type that is submitted by the Selling Partner.
-          example: LUGGAGE
-          type: string
+          format: date-time
+          example: '2023-10-28T00:36:48.914Z'
       required:
-      - marketplaceId
-      - productType
-      type: object
+      - status
     ItemImage:
       description: The listings item's image.
       properties:
@@ -2966,86 +3084,37 @@ components:
       - marketplaceId
       - relationships
       type: object
-    ItemProcurement:
-      description: The listings item's vendor procurement information.
-      properties:
-        costPrice:
-          description: The price (numeric value) that you want Amazon to pay you for this product.
-          $ref: '#/components/schemas/Money'
-      required:
-      - costPrice
-      type: object
-    Pagination:
-      description: When a request produces a response that exceeds the `pageSize`, pagination occurs. This means the response is divided into individual pages. To retrieve the next page or the previous page, you must pass the `nextToken` value or the `previousToken` value as the `pageToken` parameter in the next request. When you receive the last page, there is no `nextToken` key in the pagination object.
-      properties:
-        nextToken:
-          description: A token that can be used to fetch the next page.
-          type: string
-        previousToken:
-          description: A token that can be used to fetch the previous page.
-          type: string
-      type: object
-    ItemOfferByMarketplace:
-      description: Offer details for a listings item for the specified Amazon store.
-      properties:
-        marketplaceId:
-          description: Amazon store identifier.
-          type: string
-        offerType:
-          description: The listings item's offer type.
-          enum:
-          - B2C
-          - B2B
-          x-docgen-enum-table-extension:
-          - value: B2C
-            description: The offer on this listings item is available for Business to Consumer purchase, meaning that it is available to shoppers on Amazon retail sites.
-          - value: B2B
-            description: The offer on this listings item is available for Business to Business purchase.
-          type: string
-        price:
-          description: Purchase price of the listings item
-          $ref: '#/components/schemas/Money'
-        points:
-          $ref: '#/components/schemas/Points'
-        audience:
-          description: Buyer segment or program this offer is applicable to.
-          $ref: '#/components/schemas/Audience'
-      required:
-      - marketplaceId
-      - offerType
-      - price
-      type: object
-    ItemVariationTheme:
-      description: A variation theme that indicates the combination of listing item attributes that define the variation family.
-      properties:
-        attributes:
-          description: The names of the listing item attributes that are associated with the variation theme.
-          items:
-            type: string
-          type: array
-        theme:
-          description: The variation theme that indicates the combination of listing item attributes that define the variation family.
-          example: COLOR_NAME/STYLE_NAME
-          type: string
-      required:
-      - attributes
-      - theme
-      type: object
-    IssueEnforcements:
-      description: Provides information about the enforcement actions taken by Amazon that affect the publishing or status of a listing. It also includes details about any associated exemptions.
+    ItemRelationships:
+      description: Relationships for a listing item, by Amazon store (for example, variations).
+      items:
+        $ref: '#/components/schemas/ItemRelationshipsByMarketplace'
+      type: array
+    Audience:
+      description: Buyer segment or program this offer is applicable to.
       type: object
       properties:
-        actions:
-          description: List of enforcement actions taken by Amazon that affect the publishing or status of a listing.
-          type: array
-          items:
-            $ref: '#/components/schemas/IssueEnforcementAction'
-        exemption:
-          description: The `exemption` field serves to convey the status of enforcement actions by Amazon.
-          $ref: '#/components/schemas/IssueExemption'
-      required:
-      - actions
-      - exemption
+        value:
+          description: "Name of the audience an offer is applicable to. \n\nCommon values: \n\n* 'ALL' - Standard offer audience for buyers on Amazon retail websites. \n\n* 'B2B' - Offer audience for Amazon Business website buyers."
+          type: string
+          example: ALL
+        displayName:
+          description: Localized display name for the audience.
+          type: string
+    ItemOffers:
+      description: The listings item's offer details.
+      items:
+        $ref: '#/components/schemas/ItemOfferByMarketplace'
+      type: array
+    ItemSummaries:
+      description: Summary details for a listings item.
+      items:
+        $ref: '#/components/schemas/ItemSummaryByMarketplace'
+      type: array
+    ItemIssues:
+      description: Issues associated with the listings item.
+      items:
+        $ref: '#/components/schemas/Issue'
+      type: array
     ListingsItemPatchRequest:
       description: The request body schema for the `patchListingsItem` operation.
       properties:
@@ -3062,15 +3131,11 @@ components:
       - productType
       - patches
       type: object
-    Points:
-      description: The number of Amazon Points offered with the purchase of an item, and their monetary value. Note that the `Points` element is only returned in Japan (JP).
-      type: object
-      properties:
-        pointsNumber:
-          description: The number of Amazon Points offered with the purchase of an item, and their monetary value.
-          type: integer
-      required:
-      - pointsNumber
+    ItemIdentifiers:
+      description: Identity attributes associated with the item in the Amazon catalog, such as the ASIN.
+      items:
+        $ref: '#/components/schemas/ItemIdentifiersByMarketplace'
+      type: array
     Money:
       description: The currency type and the amount.
       properties:
@@ -3084,46 +3149,6 @@ components:
       - amount
       - currencyCode
       type: object
-    ItemIssues:
-      description: Issues associated with the listings item.
-      items:
-        $ref: '#/components/schemas/Issue'
-      type: array
-    ItemIdentifiersByMarketplace:
-      description: Identity attributes associated with the item in the Amazon catalog for the indicated Amazon store.
-      properties:
-        marketplaceId:
-          description: Amazon store identifier. Identifies the listings item's Amazon store.
-          type: string
-        asin:
-          description: The ASIN of the listings item.
-          type: string
-      type: object
-    IssueExemption:
-      description: Conveying the status of the listed enforcement actions and, if applicable, provides information about the exemption's expiry date.
-      type: object
-      properties:
-        status:
-          description: Indicates the current exemption status for the listed enforcement actions. It can take values such as `EXEMPT`, signifying permanent exemption, `EXEMPT_UNTIL_EXPIRY_DATE` indicating temporary exemption until a specified date, or `NOT_EXEMPT` signifying no exemptions, and enforcement actions were already applied.
-          enum:
-          - EXEMPT
-          - EXEMPT_UNTIL_EXPIRY_DATE
-          - NOT_EXEMPT
-          x-docgen-enum-table-extension:
-          - value: EXEMPT
-            description: This status is assigned to a product listing when it has been exempted from the listed enforcement actions. In cases of `EXEMPT`, Amazon acknowledges the existence of enforcement actions but ensures the user that these actions are not applied to the listing. The user is advised to consider addressing the issue, although enforcement actions are not taken.
-          - value: EXEMPT_UNTIL_EXPIRY_DATE
-            description: This status indicates that a product listing has been granted a temporary exemption from the listed enforcement actions. The exemption remains in effect until a specified expiry date. After this date, Amazon enforces the listed actions. The `expiryDate` field provides the timestamp indicating when the temporary exemption ends, adhering to the ISO 8601 format
-          - value: NOT_EXEMPT
-            description: This status is assigned to a product listing when it has no exemptions from the listed enforcement actions. When the status is `NOT_EXEMPT`, it signifies that Amazon has already taken the specified enforcement actions. There is no exemption in place, and the listed actions are actively enforced
-          type: string
-        expiryDate:
-          description: Represents the timestamp, in ISO 8601 format, that specifies the date when the temporary exemptions expires, and Amazon begins enforcing the listed actions.
-          type: string
-          format: date-time
-          example: '2023-10-28T00:36:48.914Z'
-      required:
-      - status
     RestrictionList:
       description: A list of restrictions for the specified Amazon catalog item.
       type: object
@@ -3135,11 +3160,6 @@ components:
           type: array
       required:
       - restrictions
-    ErrorList_2:
-      description: A list of error responses returned when a request is unsuccessful.
-      type: array
-      items:
-        $ref: '#/components/schemas/Error'
     Reason:
       description: A reason for the restriction, including path forward links that may allow Selling Partners to remove the restriction, if available.
       type: object
@@ -3251,6 +3271,11 @@ components:
       required:
       - resource
       - verb
+    ErrorList_2:
+      description: A list of error responses returned when a request is unsuccessful.
+      type: array
+      items:
+        $ref: '#/components/schemas/Error'
 x-refined-from:
 - amazon-seller-central-listings-items-2021-08-01-original.json
 - amazon-seller-central-listings-restrictions-2021-08-01-original.json

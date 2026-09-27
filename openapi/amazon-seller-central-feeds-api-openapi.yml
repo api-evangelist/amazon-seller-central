@@ -12,13 +12,13 @@ info:
 servers:
 - url: https://sellingpartnerapi-na.amazon.com
 tags:
-- name: feeds
+- name: Feeds
 paths:
   /feeds/2021-06-30/feeds:
     parameters: []
     get:
       tags:
-      - feeds
+      - Feeds
       description: 'Returns feed details for the feeds that match the filters that you specify.
 
 
@@ -32,7 +32,7 @@ paths:
         | 0.0222 | 10 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: getFeeds
       parameters:
       - name: feedTypes
@@ -260,9 +260,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorList'
+      summary: Get feeds
+      x-summary-source: derived
     post:
       tags:
-      - feeds
+      - Feeds
       description: 'Creates a feed. Upload the contents of the feed document before calling this operation.
 
 
@@ -276,10 +278,10 @@ paths:
         | 0.0083 | 15 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to Usage Plans and Rate Limits in the Selling Partner API.
 
 
-        The rate limit for the [`JSON_LISTINGS_FEED`](https://developer-docs.amazon.com/sp-api/docs/listings-feed-type-values#listings-feed) feed type differs from the rate limit for the [`createFeed`](https://developer-docs.amazon.com/sp-api/reference/createfeed) operation. For more information, refer to the [Building Listings Management Workflows Guide](https://developer-docs.amazon.com/sp-api/docs/building-listings-management-workflows-guide#should-i-submit-in-bulk-using-the-json_listings_feed-or-individually-with-the-listings-items-api).'
+        The rate limit for the `JSON_LISTINGS_FEED` feed type differs from the rate limit for the `createFeed` operation. For more information, refer to the Building Listings Management Workflows Guide.'
       operationId: createFeed
       responses:
         '202':
@@ -428,12 +430,14 @@ paths:
               $ref: '#/components/schemas/CreateFeedSpecification'
         description: Information required to create the feed.
         required: true
+      summary: Create feed
+      x-summary-source: derived
   /feeds/2021-06-30/feeds/{feedId}:
     parameters: []
     delete:
       tags:
-      - feeds
-      description: 'Cancels the feed that you specify. Only feeds with `processingStatus=IN_QUEUE` can be cancelled. Cancelled feeds are returned in subsequent calls to the [`getFeed`](https://developer-docs.amazon.com/sp-api/reference/getfeed) and [`getFeeds`](https://developer-docs.amazon.com/sp-api/reference/getfeeds) operations.
+      - Feeds
+      description: 'Cancels the feed that you specify. Only feeds with `processingStatus=IN_QUEUE` can be cancelled. Cancelled feeds are returned in subsequent calls to the `getFeed` and `getFeeds` operations.
 
 
         **Usage Plan:**
@@ -446,7 +450,7 @@ paths:
         | 2 | 15 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: cancelFeed
       parameters:
       - name: feedId
@@ -580,9 +584,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorList'
+      summary: Cancel feed
+      x-summary-source: derived
     get:
       tags:
-      - feeds
+      - Feeds
       description: 'Returns feed details (including the `resultDocumentId`, if available) for the feed that you specify.
 
 
@@ -596,7 +602,7 @@ paths:
         | 2 | 15 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: getFeed
       parameters:
       - name: feedId
@@ -741,10 +747,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorList'
+      summary: Get feed
+      x-summary-source: derived
   /feeds/2021-06-30/documents:
     parameters: []
     post:
-      description: 'Creates a feed document for the feed type that you specify. This operation returns a presigned URL for uploading the feed document contents. It also returns a `feedDocumentId` value that you can pass in with a subsequent call to the [`createFeed`](https://developer-docs.amazon.com/sp-api/reference/createfeed) operation.
+      description: 'Creates a feed document for the feed type that you specify. This operation returns a presigned URL for uploading the feed document contents. It also returns a `feedDocumentId` value that you can pass in with a subsequent call to the `createFeed` operation.
 
 
         **Usage Plan:**
@@ -757,10 +765,10 @@ paths:
         | 0.5 | 15 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: createFeedDocument
       tags:
-      - feeds
+      - Feeds
       responses:
         '201':
           description: Successfully created a feed document that is ready to receive contents.
@@ -901,10 +909,12 @@ paths:
               $ref: '#/components/schemas/CreateFeedDocumentSpecification'
         description: Specifies the content type for the createFeedDocument operation.
         required: true
+      summary: Create feed document
+      x-summary-source: derived
   /feeds/2021-06-30/documents/{feedDocumentId}:
     get:
       tags:
-      - feeds
+      - Feeds
       description: 'Returns the information required for retrieving a feed document''s contents.
 
 
@@ -918,7 +928,7 @@ paths:
         | 0.0222 | 10 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The preceding table indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may have higher rate and burst values than those shown here. For more information, refer to Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: getFeedDocument
       parameters:
       - name: feedDocumentId
@@ -1065,24 +1075,58 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorList'
+      summary: Get feed document
+      x-summary-source: derived
 components:
   schemas:
-    Error:
+    CreateFeedResponse:
       type: object
       required:
-      - code
-      - message
+      - feedId
       properties:
-        code:
+        feedId:
+          description: The identifier for the feed. This identifier is unique only in combination with a seller ID.
           type: string
-          description: An error code that identifies the type of error that occurred.
-        message:
+      description: Response schema.
+    FeedOptions:
+      description: Additional options to control the feed. These vary by feed type.
+      type: object
+      additionalProperties:
+        type: string
+    CreateFeedDocumentResponse:
+      description: Information required to upload a feed document's contents.
+      type: object
+      required:
+      - feedDocumentId
+      - url
+      properties:
+        feedDocumentId:
+          description: The identifier of the feed document.
           type: string
-          description: A message that describes the error condition.
-        details:
+        url:
+          description: The presigned URL for uploading the feed contents. This URL expires after 5 minutes.
           type: string
-          description: Additional details that can help the caller understand or fix the issue.
-      description: An error response returned when the request is unsuccessful.
+    CreateFeedDocumentSpecification:
+      type: object
+      description: Specifies the content type for the createFeedDocument operation.
+      required:
+      - contentType
+      properties:
+        contentType:
+          description: The content type of the feed.
+          type: string
+    GetFeedsResponse:
+      type: object
+      required:
+      - feeds
+      properties:
+        feeds:
+          description: The feeds.
+          $ref: '#/components/schemas/FeedList'
+        nextToken:
+          description: Returned when the number of results exceeds pageSize. To get the next page of results, call the getFeeds operation with this token as the only parameter.
+          type: string
+      description: Response schema.
     Feed:
       type: object
       description: Detailed information about the feed.
@@ -1138,24 +1182,11 @@ components:
         resultFeedDocumentId:
           description: The identifier for the feed document. This identifier is unique only in combination with a seller ID.
           type: string
-    CreateFeedDocumentResponse:
-      description: Information required to upload a feed document's contents.
-      type: object
-      required:
-      - feedDocumentId
-      - url
-      properties:
-        feedDocumentId:
-          description: The identifier of the feed document.
-          type: string
-        url:
-          description: The presigned URL for uploading the feed contents. This URL expires after 5 minutes.
-          type: string
-    FeedOptions:
-      description: Additional options to control the feed. These vary by feed type.
-      type: object
-      additionalProperties:
-        type: string
+    FeedList:
+      type: array
+      description: A list of feeds.
+      items:
+        $ref: '#/components/schemas/Feed'
     CreateFeedSpecification:
       type: object
       description: Information required to create the feed.
@@ -1200,15 +1231,6 @@ components:
           x-docgen-enum-table-extension:
           - value: GZIP
             description: The gzip compression algorithm.
-    CreateFeedDocumentSpecification:
-      type: object
-      description: Specifies the content type for the createFeedDocument operation.
-      required:
-      - contentType
-      properties:
-        contentType:
-          description: The content type of the feed.
-          type: string
     ErrorList:
       type: object
       description: A list of error responses returned when a request is unsuccessful.
@@ -1220,29 +1242,19 @@ components:
           items:
             $ref: '#/components/schemas/Error'
           description: An error response returned when the request is unsuccessful.
-    GetFeedsResponse:
+    Error:
       type: object
       required:
-      - feeds
+      - code
+      - message
       properties:
-        feeds:
-          description: The feeds.
-          $ref: '#/components/schemas/FeedList'
-        nextToken:
-          description: Returned when the number of results exceeds pageSize. To get the next page of results, call the getFeeds operation with this token as the only parameter.
+        code:
           type: string
-      description: Response schema.
-    CreateFeedResponse:
-      type: object
-      required:
-      - feedId
-      properties:
-        feedId:
-          description: The identifier for the feed. This identifier is unique only in combination with a seller ID.
+          description: An error code that identifies the type of error that occurred.
+        message:
           type: string
-      description: Response schema.
-    FeedList:
-      type: array
-      description: A list of feeds.
-      items:
-        $ref: '#/components/schemas/Feed'
+          description: A message that describes the error condition.
+        details:
+          type: string
+          description: Additional details that can help the caller understand or fix the issue.
+      description: An error response returned when the request is unsuccessful.

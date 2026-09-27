@@ -1,9 +1,6 @@
 openapi: 3.2.0
 info:
-  description: 'The Selling Partner API for Product Type Definitions provides programmatic access to attribute and data requirements for product types in the Amazon catalog. Use this API to return the JSON Schema for a product type that you can then use with other Selling Partner APIs, such as the Selling Partner API for Listings Items, the Selling Partner API for Catalog Items, and the Selling Partner API for Feeds (for JSON-based listing feeds).
-
-
-    For more information, see the [Product Type Definitions API Use Case Guide](doc:product-type-api-use-case-guide).'
+  description: The Selling Partner API for Product Type Definitions provides programmatic access to attribute and data requirements for product types in the Amazon catalog.
   version: '2020-09-01'
   title: Selling Partner API for Product Type Definitions API
   contact:
@@ -37,7 +34,7 @@ paths:
         |Selling partner specific| Variable | Variable |
 
 
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).'
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: searchDefinitionsProductTypes
       parameters:
       - name: keywords
@@ -225,6 +222,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorList'
+      summary: Search definitions product types
+      x-summary-source: derived
   /definitions/2020-09-01/productTypes/{productType}:
     parameters: []
     get:
@@ -245,7 +244,7 @@ paths:
         |Selling partner specific| Variable | Variable |
 
 
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).'
+        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: getDefinitionsProductType
       parameters:
       - name: productType
@@ -658,8 +657,44 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorList'
+      summary: Get definitions product type
+      x-summary-source: derived
 components:
   schemas:
+    ProductTypeList:
+      type: object
+      required:
+      - productTypes
+      - productTypeVersion
+      properties:
+        productTypes:
+          description: A list of product types.
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductType'
+        productTypeVersion:
+          description: Amazon product type version identifier.
+          type: string
+      description: A list of Amazon product types with definitions available.
+    ProductType:
+      type: object
+      required:
+      - marketplaceIds
+      - name
+      - displayName
+      properties:
+        name:
+          type: string
+          description: The name of the Amazon product type.
+        displayName:
+          type: string
+          description: Human-readable and localized description of the Amazon product type.
+        marketplaceIds:
+          type: array
+          description: The Amazon marketplace identifiers for which the product type definition is available.
+          items:
+            type: string
+      description: An Amazon product type with a definition available.
     PropertyGroup:
       type: object
       properties:
@@ -675,22 +710,6 @@ components:
           items:
             type: string
       description: A property group represents a logical grouping of schema properties that can be used for display or informational purposes.
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: An error code that identifies the type of error that occurred.
-        message:
-          type: string
-          description: A message that describes the error condition.
-        details:
-          type: string
-          description: Additional details that can help the caller understand or fix the issue.
-      description: Error response returned when the request is unsuccessful.
     ProductTypeVersion:
       type: object
       required:
@@ -774,51 +793,6 @@ components:
           description: The version details for the Amazon product type.
           $ref: '#/components/schemas/ProductTypeVersion'
       description: A product type definition represents the attributes and data requirements for a product type in the Amazon catalog. Product type definitions are used interchangeably between the Selling Partner API for Listings Items, Selling Partner API for Catalog Items, and JSON-based listings feeds in the Selling Partner API for Feeds.
-    ProductTypeList:
-      type: object
-      required:
-      - productTypes
-      - productTypeVersion
-      properties:
-        productTypes:
-          description: A list of product types.
-          type: array
-          items:
-            $ref: '#/components/schemas/ProductType'
-        productTypeVersion:
-          description: Amazon product type version identifier.
-          type: string
-      description: A list of Amazon product types with definitions available.
-    ProductType:
-      type: object
-      required:
-      - marketplaceIds
-      - name
-      - displayName
-      properties:
-        name:
-          type: string
-          description: The name of the Amazon product type.
-        displayName:
-          type: string
-          description: Human-readable and localized description of the Amazon product type.
-        marketplaceIds:
-          type: array
-          description: The Amazon marketplace identifiers for which the product type definition is available.
-          items:
-            type: string
-      description: An Amazon product type with a definition available.
-    ErrorList:
-      type: object
-      required:
-      - errors
-      properties:
-        errors:
-          description: A list of error responses.
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-      description: A list of error responses returned when a request is unsuccessful.
     SchemaLink:
       description: A link to metadata schema.
       type: object
@@ -847,3 +821,30 @@ components:
         checksum:
           type: string
           description: Checksum hash of the schema (Base64 MD5). Use this to verify schema contents, identify changes between schema versions, and for caching.
+    ErrorList:
+      type: object
+      required:
+      - errors
+      properties:
+        errors:
+          description: A list of error responses.
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+      description: A list of error responses returned when a request is unsuccessful.
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: An error code that identifies the type of error that occurred.
+        message:
+          type: string
+          description: A message that describes the error condition.
+        details:
+          type: string
+          description: Additional details that can help the caller understand or fix the issue.
+      description: Error response returned when the request is unsuccessful.

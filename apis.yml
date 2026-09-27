@@ -9,15 +9,20 @@ description: 'The Amazon Selling Partner API (SP-API) is the modern REST-based A
 type: Index
 deliveryModel:
   model: saas
-  open_source: false
+  license_evidence:
+    not_product:
+    - amzn/selling-partner-agentic-toolkit
+    - amzn/selling-partner-api-models
+  open_source: unknown
   commercial: true
   callable_host: true
   label: Hosted service · you call their endpoint
-  confidence: high
+  confidence: low
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: unknown
@@ -337,6 +342,8 @@ apis:
   humanURL: https://developer-docs.amazon.com/sp-api
   baseURL: https://sellingpartnerapi-na.amazon.com
   tags:
+  - Definitions
+  tags_raw:
   - definitions
   properties:
   - type: OpenAPI
@@ -350,7 +357,8 @@ apis:
   description: The fbaInbound API from Amazon Selling Partner API — 36 operation(s) for fbainbound.
   humanURL: https://developer-docs.amazon.com/sp-api
   baseURL: https://sellingpartnerapi-na.amazon.com
-  tags:
+  tags: []
+  tags_raw:
   - fbaInbound
   properties:
   - type: OpenAPI
@@ -372,7 +380,8 @@ apis:
   description: The fbaInventory API from Amazon Selling Partner API — 4 operation(s) for fbainventory.
   humanURL: https://developer-docs.amazon.com/sp-api
   baseURL: https://sellingpartnerapi-na.amazon.com
-  tags:
+  tags: []
+  tags_raw:
   - fbaInventory
   properties:
   - type: OpenAPI
@@ -394,7 +403,8 @@ apis:
   description: The fbaOutbound API from Amazon Selling Partner API — 12 operation(s) for fbaoutbound.
   humanURL: https://developer-docs.amazon.com/sp-api
   baseURL: https://sellingpartnerapi-na.amazon.com
-  tags:
+  tags: []
+  tags_raw:
   - fbaOutbound
   properties:
   - type: OpenAPI
@@ -417,6 +427,8 @@ apis:
   humanURL: https://developer-docs.amazon.com/sp-api
   baseURL: https://sellingpartnerapi-na.amazon.com
   tags:
+  - Fees
+  tags_raw:
   - fees
   properties:
   - type: OpenAPI
@@ -432,7 +444,8 @@ apis:
   description: The getOrder API from Amazon Selling Partner API — 1 operation(s) for getorder.
   humanURL: https://developer-docs.amazon.com/sp-api
   baseURL: https://sellingpartnerapi-na.amazon.com
-  tags:
+  tags: []
+  tags_raw:
   - getOrder
   properties:
   - type: OpenAPI
@@ -467,6 +480,8 @@ apis:
   humanURL: https://developer-docs.amazon.com/sp-api
   baseURL: https://sellingpartnerapi-na.amazon.com
   tags:
+  - Product Pricing
+  tags_raw:
   - productPricing
   properties:
   - type: OpenAPI
@@ -489,6 +504,8 @@ apis:
   humanURL: https://developer-docs.amazon.com/sp-api
   baseURL: https://sellingpartnerapi-na.amazon.com
   tags:
+  - Sales
+  tags_raw:
   - sales
   properties:
   - type: OpenAPI
@@ -500,7 +517,8 @@ apis:
   description: The searchOrders API from Amazon Selling Partner API — 1 operation(s) for searchorders.
   humanURL: https://developer-docs.amazon.com/sp-api
   baseURL: https://sellingpartnerapi-na.amazon.com
-  tags:
+  tags: []
+  tags_raw:
   - searchOrders
   properties:
   - type: OpenAPI
@@ -513,6 +531,8 @@ apis:
   humanURL: https://developer-docs.amazon.com/sp-api
   baseURL: https://sellingpartnerapi-na.amazon.com
   tags:
+  - Sellers
+  tags_raw:
   - sellers
   properties:
   - type: OpenAPI
@@ -527,6 +547,8 @@ apis:
   humanURL: https://developer-docs.amazon.com/sp-api
   baseURL: https://sellingpartnerapi-na.amazon.com
   tags:
+  - Shipment
+  tags_raw:
   - shipment
   properties:
   - type: OpenAPI

@@ -12,13 +12,13 @@ info:
 servers:
 - url: https://sellingpartnerapi-eu.amazon.com
 tags:
-- name: shipping
+- name: Shipping
 paths:
   /shipping/v2/shipments/rates:
     parameters: []
     post:
       tags:
-      - shipping
+      - Shipping
       description: 'Returns the available shipping service offerings.
 
 
@@ -32,7 +32,7 @@ paths:
         | 80 | 100 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: getRates
       parameters:
       - name: x-amzn-shipping-business-id
@@ -345,11 +345,13 @@ paths:
               $ref: '#/components/schemas/GetRatesRequest'
         description: GetRatesRequest body
         required: true
+      summary: Get rates
+      x-summary-source: derived
   /shipping/v2/shipments/directPurchase:
     parameters: []
     post:
       tags:
-      - shipping
+      - Shipping
       description: 'Purchases the shipping service for a shipment using the best fit service offering. Returns purchase related details and documents.
 
 
@@ -363,7 +365,7 @@ paths:
         | 80 | 100 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: directPurchaseShipment
       parameters:
       - name: x-amzn-IdempotencyKey
@@ -604,11 +606,13 @@ paths:
               $ref: '#/components/schemas/DirectPurchaseRequest'
         description: DirectPurchaseRequest body
         required: true
+      summary: Direct purchase shipment
+      x-summary-source: derived
   /shipping/v2/shipments:
     parameters: []
     post:
       tags:
-      - shipping
+      - Shipping
       description: 'Purchases a shipping service and returns purchase related details and documents.
 
 
@@ -625,7 +629,7 @@ paths:
         | 80 | 100 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: purchaseShipment
       parameters:
       - name: x-amzn-IdempotencyKey
@@ -861,11 +865,13 @@ paths:
               $ref: '#/components/schemas/PurchaseShipmentRequest'
         description: PurchaseShipmentRequest body
         required: true
+      summary: Purchase shipment
+      x-summary-source: derived
   /shipping/v2/oneClickShipment:
     parameters: []
     post:
       tags:
-      - shipping
+      - Shipping
       description: 'Purchases a shipping service identifier and returns purchase-related details and documents.
 
 
@@ -879,7 +885,7 @@ paths:
         | 80 | 100 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: oneClickShipment
       parameters:
       - name: x-amzn-shipping-business-id
@@ -1114,11 +1120,13 @@ paths:
               $ref: '#/components/schemas/OneClickShipmentRequest'
         description: OneClickShipmentRequest body
         required: true
+      summary: One click shipment
+      x-summary-source: derived
   /shipping/v2/tracking:
     parameters: []
     get:
       tags:
-      - shipping
+      - Shipping
       description: 'Returns tracking information for a purchased shipment.
 
 
@@ -1132,7 +1140,7 @@ paths:
         | 80 | 100 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: getTracking
       parameters:
       - name: trackingId
@@ -1378,11 +1386,13 @@ paths:
                   message: Service temporarily unavailable or down for maintenance. Please try again after sometime.
       x-amzn-api-sandbox:
         dynamic: {}
+      summary: Get tracking
+      x-summary-source: derived
   /shipping/v2/shipments/{shipmentId}/documents:
     parameters: []
     get:
       tags:
-      - shipping
+      - Shipping
       description: 'Returns the shipping documents associated with a package in a shipment.
 
 
@@ -1396,7 +1406,7 @@ paths:
         | 80 | 100 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: getShipmentDocuments
       parameters:
       - name: shipmentId
@@ -1636,11 +1646,13 @@ paths:
                   message: Service temporarily unavailable or down for maintenance. Please try again after sometime.
       x-amzn-api-sandbox:
         dynamic: {}
+      summary: Get shipment documents
+      x-summary-source: derived
   /shipping/v2/shipments/{shipmentId}/cancel:
     parameters: []
     put:
       tags:
-      - shipping
+      - Shipping
       description: 'Cancels a purchased shipment. Returns an empty object if the shipment is successfully cancelled.
 
 
@@ -1654,7 +1666,7 @@ paths:
         | 80 | 100 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: cancelShipment
       parameters:
       - name: shipmentId
@@ -1864,11 +1876,13 @@ paths:
                   message: Service temporarily unavailable or down for maintenance. Please try again after sometime.
       x-amzn-api-sandbox:
         dynamic: {}
+      summary: Cancel shipment
+      x-summary-source: derived
   /shipping/v2/shipments/additionalInputs/schema:
     parameters: []
     get:
       tags:
-      - shipping
+      - Shipping
       description: 'Returns the JSON schema to use for providing additional inputs when needed to purchase a shipping offering. Call the getAdditionalInputs operation when the response to a previous call to the getRates operation indicates that additional inputs are required for the rate (shipping offering) that you want to purchase.
 
 
@@ -1882,7 +1896,7 @@ paths:
         | 80 | 100 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: getAdditionalInputs
       parameters:
       - name: requestToken
@@ -2130,12 +2144,27 @@ paths:
                 errors:
                 - code: ServiceUnavailable
                   message: Service temporarily unavailable or down for maintenance. Please try again after sometime.
+      summary: Get additional inputs
+      x-summary-source: derived
   /shipping/v2/carrierAccountFormInputs:
     parameters: []
     get:
       tags:
-      - shipping
-      description: "This API will return a list of input schema required to register a shipper account with the carrier. \n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api)."
+      - Shipping
+      description: 'This API will return a list of input schema required to register a shipper account with the carrier.
+
+
+        **Usage Plan:**
+
+
+        | Rate (requests per second) | Burst |
+
+        | ---- | ---- |
+
+        | 80 | 100 |
+
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: getCarrierAccountFormInputs
       parameters:
       - name: x-amzn-shipping-business-id
@@ -2355,12 +2384,27 @@ paths:
                 errors:
                 - code: ServiceUnavailable
                   message: Service temporarily unavailable or down for maintenance. Please try again after sometime.
+      summary: Get carrier account form inputs
+      x-summary-source: derived
   /shipping/v2/carrierAccounts:
     parameters: []
     put:
       tags:
-      - shipping
-      description: "This API will return Get all carrier accounts for a merchant. \n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api)."
+      - Shipping
+      description: 'This API will return Get all carrier accounts for a merchant.
+
+
+        **Usage Plan:**
+
+
+        | Rate (requests per second) | Burst |
+
+        | ---- | ---- |
+
+        | 80 | 100 |
+
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: getCarrierAccounts
       parameters:
       - name: x-amzn-shipping-business-id
@@ -2572,12 +2616,27 @@ paths:
               $ref: '#/components/schemas/GetCarrierAccountsRequest'
         description: GetCarrierAccountsRequest body
         required: true
+      summary: Get carrier accounts
+      x-summary-source: derived
   /shipping/v2/carrierAccounts/{carrierId}:
     parameters: []
     put:
       tags:
-      - shipping
-      description: "This API associates/links the specified carrier account with the merchant. \n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api)."
+      - Shipping
+      description: 'This API associates/links the specified carrier account with the merchant.
+
+
+        **Usage Plan:**
+
+
+        | Rate (requests per second) | Burst |
+
+        | ---- | ---- |
+
+        | 80 | 100 |
+
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: linkCarrierAccount
       parameters:
       - name: carrierId
@@ -2794,11 +2853,26 @@ paths:
               $ref: '#/components/schemas/LinkCarrierAccountRequest'
         description: LinkCarrierAccountRequest body
         required: true
+      summary: Link carrier account
+      x-summary-source: derived
     post:
       tags:
-      - shipping
-      description: "This API associates/links the specified carrier account with the merchant. \n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api)."
-      operationId: linkCarrierAccount
+      - Shipping
+      description: 'This API associates/links the specified carrier account with the merchant.
+
+
+        **Usage Plan:**
+
+
+        | Rate (requests per second) | Burst |
+
+        | ---- | ---- |
+
+        | 5 | 10 |
+
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
+      operationId: postShippingV2CarrierAccountsByCarrierId
       parameters:
       - name: carrierId
         description: An identifier for the carrier with which the seller's account is being linked.
@@ -3016,12 +3090,29 @@ paths:
               $ref: '#/components/schemas/LinkCarrierAccountRequest'
         description: LinkCarrierAccountRequest body
         required: true
+      summary: Link carrier account
+      x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: linkCarrierAccount
   /shipping/v2/carrierAccounts/{carrierId}/unlink:
     parameters: []
     put:
       tags:
-      - shipping
-      description: "This API Unlink the specified carrier account with the merchant. \n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api)."
+      - Shipping
+      description: 'This API Unlink the specified carrier account with the merchant.
+
+
+        **Usage Plan:**
+
+
+        | Rate (requests per second) | Burst |
+
+        | ---- | ---- |
+
+        | 80 | 100 |
+
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: unlinkCarrierAccount
       parameters:
       - name: carrierId
@@ -3238,12 +3329,27 @@ paths:
               $ref: '#/components/schemas/UnlinkCarrierAccountRequest'
         description: UnlinkCarrierAccountRequest body
         required: true
+      summary: Unlink carrier account
+      x-summary-source: derived
   /shipping/v2/collectionForms:
     parameters: []
     post:
       tags:
-      - shipping
-      description: "This API  Call to generate the collection form. \n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api)."
+      - Shipping
+      description: 'This API Call to generate the collection form.
+
+
+        **Usage Plan:**
+
+
+        | Rate (requests per second) | Burst |
+
+        | ---- | ---- |
+
+        | 80 | 100 |
+
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: generateCollectionForm
       parameters:
       - name: x-amzn-IdempotencyKey
@@ -3461,12 +3567,27 @@ paths:
               $ref: '#/components/schemas/GenerateCollectionFormRequest'
         description: GenerateCollectionFormRequest body
         required: true
+      summary: Generate collection form
+      x-summary-source: derived
   /shipping/v2/collectionForms/history:
     parameters: []
     put:
       tags:
-      - shipping
-      description: "This API Call to get the history of the previously generated collection forms. \n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api)."
+      - Shipping
+      description: 'This API Call to get the history of the previously generated collection forms.
+
+
+        **Usage Plan:**
+
+
+        | Rate (requests per second) | Burst |
+
+        | ---- | ---- |
+
+        | 80 | 100 |
+
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: getCollectionFormHistory
       parameters:
       - name: x-amzn-shipping-business-id
@@ -3682,12 +3803,29 @@ paths:
               $ref: '#/components/schemas/GetCollectionFormHistoryRequest'
         description: GetCollectionFormHistoryRequest body
         required: true
+      summary: Get collection form history
+      x-summary-source: derived
   /shipping/v2/unmanifestedShipments:
     parameters: []
     put:
       tags:
-      - shipping
-      description: "This API Get all unmanifested carriers with shipment locations. Any locations which has unmanifested shipments\n        with an eligible carrier for manifesting shall be returned. \n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api)."
+      - Shipping
+      description: 'This API Get all unmanifested carriers with shipment locations. Any locations which has unmanifested shipments
+
+        with an eligible carrier for manifesting shall be returned.
+
+
+        **Usage Plan:**
+
+
+        | Rate (requests per second) | Burst |
+
+        | ---- | ---- |
+
+        | 80 | 100 |
+
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: getUnmanifestedShipments
       parameters:
       - name: x-amzn-shipping-business-id
@@ -3902,12 +4040,27 @@ paths:
               $ref: '#/components/schemas/GetUnmanifestedShipmentsRequest'
         description: GetUmanifestedShipmentsRequest body
         required: true
+      summary: Get unmanifested shipments
+      x-summary-source: derived
   /shipping/v2/collectionForms/{collectionFormId}:
     parameters: []
     get:
       tags:
-      - shipping
-      description: "This API reprint a collection form. \n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 80 | 100 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api)."
+      - Shipping
+      description: 'This API reprint a collection form.
+
+
+        **Usage Plan:**
+
+
+        | Rate (requests per second) | Burst |
+
+        | ---- | ---- |
+
+        | 80 | 100 |
+
+
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: getCollectionForm
       parameters:
       - name: collectionFormId
@@ -4118,11 +4271,13 @@ paths:
                 errors:
                 - code: ServiceUnavailable
                   message: Service temporarily unavailable or down for maintenance. Please try again after sometime.
+      summary: Get collection form
+      x-summary-source: derived
   /shipping/v2/accessPoints:
     parameters: []
     get:
       tags:
-      - shipping
+      - Shipping
       description: 'Returns a list of access points in proximity of input postal code.
 
 
@@ -4136,7 +4291,7 @@ paths:
         | 80 | 100 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: getAccessPoints
       parameters:
       - in: query
@@ -4499,11 +4654,13 @@ paths:
                   message: Service temporarily unavailable or down for maintenance. Please try again after sometime.
       x-amzn-api-sandbox:
         dynamic: {}
+      summary: Get access points
+      x-summary-source: derived
   /shipping/v2/ndrFeedback:
     parameters: []
     post:
       tags:
-      - shipping
+      - Shipping
       description: 'This API submits the NDR (Non-delivery Report) Feedback for any eligible shipment.
 
 
@@ -4517,7 +4674,7 @@ paths:
         | 80 | 100 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: submitNdrFeedback
       parameters:
       - name: x-amzn-shipping-business-id
@@ -4723,11 +4880,13 @@ paths:
               $ref: '#/components/schemas/SubmitNdrFeedbackRequest'
         description: Request body for ndrFeedback operation
         required: true
+      summary: Submit ndr feedback
+      x-summary-source: derived
   /shipping/v2/claims:
     parameters: []
     post:
       tags:
-      - shipping
+      - Shipping
       description: 'This API will be used to create claim for single eligible shipment.
 
 
@@ -4741,7 +4900,7 @@ paths:
         | 80 | 100 |
 
 
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).'
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see Usage Plans and Rate Limits in the Selling Partner API.'
       operationId: createClaim
       parameters:
       - name: x-amzn-shipping-business-id
@@ -4953,297 +5112,23 @@ paths:
               $ref: '#/components/schemas/CreateClaimRequest'
         description: Request body for the createClaim operation
         required: true
+      summary: Create claim
+      x-summary-source: derived
 components:
   schemas:
-    Dimensions:
+    SubmitNdrFeedbackRequest:
       type: object
+      description: The request schema for the NdrFeedback operation
       required:
-      - height
-      - length
-      - unit
-      - width
+      - trackingId
+      - ndrAction
       properties:
-        length:
-          type: number
-          description: The length of the package.
-        width:
-          type: number
-          description: The width of the package.
-        height:
-          type: number
-          description: The height of the package.
-        unit:
-          type: string
-          description: The unit of measurement.
-          enum:
-          - INCH
-          - CENTIMETER
-          x-docgen-enum-table-extension:
-          - value: INCH
-            description: The imperial unit of length equal to one twelfth of a foot.
-          - value: CENTIMETER
-            description: A metric unit of length, equal to one hundredth of a meter.
-      description: A set of measurements for a three-dimensional object.
-    RateItem:
-      type: object
-      properties:
-        rateItemID:
-          $ref: '#/components/schemas/RateItemID'
-        rateItemType:
-          $ref: '#/components/schemas/RateItemType'
-        rateItemCharge:
-          $ref: '#/components/schemas/Currency'
-        rateItemNameLocalization:
-          type: string
-          description: Used for the localization.
-      description: 'Rate Item for shipping (base cost, transaction fee, confirmation, insurance, etc.) Data source definition: '
-    DirectPurchaseResult:
-      type: object
-      required:
-      - shipmentId
-      properties:
-        shipmentId:
-          $ref: '#/components/schemas/ShipmentId'
-        packageDocumentDetailList:
-          $ref: '#/components/schemas/PackageDocumentDetailList'
-      description: The payload for the directPurchaseShipment operation.
-    UnmanifestedCarrierInformation:
-      type: object
-      properties:
-        carrierId:
-          $ref: '#/components/schemas/CarrierId'
-        carrierName:
-          $ref: '#/components/schemas/CarrierName'
-        unmanifestedShipmentLocationList:
-          $ref: '#/components/schemas/UnmanifestedShipmentLocationList'
-      description: UnmanifestedCarrierInformation like carrierId CarrierName and Location
-    EventCode:
-      type: string
-      description: The tracking event type.
-      enum:
-      - ReadyForReceive
-      - PickupDone
-      - Delivered
-      - Departed
-      - DeliveryAttempted
-      - Lost
-      - OutForDelivery
-      - ArrivedAtCarrierFacility
-      - Rejected
-      - Undeliverable
-      - PickupCancelled
-      - ReturnInitiated
-      - AvailableForPickup
-      - RecipientRequestedAlternateDeliveryTiming
-      x-docgen-enum-table-extension:
-      - value: ReadyForReceive
-        description: Package has been created and is ready for pickup at the shippers location. This is a pre-transit status event code.
-      - value: PickupDone
-        description: Package has been picked up by the service provider.
-      - value: Delivered
-        description: Package has been delivered.
-      - value: Departed
-        description: Package has departed from a particular location in carrier network.
-      - value: DeliveryAttempted
-        description: Delivery was attempted, but was unsuccessful.
-      - value: Lost
-        description: Package is lost.
-      - value: OutForDelivery
-        description: Package is out for delivery.
-      - value: ArrivedAtCarrierFacility
-        description: Package is in transit and has been received at a carrier location.
-      - value: Rejected
-        description: Package was rejected by the recipient.
-      - value: Undeliverable
-        description: Package is undeliverable.
-      - value: PickupCancelled
-        description: Pickup scheduled for the package was cancelled.
-      - value: ReturnInitiated
-        description: Return label has been generated.
-      - value: AvailableForPickup
-        description: Package held for recipient pickup.
-      - value: RecipientRequestedAlternateDeliveryTiming
-        description: Recipient has requested an update to their delivery date.
-    GetShipmentDocumentsResponse:
-      type: object
-      properties:
-        payload:
-          $ref: '#/components/schemas/GetShipmentDocumentsResult'
-      description: The response schema for the the getShipmentDocuments operation.
-    PostalCode:
-      type: string
-      description: The postal code of that address. It contains a series of letters or digits or both, sometimes including spaces or punctuation.
-    ExcludedBenefitReasonCodes:
-      type: array
-      description: List of reasons (eg. LATE_DELIVERY_RISK, etc.) indicating why a benefit is excluded for a shipping offer.
-      minItems: 1
-      items:
-        type: string
-    CarrierAccountAttribute:
-      type: object
-      properties:
-        attributeName:
-          type: string
-          description: Attribute Name .
-        propertyGroup:
-          type: string
-          description: Property Group.
-        value:
-          type: string
-          description: Value .
-      description: Attribute Properties required by carrier
-    PackageDocumentDetail:
-      type: object
-      required:
-      - packageClientReferenceId
-      - packageDocuments
-      properties:
-        packageClientReferenceId:
-          $ref: '#/components/schemas/PackageClientReferenceId'
-        packageDocuments:
-          $ref: '#/components/schemas/PackageDocumentList'
         trackingId:
           $ref: '#/components/schemas/TrackingId'
-      description: The post-purchase details of a package that will be shipped using a shipping service.
-    CancelShipmentResult:
-      type: object
-      description: The payload for the cancelShipment operation.
-      additionalProperties: {}
-    NdrAction:
-      type: string
-      description: The type of NDR action shipper wants to take for a particular shipment.
-      enum:
-      - RESCHEDULE
-      - REATTEMPT
-      - RTO
-      x-docgen-enum-table-extension:
-      - value: RESCHEDULE
-        description: Seller wants to reschedule shipment delivery to a specific date.
-      - value: REATTEMPT
-        description: Seller wants to re-attempt delivery with additional delivery notes.
-      - value: RTO
-        description: Seller wants the shipment to return to the origin.
-    RateList:
-      type: array
-      description: A list of eligible shipping service offerings.
-      items:
-        $ref: '#/components/schemas/Rate'
-    SupportedDocumentSpecification:
-      type: object
-      required:
-      - format
-      - printOptions
-      - size
-      properties:
-        format:
-          $ref: '#/components/schemas/DocumentFormat'
-        size:
-          $ref: '#/components/schemas/DocumentSize'
-        printOptions:
-          $ref: '#/components/schemas/PrintOptionList'
-      description: Document specification that is supported for a service offering.
-    GetCarrierAccountFormInputsResponse:
-      description: The Response  for the GetCarrierAccountFormInputsResponse operation.
-      type: object
-      properties:
-        linkableCarriersList:
-          $ref: '#/components/schemas/LinkableCarriersList'
-    PurchaseShipmentResult:
-      type: object
-      required:
-      - packageDocumentDetails
-      - promise
-      - shipmentId
-      properties:
-        shipmentId:
-          $ref: '#/components/schemas/ShipmentId'
-        packageDocumentDetails:
-          $ref: '#/components/schemas/PackageDocumentDetailList'
-        promise:
-          $ref: '#/components/schemas/Promise'
-        benefits:
-          $ref: '#/components/schemas/Benefits'
-      description: The payload for the purchaseShipment operation.
-    LinkableCarriersList:
-      type: array
-      description: A list of LinkableCarrier
-      items:
-        $ref: '#/components/schemas/LinkableCarrier'
-    GetCollectionFormResponse:
-      description: The Response  for the GetCollectionFormResponse operation.
-      type: object
-      properties:
-        collectionsFormDocument:
-          $ref: '#/components/schemas/CollectionsFormDocument'
-    SettlementType:
-      type: string
-      description: Type of settlement the shipper wants to receive for a particular shipment.
-      default: REFUND
-      enum:
-      - REFUND
-      - CERTIFICATE_OF_FACT
-      x-docgen-enum-table-extension:
-      - value: REFUND
-        description: File a claim for item value to get refund.
-      - value: CERTIFICATE_OF_FACT
-        description: File a claim to request for a COF[Certificate Of Fact].
-    PackageClientReferenceId:
-      type: string
-      description: A client provided unique identifier for a package being shipped. This value should be saved by the client to pass as a parameter to the getShipmentDocuments operation.
-    GetAccessPointsResult:
-      type: object
-      required:
-      - accessPointsMap
-      properties:
-        accessPointsMap:
-          $ref: '#/components/schemas/AccessPointsMap'
-      description: The payload for the GetAccessPoints API.
-    StateOrRegion:
-      type: string
-      description: The state, county or region where the person, business or institution is located.
-    AccessibilityAttributes:
-      type: object
-      description: Defines the accessibility details of the access point.
-      properties:
-        distance:
-          description: The approximate distance of access point from input postalCode's centroid.
-          type: string
-        driveTime:
-          description: The approximate (static) drive time from input postal code's centroid.
-          type: integer
-    Benefits:
-      type: object
-      description: Benefits that are included and excluded for each shipping offer. Benefits represents services provided by Amazon (eg. CLAIMS_PROTECTED, etc.) when sellers purchase shipping through Amazon. Benefit details will be made available for any shipment placed on or after January 1st 2024 00:00 UTC.
-      required:
-      - includedBenefits
-      - excludedBenefits
-      properties:
-        includedBenefits:
-          $ref: '#/components/schemas/IncludedBenefits'
-        excludedBenefits:
-          $ref: '#/components/schemas/ExcludedBenefits'
-    AccessPointsMap:
-      description: Map of type of access point to list of access points
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/AccessPointList'
-    CarrierId:
-      type: string
-      description: The carrier identifier for the offering, provided by the carrier.
-    MerchantId:
-      type: string
-      description: 'merchant Id of provided merchant '
-    OneClickShipmentValueAddedService:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          type: string
-          description: The identifier of the selected value-added service.
-        amount:
-          $ref: '#/components/schemas/Currency'
-      description: A value-added service to be applied to a shipping service purchase.
+        ndrAction:
+          $ref: '#/components/schemas/NdrAction'
+        ndrRequestData:
+          $ref: '#/components/schemas/NdrRequestData'
     GetTrackingResult:
       type: object
       required:
@@ -5269,30 +5154,236 @@ components:
         summary:
           $ref: '#/components/schemas/TrackingSummary'
       description: The payload for the getTracking operation.
-    LinkableCarrier:
-      type: object
-      properties:
-        carrierId:
-          $ref: '#/components/schemas/CarrierId'
-        linkableAccountTypes:
-          $ref: '#/components/schemas/LinkableAccountTypeList'
-      description: Info About Linkable Carrier
-    Error:
+    CarrierAccountType:
+      type: string
+      description: CarrierAccountType  associated with account.
+    SettlementType:
+      type: string
+      description: Type of settlement the shipper wants to receive for a particular shipment.
+      default: REFUND
+      enum:
+      - REFUND
+      - CERTIFICATE_OF_FACT
+      x-docgen-enum-table-extension:
+      - value: REFUND
+        description: File a claim for item value to get refund.
+      - value: CERTIFICATE_OF_FACT
+        description: File a claim to request for a COF[Certificate Of Fact].
+    IneligibilityReason:
+      description: The reason why a shipping service offering is ineligible.
       type: object
       required:
       - code
       - message
       properties:
         code:
-          type: string
-          description: An error code that identifies the type of error that occurred.
+          $ref: '#/components/schemas/IneligibilityReasonCode'
         message:
           type: string
-          description: A message that describes the error condition.
-        details:
+          description: The ineligibility reason.
+    TimeOfDay:
+      type: object
+      description: Denotes time of the day, used for defining opening or closing time of access points
+      properties:
+        hourOfDay:
+          type: integer
+          description: Denotes hour of the day, used for defining opening or closing time of access points
+        minuteOfHour:
+          type: integer
+          description: Denotes minute of the hour, used for defining opening or closing time of access points
+        secondOfMinute:
+          type: integer
+          description: Denotes second of the minute, used for defining opening or closing time of access points
+    ChannelDetails:
+      type: object
+      required:
+      - channelType
+      properties:
+        channelType:
+          $ref: '#/components/schemas/ChannelType'
+        amazonOrderDetails:
+          $ref: '#/components/schemas/AmazonOrderDetails'
+        amazonShipmentDetails:
+          $ref: '#/components/schemas/AmazonShipmentDetails'
+      description: Shipment source channel related information.
+    CollectOnDelivery:
+      type: object
+      required:
+      - amount
+      properties:
+        amount:
+          $ref: '#/components/schemas/Currency'
+      description: The amount to collect on delivery.
+    IncludedBenefits:
+      type: array
+      description: A list of included benefits.
+      items:
+        type: string
+    IneligibleRateList:
+      type: array
+      description: A list of ineligible shipping service offerings.
+      items:
+        $ref: '#/components/schemas/IneligibleRate'
+    DetailCodes:
+      type: string
+      description: A list of codes used to provide additional shipment information.
+      enum:
+      - BusinessClosed
+      - CustomerUnavailable
+      - PaymentNotReady
+      - OtpNotAvailable
+      - DeliveryAttempted
+      - UnableToAccess
+      - UnableToContactRecipient
+      - DeliveredToBehindWheelieBin
+      - DeliveredToPorch
+      - DeliveredToGarage
+      - DeliveredToGarden
+      - DeliveredToGreenhouse
+      - DeliveredToMailSlot
+      - DeliveredToMailRoom
+      - DeliveredToNeighbor
+      - DeliveredToRearDoor
+      - DeliveredToReceptionist
+      - DeliveredToShed
+      - DeliveredWithOTP
+      - Signed
+      - Damaged
+      - IncorrectItems
+      - NotRequired
+      - Rejected
+      - RejectedByRecipientWithVerification
+      - CancelledByRecipient
+      - AddressNotFound
+      - HazmatShipment
+      - Undeliverable
+      - ArrivedAtLocalFacility
+      x-docgen-enum-table-extension:
+      - value: BusinessClosed
+        description: Attempted delivery but the business was closed.
+      - value: CustomerUnavailable
+        description: Attempted delivery but the recipient was unavailable.
+      - value: PaymentNotReady
+        description: Attempted delivery but cash was not available from recipient.
+      - value: OtpNotAvailable
+        description: Attempted delivery but the recipient did not have the PIN available.
+      - value: DeliveryAttempted
+        description: Delivery was attempted.
+      - value: UnableToAccess
+        description: Attempted delivery but could not access the recipient location.
+      - value: UnableToContactRecipient
+        description: Attempted delivery but unable to contact the recipient to coordinate delivery.
+      - value: DeliveredToBehindWheelieBin
+        description: Shipment delivered behind wheelie bin.
+      - value: DeliveredToPorch
+        description: Shipment delivered to front porch or front door.
+      - value: DeliveredToGarage
+        description: Shipment delivered to garage.
+      - value: DeliveredToGarden
+        description: Shipment delivered to garden.
+      - value: DeliveredToGreenhouse
+        description: Shipment delivered to greenhouse.
+      - value: DeliveredToMailSlot
+        description: Shipment delivered to letterbox/mail slot.
+      - value: DeliveredToMailRoom
+        description: Shipment delivered to mailroom.
+      - value: DeliveredToNeighbor
+        description: Shipment delivered and signed for by neighbor.
+      - value: DeliveredToRearDoor
+        description: Shipment delivered to rear porch or rear door.
+      - value: DeliveredToReceptionist
+        description: Shipment delivered to reception.
+      - value: DeliveredToShed
+        description: Shipment delivered to shed.
+      - value: DeliveredWithOTP
+        description: Shipment delivered with onetime passcode.
+      - value: Signed
+        description: Shipment delivered and signature received.
+      - value: Damaged
+        description: Shipment was damaged. When paired with Rejected this indicates the recipient refused to accept the shipment because the shipment was damaged. When paired with UNDELIVERABLE it means the shipment was undeliverable due to being damaged and may be returned to the seller.
+      - value: IncorrectItems
+        description: Recipient refused to accept the shipment because the shipment contains incorrect item/s.
+      - value: NotRequired
+        description: Recipient refused to accept the shipment because the recipient did not want the shipment.
+      - value: Rejected
+        description: Recipient refused to accept the shipment.
+      - value: RejectedByRecipientWithVerification
+        description: Recipient refused to accept the shipment and provided verification.
+      - value: CancelledByRecipient
+        description: Shipment was cancelled by the recipient. This tag is paired with the rejected shipment status.
+      - value: AddressNotFound
+        description: Shipment is undeliverable and is returning to seller because the address was missing or incorrect.
+      - value: HazmatShipment
+        description: Shipment is non-compliant Hazmat.
+      - value: Undeliverable
+        description: Shipment is undeliverable and is returning to the seller.
+      - value: ArrivedAtLocalFacility
+        description: Package arrived at the local facility.
+    GetAdditionalInputsResponse:
+      type: object
+      properties:
+        payload:
+          $ref: '#/components/schemas/GetAdditionalInputsResult'
+      description: The response schema for the getAdditionalInputs operation.
+    PaymentType:
+      type: string
+      description: Payment type of the purchase.
+      enum:
+      - PAY_THROUGH_AMAZON
+      - PAY_DIRECT_TO_CARRIER
+      x-docgen-enum-table-extension:
+      - value: PAY_THROUGH_AMAZON
+        description: Payment Through Amazon.
+      - value: PAY_DIRECT_TO_CARRIER
+        description: Payment Direct to Carrier.
+    NdrRequestData:
+      type: object
+      description: 'Additional information required for the NDR action that has been filed. If the NDR Action is RESCHEDULE, rescheduleDate is a required field. Otherwise, if the NDR Action is REATTEMPT, additionalAddressNotes is a required field. '
+      properties:
+        rescheduleDate:
           type: string
-          description: Additional details that can help the caller understand or fix the issue.
-      description: Error response returned when the request is unsuccessful.
+          format: date-time
+          description: The date on which the Seller wants to reschedule shipment delivery, in ISO-8601 date/time format
+          example: '2023-12-12T05:24:00.00Z'
+        additionalAddressNotes:
+          $ref: '#/components/schemas/AdditionalAddressNotes'
+    TrackingDetailCodes:
+      type: object
+      description: Contains detail codes that provide additional details related to the forward and return leg of the shipment.
+      required:
+      - forward
+      - returns
+      properties:
+        forward:
+          type: array
+          description: Contains detail codes that provide additional details related to the forward leg of the shipment.
+          items:
+            $ref: '#/components/schemas/DetailCodes'
+        returns:
+          type: array
+          description: Contains detail codes that provide additional details related to the return leg of the shipment.
+          items:
+            $ref: '#/components/schemas/DetailCodes'
+    SupportedDocumentSpecification:
+      type: object
+      required:
+      - format
+      - printOptions
+      - size
+      properties:
+        format:
+          $ref: '#/components/schemas/DocumentFormat'
+        size:
+          $ref: '#/components/schemas/DocumentSize'
+        printOptions:
+          $ref: '#/components/schemas/PrintOptionList'
+      description: Document specification that is supported for a service offering.
+    GenerateCollectionFormResponse:
+      description: The Response  for the GenerateCollectionFormResponse operation.
+      type: object
+      properties:
+        collectionsFormDocument:
+          $ref: '#/components/schemas/CollectionsFormDocument'
     Location:
       type: object
       properties:
@@ -5305,52 +5396,797 @@ components:
         postalCode:
           $ref: '#/components/schemas/PostalCode'
       description: The location where the person, business or institution is located.
-    DirectPurchaseRequest:
-      description: The request schema for the directPurchaseShipment operation. When the channel type is Amazon, the shipTo address is not required and will be ignored.
+    ServiceIds:
+      type: array
+      description: A list of ServiceId.
+      items:
+        type: string
+    IneligibilityReasonCode:
+      type: string
+      description: Reasons that make a shipment service offering ineligible.
+      enum:
+      - NO_COVERAGE
+      - PICKUP_SLOT_RESTRICTION
+      - UNSUPPORTED_VAS
+      - VAS_COMBINATION_RESTRICTION
+      - SIZE_RESTRICTIONS
+      - WEIGHT_RESTRICTIONS
+      - LATE_DELIVERY
+      - PROGRAM_CONSTRAINTS
+      - TERMS_AND_CONDITIONS_NOT_ACCEPTED
+      - UNKNOWN
+      x-docgen-enum-table-extension:
+      - value: NO_COVERAGE
+        description: The shipment is ineligible because there is no coverage to that address.
+      - value: PICKUP_SLOT_RESTRICTION
+        description: The shipment is ineligible because there is an issue with the pickup slot.
+      - value: UNSUPPORTED_VAS
+        description: The shipment is ineligible because the value-added service is invalid for this shipment.
+      - value: VAS_COMBINATION_RESTRICTION
+        description: The shipment is ineligible because an invalid combination of value-added services were chosen.
+      - value: SIZE_RESTRICTIONS
+        description: The shipment is ineligible because the package dimensions are unsupported.
+      - value: WEIGHT_RESTRICTIONS
+        description: The shipment is ineligible because the weight is unsupported.
+      - value: LATE_DELIVERY
+        description: The shipment is ineligible because delivery is too late.
+      - value: PROGRAM_CONSTRAINTS
+        description: The shipment is ineligible because of program constraints.
+      - value: TERMS_AND_CONDITIONS_NOT_ACCEPTED
+        description: The shipment is ineligible because terms and conditions have not been accepted by the carrier.
+      - value: UNKNOWN
+        description: The ineligibility reason is unknown.
+    GetAccessPointsResponse:
+      type: object
+      properties:
+        payload:
+          $ref: '#/components/schemas/GetAccessPointsResult'
+      description: The response schema for the GetAccessPoints operation.
+    NdrAction:
+      type: string
+      description: The type of NDR action shipper wants to take for a particular shipment.
+      enum:
+      - RESCHEDULE
+      - REATTEMPT
+      - RTO
+      x-docgen-enum-table-extension:
+      - value: RESCHEDULE
+        description: Seller wants to reschedule shipment delivery to a specific date.
+      - value: REATTEMPT
+        description: Seller wants to re-attempt delivery with additional delivery notes.
+      - value: RTO
+        description: Seller wants the shipment to return to the origin.
+    CarrierAccountAttribute:
+      type: object
+      properties:
+        attributeName:
+          type: string
+          description: Attribute Name .
+        propertyGroup:
+          type: string
+          description: Property Group.
+        value:
+          type: string
+          description: Value .
+      description: Attribute Properties required by carrier
+    PurchaseShipmentRequest:
+      description: The request schema for the purchaseShipment operation.
+      type: object
+      required:
+      - rateId
+      - requestedDocumentSpecification
+      - requestToken
+      properties:
+        requestToken:
+          $ref: '#/components/schemas/RequestToken'
+        rateId:
+          $ref: '#/components/schemas/RateId'
+        requestedDocumentSpecification:
+          $ref: '#/components/schemas/RequestedDocumentSpecification'
+        requestedValueAddedServices:
+          $ref: '#/components/schemas/RequestedValueAddedServiceList'
+        additionalInputs:
+          type: object
+          additionalProperties: {}
+          description: 'The additional inputs required to purchase a shipping offering, in JSON format. The JSON provided here must adhere to the JSON schema that is returned in the response to the getAdditionalInputs operation.
+
+
+            Additional inputs are only required when indicated by the requiresAdditionalInputs property in the response to the getRates operation.'
+    Rate:
+      type: object
+      required:
+      - carrierId
+      - carrierName
+      - promise
+      - rateId
+      - requiresAdditionalInputs
+      - serviceId
+      - serviceName
+      - supportedDocumentSpecifications
+      - totalCharge
+      properties:
+        rateId:
+          $ref: '#/components/schemas/RateId'
+        carrierId:
+          $ref: '#/components/schemas/CarrierId'
+        carrierName:
+          $ref: '#/components/schemas/CarrierName'
+        serviceId:
+          $ref: '#/components/schemas/ServiceId'
+        serviceName:
+          $ref: '#/components/schemas/ServiceName'
+        billedWeight:
+          $ref: '#/components/schemas/Weight'
+        totalCharge:
+          $ref: '#/components/schemas/Currency'
+        promise:
+          $ref: '#/components/schemas/Promise'
+        supportedDocumentSpecifications:
+          $ref: '#/components/schemas/SupportedDocumentSpecificationList'
+        availableValueAddedServiceGroups:
+          $ref: '#/components/schemas/AvailableValueAddedServiceGroupList'
+        requiresAdditionalInputs:
+          type: boolean
+          description: When true, indicates that additional inputs are required to purchase this shipment service. You must then call the getAdditionalInputs operation to return the JSON schema to use when providing the additional inputs to the purchaseShipment operation.
+        rateItemList:
+          $ref: '#/components/schemas/RateItemList'
+        paymentType:
+          $ref: '#/components/schemas/PaymentType'
+        benefits:
+          $ref: '#/components/schemas/Benefits'
+      description: The details of a shipping service offering.
+    ActiveAccounts:
+      type: array
+      description: A list of ActiveAccount
+      items:
+        $ref: '#/components/schemas/ActiveAccount'
+    GetTrackingResponse:
+      type: object
+      properties:
+        payload:
+          $ref: '#/components/schemas/GetTrackingResult'
+      description: The response schema for the getTracking operation.
+    Geocode:
+      type: object
+      description: Defines the latitude and longitude of the access point.
+      properties:
+        latitude:
+          description: The latitude of access point.
+          type: string
+        longitude:
+          description: The longitude of access point.
+          type: string
+    Promise:
+      type: object
+      properties:
+        deliveryWindow:
+          $ref: '#/components/schemas/TimeWindow'
+        pickupWindow:
+          $ref: '#/components/schemas/TimeWindow'
+      description: The time windows promised for pickup and delivery events.
+    LinkableCarrier:
+      type: object
+      properties:
+        carrierId:
+          $ref: '#/components/schemas/CarrierId'
+        linkableAccountTypes:
+          $ref: '#/components/schemas/LinkableAccountTypeList'
+      description: Info About Linkable Carrier
+    CarrierAccountInput:
+      type: object
+      properties:
+        descriptionLocalizationKey:
+          type: string
+          description: descriptionLocalizationKey value .
+        name:
+          type: string
+          description: name value .
+        groupName:
+          type: string
+          description: groupName value .
+        inputType:
+          $ref: '#/components/schemas/InputType'
+        isMandatory:
+          type: boolean
+          description: mandatory or not  value .
+        isConfidential:
+          type: boolean
+          description: is value is Confidential .
+        isHidden:
+          type: boolean
+          description: is value is hidden .
+        validationMetadata:
+          $ref: '#/components/schemas/ValidationMetadataList'
+      description: Info About CarrierAccountInput
+    AccountType:
+      type: string
+      description: Shipper Account Type.
+      enum:
+      - SHIPPER_ACCOUNT
+      - SHIPPER_ACCOUNT_WITH_INVOICE
+      - AMAZON_ACCOUNT
+      x-docgen-enum-table-extension:
+      - value: SHIPPER_ACCOUNT
+        description: 'Shipper Account in case of others carriers like : FEDEX, ROYLA_MAIL, DHL etc.'
+      - value: SHIPPER_ACCOUNT_WITH_INVOICE
+        description: Shipper Account only for UPS .
+      - value: AMAZON_ACCOUNT
+        description: this for default account and will be used if seller dont have any active linked account.
+    AccessPointList:
+      description: List of relevant Access points requested by shipper. These access points are sorted by proximity to postal code, and are limited to 40. We have internally defined a radius value to render relevant results.
+      type: array
+      items:
+        $ref: '#/components/schemas/AccessPoint'
+    TaxDetail:
+      description: Indicates the tax specifications associated with the shipment for customs compliance purposes in certain regions.
+      type: object
+      required:
+      - taxRegistrationNumber
+      - taxType
+      properties:
+        taxType:
+          $ref: '#/components/schemas/TaxType'
+        taxRegistrationNumber:
+          description: The shipper's tax registration number associated with the shipment for customs compliance purposes in certain regions.
+          type: string
+    TimeWindow:
+      type: object
+      properties:
+        start:
+          type: string
+          format: date-time
+          description: The start time of the time window.
+        end:
+          type: string
+          format: date-time
+          description: The end time of the time window.
+      description: The start and end time that specifies the time interval of an event.
+    AlternateLegTrackingId:
+      type: string
+      description: The carrier generated reverse identifier for a returned package in a purchased shipment.
+    CollectionFormsHistoryRecord:
+      type: object
+      properties:
+        carrierName:
+          $ref: '#/components/schemas/CarrierName'
+        creationDate:
+          type: string
+          format: dateTime
+          description: Creation Time for this account.
+        generationStatus:
+          $ref: '#/components/schemas/GenerationStatus'
+        collectionFormId:
+          $ref: '#/components/schemas/CollectionFormId'
+        shipFromAddress:
+          $ref: '#/components/schemas/Address'
+      description: Active Account Details
+    TaxType:
+      type: string
+      description: Indicates the type of tax.
+      enum:
+      - GST
+      x-docgen-enum-table-extension:
+      - value: GST
+        description: Goods and Services Tax.
+    ClaimId:
+      type: string
+      description: The claim identifier originally returned by the createClaim operation.
+    GenerateCollectionFormRequest:
+      description: The request schema Call to generate the collection form.
+      type: object
+      required:
+      - carrierId
+      properties:
+        clientReferenceDetails:
+          $ref: '#/components/schemas/ClientReferenceDetails'
+        carrierId:
+          $ref: '#/components/schemas/CarrierId'
+        shipFromAddress:
+          $ref: '#/components/schemas/Address'
+    ValueAddedService:
+      type: object
+      required:
+      - cost
+      - id
+      - name
+      properties:
+        id:
+          type: string
+          description: The identifier for the value-added service.
+        name:
+          type: string
+          description: The name of the value-added service.
+        cost:
+          description: The cost of the value-added service.
+          $ref: '#/components/schemas/Currency'
+      description: A value-added service available for purchase with a shipment service offering.
+    OneClickShipmentResponse:
+      type: object
+      properties:
+        payload:
+          $ref: '#/components/schemas/OneClickShipmentResult'
+      description: The response schema for the OneClickShipment operation.
+    AccessPointId:
+      description: Unique identifier for the access point
+      type: string
+    ClaimReason:
+      type: string
+      description: The reason for which shipper is filing the claim for a particular shipment.
+      enum:
+      - LOST_IN_TRANSIT
+      - DAMAGED_IN_TRANSIT
+      - DELIVERED_NOT_RECEIVED
+      - ITEM_MISSING_SWITCHEROO
+      - COD_ABUSE
+      x-docgen-enum-table-extension:
+      - value: LOST_IN_TRANSIT
+        description: Shipment was lost in-transit
+      - value: DAMAGED_IN_TRANSIT
+        description: Shipment was received in damaged condition
+      - value: DELIVERED_NOT_RECEIVED
+        description: Shipment was delivered but is not received
+      - value: ITEM_MISSING_SWITCHEROO
+        description: Shipment was delivered but the content is missing/different
+      - value: COD_ABUSE
+        description: Cash was collected from customer but delivery agent marked it rejected
+    GetRatesRequest:
+      description: The request schema for the getRates operation. When the channelType is Amazon, the shipTo address is not required and will be ignored.
       type: object
       required:
       - channelDetails
+      - packages
+      - shipFrom
       properties:
         shipTo:
-          description: The address where the shipment will be delivered. For vendor orders, shipTo information is pulled directly from the Amazon order.
+          description: The ship to address.
           $ref: '#/components/schemas/Address'
         shipFrom:
-          description: The address where the package will be picked up.
+          description: The ship from address.
           $ref: '#/components/schemas/Address'
         returnTo:
-          description: The address where the package will be returned if it cannot be delivered.
+          description: The return to address.
           $ref: '#/components/schemas/Address'
+        shipDate:
+          type: string
+          format: date-time
+          description: The ship date and time (the requested pickup). This defaults to the current date and time.
+        shipperInstruction:
+          $ref: '#/components/schemas/ShipperInstruction'
+          description: This field describe shipper instruction.
         packages:
           $ref: '#/components/schemas/PackageList'
+        valueAddedServices:
+          $ref: '#/components/schemas/ValueAddedServiceDetails'
+        taxDetails:
+          $ref: '#/components/schemas/TaxDetailList'
         channelDetails:
           $ref: '#/components/schemas/ChannelDetails'
-        labelSpecifications:
-          description: The document (label) specifications requested. The default label returned is PNG DPI 203 4x6 if no label specification is provided. Requesting an invalid file format results in a failure.
-          $ref: '#/components/schemas/RequestedDocumentSpecification'
+        clientReferenceDetails:
+          $ref: '#/components/schemas/ClientReferenceDetails'
+        shipmentType:
+          $ref: '#/components/schemas/ShipmentType'
+        destinationAccessPointDetails:
+          $ref: '#/components/schemas/AccessPointDetails'
+        carrierAccounts:
+          $ref: '#/components/schemas/CarrierAccounts'
+    Service:
+      type: object
+      required:
+      - id
+      - name
+      properties:
+        id:
+          $ref: '#/components/schemas/ServiceId'
+        name:
+          $ref: '#/components/schemas/ServiceName'
+      description: Service Related Info
+    CreateClaimRequest:
+      type: object
+      description: The request schema for the CreateClaim operation
+      required:
+      - trackingId
+      - claimReason
+      - settlementType
+      properties:
+        trackingId:
+          $ref: '#/components/schemas/TrackingId'
+        declaredValue:
+          $ref: '#/components/schemas/Currency'
+          description: This is required for off-Amazon shipments to determine value of shipments
+        claimReason:
+          $ref: '#/components/schemas/ClaimReason'
+        isReplacementPackageSent:
+          type: boolean
+          description: Applicable for only On Amazon shipments to identify if replacement was sent
+        proofs:
+          $ref: '#/components/schemas/ClaimProofURLs'
+        settlementType:
+          $ref: '#/components/schemas/SettlementType'
+    CarrierId:
+      type: string
+      description: The carrier identifier for the offering, provided by the carrier.
+    UnmanifestedShipmentLocationList:
+      type: array
+      description: A list of UnmanifestedShipmentLocation
+      items:
+        $ref: '#/components/schemas/UnmanifestedShipmentLocation'
+    GetCarrierAccountsRequest:
+      description: The request schema for the GetCarrierAccounts operation.
+      type: object
+      properties:
+        clientReferenceDetails:
+          $ref: '#/components/schemas/ClientReferenceDetails'
+    CollectionsFormDocument:
+      type: object
+      properties:
+        base64EncodedContent:
+          type: string
+          description: Base64 document Value of Collection.
+        documentFormat:
+          type: string
+          format: application/pdf
+          description: Collection Document format is PDF.
+      description: Collection Form Document Details
+    UnlinkCarrierAccountRequest:
+      description: The request schema for remove the Carrier Account associated with the provided merchant.
+      type: object
+      properties:
+        clientReferenceDetails:
+          $ref: '#/components/schemas/ClientReferenceDetails'
+        accountId:
+          $ref: '#/components/schemas/AccountId'
+    CarrierAccountAttributes:
+      type: array
+      description: A list of all attributes required by the carrier in order to successfully link the merchant's account
+      items:
+        $ref: '#/components/schemas/CarrierAccountAttribute'
+    AccessPoint:
+      type: object
+      description: Access point details
+      properties:
+        accessPointId:
+          $ref: '#/components/schemas/AccessPointId'
+        name:
+          description: Name of entity (store/hub etc) where this access point is located
+          type: string
+        timezone:
+          description: Timezone of access point
+          type: string
+        type:
+          $ref: '#/components/schemas/AccessPointType'
+        accessibilityAttributes:
+          $ref: '#/components/schemas/AccessibilityAttributes'
+        address:
+          $ref: '#/components/schemas/Address'
+        exceptionOperatingHours:
+          type: array
+          description: Exception operating hours for Access Point
+          items:
+            $ref: '#/components/schemas/ExceptionOperatingHours'
+        assistanceType:
+          type: string
+          description: Assistance type enum for Access point i.e. STAFF_ASSISTED or SELF_ASSISTED
+          enum:
+          - STAFF_ASSISTED
+          - SELF_ASSISTED
+        score:
+          type: string
+          description: The score of access point, based on proximity to postal code and sorting preference. This can be used to sort access point results on shipper's end.
+        standardOperatingHours:
+          $ref: '#/components/schemas/DayOfWeekTimeMap'
+    OneClickShipmentValueAddedServiceDetails:
+      type: array
+      description: The value-added services to be added to a shipping service purchase.
+      items:
+        $ref: '#/components/schemas/OneClickShipmentValueAddedService'
+    GetRatesResult:
+      type: object
+      required:
+      - rates
+      - requestToken
+      properties:
+        requestToken:
+          $ref: '#/components/schemas/RequestToken'
+        rates:
+          $ref: '#/components/schemas/RateList'
+        ineligibleRates:
+          $ref: '#/components/schemas/IneligibleRateList'
+      description: The payload for the getRates operation.
+    ExcludedBenefits:
+      type: array
+      description: A list of excluded benefit. Refer to the ExcludeBenefit object for further documentation
+      items:
+        $ref: '#/components/schemas/ExcludedBenefit'
+    RateItem:
+      type: object
+      properties:
+        rateItemID:
+          $ref: '#/components/schemas/RateItemID'
+        rateItemType:
+          $ref: '#/components/schemas/RateItemType'
+        rateItemCharge:
+          $ref: '#/components/schemas/Currency'
+        rateItemNameLocalization:
+          type: string
+          description: Used for the localization.
+      description: 'Rate Item for shipping (base cost, transaction fee, confirmation, insurance, etc.) Data source definition: '
+    MerchantId:
+      type: string
+      description: 'merchant Id of provided merchant '
+    City:
+      type: string
+      description: The city or town where the person, business or institution is located.
+    ExceptionOperatingHours:
+      type: object
+      description: Defines exceptions to standard operating hours for certain date ranges.
+      properties:
+        dateRange:
+          $ref: '#/components/schemas/DateRange'
+        operatingHours:
+          $ref: '#/components/schemas/OperatingHours'
+    ItemList:
+      type: array
+      description: A list of items.
+      items:
+        $ref: '#/components/schemas/Item'
+    UnmanifestedCarrierInformation:
+      type: object
+      properties:
+        carrierId:
+          $ref: '#/components/schemas/CarrierId'
+        carrierName:
+          $ref: '#/components/schemas/CarrierName'
+        unmanifestedShipmentLocationList:
+          $ref: '#/components/schemas/UnmanifestedShipmentLocationList'
+      description: UnmanifestedCarrierInformation like carrierId CarrierName and Location
     CarrierName:
       type: string
       description: The carrier name for the offering.
-    ClientReferenceDetail:
+    TrackingId:
+      type: string
+      description: The carrier generated identifier for a package in a purchased shipment.
+    DayOfWeekTimeMap:
+      description: Map of day of the week to operating hours of that day
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/OperatingHours'
+    GetAccessPointsResult:
       type: object
       required:
-      - clientReferenceType
-      - clientReferenceId
+      - accessPointsMap
       properties:
-        clientReferenceType:
+        accessPointsMap:
+          $ref: '#/components/schemas/AccessPointsMap'
+      description: The payload for the GetAccessPoints API.
+    DocumentType:
+      type: string
+      description: The type of shipping document.
+      enum:
+      - PACKSLIP
+      - LABEL
+      - RECEIPT
+      - CUSTOM_FORM
+      x-docgen-enum-table-extension:
+      - value: PACKSLIP
+        description: A listing of the items packed within the shipment.
+      - value: LABEL
+        description: The shipping label for the specific shipment.
+      - value: RECEIPT
+        description: The receipt of the shipment.
+      - value: CUSTOM_FORM
+        description: The customs documentation for a cross-border shipment.
+    PackageClientReferenceId:
+      type: string
+      description: A client provided unique identifier for a package being shipped. This value should be saved by the client to pass as a parameter to the getShipmentDocuments operation.
+    ShipmentId:
+      type: string
+      description: The unique shipment identifier provided by a shipping service.
+    PostalCode:
+      type: string
+      description: The postal code of that address. It contains a series of letters or digits or both, sometimes including spaces or punctuation.
+    PackageDocumentDetail:
+      type: object
+      required:
+      - packageClientReferenceId
+      - packageDocuments
+      properties:
+        packageClientReferenceId:
+          $ref: '#/components/schemas/PackageClientReferenceId'
+        packageDocuments:
+          $ref: '#/components/schemas/PackageDocumentList'
+        trackingId:
+          $ref: '#/components/schemas/TrackingId'
+      description: The post-purchase details of a package that will be shipped using a shipping service.
+    ValueAddedServiceDetails:
+      type: object
+      properties:
+        collectOnDelivery:
+          $ref: '#/components/schemas/CollectOnDelivery'
+      description: A collection of supported value-added services.
+    DirectPurchaseResult:
+      type: object
+      required:
+      - shipmentId
+      properties:
+        shipmentId:
+          $ref: '#/components/schemas/ShipmentId'
+        packageDocumentDetailList:
+          $ref: '#/components/schemas/PackageDocumentDetailList'
+      description: The payload for the directPurchaseShipment operation.
+    PackageDocumentDetailList:
+      type: array
+      description: A list of post-purchase details about a package that will be shipped using a shipping service.
+      items:
+        $ref: '#/components/schemas/PackageDocumentDetail'
+    AccessPointDetails:
+      type: object
+      description: AccessPointDetails object
+      properties:
+        accessPointId:
+          $ref: '#/components/schemas/AccessPointId'
+    Item:
+      type: object
+      required:
+      - quantity
+      properties:
+        itemValue:
+          $ref: '#/components/schemas/Currency'
+        description:
           type: string
-          description: Client Reference type.
-          enum:
-          - IntegratorShipperId
-          - IntegratorMerchantId
-          x-docgen-enum-table-extension:
-          - value: IntegratorShipperId
-            description: The unique identifier assigned to a 3P seller by the shipping integrator.
-          - value: IntegratorMerchantId
-            description: The unique identifier assigned to a 3P shipping integrator by Amazon.
-        clientReferenceId:
+          description: The product description of the item.
+        itemIdentifier:
           type: string
-          description: The Client Reference Id.
-      description: Client Reference Details
+          description: A unique identifier for an item provided by the client.
+        quantity:
+          type: integer
+          description: The number of units. This value is required.
+        weight:
+          $ref: '#/components/schemas/Weight'
+        liquidVolume:
+          $ref: '#/components/schemas/LiquidVolume'
+        isHazmat:
+          type: boolean
+          description: When true, the item qualifies as hazardous materials (hazmat). Defaults to false.
+        dangerousGoodsDetails:
+          $ref: '#/components/schemas/DangerousGoodsDetails'
+        productType:
+          type: string
+          description: The product type of the item.
+        invoiceDetails:
+          $ref: '#/components/schemas/InvoiceDetails'
+        serialNumbers:
+          type: array
+          items:
+            type: string
+          description: A list of unique serial numbers in an Amazon package that can be used to guarantee non-fraudulent items. The number of serial numbers in the list must be less than or equal to the quantity of items being shipped. Only applicable when channel source is Amazon.
+        directFulfillmentItemIdentifiers:
+          $ref: '#/components/schemas/DirectFulfillmentItemIdentifiers'
+      description: An item in a package.
+    SupportedDocumentSpecificationList:
+      type: array
+      description: A list of the document specifications supported for a shipment service offering.
+      items:
+        $ref: '#/components/schemas/SupportedDocumentSpecification'
+    AdditionalAddressNotes:
+      type: string
+      maxLength: 256
+      description: Address notes to re-attempt delivery with.
+    AvailableValueAddedServiceGroup:
+      type: object
+      required:
+      - groupDescription
+      - groupId
+      - isRequired
+      properties:
+        groupId:
+          type: string
+          description: The type of the value-added service group.
+        groupDescription:
+          type: string
+          description: The name of the value-added service group.
+        isRequired:
+          type: boolean
+          description: When true, one or more of the value-added services listed must be specified.
+        valueAddedServices:
+          type: array
+          description: A list of optional value-added services available for purchase with a shipping service offering.
+          items:
+            $ref: '#/components/schemas/ValueAddedService'
+      description: The value-added services available for purchase with a shipping service offering.
+    GetCollectionFormHistoryRequest:
+      description: The request schema to get query collections form history API .
+      type: object
+      properties:
+        clientReferenceDetails:
+          $ref: '#/components/schemas/ClientReferenceDetails'
+        maxResults:
+          type: integer
+          description: max Number of Results for query .
+        carrierId:
+          $ref: '#/components/schemas/CarrierId'
+        shipFromAddress:
+          $ref: '#/components/schemas/Address'
+        dateRange:
+          $ref: '#/components/schemas/DateRange'
+    CarrierAccounts:
+      type: array
+      description: A list of CarrierAccounts
+      items:
+        $ref: '#/components/schemas/CarrierAccount'
+    LinkCarrierAccountResponse:
+      description: The Response  for the LinkCarrierAccount operation.
+      type: object
+      properties:
+        registrationStatus:
+          $ref: '#/components/schemas/AccountStatus'
+        accountId:
+          $ref: '#/components/schemas/AccountId'
+    UnmanifestedShipmentLocation:
+      type: object
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+        lastManifestDate:
+          type: string
+          format: dateTime
+          description: Its Last Manifest Date.
+      description: 'UnmanifestedShipmentLocation info '
+    LinkCarrierAccountRequest:
+      description: The request schema for verify and add the merchant's account with a certain carrier.
+      type: object
+      required:
+      - carrierAccountAttributes
+      - carrierAccountType
+      properties:
+        clientReferenceDetails:
+          $ref: '#/components/schemas/ClientReferenceDetails'
+        carrierAccountType:
+          $ref: '#/components/schemas/CarrierAccountType'
+        carrierAccountAttributes:
+          $ref: '#/components/schemas/CarrierAccountAttributes'
+        encryptedCarrierAccountAttributes:
+          $ref: '#/components/schemas/CarrierAccountAttributes'
+    RateList:
+      type: array
+      description: A list of eligible shipping service offerings.
+      items:
+        $ref: '#/components/schemas/Rate'
+    RateId:
+      type: string
+      description: An identifier for the rate (shipment offering) provided by a shipping service provider.
+    InputType:
+      type: string
+      description: Type of Input.
+      enum:
+      - TEXTBOX
+      - PASSWORD
+      x-docgen-enum-table-extension:
+      - value: TEXTBOX
+        description: Input Type is Textbox.
+      - value: PASSWORD
+        description: Input Type is Password.
+    PackageDocument:
+      type: object
+      required:
+      - contents
+      - format
+      - type
+      properties:
+        type:
+          $ref: '#/components/schemas/DocumentType'
+        format:
+          $ref: '#/components/schemas/DocumentFormat'
+        contents:
+          $ref: '#/components/schemas/Contents'
+      description: A document related to a package.
+    AccountId:
+      type: string
+      description: Identifier for the seller's carrier account.
+    AvailableValueAddedServiceGroupList:
+      type: array
+      description: A list of value-added services available for a shipping service offering.
+      items:
+        $ref: '#/components/schemas/AvailableValueAddedServiceGroup'
     RateItemID:
       type: string
       description: Unique ID for the rateItem.
@@ -5455,330 +6291,23 @@ components:
         description: A fee that is applied during specific periods of increased demand on the network as specified in the Amazon Shipping Service guide.
       - value: NONSTANDARD_FEE
         description: A fee that applies for packages that are outside the standard size for processing and sorting as specified in the Amazon Shipping Service guide.
-    ErrorList:
-      type: object
-      description: A list of error responses returned when a request is unsuccessful.
-      required:
-      - errors
-      properties:
-        errors:
-          type: array
-          description: Array of Errors
-          items:
-            $ref: '#/components/schemas/Error'
-    PrintOptionList:
+    PackageList:
       type: array
-      description: A list of the format options for a label.
+      description: A list of packages to be shipped through a shipping service offering.
       items:
-        $ref: '#/components/schemas/PrintOption'
-    ChargeComponent:
+        $ref: '#/components/schemas/Package'
+    DateRange:
       type: object
-      description: The type and amount of a charge applied on a package.
       properties:
-        amount:
-          $ref: '#/components/schemas/Currency'
-        chargeType:
+        startDate:
           type: string
-          description: The type of charge.
-          enum:
-          - TAX
-          - DISCOUNT
-          x-docgen-enum-table-extension:
-          - value: TAX
-            description: A tax imposed on a package.
-          - value: DISCOUNT
-            description: A discount deducted from the cost of a package.
-    TimeOfDay:
-      type: object
-      description: Denotes time of the day, used for defining opening or closing time of access points
-      properties:
-        hourOfDay:
-          type: integer
-          description: Denotes hour of the day, used for defining opening or closing time of access points
-        minuteOfHour:
-          type: integer
-          description: Denotes minute of the hour, used for defining opening or closing time of access points
-        secondOfMinute:
-          type: integer
-          description: Denotes second of the minute, used for defining opening or closing time of access points
-    GetShipmentDocumentsResult:
-      type: object
-      required:
-      - packageDocumentDetail
-      - shipmentId
-      properties:
-        shipmentId:
-          $ref: '#/components/schemas/ShipmentId'
-        packageDocumentDetail:
-          $ref: '#/components/schemas/PackageDocumentDetail'
-        benefits:
-          $ref: '#/components/schemas/Benefits'
-      description: The payload for the getShipmentDocuments operation.
-    ChannelType:
-      type: string
-      description: The shipment source channel type.
-      enum:
-      - AMAZON
-      - EXTERNAL
-      x-docgen-enum-table-extension:
-      - value: AMAZON
-        description: Indicates that the shipment originates from an Amazon order.
-      - value: EXTERNAL
-        description: Indicates that the shipment originates from a non-Amazon channel.
-    LiquidVolume:
-      type: object
-      required:
-      - unit
-      - value
-      properties:
-        unit:
+          format: dateTime
+          description: Start Date for query .
+        endDate:
           type: string
-          description: The unit of measurement.
-          enum:
-          - ML
-          - L
-          - FL_OZ
-          - GAL
-          - PT
-          - QT
-          - C
-          x-docgen-enum-table-extension:
-          - value: ML
-            description: Milliliter - Metric unit of volume.
-          - value: L
-            description: Liter - Metric unit of volume.
-          - value: FL_OZ
-            description: Fluid Ounce - Imperial unit of volume.
-          - value: GAL
-            description: Gallon - Imperial unit of volume.
-          - value: PT
-            description: Pint - Imperial unit of volume.
-          - value: QT
-            description: Quart - Imperial unit of volume.
-          - value: C
-            description: Cup - Imperial unit of volume.
-        value:
-          type: number
-          description: The measurement value.
-      description: Liquid Volume.
-    NdrRequestData:
-      type: object
-      description: 'Additional information required for the NDR action that has been filed. If the NDR Action is RESCHEDULE, rescheduleDate is a required field. Otherwise, if the NDR Action is REATTEMPT, additionalAddressNotes is a required field. '
-      properties:
-        rescheduleDate:
-          type: string
-          format: date-time
-          description: The date on which the Seller wants to reschedule shipment delivery, in ISO-8601 date/time format
-          example: '2023-12-12T05:24:00.00Z'
-        additionalAddressNotes:
-          $ref: '#/components/schemas/AdditionalAddressNotes'
-    CarrierAccountAttributes:
-      type: array
-      description: A list of all attributes required by the carrier in order to successfully link the merchant's account
-      items:
-        $ref: '#/components/schemas/CarrierAccountAttribute'
-    GetCarrierAccountsRequest:
-      description: The request schema for the GetCarrierAccounts operation.
-      type: object
-      properties:
-        clientReferenceDetails:
-          $ref: '#/components/schemas/ClientReferenceDetails'
-    RateItemList:
-      type: array
-      description: A list of RateItem
-      items:
-        $ref: '#/components/schemas/RateItem'
-    RateId:
-      type: string
-      description: An identifier for the rate (shipment offering) provided by a shipping service provider.
-    CollectionFormsHistoryRecordList:
-      type: array
-      description: A list of CollectionFormsHistoryRecord
-      items:
-        $ref: '#/components/schemas/CollectionFormsHistoryRecord'
-    CarrierAccountInputsList:
-      type: array
-      description: A list of CarrierAccountInput
-      items:
-        $ref: '#/components/schemas/CarrierAccountInput'
-    ServiceIds:
-      type: array
-      description: A list of ServiceId.
-      items:
-        type: string
-    SubmitNdrFeedbackRequest:
-      type: object
-      description: The request schema for the NdrFeedback operation
-      required:
-      - trackingId
-      - ndrAction
-      properties:
-        trackingId:
-          $ref: '#/components/schemas/TrackingId'
-        ndrAction:
-          $ref: '#/components/schemas/NdrAction'
-        ndrRequestData:
-          $ref: '#/components/schemas/NdrRequestData'
-    OneClickShipmentResponse:
-      type: object
-      properties:
-        payload:
-          $ref: '#/components/schemas/OneClickShipmentResult'
-      description: The response schema for the OneClickShipment operation.
-    Contents:
-      type: string
-      description: A Base64 encoded string of the file contents.
-    ClaimId:
-      type: string
-      description: The claim identifier originally returned by the createClaim operation.
-    CarrierAccountInput:
-      type: object
-      properties:
-        descriptionLocalizationKey:
-          type: string
-          description: descriptionLocalizationKey value .
-        name:
-          type: string
-          description: name value .
-        groupName:
-          type: string
-          description: groupName value .
-        inputType:
-          $ref: '#/components/schemas/InputType'
-        isMandatory:
-          type: boolean
-          description: mandatory or not  value .
-        isConfidential:
-          type: boolean
-          description: is value is Confidential .
-        isHidden:
-          type: boolean
-          description: is value is hidden .
-        validationMetadata:
-          $ref: '#/components/schemas/ValidationMetadataList'
-      description: Info About CarrierAccountInput
-    PackageDocumentList:
-      type: array
-      description: A list of documents related to a package.
-      items:
-        $ref: '#/components/schemas/PackageDocument'
-    GetCollectionFormHistoryRequest:
-      description: The request schema to get query collections form history API .
-      type: object
-      properties:
-        clientReferenceDetails:
-          $ref: '#/components/schemas/ClientReferenceDetails'
-        maxResults:
-          type: integer
-          description: max Number of Results for query .
-        carrierId:
-          $ref: '#/components/schemas/CarrierId'
-        shipFromAddress:
-          $ref: '#/components/schemas/Address'
-        dateRange:
-          $ref: '#/components/schemas/DateRange'
-    TaxDetail:
-      description: Indicates the tax specifications associated with the shipment for customs compliance purposes in certain regions.
-      type: object
-      required:
-      - taxRegistrationNumber
-      - taxType
-      properties:
-        taxType:
-          $ref: '#/components/schemas/TaxType'
-        taxRegistrationNumber:
-          description: The shipper's tax registration number associated with the shipment for customs compliance purposes in certain regions.
-          type: string
-    RequestedValueAddedService:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          type: string
-          description: The identifier of the selected value-added service. Must be among those returned in the response to the getRates operation.
-      description: A value-added service to be applied to a shipping service purchase.
-    CancelShipmentResponse:
-      type: object
-      properties:
-        payload:
-          $ref: '#/components/schemas/CancelShipmentResult'
-      description: Response schema for the cancelShipment operation.
-    UnlinkCarrierAccountRequest:
-      description: The request schema for remove the Carrier Account associated with the provided merchant.
-      type: object
-      properties:
-        clientReferenceDetails:
-          $ref: '#/components/schemas/ClientReferenceDetails'
-        accountId:
-          $ref: '#/components/schemas/AccountId'
-    PackageDocument:
-      type: object
-      required:
-      - contents
-      - format
-      - type
-      properties:
-        type:
-          $ref: '#/components/schemas/DocumentType'
-        format:
-          $ref: '#/components/schemas/DocumentFormat'
-        contents:
-          $ref: '#/components/schemas/Contents'
-      description: A document related to a package.
-    PurchaseShipmentRequest:
-      description: The request schema for the purchaseShipment operation.
-      type: object
-      required:
-      - rateId
-      - requestedDocumentSpecification
-      - requestToken
-      properties:
-        requestToken:
-          $ref: '#/components/schemas/RequestToken'
-        rateId:
-          $ref: '#/components/schemas/RateId'
-        requestedDocumentSpecification:
-          $ref: '#/components/schemas/RequestedDocumentSpecification'
-        requestedValueAddedServices:
-          $ref: '#/components/schemas/RequestedValueAddedServiceList'
-        additionalInputs:
-          type: object
-          additionalProperties: {}
-          description: 'The additional inputs required to purchase a shipping offering, in JSON format. The JSON provided here must adhere to the JSON schema that is returned in the response to the getAdditionalInputs operation.
-
-
-            Additional inputs are only required when indicated by the requiresAdditionalInputs property in the response to the getRates operation.'
-    AccessPointDetails:
-      type: object
-      description: AccessPointDetails object
-      properties:
-        accessPointId:
-          $ref: '#/components/schemas/AccessPointId'
-    CountryCode:
-      type: string
-      description: The two digit country code. Follows ISO 3166-1 alpha-2 format.
-    UnlinkCarrierAccountResponse:
-      description: The Response  for the UnlinkCarrierAccountResponse operation.
-      type: object
-      properties:
-        isUnlinked:
-          type: boolean
-          description: Is Carrier unlinked from Merchant
-    GenerateCollectionFormResponse:
-      description: The Response  for the GenerateCollectionFormResponse operation.
-      type: object
-      properties:
-        collectionsFormDocument:
-          $ref: '#/components/schemas/CollectionsFormDocument'
-    GetCarrierAccountsResponse:
-      description: The Response  for the GetCarrierAccountsResponse operation.
-      type: object
-      required:
-      - activeAccounts
-      properties:
-        activeAccounts:
-          $ref: '#/components/schemas/ActiveAccounts'
+          format: dateTime
+          description: end date for query.
+      description: Date Range for query the results.
     OperatingHours:
       type: object
       description: The hours in which the access point shall remain operational
@@ -5792,141 +6321,92 @@ components:
           description: midDayClosures operating hours array
           items:
             $ref: '#/components/schemas/TimeOfDay'
-    ChargeList:
-      type: array
-      description: A list of charges based on the shipping service charges applied on a package.
-      items:
-        $ref: '#/components/schemas/ChargeComponent'
-    InvoiceDetails:
-      description: The invoice details for charges associated with the goods in the package. Only applies to certain regions.
+    Currency:
+      description: The monetary value in the currency indicated, in ISO 4217 standard format.
       type: object
+      required:
+      - unit
+      - value
       properties:
-        invoiceNumber:
+        value:
+          type: number
+          description: The monetary value.
+        unit:
           type: string
-          description: The invoice number of the item.
-        invoiceDate:
+          description: The ISO 4217 format 3-character currency code.
+          minLength: 3
+          maxLength: 3
+    CollectionFormId:
+      type: string
+      description: Collection Form Id for Reprint .
+    ClaimProofURLs:
+      type: array
+      description: A list of proof URLs for a claim. Basic URL validation will happen for each URLs present in the list
+      items:
+        type: string
+    OneClickShipmentValueAddedService:
+      type: object
+      required:
+      - id
+      properties:
+        id:
           type: string
-          format: date-time
-          description: The invoice date of the item in ISO 8061 format.
+          description: The identifier of the selected value-added service.
+        amount:
+          $ref: '#/components/schemas/Currency'
+      description: A value-added service to be applied to a shipping service purchase.
+    LinkableCarriersList:
+      type: array
+      description: A list of LinkableCarrier
+      items:
+        $ref: '#/components/schemas/LinkableCarrier'
+    CollectionFormsHistoryRecordList:
+      type: array
+      description: A list of CollectionFormsHistoryRecord
+      items:
+        $ref: '#/components/schemas/CollectionFormsHistoryRecord'
+    DocumentSize:
+      type: object
+      required:
+      - length
+      - unit
+      - width
+      properties:
+        width:
+          description: The width of the document measured in the units specified.
+          type: number
+        length:
+          description: The length of the document measured in the units specified.
+          type: number
+        unit:
+          type: string
+          description: The unit of measurement.
+          enum:
+          - INCH
+          - CENTIMETER
+          x-docgen-enum-table-extension:
+          - value: INCH
+            description: The imperial unit of length equal to one twelfth of a foot.
+          - value: CENTIMETER
+            description: A metric unit of length, equal to one hundredth of a meter.
+      description: The size dimensions of the label.
     RequestAttributes:
       type: array
       description: Specify the type of attributes to be added on a label.
       items:
         $ref: '#/components/schemas/LabelAttribute'
-    Service:
-      type: object
-      required:
-      - id
-      - name
-      properties:
-        id:
-          $ref: '#/components/schemas/ServiceId'
-        name:
-          $ref: '#/components/schemas/ServiceName'
-      description: Service Related Info
-    NeedFileJoining:
-      type: boolean
-      description: When true, files should be stitched together. Otherwise, files should be returned separately. Defaults to false.
-    CreateClaimRequest:
-      type: object
-      description: The request schema for the CreateClaim operation
-      required:
-      - trackingId
-      - claimReason
-      - settlementType
-      properties:
-        trackingId:
-          $ref: '#/components/schemas/TrackingId'
-        declaredValue:
-          $ref: '#/components/schemas/Currency'
-          description: This is required for off-Amazon shipments to determine value of shipments
-        claimReason:
-          $ref: '#/components/schemas/ClaimReason'
-        isReplacementPackageSent:
-          type: boolean
-          description: Applicable for only On Amazon shipments to identify if replacement was sent
-        proofs:
-          $ref: '#/components/schemas/ClaimProofURLs'
-        settlementType:
-          $ref: '#/components/schemas/SettlementType'
-    PurchaseShipmentResponse:
-      type: object
-      properties:
-        payload:
-          $ref: '#/components/schemas/PurchaseShipmentResult'
-      description: The response schema for the purchaseShipment operation.
-    AccessPointList:
-      description: List of relevant Access points requested by shipper. These access points are sorted by proximity to postal code, and are limited to 40. We have internally defined a radius value to render relevant results.
-      type: array
-      items:
-        $ref: '#/components/schemas/AccessPoint'
-    GetUnmanifestedShipmentsRequest:
-      description: The request schema for the GetUnmanifestedShipmentsRequest operation.
-      type: object
-      properties:
-        clientReferenceDetails:
-          $ref: '#/components/schemas/ClientReferenceDetails'
-    ClientReferenceDetails:
-      type: array
-      description: 'Object to pass additional information about the MCI Integrator shipperType: List of ClientReferenceDetail'
-      items:
-        $ref: '#/components/schemas/ClientReferenceDetail'
-    GetAdditionalInputsResult:
-      type: object
-      description: The JSON schema to use to provide additional inputs when required to purchase a shipping offering.
-      additionalProperties: {}
-    Carrier:
-      type: object
-      required:
-      - id
-      - name
-      properties:
-        id:
-          $ref: '#/components/schemas/CarrierId'
-        name:
-          $ref: '#/components/schemas/CarrierName'
-      description: Carrier Related Info
-    IneligibilityReasonCode:
+    StateOrRegion:
       type: string
-      description: Reasons that make a shipment service offering ineligible.
-      enum:
-      - NO_COVERAGE
-      - PICKUP_SLOT_RESTRICTION
-      - UNSUPPORTED_VAS
-      - VAS_COMBINATION_RESTRICTION
-      - SIZE_RESTRICTIONS
-      - WEIGHT_RESTRICTIONS
-      - LATE_DELIVERY
-      - PROGRAM_CONSTRAINTS
-      - TERMS_AND_CONDITIONS_NOT_ACCEPTED
-      - UNKNOWN
-      x-docgen-enum-table-extension:
-      - value: NO_COVERAGE
-        description: The shipment is ineligible because there is no coverage to that address.
-      - value: PICKUP_SLOT_RESTRICTION
-        description: The shipment is ineligible because there is an issue with the pickup slot.
-      - value: UNSUPPORTED_VAS
-        description: The shipment is ineligible because the value-added service is invalid for this shipment.
-      - value: VAS_COMBINATION_RESTRICTION
-        description: The shipment is ineligible because an invalid combination of value-added services were chosen.
-      - value: SIZE_RESTRICTIONS
-        description: The shipment is ineligible because the package dimensions are unsupported.
-      - value: WEIGHT_RESTRICTIONS
-        description: The shipment is ineligible because the weight is unsupported.
-      - value: LATE_DELIVERY
-        description: The shipment is ineligible because delivery is too late.
-      - value: PROGRAM_CONSTRAINTS
-        description: The shipment is ineligible because of program constraints.
-      - value: TERMS_AND_CONDITIONS_NOT_ACCEPTED
-        description: The shipment is ineligible because terms and conditions have not been accepted by the carrier.
-      - value: UNKNOWN
-        description: The ineligibility reason is unknown.
-    GetRatesResponse:
+      description: The state, county or region where the person, business or institution is located.
+    AmazonOrderDetails:
       type: object
+      required:
+      - orderId
       properties:
-        payload:
-          $ref: '#/components/schemas/GetRatesResult'
-      description: The response schema for the getRates operation.
+        orderId:
+          type: string
+          description: The Amazon order ID associated with the Amazon order fulfilled by this shipment.
+      description: Amazon order information. This is required if the shipment source channel is Amazon.
     DocumentFormat:
       type: string
       description: The file format of the document.
@@ -5941,89 +6421,23 @@ components:
         description: Portable Network Graphics (PNG) is a raster-graphics file format that supports lossless data compression.
       - value: ZPL
         description: Zebra Programming Language (ZPL) format is from Zebra Technologies. It's used primarily for labeling applications and can only be used with ZPL compatible printers.
-    DayOfWeekTimeMap:
-      description: Map of day of the week to operating hours of that day
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/OperatingHours'
-    AmazonShipmentDetails:
-      type: object
-      required:
-      - shipmentId
-      properties:
-        shipmentId:
-          type: string
-          description: This attribute is required only for a Direct Fulfillment shipment. This is the encrypted shipment ID.
-      description: Amazon shipment information.
-    TrackingSummary:
+    ActiveAccount:
       type: object
       properties:
-        status:
-          $ref: '#/components/schemas/Status'
-        trackingDetailCodes:
-          $ref: '#/components/schemas/TrackingDetailCodes'
-      description: A package status summary.
-    AlternateLegTrackingId:
+        accountId:
+          $ref: '#/components/schemas/AccountId'
+        carrierId:
+          $ref: '#/components/schemas/CarrierId'
+      description: Active Account Details
+    GetUnmanifestedShipmentsRequest:
+      description: The request schema for the GetUnmanifestedShipmentsRequest operation.
+      type: object
+      properties:
+        clientReferenceDetails:
+          $ref: '#/components/schemas/ClientReferenceDetails'
+    ServiceName:
       type: string
-      description: The carrier generated reverse identifier for a returned package in a purchased shipment.
-    ExceptionOperatingHours:
-      type: object
-      description: Defines exceptions to standard operating hours for certain date ranges.
-      properties:
-        dateRange:
-          $ref: '#/components/schemas/DateRange'
-        operatingHours:
-          $ref: '#/components/schemas/OperatingHours'
-    CarrierAccounts:
-      type: array
-      description: A list of CarrierAccounts
-      items:
-        $ref: '#/components/schemas/CarrierAccount'
-    TaxType:
-      type: string
-      description: Indicates the type of tax.
-      enum:
-      - GST
-      x-docgen-enum-table-extension:
-      - value: GST
-        description: Goods and Services Tax.
-    GoodsOwner:
-      type: object
-      description: The seller owning the goods before handing them over to the carrier
-      required:
-      - merchantId
-      properties:
-        merchantId:
-          description: The Amazon Merchant Identifier (merchantId) of the seller owning the goods before handing them over to the carrier
-          $ref: '#/components/schemas/MerchantId'
-    DateRange:
-      type: object
-      properties:
-        startDate:
-          type: string
-          format: dateTime
-          description: Start Date for query .
-        endDate:
-          type: string
-          format: dateTime
-          description: end date for query.
-      description: Date Range for query the results.
-    ValueAddedServiceDetails:
-      type: object
-      properties:
-        collectOnDelivery:
-          $ref: '#/components/schemas/CollectOnDelivery'
-      description: A collection of supported value-added services.
-    ItemList:
-      type: array
-      description: A list of items.
-      items:
-        $ref: '#/components/schemas/Item'
-    ClaimProofURLs:
-      type: array
-      description: A list of proof URLs for a claim. Basic URL validation will happen for each URLs present in the list
-      items:
-        type: string
+      description: The name of the shipping service.
     AccountStatus:
       type: string
       description: Account Status.
@@ -6041,35 +6455,213 @@ components:
         description: Seller Account is Pending.
       - value: SUSPENDED
         description: Seller Account is Suspended.
-    SupportedDocumentDetail:
+    AccessPointType:
+      description: The type of access point, like counter (HELIX), lockers, etc.
+      type: string
+      enum:
+      - HELIX
+      - CAMPUS_LOCKER
+      - OMNI_LOCKER
+      - ODIN_LOCKER
+      - DOBBY_LOCKER
+      - CORE_LOCKER
+      - 3P
+      - CAMPUS_ROOM
+      x-docgen-enum-table-extension:
+      - value: HELIX
+        description: Counter, aka Helix, is an assisted access point where customers interact with a store associate to collect or return packages. Counter stores do not have Locker
+      - value: CAMPUS_LOCKER
+        description: It denotes a physical Locker present at Locker+ stores
+      - value: OMNI_LOCKER
+        description: Omni lockers are similar to core lockers installed at apartment buildings. Core and Omni will have common base hardware platform
+      - value: ODIN_LOCKER
+        description: Odin lockers rely on Bluetooth connection as there is no screen or scanner on the locker. Drivers, customers, and even technicians can interact with the locker using an app (different depending on the user).
+      - value: DOBBY_LOCKER
+        description: Dobby lockers are Odin lockers installed at apartment complexes and available only to residents.
+      - value: CORE_LOCKER
+        description: Core lockers are the traditional and initial style of lockers when Hub was launched. Core lockers have a screen, keypad and scanner.  Customer either enter their pickup code using the Locker screen or scan pickup code barcode to pick up their package.
+      - value: 3P
+        description: 'Networks that are owned end-to-end by commercial carriers (CC - e.g. DHL, UPS, DPD and Postal organizations), who operate both the transportation leg and the access point aspect. These networks offer a range of pickup points including: 3P Lockers, legacy Postal Offices, 3P Counters (e.g. Gas Stations and Retail Outlets - supermarkets, bookstores, news-stands etc).'
+      - value: CAMPUS_ROOM
+        description: Locker+, formerly known as Campus, are attended, physical stores, where the Locker is used dynamically by the staff to keep packages ready for customer pickup. Locker+ store can have multiple Lockers installed,
+    ExcludedBenefitReasonCodes:
+      type: array
+      description: List of reasons (eg. LATE_DELIVERY_RISK, etc.) indicating why a benefit is excluded for a shipping offer.
+      minItems: 1
+      items:
+        type: string
+    GetShipmentDocumentsResult:
       type: object
       required:
-      - isMandatory
-      - name
+      - packageDocumentDetail
+      - shipmentId
       properties:
-        name:
-          $ref: '#/components/schemas/DocumentType'
-        isMandatory:
-          type: boolean
-          description: When true, the supported document type is required.
-      description: The supported document types for a service offering.
-    AccessPointId:
-      description: Unique identifier for the access point
-      type: string
-    UnmanifestedShipmentLocationList:
+        shipmentId:
+          $ref: '#/components/schemas/ShipmentId'
+        packageDocumentDetail:
+          $ref: '#/components/schemas/PackageDocumentDetail'
+        benefits:
+          $ref: '#/components/schemas/Benefits'
+      description: The payload for the getShipmentDocuments operation.
+    LinkableAccountTypeList:
       type: array
-      description: A list of UnmanifestedShipmentLocation
+      description: A list of LinkableAccountType
       items:
-        $ref: '#/components/schemas/UnmanifestedShipmentLocation'
-    ShipmentId:
+        $ref: '#/components/schemas/LinkableAccountType'
+    RequestedLabelCustomization:
+      type: object
+      description: Object contains customised data requested by a shipper to be printed on a shipping label.
+      properties:
+        requestAttributes:
+          $ref: '#/components/schemas/RequestAttributes'
+    PackageDocumentList:
+      type: array
+      description: A list of documents related to a package.
+      items:
+        $ref: '#/components/schemas/PackageDocument'
+    RequestToken:
       type: string
-      description: The unique shipment identifier provided by a shipping service.
-    GetAccessPointsResponse:
+      description: A unique token generated to identify a getRates operation.
+    GetCarrierAccountsResponse:
+      description: The Response  for the GetCarrierAccountsResponse operation.
+      type: object
+      required:
+      - activeAccounts
+      properties:
+        activeAccounts:
+          $ref: '#/components/schemas/ActiveAccounts'
+    ServiceId:
+      type: string
+      description: An identifier for the shipping service.
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: An error code that identifies the type of error that occurred.
+        message:
+          type: string
+          description: A message that describes the error condition.
+        details:
+          type: string
+          description: Additional details that can help the caller understand or fix the issue.
+      description: Error response returned when the request is unsuccessful.
+    LinkableAccountType:
       type: object
       properties:
-        payload:
-          $ref: '#/components/schemas/GetAccessPointsResult'
-      description: The response schema for the GetAccessPoints operation.
+        accountType:
+          $ref: '#/components/schemas/AccountType'
+        carrierAccountInputs:
+          $ref: '#/components/schemas/CarrierAccountInputsList'
+      description: Info About Linkable Account Type
+    IneligibleRate:
+      description: Detailed information for an ineligible shipping service offering.
+      type: object
+      required:
+      - carrierId
+      - carrierName
+      - ineligibilityReasons
+      - serviceId
+      - serviceName
+      properties:
+        serviceId:
+          $ref: '#/components/schemas/ServiceId'
+        serviceName:
+          $ref: '#/components/schemas/ServiceName'
+        carrierName:
+          $ref: '#/components/schemas/CarrierName'
+        carrierId:
+          $ref: '#/components/schemas/CarrierId'
+        ineligibilityReasons:
+          type: array
+          description: A list of reasons why a shipping service offering is ineligible.
+          items:
+            $ref: '#/components/schemas/IneligibilityReason'
+    LabelAttribute:
+      type: string
+      description: Enumerates the attributes supported to be printed on a shipping label. The values for these attributes are retrieved from GetRates/OneClickShipment request
+      enum:
+      - PACKAGE_CLIENT_REFERENCE_ID
+      - SELLER_DISPLAY_NAME
+      - COLLECT_ON_DELIVERY_AMOUNT
+      x-docgen-enum-table-extension:
+      - value: PACKAGE_CLIENT_REFERENCE_ID
+        description: Prints client reference ID on the shipping label
+      - value: SELLER_DISPLAY_NAME
+        description: Prints seller name on the shipping label
+      - value: COLLECT_ON_DELIVERY_AMOUNT
+        description: Prints Collect On Delivery amount on the shipping label.
+    GetCollectionFormHistoryResponse:
+      description: The Response  for the GetCollectionFormHistoryResponse operation.
+      type: object
+      properties:
+        collectionFormsHistoryRecordList:
+          $ref: '#/components/schemas/CollectionFormsHistoryRecordList'
+        lastRefreshedDate:
+          type: string
+          description: Last Refereshed Date of collection
+    TaxDetailList:
+      type: array
+      description: A list of tax detail information.
+      items:
+        $ref: '#/components/schemas/TaxDetail'
+    InvoiceDetails:
+      description: The invoice details for charges associated with the goods in the package. Only applies to certain regions.
+      type: object
+      properties:
+        invoiceNumber:
+          type: string
+          description: The invoice number of the item.
+        invoiceDate:
+          type: string
+          format: date-time
+          description: The invoice date of the item in ISO 8061 format.
+    CarrierAccountInputsList:
+      type: array
+      description: A list of CarrierAccountInput
+      items:
+        $ref: '#/components/schemas/CarrierAccountInput'
+    CreateClaimResponse:
+      type: object
+      properties:
+        claimId:
+          $ref: '#/components/schemas/ClaimId'
+      description: The response schema for the createClaim operation.
+    OneClickShipmentResult:
+      type: object
+      required:
+      - packageDocumentDetails
+      - promise
+      - shipmentId
+      - service
+      - carrier
+      - totalCharge
+      properties:
+        shipmentId:
+          $ref: '#/components/schemas/ShipmentId'
+        packageDocumentDetails:
+          $ref: '#/components/schemas/PackageDocumentDetailList'
+        promise:
+          $ref: '#/components/schemas/Promise'
+        carrier:
+          $ref: '#/components/schemas/Carrier'
+        service:
+          $ref: '#/components/schemas/Service'
+        totalCharge:
+          $ref: '#/components/schemas/Currency'
+      description: The payload for the OneClickShipment API.
+    AmazonShipmentDetails:
+      type: object
+      required:
+      - shipmentId
+      properties:
+        shipmentId:
+          type: string
+          description: This attribute is required only for a Direct Fulfillment shipment. This is the encrypted shipment ID.
+      description: Amazon shipment information.
     RequestedDocumentSpecification:
       type: object
       required:
@@ -6096,182 +6688,145 @@ components:
         requestedLabelCustomization:
           $ref: '#/components/schemas/RequestedLabelCustomization'
       description: The document specifications requested. For calls to the purchaseShipment operation, the shipment purchase fails if the specified document specifications are not among those returned in the response to the getRates operation.
-    Package:
+    Weight:
+      description: The weight in the units indicated.
       type: object
       required:
-      - dimensions
-      - insuredValue
-      - items
-      - packageClientReferenceId
-      - weight
+      - unit
+      - value
       properties:
-        dimensions:
-          $ref: '#/components/schemas/Dimensions'
-        weight:
-          $ref: '#/components/schemas/Weight'
-        insuredValue:
-          $ref: '#/components/schemas/Currency'
-        isHazmat:
-          type: boolean
-          description: When true, the package contains hazardous materials. Defaults to false.
-        sellerDisplayName:
+        unit:
           type: string
-          description: The seller name displayed on the label.
-        charges:
-          $ref: '#/components/schemas/ChargeList'
-        packageClientReferenceId:
-          $ref: '#/components/schemas/PackageClientReferenceId'
-        items:
-          $ref: '#/components/schemas/ItemList'
-      description: A package to be shipped through a shipping service offering.
+          description: The unit of measurement.
+          enum:
+          - GRAM
+          - KILOGRAM
+          - OUNCE
+          - POUND
+          x-docgen-enum-table-extension:
+          - value: GRAM
+            description: Metric unit of mass equal to one thousandth of a kilogram.
+          - value: KILOGRAM
+            description: Metric unit of mass.
+          - value: OUNCE
+            description: The imperial unit of weight that is one sixteenth of a pound.
+          - value: POUND
+            description: The imperial unit of weight.
+        value:
+          type: number
+          description: The measurement value.
+    EventCode:
+      type: string
+      description: The tracking event type.
+      enum:
+      - ReadyForReceive
+      - PickupDone
+      - Delivered
+      - Departed
+      - DeliveryAttempted
+      - Lost
+      - OutForDelivery
+      - ArrivedAtCarrierFacility
+      - Rejected
+      - Undeliverable
+      - PickupCancelled
+      - ReturnInitiated
+      - AvailableForPickup
+      - RecipientRequestedAlternateDeliveryTiming
+      x-docgen-enum-table-extension:
+      - value: ReadyForReceive
+        description: Package has been created and is ready for pickup at the shippers location. This is a pre-transit status event code.
+      - value: PickupDone
+        description: Package has been picked up by the service provider.
+      - value: Delivered
+        description: Package has been delivered.
+      - value: Departed
+        description: Package has departed from a particular location in carrier network.
+      - value: DeliveryAttempted
+        description: Delivery was attempted, but was unsuccessful.
+      - value: Lost
+        description: Package is lost.
+      - value: OutForDelivery
+        description: Package is out for delivery.
+      - value: ArrivedAtCarrierFacility
+        description: Package is in transit and has been received at a carrier location.
+      - value: Rejected
+        description: Package was rejected by the recipient.
+      - value: Undeliverable
+        description: Package is undeliverable.
+      - value: PickupCancelled
+        description: Pickup scheduled for the package was cancelled.
+      - value: ReturnInitiated
+        description: Return label has been generated.
+      - value: AvailableForPickup
+        description: Package held for recipient pickup.
+      - value: RecipientRequestedAlternateDeliveryTiming
+        description: Recipient has requested an update to their delivery date.
+    CancelShipmentResponse:
+      type: object
+      properties:
+        payload:
+          $ref: '#/components/schemas/CancelShipmentResult'
+      description: Response schema for the cancelShipment operation.
+    RateItemType:
+      type: string
+      description: Type of the rateItem.
+      enum:
+      - MANDATORY
+      - OPTIONAL
+      - INCLUDED
+      x-docgen-enum-table-extension:
+      - value: MANDATORY
+        description: Rate Item is mandatory.
+      - value: OPTIONAL
+        description: Rate Item is Optional.
+      - value: INCLUDED
+        description: Rate Item is included.
+    PrintOption:
+      type: object
+      required:
+      - supportedDocumentDetails
+      - supportedFileJoiningOptions
+      - supportedPageLayouts
+      properties:
+        supportedDPIs:
+          type: array
+          description: A list of the supported DPI options for a document.
+          items:
+            $ref: '#/components/schemas/Dpi'
+        supportedPageLayouts:
+          type: array
+          description: A list of the supported page layout options for a document.
+          items:
+            $ref: '#/components/schemas/PageLayout'
+        supportedFileJoiningOptions:
+          type: array
+          description: A list of the supported needFileJoining boolean values for a document.
+          items:
+            $ref: '#/components/schemas/NeedFileJoining'
+        supportedDocumentDetails:
+          description: A list of the supported documented details.
+          type: array
+          items:
+            $ref: '#/components/schemas/SupportedDocumentDetail'
+      description: The format options available for a label.
+    GetRatesResponse:
+      type: object
+      properties:
+        payload:
+          $ref: '#/components/schemas/GetRatesResult'
+      description: The response schema for the getRates operation.
     ValidationMetadataList:
       type: array
       description: A list of ValidationMetadata
       items:
         $ref: '#/components/schemas/ValidationMetadata'
-    GetRatesResult:
-      type: object
-      required:
-      - rates
-      - requestToken
-      properties:
-        requestToken:
-          $ref: '#/components/schemas/RequestToken'
-        rates:
-          $ref: '#/components/schemas/RateList'
-        ineligibleRates:
-          $ref: '#/components/schemas/IneligibleRateList'
-      description: The payload for the getRates operation.
-    RequestedLabelCustomization:
-      type: object
-      description: Object contains customised data requested by a shipper to be printed on a shipping label.
-      properties:
-        requestAttributes:
-          $ref: '#/components/schemas/RequestAttributes'
-    InputType:
-      type: string
-      description: Type of Input.
-      enum:
-      - TEXTBOX
-      - PASSWORD
-      x-docgen-enum-table-extension:
-      - value: TEXTBOX
-        description: Input Type is Textbox.
-      - value: PASSWORD
-        description: Input Type is Password.
-    CollectionsFormDocument:
-      type: object
-      properties:
-        base64EncodedContent:
-          type: string
-          description: Base64 document Value of Collection.
-        documentFormat:
-          type: string
-          format: application/pdf
-          description: Collection Document format is PDF.
-      description: Collection Form Document Details
-    RequestedValueAddedServiceList:
-      type: array
-      description: The value-added services to be added to a shipping service purchase.
-      items:
-        $ref: '#/components/schemas/RequestedValueAddedService'
-    Address:
-      type: object
-      required:
-      - addressLine1
-      - city
-      - countryCode
-      - name
-      - postalCode
-      - stateOrRegion
-      properties:
-        name:
-          type: string
-          description: The name of the person, business or institution at the address.
-          minLength: 1
-          maxLength: 50
-        addressLine1:
-          type: string
-          description: The first line of the address.
-          minLength: 1
-          maxLength: 60
-        addressLine2:
-          type: string
-          description: Additional address information, if required.
-          minLength: 1
-          maxLength: 60
-        addressLine3:
-          type: string
-          description: Additional address information, if required.
-          minLength: 1
-          maxLength: 60
-        companyName:
-          type: string
-          description: The name of the business or institution associated with the address.
-        stateOrRegion:
-          $ref: '#/components/schemas/StateOrRegion'
-        city:
-          $ref: '#/components/schemas/City'
-        countryCode:
-          $ref: '#/components/schemas/CountryCode'
-        postalCode:
-          $ref: '#/components/schemas/PostalCode'
-        email:
-          type: string
-          description: The email address of the contact associated with the address.
-          maxLength: 64
-        phoneNumber:
-          type: string
-          description: The phone number of the person, business or institution located at that address, including the country calling code.
-          minLength: 1
-          maxLength: 20
-        geocode:
-          $ref: '#/components/schemas/Geocode'
-      description: The address.
-    UnmanifestedCarrierInformationList:
-      type: array
-      description: A list of UnmanifestedCarrierInformation
-      items:
-        $ref: '#/components/schemas/UnmanifestedCarrierInformation'
-    TrackingId:
-      type: string
-      description: The carrier generated identifier for a package in a purchased shipment.
-    CreateClaimResponse:
-      type: object
-      properties:
-        claimId:
-          $ref: '#/components/schemas/ClaimId'
-      description: The response schema for the createClaim operation.
-    CollectionFormId:
-      type: string
-      description: Collection Form Id for Reprint .
-    IneligibilityReason:
-      description: The reason why a shipping service offering is ineligible.
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          $ref: '#/components/schemas/IneligibilityReasonCode'
-        message:
-          type: string
-          description: The ineligibility reason.
-    GetTrackingResponse:
-      type: object
-      properties:
-        payload:
-          $ref: '#/components/schemas/GetTrackingResult'
-      description: The response schema for the getTracking operation.
-    OneClickShipmentResult:
+    PurchaseShipmentResult:
       type: object
       required:
       - packageDocumentDetails
       - promise
       - shipmentId
-      - service
-      - carrier
-      - totalCharge
       properties:
         shipmentId:
           $ref: '#/components/schemas/ShipmentId'
@@ -6279,93 +6834,88 @@ components:
           $ref: '#/components/schemas/PackageDocumentDetailList'
         promise:
           $ref: '#/components/schemas/Promise'
-        carrier:
-          $ref: '#/components/schemas/Carrier'
-        service:
-          $ref: '#/components/schemas/Service'
-        totalCharge:
-          $ref: '#/components/schemas/Currency'
-      description: The payload for the OneClickShipment API.
+        benefits:
+          $ref: '#/components/schemas/Benefits'
+      description: The payload for the purchaseShipment operation.
+    DirectFulfillmentItemIdentifiers:
+      type: object
+      required:
+      - lineItemID
+      properties:
+        lineItemID:
+          type: string
+          description: A unique identifier for an item provided by the client for a direct fulfillment shipment. This is only populated for direct fulfillment multi-piece shipments. It is required if a vendor wants to change the configuration of the packages in which the purchase order is shipped.
+        pieceNumber:
+          type: string
+          description: A unique identifier for an item provided by the client for a direct fulfillment shipment. This is only populated if a single line item has multiple pieces. Defaults to 1.
+      description: Item identifiers for an item in a direct fulfillment shipment.
+    GetAdditionalInputsResult:
+      type: object
+      description: The JSON schema to use to provide additional inputs when required to purchase a shipping offering.
+      additionalProperties: {}
+    Dpi:
+      type: integer
+      description: The dots per inch (DPI) value used in printing. This value represents a measure of the resolution of the document.
+    GoodsOwner:
+      type: object
+      description: The seller owning the goods before handing them over to the carrier
+      required:
+      - merchantId
+      properties:
+        merchantId:
+          description: The Amazon Merchant Identifier (merchantId) of the seller owning the goods before handing them over to the carrier
+          $ref: '#/components/schemas/MerchantId'
+    ClientReferenceDetails:
+      type: array
+      description: 'Object to pass additional information about the MCI Integrator shipperType: List of ClientReferenceDetail'
+      items:
+        $ref: '#/components/schemas/ClientReferenceDetail'
+    UnmanifestedCarrierInformationList:
+      type: array
+      description: A list of UnmanifestedCarrierInformation
+      items:
+        $ref: '#/components/schemas/UnmanifestedCarrierInformation'
     GetUnmanifestedShipmentsResponse:
       description: The Response  for the GetUnmanifestedShipmentsResponse operation.
       type: object
       properties:
         unmanifestedCarrierInformationList:
           $ref: '#/components/schemas/UnmanifestedCarrierInformationList'
-    DocumentType:
-      type: string
-      description: The type of shipping document.
-      enum:
-      - PACKSLIP
-      - LABEL
-      - RECEIPT
-      - CUSTOM_FORM
-      x-docgen-enum-table-extension:
-      - value: PACKSLIP
-        description: A listing of the items packed within the shipment.
-      - value: LABEL
-        description: The shipping label for the specific shipment.
-      - value: RECEIPT
-        description: The receipt of the shipment.
-      - value: CUSTOM_FORM
-        description: The customs documentation for a cross-border shipment.
-    DocumentSize:
+    ShipperInstruction:
       type: object
-      required:
-      - length
-      - unit
-      - width
       properties:
-        width:
-          description: The width of the document measured in the units specified.
-          type: number
-        length:
-          description: The length of the document measured in the units specified.
-          type: number
-        unit:
+        deliveryNotes:
           type: string
-          description: The unit of measurement.
-          enum:
-          - INCH
-          - CENTIMETER
-          x-docgen-enum-table-extension:
-          - value: INCH
-            description: The imperial unit of length equal to one twelfth of a foot.
-          - value: CENTIMETER
-            description: A metric unit of length, equal to one hundredth of a meter.
-      description: The size dimensions of the label.
-    PackageDocumentDetailList:
-      type: array
-      description: A list of post-purchase details about a package that will be shipped using a shipping service.
-      items:
-        $ref: '#/components/schemas/PackageDocumentDetail'
-    LinkableAccountTypeList:
-      type: array
-      description: A list of LinkableAccountType
-      items:
-        $ref: '#/components/schemas/LinkableAccountType'
-    ChannelDetails:
+          description: The delivery notes for the shipment
+          maxLength: 256
+      description: The shipper instruction.
+    ValidationMetadata:
       type: object
-      required:
-      - channelType
       properties:
-        channelType:
-          $ref: '#/components/schemas/ChannelType'
-        amazonOrderDetails:
-          $ref: '#/components/schemas/AmazonOrderDetails'
-        amazonShipmentDetails:
-          $ref: '#/components/schemas/AmazonShipmentDetails'
-      description: Shipment source channel related information.
-    IncludedBenefits:
-      type: array
-      description: A list of included benefits.
-      items:
-        type: string
-    OneClickShipmentValueAddedServiceDetails:
-      type: array
-      description: The value-added services to be added to a shipping service purchase.
-      items:
-        $ref: '#/components/schemas/OneClickShipmentValueAddedService'
+        errorMessage:
+          type: string
+          description: errorMessage for the error.
+        validationStrategy:
+          type: string
+          description: validationStrategy for the error.
+        value:
+          type: string
+          description: Value.
+      description: ValidationMetadata Details
+    ChannelType:
+      type: string
+      description: The shipment source channel type.
+      enum:
+      - AMAZON
+      - EXTERNAL
+      x-docgen-enum-table-extension:
+      - value: AMAZON
+        description: Indicates that the shipment originates from an Amazon order.
+      - value: EXTERNAL
+        description: Indicates that the shipment originates from a non-Amazon channel.
+    NeedFileJoining:
+      type: boolean
+      description: When true, files should be stitched together. Otherwise, files should be returned separately. Defaults to false.
     Status:
       type: string
       description: The status of the package being shipped.
@@ -6401,6 +6951,17 @@ components:
         description: Pickup was cancelled for the package.
       - value: AwaitingCustomerPickup
         description: Package held at facility for the customer pickup.
+    ShipmentType:
+      type: string
+      description: Shipment type.
+      enum:
+      - FORWARD
+      - RETURNS
+      x-docgen-enum-table-extension:
+      - value: FORWARD
+        description: Additional information about shipment representing package journey from origin address to destination address in the transportation/shipping request.
+      - value: RETURNS
+        description: Additional information about shipment representing package journey from destination address to origin/return address in the original transportation/shipping request.
     GenerationStatus:
       type: string
       description: Generation Status.
@@ -6412,65 +6973,29 @@ components:
         description: Genertaion is succesfully completed .
       - value: InProgress
         description: Genertaion is in Progress.
-    AccountType:
-      type: string
-      description: Shipper Account Type.
-      enum:
-      - SHIPPER_ACCOUNT
-      - SHIPPER_ACCOUNT_WITH_INVOICE
-      - AMAZON_ACCOUNT
-      x-docgen-enum-table-extension:
-      - value: SHIPPER_ACCOUNT
-        description: 'Shipper Account in case of others carriers like : FEDEX, ROYLA_MAIL, DHL etc.'
-      - value: SHIPPER_ACCOUNT_WITH_INVOICE
-        description: Shipper Account only for UPS .
-      - value: AMAZON_ACCOUNT
-        description: this for default account and will be used if seller dont have any active linked account.
-    CarrierAccountType:
-      type: string
-      description: CarrierAccountType  associated with account.
-    ServiceName:
-      type: string
-      description: The name of the shipping service.
-    IneligibleRate:
-      description: Detailed information for an ineligible shipping service offering.
-      type: object
-      required:
-      - carrierId
-      - carrierName
-      - ineligibilityReasons
-      - serviceId
-      - serviceName
-      properties:
-        serviceId:
-          $ref: '#/components/schemas/ServiceId'
-        serviceName:
-          $ref: '#/components/schemas/ServiceName'
-        carrierName:
-          $ref: '#/components/schemas/CarrierName'
-        carrierId:
-          $ref: '#/components/schemas/CarrierId'
-        ineligibilityReasons:
-          type: array
-          description: A list of reasons why a shipping service offering is ineligible.
-          items:
-            $ref: '#/components/schemas/IneligibilityReason'
-    ExcludedBenefits:
-      type: array
-      description: A list of excluded benefit. Refer to the ExcludeBenefit object for further documentation
-      items:
-        $ref: '#/components/schemas/ExcludedBenefit'
-    GetAdditionalInputsResponse:
+    PurchaseShipmentResponse:
       type: object
       properties:
         payload:
-          $ref: '#/components/schemas/GetAdditionalInputsResult'
-      description: The response schema for the getAdditionalInputs operation.
-    ActiveAccounts:
-      type: array
-      description: A list of ActiveAccount
-      items:
-        $ref: '#/components/schemas/ActiveAccount'
+          $ref: '#/components/schemas/PurchaseShipmentResult'
+      description: The response schema for the purchaseShipment operation.
+    GetShipmentDocumentsResponse:
+      type: object
+      properties:
+        payload:
+          $ref: '#/components/schemas/GetShipmentDocumentsResult'
+      description: The response schema for the the getShipmentDocuments operation.
+    ErrorList:
+      type: object
+      description: A list of error responses returned when a request is unsuccessful.
+      required:
+      - errors
+      properties:
+        errors:
+          type: array
+          description: Array of Errors
+          items:
+            $ref: '#/components/schemas/Error'
     Event:
       type: object
       required:
@@ -6488,129 +7013,117 @@ components:
         shipmentType:
           $ref: '#/components/schemas/ShipmentType'
       description: A tracking event.
-    PackageList:
+    RequestedValueAddedServiceList:
       type: array
-      description: A list of packages to be shipped through a shipping service offering.
+      description: The value-added services to be added to a shipping service purchase.
       items:
-        $ref: '#/components/schemas/Package'
-    AdditionalAddressNotes:
+        $ref: '#/components/schemas/RequestedValueAddedService'
+    PageLayout:
       type: string
-      maxLength: 256
-      description: Address notes to re-attempt delivery with.
-    Item:
+      description: Indicates the position of the label on the paper. Should be the same value as returned in getRates response.
+    Carrier:
       type: object
       required:
-      - quantity
+      - id
+      - name
       properties:
-        itemValue:
-          $ref: '#/components/schemas/Currency'
-        description:
-          type: string
-          description: The product description of the item.
-        itemIdentifier:
-          type: string
-          description: A unique identifier for an item provided by the client.
-        quantity:
-          type: integer
-          description: The number of units. This value is required.
-        weight:
-          $ref: '#/components/schemas/Weight'
-        liquidVolume:
-          $ref: '#/components/schemas/LiquidVolume'
-        isHazmat:
-          type: boolean
-          description: When true, the item qualifies as hazardous materials (hazmat). Defaults to false.
-        dangerousGoodsDetails:
-          $ref: '#/components/schemas/DangerousGoodsDetails'
-        productType:
-          type: string
-          description: The product type of the item.
-        invoiceDetails:
-          $ref: '#/components/schemas/InvoiceDetails'
-        serialNumbers:
-          type: array
-          items:
-            type: string
-          description: A list of unique serial numbers in an Amazon package that can be used to guarantee non-fraudulent items. The number of serial numbers in the list must be less than or equal to the quantity of items being shipped. Only applicable when channel source is Amazon.
-        directFulfillmentItemIdentifiers:
-          $ref: '#/components/schemas/DirectFulfillmentItemIdentifiers'
-      description: An item in a package.
-    Currency:
-      description: The monetary value in the currency indicated, in ISO 4217 standard format.
-      type: object
-      required:
-      - unit
-      - value
-      properties:
-        value:
-          type: number
-          description: The monetary value.
-        unit:
-          type: string
-          description: The ISO 4217 format 3-character currency code.
-          minLength: 3
-          maxLength: 3
-    TrackingDetailCodes:
-      type: object
-      description: Contains detail codes that provide additional details related to the forward and return leg of the shipment.
-      required:
-      - forward
-      - returns
-      properties:
-        forward:
-          type: array
-          description: Contains detail codes that provide additional details related to the forward leg of the shipment.
-          items:
-            $ref: '#/components/schemas/DetailCodes'
-        returns:
-          type: array
-          description: Contains detail codes that provide additional details related to the return leg of the shipment.
-          items:
-            $ref: '#/components/schemas/DetailCodes'
-    ActiveAccount:
-      type: object
-      properties:
-        accountId:
-          $ref: '#/components/schemas/AccountId'
-        carrierId:
+        id:
           $ref: '#/components/schemas/CarrierId'
-      description: Active Account Details
-    CollectionFormsHistoryRecord:
-      type: object
-      properties:
-        carrierName:
+        name:
           $ref: '#/components/schemas/CarrierName'
-        creationDate:
-          type: string
-          format: dateTime
-          description: Creation Time for this account.
-        generationStatus:
-          $ref: '#/components/schemas/GenerationStatus'
-        collectionFormId:
-          $ref: '#/components/schemas/CollectionFormId'
-        shipFromAddress:
-          $ref: '#/components/schemas/Address'
-      description: Active Account Details
-    Geocode:
+      description: Carrier Related Info
+    ChargeComponent:
       type: object
-      description: Defines the latitude and longitude of the access point.
+      description: The type and amount of a charge applied on a package.
       properties:
-        latitude:
-          description: The latitude of access point.
+        amount:
+          $ref: '#/components/schemas/Currency'
+        chargeType:
           type: string
-        longitude:
-          description: The longitude of access point.
-          type: string
-    UnmanifestedShipmentLocation:
+          description: The type of charge.
+          enum:
+          - TAX
+          - DISCOUNT
+          x-docgen-enum-table-extension:
+          - value: TAX
+            description: A tax imposed on a package.
+          - value: DISCOUNT
+            description: A discount deducted from the cost of a package.
+    SupportedDocumentDetail:
       type: object
+      required:
+      - isMandatory
+      - name
       properties:
-        address:
+        name:
+          $ref: '#/components/schemas/DocumentType'
+        isMandatory:
+          type: boolean
+          description: When true, the supported document type is required.
+      description: The supported document types for a service offering.
+    DirectPurchaseRequest:
+      description: The request schema for the directPurchaseShipment operation. When the channel type is Amazon, the shipTo address is not required and will be ignored.
+      type: object
+      required:
+      - channelDetails
+      properties:
+        shipTo:
+          description: The address where the shipment will be delivered. For vendor orders, shipTo information is pulled directly from the Amazon order.
           $ref: '#/components/schemas/Address'
-        lastManifestDate:
+        shipFrom:
+          description: The address where the package will be picked up.
+          $ref: '#/components/schemas/Address'
+        returnTo:
+          description: The address where the package will be returned if it cannot be delivered.
+          $ref: '#/components/schemas/Address'
+        packages:
+          $ref: '#/components/schemas/PackageList'
+        channelDetails:
+          $ref: '#/components/schemas/ChannelDetails'
+        labelSpecifications:
+          description: The document (label) specifications requested. The default label returned is PNG DPI 203 4x6 if no label specification is provided. Requesting an invalid file format results in a failure.
+          $ref: '#/components/schemas/RequestedDocumentSpecification'
+    CountryCode:
+      type: string
+      description: The two digit country code. Follows ISO 3166-1 alpha-2 format.
+    ServiceSelection:
+      description: Service Selection Criteria.
+      type: object
+      required:
+      - serviceId
+      properties:
+        serviceId:
+          $ref: '#/components/schemas/ServiceIds'
+    ClientReferenceDetail:
+      type: object
+      required:
+      - clientReferenceType
+      - clientReferenceId
+      properties:
+        clientReferenceType:
           type: string
-          format: dateTime
-          description: Its Last Manifest Date.
-      description: 'UnmanifestedShipmentLocation info '
+          description: Client Reference type.
+          enum:
+          - IntegratorShipperId
+          - IntegratorMerchantId
+          x-docgen-enum-table-extension:
+          - value: IntegratorShipperId
+            description: The unique identifier assigned to a 3P seller by the shipping integrator.
+          - value: IntegratorMerchantId
+            description: The unique identifier assigned to a 3P shipping integrator by Amazon.
+        clientReferenceId:
+          type: string
+          description: The Client Reference Id.
+      description: Client Reference Details
+    RequestedValueAddedService:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: The identifier of the selected value-added service. Must be among those returned in the response to the getRates operation.
+      description: A value-added service to be applied to a shipping service purchase.
     CarrierAccount:
       type: object
       required:
@@ -6622,65 +7135,84 @@ components:
         carrierId:
           $ref: '#/components/schemas/CarrierId'
       description: Carrier Account details used to fetch rates.
-    TaxDetailList:
-      type: array
-      description: A list of tax detail information.
-      items:
-        $ref: '#/components/schemas/TaxDetail'
-    City:
-      type: string
-      description: The city or town where the person, business or institution is located.
-    PageLayout:
-      type: string
-      description: Indicates the position of the label on the paper. Should be the same value as returned in getRates response.
-    LinkCarrierAccountResponse:
-      description: The Response  for the LinkCarrierAccount operation.
+    GetCarrierAccountFormInputsResponse:
+      description: The Response  for the GetCarrierAccountFormInputsResponse operation.
       type: object
       properties:
-        registrationStatus:
-          $ref: '#/components/schemas/AccountStatus'
-        accountId:
-          $ref: '#/components/schemas/AccountId'
-    GenerateCollectionFormRequest:
-      description: The request schema Call to generate the collection form.
+        linkableCarriersList:
+          $ref: '#/components/schemas/LinkableCarriersList'
+    AccessPointsMap:
+      description: Map of type of access point to list of access points
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/AccessPointList'
+    AccessibilityAttributes:
+      type: object
+      description: Defines the accessibility details of the access point.
+      properties:
+        distance:
+          description: The approximate distance of access point from input postalCode's centroid.
+          type: string
+        driveTime:
+          description: The approximate (static) drive time from input postal code's centroid.
+          type: integer
+    Contents:
+      type: string
+      description: A Base64 encoded string of the file contents.
+    OneClickShipmentRequest:
+      description: The request schema for the OneClickShipment operation. When the channelType is not Amazon, shipTo is required and when channelType is Amazon shipTo is ignored.
       type: object
       required:
-      - carrierId
+      - channelDetails
+      - packages
+      - shipFrom
+      - labelSpecifications
+      - serviceSelection
       properties:
-        clientReferenceDetails:
-          $ref: '#/components/schemas/ClientReferenceDetails'
-        carrierId:
-          $ref: '#/components/schemas/CarrierId'
-        shipFromAddress:
+        shipTo:
+          description: The ship to address.
           $ref: '#/components/schemas/Address'
-    ClaimReason:
-      type: string
-      description: The reason for which shipper is filing the claim for a particular shipment.
-      enum:
-      - LOST_IN_TRANSIT
-      - DAMAGED_IN_TRANSIT
-      - DELIVERED_NOT_RECEIVED
-      - ITEM_MISSING_SWITCHEROO
-      - COD_ABUSE
-      x-docgen-enum-table-extension:
-      - value: LOST_IN_TRANSIT
-        description: Shipment was lost in-transit
-      - value: DAMAGED_IN_TRANSIT
-        description: Shipment was received in damaged condition
-      - value: DELIVERED_NOT_RECEIVED
-        description: Shipment was delivered but is not received
-      - value: ITEM_MISSING_SWITCHEROO
-        description: Shipment was delivered but the content is missing/different
-      - value: COD_ABUSE
-        description: Cash was collected from customer but delivery agent marked it rejected
-    LinkableAccountType:
+        shipFrom:
+          description: The ship from address.
+          $ref: '#/components/schemas/Address'
+        returnTo:
+          description: The return to address.
+          $ref: '#/components/schemas/Address'
+        shipDate:
+          type: string
+          format: date-time
+          description: The ship date and time (the requested pickup). This defaults to the current date and time.
+        goodsOwner:
+          description: The seller owning the goods before handing them over to the carrier
+          $ref: '#/components/schemas/GoodsOwner'
+        packages:
+          $ref: '#/components/schemas/PackageList'
+        valueAddedServicesDetails:
+          $ref: '#/components/schemas/OneClickShipmentValueAddedServiceDetails'
+        taxDetails:
+          $ref: '#/components/schemas/TaxDetailList'
+        channelDetails:
+          $ref: '#/components/schemas/ChannelDetails'
+        labelSpecifications:
+          $ref: '#/components/schemas/RequestedDocumentSpecification'
+        serviceSelection:
+          $ref: '#/components/schemas/ServiceSelection'
+        shipperInstruction:
+          $ref: '#/components/schemas/ShipperInstruction'
+          description: Optional field for shipper instruction.
+        destinationAccessPointDetails:
+          $ref: '#/components/schemas/AccessPointDetails'
+    Benefits:
       type: object
+      description: Benefits that are included and excluded for each shipping offer. Benefits represents services provided by Amazon (eg. CLAIMS_PROTECTED, etc.) when sellers purchase shipping through Amazon. Benefit details will be made available for any shipment placed on or after January 1st 2024 00:00 UTC.
+      required:
+      - includedBenefits
+      - excludedBenefits
       properties:
-        accountType:
-          $ref: '#/components/schemas/AccountType'
-        carrierAccountInputs:
-          $ref: '#/components/schemas/CarrierAccountInputsList'
-      description: Info About Linkable Account Type
+        includedBenefits:
+          $ref: '#/components/schemas/IncludedBenefits'
+        excludedBenefits:
+          $ref: '#/components/schemas/ExcludedBenefits'
     DangerousGoodsDetails:
       type: object
       properties:
@@ -6751,105 +7283,59 @@ components:
           - value: PI970_SECTION_II
             description: Metal PI970 Section II (LiBa in equipment)
       description: Details related to any dangerous goods/items that are being shipped.
-    AvailableValueAddedServiceGroup:
+    Address:
       type: object
       required:
-      - groupDescription
-      - groupId
-      - isRequired
+      - addressLine1
+      - city
+      - countryCode
+      - name
+      - postalCode
+      - stateOrRegion
       properties:
-        groupId:
+        name:
           type: string
-          description: The type of the value-added service group.
-        groupDescription:
+          description: The name of the person, business or institution at the address.
+          minLength: 1
+          maxLength: 50
+        addressLine1:
           type: string
-          description: The name of the value-added service group.
-        isRequired:
-          type: boolean
-          description: When true, one or more of the value-added services listed must be specified.
-        valueAddedServices:
-          type: array
-          description: A list of optional value-added services available for purchase with a shipping service offering.
-          items:
-            $ref: '#/components/schemas/ValueAddedService'
-      description: The value-added services available for purchase with a shipping service offering.
-    IneligibleRateList:
-      type: array
-      description: A list of ineligible shipping service offerings.
-      items:
-        $ref: '#/components/schemas/IneligibleRate'
-    ShipperInstruction:
-      type: object
-      properties:
-        deliveryNotes:
+          description: The first line of the address.
+          minLength: 1
+          maxLength: 60
+        addressLine2:
           type: string
-          description: The delivery notes for the shipment
-          maxLength: 256
-      description: The shipper instruction.
-    LinkCarrierAccountRequest:
-      description: The request schema for verify and add the merchant's account with a certain carrier.
-      type: object
-      required:
-      - carrierAccountAttributes
-      - carrierAccountType
-      properties:
-        clientReferenceDetails:
-          $ref: '#/components/schemas/ClientReferenceDetails'
-        carrierAccountType:
-          $ref: '#/components/schemas/CarrierAccountType'
-        carrierAccountAttributes:
-          $ref: '#/components/schemas/CarrierAccountAttributes'
-        encryptedCarrierAccountAttributes:
-          $ref: '#/components/schemas/CarrierAccountAttributes'
-    OneClickShipmentRequest:
-      description: The request schema for the OneClickShipment operation. When the channelType is not Amazon, shipTo is required and when channelType is Amazon shipTo is ignored.
-      type: object
-      required:
-      - channelDetails
-      - packages
-      - shipFrom
-      - labelSpecifications
-      - serviceSelection
-      properties:
-        shipTo:
-          description: The ship to address.
-          $ref: '#/components/schemas/Address'
-        shipFrom:
-          description: The ship from address.
-          $ref: '#/components/schemas/Address'
-        returnTo:
-          description: The return to address.
-          $ref: '#/components/schemas/Address'
-        shipDate:
+          description: Additional address information, if required.
+          minLength: 1
+          maxLength: 60
+        addressLine3:
           type: string
-          format: date-time
-          description: The ship date and time (the requested pickup). This defaults to the current date and time.
-        goodsOwner:
-          description: The seller owning the goods before handing them over to the carrier
-          $ref: '#/components/schemas/GoodsOwner'
-        packages:
-          $ref: '#/components/schemas/PackageList'
-        valueAddedServicesDetails:
-          $ref: '#/components/schemas/OneClickShipmentValueAddedServiceDetails'
-        taxDetails:
-          $ref: '#/components/schemas/TaxDetailList'
-        channelDetails:
-          $ref: '#/components/schemas/ChannelDetails'
-        labelSpecifications:
-          $ref: '#/components/schemas/RequestedDocumentSpecification'
-        serviceSelection:
-          $ref: '#/components/schemas/ServiceSelection'
-        shipperInstruction:
-          $ref: '#/components/schemas/ShipperInstruction'
-          description: Optional field for shipper instruction.
-        destinationAccessPointDetails:
-          $ref: '#/components/schemas/AccessPointDetails'
-    AccountId:
-      type: string
-      description: Identifier for the seller's carrier account.
-    ServiceId:
-      type: string
-      description: An identifier for the shipping service.
+          description: Additional address information, if required.
+          minLength: 1
+          maxLength: 60
+        companyName:
+          type: string
+          description: The name of the business or institution associated with the address.
+        stateOrRegion:
+          $ref: '#/components/schemas/StateOrRegion'
+        city:
+          $ref: '#/components/schemas/City'
+        countryCode:
+          $ref: '#/components/schemas/CountryCode'
+        postalCode:
+          $ref: '#/components/schemas/PostalCode'
+        email:
+          type: string
+          description: The email address of the contact associated with the address.
+          maxLength: 64
+        phoneNumber:
+          type: string
+          description: The phone number of the person, business or institution located at that address, including the country calling code.
+          minLength: 1
+          maxLength: 20
+        geocode:
+          $ref: '#/components/schemas/Geocode'
+      description: The address.
     ExcludedBenefit:
       type: object
       description: Object representing a benefit that is excluded for a shipping offer or rate.
@@ -6861,108 +7347,52 @@ components:
           description: benefit
         reasonCodes:
           $ref: '#/components/schemas/ExcludedBenefitReasonCodes'
-    DetailCodes:
-      type: string
-      description: A list of codes used to provide additional shipment information.
-      enum:
-      - BusinessClosed
-      - CustomerUnavailable
-      - PaymentNotReady
-      - OtpNotAvailable
-      - DeliveryAttempted
-      - UnableToAccess
-      - UnableToContactRecipient
-      - DeliveredToBehindWheelieBin
-      - DeliveredToPorch
-      - DeliveredToGarage
-      - DeliveredToGarden
-      - DeliveredToGreenhouse
-      - DeliveredToMailSlot
-      - DeliveredToMailRoom
-      - DeliveredToNeighbor
-      - DeliveredToRearDoor
-      - DeliveredToReceptionist
-      - DeliveredToShed
-      - DeliveredWithOTP
-      - Signed
-      - Damaged
-      - IncorrectItems
-      - NotRequired
-      - Rejected
-      - RejectedByRecipientWithVerification
-      - CancelledByRecipient
-      - AddressNotFound
-      - HazmatShipment
-      - Undeliverable
-      - ArrivedAtLocalFacility
-      x-docgen-enum-table-extension:
-      - value: BusinessClosed
-        description: Attempted delivery but the business was closed.
-      - value: CustomerUnavailable
-        description: Attempted delivery but the recipient was unavailable.
-      - value: PaymentNotReady
-        description: Attempted delivery but cash was not available from recipient.
-      - value: OtpNotAvailable
-        description: Attempted delivery but the recipient did not have the PIN available.
-      - value: DeliveryAttempted
-        description: Delivery was attempted.
-      - value: UnableToAccess
-        description: Attempted delivery but could not access the recipient location.
-      - value: UnableToContactRecipient
-        description: Attempted delivery but unable to contact the recipient to coordinate delivery.
-      - value: DeliveredToBehindWheelieBin
-        description: Shipment delivered behind wheelie bin.
-      - value: DeliveredToPorch
-        description: Shipment delivered to front porch or front door.
-      - value: DeliveredToGarage
-        description: Shipment delivered to garage.
-      - value: DeliveredToGarden
-        description: Shipment delivered to garden.
-      - value: DeliveredToGreenhouse
-        description: Shipment delivered to greenhouse.
-      - value: DeliveredToMailSlot
-        description: Shipment delivered to letterbox/mail slot.
-      - value: DeliveredToMailRoom
-        description: Shipment delivered to mailroom.
-      - value: DeliveredToNeighbor
-        description: Shipment delivered and signed for by neighbor.
-      - value: DeliveredToRearDoor
-        description: Shipment delivered to rear porch or rear door.
-      - value: DeliveredToReceptionist
-        description: Shipment delivered to reception.
-      - value: DeliveredToShed
-        description: Shipment delivered to shed.
-      - value: DeliveredWithOTP
-        description: Shipment delivered with onetime passcode.
-      - value: Signed
-        description: Shipment delivered and signature received.
-      - value: Damaged
-        description: Shipment was damaged. When paired with Rejected this indicates the recipient refused to accept the shipment because the shipment was damaged. When paired with UNDELIVERABLE it means the shipment was undeliverable due to being damaged and may be returned to the seller.
-      - value: IncorrectItems
-        description: Recipient refused to accept the shipment because the shipment contains incorrect item/s.
-      - value: NotRequired
-        description: Recipient refused to accept the shipment because the recipient did not want the shipment.
-      - value: Rejected
-        description: Recipient refused to accept the shipment.
-      - value: RejectedByRecipientWithVerification
-        description: Recipient refused to accept the shipment and provided verification.
-      - value: CancelledByRecipient
-        description: Shipment was cancelled by the recipient. This tag is paired with the rejected shipment status.
-      - value: AddressNotFound
-        description: Shipment is undeliverable and is returning to seller because the address was missing or incorrect.
-      - value: HazmatShipment
-        description: Shipment is non-compliant Hazmat.
-      - value: Undeliverable
-        description: Shipment is undeliverable and is returning to the seller.
-      - value: ArrivedAtLocalFacility
-        description: Package arrived at the local facility.
-    AvailableValueAddedServiceGroupList:
+    Package:
+      type: object
+      required:
+      - dimensions
+      - insuredValue
+      - items
+      - packageClientReferenceId
+      - weight
+      properties:
+        dimensions:
+          $ref: '#/components/schemas/Dimensions'
+        weight:
+          $ref: '#/components/schemas/Weight'
+        insuredValue:
+          $ref: '#/components/schemas/Currency'
+        isHazmat:
+          type: boolean
+          description: When true, the package contains hazardous materials. Defaults to false.
+        sellerDisplayName:
+          type: string
+          description: The seller name displayed on the label.
+        charges:
+          $ref: '#/components/schemas/ChargeList'
+        packageClientReferenceId:
+          $ref: '#/components/schemas/PackageClientReferenceId'
+        items:
+          $ref: '#/components/schemas/ItemList'
+      description: A package to be shipped through a shipping service offering.
+    GetCollectionFormResponse:
+      description: The Response  for the GetCollectionFormResponse operation.
+      type: object
+      properties:
+        collectionsFormDocument:
+          $ref: '#/components/schemas/CollectionsFormDocument'
+    DirectPurchaseResponse:
+      type: object
+      properties:
+        payload:
+          $ref: '#/components/schemas/DirectPurchaseResult'
+      description: The response schema for the directPurchaseShipment operation.
+    RateItemList:
       type: array
-      description: A list of value-added services available for a shipping service offering.
+      description: A list of RateItem
       items:
-        $ref: '#/components/schemas/AvailableValueAddedServiceGroup'
-    Weight:
-      description: The weight in the units indicated.
+        $ref: '#/components/schemas/RateItem'
+    LiquidVolume:
       type: object
       required:
       - unit
@@ -6972,356 +7402,87 @@ components:
           type: string
           description: The unit of measurement.
           enum:
-          - GRAM
-          - KILOGRAM
-          - OUNCE
-          - POUND
+          - ML
+          - L
+          - FL_OZ
+          - GAL
+          - PT
+          - QT
+          - C
           x-docgen-enum-table-extension:
-          - value: GRAM
-            description: Metric unit of mass equal to one thousandth of a kilogram.
-          - value: KILOGRAM
-            description: Metric unit of mass.
-          - value: OUNCE
-            description: The imperial unit of weight that is one sixteenth of a pound.
-          - value: POUND
-            description: The imperial unit of weight.
+          - value: ML
+            description: Milliliter - Metric unit of volume.
+          - value: L
+            description: Liter - Metric unit of volume.
+          - value: FL_OZ
+            description: Fluid Ounce - Imperial unit of volume.
+          - value: GAL
+            description: Gallon - Imperial unit of volume.
+          - value: PT
+            description: Pint - Imperial unit of volume.
+          - value: QT
+            description: Quart - Imperial unit of volume.
+          - value: C
+            description: Cup - Imperial unit of volume.
         value:
           type: number
           description: The measurement value.
-    PrintOption:
-      type: object
-      required:
-      - supportedDocumentDetails
-      - supportedFileJoiningOptions
-      - supportedPageLayouts
-      properties:
-        supportedDPIs:
-          type: array
-          description: A list of the supported DPI options for a document.
-          items:
-            $ref: '#/components/schemas/Dpi'
-        supportedPageLayouts:
-          type: array
-          description: A list of the supported page layout options for a document.
-          items:
-            $ref: '#/components/schemas/PageLayout'
-        supportedFileJoiningOptions:
-          type: array
-          description: A list of the supported needFileJoining boolean values for a document.
-          items:
-            $ref: '#/components/schemas/NeedFileJoining'
-        supportedDocumentDetails:
-          description: A list of the supported documented details.
-          type: array
-          items:
-            $ref: '#/components/schemas/SupportedDocumentDetail'
-      description: The format options available for a label.
-    ServiceSelection:
-      description: Service Selection Criteria.
-      type: object
-      required:
-      - serviceId
-      properties:
-        serviceId:
-          $ref: '#/components/schemas/ServiceIds'
-    TimeWindow:
+      description: Liquid Volume.
+    UnlinkCarrierAccountResponse:
+      description: The Response  for the UnlinkCarrierAccountResponse operation.
       type: object
       properties:
-        start:
-          type: string
-          format: date-time
-          description: The start time of the time window.
-        end:
-          type: string
-          format: date-time
-          description: The end time of the time window.
-      description: The start and end time that specifies the time interval of an event.
-    DirectFulfillmentItemIdentifiers:
-      type: object
-      required:
-      - lineItemID
-      properties:
-        lineItemID:
-          type: string
-          description: A unique identifier for an item provided by the client for a direct fulfillment shipment. This is only populated for direct fulfillment multi-piece shipments. It is required if a vendor wants to change the configuration of the packages in which the purchase order is shipped.
-        pieceNumber:
-          type: string
-          description: A unique identifier for an item provided by the client for a direct fulfillment shipment. This is only populated if a single line item has multiple pieces. Defaults to 1.
-      description: Item identifiers for an item in a direct fulfillment shipment.
-    Rate:
-      type: object
-      required:
-      - carrierId
-      - carrierName
-      - promise
-      - rateId
-      - requiresAdditionalInputs
-      - serviceId
-      - serviceName
-      - supportedDocumentSpecifications
-      - totalCharge
-      properties:
-        rateId:
-          $ref: '#/components/schemas/RateId'
-        carrierId:
-          $ref: '#/components/schemas/CarrierId'
-        carrierName:
-          $ref: '#/components/schemas/CarrierName'
-        serviceId:
-          $ref: '#/components/schemas/ServiceId'
-        serviceName:
-          $ref: '#/components/schemas/ServiceName'
-        billedWeight:
-          $ref: '#/components/schemas/Weight'
-        totalCharge:
-          $ref: '#/components/schemas/Currency'
-        promise:
-          $ref: '#/components/schemas/Promise'
-        supportedDocumentSpecifications:
-          $ref: '#/components/schemas/SupportedDocumentSpecificationList'
-        availableValueAddedServiceGroups:
-          $ref: '#/components/schemas/AvailableValueAddedServiceGroupList'
-        requiresAdditionalInputs:
+        isUnlinked:
           type: boolean
-          description: When true, indicates that additional inputs are required to purchase this shipment service. You must then call the getAdditionalInputs operation to return the JSON schema to use when providing the additional inputs to the purchaseShipment operation.
-        rateItemList:
-          $ref: '#/components/schemas/RateItemList'
-        paymentType:
-          $ref: '#/components/schemas/PaymentType'
-        benefits:
-          $ref: '#/components/schemas/Benefits'
-      description: The details of a shipping service offering.
-    RateItemType:
-      type: string
-      description: Type of the rateItem.
-      enum:
-      - MANDATORY
-      - OPTIONAL
-      - INCLUDED
-      x-docgen-enum-table-extension:
-      - value: MANDATORY
-        description: Rate Item is mandatory.
-      - value: OPTIONAL
-        description: Rate Item is Optional.
-      - value: INCLUDED
-        description: Rate Item is included.
-    LabelAttribute:
-      type: string
-      description: Enumerates the attributes supported to be printed on a shipping label. The values for these attributes are retrieved from GetRates/OneClickShipment request
-      enum:
-      - PACKAGE_CLIENT_REFERENCE_ID
-      - SELLER_DISPLAY_NAME
-      - COLLECT_ON_DELIVERY_AMOUNT
-      x-docgen-enum-table-extension:
-      - value: PACKAGE_CLIENT_REFERENCE_ID
-        description: Prints client reference ID on the shipping label
-      - value: SELLER_DISPLAY_NAME
-        description: Prints seller name on the shipping label
-      - value: COLLECT_ON_DELIVERY_AMOUNT
-        description: Prints Collect On Delivery amount on the shipping label.
-    ValueAddedService:
-      type: object
-      required:
-      - cost
-      - id
-      - name
-      properties:
-        id:
-          type: string
-          description: The identifier for the value-added service.
-        name:
-          type: string
-          description: The name of the value-added service.
-        cost:
-          description: The cost of the value-added service.
-          $ref: '#/components/schemas/Currency'
-      description: A value-added service available for purchase with a shipment service offering.
-    AccessPoint:
-      type: object
-      description: Access point details
-      properties:
-        accessPointId:
-          $ref: '#/components/schemas/AccessPointId'
-        name:
-          description: Name of entity (store/hub etc) where this access point is located
-          type: string
-        timezone:
-          description: Timezone of access point
-          type: string
-        type:
-          $ref: '#/components/schemas/AccessPointType'
-        accessibilityAttributes:
-          $ref: '#/components/schemas/AccessibilityAttributes'
-        address:
-          $ref: '#/components/schemas/Address'
-        exceptionOperatingHours:
-          type: array
-          description: Exception operating hours for Access Point
-          items:
-            $ref: '#/components/schemas/ExceptionOperatingHours'
-        assistanceType:
-          type: string
-          description: Assistance type enum for Access point i.e. STAFF_ASSISTED or SELF_ASSISTED
-          enum:
-          - STAFF_ASSISTED
-          - SELF_ASSISTED
-        score:
-          type: string
-          description: The score of access point, based on proximity to postal code and sorting preference. This can be used to sort access point results on shipper's end.
-        standardOperatingHours:
-          $ref: '#/components/schemas/DayOfWeekTimeMap'
-    DirectPurchaseResponse:
-      type: object
-      properties:
-        payload:
-          $ref: '#/components/schemas/DirectPurchaseResult'
-      description: The response schema for the directPurchaseShipment operation.
-    RequestToken:
-      type: string
-      description: A unique token generated to identify a getRates operation.
-    Dpi:
-      type: integer
-      description: The dots per inch (DPI) value used in printing. This value represents a measure of the resolution of the document.
-    AccessPointType:
-      description: The type of access point, like counter (HELIX), lockers, etc.
-      type: string
-      enum:
-      - HELIX
-      - CAMPUS_LOCKER
-      - OMNI_LOCKER
-      - ODIN_LOCKER
-      - DOBBY_LOCKER
-      - CORE_LOCKER
-      - 3P
-      - CAMPUS_ROOM
-      x-docgen-enum-table-extension:
-      - value: HELIX
-        description: Counter, aka Helix, is an assisted access point where customers interact with a store associate to collect or return packages. Counter stores do not have Locker
-      - value: CAMPUS_LOCKER
-        description: It denotes a physical Locker present at Locker+ stores
-      - value: OMNI_LOCKER
-        description: Omni lockers are similar to core lockers installed at apartment buildings. Core and Omni will have common base hardware platform
-      - value: ODIN_LOCKER
-        description: Odin lockers rely on Bluetooth connection as there is no screen or scanner on the locker. Drivers, customers, and even technicians can interact with the locker using an app (different depending on the user).
-      - value: DOBBY_LOCKER
-        description: Dobby lockers are Odin lockers installed at apartment complexes and available only to residents.
-      - value: CORE_LOCKER
-        description: Core lockers are the traditional and initial style of lockers when Hub was launched. Core lockers have a screen, keypad and scanner.  Customer either enter their pickup code using the Locker screen or scan pickup code barcode to pick up their package.
-      - value: 3P
-        description: 'Networks that are owned end-to-end by commercial carriers (CC - e.g. DHL, UPS, DPD and Postal organizations), who operate both the transportation leg and the access point aspect. These networks offer a range of pickup points including: 3P Lockers, legacy Postal Offices, 3P Counters (e.g. Gas Stations and Retail Outlets - supermarkets, bookstores, news-stands etc).'
-      - value: CAMPUS_ROOM
-        description: Locker+, formerly known as Campus, are attended, physical stores, where the Locker is used dynamically by the staff to keep packages ready for customer pickup. Locker+ store can have multiple Lockers installed,
-    GetRatesRequest:
-      description: The request schema for the getRates operation. When the channelType is Amazon, the shipTo address is not required and will be ignored.
-      type: object
-      required:
-      - channelDetails
-      - packages
-      - shipFrom
-      properties:
-        shipTo:
-          description: The ship to address.
-          $ref: '#/components/schemas/Address'
-        shipFrom:
-          description: The ship from address.
-          $ref: '#/components/schemas/Address'
-        returnTo:
-          description: The return to address.
-          $ref: '#/components/schemas/Address'
-        shipDate:
-          type: string
-          format: date-time
-          description: The ship date and time (the requested pickup). This defaults to the current date and time.
-        shipperInstruction:
-          $ref: '#/components/schemas/ShipperInstruction'
-          description: This field describe shipper instruction.
-        packages:
-          $ref: '#/components/schemas/PackageList'
-        valueAddedServices:
-          $ref: '#/components/schemas/ValueAddedServiceDetails'
-        taxDetails:
-          $ref: '#/components/schemas/TaxDetailList'
-        channelDetails:
-          $ref: '#/components/schemas/ChannelDetails'
-        clientReferenceDetails:
-          $ref: '#/components/schemas/ClientReferenceDetails'
-        shipmentType:
-          $ref: '#/components/schemas/ShipmentType'
-        destinationAccessPointDetails:
-          $ref: '#/components/schemas/AccessPointDetails'
-        carrierAccounts:
-          $ref: '#/components/schemas/CarrierAccounts'
-    PaymentType:
-      type: string
-      description: Payment type of the purchase.
-      enum:
-      - PAY_THROUGH_AMAZON
-      - PAY_DIRECT_TO_CARRIER
-      x-docgen-enum-table-extension:
-      - value: PAY_THROUGH_AMAZON
-        description: Payment Through Amazon.
-      - value: PAY_DIRECT_TO_CARRIER
-        description: Payment Direct to Carrier.
-    ShipmentType:
-      type: string
-      description: Shipment type.
-      enum:
-      - FORWARD
-      - RETURNS
-      x-docgen-enum-table-extension:
-      - value: FORWARD
-        description: Additional information about shipment representing package journey from origin address to destination address in the transportation/shipping request.
-      - value: RETURNS
-        description: Additional information about shipment representing package journey from destination address to origin/return address in the original transportation/shipping request.
-    GetCollectionFormHistoryResponse:
-      description: The Response  for the GetCollectionFormHistoryResponse operation.
-      type: object
-      properties:
-        collectionFormsHistoryRecordList:
-          $ref: '#/components/schemas/CollectionFormsHistoryRecordList'
-        lastRefreshedDate:
-          type: string
-          description: Last Refereshed Date of collection
-    ValidationMetadata:
-      type: object
-      properties:
-        errorMessage:
-          type: string
-          description: errorMessage for the error.
-        validationStrategy:
-          type: string
-          description: validationStrategy for the error.
-        value:
-          type: string
-          description: Value.
-      description: ValidationMetadata Details
-    AmazonOrderDetails:
-      type: object
-      required:
-      - orderId
-      properties:
-        orderId:
-          type: string
-          description: The Amazon order ID associated with the Amazon order fulfilled by this shipment.
-      description: Amazon order information. This is required if the shipment source channel is Amazon.
-    SupportedDocumentSpecificationList:
+          description: Is Carrier unlinked from Merchant
+    ChargeList:
       type: array
-      description: A list of the document specifications supported for a shipment service offering.
+      description: A list of charges based on the shipping service charges applied on a package.
       items:
-        $ref: '#/components/schemas/SupportedDocumentSpecification'
-    CollectOnDelivery:
+        $ref: '#/components/schemas/ChargeComponent'
+    PrintOptionList:
+      type: array
+      description: A list of the format options for a label.
+      items:
+        $ref: '#/components/schemas/PrintOption'
+    TrackingSummary:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        trackingDetailCodes:
+          $ref: '#/components/schemas/TrackingDetailCodes'
+      description: A package status summary.
+    Dimensions:
       type: object
       required:
-      - amount
+      - height
+      - length
+      - unit
+      - width
       properties:
-        amount:
-          $ref: '#/components/schemas/Currency'
-      description: The amount to collect on delivery.
-    Promise:
+        length:
+          type: number
+          description: The length of the package.
+        width:
+          type: number
+          description: The width of the package.
+        height:
+          type: number
+          description: The height of the package.
+        unit:
+          type: string
+          description: The unit of measurement.
+          enum:
+          - INCH
+          - CENTIMETER
+          x-docgen-enum-table-extension:
+          - value: INCH
+            description: The imperial unit of length equal to one twelfth of a foot.
+          - value: CENTIMETER
+            description: A metric unit of length, equal to one hundredth of a meter.
+      description: A set of measurements for a three-dimensional object.
+    CancelShipmentResult:
       type: object
-      properties:
-        deliveryWindow:
-          $ref: '#/components/schemas/TimeWindow'
-        pickupWindow:
-          $ref: '#/components/schemas/TimeWindow'
-      description: The time windows promised for pickup and delivery events.
+      description: The payload for the cancelShipment operation.
+      additionalProperties: {}
