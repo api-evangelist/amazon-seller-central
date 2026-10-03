@@ -221,22 +221,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    CreateRestrictedDataTokenRequest:
-      description: The request schema for the createRestrictedDataToken operation.
-      type: object
-      properties:
-        targetApplication:
-          type: string
-          description: The application ID for the target application to which access is being delegated.
-        restrictedResources:
-          type: array
-          description: 'A list of restricted resources.
-
-            Maximum: 50'
-          items:
-            $ref: '#/components/schemas/RestrictedResource'
-      required:
-      - restrictedResources
     RestrictedResource:
       description: Model of a restricted resource.
       type: object
@@ -295,14 +279,6 @@ components:
         expiresIn:
           description: The lifetime of the Restricted Data Token, in seconds.
           type: integer
-    ErrorList:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-      description: A list of error responses returned when a request is unsuccessful.
     Error:
       type: object
       required:
@@ -319,3 +295,27 @@ components:
           type: string
           description: Additional details that can help the caller understand or fix the issue.
       description: An error response returned when the request is unsuccessful.
+    CreateRestrictedDataTokenRequest:
+      description: The request schema for the createRestrictedDataToken operation.
+      type: object
+      properties:
+        targetApplication:
+          type: string
+          description: The application ID for the target application to which access is being delegated.
+        restrictedResources:
+          type: array
+          description: 'A list of restricted resources.
+
+            Maximum: 50'
+          items:
+            $ref: '#/components/schemas/RestrictedResource'
+      required:
+      - restrictedResources
+    ErrorList:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+      description: A list of error responses returned when a request is unsuccessful.

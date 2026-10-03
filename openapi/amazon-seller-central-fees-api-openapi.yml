@@ -713,172 +713,33 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    OptionalFulfillmentProgram:
+      type: string
+      description: An optional enrollment program to return the estimated fees when the offer is fulfilled by Amazon (IsAmazonFulfilled is set to true).
+      enum:
+      - FBA_CORE
+      - FBA_SNL
+      - FBA_EFN
+      x-docgen-enum-table-extension:
+      - value: FBA_CORE
+        description: Returns the standard Amazon fulfillment fees for the offer. This is the default.
+      - value: FBA_SNL
+        description: 'Returns the FBA Small and Light (SNL) fees for the offer. The SNL program offers reduced fulfillment costs on qualified items. To check item eligibility for the SNL program, use the getSmallAndLightEligibilityBySellerSKU operation of the FBA Small And Light API.
+
+
+          **Note:** The FBA Small and Light program sunset in the US and EU regions on **September 26, 2023**. The program will be deprecated in the JP region on **March 31, 2024** and sunset on **April 1, 2024**. APIs announcing deprecation will no longer be supported after their deprecation date. Calls to deprecated APIs will fail beginning on their sunset date. For more information, refer to [FBA Small and Light program deprecation](https://developer-docs.amazon.com/sp-api/changelog/fba-small-and-light-program-deprecation).'
+      - value: FBA_EFN
+        description: Returns the cross-border European Fulfillment Network fees across EU countries for the offer.
     GetMyFeesEstimatesRequest:
       description: Request for estimated fees for a list of products.
       type: array
       items:
         $ref: '#/components/schemas/FeesEstimateByIdRequest'
-    FeesEstimateError:
-      description: An unexpected error occurred during this operation.
-      type: object
-      required:
-      - Code
-      - Detail
-      - Message
-      - Type
-      properties:
-        Type:
-          description: An error type, identifying either the receiver or the sender as the originator of the error.
-          type: string
-        Code:
-          description: An error code that identifies the type of error that occurred.
-          type: string
-        Message:
-          description: A message that describes the error condition.
-          type: string
-        Detail:
-          $ref: '#/components/schemas/FeesEstimateErrorDetail'
-    MoneyType:
-      type: object
-      description: An object representing a monetary value with its currency information.
-      properties:
-        CurrencyCode:
-          description: The currency code in ISO 4217 format.
-          type: string
-        Amount:
-          description: The monetary value.
-          type: number
-    GetMyFeesEstimateResult:
-      description: Response schema.
-      type: object
-      properties:
-        FeesEstimateResult:
-          description: The item's estimated fees.
-          $ref: '#/components/schemas/FeesEstimateResult'
-    FeeDetail:
-      description: The type of fee, fee amount, and other details.
-      type: object
-      required:
-      - FeeType
-      - FeeAmount
-      - FinalFee
-      properties:
-        FeeType:
-          description: The type of fee charged to a seller.
-          type: string
-        FeeAmount:
-          description: The amount charged for a given fee.
-          $ref: '#/components/schemas/MoneyType'
-        FeePromotion:
-          description: The promotion amount for a given fee.
-          $ref: '#/components/schemas/MoneyType'
-        TaxAmount:
-          description: The tax amount for a given fee.
-          $ref: '#/components/schemas/MoneyType'
-        FinalFee:
-          description: The final fee amount for a given fee.
-          $ref: '#/components/schemas/MoneyType'
-        IncludedFeeDetailList:
-          $ref: '#/components/schemas/IncludedFeeDetailList'
-    GetMyFeesEstimateRequest:
-      description: Request schema.
-      type: object
-      properties:
-        FeesEstimateRequest:
-          $ref: '#/components/schemas/FeesEstimateRequest'
-    Points:
-      type: object
-      description: The number of Amazon Points offered with the purchase of an item.The Amazon Points program is only available in Japan.
-      properties:
-        PointsNumber:
-          type: integer
-          description: The number of Amazon Points
-          format: int32
-        PointsMonetaryValue:
-          $ref: '#/components/schemas/MoneyType'
-    PriceToEstimateFees:
-      description: Price information for an item, used to estimate fees.
-      type: object
-      required:
-      - ListingPrice
-      properties:
-        ListingPrice:
-          description: The price of the item.
-          $ref: '#/components/schemas/MoneyType'
-        Shipping:
-          description: The shipping cost.
-          $ref: '#/components/schemas/MoneyType'
-        Points:
-          description: The number of Amazon Points offered with the purchase of an item.
-          $ref: '#/components/schemas/Points'
-    FeesEstimateRequest:
-      description: A product, marketplace, and proposed price used to request estimated fees.
-      type: object
-      required:
-      - MarketplaceId
-      - PriceToEstimateFees
-      - Identifier
-      properties:
-        MarketplaceId:
-          description: A marketplace identifier.
-          type: string
-        IsAmazonFulfilled:
-          description: When true, the offer is fulfilled by Amazon.
-          type: boolean
-        PriceToEstimateFees:
-          description: The product price that the fee estimate is based on.
-          $ref: '#/components/schemas/PriceToEstimateFees'
-        Identifier:
-          description: A unique identifier provided by the caller to track this request.
-          type: string
-        OptionalFulfillmentProgram:
-          $ref: '#/components/schemas/OptionalFulfillmentProgram'
-    GetMyFeesEstimatesResponse:
-      description: Estimated fees for a list of products.
-      type: array
-      items:
-        $ref: '#/components/schemas/FeesEstimateResult'
     ErrorList:
       type: array
       description: A list of error responses returned when a request is unsuccessful.
       items:
         $ref: '#/components/schemas/Error'
-    Error:
-      type: object
-      description: An object representing an error that occurred during the API operation.
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: An error code that identifies the type of error that occurred.
-        message:
-          type: string
-          description: A message that describes the error condition.
-        details:
-          type: string
-          description: Additional details that can help the caller understand or fix the issue.
-    FeesEstimate:
-      description: The total estimated fees for an item and a list of details.
-      type: object
-      required:
-      - TimeOfFeesEstimation
-      properties:
-        TimeOfFeesEstimation:
-          description: The time at which the fees were estimated. This defaults to the time the request is made.
-          type: string
-          format: date-time
-        TotalFeesEstimate:
-          description: Total estimated fees for a given item, price, and fulfillment channel.
-          $ref: '#/components/schemas/MoneyType'
-        FeeDetailList:
-          $ref: '#/components/schemas/FeeDetailList'
-    IncludedFeeDetailList:
-      description: A list of other fees that contribute to a given fee.
-      type: array
-      items:
-        $ref: '#/components/schemas/IncludedFeeDetail'
     IdType:
       type: string
       description: The type of product identifier used in a `FeesEstimateByIdRequest`.
@@ -890,38 +751,37 @@ components:
         description: An Amazon Standard Identification Number (ASIN) of a listings item.
       - value: SellerSKU
         description: A selling partner provided identifier for an Amazon listing.
-    FeesEstimateResult:
-      description: An item identifier and the estimated fees for the item.
-      type: object
-      properties:
-        Status:
-          description: 'The status of the fee request. Possible values: Success, ClientError, ServiceError.'
-          type: string
-        FeesEstimateIdentifier:
-          description: Information used to identify a fees estimate request.
-          $ref: '#/components/schemas/FeesEstimateIdentifier'
-        FeesEstimate:
-          description: The total estimated fees for an item and a list of details.
-          $ref: '#/components/schemas/FeesEstimate'
-        Error:
-          description: An error object with a type, code, and message.
-          $ref: '#/components/schemas/FeesEstimateError'
-    GetMyFeesEstimatesErrorList:
-      type: object
-      description: A list of error responses returned when a request is unsuccessful.
-      required:
-      - errors
-      properties:
-        errors:
-          type: array
-          description: A list of error responses returned when a request is unsuccessful.
-          items:
-            $ref: '#/components/schemas/Error'
     FeeDetailList:
       description: A list of other fees that contribute to a given fee.
       type: array
       items:
         $ref: '#/components/schemas/FeeDetail'
+    IncludedFeeDetailList:
+      description: A list of other fees that contribute to a given fee.
+      type: array
+      items:
+        $ref: '#/components/schemas/IncludedFeeDetail'
+    FeesEstimateErrorDetail:
+      description: Additional information that can help the caller understand or fix the issue.
+      type: array
+      items:
+        type: object
+    GetMyFeesEstimateRequest:
+      description: Request schema.
+      type: object
+      properties:
+        FeesEstimateRequest:
+          $ref: '#/components/schemas/FeesEstimateRequest'
+    GetMyFeesEstimateResponse:
+      type: object
+      description: The response object for the GetMyFeesEstimate operation.
+      properties:
+        payload:
+          description: The payload for the operation.
+          $ref: '#/components/schemas/GetMyFeesEstimateResult'
+        errors:
+          description: A list of errors that may have occurred during the GetMyFeesEstimate operation.
+          $ref: '#/components/schemas/ErrorList'
     FeesEstimateIdentifier:
       description: An item identifier, marketplace, time of request, and other details that identify an estimate.
       type: object
@@ -948,6 +808,150 @@ components:
           type: string
         OptionalFulfillmentProgram:
           $ref: '#/components/schemas/OptionalFulfillmentProgram'
+    PriceToEstimateFees:
+      description: Price information for an item, used to estimate fees.
+      type: object
+      required:
+      - ListingPrice
+      properties:
+        ListingPrice:
+          description: The price of the item.
+          $ref: '#/components/schemas/MoneyType'
+        Shipping:
+          description: The shipping cost.
+          $ref: '#/components/schemas/MoneyType'
+        Points:
+          description: The number of Amazon Points offered with the purchase of an item.
+          $ref: '#/components/schemas/Points'
+    FeesEstimateByIdRequest:
+      type: object
+      description: A product, marketplace, and proposed price used to request estimated fees.
+      required:
+      - IdType
+      - IdValue
+      properties:
+        FeesEstimateRequest:
+          $ref: '#/components/schemas/FeesEstimateRequest'
+        IdType:
+          $ref: '#/components/schemas/IdType'
+        IdValue:
+          description: The item identifier.
+          type: string
+    FeesEstimate:
+      description: The total estimated fees for an item and a list of details.
+      type: object
+      required:
+      - TimeOfFeesEstimation
+      properties:
+        TimeOfFeesEstimation:
+          description: The time at which the fees were estimated. This defaults to the time the request is made.
+          type: string
+          format: date-time
+        TotalFeesEstimate:
+          description: Total estimated fees for a given item, price, and fulfillment channel.
+          $ref: '#/components/schemas/MoneyType'
+        FeeDetailList:
+          $ref: '#/components/schemas/FeeDetailList'
+    FeeDetail:
+      description: The type of fee, fee amount, and other details.
+      type: object
+      required:
+      - FeeType
+      - FeeAmount
+      - FinalFee
+      properties:
+        FeeType:
+          description: The type of fee charged to a seller.
+          type: string
+        FeeAmount:
+          description: The amount charged for a given fee.
+          $ref: '#/components/schemas/MoneyType'
+        FeePromotion:
+          description: The promotion amount for a given fee.
+          $ref: '#/components/schemas/MoneyType'
+        TaxAmount:
+          description: The tax amount for a given fee.
+          $ref: '#/components/schemas/MoneyType'
+        FinalFee:
+          description: The final fee amount for a given fee.
+          $ref: '#/components/schemas/MoneyType'
+        IncludedFeeDetailList:
+          $ref: '#/components/schemas/IncludedFeeDetailList'
+    GetMyFeesEstimatesResponse:
+      description: Estimated fees for a list of products.
+      type: array
+      items:
+        $ref: '#/components/schemas/FeesEstimateResult'
+    MoneyType:
+      type: object
+      description: An object representing a monetary value with its currency information.
+      properties:
+        CurrencyCode:
+          description: The currency code in ISO 4217 format.
+          type: string
+        Amount:
+          description: The monetary value.
+          type: number
+    GetMyFeesEstimatesErrorList:
+      type: object
+      description: A list of error responses returned when a request is unsuccessful.
+      required:
+      - errors
+      properties:
+        errors:
+          type: array
+          description: A list of error responses returned when a request is unsuccessful.
+          items:
+            $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      description: An object representing an error that occurred during the API operation.
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: An error code that identifies the type of error that occurred.
+        message:
+          type: string
+          description: A message that describes the error condition.
+        details:
+          type: string
+          description: Additional details that can help the caller understand or fix the issue.
+    Points:
+      type: object
+      description: The number of Amazon Points offered with the purchase of an item.The Amazon Points program is only available in Japan.
+      properties:
+        PointsNumber:
+          type: integer
+          description: The number of Amazon Points
+          format: int32
+        PointsMonetaryValue:
+          $ref: '#/components/schemas/MoneyType'
+    FeesEstimateResult:
+      description: An item identifier and the estimated fees for the item.
+      type: object
+      properties:
+        Status:
+          description: 'The status of the fee request. Possible values: Success, ClientError, ServiceError.'
+          type: string
+        FeesEstimateIdentifier:
+          description: Information used to identify a fees estimate request.
+          $ref: '#/components/schemas/FeesEstimateIdentifier'
+        FeesEstimate:
+          description: The total estimated fees for an item and a list of details.
+          $ref: '#/components/schemas/FeesEstimate'
+        Error:
+          description: An error object with a type, code, and message.
+          $ref: '#/components/schemas/FeesEstimateError'
+    GetMyFeesEstimateResult:
+      description: Response schema.
+      type: object
+      properties:
+        FeesEstimateResult:
+          description: The item's estimated fees.
+          $ref: '#/components/schemas/FeesEstimateResult'
     IncludedFeeDetail:
       description: The type of fee, fee amount, and other details.
       type: object
@@ -971,49 +975,45 @@ components:
         FinalFee:
           description: The final fee amount for a given fee.
           $ref: '#/components/schemas/MoneyType'
-    OptionalFulfillmentProgram:
-      type: string
-      description: An optional enrollment program to return the estimated fees when the offer is fulfilled by Amazon (IsAmazonFulfilled is set to true).
-      enum:
-      - FBA_CORE
-      - FBA_SNL
-      - FBA_EFN
-      x-docgen-enum-table-extension:
-      - value: FBA_CORE
-        description: Returns the standard Amazon fulfillment fees for the offer. This is the default.
-      - value: FBA_SNL
-        description: 'Returns the FBA Small and Light (SNL) fees for the offer. The SNL program offers reduced fulfillment costs on qualified items. To check item eligibility for the SNL program, use the getSmallAndLightEligibilityBySellerSKU operation of the FBA Small And Light API.
-
-
-          **Note:** The FBA Small and Light program sunset in the US and EU regions on **September 26, 2023**. The program will be deprecated in the JP region on **March 31, 2024** and sunset on **April 1, 2024**. APIs announcing deprecation will no longer be supported after their deprecation date. Calls to deprecated APIs will fail beginning on their sunset date. For more information, refer to [FBA Small and Light program deprecation](https://developer-docs.amazon.com/sp-api/changelog/fba-small-and-light-program-deprecation).'
-      - value: FBA_EFN
-        description: Returns the cross-border European Fulfillment Network fees across EU countries for the offer.
-    FeesEstimateByIdRequest:
-      type: object
+    FeesEstimateRequest:
       description: A product, marketplace, and proposed price used to request estimated fees.
-      required:
-      - IdType
-      - IdValue
-      properties:
-        FeesEstimateRequest:
-          $ref: '#/components/schemas/FeesEstimateRequest'
-        IdType:
-          $ref: '#/components/schemas/IdType'
-        IdValue:
-          description: The item identifier.
-          type: string
-    FeesEstimateErrorDetail:
-      description: Additional information that can help the caller understand or fix the issue.
-      type: array
-      items:
-        type: object
-    GetMyFeesEstimateResponse:
       type: object
-      description: The response object for the GetMyFeesEstimate operation.
+      required:
+      - MarketplaceId
+      - PriceToEstimateFees
+      - Identifier
       properties:
-        payload:
-          description: The payload for the operation.
-          $ref: '#/components/schemas/GetMyFeesEstimateResult'
-        errors:
-          description: A list of errors that may have occurred during the GetMyFeesEstimate operation.
-          $ref: '#/components/schemas/ErrorList'
+        MarketplaceId:
+          description: A marketplace identifier.
+          type: string
+        IsAmazonFulfilled:
+          description: When true, the offer is fulfilled by Amazon.
+          type: boolean
+        PriceToEstimateFees:
+          description: The product price that the fee estimate is based on.
+          $ref: '#/components/schemas/PriceToEstimateFees'
+        Identifier:
+          description: A unique identifier provided by the caller to track this request.
+          type: string
+        OptionalFulfillmentProgram:
+          $ref: '#/components/schemas/OptionalFulfillmentProgram'
+    FeesEstimateError:
+      description: An unexpected error occurred during this operation.
+      type: object
+      required:
+      - Code
+      - Detail
+      - Message
+      - Type
+      properties:
+        Type:
+          description: An error type, identifying either the receiver or the sender as the originator of the error.
+          type: string
+        Code:
+          description: An error code that identifies the type of error that occurred.
+          type: string
+        Message:
+          description: A message that describes the error condition.
+          type: string
+        Detail:
+          $ref: '#/components/schemas/FeesEstimateErrorDetail'

@@ -661,55 +661,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ProductTypeList:
-      type: object
-      required:
-      - productTypes
-      - productTypeVersion
-      properties:
-        productTypes:
-          description: A list of product types.
-          type: array
-          items:
-            $ref: '#/components/schemas/ProductType'
-        productTypeVersion:
-          description: Amazon product type version identifier.
-          type: string
-      description: A list of Amazon product types with definitions available.
-    ProductType:
-      type: object
-      required:
-      - marketplaceIds
-      - name
-      - displayName
-      properties:
-        name:
-          type: string
-          description: The name of the Amazon product type.
-        displayName:
-          type: string
-          description: Human-readable and localized description of the Amazon product type.
-        marketplaceIds:
-          type: array
-          description: The Amazon marketplace identifiers for which the product type definition is available.
-          items:
-            type: string
-      description: An Amazon product type with a definition available.
-    PropertyGroup:
-      type: object
-      properties:
-        title:
-          type: string
-          description: The display label of the property group.
-        description:
-          type: string
-          description: The description of the property group.
-        propertyNames:
-          type: array
-          description: The names of the schema properties for the property group.
-          items:
-            type: string
-      description: A property group represents a logical grouping of schema properties that can be used for display or informational purposes.
     ProductTypeVersion:
       type: object
       required:
@@ -726,6 +677,65 @@ components:
           type: boolean
           description: When true, the version indicated by the version identifier is the prerelease (release candidate) for the Amazon product type.
       description: The version details for an Amazon product type.
+    PropertyGroup:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The display label of the property group.
+        description:
+          type: string
+          description: The description of the property group.
+        propertyNames:
+          type: array
+          description: The names of the schema properties for the property group.
+          items:
+            type: string
+      description: A property group represents a logical grouping of schema properties that can be used for display or informational purposes.
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: An error code that identifies the type of error that occurred.
+        message:
+          type: string
+          description: A message that describes the error condition.
+        details:
+          type: string
+          description: Additional details that can help the caller understand or fix the issue.
+      description: Error response returned when the request is unsuccessful.
+    SchemaLink:
+      description: A link to metadata schema.
+      type: object
+      required:
+      - checksum
+      - link
+      properties:
+        link:
+          type: object
+          description: Link to retrieve the schema.
+          properties:
+            resource:
+              type: string
+              description: URI resource for the link.
+            verb:
+              type: string
+              description: HTTP method for the link operation.
+              enum:
+              - GET
+              x-docgen-enum-table-extension:
+              - value: GET
+                description: The provided resource is accessed with the HTTP GET method.
+          required:
+          - resource
+          - verb
+        checksum:
+          type: string
+          description: Checksum hash of the schema (Base64 MD5). Use this to verify schema contents, identify changes between schema versions, and for caching.
     ProductTypeDefinition:
       type: object
       required:
@@ -793,34 +803,40 @@ components:
           description: The version details for the Amazon product type.
           $ref: '#/components/schemas/ProductTypeVersion'
       description: A product type definition represents the attributes and data requirements for a product type in the Amazon catalog. Product type definitions are used interchangeably between the Selling Partner API for Listings Items, Selling Partner API for Catalog Items, and JSON-based listings feeds in the Selling Partner API for Feeds.
-    SchemaLink:
-      description: A link to metadata schema.
+    ProductType:
       type: object
       required:
-      - checksum
-      - link
+      - marketplaceIds
+      - name
+      - displayName
       properties:
-        link:
-          type: object
-          description: Link to retrieve the schema.
-          properties:
-            resource:
-              type: string
-              description: URI resource for the link.
-            verb:
-              type: string
-              description: HTTP method for the link operation.
-              enum:
-              - GET
-              x-docgen-enum-table-extension:
-              - value: GET
-                description: The provided resource is accessed with the HTTP GET method.
-          required:
-          - resource
-          - verb
-        checksum:
+        name:
           type: string
-          description: Checksum hash of the schema (Base64 MD5). Use this to verify schema contents, identify changes between schema versions, and for caching.
+          description: The name of the Amazon product type.
+        displayName:
+          type: string
+          description: Human-readable and localized description of the Amazon product type.
+        marketplaceIds:
+          type: array
+          description: The Amazon marketplace identifiers for which the product type definition is available.
+          items:
+            type: string
+      description: An Amazon product type with a definition available.
+    ProductTypeList:
+      type: object
+      required:
+      - productTypes
+      - productTypeVersion
+      properties:
+        productTypes:
+          description: A list of product types.
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductType'
+        productTypeVersion:
+          description: Amazon product type version identifier.
+          type: string
+      description: A list of Amazon product types with definitions available.
     ErrorList:
       type: object
       required:
@@ -832,19 +848,3 @@ components:
           items:
             $ref: '#/components/schemas/Error'
       description: A list of error responses returned when a request is unsuccessful.
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: An error code that identifies the type of error that occurred.
-        message:
-          type: string
-          description: A message that describes the error condition.
-        details:
-          type: string
-          description: Additional details that can help the caller understand or fix the issue.
-      description: Error response returned when the request is unsuccessful.

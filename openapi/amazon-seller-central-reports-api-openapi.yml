@@ -1575,11 +1575,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ReportOptions:
-      description: Additional information passed to reports. This varies by report type.
-      type: object
-      additionalProperties:
-        type: string
     ReportSchedule:
       description: Detailed information about a report schedule.
       type: object
@@ -1608,77 +1603,59 @@ components:
           description: The date and time when the schedule will create its next report, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format.
           type: string
           format: date-time
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: An error code that identifies the type of error that occurred.
+        message:
+          type: string
+          description: A message that describes the error condition.
+        details:
+          type: string
+          description: Additional details that can help the caller understand or fix the issue.
+      description: Error response returned when the request is unsuccessful.
     ReportList:
       type: array
       description: A list of reports.
       items:
         $ref: '#/components/schemas/Report'
-    Report:
+    ReportScheduleList:
       type: object
-      description: Detailed information about the report.
+      description: A list of report schedules.
       required:
-      - processingStatus
-      - reportId
-      - reportType
-      - createdTime
+      - reportSchedules
       properties:
-        marketplaceIds:
-          description: A list of marketplace identifiers for the report.
+        reportSchedules:
           type: array
           items:
-            type: string
-        reportId:
-          description: The identifier for the report. This identifier is unique only in combination with a seller ID.
+            $ref: '#/components/schemas/ReportSchedule'
+          description: Detailed information about a report schedule.
+    ReportDocument:
+      type: object
+      description: Information required for the report document.
+      required:
+      - reportDocumentId
+      - url
+      properties:
+        reportDocumentId:
+          description: The identifier for the report document. This identifier is unique only in combination with a seller ID.
           type: string
-        reportType:
-          description: The report type. Refer to [Report Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
+        url:
+          description: A presigned URL for the report document. If `compressionAlgorithm` is not returned, you can download the report directly from this URL. This URL expires after 5 minutes.
           type: string
-        dataStartTime:
-          description: The start of a date and time range used for selecting the data to report.
-          type: string
-          format: date-time
-        dataEndTime:
-          description: The end of a date and time range used for selecting the data to report.
-          type: string
-          format: date-time
-        reportScheduleId:
-          description: The identifier of the report schedule that created this report (if any). This identifier is unique only in combination with a seller ID.
-          type: string
-        createdTime:
-          description: The date and time when the report was created.
-          type: string
-          format: date-time
-        processingStatus:
-          description: The processing status of the report.
+        compressionAlgorithm:
+          description: If the report document contents have been compressed, the compression algorithm used is returned in this property and you must decompress the report when you download. Otherwise, you can download the report directly. Refer to [Step 2. Download the report](https://developer-docs.amazon.com/sp-api/docs/reports-api-v2021-06-30-retrieve-a-report#step-2-download-the-report) in the use case guide, where sample code is provided.
           type: string
           enum:
-          - CANCELLED
-          - DONE
-          - FATAL
-          - IN_PROGRESS
-          - IN_QUEUE
+          - GZIP
           x-docgen-enum-table-extension:
-          - value: CANCELLED
-            description: 'The report was cancelled. There are two ways a report can be cancelled: an explicit cancellation request before the report starts processing, or an automatic cancellation if there is no data to return.'
-          - value: DONE
-            description: The report has completed processing.
-          - value: FATAL
-            description: The report was aborted due to a fatal error.
-          - value: IN_PROGRESS
-            description: The report is being processed.
-          - value: IN_QUEUE
-            description: The report has not yet started processing. It may be waiting for another `IN_PROGRESS` report.
-        processingStartTime:
-          description: The date and time when the report processing started, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format.
-          type: string
-          format: date-time
-        processingEndTime:
-          description: The date and time when the report processing completed, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format.
-          type: string
-          format: date-time
-        reportDocumentId:
-          description: The identifier for the report document. Pass this into the `getReportDocument` operation to get the information you will need to retrieve the report document's contents.
-          type: string
+          - value: GZIP
+            description: The gzip compression algorithm.
     CreateReportScheduleSpecification:
       type: object
       description: Information required to create the report schedule.
@@ -1762,15 +1739,6 @@ components:
           description: The date and time when the schedule will create its next report, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format.
           type: string
           format: date-time
-    CreateReportScheduleResponse:
-      type: object
-      description: Response schema.
-      required:
-      - reportScheduleId
-      properties:
-        reportScheduleId:
-          description: The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
-          type: string
     GetReportsResponse:
       type: object
       required:
@@ -1819,38 +1787,20 @@ components:
           maxItems: 25
           items:
             type: string
-    ReportDocument:
+    CreateReportScheduleResponse:
       type: object
-      description: Information required for the report document.
+      description: Response schema.
       required:
-      - reportDocumentId
-      - url
+      - reportScheduleId
       properties:
-        reportDocumentId:
-          description: The identifier for the report document. This identifier is unique only in combination with a seller ID.
+        reportScheduleId:
+          description: The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
           type: string
-        url:
-          description: A presigned URL for the report document. If `compressionAlgorithm` is not returned, you can download the report directly from this URL. This URL expires after 5 minutes.
-          type: string
-        compressionAlgorithm:
-          description: If the report document contents have been compressed, the compression algorithm used is returned in this property and you must decompress the report when you download. Otherwise, you can download the report directly. Refer to [Step 2. Download the report](https://developer-docs.amazon.com/sp-api/docs/reports-api-v2021-06-30-retrieve-a-report#step-2-download-the-report) in the use case guide, where sample code is provided.
-          type: string
-          enum:
-          - GZIP
-          x-docgen-enum-table-extension:
-          - value: GZIP
-            description: The gzip compression algorithm.
-    ReportScheduleList:
+    ReportOptions:
+      description: Additional information passed to reports. This varies by report type.
       type: object
-      description: A list of report schedules.
-      required:
-      - reportSchedules
-      properties:
-        reportSchedules:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReportSchedule'
-          description: Detailed information about a report schedule.
+      additionalProperties:
+        type: string
     ErrorList:
       type: object
       description: A list of error responses returned when a request is unsuccessful.
@@ -1862,19 +1812,69 @@ components:
           items:
             $ref: '#/components/schemas/Error'
           description: Error response returned when the request is unsuccessful.
-    Error:
+    Report:
       type: object
+      description: Detailed information about the report.
       required:
-      - code
-      - message
+      - processingStatus
+      - reportId
+      - reportType
+      - createdTime
       properties:
-        code:
+        marketplaceIds:
+          description: A list of marketplace identifiers for the report.
+          type: array
+          items:
+            type: string
+        reportId:
+          description: The identifier for the report. This identifier is unique only in combination with a seller ID.
           type: string
-          description: An error code that identifies the type of error that occurred.
-        message:
+        reportType:
+          description: The report type. Refer to [Report Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
           type: string
-          description: A message that describes the error condition.
-        details:
+        dataStartTime:
+          description: The start of a date and time range used for selecting the data to report.
           type: string
-          description: Additional details that can help the caller understand or fix the issue.
-      description: Error response returned when the request is unsuccessful.
+          format: date-time
+        dataEndTime:
+          description: The end of a date and time range used for selecting the data to report.
+          type: string
+          format: date-time
+        reportScheduleId:
+          description: The identifier of the report schedule that created this report (if any). This identifier is unique only in combination with a seller ID.
+          type: string
+        createdTime:
+          description: The date and time when the report was created.
+          type: string
+          format: date-time
+        processingStatus:
+          description: The processing status of the report.
+          type: string
+          enum:
+          - CANCELLED
+          - DONE
+          - FATAL
+          - IN_PROGRESS
+          - IN_QUEUE
+          x-docgen-enum-table-extension:
+          - value: CANCELLED
+            description: 'The report was cancelled. There are two ways a report can be cancelled: an explicit cancellation request before the report starts processing, or an automatic cancellation if there is no data to return.'
+          - value: DONE
+            description: The report has completed processing.
+          - value: FATAL
+            description: The report was aborted due to a fatal error.
+          - value: IN_PROGRESS
+            description: The report is being processed.
+          - value: IN_QUEUE
+            description: The report has not yet started processing. It may be waiting for another `IN_PROGRESS` report.
+        processingStartTime:
+          description: The date and time when the report processing started, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format.
+          type: string
+          format: date-time
+        processingEndTime:
+          description: The date and time when the report processing completed, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format.
+          type: string
+          format: date-time
+        reportDocumentId:
+          description: The identifier for the report document. Pass this into the `getReportDocument` operation to get the information you will need to retrieve the report document's contents.
+          type: string

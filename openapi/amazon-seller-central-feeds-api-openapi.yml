@@ -1079,20 +1079,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    CreateFeedResponse:
-      type: object
-      required:
-      - feedId
-      properties:
-        feedId:
-          description: The identifier for the feed. This identifier is unique only in combination with a seller ID.
-          type: string
-      description: Response schema.
-    FeedOptions:
-      description: Additional options to control the feed. These vary by feed type.
-      type: object
-      additionalProperties:
-        type: string
     CreateFeedDocumentResponse:
       description: Information required to upload a feed document's contents.
       type: object
@@ -1106,27 +1092,6 @@ components:
         url:
           description: The presigned URL for uploading the feed contents. This URL expires after 5 minutes.
           type: string
-    CreateFeedDocumentSpecification:
-      type: object
-      description: Specifies the content type for the createFeedDocument operation.
-      required:
-      - contentType
-      properties:
-        contentType:
-          description: The content type of the feed.
-          type: string
-    GetFeedsResponse:
-      type: object
-      required:
-      - feeds
-      properties:
-        feeds:
-          description: The feeds.
-          $ref: '#/components/schemas/FeedList'
-        nextToken:
-          description: Returned when the number of results exceeds pageSize. To get the next page of results, call the getFeeds operation with this token as the only parameter.
-          type: string
-      description: Response schema.
     Feed:
       type: object
       description: Detailed information about the feed.
@@ -1182,11 +1147,27 @@ components:
         resultFeedDocumentId:
           description: The identifier for the feed document. This identifier is unique only in combination with a seller ID.
           type: string
-    FeedList:
-      type: array
-      description: A list of feeds.
-      items:
-        $ref: '#/components/schemas/Feed'
+    FeedDocument:
+      type: object
+      description: Information required for the feed document.
+      required:
+      - feedDocumentId
+      - url
+      properties:
+        feedDocumentId:
+          description: The identifier for the feed document. This identifier is unique only in combination with a seller ID.
+          type: string
+        url:
+          description: A presigned URL for the feed document. If `compressionAlgorithm` is not returned, you can download the feed directly from this URL. This URL expires after 5 minutes.
+          type: string
+        compressionAlgorithm:
+          description: If the feed document contents have been compressed, the compression algorithm used is returned in this property and you must decompress the feed when you download. Otherwise, you can download the feed directly. Refer to [Step 7. Download the feed processing report](doc:feeds-api-v2021-06-30-use-case-guide#step-7-download-the-feed-processing-report) in the use case guide, where sample code is provided.
+          type: string
+          enum:
+          - GZIP
+          x-docgen-enum-table-extension:
+          - value: GZIP
+            description: The gzip compression algorithm.
     CreateFeedSpecification:
       type: object
       description: Information required to create the feed.
@@ -1210,38 +1191,6 @@ components:
           type: string
         feedOptions:
           $ref: '#/components/schemas/FeedOptions'
-    FeedDocument:
-      type: object
-      description: Information required for the feed document.
-      required:
-      - feedDocumentId
-      - url
-      properties:
-        feedDocumentId:
-          description: The identifier for the feed document. This identifier is unique only in combination with a seller ID.
-          type: string
-        url:
-          description: A presigned URL for the feed document. If `compressionAlgorithm` is not returned, you can download the feed directly from this URL. This URL expires after 5 minutes.
-          type: string
-        compressionAlgorithm:
-          description: If the feed document contents have been compressed, the compression algorithm used is returned in this property and you must decompress the feed when you download. Otherwise, you can download the feed directly. Refer to [Step 7. Download the feed processing report](doc:feeds-api-v2021-06-30-use-case-guide#step-7-download-the-feed-processing-report) in the use case guide, where sample code is provided.
-          type: string
-          enum:
-          - GZIP
-          x-docgen-enum-table-extension:
-          - value: GZIP
-            description: The gzip compression algorithm.
-    ErrorList:
-      type: object
-      description: A list of error responses returned when a request is unsuccessful.
-      required:
-      - errors
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-          description: An error response returned when the request is unsuccessful.
     Error:
       type: object
       required:
@@ -1258,3 +1207,54 @@ components:
           type: string
           description: Additional details that can help the caller understand or fix the issue.
       description: An error response returned when the request is unsuccessful.
+    CreateFeedResponse:
+      type: object
+      required:
+      - feedId
+      properties:
+        feedId:
+          description: The identifier for the feed. This identifier is unique only in combination with a seller ID.
+          type: string
+      description: Response schema.
+    GetFeedsResponse:
+      type: object
+      required:
+      - feeds
+      properties:
+        feeds:
+          description: The feeds.
+          $ref: '#/components/schemas/FeedList'
+        nextToken:
+          description: Returned when the number of results exceeds pageSize. To get the next page of results, call the getFeeds operation with this token as the only parameter.
+          type: string
+      description: Response schema.
+    FeedList:
+      type: array
+      description: A list of feeds.
+      items:
+        $ref: '#/components/schemas/Feed'
+    CreateFeedDocumentSpecification:
+      type: object
+      description: Specifies the content type for the createFeedDocument operation.
+      required:
+      - contentType
+      properties:
+        contentType:
+          description: The content type of the feed.
+          type: string
+    FeedOptions:
+      description: Additional options to control the feed. These vary by feed type.
+      type: object
+      additionalProperties:
+        type: string
+    ErrorList:
+      type: object
+      description: A list of error responses returned when a request is unsuccessful.
+      required:
+      - errors
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+          description: An error response returned when the request is unsuccessful.

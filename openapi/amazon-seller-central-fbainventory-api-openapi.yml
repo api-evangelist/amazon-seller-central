@@ -504,60 +504,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    CreateInventoryItemResponse:
-      type: object
-      properties:
-        errors:
-          description: One or more unexpected errors occurred during the CreateInventoryItem operation.
-          $ref: '#/components/schemas/ErrorList'
-      description: The response schema for the CreateInventoryItem operation.
-    ReservedQuantity:
-      type: object
-      properties:
-        totalReservedQuantity:
-          type: integer
-          description: The total number of units in Amazon's fulfillment network that are currently being picked, packed, and shipped; or are sidelined for measurement, sampling, or other internal processes.
-        pendingCustomerOrderQuantity:
-          type: integer
-          description: The number of units reserved for customer orders.
-        pendingTransshipmentQuantity:
-          type: integer
-          description: The number of units being transferred from one fulfillment center to another.
-        fcProcessingQuantity:
-          type: integer
-          description: The number of units that have been sidelined at the fulfillment center for additional processing.
-      description: The quantity of reserved inventory.
-    DeleteInventoryItemResponse:
-      type: object
-      properties:
-        errors:
-          description: One or more unexpected errors occurred during the DeleteInventoryItem operation.
-          $ref: '#/components/schemas/ErrorList'
-      description: The response schema for the DeleteInventoryItem operation.
-    InventoryItem:
-      description: An item in the list of inventory to be added.
-      type: object
-      properties:
-        sellerSku:
-          description: The seller SKU of the item.
-          type: string
-        marketplaceId:
-          description: The marketplaceId.
-          type: string
-        quantity:
-          description: The quantity of item to add.
-          type: integer
-      required:
-      - sellerSku
-      - marketplaceId
-      - quantity
-    AddInventoryResponse:
-      type: object
-      properties:
-        errors:
-          description: One or more unexpected errors occurred during the AddInventory operation.
-          $ref: '#/components/schemas/ErrorList'
-      description: The response schema for the AddInventory operation.
     ResearchingQuantityEntry:
       type: object
       required:
@@ -582,39 +528,53 @@ components:
           type: integer
           description: The number of units.
       description: The misplaced or warehouse damaged inventory that is actively being confirmed at our fulfillment centers.
-    Granularity:
+    GetInventorySummariesResult:
+      type: object
+      required:
+      - granularity
+      - inventorySummaries
+      properties:
+        granularity:
+          $ref: '#/components/schemas/Granularity'
+        inventorySummaries:
+          $ref: '#/components/schemas/InventorySummaries'
+      description: The payload schema for the getInventorySummaries operation.
+    InventoryItems:
+      description: List of Inventory to be added
+      type: array
+      items:
+        $ref: '#/components/schemas/InventoryItem'
+    DeleteInventoryItemResponse:
       type: object
       properties:
-        granularityType:
-          type: string
-          description: The granularity type for the inventory aggregation level.
-          x-docgen-enum-table-extension:
-          - value: Marketplace
-            description: Marketplace
-        granularityId:
-          type: string
-          description: The granularity ID for the specified granularity type. When granularityType is Marketplace, specify the marketplaceId.
-      description: Describes a granularity at which inventory data can be aggregated. For example, if you use Marketplace granularity, the fulfillable quantity will reflect inventory that could be fulfilled in the given marketplace.
+        errors:
+          description: One or more unexpected errors occurred during the DeleteInventoryItem operation.
+          $ref: '#/components/schemas/ErrorList'
+      description: The response schema for the DeleteInventoryItem operation.
+    CreateInventoryItemResponse:
+      type: object
+      properties:
+        errors:
+          description: One or more unexpected errors occurred during the CreateInventoryItem operation.
+          $ref: '#/components/schemas/ErrorList'
+      description: The response schema for the CreateInventoryItem operation.
     ErrorList:
       type: array
       description: A list of error responses returned when a request is unsuccessful.
       items:
         $ref: '#/components/schemas/Error'
-    Error:
+    GetInventorySummariesResponse:
       type: object
-      required:
-      - code
       properties:
-        code:
-          type: string
-          description: An error code that identifies the type of error that occurred.
-        message:
-          type: string
-          description: A message that describes the error condition in a human-readable form.
-        details:
-          type: string
-          description: Additional information that can help the caller understand or fix the issue.
-      description: An error response returned when the request is unsuccessful.
+        payload:
+          description: The payload for the getInventorySummaries operation.
+          $ref: '#/components/schemas/GetInventorySummariesResult'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        errors:
+          description: One or more unexpected errors occurred during the getInventorySummaries operation.
+          $ref: '#/components/schemas/ErrorList'
+      description: The Response schema.
     Pagination:
       type: object
       properties:
@@ -622,17 +582,6 @@ components:
           type: string
           description: A generated string used to retrieve the next page of the result. If nextToken is returned, pass the value of nextToken to the next request. If nextToken is not returned, there are no more items to return.
       description: The process of returning the results to a request in batches of a defined size called pages. This is done to exercise some control over result size and overall throughput. It's a form of traffic management.
-    InventorySummaries:
-      type: array
-      description: A list of inventory summaries.
-      items:
-        $ref: '#/components/schemas/InventorySummary'
-    AddInventoryRequest:
-      description: The object with the list of Inventory to be added
-      type: object
-      properties:
-        inventoryItems:
-          $ref: '#/components/schemas/InventoryItems'
     CreateInventoryItemRequest:
       description: An item to be created in the inventory.
       type: object
@@ -650,67 +599,6 @@ components:
       - sellerSku
       - marketplaceId
       - productName
-    GetInventorySummariesResult:
-      type: object
-      required:
-      - granularity
-      - inventorySummaries
-      properties:
-        granularity:
-          $ref: '#/components/schemas/Granularity'
-        inventorySummaries:
-          $ref: '#/components/schemas/InventorySummaries'
-      description: The payload schema for the getInventorySummaries operation.
-    InventoryItems:
-      description: List of Inventory to be added
-      type: array
-      items:
-        $ref: '#/components/schemas/InventoryItem'
-    InventorySummary:
-      type: object
-      properties:
-        asin:
-          type: string
-          description: The Amazon Standard Identification Number (ASIN) of an item.
-        fnSku:
-          type: string
-          description: Amazon's fulfillment network SKU identifier.
-        sellerSku:
-          type: string
-          description: The seller SKU of the item.
-        condition:
-          type: string
-          description: The condition of the item as described by the seller (for example, New Item).
-        inventoryDetails:
-          $ref: '#/components/schemas/InventoryDetails'
-        lastUpdatedTime:
-          type: string
-          format: date-time
-          description: The date and time that any quantity was last updated.
-        productName:
-          type: string
-          description: The localized language product title of the item within the specific marketplace.
-        totalQuantity:
-          type: integer
-          description: The total number of units in an inbound shipment or in Amazon fulfillment centers.
-        stores:
-          type: array
-          description: A list of seller-enrolled stores that apply to this seller SKU.
-          items:
-            type: string
-      description: Inventory summary for a specific item.
-    GetInventorySummariesResponse:
-      type: object
-      properties:
-        payload:
-          description: The payload for the getInventorySummaries operation.
-          $ref: '#/components/schemas/GetInventorySummariesResult'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        errors:
-          description: One or more unexpected errors occurred during the getInventorySummaries operation.
-          $ref: '#/components/schemas/ErrorList'
-      description: The Response schema.
     InventoryDetails:
       type: object
       properties:
@@ -758,6 +646,100 @@ components:
           type: integer
           description: The number of units in expired disposition.
       description: The quantity of unfulfillable inventory.
+    InventorySummary:
+      type: object
+      properties:
+        asin:
+          type: string
+          description: The Amazon Standard Identification Number (ASIN) of an item.
+        fnSku:
+          type: string
+          description: Amazon's fulfillment network SKU identifier.
+        sellerSku:
+          type: string
+          description: The seller SKU of the item.
+        condition:
+          type: string
+          description: The condition of the item as described by the seller (for example, New Item).
+        inventoryDetails:
+          $ref: '#/components/schemas/InventoryDetails'
+        lastUpdatedTime:
+          type: string
+          format: date-time
+          description: The date and time that any quantity was last updated.
+        productName:
+          type: string
+          description: The localized language product title of the item within the specific marketplace.
+        totalQuantity:
+          type: integer
+          description: The total number of units in an inbound shipment or in Amazon fulfillment centers.
+        stores:
+          type: array
+          description: A list of seller-enrolled stores that apply to this seller SKU.
+          items:
+            type: string
+      description: Inventory summary for a specific item.
+    AddInventoryResponse:
+      type: object
+      properties:
+        errors:
+          description: One or more unexpected errors occurred during the AddInventory operation.
+          $ref: '#/components/schemas/ErrorList'
+      description: The response schema for the AddInventory operation.
+    ReservedQuantity:
+      type: object
+      properties:
+        totalReservedQuantity:
+          type: integer
+          description: The total number of units in Amazon's fulfillment network that are currently being picked, packed, and shipped; or are sidelined for measurement, sampling, or other internal processes.
+        pendingCustomerOrderQuantity:
+          type: integer
+          description: The number of units reserved for customer orders.
+        pendingTransshipmentQuantity:
+          type: integer
+          description: The number of units being transferred from one fulfillment center to another.
+        fcProcessingQuantity:
+          type: integer
+          description: The number of units that have been sidelined at the fulfillment center for additional processing.
+      description: The quantity of reserved inventory.
+    AddInventoryRequest:
+      description: The object with the list of Inventory to be added
+      type: object
+      properties:
+        inventoryItems:
+          $ref: '#/components/schemas/InventoryItems'
+    InventoryItem:
+      description: An item in the list of inventory to be added.
+      type: object
+      properties:
+        sellerSku:
+          description: The seller SKU of the item.
+          type: string
+        marketplaceId:
+          description: The marketplaceId.
+          type: string
+        quantity:
+          description: The quantity of item to add.
+          type: integer
+      required:
+      - sellerSku
+      - marketplaceId
+      - quantity
+    Error:
+      type: object
+      required:
+      - code
+      properties:
+        code:
+          type: string
+          description: An error code that identifies the type of error that occurred.
+        message:
+          type: string
+          description: A message that describes the error condition in a human-readable form.
+        details:
+          type: string
+          description: Additional information that can help the caller understand or fix the issue.
+      description: An error response returned when the request is unsuccessful.
     ResearchingQuantity:
       type: object
       properties:
@@ -770,3 +752,21 @@ components:
           items:
             $ref: '#/components/schemas/ResearchingQuantityEntry'
       description: The number of misplaced or warehouse damaged units that are actively being confirmed at our fulfillment centers.
+    Granularity:
+      type: object
+      properties:
+        granularityType:
+          type: string
+          description: The granularity type for the inventory aggregation level.
+          x-docgen-enum-table-extension:
+          - value: Marketplace
+            description: Marketplace
+        granularityId:
+          type: string
+          description: The granularity ID for the specified granularity type. When granularityType is Marketplace, specify the marketplaceId.
+      description: Describes a granularity at which inventory data can be aggregated. For example, if you use Marketplace granularity, the fulfillable quantity will reflect inventory that could be fulfilled in the given marketplace.
+    InventorySummaries:
+      type: array
+      description: A list of inventory summaries.
+      items:
+        $ref: '#/components/schemas/InventorySummary'
