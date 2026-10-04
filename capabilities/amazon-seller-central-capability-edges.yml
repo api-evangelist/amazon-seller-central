@@ -3,6 +3,7 @@ provider: Amazon Selling Partner API
 generated_by: planning/capability-mapping/scripts/classify_capabilities.py
 model: claude-opus-5
 frame:
+- Software & Technology
 - Transportation & Logistics
 min_confidence: 0.7
 capability_model:
@@ -11,8 +12,61 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 1
+edge_count: 9
 edges:
+- tag: fbaOutbound
+  spec_file: amazon-seller-central-fbaoutbound-api-openapi.yml
+  capability_id: BC-520.40
+  capability_id_l1: BC-520
+  capability_name: Order Fulfilment Management
+  confidence: 0.9
+  evidence: '"help a seller fulfill Multi-Channel Fulfillment orders using their inventory in Amazon''s
+    fulfillment network"; createFulfillmentOrder, getFulfillmentPreview, getPackageTrackingDetails'
+  reason: Creating, previewing, updating and cancelling fulfilment orders plus tracking and returns is
+    order promising and fulfilment orchestration.
+- tag: fbaInbound
+  spec_file: amazon-seller-central-fbainbound-api-openapi.yml
+  capability_id: BC-520.50
+  capability_id_l1: BC-520
+  capability_name: Logistics Operations Management
+  confidence: 0.85
+  evidence: '"enables building inbound workflows to create, manage, and send shipments into Amazon''s
+    fulfillment network"; generatePackingOptions, GenerateTransportationOptionsResponse, ListDeliveryWindowOptionsResponse'
+  reason: Inbound shipment planning, packing, pallets/boxes, transportation options and delivery windows
+    are inbound logistics execution into a fulfilment network — logistics operations within the supply
+    chain.
+- tag: fbaInventory
+  spec_file: amazon-seller-central-fbainventory-api-openapi.yml
+  capability_id: BC-530
+  capability_id_l1: BC-530
+  capability_name: Inventory Management
+  confidence: 0.8
+  evidence: '"lets you programmatically retrieve information about inventory in Amazon''s fulfillment
+    network"; getInventorySummaries, addInventory, ReservedQuantity, UnfulfillableQuantity'
+  reason: Operations manage and report stock quantities (reserved, researching, unfulfillable) held in
+    the fulfilment network, which is inventory management. Evidence does not single out one sub-capability
+    (visibility vs. stock levels vs. accuracy), so only the L1 is asserted.
+- tag: ordersV0
+  spec_file: amazon-seller-central-ordersv0-api-openapi.yml
+  capability_id: BC-520.40
+  capability_id_l1: BC-520
+  capability_name: Order Fulfilment Management
+  confidence: 0.8
+  evidence: '"programmatically retrieve order information ... manage order synchronization, perform order
+    research"; getOrderItems, confirmShipment, FulfillmentInstruction'
+  reason: Order retrieval plus shipment confirmation and fulfilment instructions is sales-order handling
+    through to fulfilment execution. Some ambiguity remains as to whether buyer-info reads also touch
+    customer data management.
+- tag: Shipment
+  spec_file: amazon-seller-central-shipment-api-openapi.yml
+  capability_id: BC-520.40
+  capability_id_l1: BC-520
+  capability_name: Order Fulfilment Management
+  confidence: 0.78
+  evidence: POST /orders/v0/orders/{orderId}/shipment updateShipmentStatus — "Update shipment status",
+    schema ShipmentStatus
+  reason: Updating shipment status against a customer order is order fulfilment orchestration; the Orders
+    API context confirms order management rather than carrier logistics operations.
 - tag: Inventory
   spec_file: amazon-seller-central-inventory-api-openapi.yml
   capability_id: BC-530
@@ -23,3 +77,34 @@ edges:
   reason: Returns fulfilment-centre inventory quantity summaries, i.e. stock visibility across the fulfilment
     network — Inventory Management at L1. Single read operation does not pin a specific sub-capability
     (stock levels vs. accuracy vs. allocation).
+- tag: productPricing
+  spec_file: amazon-seller-central-productpricing-api-openapi.yml
+  capability_id: BC-440
+  capability_id_l1: BC-440
+  capability_name: Pricing Management
+  confidence: 0.75
+  evidence: getPricing, getCompetitivePricing "Get competitive pricing", getFeaturedOfferExpectedPriceBatch,
+    schemas LowestPricedOffer, ReferencePrice
+  reason: Operations retrieve own and competitive prices and featured-offer expected prices to inform
+    price setting, which is pricing management. Which sub-capability (pricing strategy vs. price list
+    maintenance) is not determinable from the read-only surface.
+- tag: getOrder
+  spec_file: amazon-seller-central-getorder-api-openapi.yml
+  capability_id: BC-520.40
+  capability_id_l1: BC-520
+  capability_name: Order Fulfilment Management
+  confidence: 0.7
+  evidence: GET /orders/2026-01-01/orders/{orderId} getOrder; schemas OrderFulfillment, ItemFulfillment,
+    ItemPicking, ItemCancellation
+  reason: A single read operation returning order detail with fulfilment, picking and cancellation sub-structures
+    — sales order retrieval supporting fulfilment. Single read-only operation makes the evidence thinner
+    than the broader ordersV0 surface.
+- tag: searchOrders
+  spec_file: amazon-seller-central-searchorders-api-openapi.yml
+  capability_id: BC-520.40
+  capability_id_l1: BC-520
+  capability_name: Order Fulfilment Management
+  confidence: 0.7
+  evidence: GET /orders/2026-01-01/orders searchOrders; SearchOrdersResponse, OrderFulfillment, ItemFulfillment
+  reason: Order search over the seller's order book with fulfilment-bearing item structures is sales order/fulfilment
+    data access. Single query operation, so moderate confidence.
