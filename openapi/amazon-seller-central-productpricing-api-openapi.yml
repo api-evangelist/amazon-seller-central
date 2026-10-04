@@ -5651,69 +5651,6 @@ paths:
     - url: https://sellingpartnerapi-na.amazon.com
 components:
   schemas:
-    CompetitiveSummaryResponseBody:
-      description: The `competitiveSummaryResponse` body for a requested ASIN and `marketplaceId`.
-      type: object
-      required:
-      - asin
-      - marketplaceId
-      properties:
-        asin:
-          description: The Amazon identifier for the item.
-          $ref: '#/components/schemas/Asin'
-        marketplaceId:
-          $ref: '#/components/schemas/MarketplaceId'
-          description: An Amazon store identifier.
-        featuredBuyingOptions:
-          description: A list of featured buying options for the specified ASIN `marketplaceId` combination.
-          type: array
-          items:
-            $ref: '#/components/schemas/FeaturedBuyingOption'
-        lowestPricedOffers:
-          description: A list of lowest priced offers for the specified ASIN `marketplaceId` combination.
-          type: array
-          items:
-            $ref: '#/components/schemas/LowestPricedOffer'
-        referencePrices:
-          description: A list of reference prices for the specified ASIN `marketplaceId` combination.
-          type: array
-          items:
-            $ref: '#/components/schemas/ReferencePrice'
-        similarItems:
-          description: A list of similar items for the specified ASIN `marketplaceId` combination.
-          type: array
-          items:
-            $ref: '#/components/schemas/SimilarItems'
-        errors:
-          description: A list of errors
-          $ref: '#/components/schemas/ErrorList'
-    CompetitiveSummaryResponse:
-      description: The response for the individual `competitiveSummary` request in the batch operation.
-      type: object
-      required:
-      - status
-      - body
-      properties:
-        status:
-          description: The HTTP status line associated with the response. For more information, refer to [RFC 2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html).
-          $ref: '#/components/schemas/HttpStatusLine'
-        body:
-          description: The `competitiveSummaryResponse` body for a requested ASIN and `marketplaceId`.
-          $ref: '#/components/schemas/CompetitiveSummaryResponseBody'
-    SegmentedFeaturedOffer:
-      description: A product offer with segment information indicating where it's featured.
-      allOf:
-      - $ref: '#/components/schemas/Offer'
-      - type: object
-        description: The list of segment information in which the offer is featured.
-        required:
-        - featuredOfferSegments
-        properties:
-          featuredOfferSegments:
-            description: The list of segment information in which the offer is featured.
-            type: array
-            items:
-              $ref: '#/components/schemas/FeaturedOfferSegment'
     FeaturedOfferExpectedPriceRequestParams:
       description: The parameters for an individual request.
       type: object
@@ -5727,61 +5664,49 @@ components:
           $ref: '#/components/schemas/Sku'
         segment:
           $ref: '#/components/schemas/Segment'
-    AmountThreshold:
+    PurchaseCondition:
+      description: Specifies minimum purchase requirements using quantity-based or amount-based conditions for basket building promotions. Used in purchase requirements to specify conditions within those configurations. Exactly one of quantityThreshold or amountThreshold must be specified.
       type: object
-      description: Amount-based purchase conditions for basket building promotions. Customers must spend a minimum dollar amount.
       properties:
-        type:
-          type: string
-          description: Indicates how the amount requirement is evaluated. For spend-based conditions, the supported value is AT_LEAST, meaning the customer must spend at least the specified dollar amount to qualify.
-        currency:
+        quantityThreshold:
+          description: Quantity-based purchase conditions for basket building promotions. Customer must purchase at least the specified quantity of items
+          $ref: '#/components/schemas/QuantityThreshold'
+        amountThreshold:
+          description: Amount-based purchase conditions for basket building promotions. Customers must purchase a minimum amount for the promotion to apply
+          $ref: '#/components/schemas/AmountThreshold'
+    PromotionSavings:
+      description: Details about the savings applied by the promotion.
+      type: object
+      properties:
+        discount:
+          description: The discount applied by the promotion.
+          $ref: '#/components/schemas/PromotionDiscount'
+        discountedPrice:
+          description: The final price after the promotion is applied.
           $ref: '#/components/schemas/MoneyType'
-          description: Minimum spend amount customers must meet.
-      required:
-      - type
-      - currency
-    PrimeDetails:
-      description: Amazon Prime details.
+    SegmentDetails:
+      description: The details about the segment. The FeaturedOfferExpectedPrice API uses only the sampleLocation portion as input.
+      type: object
+      properties:
+        glanceViewWeightPercentage:
+          description: The glance view weighted percentage for this segment, which is the glance views for this segment as a percentage of total glance views across all segments for the ASIN. A higher percentage indicates that more Amazon customers receive this offer as the Featured Offer.
+          type: number
+        sampleLocation:
+          $ref: '#/components/schemas/SampleLocation'
+          description: The representative location that features the offer for the segment.
+    CompetitiveSummaryResponse:
+      description: The response for the individual `competitiveSummary` request in the batch operation.
       type: object
       required:
-      - eligibility
+      - status
+      - body
       properties:
-        eligibility:
-          description: Indicates whether the offer is an Amazon Prime offer.
-          type: string
-          enum:
-          - NATIONAL
-          - REGIONAL
-          - NONE
-          x-docgen-enum-table-extension:
-          - value: NATIONAL
-            description: Indicates that this offer has Amazon Prime eligibility in all regions within the Amazon store.
-          - value: REGIONAL
-            description: Indicates that this offer has Amazon Prime eligibility in some (but not all) regions within the Amazon store.
-          - value: NONE
-            description: Indicates that this offer is not an Amazon Prime offer in any region within the Amazon store.
-    OfferIdentifier:
-      description: Identifies an offer from a particular seller for a specified ASIN.
-      type: object
-      required:
-      - marketplaceId
-      - asin
-      properties:
-        marketplaceId:
-          $ref: '#/components/schemas/MarketplaceId'
-          description: An Amazon store identifier.
-        sellerId:
-          type: string
-          description: The seller identifier for the offer.
-        sku:
-          type: string
-          description: The seller SKU of the item. This will only be present for the target offer, which belongs to the requesting seller.
-        asin:
-          $ref: '#/components/schemas/Asin'
-          description: The Amazon identifier for the item.
-        fulfillmentType:
-          $ref: '#/components/schemas/FulfillmentType'
-          description: The fulfillment type for the offer.
+        status:
+          description: The HTTP status line associated with the response. For more information, refer to [RFC 2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html).
+          $ref: '#/components/schemas/HttpStatusLine'
+        body:
+          description: The `competitiveSummaryResponse` body for a requested ASIN and `marketplaceId`.
+          $ref: '#/components/schemas/CompetitiveSummaryResponseBody'
     ReferencePrice:
       description: The reference price for the specified ASIN `marketplaceId` combination.
       type: object
@@ -5795,284 +5720,12 @@ components:
         price:
           description: The reference price for the ASIN `marketplaceId` combination.
           $ref: '#/components/schemas/MoneyType'
-    LowestPricedOffer:
-      description: Describes the lowest priced offers for the specified item condition and offer type.
-      type: object
-      required:
-      - lowestPricedOffersInput
-      - offers
-      properties:
-        lowestPricedOffersInput:
-          description: The filtering criteria that are used to retrieve the lowest priced offers that correspond to the `lowestPricedOffersInputs` request.
-          type: object
-          $ref: '#/components/schemas/LowestPricedOffersInput'
-        offers:
-          description: A list of up to 20 lowest priced offers that match the criteria specified in `lowestPricedOffersInput`.
-          type: array
-          items:
-            $ref: '#/components/schemas/Offer'
-          minItems: 1
-          maxItems: 20
-    FeaturedOfferExpectedPrice:
-      description: The item price at or below which the target offer may be featured.
-      type: object
-      required:
-      - listingPrice
-      properties:
-        listingPrice:
-          description: A computed listing price at or below which a seller can expect to become the featured offer (before applicable promotions).
-          $ref: '#/components/schemas/MoneyType'
-        points:
-          description: The number of Amazon Points that are offered with the purchase of an item and the monetary value of these points.
-          $ref: '#/components/schemas/Points'
-    Condition:
-      description: The condition of the item.
-      type: string
-      enum:
-      - New
-      - Used
-      - Collectible
-      - Refurbished
-      - Club
-      x-docgen-enum-table-extension:
-      - value: New
-        description: New
-      - value: Used
-        description: Used
-      - value: Collectible
-        description: Collectible
-      - value: Refurbished
-        description: Refurbished
-      - value: Club
-        description: Club
     FeaturedOfferExpectedPriceResponseList:
       description: A batched list of FOEP responses.
       type: array
       items:
         $ref: '#/components/schemas/FeaturedOfferExpectedPriceResponse'
       minItems: 1
-    CompetitiveSummaryBatchRequest:
-      description: The `competitiveSummary` batch request data.
-      type: object
-      required:
-      - requests
-      properties:
-        requests:
-          description: A batched list of `competitiveSummary` requests.
-          $ref: '#/components/schemas/CompetitiveSummaryRequestList'
-    PostalCode:
-      description: Postal code value with country code
-      type: object
-      properties:
-        countryCode:
-          description: Country code value
-          type: string
-        value:
-          description: Postal code value
-          type: string
-    FeaturedOfferExpectedPriceResult:
-      description: The FOEP result data for the requested offer.
-      type: object
-      required:
-      - resultStatus
-      properties:
-        featuredOfferExpectedPrice:
-          $ref: '#/components/schemas/FeaturedOfferExpectedPrice'
-        resultStatus:
-          description: The status of the FOEP computation. Possible values include `VALID_FOEP`, `NO_COMPETING_OFFER`, `OFFER_NOT_ELIGIBLE`, `OFFER_NOT_FOUND`, and `ASIN_NOT_ELIGIBLE`. Additional values might be added in the future.
-          type: string
-        competingFeaturedOffer:
-          description: The offer that will likely be the featured offer if the target offer is priced above its FOEP. If the target offer is currently the featured offer, this property will be different than `currentFeaturedOffer`.
-          $ref: '#/components/schemas/FeaturedOffer'
-        currentFeaturedOffer:
-          description: The offer that is currently the featured offer. If the target offer is not currently featured, then this property will be equal to `competingFeaturedOffer`.
-          $ref: '#/components/schemas/FeaturedOffer'
-    ErrorList:
-      type: array
-      description: A list of error responses that are returned when a request is unsuccessful.
-      items:
-        $ref: '#/components/schemas/Error'
-    FeaturedOfferExpectedPriceRequestList:
-      description: A batched list of FOEP requests.
-      type: array
-      items:
-        $ref: '#/components/schemas/FeaturedOfferExpectedPriceRequest'
-      minItems: 1
-    ShippingOption:
-      description: The shipping option available for the offer.
-      type: object
-      required:
-      - shippingOptionType
-      - price
-      properties:
-        shippingOptionType:
-          description: The type of shipping option.
-          enum:
-          - DEFAULT
-          x-docgen-enum-table-extension:
-          - value: DEFAULT
-            description: The estimated shipping cost of the product. Note that the shipping cost is not always available.
-        price:
-          description: Shipping price for the offer.
-          $ref: '#/components/schemas/MoneyType'
-    FeaturedOfferExpectedPriceResponseBody:
-      description: The FOEP response data for a requested SKU.
-      type: object
-      properties:
-        offerIdentifier:
-          description: Metadata that identifies the target offer for which the FOEP result data was computed.
-          $ref: '#/components/schemas/OfferIdentifier'
-        featuredOfferExpectedPriceResults:
-          description: The FOEP results for the requested target offer.
-          $ref: '#/components/schemas/FeaturedOfferExpectedPriceResultList'
-        errors:
-          description: The errors that occurred if the operation wasn't successful (HTTP status code non-200).
-          $ref: '#/components/schemas/ErrorList'
-    CompetitiveSummaryIncludedData:
-      type: string
-      description: The supported data types in the `getCompetitiveSummary` API.
-      enum:
-      - featuredBuyingOptions
-      - referencePrices
-      - lowestPricedOffers
-      - similarItems
-      x-docgen-enum-table-extension:
-      - value: featuredBuyingOptions
-        description: Describes the current segmented featured offer information for the item.
-      - value: referencePrices
-        description: Provides reference price points for the item, such as the Competitive Price Threshold.
-      - value: lowestPricedOffers
-        description: The lowest-priced standard offers that are available for the item in the Amazon store.
-      - value: similarItems
-        description: Provides a list of up to 20 ASINs which are similar to the item.
-    GetFeaturedOfferExpectedPriceBatchRequest:
-      description: The request body for the `getFeaturedOfferExpectedPriceBatch` operation.
-      type: object
-      properties:
-        requests:
-          $ref: '#/components/schemas/FeaturedOfferExpectedPriceRequestList'
-    QuantityThreshold:
-      type: object
-      description: Quantity-based purchase conditions for basket building promotions.
-      properties:
-        type:
-          type: string
-          description: 'Indicates how the quantity requirement is evaluated. Possible values include:
-
-
-            - AT_LEAST: The customer must purchase at least the specified quantity of items to qualify for the benefit.
-
-            - FOR_EACH: The benefit applies for every group of the specified quantity purchased (for example, the discount applies for each set of 2 items purchased).'
-        quantity:
-          type: integer
-          minimum: 1
-          description: Number of items required to meet this purchase condition.
-      required:
-      - type
-      - quantity
-    Sku:
-      description: The seller SKU of the item.
-      type: string
-    DiscountType:
-      type: string
-      description: 'Method used to calculate the discount amount. Supported values: PERCENTAGE_OFF (discount applied as a percentage off the original price), AMOUNT_OFF (discount applied as a fixed amount off the original price).'
-    FeaturedBuyingOption:
-      description: Describes a featured buying option, which includes a list of segmented featured offers for a particular item condition.
-      type: object
-      required:
-      - buyingOptionType
-      - segmentedFeaturedOffers
-      properties:
-        buyingOptionType:
-          description: The buying option type for the featured offer. `buyingOptionType` represents the buying options that a customer receives on the detail page, such as `B2B`, `Fresh`, and `Subscribe n Save`. `buyingOptionType` currently supports `NEW` as a value.
-          type: string
-          enum:
-          - New
-          x-docgen-enum-table-extension:
-          - value: New
-            description: New
-        segmentedFeaturedOffers:
-          description: A list of segmented featured offers for the current buying option type. A segment can be considered as a group of regional contexts that all have the same featured offer. A regional context is a combination of factors such as customer type, region, or postal code and buying option.
-          type: array
-          items:
-            $ref: '#/components/schemas/SegmentedFeaturedOffer'
-          minItems: 1
-    Segment:
-      description: Input segment for featured offer expected price. The segment contains the location information for which featured offer expected price is requested.
-      properties:
-        segmentDetails:
-          description: Segment details
-          $ref: '#/components/schemas/SegmentDetails'
-      type: object
-    PurchaseCondition:
-      description: Specifies minimum purchase requirements using quantity-based or amount-based conditions for basket building promotions. Used in purchase requirements to specify conditions within those configurations. Exactly one of quantityThreshold or amountThreshold must be specified.
-      type: object
-      properties:
-        quantityThreshold:
-          description: Quantity-based purchase conditions for basket building promotions. Customer must purchase at least the specified quantity of items
-          $ref: '#/components/schemas/QuantityThreshold'
-        amountThreshold:
-          description: Amount-based purchase conditions for basket building promotions. Customers must purchase a minimum amount for the promotion to apply
-          $ref: '#/components/schemas/AmountThreshold'
-    FulfillmentType:
-      type: string
-      description: Indicates whether the item is fulfilled by Amazon or by the seller (merchant).
-      enum:
-      - AFN
-      - MFN
-      x-docgen-enum-table-extension:
-      - value: AFN
-        description: Fulfilled by Amazon.
-      - value: MFN
-        description: Fulfilled by the seller.
-    CompetitiveSummaryRequestList:
-      description: A batched list of `competitiveSummary` requests.
-      type: array
-      items:
-        $ref: '#/components/schemas/CompetitiveSummaryRequest'
-      minItems: 1
-      maxItems: 20
-    CompetitiveSummaryBatchResponse:
-      description: The response schema for the `competitiveSummaryBatch` operation.
-      type: object
-      required:
-      - responses
-      properties:
-        responses:
-          description: The response list for the `competitiveSummaryBatch` operation.
-          $ref: '#/components/schemas/CompetitiveSummaryResponseList'
-    FeaturedOffer:
-      type: object
-      required:
-      - offerIdentifier
-      properties:
-        offerIdentifier:
-          description: An offer identifier used to identify the merchant of the featured offer. Since this may not belong to the requester, the SKU field is omitted.
-          $ref: '#/components/schemas/OfferIdentifier'
-        condition:
-          description: The item condition.
-          $ref: '#/components/schemas/Condition'
-        price:
-          description: The current active price of the offer.
-          $ref: '#/components/schemas/Price'
-      description: Schema for `currentFeaturedOffer` or `competingFeaturedOffer`.
-    FeaturedOfferExpectedPriceResultList:
-      type: array
-      description: A list of FOEP results for the requested offer.
-      items:
-        $ref: '#/components/schemas/FeaturedOfferExpectedPriceResult'
-    HttpBody:
-      description: Additional HTTP body information that is associated with an individual request within a batch.
-      additionalProperties: {}
-    Errors:
-      type: object
-      description: A list of error responses returned when a request is unsuccessful.
-      required:
-      - errors
-      properties:
-        errors:
-          description: One or more unexpected errors occurred during the operation.
-          $ref: '#/components/schemas/ErrorList'
     FeaturedOfferSegment:
       description: Describes the segment in which the offer is featured.
       type: object
@@ -6097,6 +5750,125 @@ components:
         segmentDetails:
           description: The details about the segment.
           $ref: '#/components/schemas/SegmentDetails'
+    FeaturedOfferExpectedPriceResultList:
+      type: array
+      description: A list of FOEP results for the requested offer.
+      items:
+        $ref: '#/components/schemas/FeaturedOfferExpectedPriceResult'
+    FeaturedOfferExpectedPriceResponse:
+      allOf:
+      - $ref: '#/components/schemas/BatchResponse'
+      - type: object
+        required:
+        - request
+        properties:
+          request:
+            $ref: '#/components/schemas/FeaturedOfferExpectedPriceRequestParams'
+            description: Use these request parameters to map the response back to the request.
+          body:
+            $ref: '#/components/schemas/FeaturedOfferExpectedPriceResponseBody'
+      description: Schema for an individual FOEP response.
+    FeaturedOfferExpectedPriceRequestList:
+      description: A batched list of FOEP requests.
+      type: array
+      items:
+        $ref: '#/components/schemas/FeaturedOfferExpectedPriceRequest'
+      minItems: 1
+    MoneyType:
+      type: object
+      properties:
+        currencyCode:
+          type: string
+          description: The currency code in ISO 4217 format.
+        amount:
+          type: number
+          description: The monetary value.
+      description: Currency type and monetary value schema to demonstrate pricing information.
+    QuantityThreshold:
+      type: object
+      description: Quantity-based purchase conditions for basket building promotions.
+      properties:
+        type:
+          type: string
+          description: 'Indicates how the quantity requirement is evaluated. Possible values include:
+
+
+            - AT_LEAST: The customer must purchase at least the specified quantity of items to qualify for the benefit.
+
+            - FOR_EACH: The benefit applies for every group of the specified quantity purchased (for example, the discount applies for each set of 2 items purchased).'
+        quantity:
+          type: integer
+          minimum: 1
+          description: Number of items required to meet this purchase condition.
+      required:
+      - type
+      - quantity
+    PurchaseRequirements:
+      description: Purchase requirements that customers must meet to qualify for basket building promotions. Contains the purchase condition (how much to buy). Represents the 'Buy X' portion of Buy X Get Y promotions.
+      type: object
+      properties:
+        condition:
+          description: Minimum purchase requirement specifying either quantity of items or total spend amount that customers must meet to qualify.
+          $ref: '#/components/schemas/PurchaseCondition'
+    OfferIdentifier:
+      description: Identifies an offer from a particular seller for a specified ASIN.
+      type: object
+      required:
+      - marketplaceId
+      - asin
+      properties:
+        marketplaceId:
+          $ref: '#/components/schemas/MarketplaceId'
+          description: An Amazon store identifier.
+        sellerId:
+          type: string
+          description: The seller identifier for the offer.
+        sku:
+          type: string
+          description: The seller SKU of the item. This will only be present for the target offer, which belongs to the requesting seller.
+        asin:
+          $ref: '#/components/schemas/Asin'
+          description: The Amazon identifier for the item.
+        fulfillmentType:
+          $ref: '#/components/schemas/FulfillmentType'
+          description: The fulfillment type for the offer.
+    Segment:
+      description: Input segment for featured offer expected price. The segment contains the location information for which featured offer expected price is requested.
+      properties:
+        segmentDetails:
+          description: Segment details
+          $ref: '#/components/schemas/SegmentDetails'
+      type: object
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: An error code that identifies the type of error that occurred.
+        message:
+          type: string
+          description: A message that describes the error condition.
+        details:
+          type: string
+          description: Additional details that can help the caller understand or fix the issue.
+      description: Error response returned when the request is unsuccessful.
+    MarketplaceId:
+      description: The `MarketplaceID` is the globally unique identifier of an Amazon store. To find the ID for your Amazon store, refer to [Amazon store IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
+      type: string
+    BatchResponse:
+      description: The common properties for responses to individual requests within a batch.
+      type: object
+      required:
+      - status
+      - headers
+      properties:
+        headers:
+          $ref: '#/components/schemas/HttpHeaders'
+        status:
+          $ref: '#/components/schemas/HttpStatusLine'
     PromotionType:
       type: string
       description: 'Indicates the type of promotion based on the customer-facing experience. Possible values include:
@@ -6107,6 +5879,12 @@ components:
         - DEAL: The offer has a live deal (for example, Lightning Deal or Best Deal). Deals are time-limited, require meeting quality criteria, and automatically apply a discount when the customer purchases the item.
 
         - BASKET_BUILDING: The offer has a basket-building (multi-quantity) promotion where customers purchase multiple quantities of the same or different qualifying items to receive a discount on eligible items. Promotions created in Seller Central -> Advertising -> Manage Promotions fall into this category'
+    GetFeaturedOfferExpectedPriceBatchResponse:
+      description: The response schema for the `getFeaturedOfferExpectedPriceBatch` operation.
+      type: object
+      properties:
+        responses:
+          $ref: '#/components/schemas/FeaturedOfferExpectedPriceResponseList'
     HttpMethod:
       description: The HTTP method associated with an individual request within a batch.
       type: string
@@ -6127,95 +5905,26 @@ components:
         description: DELETE
       - value: POST
         description: POST
-    HttpUri:
-      description: The URI associated with the individual APIs that are called as part of the batch request.
-      type: string
-      minLength: 6
-      maxLength: 512
-    GetFeaturedOfferExpectedPriceBatchResponse:
-      description: The response schema for the `getFeaturedOfferExpectedPriceBatch` operation.
-      type: object
-      properties:
-        responses:
-          $ref: '#/components/schemas/FeaturedOfferExpectedPriceResponseList'
-    FeaturedOfferExpectedPriceResponse:
-      allOf:
-      - $ref: '#/components/schemas/BatchResponse'
-      - type: object
-        required:
-        - request
-        properties:
-          request:
-            $ref: '#/components/schemas/FeaturedOfferExpectedPriceRequestParams'
-            description: Use these request parameters to map the response back to the request.
-          body:
-            $ref: '#/components/schemas/FeaturedOfferExpectedPriceResponseBody'
-      description: Schema for an individual FOEP response.
     SampleLocation:
       description: Information about a location. It uses a postal code to identify the location.
       type: object
       properties:
         postalCode:
           $ref: '#/components/schemas/PostalCode'
-    CompetitiveSummaryResponseList:
-      description: The response list for the `competitiveSummaryBatch` operation.
-      type: array
-      items:
-        description: The response for the individual `competitiveSummary` request in the batch operation.
-        $ref: '#/components/schemas/CompetitiveSummaryResponse'
-      minItems: 1
-      maxItems: 20
-    Item:
-      description: A similar item for the specified ASIN `marketplaceId` combination.
-      type: object
-      required:
-      - asin
-      properties:
-        asin:
-          description: The Amazon identifier for the item.
-          $ref: '#/components/schemas/Asin'
-    HttpStatusLine:
-      description: The HTTP status line associated with the response for an individual request within a batch. For more information, refer to [RFC 2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html).
-      type: object
-      properties:
-        statusCode:
-          description: The HTTP response status code.
-          type: integer
-          minimum: 100
-          maximum: 599
-        reasonPhrase:
-          description: The HTTP response reason phrase.
-          type: string
-    Price:
-      type: object
-      required:
-      - listingPrice
-      properties:
-        listingPrice:
-          description: The listing price for the item, excluding any promotions.
-          $ref: '#/components/schemas/MoneyType'
-        shippingPrice:
-          description: The shipping cost of the product. Note that the shipping cost is not always available.
-          $ref: '#/components/schemas/MoneyType'
-        points:
-          description: The number of Amazon Points that are offered with the purchase of an item and the monetary value of these points.
-          $ref: '#/components/schemas/Points'
-      description: The schema for item's price information, including listing price, shipping price, and Amazon Points.
-    PromotionSavings:
-      description: Details about the savings applied by the promotion.
-      type: object
-      properties:
-        discount:
-          description: The discount applied by the promotion.
-          $ref: '#/components/schemas/PromotionDiscount'
-        discountedPrice:
-          description: The final price after the promotion is applied.
-          $ref: '#/components/schemas/MoneyType'
-    FeaturedOfferExpectedPriceRequest:
-      description: An individual FOEP request for a particular SKU.
+    SegmentedFeaturedOffer:
+      description: A product offer with segment information indicating where it's featured.
       allOf:
-      - $ref: '#/components/schemas/BatchRequest'
-      - $ref: '#/components/schemas/FeaturedOfferExpectedPriceRequestParams'
+      - $ref: '#/components/schemas/Offer'
+      - type: object
+        description: The list of segment information in which the offer is featured.
+        required:
+        - featuredOfferSegments
+        properties:
+          featuredOfferSegments:
+            description: The list of segment information in which the offer is featured.
+            type: array
+            items:
+              $ref: '#/components/schemas/FeaturedOfferSegment'
     Offer:
       description: The offer data of a product.
       type: object
@@ -6295,84 +6004,78 @@ components:
         promotions:
           description: A list of live promotions with this offer
           $ref: '#/components/schemas/Promotions'
-    PromotionDiscount:
-      description: Discount details applied by the promotion.
-      type: object
-      properties:
-        type:
-          description: The type of discount off, categorized by the customer-facing experience.
-          $ref: '#/components/schemas/DiscountType'
-        amountOff:
-          description: The monetary amount discounted from the original price. Only valid when type is AMOUNT_OFF.
-          $ref: '#/components/schemas/MoneyType'
-        percentOff:
-          description: The percentage discount applied to the original price (1-100). Only valid when type is PERCENTAGE_OFF.
-          type: number
-          minimum: 1
-          maximum: 100
-    MarketplaceId:
-      description: The `MarketplaceID` is the globally unique identifier of an Amazon store. To find the ID for your Amazon store, refer to [Amazon store IDs](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids).
-      type: string
-    MoneyType:
-      type: object
-      properties:
-        currencyCode:
-          type: string
-          description: The currency code in ISO 4217 format.
-        amount:
-          type: number
-          description: The monetary value.
-      description: Currency type and monetary value schema to demonstrate pricing information.
-    BatchResponse:
-      description: The common properties for responses to individual requests within a batch.
+    ShippingOption:
+      description: The shipping option available for the offer.
       type: object
       required:
-      - status
-      - headers
+      - shippingOptionType
+      - price
       properties:
-        headers:
-          $ref: '#/components/schemas/HttpHeaders'
-        status:
-          $ref: '#/components/schemas/HttpStatusLine'
-    PurchaseRequirements:
-      description: Purchase requirements that customers must meet to qualify for basket building promotions. Contains the purchase condition (how much to buy). Represents the 'Buy X' portion of Buy X Get Y promotions.
+        shippingOptionType:
+          description: The type of shipping option.
+          enum:
+          - DEFAULT
+          x-docgen-enum-table-extension:
+          - value: DEFAULT
+            description: The estimated shipping cost of the product. Note that the shipping cost is not always available.
+        price:
+          description: Shipping price for the offer.
+          $ref: '#/components/schemas/MoneyType'
+    FeaturedOfferExpectedPriceResponseBody:
+      description: The FOEP response data for a requested SKU.
       type: object
       properties:
+        offerIdentifier:
+          description: Metadata that identifies the target offer for which the FOEP result data was computed.
+          $ref: '#/components/schemas/OfferIdentifier'
+        featuredOfferExpectedPriceResults:
+          description: The FOEP results for the requested target offer.
+          $ref: '#/components/schemas/FeaturedOfferExpectedPriceResultList'
+        errors:
+          description: The errors that occurred if the operation wasn't successful (HTTP status code non-200).
+          $ref: '#/components/schemas/ErrorList'
+    Item:
+      description: A similar item for the specified ASIN `marketplaceId` combination.
+      type: object
+      required:
+      - asin
+      properties:
+        asin:
+          description: The Amazon identifier for the item.
+          $ref: '#/components/schemas/Asin'
+    FeaturedOffer:
+      type: object
+      required:
+      - offerIdentifier
+      properties:
+        offerIdentifier:
+          description: An offer identifier used to identify the merchant of the featured offer. Since this may not belong to the requester, the SKU field is omitted.
+          $ref: '#/components/schemas/OfferIdentifier'
         condition:
-          description: Minimum purchase requirement specifying either quantity of items or total spend amount that customers must meet to qualify.
-          $ref: '#/components/schemas/PurchaseCondition'
-    Error:
+          description: The item condition.
+          $ref: '#/components/schemas/Condition'
+        price:
+          description: The current active price of the offer.
+          $ref: '#/components/schemas/Price'
+      description: Schema for `currentFeaturedOffer` or `competingFeaturedOffer`.
+    Price:
       type: object
       required:
-      - code
-      - message
+      - listingPrice
       properties:
-        code:
-          type: string
-          description: An error code that identifies the type of error that occurred.
-        message:
-          type: string
-          description: A message that describes the error condition.
-        details:
-          type: string
-          description: Additional details that can help the caller understand or fix the issue.
-      description: Error response returned when the request is unsuccessful.
-    Points:
-      type: object
-      properties:
-        pointsNumber:
-          type: integer
-          format: int32
-          description: The number of Amazon Points.
-        pointsMonetaryValue:
-          description: The monetary value of the Amazon Points.
+        listingPrice:
+          description: The listing price for the item, excluding any promotions.
           $ref: '#/components/schemas/MoneyType'
-      description: The number of Amazon Points that are offered with the purchase of an item and the monetary value of these points.
-    HttpHeaders:
-      description: A mapping of additional HTTP headers to send or receive for an individual request within a batch.
-      type: object
-      additionalProperties:
-        type: string
+        shippingPrice:
+          description: The shipping cost of the product. Note that the shipping cost is not always available.
+          $ref: '#/components/schemas/MoneyType'
+        points:
+          description: The number of Amazon Points that are offered with the purchase of an item and the monetary value of these points.
+          $ref: '#/components/schemas/Points'
+      description: The schema for item's price information, including listing price, shipping price, and Amazon Points.
+    DiscountType:
+      type: string
+      description: 'Method used to calculate the discount amount. Supported values: PERCENTAGE_OFF (discount applied as a percentage off the original price), AMOUNT_OFF (discount applied as a fixed amount off the original price).'
     BatchRequest:
       description: The common properties for individual requests within a batch.
       type: object
@@ -6389,6 +6092,289 @@ components:
           $ref: '#/components/schemas/HttpBody'
         headers:
           $ref: '#/components/schemas/HttpHeaders'
+    FeaturedOfferExpectedPrice:
+      description: The item price at or below which the target offer may be featured.
+      type: object
+      required:
+      - listingPrice
+      properties:
+        listingPrice:
+          description: A computed listing price at or below which a seller can expect to become the featured offer (before applicable promotions).
+          $ref: '#/components/schemas/MoneyType'
+        points:
+          description: The number of Amazon Points that are offered with the purchase of an item and the monetary value of these points.
+          $ref: '#/components/schemas/Points'
+    HttpUri:
+      description: The URI associated with the individual APIs that are called as part of the batch request.
+      type: string
+      minLength: 6
+      maxLength: 512
+    SimilarItems:
+      description: The summary of similar items for the specified ASIN `marketplaceId` combination.
+      type: object
+      properties:
+        items:
+          description: A list of similar items for the specified ASIN `marketplaceId` combination.
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+    AmountThreshold:
+      type: object
+      description: Amount-based purchase conditions for basket building promotions. Customers must spend a minimum dollar amount.
+      properties:
+        type:
+          type: string
+          description: Indicates how the amount requirement is evaluated. For spend-based conditions, the supported value is AT_LEAST, meaning the customer must spend at least the specified dollar amount to qualify.
+        currency:
+          $ref: '#/components/schemas/MoneyType'
+          description: Minimum spend amount customers must meet.
+      required:
+      - type
+      - currency
+    FeaturedOfferExpectedPriceRequest:
+      description: An individual FOEP request for a particular SKU.
+      allOf:
+      - $ref: '#/components/schemas/BatchRequest'
+      - $ref: '#/components/schemas/FeaturedOfferExpectedPriceRequestParams'
+    Promotion:
+      description: A promotion applicable to the offer.
+      type: object
+      required:
+      - promotionType
+      - promotionSavings
+      properties:
+        promotionType:
+          description: The type of promotion, categorized by the customer-facing experience.
+          $ref: '#/components/schemas/PromotionType'
+        promotionSavings:
+          description: The savings applied by the promotion, including discount amount, percentage off, and discounted price.
+          $ref: '#/components/schemas/PromotionSavings'
+        purchaseRequirements:
+          description: Purchase requirements for BASKET_BUILDING promotions. Defines what customers must buy to qualify.
+          $ref: '#/components/schemas/PurchaseRequirements'
+    CompetitiveSummaryResponseList:
+      description: The response list for the `competitiveSummaryBatch` operation.
+      type: array
+      items:
+        description: The response for the individual `competitiveSummary` request in the batch operation.
+        $ref: '#/components/schemas/CompetitiveSummaryResponse'
+      minItems: 1
+      maxItems: 20
+    LowestPricedOffer:
+      description: Describes the lowest priced offers for the specified item condition and offer type.
+      type: object
+      required:
+      - lowestPricedOffersInput
+      - offers
+      properties:
+        lowestPricedOffersInput:
+          description: The filtering criteria that are used to retrieve the lowest priced offers that correspond to the `lowestPricedOffersInputs` request.
+          type: object
+          $ref: '#/components/schemas/LowestPricedOffersInput'
+        offers:
+          description: A list of up to 20 lowest priced offers that match the criteria specified in `lowestPricedOffersInput`.
+          type: array
+          items:
+            $ref: '#/components/schemas/Offer'
+          minItems: 1
+          maxItems: 20
+    CompetitiveSummaryBatchResponse:
+      description: The response schema for the `competitiveSummaryBatch` operation.
+      type: object
+      required:
+      - responses
+      properties:
+        responses:
+          description: The response list for the `competitiveSummaryBatch` operation.
+          $ref: '#/components/schemas/CompetitiveSummaryResponseList'
+    GetFeaturedOfferExpectedPriceBatchRequest:
+      description: The request body for the `getFeaturedOfferExpectedPriceBatch` operation.
+      type: object
+      properties:
+        requests:
+          $ref: '#/components/schemas/FeaturedOfferExpectedPriceRequestList'
+    HttpStatusLine:
+      description: The HTTP status line associated with the response for an individual request within a batch. For more information, refer to [RFC 2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html).
+      type: object
+      properties:
+        statusCode:
+          description: The HTTP response status code.
+          type: integer
+          minimum: 100
+          maximum: 599
+        reasonPhrase:
+          description: The HTTP response reason phrase.
+          type: string
+    FeaturedBuyingOption:
+      description: Describes a featured buying option, which includes a list of segmented featured offers for a particular item condition.
+      type: object
+      required:
+      - buyingOptionType
+      - segmentedFeaturedOffers
+      properties:
+        buyingOptionType:
+          description: The buying option type for the featured offer. `buyingOptionType` represents the buying options that a customer receives on the detail page, such as `B2B`, `Fresh`, and `Subscribe n Save`. `buyingOptionType` currently supports `NEW` as a value.
+          type: string
+          enum:
+          - New
+          x-docgen-enum-table-extension:
+          - value: New
+            description: New
+        segmentedFeaturedOffers:
+          description: A list of segmented featured offers for the current buying option type. A segment can be considered as a group of regional contexts that all have the same featured offer. A regional context is a combination of factors such as customer type, region, or postal code and buying option.
+          type: array
+          items:
+            $ref: '#/components/schemas/SegmentedFeaturedOffer'
+          minItems: 1
+    CompetitiveSummaryIncludedData:
+      type: string
+      description: The supported data types in the `getCompetitiveSummary` API.
+      enum:
+      - featuredBuyingOptions
+      - referencePrices
+      - lowestPricedOffers
+      - similarItems
+      x-docgen-enum-table-extension:
+      - value: featuredBuyingOptions
+        description: Describes the current segmented featured offer information for the item.
+      - value: referencePrices
+        description: Provides reference price points for the item, such as the Competitive Price Threshold.
+      - value: lowestPricedOffers
+        description: The lowest-priced standard offers that are available for the item in the Amazon store.
+      - value: similarItems
+        description: Provides a list of up to 20 ASINs which are similar to the item.
+    PrimeDetails:
+      description: Amazon Prime details.
+      type: object
+      required:
+      - eligibility
+      properties:
+        eligibility:
+          description: Indicates whether the offer is an Amazon Prime offer.
+          type: string
+          enum:
+          - NATIONAL
+          - REGIONAL
+          - NONE
+          x-docgen-enum-table-extension:
+          - value: NATIONAL
+            description: Indicates that this offer has Amazon Prime eligibility in all regions within the Amazon store.
+          - value: REGIONAL
+            description: Indicates that this offer has Amazon Prime eligibility in some (but not all) regions within the Amazon store.
+          - value: NONE
+            description: Indicates that this offer is not an Amazon Prime offer in any region within the Amazon store.
+    PromotionDiscount:
+      description: Discount details applied by the promotion.
+      type: object
+      properties:
+        type:
+          description: The type of discount off, categorized by the customer-facing experience.
+          $ref: '#/components/schemas/DiscountType'
+        amountOff:
+          description: The monetary amount discounted from the original price. Only valid when type is AMOUNT_OFF.
+          $ref: '#/components/schemas/MoneyType'
+        percentOff:
+          description: The percentage discount applied to the original price (1-100). Only valid when type is PERCENTAGE_OFF.
+          type: number
+          minimum: 1
+          maximum: 100
+    HttpBody:
+      description: Additional HTTP body information that is associated with an individual request within a batch.
+      additionalProperties: {}
+    CompetitiveSummaryBatchRequest:
+      description: The `competitiveSummary` batch request data.
+      type: object
+      required:
+      - requests
+      properties:
+        requests:
+          description: A batched list of `competitiveSummary` requests.
+          $ref: '#/components/schemas/CompetitiveSummaryRequestList'
+    PostalCode:
+      description: Postal code value with country code
+      type: object
+      properties:
+        countryCode:
+          description: Country code value
+          type: string
+        value:
+          description: Postal code value
+          type: string
+    CompetitiveSummaryRequestList:
+      description: A batched list of `competitiveSummary` requests.
+      type: array
+      items:
+        $ref: '#/components/schemas/CompetitiveSummaryRequest'
+      minItems: 1
+      maxItems: 20
+    Condition:
+      description: The condition of the item.
+      type: string
+      enum:
+      - New
+      - Used
+      - Collectible
+      - Refurbished
+      - Club
+      x-docgen-enum-table-extension:
+      - value: New
+        description: New
+      - value: Used
+        description: Used
+      - value: Collectible
+        description: Collectible
+      - value: Refurbished
+        description: Refurbished
+      - value: Club
+        description: Club
+    FulfillmentType:
+      type: string
+      description: Indicates whether the item is fulfilled by Amazon or by the seller (merchant).
+      enum:
+      - AFN
+      - MFN
+      x-docgen-enum-table-extension:
+      - value: AFN
+        description: Fulfilled by Amazon.
+      - value: MFN
+        description: Fulfilled by the seller.
+    Asin:
+      description: The ASIN of the item.
+      type: string
+    Promotions:
+      description: A list of live promotions applicable to this offer.
+      type: array
+      items:
+        $ref: '#/components/schemas/Promotion'
+    Errors:
+      type: object
+      description: A list of error responses returned when a request is unsuccessful.
+      required:
+      - errors
+      properties:
+        errors:
+          description: One or more unexpected errors occurred during the operation.
+          $ref: '#/components/schemas/ErrorList'
+    Sku:
+      description: The seller SKU of the item.
+      type: string
+    FeaturedOfferExpectedPriceResult:
+      description: The FOEP result data for the requested offer.
+      type: object
+      required:
+      - resultStatus
+      properties:
+        featuredOfferExpectedPrice:
+          $ref: '#/components/schemas/FeaturedOfferExpectedPrice'
+        resultStatus:
+          description: The status of the FOEP computation. Possible values include `VALID_FOEP`, `NO_COMPETING_OFFER`, `OFFER_NOT_ELIGIBLE`, `OFFER_NOT_FOUND`, and `ASIN_NOT_ELIGIBLE`. Additional values might be added in the future.
+          type: string
+        competingFeaturedOffer:
+          description: The offer that will likely be the featured offer if the target offer is priced above its FOEP. If the target offer is currently the featured offer, this property will be different than `currentFeaturedOffer`.
+          $ref: '#/components/schemas/FeaturedOffer'
+        currentFeaturedOffer:
+          description: The offer that is currently the featured offer. If the target offer is not currently featured, then this property will be equal to `competingFeaturedOffer`.
+          $ref: '#/components/schemas/FeaturedOffer'
     CompetitiveSummaryRequest:
       description: An individual `competitiveSummary` request for an ASIN and `marketplaceId`.
       type: object
@@ -6424,19 +6410,11 @@ components:
         uri:
           description: The URI associated with the individual APIs that are called as part of the batch request. For `getCompetitiveSummary`, this is `/products/pricing/2022-05-01/items/competitiveSummary`.
           $ref: '#/components/schemas/HttpUri'
-    Asin:
-      description: The ASIN of the item.
-      type: string
-    SegmentDetails:
-      description: The details about the segment. The FeaturedOfferExpectedPrice API uses only the sampleLocation portion as input.
-      type: object
-      properties:
-        glanceViewWeightPercentage:
-          description: The glance view weighted percentage for this segment, which is the glance views for this segment as a percentage of total glance views across all segments for the ASIN. A higher percentage indicates that more Amazon customers receive this offer as the Featured Offer.
-          type: number
-        sampleLocation:
-          $ref: '#/components/schemas/SampleLocation'
-          description: The representative location that features the offer for the segment.
+    ErrorList:
+      type: array
+      description: A list of error responses that are returned when a request is unsuccessful.
+      items:
+        $ref: '#/components/schemas/Error'
     LowestPricedOffersInput:
       description: The input required for building `LowestPricedOffers` data in the response.
       type: object
@@ -6456,398 +6434,56 @@ components:
           x-docgen-enum-table-extension:
           - value: Consumer
             description: An offer that is available to all Amazon customers.
-    Promotion:
-      description: A promotion applicable to the offer.
+    Points:
+      type: object
+      properties:
+        pointsNumber:
+          type: integer
+          format: int32
+          description: The number of Amazon Points.
+        pointsMonetaryValue:
+          description: The monetary value of the Amazon Points.
+          $ref: '#/components/schemas/MoneyType'
+      description: The number of Amazon Points that are offered with the purchase of an item and the monetary value of these points.
+    CompetitiveSummaryResponseBody:
+      description: The `competitiveSummaryResponse` body for a requested ASIN and `marketplaceId`.
       type: object
       required:
-      - promotionType
-      - promotionSavings
+      - asin
+      - marketplaceId
       properties:
-        promotionType:
-          description: The type of promotion, categorized by the customer-facing experience.
-          $ref: '#/components/schemas/PromotionType'
-        promotionSavings:
-          description: The savings applied by the promotion, including discount amount, percentage off, and discounted price.
-          $ref: '#/components/schemas/PromotionSavings'
-        purchaseRequirements:
-          description: Purchase requirements for BASKET_BUILDING promotions. Defines what customers must buy to qualify.
-          $ref: '#/components/schemas/PurchaseRequirements'
-    SimilarItems:
-      description: The summary of similar items for the specified ASIN `marketplaceId` combination.
-      type: object
-      properties:
-        items:
+        asin:
+          description: The Amazon identifier for the item.
+          $ref: '#/components/schemas/Asin'
+        marketplaceId:
+          $ref: '#/components/schemas/MarketplaceId'
+          description: An Amazon store identifier.
+        featuredBuyingOptions:
+          description: A list of featured buying options for the specified ASIN `marketplaceId` combination.
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturedBuyingOption'
+        lowestPricedOffers:
+          description: A list of lowest priced offers for the specified ASIN `marketplaceId` combination.
+          type: array
+          items:
+            $ref: '#/components/schemas/LowestPricedOffer'
+        referencePrices:
+          description: A list of reference prices for the specified ASIN `marketplaceId` combination.
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferencePrice'
+        similarItems:
           description: A list of similar items for the specified ASIN `marketplaceId` combination.
           type: array
           items:
-            $ref: '#/components/schemas/Item'
-    Promotions:
-      description: A list of live promotions applicable to this offer.
-      type: array
-      items:
-        $ref: '#/components/schemas/Promotion'
-    SalesRankType:
+            $ref: '#/components/schemas/SimilarItems'
+        errors:
+          description: A list of errors
+          $ref: '#/components/schemas/ErrorList'
+    HttpHeaders:
+      description: A mapping of additional HTTP headers to send or receive for an individual request within a batch.
       type: object
-      required:
-      - ProductCategoryId
-      - Rank
-      properties:
-        ProductCategoryId:
-          type: string
-          description: ' Identifies the item category from which the sales rank is taken.'
-        Rank:
-          type: integer
-          format: int32
-          description: The sales rank of the item within the item category.
-      description: Sales rank information for the item, by category
-    ItemOffersRequestParams:
-      allOf:
-      - $ref: '#/components/schemas/BatchOffersRequestParams'
-      - type: object
-        properties:
-          Asin:
-            type: string
-            description: The Amazon Standard Identification Number (ASIN) of the item. This is the same Asin passed as a request parameter.
-      description: List of request parameters that can be accepted by `ItemOffersRequest`
-    ListingOffersRequest:
-      allOf:
-      - $ref: '#/components/schemas/BatchRequest_2'
-      - $ref: '#/components/schemas/BatchOffersRequestParams'
-      description: List of request parameters that can be accepted by `ListingOffersRequest` operation
-    GetListingOffersBatchResponse:
-      description: The response associated with the `getListingOffersBatch` API call.
-      type: object
-      properties:
-        responses:
-          $ref: '#/components/schemas/ListingOffersResponseList'
-    CompetitivePricingType:
-      type: object
-      required:
-      - CompetitivePrices
-      - NumberOfOfferListings
-      properties:
-        CompetitivePrices:
-          $ref: '#/components/schemas/CompetitivePriceList'
-        NumberOfOfferListings:
-          $ref: '#/components/schemas/NumberOfOfferListingsList'
-        TradeInValue:
-          description: The trade-in value of the item in the trade-in program.
-          $ref: '#/components/schemas/MoneyType_2'
-      description: Competitive pricing information for the item.
-    ItemCondition:
-      description: 'Filters the offer listings to be considered based on item condition. Possible values: New, Used, Collectible, Refurbished, Club.'
-      type: string
-      enum:
-      - New
-      - Used
-      - Collectible
-      - Refurbished
-      - Club
-      x-docgen-enum-table-extension:
-      - value: New
-        description: New
-      - value: Used
-        description: Used
-      - value: Collectible
-        description: Collectible
-      - value: Refurbished
-        description: Refurbished
-      - value: Club
-        description: Club
-    ItemOffersResponseList:
-      description: A list of `getItemOffers` batched responses.
-      type: array
-      items:
-        $ref: '#/components/schemas/ItemOffersResponse'
-      minItems: 1
-      maxItems: 20
-    NumberOfOfferListingsList:
-      type: array
-      description: The number of active offer listings for the item that was submitted. The listing count is returned by condition, one for each listing condition value that is returned.
-      items:
-        $ref: '#/components/schemas/OfferListingCountType'
-    CompetitivePriceList:
-      type: array
-      description: A list of competitive pricing information.
-      items:
-        $ref: '#/components/schemas/CompetitivePriceType'
-    LowestPriceType:
-      type: object
-      required:
-      - ListingPrice
-      - condition
-      - fulfillmentChannel
-      properties:
-        condition:
-          type: string
-          description: 'Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or Club.'
-        fulfillmentChannel:
-          type: string
-          description: Indicates whether the item is fulfilled by Amazon or by the seller.
-        offerType:
-          description: Indicates the type of customer that the offer is valid for.
-          $ref: '#/components/schemas/OfferCustomerType'
-        quantityTier:
-          type: integer
-          format: int32
-          description: Indicates at what quantity this price becomes active.
-        quantityDiscountType:
-          description: Indicates the type of quantity discount this price applies to.
-          $ref: '#/components/schemas/QuantityDiscountType'
-        LandedPrice:
-          description: The value calculated by adding ListingPrice + Shipping - Points.
-          $ref: '#/components/schemas/MoneyType_2'
-        ListingPrice:
-          description: The price of the item.
-          $ref: '#/components/schemas/MoneyType_2'
-        Shipping:
-          description: The shipping cost.
-          $ref: '#/components/schemas/MoneyType_2'
-        Points:
-          description: The number of Amazon Points offered with the purchase of an item.
-          $ref: '#/components/schemas/Points_2'
-      description: Schema for an individual lowest price.
-    OffersList:
-      type: array
-      description: A list of offers.
-      items:
-        $ref: '#/components/schemas/OfferType'
-    OfferListingCountType:
-      type: object
-      required:
-      - Count
-      - condition
-      properties:
-        Count:
-          type: integer
-          format: int32
-          description: The number of offer listings.
-        condition:
-          type: string
-          description: The condition of the item.
-      description: The number of offer listings with the specified condition.
-    PrimeInformationType:
-      description: Amazon Prime information.
-      type: object
-      required:
-      - IsPrime
-      - IsNationalPrime
-      properties:
-        IsPrime:
-          description: Indicates whether the offer is an Amazon Prime offer.
-          type: boolean
-        IsNationalPrime:
-          description: Indicates whether the offer is an Amazon Prime offer throughout the entire marketplace where it is listed.
-          type: boolean
-    ConditionType:
-      type: string
-      description: 'Indicates the condition of the item. Possible values: New, Used, Collectible, Refurbished, Club.'
-      enum:
-      - New
-      - Used
-      - Collectible
-      - Refurbished
-      - Club
-      x-docgen-enum-table-extension:
-      - value: New
-        description: New
-      - value: Used
-        description: Used
-      - value: Collectible
-        description: Collectible
-      - value: Refurbished
-        description: Refurbished
-      - value: Club
-        description: Club
-    QuantityDiscountType:
-      type: string
-      enum:
-      - QUANTITY_DISCOUNT
-      x-docgen-enum-table-extension:
-      - value: QUANTITY_DISCOUNT
-        description: Quantity Discount
-      description: Indicates the type of quantity discount this price applies to.
-    DetailedShippingTimeType:
-      type: object
-      properties:
-        minimumHours:
-          type: integer
-          format: int64
-          description: The minimum time, in hours, that the item will likely be shipped after the order has been placed.
-        maximumHours:
-          type: integer
-          format: int64
-          description: The maximum time, in hours, that the item will likely be shipped after the order has been placed.
-        availableDate:
-          type: string
-          description: The date when the item will be available for shipping. Only displayed for items that are not currently available for shipping.
-        availabilityType:
-          type: string
-          description: 'Indicates whether the item is available for shipping now, or on a known or an unknown date in the future. If known, the availableDate property indicates the date that the item will be available for shipping. Possible values: NOW, FUTURE_WITHOUT_DATE, FUTURE_WITH_DATE.'
-          enum:
-          - NOW
-          - FUTURE_WITHOUT_DATE
-          - FUTURE_WITH_DATE
-          x-docgen-enum-table-extension:
-          - value: NOW
-            description: The item is available for shipping now.
-          - value: FUTURE_WITHOUT_DATE
-            description: The item will be available for shipping on an unknown date in the future.
-          - value: FUTURE_WITH_DATE
-            description: The item will be available for shipping on a known date in the future.
-      description: The time range in which an item will likely be shipped once an order has been placed.
-    FulfillmentChannelType:
-      type: string
-      description: Indicates whether the item is fulfilled by Amazon or by the seller (merchant).
-      enum:
-      - Amazon
-      - Merchant
-      x-docgen-enum-table-extension:
-      - value: Amazon
-        description: Fulfilled by Amazon.
-      - value: Merchant
-        description: Fulfilled by the seller.
-    ErrorList_2:
-      type: array
-      description: A list of error responses returned when a request is unsuccessful.
-      items:
-        $ref: '#/components/schemas/Error'
-    SalesRankList:
-      type: array
-      description: A list of sales rank information for the item, by category.
-      items:
-        $ref: '#/components/schemas/SalesRankType'
-    CompetitivePriceType:
-      type: object
-      required:
-      - CompetitivePriceId
-      - Price
-      properties:
-        CompetitivePriceId:
-          type: string
-          description: 'The pricing model for each price that is returned.
-
-
-            Possible values:
-
-
-            * 1 - New Buy Box Price.
-
-            * 2 - Used Buy Box Price.'
-        Price:
-          description: Pricing information for a given CompetitivePriceId value.
-          $ref: '#/components/schemas/PriceType'
-        condition:
-          type: string
-          description: 'Indicates the condition of the item whose pricing information is returned. Possible values are: New, Used, Collectible, Refurbished, or Club.'
-        subcondition:
-          type: string
-          description: 'Indicates the subcondition of the item whose pricing information is returned. Possible values are: New, Mint, Very Good, Good, Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other.'
-        offerType:
-          description: Indicates the type of customer that the offer is valid for.<br><br>When the offer type is B2C in a quantity discount, the seller is winning the Buy Box because others do not have inventory at that quantity, not because they have a quantity discount on the ASIN.
-          $ref: '#/components/schemas/OfferCustomerType'
-        quantityTier:
-          type: integer
-          format: int32
-          description: Indicates at what quantity this price becomes active.
-        quantityDiscountType:
-          description: Indicates the type of quantity discount this price applies to.
-          $ref: '#/components/schemas/QuantityDiscountType'
-        sellerId:
-          type: string
-          description: The seller identifier for the offer.
-        belongsToRequester:
-          type: boolean
-          description: ' Indicates whether or not the pricing information is for an offer listing that belongs to the requester. The requester is the seller associated with the SellerId that was submitted with the request. Possible values are: true and false.'
-      description: Schema for competitive pricing information
-    IdentifierType:
-      type: object
-      required:
-      - MarketplaceASIN
-      properties:
-        MarketplaceASIN:
-          description: Indicates the item is identified by MarketPlaceId and ASIN.
-          $ref: '#/components/schemas/ASINIdentifier'
-        SKUIdentifier:
-          description: Indicates the item is identified by MarketPlaceId, SellerId, and SellerSKU.
-          $ref: '#/components/schemas/SellerSKUIdentifier'
-      description: Specifies the identifiers used to uniquely identify an item.
-    ASINIdentifier:
-      type: object
-      required:
-      - ASIN
-      - MarketplaceId
-      properties:
-        MarketplaceId:
-          type: string
-          description: A marketplace identifier.
-        ASIN:
-          type: string
-          description: The Amazon Standard Identification Number (ASIN) of the item.
-      description: Schema to identify an item by MarketPlaceId and ASIN.
-    NumberOfOffers:
-      type: array
-      items:
-        $ref: '#/components/schemas/OfferCountType'
-      description: A list that contains the total number of offers information for given conditions and fulfillment channels.
-    ItemOffersResponse:
-      allOf:
-      - $ref: '#/components/schemas/BatchOffersResponse'
-      - type: object
-        required:
-        - request
-        properties:
-          request:
-            $ref: '#/components/schemas/ItemOffersRequestParams'
-      description: Schema for an individual `ItemOffersResponse`
-    SellerFeedbackType:
-      type: object
-      required:
-      - FeedbackCount
-      properties:
-        SellerPositiveFeedbackRating:
-          type: number
-          format: double
-          description: The percentage of positive feedback for the seller in the past 365 days.
-        FeedbackCount:
-          type: integer
-          format: int64
-          description: The number of ratings received about the seller.
-      description: Information about the seller's feedback, including the percentage of positive feedback, and the total number of ratings received.
-    GetListingOffersBatchRequest:
-      description: The request associated with the `getListingOffersBatch` API call.
-      type: object
-      properties:
-        requests:
-          $ref: '#/components/schemas/ListingOffersRequestList'
-    ListingOffersRequestList:
-      description: A list of `getListingOffers` batched requests to run.
-      type: array
-      items:
-        $ref: '#/components/schemas/ListingOffersRequest'
-      minItems: 1
-      maxItems: 20
-    CustomerType:
-      description: Indicates whether to request Consumer or Business offers. Default is Consumer.
-      type: string
-      enum:
-      - Consumer
-      - Business
-      x-docgen-enum-table-extension:
-      - value: Consumer
-        description: Consumer
-      - value: Business
-        description: Business
-    HttpResponseHeaders:
-      description: A mapping of additional HTTP headers to send/receive for the individual batch request.
-      type: object
-      properties:
-        Date:
-          type: string
-          description: The timestamp that the API request was received.  For more information, consult [RFC 2616 Section 14](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
-        x-amzn-RequestId:
-          type: string
-          description: Unique request reference identifier.
       additionalProperties:
         type: string
     GetOffersHttpStatusLine:
@@ -6862,50 +6498,51 @@ components:
         reasonPhrase:
           description: The HTTP response Reason-Phase.
           type: string
-    BuyBoxEligibleOffers:
+    GetOffersResult:
+      type: object
+      required:
+      - Identifier
+      - ItemCondition
+      - Offers
+      - Summary
+      - status
+      - marketplaceId
+      properties:
+        marketplaceId:
+          type: string
+          description: A marketplace identifier.
+        ASIN:
+          type: string
+          description: The Amazon Standard Identification Number (ASIN) of the item.
+        SKU:
+          type: string
+          description: The stock keeping unit (SKU) of the item.
+        ItemCondition:
+          description: The condition of the item.
+          $ref: '#/components/schemas/ConditionType'
+        status:
+          type: string
+          description: The status of the operation.
+        Identifier:
+          description: Metadata that identifies the item.
+          $ref: '#/components/schemas/ItemIdentifier'
+        Summary:
+          description: Pricing information about the item.
+          $ref: '#/components/schemas/Summary'
+        Offers:
+          description: A list of offer details. The list is the same length as the TotalOfferCount in the Summary or 20, whichever is less.
+          $ref: '#/components/schemas/OfferDetailList'
+      description: The payload for the getListingOffers and getItemOffers operations.
+    BuyBoxPrices:
+      type: array
+      items:
+        $ref: '#/components/schemas/BuyBoxPriceType'
+      description: A list of the Buy Box prices.
+    NumberOfOffers:
       type: array
       items:
         $ref: '#/components/schemas/OfferCountType'
-      description: A list that contains the total number of offers that are eligible for the Buy Box for the given conditions and fulfillment channels.
-    BatchOffersResponse:
-      type: object
-      required:
-      - body
-      properties:
-        headers:
-          $ref: '#/components/schemas/HttpResponseHeaders'
-        status:
-          $ref: '#/components/schemas/GetOffersHttpStatusLine'
-        body:
-          $ref: '#/components/schemas/GetOffersResponse'
-      description: Common schema that present in `ItemOffersResponse` and `ListingOffersResponse`
-    ShipsFromType:
-      type: object
-      properties:
-        State:
-          type: string
-          description: The state from where the item is shipped.
-        Country:
-          type: string
-          description: The country from where the item is shipped.
-      description: The state and country from where the item is shipped.
-    SellerSKUIdentifier:
-      type: object
-      required:
-      - MarketplaceId
-      - SellerId
-      - SellerSKU
-      properties:
-        MarketplaceId:
-          type: string
-          description: A marketplace identifier.
-        SellerId:
-          type: string
-          description: The seller identifier submitted for the operation.
-        SellerSKU:
-          type: string
-          description: The seller stock keeping unit (SKU) of the item.
-      description: Schema to identify an item by MarketPlaceId, SellerId, and SellerSKU.
+      description: A list that contains the total number of offers information for given conditions and fulfillment channels.
     Summary:
       type: object
       required:
@@ -6944,369 +6581,42 @@ components:
           format: date-time
           description: When the status is ActiveButTooSoonForProcessing, this is the time when the offers will be available for processing.
       description: Contains price information about the product, including the LowestPrices and BuyBoxPrices, the ListPrice, the SuggestedLowerPricePlusShipping, and NumberOfOffers and NumberOfBuyBoxEligibleOffers.
-    QuantityDiscountPriceType:
-      type: object
-      description: Contains pricing information that includes special pricing when buying in bulk.
-      required:
-      - quantityTier
-      - quantityDiscountType
-      - listingPrice
-      properties:
-        quantityTier:
-          type: integer
-          format: int32
-          description: Indicates at what quantity this price becomes active.
-        quantityDiscountType:
-          description: Indicates the type of quantity discount this price applies to.
-          $ref: '#/components/schemas/QuantityDiscountType'
-        listingPrice:
-          description: The price at this quantity tier.
-          $ref: '#/components/schemas/MoneyType_2'
-    Product:
+    ASINIdentifier:
       type: object
       required:
-      - Identifiers
+      - ASIN
+      - MarketplaceId
       properties:
-        Identifiers:
-          $ref: '#/components/schemas/IdentifierType'
-        AttributeSets:
-          $ref: '#/components/schemas/AttributeSetList'
-        Relationships:
-          $ref: '#/components/schemas/RelationshipList'
-        CompetitivePricing:
-          $ref: '#/components/schemas/CompetitivePricingType'
-        SalesRankings:
-          $ref: '#/components/schemas/SalesRankList'
-        Offers:
-          $ref: '#/components/schemas/OffersList'
-      description: An item.
-    GetPricingResponse:
-      type: object
-      properties:
-        payload:
-          description: The payload for the getPricing and getCompetitivePricing operations.
-          $ref: '#/components/schemas/PriceList'
-        errors:
-          description: One or more unexpected errors occurred during the operation.
-          $ref: '#/components/schemas/ErrorList_2'
-      description: The response schema for the `getPricing` and `getCompetitivePricing` operations.
-    ListingOffersResponse:
-      allOf:
-      - $ref: '#/components/schemas/BatchOffersResponse'
-      - type: object
-        properties:
-          request:
-            $ref: '#/components/schemas/ListingOffersRequestParams'
-      description: Schema for an individual `ListingOffersResponse`
-    GetOffersResponse:
-      type: object
-      properties:
-        payload:
-          description: The payload for the `getListingOffers` and `getItemOffers` operations.
-          $ref: '#/components/schemas/GetOffersResult'
-        errors:
-          description: One or more unexpected errors occurred during the operation.
-          $ref: '#/components/schemas/ErrorList_2'
-      description: The response schema for the `getListingOffers` and `getItemOffers` operations.
-    ListingOffersRequestParams:
-      allOf:
-      - $ref: '#/components/schemas/BatchOffersRequestParams'
-      - type: object
-        required:
-        - SellerSKU
-        properties:
-          SellerSKU:
-            type: string
-            description: The seller stock keeping unit (SKU) of the item. This is the same SKU passed as a path parameter.
-      description: List of request parameters that can be accepted by `ListingOffersRequest`
-    ListingOffersResponseList:
-      description: A list of `getListingOffers` batched responses.
-      type: array
-      items:
-        $ref: '#/components/schemas/ListingOffersResponse'
-      minItems: 1
-      maxItems: 20
-    OfferDetailList:
-      type: array
-      items:
-        $ref: '#/components/schemas/OfferDetail'
-      maxItems: 20
-      description: A list of offer details. The list is the same length as the TotalOfferCount in the Summary or 20, whichever is less.
-    HttpRequestHeaders:
-      description: A mapping of additional HTTP headers to send/receive for the individual batch request.
-      type: object
-      additionalProperties:
-        type: string
-    RelationshipList:
-      type: array
-      description: A list that contains product variation information, if applicable.
-      items:
-        type: object
-    GetItemOffersBatchResponse:
-      description: The response associated with the `getItemOffersBatch` API call.
-      type: object
-      properties:
-        responses:
-          $ref: '#/components/schemas/ItemOffersResponseList'
-    GetOffersResult:
-      type: object
-      required:
-      - Identifier
-      - ItemCondition
-      - Offers
-      - Summary
-      - status
-      - marketplaceId
-      properties:
-        marketplaceId:
+        MarketplaceId:
           type: string
           description: A marketplace identifier.
         ASIN:
           type: string
           description: The Amazon Standard Identification Number (ASIN) of the item.
-        SKU:
-          type: string
-          description: The stock keeping unit (SKU) of the item.
-        ItemCondition:
-          description: The condition of the item.
-          $ref: '#/components/schemas/ConditionType'
-        status:
-          type: string
-          description: The status of the operation.
-        Identifier:
-          description: Metadata that identifies the item.
-          $ref: '#/components/schemas/ItemIdentifier'
-        Summary:
-          description: Pricing information about the item.
-          $ref: '#/components/schemas/Summary'
-        Offers:
-          description: A list of offer details. The list is the same length as the TotalOfferCount in the Summary or 20, whichever is less.
-          $ref: '#/components/schemas/OfferDetailList'
-      description: The payload for the getListingOffers and getItemOffers operations.
-    OfferType:
-      type: object
-      required:
-      - BuyingPrice
-      - FulfillmentChannel
-      - ItemCondition
-      - ItemSubCondition
-      - RegularPrice
-      - SellerSKU
-      properties:
-        offerType:
-          description: Indicates the type of customer that the offer is valid for.
-          $ref: '#/components/schemas/OfferCustomerType'
-        BuyingPrice:
-          description: Contains pricing information that includes promotions and contains the shipping cost.
-          $ref: '#/components/schemas/PriceType'
-        RegularPrice:
-          description: The current price excluding any promotions that apply to the product. Excludes the shipping cost.
-          $ref: '#/components/schemas/MoneyType_2'
-        businessPrice:
-          description: The current listing price for Business buyers.
-          $ref: '#/components/schemas/MoneyType_2'
-        quantityDiscountPrices:
-          type: array
-          items:
-            $ref: '#/components/schemas/QuantityDiscountPriceType'
-          description: List of `QuantityDiscountPrice` that contains item's pricing information when buy in bulk.
-        FulfillmentChannel:
-          type: string
-          description: 'The fulfillment channel for the offer listing. Possible values:
-
-
-            * Amazon - Fulfilled by Amazon.
-
-            * Merchant - Fulfilled by the seller.'
-        ItemCondition:
-          type: string
-          description: 'The item condition for the offer listing. Possible values: New, Used, Collectible, Refurbished, or Club.'
-        ItemSubCondition:
-          type: string
-          description: 'The item subcondition for the offer listing. Possible values: New, Mint, Very Good, Good, Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other.'
-        SellerSKU:
-          type: string
-          description: The seller stock keeping unit (SKU) of the item.
-      description: Schema for an individual offer.
-    HttpMethod_2:
-      description: The HTTP method associated with the individual APIs being called as part of the batch request.
-      type: string
-      enum:
-      - GET
-      - PUT
-      - PATCH
-      - DELETE
-      - POST
-      x-docgen-enum-table-extension:
-      - value: GET
-        description: GET
-      - value: PUT
-        description: PUT
-      - value: PATCH
-        description: PATCH
-      - value: DELETE
-        description: DELETE
-      - value: POST
-        description: POST
-    ItemOffersRequestList:
-      description: A list of `getListingOffers` batched requests to run.
-      type: array
-      items:
-        $ref: '#/components/schemas/ItemOffersRequest'
-      minItems: 1
-      maxItems: 20
+      description: Schema to identify an item by MarketPlaceId and ASIN.
     PriceList:
       type: array
       items:
         $ref: '#/components/schemas/Price_2'
       maxItems: 20
       description: The payload for the `getPricing` and `getCompetitivePricing` operations.
-    Price_2:
-      type: object
-      required:
-      - status
-      properties:
-        status:
-          type: string
-          description: The status of the operation.
-        SellerSKU:
-          type: string
-          description: The seller stock keeping unit (SKU) of the item.
-        ASIN:
-          type: string
-          description: The Amazon Standard Identification Number (ASIN) of the item.
-        Product:
-          $ref: '#/components/schemas/Product'
-      description: Schema for price info in `getPricing` response
-    PriceType:
-      type: object
-      required:
-      - ListingPrice
-      properties:
-        LandedPrice:
-          description: The value calculated by adding ListingPrice + Shipping - Points. Note that if the landed price is not returned, the listing price represents the product with the lowest landed price.
-          $ref: '#/components/schemas/MoneyType_2'
-        ListingPrice:
-          description: The listing price of the item including any promotions that apply.
-          $ref: '#/components/schemas/MoneyType_2'
-        Shipping:
-          description: The shipping cost of the product. Note that the shipping cost is not always available.
-          $ref: '#/components/schemas/MoneyType_2'
-        Points:
-          description: The number of Amazon Points offered with the purchase of an item, and their monetary value.
-          $ref: '#/components/schemas/Points_2'
-      description: Schema for item's price information, including listing price, shipping price, and Amazon points.
-    GetItemOffersBatchRequest:
-      description: The request associated with the `getItemOffersBatch` API call.
-      type: object
-      properties:
-        requests:
-          $ref: '#/components/schemas/ItemOffersRequestList'
-    ItemOffersRequest:
+    ListingOffersRequest:
       allOf:
       - $ref: '#/components/schemas/BatchRequest_2'
       - $ref: '#/components/schemas/BatchOffersRequestParams'
-      description: List of request parameters can be accepted by `ItemOffersRequests` operation
-    MarketplaceId_2:
-      description: A marketplace identifier. Specifies the marketplace for which prices are returned.
-      type: string
-    MoneyType_2:
-      type: object
-      properties:
-        CurrencyCode:
-          type: string
-          description: The currency code in ISO 4217 format.
-        Amount:
-          type: number
-          description: The monetary value.
-      description: Currency type and monetary value. Schema for demonstrating pricing info.
-    OfferCountType:
-      type: object
-      properties:
-        condition:
-          type: string
-          description: 'Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or Club.'
-        fulfillmentChannel:
-          description: Indicates whether the item is fulfilled by Amazon or by the seller.
-          $ref: '#/components/schemas/FulfillmentChannelType'
-        OfferCount:
-          type: integer
-          format: int32
-          description: The number of offers in a fulfillment channel that meet a specific condition.
-      description: The total number of offers for the specified condition and fulfillment channel.
-    BatchOffersRequestParams:
-      type: object
-      required:
-      - MarketplaceId
-      - ItemCondition
-      properties:
-        MarketplaceId:
-          $ref: '#/components/schemas/MarketplaceId_2'
-        ItemCondition:
-          description: 'Filters the offer listings to be considered based on item condition. Possible values: New, Used, Collectible, Refurbished, Club.'
-          $ref: '#/components/schemas/ItemCondition'
-        CustomerType:
-          description: Indicates whether to request Consumer or Business offers. Default is Consumer.
-          $ref: '#/components/schemas/CustomerType'
-      description: Common request parameters that can be accepted by `ItemOffersRequest` and `ListingOffersRequest`
-    Points_2:
-      type: object
-      properties:
-        PointsNumber:
-          type: integer
-          format: int32
-          description: The number of points.
-        PointsMonetaryValue:
-          description: The monetary value of the points.
-          $ref: '#/components/schemas/MoneyType_2'
-      description: The number of Amazon Points offered with the purchase of an item, and their monetary value.
-    BatchRequest_2:
-      description: Common properties of batch requests against individual APIs.
-      type: object
-      required:
-      - uri
-      - method
-      properties:
-        uri:
-          type: string
-          description: 'The resource path of the operation you are calling in batch without any query parameters.
-
-
-            If you are calling `getItemOffersBatch`, supply the path of `getItemOffers`.
-
-
-            **Example:** `/products/pricing/v0/items/B000P6Q7MY/offers`
-
-
-            If you are calling `getListingOffersBatch`, supply the path of `getListingOffers`.
-
-
-            **Example:** `/products/pricing/v0/listings/B000P6Q7MY/offers`'
-        method:
-          $ref: '#/components/schemas/HttpMethod_2'
-        headers:
-          $ref: '#/components/schemas/HttpRequestHeaders'
-    LowestPrices:
+      description: List of request parameters that can be accepted by `ListingOffersRequest` operation
+    NumberOfOfferListingsList:
+      type: array
+      description: The number of active offer listings for the item that was submitted. The listing count is returned by condition, one for each listing condition value that is returned.
+      items:
+        $ref: '#/components/schemas/OfferListingCountType'
+    ItemOffersResponseList:
+      description: A list of `getItemOffers` batched responses.
       type: array
       items:
-        $ref: '#/components/schemas/LowestPriceType'
-      description: A list of the lowest prices.
-    OfferCustomerType:
-      type: string
-      enum:
-      - B2C
-      - B2B
-      x-docgen-enum-table-extension:
-      - value: B2C
-        description: B2C
-      - value: B2B
-        description: B2B
-      description: Indicates whether the offer is a B2B or B2C offer
-    BuyBoxPrices:
-      type: array
-      items:
-        $ref: '#/components/schemas/BuyBoxPriceType'
-      description: A list of the Buy Box prices.
+        $ref: '#/components/schemas/ItemOffersResponse'
+      minItems: 1
+      maxItems: 20
     BuyBoxPriceType:
       type: object
       required:
@@ -7344,30 +6654,45 @@ components:
           type: string
           description: The seller identifier for the offer.
       description: Schema for an individual buybox price.
-    ItemIdentifier:
+    MoneyType_2:
+      type: object
+      properties:
+        CurrencyCode:
+          type: string
+          description: The currency code in ISO 4217 format.
+        Amount:
+          type: number
+          description: The monetary value.
+      description: Currency type and monetary value. Schema for demonstrating pricing info.
+    FulfillmentChannelType:
+      type: string
+      description: Indicates whether the item is fulfilled by Amazon or by the seller (merchant).
+      enum:
+      - Amazon
+      - Merchant
+      x-docgen-enum-table-extension:
+      - value: Amazon
+        description: Fulfilled by Amazon.
+      - value: Merchant
+        description: Fulfilled by the seller.
+    Product:
       type: object
       required:
-      - ItemCondition
-      - MarketplaceId
+      - Identifiers
       properties:
-        MarketplaceId:
-          type: string
-          description: A marketplace identifier. Specifies the marketplace from which prices are returned.
-        ASIN:
-          type: string
-          description: The Amazon Standard Identification Number (ASIN) of the item.
-        SellerSKU:
-          type: string
-          description: The seller stock keeping unit (SKU) of the item.
-        ItemCondition:
-          description: The condition of the item.
-          $ref: '#/components/schemas/ConditionType'
-      description: Information that identifies an item.
-    AttributeSetList:
-      type: array
-      description: A list of product attributes if they are applicable to the product that is returned.
-      items:
-        type: object
+        Identifiers:
+          $ref: '#/components/schemas/IdentifierType'
+        AttributeSets:
+          $ref: '#/components/schemas/AttributeSetList'
+        Relationships:
+          $ref: '#/components/schemas/RelationshipList'
+        CompetitivePricing:
+          $ref: '#/components/schemas/CompetitivePricingType'
+        SalesRankings:
+          $ref: '#/components/schemas/SalesRankList'
+        Offers:
+          $ref: '#/components/schemas/OffersList'
+      description: An item.
     OfferDetail:
       type: object
       required:
@@ -7428,6 +6753,681 @@ components:
           type: boolean
           description: When true, the seller of the item is eligible to win the Buy Box.
       description: Schema for an individual offer. Object in `OfferDetailList`.
+    ItemOffersRequestList:
+      description: A list of `getListingOffers` batched requests to run.
+      type: array
+      items:
+        $ref: '#/components/schemas/ItemOffersRequest'
+      minItems: 1
+      maxItems: 20
+    MarketplaceId_2:
+      description: A marketplace identifier. Specifies the marketplace for which prices are returned.
+      type: string
+    ListingOffersRequestParams:
+      allOf:
+      - $ref: '#/components/schemas/BatchOffersRequestParams'
+      - type: object
+        required:
+        - SellerSKU
+        properties:
+          SellerSKU:
+            type: string
+            description: The seller stock keeping unit (SKU) of the item. This is the same SKU passed as a path parameter.
+      description: List of request parameters that can be accepted by `ListingOffersRequest`
+    BatchOffersRequestParams:
+      type: object
+      required:
+      - MarketplaceId
+      - ItemCondition
+      properties:
+        MarketplaceId:
+          $ref: '#/components/schemas/MarketplaceId_2'
+        ItemCondition:
+          description: 'Filters the offer listings to be considered based on item condition. Possible values: New, Used, Collectible, Refurbished, Club.'
+          $ref: '#/components/schemas/ItemCondition'
+        CustomerType:
+          description: Indicates whether to request Consumer or Business offers. Default is Consumer.
+          $ref: '#/components/schemas/CustomerType'
+      description: Common request parameters that can be accepted by `ItemOffersRequest` and `ListingOffersRequest`
+    LowestPrices:
+      type: array
+      items:
+        $ref: '#/components/schemas/LowestPriceType'
+      description: A list of the lowest prices.
+    PriceType:
+      type: object
+      required:
+      - ListingPrice
+      properties:
+        LandedPrice:
+          description: The value calculated by adding ListingPrice + Shipping - Points. Note that if the landed price is not returned, the listing price represents the product with the lowest landed price.
+          $ref: '#/components/schemas/MoneyType_2'
+        ListingPrice:
+          description: The listing price of the item including any promotions that apply.
+          $ref: '#/components/schemas/MoneyType_2'
+        Shipping:
+          description: The shipping cost of the product. Note that the shipping cost is not always available.
+          $ref: '#/components/schemas/MoneyType_2'
+        Points:
+          description: The number of Amazon Points offered with the purchase of an item, and their monetary value.
+          $ref: '#/components/schemas/Points_2'
+      description: Schema for item's price information, including listing price, shipping price, and Amazon points.
+    HttpMethod_2:
+      description: The HTTP method associated with the individual APIs being called as part of the batch request.
+      type: string
+      enum:
+      - GET
+      - PUT
+      - PATCH
+      - DELETE
+      - POST
+      x-docgen-enum-table-extension:
+      - value: GET
+        description: GET
+      - value: PUT
+        description: PUT
+      - value: PATCH
+        description: PATCH
+      - value: DELETE
+        description: DELETE
+      - value: POST
+        description: POST
+    ItemOffersResponse:
+      allOf:
+      - $ref: '#/components/schemas/BatchOffersResponse'
+      - type: object
+        required:
+        - request
+        properties:
+          request:
+            $ref: '#/components/schemas/ItemOffersRequestParams'
+      description: Schema for an individual `ItemOffersResponse`
+    OfferCustomerType:
+      type: string
+      enum:
+      - B2C
+      - B2B
+      x-docgen-enum-table-extension:
+      - value: B2C
+        description: B2C
+      - value: B2B
+        description: B2B
+      description: Indicates whether the offer is a B2B or B2C offer
+    BatchOffersResponse:
+      type: object
+      required:
+      - body
+      properties:
+        headers:
+          $ref: '#/components/schemas/HttpResponseHeaders'
+        status:
+          $ref: '#/components/schemas/GetOffersHttpStatusLine'
+        body:
+          $ref: '#/components/schemas/GetOffersResponse'
+      description: Common schema that present in `ItemOffersResponse` and `ListingOffersResponse`
+    OfferCountType:
+      type: object
+      properties:
+        condition:
+          type: string
+          description: 'Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or Club.'
+        fulfillmentChannel:
+          description: Indicates whether the item is fulfilled by Amazon or by the seller.
+          $ref: '#/components/schemas/FulfillmentChannelType'
+        OfferCount:
+          type: integer
+          format: int32
+          description: The number of offers in a fulfillment channel that meet a specific condition.
+      description: The total number of offers for the specified condition and fulfillment channel.
+    AttributeSetList:
+      type: array
+      description: A list of product attributes if they are applicable to the product that is returned.
+      items:
+        type: object
+    IdentifierType:
+      type: object
+      required:
+      - MarketplaceASIN
+      properties:
+        MarketplaceASIN:
+          description: Indicates the item is identified by MarketPlaceId and ASIN.
+          $ref: '#/components/schemas/ASINIdentifier'
+        SKUIdentifier:
+          description: Indicates the item is identified by MarketPlaceId, SellerId, and SellerSKU.
+          $ref: '#/components/schemas/SellerSKUIdentifier'
+      description: Specifies the identifiers used to uniquely identify an item.
+    SellerSKUIdentifier:
+      type: object
+      required:
+      - MarketplaceId
+      - SellerId
+      - SellerSKU
+      properties:
+        MarketplaceId:
+          type: string
+          description: A marketplace identifier.
+        SellerId:
+          type: string
+          description: The seller identifier submitted for the operation.
+        SellerSKU:
+          type: string
+          description: The seller stock keeping unit (SKU) of the item.
+      description: Schema to identify an item by MarketPlaceId, SellerId, and SellerSKU.
+    GetItemOffersBatchResponse:
+      description: The response associated with the `getItemOffersBatch` API call.
+      type: object
+      properties:
+        responses:
+          $ref: '#/components/schemas/ItemOffersResponseList'
+    QuantityDiscountType:
+      type: string
+      enum:
+      - QUANTITY_DISCOUNT
+      x-docgen-enum-table-extension:
+      - value: QUANTITY_DISCOUNT
+        description: Quantity Discount
+      description: Indicates the type of quantity discount this price applies to.
+    Price_2:
+      type: object
+      required:
+      - status
+      properties:
+        status:
+          type: string
+          description: The status of the operation.
+        SellerSKU:
+          type: string
+          description: The seller stock keeping unit (SKU) of the item.
+        ASIN:
+          type: string
+          description: The Amazon Standard Identification Number (ASIN) of the item.
+        Product:
+          $ref: '#/components/schemas/Product'
+      description: Schema for price info in `getPricing` response
+    GetListingOffersBatchRequest:
+      description: The request associated with the `getListingOffersBatch` API call.
+      type: object
+      properties:
+        requests:
+          $ref: '#/components/schemas/ListingOffersRequestList'
+    HttpResponseHeaders:
+      description: A mapping of additional HTTP headers to send/receive for the individual batch request.
+      type: object
+      properties:
+        Date:
+          type: string
+          description: The timestamp that the API request was received.  For more information, consult [RFC 2616 Section 14](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
+        x-amzn-RequestId:
+          type: string
+          description: Unique request reference identifier.
+      additionalProperties:
+        type: string
+    CompetitivePricingType:
+      type: object
+      required:
+      - CompetitivePrices
+      - NumberOfOfferListings
+      properties:
+        CompetitivePrices:
+          $ref: '#/components/schemas/CompetitivePriceList'
+        NumberOfOfferListings:
+          $ref: '#/components/schemas/NumberOfOfferListingsList'
+        TradeInValue:
+          description: The trade-in value of the item in the trade-in program.
+          $ref: '#/components/schemas/MoneyType_2'
+      description: Competitive pricing information for the item.
+    ConditionType:
+      type: string
+      description: 'Indicates the condition of the item. Possible values: New, Used, Collectible, Refurbished, Club.'
+      enum:
+      - New
+      - Used
+      - Collectible
+      - Refurbished
+      - Club
+      x-docgen-enum-table-extension:
+      - value: New
+        description: New
+      - value: Used
+        description: Used
+      - value: Collectible
+        description: Collectible
+      - value: Refurbished
+        description: Refurbished
+      - value: Club
+        description: Club
+    PrimeInformationType:
+      description: Amazon Prime information.
+      type: object
+      required:
+      - IsPrime
+      - IsNationalPrime
+      properties:
+        IsPrime:
+          description: Indicates whether the offer is an Amazon Prime offer.
+          type: boolean
+        IsNationalPrime:
+          description: Indicates whether the offer is an Amazon Prime offer throughout the entire marketplace where it is listed.
+          type: boolean
+    BatchRequest_2:
+      description: Common properties of batch requests against individual APIs.
+      type: object
+      required:
+      - uri
+      - method
+      properties:
+        uri:
+          type: string
+          description: 'The resource path of the operation you are calling in batch without any query parameters.
+
+
+            If you are calling `getItemOffersBatch`, supply the path of `getItemOffers`.
+
+
+            **Example:** `/products/pricing/v0/items/B000P6Q7MY/offers`
+
+
+            If you are calling `getListingOffersBatch`, supply the path of `getListingOffers`.
+
+
+            **Example:** `/products/pricing/v0/listings/B000P6Q7MY/offers`'
+        method:
+          $ref: '#/components/schemas/HttpMethod_2'
+        headers:
+          $ref: '#/components/schemas/HttpRequestHeaders'
+    ItemCondition:
+      description: 'Filters the offer listings to be considered based on item condition. Possible values: New, Used, Collectible, Refurbished, Club.'
+      type: string
+      enum:
+      - New
+      - Used
+      - Collectible
+      - Refurbished
+      - Club
+      x-docgen-enum-table-extension:
+      - value: New
+        description: New
+      - value: Used
+        description: Used
+      - value: Collectible
+        description: Collectible
+      - value: Refurbished
+        description: Refurbished
+      - value: Club
+        description: Club
+    SalesRankList:
+      type: array
+      description: A list of sales rank information for the item, by category.
+      items:
+        $ref: '#/components/schemas/SalesRankType'
+    CompetitivePriceList:
+      type: array
+      description: A list of competitive pricing information.
+      items:
+        $ref: '#/components/schemas/CompetitivePriceType'
+    OfferListingCountType:
+      type: object
+      required:
+      - Count
+      - condition
+      properties:
+        Count:
+          type: integer
+          format: int32
+          description: The number of offer listings.
+        condition:
+          type: string
+          description: The condition of the item.
+      description: The number of offer listings with the specified condition.
+    ShipsFromType:
+      type: object
+      properties:
+        State:
+          type: string
+          description: The state from where the item is shipped.
+        Country:
+          type: string
+          description: The country from where the item is shipped.
+      description: The state and country from where the item is shipped.
+    ItemOffersRequestParams:
+      allOf:
+      - $ref: '#/components/schemas/BatchOffersRequestParams'
+      - type: object
+        properties:
+          Asin:
+            type: string
+            description: The Amazon Standard Identification Number (ASIN) of the item. This is the same Asin passed as a request parameter.
+      description: List of request parameters that can be accepted by `ItemOffersRequest`
+    OfferType:
+      type: object
+      required:
+      - BuyingPrice
+      - FulfillmentChannel
+      - ItemCondition
+      - ItemSubCondition
+      - RegularPrice
+      - SellerSKU
+      properties:
+        offerType:
+          description: Indicates the type of customer that the offer is valid for.
+          $ref: '#/components/schemas/OfferCustomerType'
+        BuyingPrice:
+          description: Contains pricing information that includes promotions and contains the shipping cost.
+          $ref: '#/components/schemas/PriceType'
+        RegularPrice:
+          description: The current price excluding any promotions that apply to the product. Excludes the shipping cost.
+          $ref: '#/components/schemas/MoneyType_2'
+        businessPrice:
+          description: The current listing price for Business buyers.
+          $ref: '#/components/schemas/MoneyType_2'
+        quantityDiscountPrices:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuantityDiscountPriceType'
+          description: List of `QuantityDiscountPrice` that contains item's pricing information when buy in bulk.
+        FulfillmentChannel:
+          type: string
+          description: 'The fulfillment channel for the offer listing. Possible values:
+
+
+            * Amazon - Fulfilled by Amazon.
+
+            * Merchant - Fulfilled by the seller.'
+        ItemCondition:
+          type: string
+          description: 'The item condition for the offer listing. Possible values: New, Used, Collectible, Refurbished, or Club.'
+        ItemSubCondition:
+          type: string
+          description: 'The item subcondition for the offer listing. Possible values: New, Mint, Very Good, Good, Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other.'
+        SellerSKU:
+          type: string
+          description: The seller stock keeping unit (SKU) of the item.
+      description: Schema for an individual offer.
+    ListingOffersResponse:
+      allOf:
+      - $ref: '#/components/schemas/BatchOffersResponse'
+      - type: object
+        properties:
+          request:
+            $ref: '#/components/schemas/ListingOffersRequestParams'
+      description: Schema for an individual `ListingOffersResponse`
+    GetItemOffersBatchRequest:
+      description: The request associated with the `getItemOffersBatch` API call.
+      type: object
+      properties:
+        requests:
+          $ref: '#/components/schemas/ItemOffersRequestList'
+    LowestPriceType:
+      type: object
+      required:
+      - ListingPrice
+      - condition
+      - fulfillmentChannel
+      properties:
+        condition:
+          type: string
+          description: 'Indicates the condition of the item. For example: New, Used, Collectible, Refurbished, or Club.'
+        fulfillmentChannel:
+          type: string
+          description: Indicates whether the item is fulfilled by Amazon or by the seller.
+        offerType:
+          description: Indicates the type of customer that the offer is valid for.
+          $ref: '#/components/schemas/OfferCustomerType'
+        quantityTier:
+          type: integer
+          format: int32
+          description: Indicates at what quantity this price becomes active.
+        quantityDiscountType:
+          description: Indicates the type of quantity discount this price applies to.
+          $ref: '#/components/schemas/QuantityDiscountType'
+        LandedPrice:
+          description: The value calculated by adding ListingPrice + Shipping - Points.
+          $ref: '#/components/schemas/MoneyType_2'
+        ListingPrice:
+          description: The price of the item.
+          $ref: '#/components/schemas/MoneyType_2'
+        Shipping:
+          description: The shipping cost.
+          $ref: '#/components/schemas/MoneyType_2'
+        Points:
+          description: The number of Amazon Points offered with the purchase of an item.
+          $ref: '#/components/schemas/Points_2'
+      description: Schema for an individual lowest price.
+    SalesRankType:
+      type: object
+      required:
+      - ProductCategoryId
+      - Rank
+      properties:
+        ProductCategoryId:
+          type: string
+          description: ' Identifies the item category from which the sales rank is taken.'
+        Rank:
+          type: integer
+          format: int32
+          description: The sales rank of the item within the item category.
+      description: Sales rank information for the item, by category
+    DetailedShippingTimeType:
+      type: object
+      properties:
+        minimumHours:
+          type: integer
+          format: int64
+          description: The minimum time, in hours, that the item will likely be shipped after the order has been placed.
+        maximumHours:
+          type: integer
+          format: int64
+          description: The maximum time, in hours, that the item will likely be shipped after the order has been placed.
+        availableDate:
+          type: string
+          description: The date when the item will be available for shipping. Only displayed for items that are not currently available for shipping.
+        availabilityType:
+          type: string
+          description: 'Indicates whether the item is available for shipping now, or on a known or an unknown date in the future. If known, the availableDate property indicates the date that the item will be available for shipping. Possible values: NOW, FUTURE_WITHOUT_DATE, FUTURE_WITH_DATE.'
+          enum:
+          - NOW
+          - FUTURE_WITHOUT_DATE
+          - FUTURE_WITH_DATE
+          x-docgen-enum-table-extension:
+          - value: NOW
+            description: The item is available for shipping now.
+          - value: FUTURE_WITHOUT_DATE
+            description: The item will be available for shipping on an unknown date in the future.
+          - value: FUTURE_WITH_DATE
+            description: The item will be available for shipping on a known date in the future.
+      description: The time range in which an item will likely be shipped once an order has been placed.
+    ItemIdentifier:
+      type: object
+      required:
+      - ItemCondition
+      - MarketplaceId
+      properties:
+        MarketplaceId:
+          type: string
+          description: A marketplace identifier. Specifies the marketplace from which prices are returned.
+        ASIN:
+          type: string
+          description: The Amazon Standard Identification Number (ASIN) of the item.
+        SellerSKU:
+          type: string
+          description: The seller stock keeping unit (SKU) of the item.
+        ItemCondition:
+          description: The condition of the item.
+          $ref: '#/components/schemas/ConditionType'
+      description: Information that identifies an item.
+    BuyBoxEligibleOffers:
+      type: array
+      items:
+        $ref: '#/components/schemas/OfferCountType'
+      description: A list that contains the total number of offers that are eligible for the Buy Box for the given conditions and fulfillment channels.
+    SellerFeedbackType:
+      type: object
+      required:
+      - FeedbackCount
+      properties:
+        SellerPositiveFeedbackRating:
+          type: number
+          format: double
+          description: The percentage of positive feedback for the seller in the past 365 days.
+        FeedbackCount:
+          type: integer
+          format: int64
+          description: The number of ratings received about the seller.
+      description: Information about the seller's feedback, including the percentage of positive feedback, and the total number of ratings received.
+    GetListingOffersBatchResponse:
+      description: The response associated with the `getListingOffersBatch` API call.
+      type: object
+      properties:
+        responses:
+          $ref: '#/components/schemas/ListingOffersResponseList'
+    QuantityDiscountPriceType:
+      type: object
+      description: Contains pricing information that includes special pricing when buying in bulk.
+      required:
+      - quantityTier
+      - quantityDiscountType
+      - listingPrice
+      properties:
+        quantityTier:
+          type: integer
+          format: int32
+          description: Indicates at what quantity this price becomes active.
+        quantityDiscountType:
+          description: Indicates the type of quantity discount this price applies to.
+          $ref: '#/components/schemas/QuantityDiscountType'
+        listingPrice:
+          description: The price at this quantity tier.
+          $ref: '#/components/schemas/MoneyType_2'
+    CompetitivePriceType:
+      type: object
+      required:
+      - CompetitivePriceId
+      - Price
+      properties:
+        CompetitivePriceId:
+          type: string
+          description: 'The pricing model for each price that is returned.
+
+
+            Possible values:
+
+
+            * 1 - New Buy Box Price.
+
+            * 2 - Used Buy Box Price.'
+        Price:
+          description: Pricing information for a given CompetitivePriceId value.
+          $ref: '#/components/schemas/PriceType'
+        condition:
+          type: string
+          description: 'Indicates the condition of the item whose pricing information is returned. Possible values are: New, Used, Collectible, Refurbished, or Club.'
+        subcondition:
+          type: string
+          description: 'Indicates the subcondition of the item whose pricing information is returned. Possible values are: New, Mint, Very Good, Good, Acceptable, Poor, Club, OEM, Warranty, Refurbished Warranty, Refurbished, Open Box, or Other.'
+        offerType:
+          description: Indicates the type of customer that the offer is valid for.<br><br>When the offer type is B2C in a quantity discount, the seller is winning the Buy Box because others do not have inventory at that quantity, not because they have a quantity discount on the ASIN.
+          $ref: '#/components/schemas/OfferCustomerType'
+        quantityTier:
+          type: integer
+          format: int32
+          description: Indicates at what quantity this price becomes active.
+        quantityDiscountType:
+          description: Indicates the type of quantity discount this price applies to.
+          $ref: '#/components/schemas/QuantityDiscountType'
+        sellerId:
+          type: string
+          description: The seller identifier for the offer.
+        belongsToRequester:
+          type: boolean
+          description: ' Indicates whether or not the pricing information is for an offer listing that belongs to the requester. The requester is the seller associated with the SellerId that was submitted with the request. Possible values are: true and false.'
+      description: Schema for competitive pricing information
+    RelationshipList:
+      type: array
+      description: A list that contains product variation information, if applicable.
+      items:
+        type: object
+    GetPricingResponse:
+      type: object
+      properties:
+        payload:
+          description: The payload for the getPricing and getCompetitivePricing operations.
+          $ref: '#/components/schemas/PriceList'
+        errors:
+          description: One or more unexpected errors occurred during the operation.
+          $ref: '#/components/schemas/ErrorList_2'
+      description: The response schema for the `getPricing` and `getCompetitivePricing` operations.
+    OffersList:
+      type: array
+      description: A list of offers.
+      items:
+        $ref: '#/components/schemas/OfferType'
+    CustomerType:
+      description: Indicates whether to request Consumer or Business offers. Default is Consumer.
+      type: string
+      enum:
+      - Consumer
+      - Business
+      x-docgen-enum-table-extension:
+      - value: Consumer
+        description: Consumer
+      - value: Business
+        description: Business
+    GetOffersResponse:
+      type: object
+      properties:
+        payload:
+          description: The payload for the `getListingOffers` and `getItemOffers` operations.
+          $ref: '#/components/schemas/GetOffersResult'
+        errors:
+          description: One or more unexpected errors occurred during the operation.
+          $ref: '#/components/schemas/ErrorList_2'
+      description: The response schema for the `getListingOffers` and `getItemOffers` operations.
+    ItemOffersRequest:
+      allOf:
+      - $ref: '#/components/schemas/BatchRequest_2'
+      - $ref: '#/components/schemas/BatchOffersRequestParams'
+      description: List of request parameters can be accepted by `ItemOffersRequests` operation
+    ErrorList_2:
+      type: array
+      description: A list of error responses returned when a request is unsuccessful.
+      items:
+        $ref: '#/components/schemas/Error'
+    ListingOffersResponseList:
+      description: A list of `getListingOffers` batched responses.
+      type: array
+      items:
+        $ref: '#/components/schemas/ListingOffersResponse'
+      minItems: 1
+      maxItems: 20
+    Points_2:
+      type: object
+      properties:
+        PointsNumber:
+          type: integer
+          format: int32
+          description: The number of points.
+        PointsMonetaryValue:
+          description: The monetary value of the points.
+          $ref: '#/components/schemas/MoneyType_2'
+      description: The number of Amazon Points offered with the purchase of an item, and their monetary value.
+    OfferDetailList:
+      type: array
+      items:
+        $ref: '#/components/schemas/OfferDetail'
+      maxItems: 20
+      description: A list of offer details. The list is the same length as the TotalOfferCount in the Summary or 20, whichever is less.
+    ListingOffersRequestList:
+      description: A list of `getListingOffers` batched requests to run.
+      type: array
+      items:
+        $ref: '#/components/schemas/ListingOffersRequest'
+      minItems: 1
+      maxItems: 20
+    HttpRequestHeaders:
+      description: A mapping of additional HTTP headers to send/receive for the individual batch request.
+      type: object
+      additionalProperties:
+        type: string
 x-refined-from:
 - amazon-seller-central-product-pricing-2022-05-01-original.json
 - amazon-seller-central-product-pricing-v0-original.json

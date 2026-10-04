@@ -661,37 +661,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ProductTypeVersion:
-      type: object
-      required:
-      - latest
-      - version
-      properties:
-        version:
-          type: string
-          description: Version identifier.
-        latest:
-          type: boolean
-          description: When true, the version indicated by the version identifier is the latest available for the Amazon product type.
-        releaseCandidate:
-          type: boolean
-          description: When true, the version indicated by the version identifier is the prerelease (release candidate) for the Amazon product type.
-      description: The version details for an Amazon product type.
-    PropertyGroup:
-      type: object
-      properties:
-        title:
-          type: string
-          description: The display label of the property group.
-        description:
-          type: string
-          description: The description of the property group.
-        propertyNames:
-          type: array
-          description: The names of the schema properties for the property group.
-          items:
-            type: string
-      description: A property group represents a logical grouping of schema properties that can be used for display or informational purposes.
     Error:
       type: object
       required:
@@ -708,6 +677,37 @@ components:
           type: string
           description: Additional details that can help the caller understand or fix the issue.
       description: Error response returned when the request is unsuccessful.
+    PropertyGroup:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The display label of the property group.
+        description:
+          type: string
+          description: The description of the property group.
+        propertyNames:
+          type: array
+          description: The names of the schema properties for the property group.
+          items:
+            type: string
+      description: A property group represents a logical grouping of schema properties that can be used for display or informational purposes.
+    ProductTypeVersion:
+      type: object
+      required:
+      - latest
+      - version
+      properties:
+        version:
+          type: string
+          description: Version identifier.
+        latest:
+          type: boolean
+          description: When true, the version indicated by the version identifier is the latest available for the Amazon product type.
+        releaseCandidate:
+          type: boolean
+          description: When true, the version indicated by the version identifier is the prerelease (release candidate) for the Amazon product type.
+      description: The version details for an Amazon product type.
     SchemaLink:
       description: A link to metadata schema.
       type: object
@@ -822,6 +822,17 @@ components:
           items:
             type: string
       description: An Amazon product type with a definition available.
+    ErrorList:
+      type: object
+      required:
+      - errors
+      properties:
+        errors:
+          description: A list of error responses.
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+      description: A list of error responses returned when a request is unsuccessful.
     ProductTypeList:
       type: object
       required:
@@ -837,14 +848,3 @@ components:
           description: Amazon product type version identifier.
           type: string
       description: A list of Amazon product types with definitions available.
-    ErrorList:
-      type: object
-      required:
-      - errors
-      properties:
-        errors:
-          description: A list of error responses.
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-      description: A list of error responses returned when a request is unsuccessful.

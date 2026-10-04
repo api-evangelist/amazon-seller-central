@@ -667,248 +667,20 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ItemProceedsBreakdown:
-      description: Detailed proceeds breakdown for a specific order item.
+    ItemExpense:
+      description: The expense information related to this specific item.
       type: object
-      required:
-      - type
-      - subtotal
       properties:
-        type:
-          description: "Category classification of the proceeds breakdown. \n\n**Possible values**: `ITEM`, `SHIPPING`, `GIFT_WRAP`, `COD_FEE`, `OTHER`, `TAX`, `DISCOUNT`"
+        pointsCost:
+          description: The cost of points.
+          $ref: '#/components/schemas/ItemPointsCost'
+    SerialNumberRequirement:
+      description: Whether serial numbers must be provided for this line item.
+      type: object
+      properties:
+        requirementType:
+          description: "The requirement type for this request. \n\n**Possible values**: `REQUIRED`"
           type: string
-        subtotal:
-          description: Monetary amount for the proceeds breakdown.
-          $ref: '#/components/schemas/Money'
-        detailedBreakdowns:
-          description: Further granular breakdown of the subtotal.
-          type: array
-          items:
-            $ref: '#/components/schemas/ItemProceedsDetailedBreakdown'
-    DeliveryPreference:
-      description: Contains all delivery instructions that the customer provides for the shipping address.
-      type: object
-      properties:
-        dropOffLocation:
-          type: string
-          description: The drop-off location selected by the customer.
-        addressInstruction:
-          type: string
-          description: Building instructions, nearby landmark, or navigation instructions.
-        deliveryTime:
-          $ref: '#/components/schemas/PreferredDeliveryTime'
-          description: Business hours and days when the delivery is preferred.
-        deliveryCapabilities:
-          type: array
-          items:
-            $ref: '#/components/schemas/PreferredDeliveryCapability'
-          description: A list of miscellaneous delivery capabilities associated with the shipping address.
-    ItemPromotion:
-      description: Details about any discounts, coupons, or promotional offers applied to this item.
-      type: object
-      properties:
-        breakdowns:
-          description: A list of promotions applied to the order item.
-          type: array
-          items:
-            $ref: '#/components/schemas/ItemPromotionBreakdown'
-    ItemProceeds:
-      description: The money that the seller receives from the sale of this specific item.
-      type: object
-      properties:
-        proceedsTotal:
-          description: The total monetary amount for this order item.
-          $ref: '#/components/schemas/Money'
-        breakdowns:
-          description: The breakdown of proceeds.
-          type: array
-          items:
-            $ref: '#/components/schemas/ItemProceedsBreakdown'
-    ItemCondition:
-      description: Detailed information about the physical condition and quality state of the item being sold.
-      type: object
-      properties:
-        conditionType:
-          description: 'The primary condition category that broadly describes the item''s state.
-
-
-            **Possible values**: `NEW`, `USED`, `COLLECTIBLE`, `REFURBISHED`, `PREORDER`, `CLUB`.'
-          type: string
-        conditionSubtype:
-          description: 'A more specific condition classification that provides additional detail about the item''s quality within the main condition type.
-
-
-            **Possible values**: `NEW`, `MINT`, `VERY_GOOD`, `GOOD`, `ACCEPTABLE`, `POOR`, `CLUB`, `OEM`, `WARRANTY`, `REFURBISHED_WARRANTY`, `REFURBISHED`, `OPEN_BOX`, `ANY`, `OTHER`.'
-          type: string
-        conditionNote:
-          description: Additional details provided by the seller to describe the specific condition of this particular item.
-          type: string
-    PackageItem:
-      description: Individual order item contained within a shipping package.
-      type: object
-      required:
-      - orderItemId
-      - quantity
-      properties:
-        orderItemId:
-          description: Unique identifier of the order item included in this package.
-          type: string
-        quantity:
-          description: Number of units of this item included in the package shipment.
-          type: integer
-        transparencyCodes:
-          description: The transparency codes associated with this item for product authentication.
-          type: array
-          items:
-            type: string
-    Decimal:
-      description: A decimal number with no loss of precision. Follows RFC 7159 for number representation.
-      type: string
-    ItemCancellation:
-      description: The cancellation information of the order item.
-      type: object
-      properties:
-        cancellationRequest:
-          description: Details of the cancellation request submitted for this order item.
-          $ref: '#/components/schemas/ItemCancellationRequest'
-        cancellationExecution:
-          description: Details of how the cancellation was executed for this order item.
-          $ref: '#/components/schemas/ItemCancellationExecution'
-    ItemPromotionBreakdown:
-      description: Detailed information about a specific promotional offer applied to an order item.
-      type: object
-      properties:
-        promotionId:
-          description: Unique identifier for the promotion applied to this item.
-          type: string
-    ItemPrice:
-      description: Pricing information for the order item.
-      type: object
-      properties:
-        unitPrice:
-          description: The price charged for a single unit of this product, before any quantity-based calculations.
-          $ref: '#/components/schemas/Money'
-        priceDesignation:
-          description: 'Indicates that the selling price is a special price that is only available for Amazon Business orders. For more information about the Amazon Business Seller Program, refer to the [Amazon Business website](https://www.amazon.com/b2b/info/amazon-business).
-
-
-            **Possible value**: `BUSINESS_PRICE`'
-          type: string
-    ItemTaxCalculationBreakdown:
-      description: Tax calculation breakdowns for an order item.
-      type: object
-      properties:
-        reportingScheme:
-          description: 'The tax reporting scheme applied to this order item.
-
-
-            **Possible values**:
-
-            - `UOSS` (Union one stop shop. The item being purchased is held in the EU for shipment)
-
-            - `IOSS` (Import one stop shop. The item being purchased is not held in the EU for shipment)'
-          type: string
-    OrderFulfillment:
-      description: Information about how the order is being processed, packed, and shipped to the customer.
-      type: object
-      required:
-      - fulfillmentStatus
-      properties:
-        fulfillmentStatus:
-          description: The current status of the order in the fulfillment process, from pending to handover to carrier.
-          $ref: '#/components/schemas/FulfillmentStatus'
-        fulfilledBy:
-          description: 'Specifies whether Amazon or the merchant is responsible for fulfilling this order.
-
-
-            **Possible values**: `AMAZON`, `MERCHANT`.'
-          type: string
-        fulfillmentServiceLevel:
-          description: 'The category of the shipping speed option selected by the customer at checkout.
-
-
-            **Possible values**: `EXPEDITED`, `FREE_ECONOMY`, `NEXT_DAY`, `PRIORITY`, `SAME_DAY`, `SECOND_DAY`, `SCHEDULED`, `STANDARD`.'
-          type: string
-        shipByWindow:
-          description: The promised time period within which the order must be shipped to meet the customer's delivery expectations.
-          $ref: '#/components/schemas/DateTimeRange'
-        deliverByWindow:
-          description: The promised time period within which the order should be delivered to the customer.
-          $ref: '#/components/schemas/DateTimeRange'
-        labelPrintingWindow:
-          description: 'The earliest time available to print the shipping label for the order. Printing is available any time after the earliestDateTime. Response does not include a latestDateTime.
-
-
-            Note: If blank, printing is available at any time.'
-          $ref: '#/components/schemas/DateTimeRange'
-    ErrorList:
-      type: object
-      description: A list of error responses returned when a request is unsuccessful.
-      required:
-      - errors
-      properties:
-        errors:
-          description: A list of errors.
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    GiftOption:
-      description: Gift wrapping and personalization options selected by the customer for an order item.
-      type: object
-      properties:
-        giftMessage:
-          description: Personal message from the buyer to be included with the gift-wrapped item.
-          type: string
-        giftWrapLevel:
-          description: Type or quality level of gift wrapping service selected by the customer.
-          type: string
-    OrderProceeds:
-      description: The money that the seller receives from the sale of the order.
-      type: object
-      properties:
-        grandTotal:
-          description: The total amount that the seller receives from the sale of the order.
-          $ref: '#/components/schemas/Money'
-        breakdowns:
-          description: Categorized proceeds for the order. Proceed categories are either aggregated across all order items (such as `ITEM`, `SHIPPING`, and `TAX`) or applied at the order level (such as `DELIVERY_TIP`).
-          type: array
-          items:
-            $ref: '#/components/schemas/OrderProceedsBreakdown'
-    ItemFulfillment:
-      description: Information about how the order item should be processed, packed, and shipped to the customer.
-      type: object
-      properties:
-        quantityFulfilled:
-          description: The number of units of this item that have been successfully processed and shipped.
-          type: integer
-        quantityUnfulfilled:
-          description: The number of units of this item that remain to be processed and shipped.
-          type: integer
-        picking:
-          description: Information related to the warehouse picking process for this item.
-          $ref: '#/components/schemas/ItemPicking'
-        packing:
-          description: Information related to the packaging process for this item.
-          $ref: '#/components/schemas/ItemPacking'
-        shipping:
-          description: Information related to the shipping and delivery process for this item.
-          $ref: '#/components/schemas/ItemShipping'
-    GetOrderResponse:
-      description: Order details.
-      type: object
-      required:
-      - order
-      properties:
-        order:
-          description: All available information about the requested order.
-          $ref: '#/components/schemas/Order'
-    ItemPicking:
-      description: Information related to the warehouse picking process for an order item.
-      type: object
-      properties:
-        substitutionPreference:
-          description: Substitution preference for an order item when it becomes unavailable during fulfillment.
-          $ref: '#/components/schemas/ItemSubstitutionPreference'
     ItemProduct:
       description: Product information for an order item.
       type: object
@@ -936,6 +708,214 @@ components:
         customization:
           description: Information about any personalization or customization applied to this product.
           $ref: '#/components/schemas/ItemCustomization'
+    ItemTaxCalculationBreakdown:
+      description: Tax calculation breakdowns for an order item.
+      type: object
+      properties:
+        reportingScheme:
+          description: 'The tax reporting scheme applied to this order item.
+
+
+            **Possible values**:
+
+            - `UOSS` (Union one stop shop. The item being purchased is held in the EU for shipment)
+
+            - `IOSS` (Import one stop shop. The item being purchased is not held in the EU for shipment)'
+          type: string
+    OrderTaxRegistration:
+      description: Tax registration information for an entity associated with the order.
+      type: object
+      properties:
+        entityType:
+          description: 'The type of entity that the tax registration belongs to.
+
+
+            **Possible values**:
+
+            - `BUYER` (Indicates that this is the buyer''s tax registration information)
+
+            - `MERCHANT` (Indicates that this is the merchant''s tax registration information)
+
+            - `MARKETPLACE` (Indicates that this is the marketplace''s tax registration information)'
+          type: string
+        legalName:
+          description: The legal name associated with the tax registration.
+          type: string
+        taxRegistrationType:
+          description: 'The type of the tax registration number.
+
+
+            **Possible values**: `BUSINESS`, `VAT`, `CST`, `CPF`, `CNPJ`'
+          type: string
+        taxRegistrationNumber:
+          description: The tax registration number that identifies the entity for tax purposes.
+          type: string
+        taxRegistrationAddress:
+          description: The address associated with the tax registration.
+          $ref: '#/components/schemas/CustomerAddress'
+        taxRegistrationAttributes:
+          description: Additional attributes related to the tax registration.
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxRegistrationAttribute'
+    ItemCancellation:
+      description: The cancellation information of the order item.
+      type: object
+      properties:
+        cancellationRequest:
+          description: Details of the cancellation request submitted for this order item.
+          $ref: '#/components/schemas/ItemCancellationRequest'
+        cancellationExecution:
+          description: Details of how the cancellation was executed for this order item.
+          $ref: '#/components/schemas/ItemCancellationExecution'
+    PointsGranted:
+      description: Information about Amazon Points awarded with an item purchase.
+      type: object
+      properties:
+        pointsNumber:
+          type: integer
+          description: Total number of Amazon Points granted to the customer's account for this item purchase.
+        pointsMonetaryValue:
+          description: Cash equivalent value of the awarded Amazon Points.
+          $ref: '#/components/schemas/Money'
+    ItemProceedsDetailedBreakdown:
+      description: Further granular breakdown of the subtotal of the proceeds breakdown, only available for TAX and DISCOUNT proceeds types.
+      type: object
+      properties:
+        subtype:
+          description: "Specific classification of the further granular breakdown. \n\n**Possible values**: `ITEM`, `SHIPPING`, `GIFT_WRAP`, `COD_FEE`, `OTHER`, `DISCOUNT`"
+          type: string
+        value:
+          description: Monetary amount for the further granular breakdown.
+          $ref: '#/components/schemas/Money'
+    PreferredDeliveryCapability:
+      description: "Special delivery capabilities available at the shipping address that may affect delivery options and methods. \n\n**Possible values**:\n- `HAS_ACCESS_POINT` (Delivery location includes designated pickup or drop-off access points)\n- `PALLET_ENABLED` (Address is equipped to receive large pallet deliveries)\n- `PALLET_DISABLED` (Address cannot accommodate pallet delivery methods)"
+      type: string
+    PaymentExecution:
+      description: Payment execution details for an order.
+      type: object
+      properties:
+        paymentMethod:
+          description: The payment method used for this payment execution (for example, CashOnDelivery, ConvenienceStore, CreditCard, Invoice, Pix, and so on).
+          type: string
+        paymentAmount:
+          description: The monetary value of the payment execution.
+          $ref: '#/components/schemas/Money'
+        acquirerId:
+          description: "The unique identifier of the payment processor or acquiring bank that authorizes the payment. \n\n**Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `paymentMethod` is `CreditCard` or `Pix`."
+          type: string
+        cardBrand:
+          description: 'The card network or brand used in the payment transaction (for example, Visa or Mastercard).
+
+
+            **Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `paymentMethod` is `CreditCard`.'
+          type: string
+        authorizationCode:
+          description: 'The unique code that confirms the payment authorization.
+
+
+            **Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `paymentMethod` is `CreditCard` or `Pix`.'
+          type: string
+    HourMinute:
+      type: object
+      description: The time when the business opens or closes.
+      properties:
+        hour:
+          type: integer
+          description: The hour when the business opens or closes, in 24-hour format (0-23).
+        minute:
+          type: integer
+          description: The minute when the business opens or closes.
+    ItemPromotion:
+      description: Details about any discounts, coupons, or promotional offers applied to this item.
+      type: object
+      properties:
+        breakdowns:
+          description: A list of promotions applied to the order item.
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemPromotionBreakdown'
+    OrderPackage:
+      description: Information about a physical shipping package, including tracking details. **Note:** Only available for merchant-fulfilled (FBM) orders.
+      type: object
+      required:
+      - packageReferenceId
+      properties:
+        packageReferenceId:
+          description: A unique identifier for this package within the context of the order.
+          type: string
+        createdTime:
+          description: The exact time when this shipping package was created and prepared for shipment. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+          type: string
+          format: date-time
+        packageStatus:
+          description: The current status of this package.
+          $ref: '#/components/schemas/PackageStatus'
+        carrier:
+          description: The carrier responsible for transporting this package to the customer.
+          type: string
+        shipTime:
+          description: The exact time when this package was handed over to the carrier and began its journey to the customer. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+          type: string
+          format: date-time
+        shippingService:
+          description: The specific shipping method or service used for delivering this package.
+          type: string
+        trackingNumber:
+          description: The carrier-provided tracking number that customers can use to monitor the package's delivery progress.
+          type: string
+        shipFromAddress:
+          description: The physical address from which this package was shipped, typically the merchant's warehouse or fulfillment center.
+          $ref: '#/components/schemas/MerchantAddress'
+        packageItems:
+          description: A list of all order items included in this specific package.
+          type: array
+          items:
+            $ref: '#/components/schemas/PackageItem'
+    FulfillmentStatus:
+      description: The current fulfillment status of an order, indicating where the order is in the fulfillment process from placement to handover to carrier.
+      type: string
+      enum:
+      - PENDING_AVAILABILITY
+      - PENDING
+      - UNSHIPPED
+      - PARTIALLY_SHIPPED
+      - SHIPPED
+      - CANCELLED
+      - UNFULFILLABLE
+      x-docgen-enum-table-extension:
+      - value: PENDING_AVAILABILITY
+        description: This status is available for pre-orders only. The order has been placed, payment has not been authorized, and the release date of the item is in the future. The order is not ready for shipment.
+      - value: PENDING
+        description: The order has been placed but is not ready for shipment. For standard orders, the initial order status is `PENDING`. For pre-orders, the initial order status is `PENDING_AVAILABILITY`, and the order passes into the `PENDING` status when payment authorization begins.
+      - value: UNSHIPPED
+        description: The order is ready for shipment, but no items in the order have been shipped.
+      - value: PARTIALLY_SHIPPED
+        description: At least one, but not all, items in the order have been shipped.
+      - value: SHIPPED
+        description: All items have been shipped to the customer.
+      - value: CANCELLED
+        description: The order has been canceled and will not be fulfilled.
+      - value: UNFULFILLABLE
+        description: The order cannot be fulfilled. This state only applies to Amazon-fulfilled orders that were not placed on Amazon's retail website.
+    ItemProceedsBreakdown:
+      description: Detailed proceeds breakdown for a specific order item.
+      type: object
+      required:
+      - type
+      - subtotal
+      properties:
+        type:
+          description: "Category classification of the proceeds breakdown. \n\n**Possible values**: `ITEM`, `SHIPPING`, `GIFT_WRAP`, `COD_FEE`, `OTHER`, `TAX`, `DISCOUNT`"
+          type: string
+        subtotal:
+          description: Monetary amount for the proceeds breakdown.
+          $ref: '#/components/schemas/Money'
+        detailedBreakdowns:
+          description: Further granular breakdown of the subtotal.
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemProceedsDetailedBreakdown'
     ItemSubstitutionOption:
       type: object
       description: Alternative product that can be substituted for an original order item when it becomes unavailable during fulfillment.
@@ -955,64 +935,92 @@ components:
         measurement:
           description: Unit of measure and quantity specifications for the substitute product.
           $ref: '#/components/schemas/Measurement'
-    ItemShippingConstraints:
-      description: Special shipping requirements and restrictions that must be observed when shipping an order item.
+    ItemPromotionBreakdown:
+      description: Detailed information about a specific promotional offer applied to an order item.
       type: object
       properties:
-        palletDelivery:
-          description: The line item must be delivered by pallet.
-          $ref: '#/components/schemas/ConstraintType'
-        cashOnDelivery:
-          description: Payment must be collected from the customer at the time of delivery.
-          $ref: '#/components/schemas/ConstraintType'
-        signatureConfirmation:
-          description: The recipient of the line item must sign to confirm its delivery.
-          $ref: '#/components/schemas/ConstraintType'
-        recipientIdentityVerification:
-          description: The person receiving the line item must be the same as the intended recipient of the order.
-          $ref: '#/components/schemas/ConstraintType'
-        recipientAgeVerification:
-          description: The carrier must confirm that the recipient is of the legal age to receive the line item upon delivery.
-          $ref: '#/components/schemas/ConstraintType'
-    AddressExtendedFields:
-      description: "Additional address components that provide more detailed location information, helping with precise delivery routing. \n\n**Note**: Only available with Brazil shipping addresses."
+        promotionId:
+          description: Unique identifier for the promotion applied to this item.
+          type: string
+    ItemShipping:
+      description: Information related to the shipping and delivery process for an order item.
       type: object
       properties:
-        streetName:
-          type: string
-          description: The name of the street.
-        streetNumber:
-          type: string
-          description: The house, building, or property number associated with the location's street address.
-        complement:
-          type: string
-          description: The floor number / unit number.
-        neighborhood:
-          type: string
-          description: The neighborhood. This value is only used in some countries (such as Brazil).
-    OrderTaxInvoicing:
-      description: Tax invoicing information for the order.
+        scheduledDeliveryWindow:
+          description: When this item is expected to be delivered to the customer.
+          $ref: '#/components/schemas/DateTimeRange'
+        shippingConstraints:
+          description: Special shipping requirements and restrictions that apply to this item.
+          $ref: '#/components/schemas/ItemShippingConstraints'
+        internationalShipping:
+          description: Additional information needed for cross-border delivery of this item.
+          $ref: '#/components/schemas/ItemInternationalShipping'
+    Decimal:
+      description: A decimal number with no loss of precision. Follows RFC 7159 for number representation.
+      type: string
+    ItemPicking:
+      description: Information related to the warehouse picking process for an order item.
       type: object
       properties:
-        buyerInvoicePreference:
-          description: "The buyer's invoicing preference, which indicates whether the seller should issue an individual or a business invoice to the buyer. \n\n **Note**: This attribute is only available in the Turkey marketplace. \n\n**Possible values**:\n- `INDIVIDUAL` (Issues an individual invoice to the buyer)\n- `BUSINESS` (Issues a business invoice to the buyer)"
+        substitutionPreference:
+          description: Substitution preference for an order item when it becomes unavailable during fulfillment.
+          $ref: '#/components/schemas/ItemSubstitutionPreference'
+    TimeWindow:
+      type: object
+      description: Specific time interval defining the start and end times.
+      properties:
+        startTime:
+          $ref: '#/components/schemas/HourMinute'
+          description: The beginning of the time window.
+        endTime:
+          $ref: '#/components/schemas/HourMinute'
+          description: The end of the time window.
+    Error:
+      description: Error response returned when the request is unsuccessful.
+      required:
+      - code
+      - message
+      type: object
+      properties:
+        code:
+          description: An error code that identifies the type of error that occurred.
           type: string
-        invoiceStatus:
-          description: 'The status of the invoice. Only available for Easy Ship orders and orders in the Brazil marketplace.
-
-
-            **Possible values**:
-
-            - `NOT_REQUIRED` (The order does not require an electronic invoice to be uploaded)
-
-            - `NOT_FOUND` (The order requires an electronic invoice but it is not uploaded)
-
-            - `PROCESSING` (The required electronic invoice was uploaded and is processing)
-
-            - `ERRORED` (The uploaded electronic invoice was not accepted)
-
-            - `ACCEPTED` (The uploaded electronic invoice was accepted)'
+        message:
+          description: A message that describes the error condition.
           type: string
+        details:
+          description: Additional details that can help the caller understand or fix the issue.
+          type: string
+    PackageItem:
+      description: Individual order item contained within a shipping package.
+      type: object
+      required:
+      - orderItemId
+      - quantity
+      properties:
+        orderItemId:
+          description: Unique identifier of the order item included in this package.
+          type: string
+        quantity:
+          description: Number of units of this item included in the package shipment.
+          type: integer
+        transparencyCodes:
+          description: The transparency codes associated with this item for product authentication.
+          type: array
+          items:
+            type: string
+    Money:
+      description: An amount of money, including units in the form of currency.
+      properties:
+        amount:
+          $ref: '#/components/schemas/Decimal'
+        currencyCode:
+          description: The three-letter currency code that identifies the currency type, following ISO 4217 international standards.
+          type: string
+      required:
+      - amount
+      - currencyCode
+      type: object
     MerchantAddress:
       description: The physical address of the merchant.
       type: object
@@ -1047,129 +1055,6 @@ components:
         countryCode:
           description: The two-letter country code for the address, in ISO 3166-1 format.
           type: string
-    Recipient:
-      description: Information about the recipient to whom the order should be delivered.
-      type: object
-      properties:
-        deliveryAddress:
-          description: The address where the order should be delivered to the customer.
-          $ref: '#/components/schemas/CustomerAddress'
-        deliveryPreference:
-          description: Special instructions and preferences that the customer specifies for how the order should be delivered.
-          $ref: '#/components/schemas/DeliveryPreference'
-    SalesChannel:
-      description: Information about where the customer placed this order.
-      type: object
-      required:
-      - channelName
-      properties:
-        channelName:
-          description: 'The name of the sales platform or channel where the customer placed this order.
-
-
-            **Possible values**: `AMAZON`, `NON_AMAZON`'
-          type: string
-        marketplaceId:
-          description: The unique identifier for the specific marketplace within the sales channel where this order was placed.
-          type: string
-        marketplaceName:
-          description: The human-readable name of the marketplace where this order was placed.
-          type: string
-    OrderProceedsBreakdown:
-      description: An entry detailing proceeds information.
-      type: object
-      required:
-      - type
-      - subtotal
-      properties:
-        type:
-          description: "The proceeds category. \n\n**Possible values**: `ITEM`, `SHIPPING`, `GIFT_WRAP`, `COD_FEE`, `TAX`, `DISCOUNT`, `DELIVERY_TIP`, `OTHER`. **Note:** `DELIVERY_TIP` is charged separately and not attributed to a specific item. The remaining categories are aggregated across all order items."
-          type: string
-        status:
-          description: 'The processing status of the charge. Only present for categories processed separately after checkout, such as `DELIVERY_TIP`.
-
-
-            **Possible values**: `PENDING`, `FINALIZED`.'
-          type: string
-        subtotal:
-          description: The monetary amount for the proceeds category.
-          $ref: '#/components/schemas/Money'
-    ConstraintType:
-      type: string
-      description: Classification of the enforcement level required for shipping and delivery constraints.
-      enum:
-      - MANDATORY
-      x-docgen-enum-table-extension:
-      - value: MANDATORY
-        description: Constraint that must be strictly enforced for delivery.
-    OrderTax:
-      description: Tax information about the order.
-      type: object
-      properties:
-        taxRegistrations:
-          description: A list of tax registrations associated with the order.
-          type: array
-          items:
-            $ref: '#/components/schemas/OrderTaxRegistration'
-        taxInvoicing:
-          description: Tax invoicing information for the order.
-          $ref: '#/components/schemas/OrderTaxInvoicing'
-    ExceptionDate:
-      type: object
-      description: Special dates when normal business hours are modified or suspended, requiring different delivery scheduling.
-      properties:
-        exceptionDate:
-          description: Specific calendar date when normal operating hours do not apply. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format at day granularity.
-          type: string
-          format: date
-        exceptionDateType:
-          description: Operational status of the business on the specified exception date.
-          type: string
-          enum:
-          - CLOSED
-          - OPEN
-          x-docgen-enum-table-extension:
-          - value: CLOSED
-            description: Business operations are suspended on this date.
-          - value: OPEN
-            description: Business operations are active on this date.
-        timeWindows:
-          type: array
-          description: Alternative operating hours that apply specifically to this exception date.
-          items:
-            $ref: '#/components/schemas/TimeWindow'
-    TimeWindow:
-      type: object
-      description: Specific time interval defining the start and end times.
-      properties:
-        startTime:
-          $ref: '#/components/schemas/HourMinute'
-          description: The beginning of the time window.
-        endTime:
-          $ref: '#/components/schemas/HourMinute'
-          description: The end of the time window.
-    AssociatedOrderItem:
-      description: An associated order item that a customer has purchased with the product. For example, a tire installation service purchased with tires.
-      type: object
-      properties:
-        orderId:
-          description: The order identifier of the associated order item.
-          type: string
-        orderItemId:
-          description: The order item identifier of the associated order item.
-          type: string
-        associationType:
-          description: 'The type of association between the order items.
-
-
-            **Possible values**:
-
-            - `VALUE_ADD_SERVICE` (The associated item is a service order)'
-          type: string
-      example:
-        orderId: 123-4567890-7654321
-        orderItemId: '12345678904321'
-        associationType: VALUE_ADD_SERVICE
     ItemSubstitutionPreference:
       type: object
       description: Substitution preference for an order item when it becomes unavailable during fulfillment.
@@ -1195,143 +1080,97 @@ components:
           description: List of alternative products that can be substituted for the original item if it becomes unavailable.
           items:
             $ref: '#/components/schemas/ItemSubstitutionOption'
-    BusinessHour:
-      type: object
-      description: Business days and hours when the destination is open for deliveries.
-      properties:
-        dayOfWeek:
-          type: string
-          description: Specific day of the week for which operating hours are being defined.
-          enum:
-          - SUN
-          - MON
-          - TUE
-          - WED
-          - THU
-          - FRI
-          - SAT
-          x-docgen-enum-table-extension:
-          - value: SUN
-            description: Sunday
-          - value: MON
-            description: Monday
-          - value: TUE
-            description: Tuesday
-          - value: WED
-            description: Wednesday
-          - value: THU
-            description: Thursday
-          - value: FRI
-            description: Friday
-          - value: SAT
-            description: Saturday
-        timeWindows:
-          type: array
-          description: Collection of time windows during which the location is available for deliveries on the specified day.
-          items:
-            $ref: '#/components/schemas/TimeWindow'
-    Money:
-      description: An amount of money, including units in the form of currency.
-      properties:
-        amount:
-          $ref: '#/components/schemas/Decimal'
-        currencyCode:
-          description: The three-letter currency code that identifies the currency type, following ISO 4217 international standards.
-          type: string
-      required:
-      - amount
-      - currencyCode
-      type: object
-    OrderItem:
-      description: Information about a single product within an order.
+    FulfillmentOrder:
+      description: Information about a fulfillment order associated with a customer order. A fulfillment order represents a unit of fulfillment created by Amazon for the order. **Note:** Only available for EasyShip orders at present.
       type: object
       required:
-      - orderItemId
-      - quantityOrdered
-      - product
+      - fulfillmentOrderId
       properties:
-        orderItemId:
-          description: A unique identifier for this specific item within the order.
+        fulfillmentOrderId:
+          description: The Fulfillment Order ID assigned by Amazon after fulfillment planning. This identifier is identical to the Shipment ID required by External Fulfillment APIs.
           type: string
-        quantityOrdered:
-          description: The number of units of this item that the customer ordered.
-          type: integer
-        measurement:
-          description: The unit of measure and value for items sold by weight, volume, or other measurements rather than simple count.
-          $ref: '#/components/schemas/Measurement'
-        associatedOrderItems:
-          description: A list of order items associated with this item. For example, a value-add service purchased with the product.
-          type: array
-          items:
-            $ref: '#/components/schemas/AssociatedOrderItem'
-        programs:
-          type: array
-          description: 'Special programs that apply specifically to this item within the order.
+    ItemTaxCollection:
+      description: Tax collection information for an order item.
+      type: object
+      properties:
+        model:
+          description: 'The tax collection model applied to the item.
 
 
-            **Possible values**: `TRANSPARENCY`, `SUBSCRIBE_AND_SAVE`'
+            **Possible values**:
+
+            - `MARKETPLACE_FACILITATOR` (Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller)'
+          type: string
+        responsibleParty:
+          description: The party responsible for withholding the taxes and remitting them to the taxing authority.
+          type: string
+    Buyer:
+      description: Information about the customer who purchased the order.
+      type: object
+      properties:
+        buyerName:
+          description: The full name of the customer who placed the order.
+          type: string
+        buyerEmail:
+          description: The anonymized email address of the buyer. **Note:** Only available for merchant-fulfilled (FBM) orders.
+          type: string
+        buyerCompanyName:
+          description: The name of the company or organization for a business order.
+          type: string
+        buyerPurchaseOrderNumber:
+          description: The purchase order (PO) number entered by the buyer at checkout. Only returned for orders where the buyer entered a PO number at checkout.
+          type: string
+    DeliveryPreference:
+      description: Contains all delivery instructions that the customer provides for the shipping address.
+      type: object
+      properties:
+        dropOffLocation:
+          type: string
+          description: The drop-off location selected by the customer.
+        addressInstruction:
+          type: string
+          description: Building instructions, nearby landmark, or navigation instructions.
+        deliveryTime:
+          $ref: '#/components/schemas/PreferredDeliveryTime'
+          description: Business hours and days when the delivery is preferred.
+        deliveryCapabilities:
+          type: array
           items:
-            type: string
-        product:
-          description: Information about the product being ordered.
-          $ref: '#/components/schemas/ItemProduct'
-        proceeds:
-          description: The money that the seller receives from the sale of this specific item.
-          $ref: '#/components/schemas/ItemProceeds'
-        expense:
-          description: The expense information related to this specific item.
-          $ref: '#/components/schemas/ItemExpense'
-        promotion:
-          description: Details about any discounts, coupons, or promotional offers applied to this item.
-          $ref: '#/components/schemas/ItemPromotion'
-        cancellation:
-          description: The cancellation information of the order item.
-          $ref: '#/components/schemas/ItemCancellation'
-        fulfillment:
-          description: Information about how the order item should be processed, packed, and shipped to the customer.
-          $ref: '#/components/schemas/ItemFulfillment'
-        tax:
-          description: Tax-related information for this order item.
-          $ref: '#/components/schemas/ItemTax'
-    Alias:
-      description: An alternative identifier that provides a different way to reference the same order.
+            $ref: '#/components/schemas/PreferredDeliveryCapability'
+          description: A list of miscellaneous delivery capabilities associated with the shipping address.
+    OrderFulfillment:
+      description: Information about how the order is being processed, packed, and shipped to the customer.
       type: object
       required:
-      - aliasId
-      - aliasType
+      - fulfillmentStatus
       properties:
-        aliasId:
-          description: The alternative identifier value that can be used to reference this order.
-          type: string
-        aliasType:
-          description: 'The kind of alternative identifier this represents.
+        fulfillmentStatus:
+          description: The current status of the order in the fulfillment process, from pending to handover to carrier.
+          $ref: '#/components/schemas/FulfillmentStatus'
+        fulfilledBy:
+          description: 'Specifies whether Amazon or the merchant is responsible for fulfilling this order.
 
 
-            **Possible values**: `SELLER_ORDER_ID`'
+            **Possible values**: `AMAZON`, `MERCHANT`.'
           type: string
-    PointsGranted:
-      description: Information about Amazon Points awarded with an item purchase.
-      type: object
-      properties:
-        pointsNumber:
-          type: integer
-          description: Total number of Amazon Points granted to the customer's account for this item purchase.
-        pointsMonetaryValue:
-          description: Cash equivalent value of the awarded Amazon Points.
-          $ref: '#/components/schemas/Money'
-    ItemShipping:
-      description: Information related to the shipping and delivery process for an order item.
-      type: object
-      properties:
-        scheduledDeliveryWindow:
-          description: When this item is expected to be delivered to the customer.
+        fulfillmentServiceLevel:
+          description: 'The category of the shipping speed option selected by the customer at checkout.
+
+
+            **Possible values**: `EXPEDITED`, `FREE_ECONOMY`, `NEXT_DAY`, `PRIORITY`, `SAME_DAY`, `SECOND_DAY`, `SCHEDULED`, `STANDARD`.'
+          type: string
+        shipByWindow:
+          description: The promised time period within which the order must be shipped to meet the customer's delivery expectations.
           $ref: '#/components/schemas/DateTimeRange'
-        shippingConstraints:
-          description: Special shipping requirements and restrictions that apply to this item.
-          $ref: '#/components/schemas/ItemShippingConstraints'
-        internationalShipping:
-          description: Additional information needed for cross-border delivery of this item.
-          $ref: '#/components/schemas/ItemInternationalShipping'
+        deliverByWindow:
+          description: The promised time period within which the order should be delivered to the customer.
+          $ref: '#/components/schemas/DateTimeRange'
+        labelPrintingWindow:
+          description: 'The earliest time available to print the shipping label for the order. Printing is available any time after the earliestDateTime. Response does not include a latestDateTime.
+
+
+            Note: If blank, printing is available at any time.'
+          $ref: '#/components/schemas/DateTimeRange'
     PackageStatus:
       description: Current status and detailed tracking information for a shipping package throughout the delivery process.
       type: object
@@ -1364,55 +1203,25 @@ components:
         detailedStatus:
           description: "Granular status information providing specific details about the package's current location and handling stage. \n\n**Possible values**:\n- `PENDING_SCHEDULE` (Package awaiting pickup scheduling)\n- `PENDING_PICK_UP` (Package ready for carrier collection from seller)\n- `PENDING_DROP_OFF` (Package awaiting seller delivery to carrier)\n- `LABEL_CANCELLED` (Shipping label canceled by seller)\n- `PICKED_UP` (Package collected by carrier from seller location)\n- `DROPPED_OFF` (Package delivered to carrier by seller)\n- `AT_ORIGIN_FC` (Package at originating fulfillment center)\n- `AT_DESTINATION_FC` (Package at destination fulfillment center)\n- `DELIVERED` (Package successfully delivered to recipient)\n- `REJECTED_BY_BUYER` (Package refused by intended recipient)\n- `UNDELIVERABLE` (Package cannot be delivered due to address or access issues)\n- `RETURNING_TO_SELLER` (Package in transit back to seller)\n- `RETURNED_TO_SELLER` (Package successfully returned to seller)\n- `LOST` (Package location unknown or confirmed lost)\n- `OUT_FOR_DELIVERY` (Package on delivery vehicle for final delivery)\n- `DAMAGED` (Package damaged during transit)\n"
           type: string
-    PaymentExecution:
-      description: Payment execution details for an order.
+    OrderTax:
+      description: Tax information about the order.
       type: object
       properties:
-        paymentMethod:
-          description: The payment method used for this payment execution (for example, CashOnDelivery, ConvenienceStore, CreditCard, Invoice, Pix, and so on).
-          type: string
-        paymentAmount:
-          description: The monetary value of the payment execution.
-          $ref: '#/components/schemas/Money'
-        acquirerId:
-          description: "The unique identifier of the payment processor or acquiring bank that authorizes the payment. \n\n**Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `paymentMethod` is `CreditCard` or `Pix`."
-          type: string
-        cardBrand:
-          description: 'The card network or brand used in the payment transaction (for example, Visa or Mastercard).
-
-
-            **Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `paymentMethod` is `CreditCard`.'
-          type: string
-        authorizationCode:
-          description: 'The unique code that confirms the payment authorization.
-
-
-            **Note**: This attribute is only available for orders in the Brazil (BR) marketplace when the `paymentMethod` is `CreditCard` or `Pix`.'
-          type: string
-    ItemCancellationExecution:
-      description: Details of how the cancellation was executed for a specific order item, including who performed the cancellation and the reason.
-      type: object
-      properties:
-        cancelledBy:
-          description: "Entity that executed the cancellation for this item. \n\n**Possible values**: `BUYER`, `MERCHANT`, `AMAZON`"
-          type: string
-        cancelReason:
-          description: Explanation provided for why the cancellation was executed.
-          type: string
-    ItemTax:
-      description: Tax information for an order item.
-      type: object
-      properties:
-        taxCalculationBreakdowns:
-          description: A list of tax calculation breakdowns for the order item.
+        taxRegistrations:
+          description: A list of tax registrations associated with the order.
           type: array
           items:
-            $ref: '#/components/schemas/ItemTaxCalculationBreakdown'
-        taxCollections:
-          description: A list of tax collections for the order item.
-          type: array
-          items:
-            $ref: '#/components/schemas/ItemTaxCollection'
+            $ref: '#/components/schemas/OrderTaxRegistration'
+        taxInvoicing:
+          description: Tax invoicing information for the order.
+          $ref: '#/components/schemas/OrderTaxInvoicing'
+    ItemPointsCost:
+      description: Information about Amazon Points granted with the purchase of an item, including both quantity and monetary equivalent value.
+      type: object
+      properties:
+        pointsGranted:
+          description: Details of the Amazon Points granted, including count and monetary value.
+          $ref: '#/components/schemas/PointsGranted'
     TaxRegistrationAttribute:
       description: An additional attribute associated with a tax registration.
       type: object
@@ -1426,215 +1235,6 @@ components:
         value:
           description: The value of the tax registration attribute.
           type: string
-    Buyer:
-      description: Information about the customer who purchased the order.
-      type: object
-      properties:
-        buyerName:
-          description: The full name of the customer who placed the order.
-          type: string
-        buyerEmail:
-          description: The anonymized email address of the buyer. **Note:** Only available for merchant-fulfilled (FBM) orders.
-          type: string
-        buyerCompanyName:
-          description: The name of the company or organization for a business order.
-          type: string
-        buyerPurchaseOrderNumber:
-          description: The purchase order (PO) number entered by the buyer at checkout. Only returned for orders where the buyer entered a PO number at checkout.
-          type: string
-    DateTimeRange:
-      description: A time period with start and end boundaries.
-      type: object
-      properties:
-        earliestDateTime:
-          description: The beginning of the time period, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-          type: string
-          format: date-time
-        latestDateTime:
-          description: The end of the time period, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-          type: string
-          format: date-time
-    CustomerAddress:
-      description: The physical address of the customer.
-      type: object
-      properties:
-        name:
-          description: The full name of the person who will receive the delivery at this address.
-          type: string
-        companyName:
-          type: string
-          description: The name of the business or organization at this address.
-        addressLine1:
-          description: The primary street address.
-          type: string
-        addressLine2:
-          description: Additional address information.
-          type: string
-        addressLine3:
-          description: Additional address information.
-          type: string
-        city:
-          description: The city of the address.
-          type: string
-        districtOrCounty:
-          description: The district or county of the address.
-          type: string
-        stateOrRegion:
-          description: The state, province, or region of the address.
-          type: string
-        municipality:
-          type: string
-          description: The municipality of the address.
-        postalCode:
-          description: The postal code, ZIP code, or equivalent mailing code of the address.
-          type: string
-        countryCode:
-          description: The two-letter country code identifying the country of the address, in ISO 3166-1 format.
-          type: string
-        phone:
-          description: 'The contact phone number for delivery coordination and customer communication.
-
-
-            **Note**: The buyer phone number will be suppressed in some cases, including but not limited to:
-
-
-            - All FBA (Fulfillment by Amazon) orders.
-
-            - Shipped FBM (Fulfilled by the merchant) orders when current date is past the latest delivery date.'
-          type: string
-        extendedFields:
-          description: 'Additional address components specific to certain countries that provide more detailed location information.
-
-
-            **Note**: Only available with Brazil shipping addresses.'
-          $ref: '#/components/schemas/AddressExtendedFields'
-        addressType:
-          description: 'The type of location.
-
-
-            **Possible values**: `RESIDENTIAL`, `COMMERCIAL`, `PICKUP_POINT`'
-          type: string
-    ItemCancellationRequest:
-      description: Detailed information about a cancellation request submitted for a specific order item.
-      type: object
-      properties:
-        requester:
-          description: "Entity that initiated the cancellation request for this item. \n\n**Possible values**: `BUYER`"
-          type: string
-        cancelReason:
-          description: Explanation provided for why the cancellation was requested.
-          type: string
-    ItemCustomization:
-      description: Information about any personalization, customization, or special modifications applied to this order item.
-      type: object
-      properties:
-        customizedUrl:
-          description: The URL of the customized data for custom orders from the Amazon Custom program.
-          type: string
-    SerialNumberRequirement:
-      description: Whether serial numbers must be provided for this line item.
-      type: object
-      properties:
-        requirementType:
-          description: "The requirement type for this request. \n\n**Possible values**: `REQUIRED`"
-          type: string
-    ItemTaxCollection:
-      description: Tax collection information for an order item.
-      type: object
-      properties:
-        model:
-          description: 'The tax collection model applied to the item.
-
-
-            **Possible values**:
-
-            - `MARKETPLACE_FACILITATOR` (Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller)'
-          type: string
-        responsibleParty:
-          description: The party responsible for withholding the taxes and remitting them to the taxing authority.
-          type: string
-    PreferredDeliveryTime:
-      type: object
-      description: Customer-specified time preferences for when deliveries should be attempted at the destination address.
-      properties:
-        businessHours:
-          type: array
-          items:
-            $ref: '#/components/schemas/BusinessHour'
-          description: Business hours when the business is open for deliveries.
-        exceptionDates:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExceptionDate'
-          description: Specific dates within the next 30 days when normal business hours do not apply.
-    FulfillmentOrder:
-      description: Information about a fulfillment order associated with a customer order. A fulfillment order represents a unit of fulfillment created by Amazon for the order. **Note:** Only available for EasyShip orders at present.
-      type: object
-      required:
-      - fulfillmentOrderId
-      properties:
-        fulfillmentOrderId:
-          description: The Fulfillment Order ID assigned by Amazon after fulfillment planning. This identifier is identical to the Shipment ID required by External Fulfillment APIs.
-          type: string
-    OrderPayment:
-      description: Payment information about the order.
-      type: object
-      properties:
-        paymentExecutions:
-          description: A list of payment executions for the order.
-          type: array
-          items:
-            $ref: '#/components/schemas/PaymentExecution'
-    ItemInternationalShipping:
-      description: Additional requirements needed for cross-border shipping of an order item.
-      type: object
-      properties:
-        iossNumber:
-          description: Import One-Stop Shop registration number required for EU VAT compliance when shipping from outside the European Union. Sellers shipping to the EU from outside the EU must provide this IOSS number to their carrier when Amazon has collected the VAT on the sale.
-          type: string
-    SKU:
-      description: The seller SKU of a product (catalog item). This is a unique number assigned by the seller when listing an item.
-      type: string
-    Error:
-      description: Error response returned when the request is unsuccessful.
-      required:
-      - code
-      - message
-      type: object
-      properties:
-        code:
-          description: An error code that identifies the type of error that occurred.
-          type: string
-        message:
-          description: A message that describes the error condition.
-          type: string
-        details:
-          description: Additional details that can help the caller understand or fix the issue.
-          type: string
-    ItemExpense:
-      description: The expense information related to this specific item.
-      type: object
-      properties:
-        pointsCost:
-          description: The cost of points.
-          $ref: '#/components/schemas/ItemPointsCost'
-    ItemProceedsDetailedBreakdown:
-      description: Further granular breakdown of the subtotal of the proceeds breakdown, only available for TAX and DISCOUNT proceeds types.
-      type: object
-      properties:
-        subtype:
-          description: "Specific classification of the further granular breakdown. \n\n**Possible values**: `ITEM`, `SHIPPING`, `GIFT_WRAP`, `COD_FEE`, `OTHER`, `DISCOUNT`"
-          type: string
-        value:
-          description: Monetary amount for the further granular breakdown.
-          $ref: '#/components/schemas/Money'
-    ItemPointsCost:
-      description: Information about Amazon Points granted with the purchase of an item, including both quantity and monetary equivalent value.
-      type: object
-      properties:
-        pointsGranted:
-          description: Details of the Amazon Points granted, including count and monetary value.
-          $ref: '#/components/schemas/PointsGranted'
     Order:
       description: Comprehensive information about a customer order.
       type: object
@@ -1707,6 +1307,201 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentOrder'
+    AddressExtendedFields:
+      description: "Additional address components that provide more detailed location information, helping with precise delivery routing. \n\n**Note**: Only available with Brazil shipping addresses."
+      type: object
+      properties:
+        streetName:
+          type: string
+          description: The name of the street.
+        streetNumber:
+          type: string
+          description: The house, building, or property number associated with the location's street address.
+        complement:
+          type: string
+          description: The floor number / unit number.
+        neighborhood:
+          type: string
+          description: The neighborhood. This value is only used in some countries (such as Brazil).
+    ItemCondition:
+      description: Detailed information about the physical condition and quality state of the item being sold.
+      type: object
+      properties:
+        conditionType:
+          description: 'The primary condition category that broadly describes the item''s state.
+
+
+            **Possible values**: `NEW`, `USED`, `COLLECTIBLE`, `REFURBISHED`, `PREORDER`, `CLUB`.'
+          type: string
+        conditionSubtype:
+          description: 'A more specific condition classification that provides additional detail about the item''s quality within the main condition type.
+
+
+            **Possible values**: `NEW`, `MINT`, `VERY_GOOD`, `GOOD`, `ACCEPTABLE`, `POOR`, `CLUB`, `OEM`, `WARRANTY`, `REFURBISHED_WARRANTY`, `REFURBISHED`, `OPEN_BOX`, `ANY`, `OTHER`.'
+          type: string
+        conditionNote:
+          description: Additional details provided by the seller to describe the specific condition of this particular item.
+          type: string
+    GetOrderResponse:
+      description: Order details.
+      type: object
+      required:
+      - order
+      properties:
+        order:
+          description: All available information about the requested order.
+          $ref: '#/components/schemas/Order'
+    OrderItem:
+      description: Information about a single product within an order.
+      type: object
+      required:
+      - orderItemId
+      - quantityOrdered
+      - product
+      properties:
+        orderItemId:
+          description: A unique identifier for this specific item within the order.
+          type: string
+        quantityOrdered:
+          description: The number of units of this item that the customer ordered.
+          type: integer
+        measurement:
+          description: The unit of measure and value for items sold by weight, volume, or other measurements rather than simple count.
+          $ref: '#/components/schemas/Measurement'
+        associatedOrderItems:
+          description: A list of order items associated with this item. For example, a value-add service purchased with the product.
+          type: array
+          items:
+            $ref: '#/components/schemas/AssociatedOrderItem'
+        programs:
+          type: array
+          description: 'Special programs that apply specifically to this item within the order.
+
+
+            **Possible values**: `TRANSPARENCY`, `SUBSCRIBE_AND_SAVE`'
+          items:
+            type: string
+        product:
+          description: Information about the product being ordered.
+          $ref: '#/components/schemas/ItemProduct'
+        proceeds:
+          description: The money that the seller receives from the sale of this specific item.
+          $ref: '#/components/schemas/ItemProceeds'
+        expense:
+          description: The expense information related to this specific item.
+          $ref: '#/components/schemas/ItemExpense'
+        promotion:
+          description: Details about any discounts, coupons, or promotional offers applied to this item.
+          $ref: '#/components/schemas/ItemPromotion'
+        cancellation:
+          description: The cancellation information of the order item.
+          $ref: '#/components/schemas/ItemCancellation'
+        fulfillment:
+          description: Information about how the order item should be processed, packed, and shipped to the customer.
+          $ref: '#/components/schemas/ItemFulfillment'
+        tax:
+          description: Tax-related information for this order item.
+          $ref: '#/components/schemas/ItemTax'
+    ItemFulfillment:
+      description: Information about how the order item should be processed, packed, and shipped to the customer.
+      type: object
+      properties:
+        quantityFulfilled:
+          description: The number of units of this item that have been successfully processed and shipped.
+          type: integer
+        quantityUnfulfilled:
+          description: The number of units of this item that remain to be processed and shipped.
+          type: integer
+        picking:
+          description: Information related to the warehouse picking process for this item.
+          $ref: '#/components/schemas/ItemPicking'
+        packing:
+          description: Information related to the packaging process for this item.
+          $ref: '#/components/schemas/ItemPacking'
+        shipping:
+          description: Information related to the shipping and delivery process for this item.
+          $ref: '#/components/schemas/ItemShipping'
+    ItemCancellationExecution:
+      description: Details of how the cancellation was executed for a specific order item, including who performed the cancellation and the reason.
+      type: object
+      properties:
+        cancelledBy:
+          description: "Entity that executed the cancellation for this item. \n\n**Possible values**: `BUYER`, `MERCHANT`, `AMAZON`"
+          type: string
+        cancelReason:
+          description: Explanation provided for why the cancellation was executed.
+          type: string
+    AssociatedOrder:
+      description: Another order that has a direct business relationship with the current order, such as replacements or exchanges.
+      type: object
+      properties:
+        orderId:
+          description: The unique identifier of the related order that is associated with the current order.
+          type: string
+        associationType:
+          description: 'The relationship between the current order and the associated order.
+
+
+            **Possible values**: `REPLACEMENT_ORIGINAL_ID`, `EXCHANGE_ORIGINAL_ID`'
+          type: string
+    SalesChannel:
+      description: Information about where the customer placed this order.
+      type: object
+      required:
+      - channelName
+      properties:
+        channelName:
+          description: 'The name of the sales platform or channel where the customer placed this order.
+
+
+            **Possible values**: `AMAZON`, `NON_AMAZON`'
+          type: string
+        marketplaceId:
+          description: The unique identifier for the specific marketplace within the sales channel where this order was placed.
+          type: string
+        marketplaceName:
+          description: The human-readable name of the marketplace where this order was placed.
+          type: string
+    ItemPrice:
+      description: Pricing information for the order item.
+      type: object
+      properties:
+        unitPrice:
+          description: The price charged for a single unit of this product, before any quantity-based calculations.
+          $ref: '#/components/schemas/Money'
+        priceDesignation:
+          description: 'Indicates that the selling price is a special price that is only available for Amazon Business orders. For more information about the Amazon Business Seller Program, refer to the [Amazon Business website](https://www.amazon.com/b2b/info/amazon-business).
+
+
+            **Possible value**: `BUSINESS_PRICE`'
+          type: string
+    ItemInternationalShipping:
+      description: Additional requirements needed for cross-border shipping of an order item.
+      type: object
+      properties:
+        iossNumber:
+          description: Import One-Stop Shop registration number required for EU VAT compliance when shipping from outside the European Union. Sellers shipping to the EU from outside the EU must provide this IOSS number to their carrier when Amazon has collected the VAT on the sale.
+          type: string
+    ItemProceeds:
+      description: The money that the seller receives from the sale of this specific item.
+      type: object
+      properties:
+        proceedsTotal:
+          description: The total monetary amount for this order item.
+          $ref: '#/components/schemas/Money'
+        breakdowns:
+          description: The breakdown of proceeds.
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemProceedsBreakdown'
+    ConstraintType:
+      type: string
+      description: Classification of the enforcement level required for shipping and delivery constraints.
+      enum:
+      - MANDATORY
+      x-docgen-enum-table-extension:
+      - value: MANDATORY
+        description: Constraint that must be strictly enforced for delivery.
     Measurement:
       type: object
       description: Specifies the unit of measure and quantity for items that are sold by weight, volume, length, or other measurements rather than simple count.
@@ -1794,79 +1589,306 @@ components:
         value:
           type: number
           description: The numerical quantity or amount being measured in the specified unit.
-    OrderPackage:
-      description: Information about a physical shipping package, including tracking details. **Note:** Only available for merchant-fulfilled (FBM) orders.
+    PreferredDeliveryTime:
       type: object
-      required:
-      - packageReferenceId
+      description: Customer-specified time preferences for when deliveries should be attempted at the destination address.
       properties:
-        packageReferenceId:
-          description: A unique identifier for this package within the context of the order.
-          type: string
-        createdTime:
-          description: The exact time when this shipping package was created and prepared for shipment. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-          type: string
-          format: date-time
-        packageStatus:
-          description: The current status of this package.
-          $ref: '#/components/schemas/PackageStatus'
-        carrier:
-          description: The carrier responsible for transporting this package to the customer.
-          type: string
-        shipTime:
-          description: The exact time when this package was handed over to the carrier and began its journey to the customer. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
-          type: string
-          format: date-time
-        shippingService:
-          description: The specific shipping method or service used for delivering this package.
-          type: string
-        trackingNumber:
-          description: The carrier-provided tracking number that customers can use to monitor the package's delivery progress.
-          type: string
-        shipFromAddress:
-          description: The physical address from which this package was shipped, typically the merchant's warehouse or fulfillment center.
-          $ref: '#/components/schemas/MerchantAddress'
-        packageItems:
-          description: A list of all order items included in this specific package.
+        businessHours:
           type: array
           items:
-            $ref: '#/components/schemas/PackageItem'
-    FulfillmentStatus:
-      description: The current fulfillment status of an order, indicating where the order is in the fulfillment process from placement to handover to carrier.
-      type: string
-      enum:
-      - PENDING_AVAILABILITY
-      - PENDING
-      - UNSHIPPED
-      - PARTIALLY_SHIPPED
-      - SHIPPED
-      - CANCELLED
-      - UNFULFILLABLE
-      x-docgen-enum-table-extension:
-      - value: PENDING_AVAILABILITY
-        description: This status is available for pre-orders only. The order has been placed, payment has not been authorized, and the release date of the item is in the future. The order is not ready for shipment.
-      - value: PENDING
-        description: The order has been placed but is not ready for shipment. For standard orders, the initial order status is `PENDING`. For pre-orders, the initial order status is `PENDING_AVAILABILITY`, and the order passes into the `PENDING` status when payment authorization begins.
-      - value: UNSHIPPED
-        description: The order is ready for shipment, but no items in the order have been shipped.
-      - value: PARTIALLY_SHIPPED
-        description: At least one, but not all, items in the order have been shipped.
-      - value: SHIPPED
-        description: All items have been shipped to the customer.
-      - value: CANCELLED
-        description: The order has been canceled and will not be fulfilled.
-      - value: UNFULFILLABLE
-        description: The order cannot be fulfilled. This state only applies to Amazon-fulfilled orders that were not placed on Amazon's retail website.
-    HourMinute:
+            $ref: '#/components/schemas/BusinessHour'
+          description: Business hours when the business is open for deliveries.
+        exceptionDates:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExceptionDate'
+          description: Specific dates within the next 30 days when normal business hours do not apply.
+    CustomerAddress:
+      description: The physical address of the customer.
       type: object
-      description: The time when the business opens or closes.
       properties:
-        hour:
-          type: integer
-          description: The hour when the business opens or closes, in 24-hour format (0-23).
-        minute:
-          type: integer
-          description: The minute when the business opens or closes.
+        name:
+          description: The full name of the person who will receive the delivery at this address.
+          type: string
+        companyName:
+          type: string
+          description: The name of the business or organization at this address.
+        addressLine1:
+          description: The primary street address.
+          type: string
+        addressLine2:
+          description: Additional address information.
+          type: string
+        addressLine3:
+          description: Additional address information.
+          type: string
+        city:
+          description: The city of the address.
+          type: string
+        districtOrCounty:
+          description: The district or county of the address.
+          type: string
+        stateOrRegion:
+          description: The state, province, or region of the address.
+          type: string
+        municipality:
+          type: string
+          description: The municipality of the address.
+        postalCode:
+          description: The postal code, ZIP code, or equivalent mailing code of the address.
+          type: string
+        countryCode:
+          description: The two-letter country code identifying the country of the address, in ISO 3166-1 format.
+          type: string
+        phone:
+          description: 'The contact phone number for delivery coordination and customer communication.
+
+
+            **Note**: The buyer phone number will be suppressed in some cases, including but not limited to:
+
+
+            - All FBA (Fulfillment by Amazon) orders.
+
+            - Shipped FBM (Fulfilled by the merchant) orders when current date is past the latest delivery date.'
+          type: string
+        extendedFields:
+          description: 'Additional address components specific to certain countries that provide more detailed location information.
+
+
+            **Note**: Only available with Brazil shipping addresses.'
+          $ref: '#/components/schemas/AddressExtendedFields'
+        addressType:
+          description: 'The type of location.
+
+
+            **Possible values**: `RESIDENTIAL`, `COMMERCIAL`, `PICKUP_POINT`'
+          type: string
+    ExceptionDate:
+      type: object
+      description: Special dates when normal business hours are modified or suspended, requiring different delivery scheduling.
+      properties:
+        exceptionDate:
+          description: Specific calendar date when normal operating hours do not apply. In [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format at day granularity.
+          type: string
+          format: date
+        exceptionDateType:
+          description: Operational status of the business on the specified exception date.
+          type: string
+          enum:
+          - CLOSED
+          - OPEN
+          x-docgen-enum-table-extension:
+          - value: CLOSED
+            description: Business operations are suspended on this date.
+          - value: OPEN
+            description: Business operations are active on this date.
+        timeWindows:
+          type: array
+          description: Alternative operating hours that apply specifically to this exception date.
+          items:
+            $ref: '#/components/schemas/TimeWindow'
+    OrderPayment:
+      description: Payment information about the order.
+      type: object
+      properties:
+        paymentExecutions:
+          description: A list of payment executions for the order.
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentExecution'
+    OrderProceedsBreakdown:
+      description: An entry detailing proceeds information.
+      type: object
+      required:
+      - type
+      - subtotal
+      properties:
+        type:
+          description: "The proceeds category. \n\n**Possible values**: `ITEM`, `SHIPPING`, `GIFT_WRAP`, `COD_FEE`, `TAX`, `DISCOUNT`, `DELIVERY_TIP`, `OTHER`. **Note:** `DELIVERY_TIP` is charged separately and not attributed to a specific item. The remaining categories are aggregated across all order items."
+          type: string
+        status:
+          description: 'The processing status of the charge. Only present for categories processed separately after checkout, such as `DELIVERY_TIP`.
+
+
+            **Possible values**: `PENDING`, `FINALIZED`.'
+          type: string
+        subtotal:
+          description: The monetary amount for the proceeds category.
+          $ref: '#/components/schemas/Money'
+    ItemCancellationRequest:
+      description: Detailed information about a cancellation request submitted for a specific order item.
+      type: object
+      properties:
+        requester:
+          description: "Entity that initiated the cancellation request for this item. \n\n**Possible values**: `BUYER`"
+          type: string
+        cancelReason:
+          description: Explanation provided for why the cancellation was requested.
+          type: string
+    SKU:
+      description: The seller SKU of a product (catalog item). This is a unique number assigned by the seller when listing an item.
+      type: string
+    AssociatedOrderItem:
+      description: An associated order item that a customer has purchased with the product. For example, a tire installation service purchased with tires.
+      type: object
+      properties:
+        orderId:
+          description: The order identifier of the associated order item.
+          type: string
+        orderItemId:
+          description: The order item identifier of the associated order item.
+          type: string
+        associationType:
+          description: 'The type of association between the order items.
+
+
+            **Possible values**:
+
+            - `VALUE_ADD_SERVICE` (The associated item is a service order)'
+          type: string
+      example:
+        orderId: 123-4567890-7654321
+        orderItemId: '12345678904321'
+        associationType: VALUE_ADD_SERVICE
+    ItemCustomization:
+      description: Information about any personalization, customization, or special modifications applied to this order item.
+      type: object
+      properties:
+        customizedUrl:
+          description: The URL of the customized data for custom orders from the Amazon Custom program.
+          type: string
+    Alias:
+      description: An alternative identifier that provides a different way to reference the same order.
+      type: object
+      required:
+      - aliasId
+      - aliasType
+      properties:
+        aliasId:
+          description: The alternative identifier value that can be used to reference this order.
+          type: string
+        aliasType:
+          description: 'The kind of alternative identifier this represents.
+
+
+            **Possible values**: `SELLER_ORDER_ID`'
+          type: string
+    ItemTax:
+      description: Tax information for an order item.
+      type: object
+      properties:
+        taxCalculationBreakdowns:
+          description: A list of tax calculation breakdowns for the order item.
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemTaxCalculationBreakdown'
+        taxCollections:
+          description: A list of tax collections for the order item.
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemTaxCollection'
+    Asin:
+      description: The Amazon Standard Identification Number (ASIN), which uniquely identifies a product (catalog item).
+      type: string
+    DateTimeRange:
+      description: A time period with start and end boundaries.
+      type: object
+      properties:
+        earliestDateTime:
+          description: The beginning of the time period, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+          type: string
+          format: date-time
+        latestDateTime:
+          description: The end of the time period, in [ISO 8601](https://developer-docs.amazon.com/sp-api/docs/iso-8601) format.
+          type: string
+          format: date-time
+    ItemShippingConstraints:
+      description: Special shipping requirements and restrictions that must be observed when shipping an order item.
+      type: object
+      properties:
+        palletDelivery:
+          description: The line item must be delivered by pallet.
+          $ref: '#/components/schemas/ConstraintType'
+        cashOnDelivery:
+          description: Payment must be collected from the customer at the time of delivery.
+          $ref: '#/components/schemas/ConstraintType'
+        signatureConfirmation:
+          description: The recipient of the line item must sign to confirm its delivery.
+          $ref: '#/components/schemas/ConstraintType'
+        recipientIdentityVerification:
+          description: The person receiving the line item must be the same as the intended recipient of the order.
+          $ref: '#/components/schemas/ConstraintType'
+        recipientAgeVerification:
+          description: The carrier must confirm that the recipient is of the legal age to receive the line item upon delivery.
+          $ref: '#/components/schemas/ConstraintType'
+    OrderProceeds:
+      description: The money that the seller receives from the sale of the order.
+      type: object
+      properties:
+        grandTotal:
+          description: The total amount that the seller receives from the sale of the order.
+          $ref: '#/components/schemas/Money'
+        breakdowns:
+          description: Categorized proceeds for the order. Proceed categories are either aggregated across all order items (such as `ITEM`, `SHIPPING`, and `TAX`) or applied at the order level (such as `DELIVERY_TIP`).
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderProceedsBreakdown'
+    ErrorList:
+      type: object
+      description: A list of error responses returned when a request is unsuccessful.
+      required:
+      - errors
+      properties:
+        errors:
+          description: A list of errors.
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    BusinessHour:
+      type: object
+      description: Business days and hours when the destination is open for deliveries.
+      properties:
+        dayOfWeek:
+          type: string
+          description: Specific day of the week for which operating hours are being defined.
+          enum:
+          - SUN
+          - MON
+          - TUE
+          - WED
+          - THU
+          - FRI
+          - SAT
+          x-docgen-enum-table-extension:
+          - value: SUN
+            description: Sunday
+          - value: MON
+            description: Monday
+          - value: TUE
+            description: Tuesday
+          - value: WED
+            description: Wednesday
+          - value: THU
+            description: Thursday
+          - value: FRI
+            description: Friday
+          - value: SAT
+            description: Saturday
+        timeWindows:
+          type: array
+          description: Collection of time windows during which the location is available for deliveries on the specified day.
+          items:
+            $ref: '#/components/schemas/TimeWindow'
+    GiftOption:
+      description: Gift wrapping and personalization options selected by the customer for an order item.
+      type: object
+      properties:
+        giftMessage:
+          description: Personal message from the buyer to be included with the gift-wrapped item.
+          type: string
+        giftWrapLevel:
+          description: Type or quality level of gift wrapping service selected by the customer.
+          type: string
     ItemPacking:
       description: Information related to the packaging process for an order item.
       type: object
@@ -1883,58 +1905,36 @@ components:
           giftWrapLevel: PREMIUM
         serialNumberRequirement:
           requirementType: REQUIRED
-    Asin:
-      description: The Amazon Standard Identification Number (ASIN), which uniquely identifies a product (catalog item).
-      type: string
-    AssociatedOrder:
-      description: Another order that has a direct business relationship with the current order, such as replacements or exchanges.
+    OrderTaxInvoicing:
+      description: Tax invoicing information for the order.
       type: object
       properties:
-        orderId:
-          description: The unique identifier of the related order that is associated with the current order.
+        buyerInvoicePreference:
+          description: "The buyer's invoicing preference, which indicates whether the seller should issue an individual or a business invoice to the buyer. \n\n **Note**: This attribute is only available in the Turkey marketplace. \n\n**Possible values**:\n- `INDIVIDUAL` (Issues an individual invoice to the buyer)\n- `BUSINESS` (Issues a business invoice to the buyer)"
           type: string
-        associationType:
-          description: 'The relationship between the current order and the associated order.
-
-
-            **Possible values**: `REPLACEMENT_ORIGINAL_ID`, `EXCHANGE_ORIGINAL_ID`'
-          type: string
-    PreferredDeliveryCapability:
-      description: "Special delivery capabilities available at the shipping address that may affect delivery options and methods. \n\n**Possible values**:\n- `HAS_ACCESS_POINT` (Delivery location includes designated pickup or drop-off access points)\n- `PALLET_ENABLED` (Address is equipped to receive large pallet deliveries)\n- `PALLET_DISABLED` (Address cannot accommodate pallet delivery methods)"
-      type: string
-    OrderTaxRegistration:
-      description: Tax registration information for an entity associated with the order.
-      type: object
-      properties:
-        entityType:
-          description: 'The type of entity that the tax registration belongs to.
+        invoiceStatus:
+          description: 'The status of the invoice. Only available for Easy Ship orders and orders in the Brazil marketplace.
 
 
             **Possible values**:
 
-            - `BUYER` (Indicates that this is the buyer''s tax registration information)
+            - `NOT_REQUIRED` (The order does not require an electronic invoice to be uploaded)
 
-            - `MERCHANT` (Indicates that this is the merchant''s tax registration information)
+            - `NOT_FOUND` (The order requires an electronic invoice but it is not uploaded)
 
-            - `MARKETPLACE` (Indicates that this is the marketplace''s tax registration information)'
-          type: string
-        legalName:
-          description: The legal name associated with the tax registration.
-          type: string
-        taxRegistrationType:
-          description: 'The type of the tax registration number.
+            - `PROCESSING` (The required electronic invoice was uploaded and is processing)
 
+            - `ERRORED` (The uploaded electronic invoice was not accepted)
 
-            **Possible values**: `BUSINESS`, `VAT`, `CST`, `CPF`, `CNPJ`'
+            - `ACCEPTED` (The uploaded electronic invoice was accepted)'
           type: string
-        taxRegistrationNumber:
-          description: The tax registration number that identifies the entity for tax purposes.
-          type: string
-        taxRegistrationAddress:
-          description: The address associated with the tax registration.
+    Recipient:
+      description: Information about the recipient to whom the order should be delivered.
+      type: object
+      properties:
+        deliveryAddress:
+          description: The address where the order should be delivered to the customer.
           $ref: '#/components/schemas/CustomerAddress'
-        taxRegistrationAttributes:
-          description: Additional attributes related to the tax registration.
-          type: array
-          items:
-            $ref: '#/components/schemas/TaxRegistrationAttribute'
+        deliveryPreference:
+          description: Special instructions and preferences that the customer specifies for how the order should be delivered.
+          $ref: '#/components/schemas/DeliveryPreference'
