@@ -1,0 +1,12 @@
+{
+ "url": "https://raw.githubusercontent.com/amzn/selling-partner-api-models/HEAD/models/fulfillment-inbound-api-model/fulfillmentInbound_2024-03-20.json",
+ "requested_url": "https://raw.githubusercontent.com/amzn/selling-partner-api-models/HEAD/models/fulfillment-inbound-api-model/fulfillmentInbound_2024-03-20.json",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 560644,
+ "sha256": "a4d4cdd08dd3f381f27154d7f9f503d45e0486d416c629598341bbd23c7ff487",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}

@@ -1,0 +1,12 @@
+{
+ "url": "https://raw.githubusercontent.com/amzn/selling-partner-api-models/HEAD/models/fba-inventory-api-model/fbaInventory.json",
+ "requested_url": "https://raw.githubusercontent.com/amzn/selling-partner-api-models/HEAD/models/fba-inventory-api-model/fbaInventory.json",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 36985,
+ "sha256": "7c14bcdb22de8ca2df45e5a40f2a422cff344d45985a68b9515b2e800edcc5ab",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}

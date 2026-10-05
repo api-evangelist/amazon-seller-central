@@ -1,0 +1,12 @@
+{
+ "url": "https://raw.githubusercontent.com/amzn/selling-partner-api-models/HEAD/models/finances-api-model/finances_2024-06-19.json",
+ "requested_url": "https://raw.githubusercontent.com/amzn/selling-partner-api-models/HEAD/models/finances-api-model/finances_2024-06-19.json",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 68335,
+ "sha256": "54e8d2d5094c00a52f8a812f5ce5d87aaed0e4c4193fc0d3ea2314bada50ee8f",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
