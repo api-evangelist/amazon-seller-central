@@ -296,3 +296,14 @@ deployment:
   checked: '2026-09-24'
   evidence: 'Anonymous initialize returns HTTP 401 with WWW-Authenticate: Bearer resource_metadata="https://sellingpartner-ai.amazon.com/.well-known/oauth-protected-resource/mcp"
     and JSON-RPC error {"code":-32001,"message":"Authentication required"}.'
+rfc9728:
+  endpoint: https://sellingpartner-ai.amazon.com/mcp
+  metadata_url: https://sellingpartner-ai.amazon.com/.well-known/oauth-protected-resource/mcp
+  discovered_via: WWW-Authenticate resource_metadata on an anonymous POST initialize
+  fetched: '2026-09-25'
+  http_status: 200
+  content_type: application/json
+  document:
+    resource: https://sellingpartner-ai.amazon.com/mcp
+    authorization_servers:
+    - https://sellingpartner-ai.amazon.com/mcp
