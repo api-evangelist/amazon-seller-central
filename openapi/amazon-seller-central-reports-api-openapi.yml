@@ -1575,63 +1575,11 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ReportList:
-      type: array
-      description: A list of reports.
-      items:
-        $ref: '#/components/schemas/Report'
-    Error:
+    ReportOptions:
+      description: Additional information passed to reports. This varies by report type.
       type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: An error code that identifies the type of error that occurred.
-        message:
-          type: string
-          description: A message that describes the error condition.
-        details:
-          type: string
-          description: Additional details that can help the caller understand or fix the issue.
-      description: Error response returned when the request is unsuccessful.
-    CreateReportSpecification:
-      type: object
-      description: Information required to create the report.
-      required:
-      - marketplaceIds
-      - reportType
-      properties:
-        reportOptions:
-          $ref: '#/components/schemas/ReportOptions'
-        reportType:
-          description: The report type. Refer to [Report Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
-          type: string
-        dataStartTime:
-          description: The start of a date and time range, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format, used for selecting the data to report. The default is now. The value must be prior to or equal to the current date and time. Not all report types make use of this.
-          type: string
-          format: date-time
-        dataEndTime:
-          description: The end of a date and time range, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format, used for selecting the data to report. The default is now. The value must be prior to or equal to the current date and time. Not all report types make use of this.
-          type: string
-          format: date-time
-        marketplaceIds:
-          description: A list of marketplace identifiers. The report document's contents will contain data for all of the specified marketplaces, unless the report type indicates otherwise.
-          type: array
-          minItems: 1
-          maxItems: 25
-          items:
-            type: string
-    CreateReportScheduleResponse:
-      type: object
-      description: Response schema.
-      required:
-      - reportScheduleId
-      properties:
-        reportScheduleId:
-          description: The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
-          type: string
+      additionalProperties:
+        type: string
     ReportDocument:
       type: object
       description: Information required for the report document.
@@ -1719,26 +1667,15 @@ components:
         reportDocumentId:
           description: The identifier for the report document. Pass this into the `getReportDocument` operation to get the information you will need to retrieve the report document's contents.
           type: string
-    CreateReportResponse:
+    CreateReportScheduleResponse:
       type: object
-      description: The response schema.
+      description: Response schema.
       required:
-      - reportId
+      - reportScheduleId
       properties:
-        reportId:
-          description: The identifier for the report. This identifier is unique only in combination with a seller ID.
+        reportScheduleId:
+          description: The identifier for the report schedule. This identifier is unique only in combination with a seller ID.
           type: string
-    ReportScheduleList:
-      type: object
-      description: A list of report schedules.
-      required:
-      - reportSchedules
-      properties:
-        reportSchedules:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReportSchedule'
-          description: Detailed information about a report schedule.
     GetReportsResponse:
       type: object
       required:
@@ -1751,6 +1688,17 @@ components:
           description: Returned when the number of results exceeds `pageSize`. To get the next page of results, call `getReports` with this token as the only parameter.
           type: string
       description: The response for the `getReports` operation.
+    ReportScheduleList:
+      type: object
+      description: A list of report schedules.
+      required:
+      - reportSchedules
+      properties:
+        reportSchedules:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportSchedule'
+          description: Detailed information about a report schedule.
     ErrorList:
       type: object
       description: A list of error responses returned when a request is unsuccessful.
@@ -1762,6 +1710,63 @@ components:
           items:
             $ref: '#/components/schemas/Error'
           description: Error response returned when the request is unsuccessful.
+    CreateReportResponse:
+      type: object
+      description: The response schema.
+      required:
+      - reportId
+      properties:
+        reportId:
+          description: The identifier for the report. This identifier is unique only in combination with a seller ID.
+          type: string
+    CreateReportSpecification:
+      type: object
+      description: Information required to create the report.
+      required:
+      - marketplaceIds
+      - reportType
+      properties:
+        reportOptions:
+          $ref: '#/components/schemas/ReportOptions'
+        reportType:
+          description: The report type. Refer to [Report Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) for more information.
+          type: string
+        dataStartTime:
+          description: The start of a date and time range, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format, used for selecting the data to report. The default is now. The value must be prior to or equal to the current date and time. Not all report types make use of this.
+          type: string
+          format: date-time
+        dataEndTime:
+          description: The end of a date and time range, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format, used for selecting the data to report. The default is now. The value must be prior to or equal to the current date and time. Not all report types make use of this.
+          type: string
+          format: date-time
+        marketplaceIds:
+          description: A list of marketplace identifiers. The report document's contents will contain data for all of the specified marketplaces, unless the report type indicates otherwise.
+          type: array
+          minItems: 1
+          maxItems: 25
+          items:
+            type: string
+    ReportList:
+      type: array
+      description: A list of reports.
+      items:
+        $ref: '#/components/schemas/Report'
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: An error code that identifies the type of error that occurred.
+        message:
+          type: string
+          description: A message that describes the error condition.
+        details:
+          type: string
+          description: Additional details that can help the caller understand or fix the issue.
+      description: Error response returned when the request is unsuccessful.
     ReportSchedule:
       description: Detailed information about a report schedule.
       type: object
@@ -1873,8 +1878,3 @@ components:
           description: The date and time when the schedule will create its next report, in <a href='https://developer-docs.amazon.com/sp-api/docs/iso-8601'>ISO 8601</a> date time format.
           type: string
           format: date-time
-    ReportOptions:
-      description: Additional information passed to reports. This varies by report type.
-      type: object
-      additionalProperties:
-        type: string

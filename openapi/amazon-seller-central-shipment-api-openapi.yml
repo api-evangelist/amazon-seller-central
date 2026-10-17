@@ -180,6 +180,53 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ShipmentStatus:
+      description: The shipment status to apply.
+      type: string
+      enum:
+      - ReadyForPickup
+      - PickedUp
+      - RefusedPickup
+      x-docgen-enum-table-extension:
+      - value: ReadyForPickup
+        description: Ready for pickup.
+      - value: PickedUp
+        description: Picked up.
+      - value: RefusedPickup
+        description: Refused pickup.
+    MarketplaceId:
+      description: The unobfuscated marketplace identifier.
+      type: string
+    OrderItems:
+      description: For partial shipment status updates, the list of order items and quantities to be updated.
+      type: array
+      items:
+        type: object
+        properties:
+          orderItemId:
+            description: The order item's unique identifier.
+            type: string
+          quantity:
+            type: integer
+            description: The quantity for which to update the shipment status.
+    UpdateShipmentStatusRequest:
+      description: The request body for the `updateShipmentStatus` operation.
+      type: object
+      properties:
+        marketplaceId:
+          $ref: '#/components/schemas/MarketplaceId'
+        shipmentStatus:
+          $ref: '#/components/schemas/ShipmentStatus'
+        orderItems:
+          $ref: '#/components/schemas/OrderItems'
+      required:
+      - marketplaceId
+      - shipmentStatus
+    ErrorList:
+      type: array
+      description: A list of error responses returned when a request is unsuccessful.
+      items:
+        $ref: '#/components/schemas/Error'
     Error:
       type: object
       required:
@@ -196,9 +243,6 @@ components:
           type: string
           description: Additional details that can help the caller understand or fix the issue.
       description: Error response returned when the request is unsuccessful.
-    MarketplaceId:
-      description: The unobfuscated marketplace identifier.
-      type: string
     UpdateShipmentStatusErrorResponse:
       type: object
       properties:
@@ -206,47 +250,3 @@ components:
           description: One or more unexpected errors occurred during the `UpdateShipmentStatus` operation.
           $ref: '#/components/schemas/ErrorList'
       description: The error response schema for the `UpdateShipmentStatus` operation.
-    OrderItems:
-      description: For partial shipment status updates, the list of order items and quantities to be updated.
-      type: array
-      items:
-        type: object
-        properties:
-          orderItemId:
-            description: The order item's unique identifier.
-            type: string
-          quantity:
-            type: integer
-            description: The quantity for which to update the shipment status.
-    ErrorList:
-      type: array
-      description: A list of error responses returned when a request is unsuccessful.
-      items:
-        $ref: '#/components/schemas/Error'
-    ShipmentStatus:
-      description: The shipment status to apply.
-      type: string
-      enum:
-      - ReadyForPickup
-      - PickedUp
-      - RefusedPickup
-      x-docgen-enum-table-extension:
-      - value: ReadyForPickup
-        description: Ready for pickup.
-      - value: PickedUp
-        description: Picked up.
-      - value: RefusedPickup
-        description: Refused pickup.
-    UpdateShipmentStatusRequest:
-      description: The request body for the `updateShipmentStatus` operation.
-      type: object
-      properties:
-        marketplaceId:
-          $ref: '#/components/schemas/MarketplaceId'
-        shipmentStatus:
-          $ref: '#/components/schemas/ShipmentStatus'
-        orderItems:
-          $ref: '#/components/schemas/OrderItems'
-      required:
-      - marketplaceId
-      - shipmentStatus

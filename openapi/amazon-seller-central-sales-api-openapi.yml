@@ -381,25 +381,27 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Money:
+      type: object
+      required:
+      - amount
+      - currencyCode
+      properties:
+        currencyCode:
+          type: string
+          description: Three-digit currency code. In ISO 4217 format.
+        amount:
+          description: The currency amount.
+          $ref: '#/components/schemas/Decimal'
+      description: The currency type and the amount.
     Decimal:
       type: string
       description: A decimal number with no loss of precision. Useful when precision loss is unnaceptable, as with currencies. Follows RFC7159 for number representation.
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: An error code that identifies the type of error that occured.
-        message:
-          type: string
-          description: A message that describes the error condition in a human-readable form.
-        details:
-          type: string
-          description: Additional details that can help the caller understand or fix the issue.
-      description: Error response returned when the request is unsuccessful.
+    ErrorList:
+      type: array
+      description: A list of error responses returned when a request is unsuccessful.
+      items:
+        $ref: '#/components/schemas/Error'
     OrderMetricsInterval:
       type: object
       required:
@@ -429,19 +431,22 @@ components:
           description: The total ordered product sales for all orders based on the specified filters.
           $ref: '#/components/schemas/Money'
       description: Contains order metrics.
-    Money:
+    Error:
       type: object
       required:
-      - amount
-      - currencyCode
+      - code
+      - message
       properties:
-        currencyCode:
+        code:
           type: string
-          description: Three-digit currency code. In ISO 4217 format.
-        amount:
-          description: The currency amount.
-          $ref: '#/components/schemas/Decimal'
-      description: The currency type and the amount.
+          description: An error code that identifies the type of error that occured.
+        message:
+          type: string
+          description: A message that describes the error condition in a human-readable form.
+        details:
+          type: string
+          description: Additional details that can help the caller understand or fix the issue.
+      description: Error response returned when the request is unsuccessful.
     GetOrderMetricsResponse:
       type: object
       properties:
@@ -452,11 +457,6 @@ components:
           description: Encountered errors for the getOrderMetrics operation.
           $ref: '#/components/schemas/ErrorList'
       description: The response schema for the getOrderMetrics operation.
-    ErrorList:
-      type: array
-      description: A list of error responses returned when a request is unsuccessful.
-      items:
-        $ref: '#/components/schemas/Error'
     OrderMetricsList:
       type: array
       description: A set of order metrics, each scoped to a particular time interval.

@@ -423,76 +423,22 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    MarketplaceParticipation:
+    PrimaryContact:
       type: object
+      description: Information about the seller's primary contact.
       required:
-      - marketplace
-      - participation
-      - storeName
-      properties:
-        marketplace:
-          $ref: '#/components/schemas/Marketplace'
-        participation:
-          $ref: '#/components/schemas/Participation'
-        storeName:
-          type: string
-          description: The name of the seller's store as displayed in the marketplace.
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: An error code that identifies the type of error that occurred.
-        message:
-          type: string
-          description: A message that describes the error condition in a human-readable form.
-        details:
-          type: string
-          description: Additional details that can help you understand or fix the issue.
-      description: Error response returned when the request is unsuccessful.
-    GetMarketplaceParticipationsResponse:
-      type: object
-      properties:
-        payload:
-          description: The payload for the `getMarketplaceParticipations` operation.
-          $ref: '#/components/schemas/MarketplaceParticipationList'
-        errors:
-          description: The errors encountered by the `getMarketplaceParticipations` operation.
-          $ref: '#/components/schemas/ErrorList'
-      description: The response schema for the `getMarketplaceParticipations` operation.
-    Marketplace:
-      type: object
-      required:
-      - id
       - name
-      - countryCode
-      - defaultCurrencyCode
-      - defaultLanguageCode
-      - domainName
+      - address
       properties:
-        id:
-          type: string
-          description: The encrypted marketplace value.
         name:
           type: string
-          description: The marketplace name.
-        countryCode:
+          description: The full name of the seller's primary contact.
+        address:
+          $ref: '#/components/schemas/Address'
+          description: The primary contact's residential address.
+        nonLatinName:
           type: string
-          description: The ISO 3166-1 alpha-2 format country code of the marketplace.
-          pattern: ^([A-Z]{2})$
-        defaultCurrencyCode:
-          type: string
-          description: The ISO 4217 format currency code of the marketplace.
-        defaultLanguageCode:
-          type: string
-          description: The ISO 639-1 format language code of the marketplace.
-        domainName:
-          type: string
-          description: The domain name of the marketplace.
-      description: Information about an Amazon marketplace where a seller can list items and customers can view and purchase items.
+          description: The non-Latin script version of the primary contact's name, if applicable.
     GetAccountResponse:
       description: The response schema for the `getAccount` operation.
       type: object
@@ -527,6 +473,26 @@ components:
         postalCode:
           type: string
           description: The postal code.
+    GetMarketplaceParticipationsResponse:
+      type: object
+      properties:
+        payload:
+          description: The payload for the `getMarketplaceParticipations` operation.
+          $ref: '#/components/schemas/MarketplaceParticipationList'
+        errors:
+          description: The errors encountered by the `getMarketplaceParticipations` operation.
+          $ref: '#/components/schemas/ErrorList'
+      description: The response schema for the `getMarketplaceParticipations` operation.
+    MarketplaceParticipationList:
+      type: array
+      description: List of marketplace participations.
+      items:
+        $ref: '#/components/schemas/MarketplaceParticipation'
+    ErrorList:
+      type: array
+      description: A list of error responses returned when a request is unsuccessful.
+      items:
+        $ref: '#/components/schemas/Error'
     Business:
       type: object
       description: Information about the seller's business. Certain fields may be omitted depending on the seller's `businessType`.
@@ -549,6 +515,52 @@ components:
         nonLatinName:
           type: string
           description: The non-Latin script version of the registered business name, if applicable.
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: An error code that identifies the type of error that occurred.
+        message:
+          type: string
+          description: A message that describes the error condition in a human-readable form.
+        details:
+          type: string
+          description: Additional details that can help you understand or fix the issue.
+      description: Error response returned when the request is unsuccessful.
+    Marketplace:
+      type: object
+      required:
+      - id
+      - name
+      - countryCode
+      - defaultCurrencyCode
+      - defaultLanguageCode
+      - domainName
+      properties:
+        id:
+          type: string
+          description: The encrypted marketplace value.
+        name:
+          type: string
+          description: The marketplace name.
+        countryCode:
+          type: string
+          description: The ISO 3166-1 alpha-2 format country code of the marketplace.
+          pattern: ^([A-Z]{2})$
+        defaultCurrencyCode:
+          type: string
+          description: The ISO 4217 format currency code of the marketplace.
+        defaultLanguageCode:
+          type: string
+          description: The ISO 639-1 format language code of the marketplace.
+        domainName:
+          type: string
+          description: The domain name of the marketplace.
+      description: Information about an Amazon marketplace where a seller can list items and customers can view and purchase items.
     Participation:
       type: object
       required:
@@ -562,11 +574,6 @@ components:
           type: boolean
           description: Specifies if the seller has suspended listings. `true` if the seller Listing Status is set to Inactive, otherwise `false`.
       description: Information that is specific to a seller in a marketplace.
-    ErrorList:
-      type: array
-      description: A list of error responses returned when a request is unsuccessful.
-      items:
-        $ref: '#/components/schemas/Error'
     Account:
       description: The response schema for the `getAccount` operation.
       type: object
@@ -621,24 +628,17 @@ components:
           $ref: '#/components/schemas/Business'
         primaryContact:
           $ref: '#/components/schemas/PrimaryContact'
-    MarketplaceParticipationList:
-      type: array
-      description: List of marketplace participations.
-      items:
-        $ref: '#/components/schemas/MarketplaceParticipation'
-    PrimaryContact:
+    MarketplaceParticipation:
       type: object
-      description: Information about the seller's primary contact.
       required:
-      - name
-      - address
+      - marketplace
+      - participation
+      - storeName
       properties:
-        name:
+        marketplace:
+          $ref: '#/components/schemas/Marketplace'
+        participation:
+          $ref: '#/components/schemas/Participation'
+        storeName:
           type: string
-          description: The full name of the seller's primary contact.
-        address:
-          $ref: '#/components/schemas/Address'
-          description: The primary contact's residential address.
-        nonLatinName:
-          type: string
-          description: The non-Latin script version of the primary contact's name, if applicable.
+          description: The name of the seller's store as displayed in the marketplace.
