@@ -4023,3 +4023,9 @@ components:
           type: string
           description: A translation of the description. The translation is in the language specified in the `language` request parameter.
       description: A return reason code, a description, and an optional description translation.
+x-provenance:
+  method: harvested
+  publisher: Amazon Selling Partner API
+  source: https://raw.githubusercontent.com/amzn/selling-partner-api-models/HEAD/models/fulfillment-outbound-api-model/fulfillmentOutbound_2020-07-01.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
