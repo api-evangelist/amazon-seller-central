@@ -12423,3 +12423,9 @@ x-provenance:
   source: https://raw.githubusercontent.com/amzn/selling-partner-api-models/HEAD/models/fulfillment-inbound-api-model/fulfillmentInbound_2024-03-20.json
   note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
     stamped by stamp-openapi-provenance.py (roadmap#793)
+x-provenance:
+  method: harvested
+  publisher: Amazon Selling Partner API
+  source: https://raw.githubusercontent.com/amzn/selling-partner-api-models/HEAD/models/fulfillment-inbound-api-model/fulfillmentInbound_2024-03-20.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
